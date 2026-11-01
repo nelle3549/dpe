@@ -1,0 +1,66 @@
+{
+  "topic": "3.7",
+  "title": "Generating Basic Charts",
+  "activities": [
+    {
+      "id": "3.7-a",
+      "slide": "Which chart would you use?",
+      "kind": "task",
+      "title": "Which chart would you use?",
+      "minutes": 2,
+      "intro": "Match each situation to the chart that answers its question best: compare, trend over time, or parts of one whole.",
+      "blocks": [
+        { "type": "sort", "id": "match", "prompt": "Put each situation under the best chart type.", "bins": ["Column or bar", "Line", "Pie"], "items": [
+          "Supplies cost per item this month",
+          "The office's electricity bill, January to June",
+          "How a ₱20,250 household budget is split",
+          "Number of staff present per section today"
+        ] }
+      ],
+      "help": [
+        "Compare items, sections or people: column or bar.",
+        "Months, weeks or days in order: line.",
+        "Shares that add up to one whole: pie, about 6 slices or fewer."
+      ]
+    },
+    {
+      "id": "3.7-b",
+      "slide": "Try it: your Lab 3 chart",
+      "kind": "task",
+      "title": "Chart your inventory's Total Cost",
+      "minutes": 6,
+      "intro": "This chart counts toward Lab 3, so build it carefully on your real Jan sheet. Then run the self-check.",
+      "blocks": [
+        { "type": "steps", "id": "steps", "items": [
+          "Select A1:A9, hold Ctrl (Mac: Cmd), and select E1:E9.",
+          "Insert a Bar or Column chart.",
+          "Type a real chart title: what, where, when.",
+          "Add axis titles and data labels. Delete the legend.",
+          "Move the chart beside the table and resize it until every label reads clearly."
+        ] },
+        { "type": "mcq", "id": "range", "prompt": "Which cells did you select for the chart?", "options": ["A1:A9 and E1:E9", "A1:A10 and E1:E10", "A1:E10", "E1:E9 only"] },
+        { "type": "mcq", "id": "longest", "prompt": "Self-check: which item has the longest bar?", "options": ["Bond paper, A4", "Bond paper, long", "Printer ink, black", "TOTAL"] },
+        { "type": "number", "id": "label", "prompt": "What data label is on the longest bar?", "unit": "₱" },
+        { "type": "text", "id": "title", "prompt": "Type the chart title you used.", "lines": 1 },
+        { "type": "upload", "id": "shot", "prompt": "Optional: a screenshot of your chart", "optional": true }
+      ],
+      "help": [
+        "A TOTAL bar towers over everything? You included row 10. Select rows 1 to 9 only.",
+        "Numbers along the axis instead of item names? Column A was not selected. Hold Ctrl while you add E1:E9.",
+        "The default text \"Chart Title\" does not count as a title in Lab 3. Click it and type a real one.",
+        "Excel: the + button beside the chart adds titles and labels. Sheets: Chart editor, Customize. Calc: double-click the chart, then Insert."
+      ]
+    },
+    {
+      "id": "3.7-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: the half-pie slice",
+      "minutes": 1,
+      "intro": "Pick one answer.",
+      "blocks": [
+        { "type": "mcq", "id": "q", "prompt": "You select A1:A10 and E1:E10 and insert a pie. One slice is exactly half the pie. Why?", "options": ["Long paper is half of all spending", "Row 10, the TOTAL, became a slice", "Pie charts always enlarge the first slice", "The chart needs a legend to fix it"] }
+      ]
+    }
+  ]
+}

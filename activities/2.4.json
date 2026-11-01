@@ -1,0 +1,125 @@
+{
+  "topic": "2.4",
+  "title": "Mail Merge Basics",
+  "activities": [
+    {
+      "id": "2.4-a",
+      "slide": "Try it now",
+      "kind": "task",
+      "title": "Merge your invitation to 3 people",
+      "minutes": 12,
+      "intro": "Work in your own word processor and spreadsheet. Use sample names only. Tick each step as you finish it.",
+      "blocks": [
+        {
+          "type": "steps",
+          "id": "steps",
+          "items": [
+            "In a spreadsheet, type Name, Position, Section, Email in row 1, then 3 sample people in rows 2 to 4. Save as Workshop Invitees and close it.",
+            "Open your invitation letter from Topic 2.3.",
+            "Mailings › Start Mail Merge › Letters, then Select Recipients › Use an Existing List.",
+            "Replace the typed name with Insert Merge Field › Name. Add Position and Section.",
+            "Preview Results and click through all 3.",
+            "Finish & Merge › Edit Individual Documents › All. Save the new file as Merged Invitations."
+          ]
+        },
+        {
+          "type": "number",
+          "id": "letters",
+          "prompt": "How many letters are in your merged file?",
+          "unit": "letters"
+        },
+        {
+          "type": "mcq",
+          "id": "tab",
+          "prompt": "Which Word tab holds all the mail merge buttons?",
+          "options": ["Insert", "Mailings", "Review", "Layout"]
+        },
+        {
+          "type": "mcq",
+          "id": "f1",
+          "prompt": "The field list shows F1, F2 instead of Name, Position. What is wrong?",
+          "options": [
+            "The headers are not in row 1 of the sheet",
+            "The spreadsheet is still open",
+            "You did not click Preview Results"
+          ]
+        },
+        {
+          "type": "upload",
+          "id": "shot",
+          "prompt": "Optional: a screenshot of one merged letter",
+          "optional": true
+        }
+      ],
+      "help": [
+        "Greyed-out buttons: you skipped Start Mail Merge or Select Recipients.",
+        "Field list shows F1, F2: headers are not in row 1. Fix the sheet, reconnect.",
+        "\"File in use\": close the spreadsheet, then try again."
+      ]
+    },
+    {
+      "id": "2.4-b",
+      "slide": "Spot the problem",
+      "kind": "task",
+      "title": "Spot the problem in these merged letters",
+      "minutes": 2,
+      "intro": "Look at the three merged letters on the slide. Pick the problem in each one.",
+      "blocks": [
+        {
+          "type": "mcq",
+          "id": "l1",
+          "prompt": "Letter 1 reads \"DearJuan Dela Cruz:\". What went wrong?",
+          "options": [
+            "No space before the «Name» field",
+            "A blank row in the list",
+            "Raw number and date from the sheet",
+            "The wrong sheet was picked"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "l4",
+          "prompt": "Letter 4 reads \"Dear      :\" with no name at all. What went wrong?",
+          "options": [
+            "No space before the «Name» field",
+            "A blank row in the list",
+            "Raw number and date from the sheet",
+            "The wrong sheet was picked"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "l2",
+          "prompt": "Letter 2 says \"Your training allowance of 1500 will be released on 11/19/2026.\" What went wrong?",
+          "options": [
+            "No space before the «Name» field",
+            "A blank row in the list",
+            "Raw number and date from the sheet",
+            "The wrong sheet was picked"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.4-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: two extra letters",
+      "minutes": 1,
+      "intro": "Pick one answer.",
+      "blocks": [
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "Your list has 3 names, but the merged file has 5 letters and 2 are blank. Most likely cause?",
+          "options": [
+            "The font in the letter is too small",
+            "The spreadsheet has 2 empty rows inside the list",
+            "The margins are not 1 inch",
+            "You forgot to click Preview Results"
+          ]
+        }
+      ]
+    }
+  ]
+}

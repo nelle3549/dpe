@@ -1,0 +1,54 @@
+{
+  "topic": "1.1",
+  "title": "Hardware, Software and Peopleware",
+  "activities": [
+    {
+      "id": "1.1-a",
+      "slide": "Activity: sort it out",
+      "kind": "task",
+      "title": "Hardware, software or peopleware?",
+      "minutes": 2,
+      "intro": "Sort the 9 items on the slide. Put each one in the right group: hardware, software or peopleware.",
+      "blocks": [
+        {
+          "type": "sort",
+          "id": "sort",
+          "prompt": "Sort each item into the right group.",
+          "bins": ["Hardware", "Software", "Peopleware"],
+          "items": [
+            "Biometric scanner",
+            "Web browser",
+            "The ICT focal person",
+            "Windows 11",
+            "UPS (backup power)",
+            "The taxpayer filling out a form online",
+            "Flash drive",
+            "Antivirus program",
+            "Webcam"
+          ]
+        }
+      ],
+      "help": [
+        "Can you touch it? Then it is hardware.",
+        "Instructions you can't touch, like a program or Windows, are software.",
+        "Any person who uses or supports the system is peopleware, including the taxpayer."
+      ]
+    },
+    {
+      "id": "1.1-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: the UPS",
+      "minutes": 1,
+      "intro": "One question. Pick the best answer.",
+      "blocks": [
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "During a brownout, the UPS beeps and keeps your PC on. The UPS is…",
+          "options": ["System software", "Hardware", "Application software", "Peopleware"]
+        }
+      ]
+    }
+  ]
+}

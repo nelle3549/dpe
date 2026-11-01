@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Productivity Essentials · Course Index</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --navy:#0B2545;--navy-2:#13315C;--gold:#F4B400;--bg:#F4F7FB;--surface:#fff;
+    --text-1:#0B2545;--text-2:#3E4C63;--text-3:#7A879C;--border:rgba(11,37,69,.12);
+    --m1:#1366D6;--m2:#2B579A;--m3:#16794A;--m4:#C2482B;--good:#1E9E6A;
+    --shadow:0 2px 8px rgba(11,37,69,.06),0 12px 28px rgba(11,37,69,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text-1);font-family:'Plus Jakarta Sans',-apple-system,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.55}
+  a{color:inherit}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 28px}
+
+  /* hero */
+  .hero{background:radial-gradient(circle at 85% 20%,rgba(244,180,0,.18),transparent 40%),radial-gradient(circle at 0% 100%,rgba(19,102,214,.45),transparent 55%),var(--navy);color:#fff;padding:56px 0 44px;position:relative;overflow:hidden}
+  .hero .kicker{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0}
+  .hero h1{font-size:clamp(36px,6vw,72px);line-height:1.02;font-weight:800;letter-spacing:-.03em;margin:12px 0 14px}
+  .hero h1 span{color:var(--gold)}
+  .hero p.lede{font-size:clamp(17px,1.6vw,21px);color:rgba(255,255,255,.82);max-width:62ch;margin:0}
+  .hero .who{margin-top:22px;font-size:15px;color:rgba(255,255,255,.7)}
+  .hero .who b{color:#fff}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:30px;max-width:900px}
+  .stats div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:14px 18px}
+  .stats b{display:block;font-size:30px;line-height:1.1;font-weight:800;color:#fff}
+  .stats span{font-size:13px;color:rgba(255,255,255,.7)}
+  .progress{margin-top:26px;max-width:900px}
+  .progress .bar{height:10px;background:rgba(255,255,255,.14);border-radius:999px;overflow:hidden}
+  .progress .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#FFD866);border-radius:999px;transition:width .5s}
+  .progress .lbl{display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.75);margin-top:8px}
+  .progress button{font:inherit;font-size:12px;color:rgba(255,255,255,.6);background:none;border:0;cursor:pointer;text-decoration:underline;padding:0}
+
+  /* sticky nav */
+  nav.tabs{position:sticky;top:0;z-index:20;background:rgba(244,247,251,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  nav.tabs .wrap{display:flex;gap:8px;overflow-x:auto;padding-top:12px;padding-bottom:12px;scrollbar-width:none}
+  nav.tabs button,nav.tabs a{flex:none;font:inherit;font-size:14px;font-weight:700;padding:9px 16px;border-radius:999px;border:1px solid var(--border);background:#fff;color:var(--text-2);cursor:pointer;text-decoration:none;white-space:nowrap}
+  nav.tabs button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+  nav.tabs .sep{flex:none;width:1px;background:var(--border);margin:4px 4px}
+
+  h2.sec{font-size:clamp(24px,2.6vw,32px);letter-spacing:-.02em;margin:44px 0 6px}
+  p.sub{color:var(--text-2);margin:0 0 20px;max-width:75ch}
+
+  /* module blocks */
+  .module{margin-top:36px;scroll-margin-top:80px}
+  .mod-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;border-left:8px solid var(--c);padding:4px 0 4px 18px;margin-bottom:18px}
+  .mod-head .k{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+  .mod-head h3{font-size:clamp(22px,2.4vw,30px);margin:2px 0 4px;letter-spacing:-.02em}
+  .mod-head p{margin:0;color:var(--text-2);max-width:70ch}
+  .mod-head .meta{display:flex;gap:8px;flex-wrap:wrap}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px;background:color-mix(in srgb,var(--c,var(--navy)) 10%,#fff);color:var(--c,var(--navy));border:1px solid color-mix(in srgb,var(--c,var(--navy)) 22%,transparent)}
+  .pill.day{background:#FFF6DB;color:#8A6200;border-color:#F4DD99}
+
+  .decks{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+  .deck{background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;position:relative}
+  .deck:hover{transform:translateY(-3px);box-shadow:0 4px 10px rgba(11,37,69,.08),0 20px 40px rgba(11,37,69,.12)}
+  .deck .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--c);display:block}
+  .deck .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+  .deck:hover .thumb img{transform:scale(1.04)}
+  .deck .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.55))}
+  .deck .num{position:absolute;left:16px;bottom:10px;z-index:2;font-size:40px;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+  .deck .dur{position:absolute;right:12px;bottom:12px;z-index:2;font-size:12px;font-weight:700;color:#fff;background:rgba(0,0,0,.45);padding:4px 10px;border-radius:999px}
+  .deck .body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+  .deck h4{margin:0 0 6px;font-size:19px;line-height:1.25}
+  .deck h4 a{text-decoration:none}
+  .deck h4 a:hover{color:var(--c)}
+  .deck p.desc{margin:0 0 12px;color:var(--text-2);font-size:15px}
+  .deck ul.hl{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:6px}
+  .deck ul.hl li{font-size:14px;color:var(--text-1);padding-left:20px;position:relative}
+  .deck ul.hl li::before{content:"";position:absolute;left:2px;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--c)}
+  .deck .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+  .badge{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:#EEF2F8;color:var(--text-2)}
+  .badge.b-lab{background:#FFF6DB;color:#8A6200}
+  .badge.b-quiz{background:#E6F6EF;color:var(--good)}
+  .badge.b-vid{background:#FDECEC;color:#C62828}
+  .deck .foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--border)}
+  .open{font-size:14px;font-weight:800;color:#fff;background:var(--c);padding:8px 16px;border-radius:999px;text-decoration:none}
+  .open:hover{filter:brightness(1.1)}
+  label.done{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text-3);cursor:pointer;user-select:none}
+  label.done input{width:18px;height:18px;accent-color:var(--good);cursor:pointer}
+  .deck.is-done{opacity:.72}
+  .deck.is-done .num::after{content:" ✓";color:#7CF0B5}
+  .deck.is-done label.done{color:var(--good)}
+  .hidden{display:none!important}
+
+  /* labs + grading */
+  .labs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .lab{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:20px 22px;box-shadow:var(--shadow);border-top:6px solid var(--c)}
+  .lab .k{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+  .lab h4{margin:4px 0 4px;font-size:19px}
+  .lab .w{font-size:28px;font-weight:800;color:var(--c);float:right;line-height:1}
+  .lab p{margin:0 0 10px;color:var(--text-2);font-size:14px}
+  .lab ul{margin:0 0 12px;padding-left:18px;font-size:14px;color:var(--text-1)}
+  .lab li{margin:4px 0}
+  .lab a{font-size:14px;font-weight:700;color:var(--c)}
+  .gradebar{display:flex;height:46px;border-radius:14px;overflow:hidden;margin:6px 0 10px;box-shadow:var(--shadow)}
+  .gradebar div{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px;white-space:nowrap;overflow:hidden}
+
+  /* schedule */
+  .days{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+  .day{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:20px 22px;box-shadow:var(--shadow)}
+  .day h4{margin:0 0 10px;font-size:20px}
+  .slot{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px dashed var(--border)}
+  .slot:first-of-type{border-top:0}
+  .slot .h{flex:none;width:58px;font-weight:800;color:var(--c)}
+  .slot b{display:block}
+  .slot span{font-size:14px;color:var(--text-2)}
+
+  /* materials + keys */
+  .mats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .mat{display:flex;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px 18px;text-decoration:none;box-shadow:var(--shadow)}
+  .mat:hover{border-color:var(--navy)}
+  .mat .ic{flex:none;width:46px;height:46px;border-radius:12px;background:#EEF2F8;display:flex;align-items:center;justify-content:center;font-size:24px}
+  .mat b{display:block}
+  .mat span{font-size:14px;color:var(--text-2)}
+  .keys{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+  .keys div{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--text-2);font-size:14px}
+  kbd{font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700;background:#fff;border:1px solid rgba(11,37,69,.25);border-bottom-width:3px;border-radius:5px;padding:1px 6px;color:var(--text-1)}
+  /* partner logos */
+  .partners{display:inline-flex;flex-wrap:wrap;align-items:stretch;gap:0;background:#fff;border-radius:16px;padding:10px 6px;margin-bottom:26px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+  .partners figure{margin:0;display:flex;align-items:center;gap:10px;padding:2px 16px}
+  .partners figure+figure{border-left:1px solid var(--border)}
+  .partners img{height:46px;width:auto;display:block}
+  .partners img.sd{height:26px}
+  .partners figcaption{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);line-height:1.25}
+  .partners figcaption b{display:block;color:var(--text-1);letter-spacing:0;text-transform:none;font-size:14px}
+  .foot-logos{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+  .foot-logos img{height:34px;width:auto}
+  .foot-logos img.sd{height:20px}
+  @media (max-width:560px){.partners{display:flex}.partners figure{padding:6px 12px}.partners figure+figure{border-left:0}.partners img{height:38px}.partners img.sd{height:22px}}
+  footer{color:var(--text-3);font-size:13px;padding:36px 0 48px}
+  @media (max-width:560px){.wrap{padding:0 16px}.decks{grid-template-columns:1fr}.hero{padding:40px 0 32px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="partners" aria-label="Partners">
+      <figure><img src="images/logos/dict.png" alt="DICT logo"><figcaption>Organizer<b>DICT</b></figcaption></figure>
+      <figure><img src="images/logos/bir.png" alt="BIR logo"><figcaption>Participants<b>BIR Misamis Oriental</b></figcaption></figure>
+      <figure><img class="sd" src="images/logos/serial-disruptors.png" alt="Serial Disruptors logo"><figcaption>Resource Person's<b>organization</b></figcaption></figure>
+    </div>
+    <p class="kicker">DICT ILCDB · ICT Academy · Digital Workforce · Beginner</p>
+    <h1>Digital Productivity <span>Essentials</span></h1>
+    <p class="lede">Computers and the internet, word processing, spreadsheets and presentations, with everyday AI used safely and responsibly. Built for the women and men of BIR Misamis Oriental, at the office and at home.</p>
+    <p class="who">Resource Person: <b>Engr. Ronelle Pabellan</b> · Fully online · Course syllabus v1.0</p>
+    <div class="stats">
+      <div><b>16</b><span>training hours</span></div>
+      <div><b>4</b><span>modules</span></div>
+      <div><b>26</b><span>topic decks</span></div>
+      <div><b>4</b><span>hands-on labs</span></div>
+    </div>
+    <div class="progress">
+      <div class="bar"><i id="progBar"></i></div>
+      <div class="lbl"><span id="progLbl">0 of 26 topics done</span><button type="button" id="resetProg">Reset progress</button></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Filter by module">
+  <div class="wrap">
+    <button type="button" data-f="all" aria-pressed="true">All topics</button>
+    <button type="button" data-f="m1">Module 1 · Computers &amp; Internet</button>
+    <button type="button" data-f="m2">Module 2 · Word Processing</button>
+    <button type="button" data-f="m3">Module 3 · Spreadsheets</button>
+    <button type="button" data-f="m4">Module 4 · Presentations</button>
+    <span class="sep"></span>
+    <a href="#labs">Labs &amp; grading</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#materials">Materials</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div id="modules"></div>
+
+  <section id="labs">
+    <h2 class="sec">Labs and grading</h2>
+    <p class="sub">Your final grade comes from one quiz and three graded outputs. Every lab can be adapted to your own work or to your home and community.</p>
+    <div class="gradebar">
+      <div style="flex:10;background:var(--m1)">Quiz 10%</div>
+      <div style="flex:30;background:var(--m2)">Word 30%</div>
+      <div style="flex:30;background:var(--m3)">Spreadsheet 30%</div>
+      <div style="flex:30;background:var(--m4)">Presentation 30%</div>
+    </div>
+    <div class="labs" style="margin-top:18px">
+      <div class="lab" style="--c:var(--m1)"><span class="w">10%</span><span class="k">Lab 1 · 30 min · Quiz</span><h4>File Management &amp; Everyday AI</h4>
+        <p>Plus the 10-item Digital Foundations Quiz at the end of 1.5.</p>
+        <ul><li>A master folder with at least two clearly named sub-folders</li><li>One screenshot or downloaded image inside a sub-folder</li><li>One text document with a response from an AI assistant</li></ul>
+        <a href="#m1">Decks 1.2, 1.3 and 1.5 →</a></div>
+      <div class="lab" style="--c:var(--m2)"><span class="w">30%</span><span class="k">Lab 2 · 3.5 hours</span><h4>AI-Assisted Word Processing &amp; Mail Merge</h4>
+        <p>Default: an invitation to a digital skills workshop.</p>
+        <ul><li>Multi-paragraph letter with human edits, no "[Insert Name]"</li><li>Justified text, standard font sizes, 1-inch margins</li><li>A table of at least 2 columns x 3 rows</li><li>Mail merge: at least 3 personalised letters in one file</li></ul>
+        <a href="#m2">Brief and rubric in 2.6 →</a></div>
+      <div class="lab" style="--c:var(--m3)"><span class="w">30%</span><span class="k">Lab 3 · 4 hours</span><h4>Spreadsheet Tracking &amp; Verification</h4>
+        <p>Default: an office supplies inventory tracker.</p>
+        <ul><li>Clearly labelled column headers</li><li>A Currency or Date column, properly formatted</li><li>Working formulas, never hard-typed values</li><li>=SUM() and =AVERAGE(), plus a titled Pie, Bar or Line chart</li></ul>
+        <a href="#m3">Brief and rubric in 3.8 →</a></div>
+      <div class="lab" style="--c:var(--m4)"><span class="w">30%</span><span class="k">Lab 4 · 4 hours</span><h4>Multimedia Presentation &amp; Ethical Design</h4>
+        <p>Default: "My Digital Skills Journey".</p>
+        <ul><li>At least 5 slides with one consistent theme</li><li>Varied layouts, plus the Lab 3 chart or Lab 1 image</li><li>AI layout assistant on 2+ slides, text unchanged</li><li>One transition, applied to every slide</li></ul>
+        <a href="#m4">Brief and rubric in 4.7 →</a></div>
+    </div>
+  </section>
+
+  <section id="schedule">
+    <h2 class="sec">Two-day schedule</h2>
+    <p class="sub">Eight hours a day, following the syllabus' recommended hours per module. Lab time is inside each module.</p>
+    <div class="days">
+      <div class="day"><h4>Day 1</h4>
+        <div class="slot" style="--c:var(--m1)"><span class="h">1 h</span><div><b>Module 1 · Computers &amp; Internet Essentials</b><span>Topics 1.1 to 1.5 · Lab 1 · Digital Foundations Quiz</span></div></div>
+        <div class="slot" style="--c:var(--m2)"><span class="h">4 h</span><div><b>Module 2 · Word Processing Fundamentals</b><span>Topics 2.1 to 2.6 · Lab 2</span></div></div>
+        <div class="slot" style="--c:var(--m3)"><span class="h">3 h</span><div><b>Module 3 · Spreadsheets, part 1</b><span>Topics 3.1 to 3.4</span></div></div>
+      </div>
+      <div class="day"><h4>Day 2</h4>
+        <div class="slot" style="--c:var(--m3)"><span class="h">3 h</span><div><b>Module 3 · Spreadsheets, part 2</b><span>Topics 3.5 to 3.8 · Lab 3</span></div></div>
+        <div class="slot" style="--c:var(--m4)"><span class="h">5 h</span><div><b>Module 4 · Multimedia Presentation Fundamentals</b><span>Topics 4.1 to 4.7 · Lab 4 presentations · course closing</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="materials">
+    <h2 class="sec">Course materials</h2>
+    <p class="sub">Everything for the course in one place.</p>
+    <div class="mats">
+      <a class="mat" href="../CS_DigitalProductivityEssentials_1.0.pdf" target="_blank"><span class="ic">📄</span><div><b>Course syllabus (PDF)</b><span>DICT ILCDB · Digital Productivity Essentials v1.0</span></div></a>
+      <a class="mat" href="#modules" data-jump="all"><span class="ic">🖥️</span><div><b>26 topic decks</b><span>Slides with activities, quick checks and a narrated video each</span></div></a>
+      <a class="mat" href="#labs"><span class="ic">🧪</span><div><b>Lab briefs &amp; rubrics</b><span>Labs 1 to 4 and the Digital Foundations Quiz</span></div></a>
+    </div>
+    <h2 class="sec" style="font-size:22px">Presenting the decks</h2>
+    <div class="keys" style="margin-top:12px">
+      <div><kbd>→</kbd> <kbd>Space</kbd> next · <kbd>←</kbd> back</div>
+      <div><kbd>F</kbd> full screen · <kbd>O</kbd> overview</div>
+      <div><kbd>S</kbd> presenter view with script and timer</div>
+      <div><kbd>H</kbd> or the ⌂ button: back to this index</div>
+      <div>Click a timer to start, double-click to reset</div>
+      <div>Each deck has a narrated video slide: <kbd>Space</kbd> plays or pauses, <kbd>C</kbd> captions. In Zoom or Meet, share the tab with sound</div>
+    </div>
+  </section>
+
+  <footer><div class="foot-logos"><img src="images/logos/dict.png" alt="DICT"><img src="images/logos/bir.png" alt="Bureau of Internal Revenue"><img class="sd" src="images/logos/serial-disruptors.png" alt="Serial Disruptors"></div>Organized by DICT for BIR Misamis Oriental, delivered by Serial Disruptors. Photos: Unsplash (free licence). Topic videos made for this course: narration by ElevenLabs (voice “Pacificool”); music “Inspired”, “Wallpaper”, “Easy Lemon” and “Carefree” by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0. Based on the DICT ILCDB course syllabus "Digital Productivity Essentials" v1.0. Progress ticks are saved only in this browser.</footer>
+</main>
+
+<script>
+const MODULES = [
+  {id:'m1', c:'var(--m1)', n:'Module 1', h:'1 hour', day:'Day 1', title:'Computers and Internet Essentials',
+   desc:'Know your computer, organise your files, browse and search safely, protect taxpayer data, and understand the AI you already use every day.',
+   assess:'Lab 1 · Digital Foundations Quiz (10%)'},
+  {id:'m2', c:'var(--m2)', n:'Module 2', h:'4 hours', day:'Day 1', title:'Word Processing Fundamentals',
+   desc:'Build one official letter from plain text to a formatted, illustrated document, then mail-merge it to many people, with AI as a careful first-draft helper.',
+   assess:'Lab 2 · Word Processing Output (30%)'},
+  {id:'m3', c:'var(--m3)', n:'Module 3', h:'6 hours', day:'Day 1 and 2', title:'Electronic Spreadsheet Fundamentals',
+   desc:'Turn an office supplies list into a working tracker: clean data, formulas, functions, references, tidy sheets and clear charts, with AI checked by you.',
+   assess:'Lab 3 · Spreadsheet Data Output (30%)'},
+  {id:'m4', c:'var(--m4)', n:'Module 4', h:'5 hours', day:'Day 2', title:'Multimedia Presentation Fundamentals',
+   desc:'Plan, design and deliver a short presentation people can actually read, with pictures, charts, media, tasteful motion and honest AI design help.',
+   assess:'Lab 4 · Multimedia Presentation Output (30%)'}
+];
+const D = (n,t,dur,desc,hl,b) => ({n,t,dur,desc,hl,b});
+const DECKS = {
+ m1:[
+  D('1.1','Hardware, Software and Peopleware','12 min','The three parts of every computer system, from the PC on your desk to the phone in your pocket.',['The jeepney analogy','Input · Process · Output · Storage','Five habits that survive brownouts'],['vid']),
+  D('1.2','Desktop and File Management','15 min','Find any file in seconds: the desktop, File Explorer, folders, smart file names and time-saving shortcuts.',['Folders vs files, file extensions','Naming rule: date, type, subject','Build your Lab 1 master folder'],['lab:Lab 1 · Part A','vid']),
+  D('1.3','Web Browsing and Search Engines','12 min','Get to the right website, search like a pro, and know which sources to trust.',['Read a web address, spot fake domains','Search tricks: quotes, site:gov.ph','Capture and save a screenshot'],['lab:Lab 1 · Part B','vid']),
+  D('1.4','Internet Safety, Netiquette and Data Privacy','15 min','Spot scams before they spot you, protect your accounts, communicate politely, and keep taxpayer data safe.',['Phishing, smishing and vishing red flags','Passphrases and multi-factor login','Data Privacy Act (RA 10173), CICC 1326'],['vid']),
+  D('1.5','Everyday AI','15 min + quiz','What AI really is, where you already use it, where it goes wrong, and how to use it as a safe copilot.',['How AI learns from examples','Hallucinations, bias and privacy','Lab 1 Part C and the 10-item quiz'],['lab:Lab 1 · Part C','quiz:Digital Foundations Quiz','vid'])],
+ m2:[
+  D('2.1','Application Navigation and File Handling','40 min','Find your way around a word processor, then save every document so you, and your office, can find it again.',['Parts of the window in Word, Docs and Writer','Save vs Save As, export to PDF','Start the workshop invitation letter'],['vid']),
+  D('2.2','Text Formatting and Editing Tools','50 min','Turn plain text into a clean, official-looking letter, and fix mistakes in seconds.',['Fonts, alignment, spacing, lists','Format Painter and styles','Find and Replace, spelling check'],['vid']),
+  D('2.3','Working with Tables and Graphical Elements','50 min','Neat rows and columns, plus pictures, shapes and a letterhead that look professional, not stretched.',['A workshop schedule table','Pictures and text wrapping','A simple letterhead'],['vid']),
+  D('2.4','Mail Merge Basics','45 min','Write one letter, keep one list, and let the computer make a personalised copy for every name.',['Main document + data source + fields','Step by step in Word and Writer','Spot the merge mistakes'],['lab:Lab 2 skill','vid']),
+  D('2.5','Page Layout and Printing Setup','40 min','Margins, paper sizes, headers, breaks and print settings, so paper looks exactly like the screen.',['1-inch margins; A4, Letter and long bond','Headers, page numbers, breaks','Checklist before printing for signature'],['vid']),
+  D('2.6','Responsible AI Drafting','40 min + Lab 2','Let AI write the first draft. You check the facts, protect the data, and sign off on the final.',['A simple prompt formula','Find the 5 mistakes in an AI draft','Lab 2 brief, checklist and rubric'],['lab:Lab 2 brief','vid'])],
+ m3:[
+  D('3.1','Application Navigation and Cell Manipulation','45 min','Find your way around a spreadsheet, put data in the right cells, and reshape the sheet without fear.',['Cells, rows, columns, Name Box','Move and select quickly','Type the inventory, AutoFill'],['vid']),
+  D('3.2','Formatting Worksheets and Data Types','50 min','Make every value the right type, then make the whole table easy to read, print and check.',['Text, number, ₱ currency, date','Borders, fill, freeze top row','Highlight items at reorder level'],['vid']),
+  D('3.3','Basic Formulas (Arithmetic Operators)','50 min','Teach the sheet to add, subtract, multiply and divide, so totals update themselves.',['The = sign and six operators','Order of operations','Error messages decoded'],['vid']),
+  D('3.4','Core Functions (SUM, AVERAGE, COUNT, MIN, MAX)','50 min','Five short words that total, average, count and find the highest and lowest values in any list.',['SUM, AVERAGE, COUNT, MIN, MAX','AutoSum shortcut','Common range mistakes'],['vid']),
+  D('3.5','Cell Referencing Basics','35 min','Why some formulas break when you copy them, and how one $ sign keeps them pointing at the right cell.',['Relative vs absolute references','The F4 toggle','12% VAT on the inventory'],['vid']),
+  D('3.6','Worksheet Management','40 min','One workbook, many tabs: organise months on their own sheets, find and sort, and print on one clean page.',['Monthly tabs and a Summary sheet','Sort, filter, freeze panes','Print on one page'],['vid']),
+  D('3.7','Generating Basic Charts','40 min','Pick the right chart, select the right data, and label it so anyone understands it in five seconds.',['Column, bar, line or pie?','Titles, labels, legends','Chart mistakes to avoid'],['vid']),
+  D('3.8','AI-Assisted Data Analysis','35 min + Lab 3','Let AI suggest and explain formulas and spot trends, then verify every answer yourself.',['Ask AI for a formula','Verify: check two rows by hand','Lab 3 brief, checklist and rubric'],['lab:Lab 3 brief','vid'])],
+ m4:[
+  D('4.1','Presentation Planning and Design Principles','40 min','Plan the message on paper first, then design slides people can actually read.',['Audience, purpose, one key message','Contrast, alignment, repetition, proximity','Fix-the-bad-slide makeover'],['vid']),
+  D('4.2','Application Navigation and Slide Management','45 min','Find your way around PowerPoint, Google Slides and Impress, then add, arrange and present with confidence.',['Themes and slide layouts','Add, duplicate, reorder, sections','Slide Show and Presenter View'],['vid']),
+  D('4.3','Working with Text and Lists in Slides','40 min','Fewer words, bigger letters, clear lists. The rest goes in your speaker notes.',['Bullet levels with Tab','Readable font sizes','Text-heavy slide makeover'],['vid']),
+  D('4.4','Inserting and Manipulating Graphical Elements','50 min','Pictures, shapes, icons, diagrams and your Lab 3 chart: placed neatly, used legally, described for everyone.',['Crop and resize without stretching','Align, distribute, group','Copyright and alt text'],['vid']),
+  D('4.5','Applying Animations and Slide Transitions','30 min','Motion that helps your audience follow you, not motion that makes them dizzy.',['Transitions vs animations','Apply one transition to all','Live demos on the slides'],['vid']),
+  D('4.6','Adding Media Clips','30 min','Video, music and your own voice in a slide, and making sure they actually play on the day.',['Insert video and audio','Trim and playback options','Sound check on Zoom and Meet'],['vid']),
+  D('4.7','AI in Presentation Design','35 min + Lab 4','Let AI suggest layouts and outlines. You stay in charge of the facts. Then Lab 4 and the course closing.',['AI design helpers','Visual ethics and privacy','Lab 4 brief, rubric and closing'],['lab:Lab 4 brief','lab:Course closing','vid'])]
+};
+// topic video lengths, filled in by Videos/engine/index_lengths.py
+const VLEN = {"1.1": "5:33", "1.2": "4:54", "1.3": "4:56", "1.4": "5:16", "1.5": "4:37", "2.1": "4:59", "2.2": "4:58", "2.3": "4:52", "2.4": "4:44", "2.5": "4:46", "2.6": "5:07", "3.1": "4:54", "3.2": "4:55", "3.3": "5:31", "3.4": "4:55", "3.5": "5:00", "3.6": "5:06", "3.7": "4:59", "3.8": "5:13", "4.1": "4:57", "4.2": "4:38", "4.3": "4:59", "4.4": "5:05", "4.5": "4:50", "4.6": "4:53", "4.7": "5:01"};
+const FILE = d => 'Deck - ' + d.n + ' ' + d.t + ' - 2026-11-01.html';
+const KEY = 'dpe-done-v1';
+let done = {};
+try { done = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { done = {}; }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
+function esc(s){ return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+const root = document.getElementById('modules');
+MODULES.forEach(m => {
+  const sec = document.createElement('section');
+  sec.className = 'module'; sec.id = m.id; sec.style.setProperty('--c', m.c);
+  sec.innerHTML = `<div class="mod-head"><div><span class="k">${m.n} · ${m.h}</span><h3>${m.title}</h3><p>${m.desc}</p></div>
+    <div class="meta"><span class="pill day">${m.day}</span><span class="pill">${m.assess}</span></div></div><div class="decks"></div>`;
+  const grid = sec.querySelector('.decks');
+  DECKS[m.id].forEach(d => {
+    const href = encodeURI(FILE(d));
+    const badges = d.b.map(x => { const [k, v] = x.split(':');
+      return k === 'vid' ? `<span class="badge b-vid">▶ Video${VLEN[d.n] ? ' · ' + VLEN[d.n] : ''}</span>` : `<span class="badge b-${k}">${esc(v)}</span>`; }).join('');
+    const el = document.createElement('article');
+    el.className = 'deck'; el.dataset.n = d.n;
+    el.innerHTML = `<a class="thumb" href="${href}"><img src="images/thumbs/${d.n.replace('.', '-')}.jpg" alt="" loading="lazy"><span class="num">${d.n}</span><span class="dur">${d.dur}</span></a>
+      <div class="body"><h4><a href="${href}">${esc(d.t)}</a></h4><p class="desc">${esc(d.desc)}</p>
+      <ul class="hl">${d.hl.map(h => `<li>${esc(h)}</li>`).join('')}</ul>
+      <div class="badges">${badges}</div>
+      <div class="foot"><label class="done"><input type="checkbox" ${done[d.n] ? 'checked' : ''}> Done</label><a class="open" href="${href}">Open deck →</a></div></div>`;
+    if (done[d.n]) el.classList.add('is-done');
+    el.querySelector('input').addEventListener('change', e => {
+      done[d.n] = e.target.checked; if (!e.target.checked) delete done[d.n];
+      el.classList.toggle('is-done', e.target.checked); save(); prog();
+    });
+    grid.appendChild(el);
+  });
+  root.appendChild(sec);
+});
+
+function prog(){
+  const n = Object.keys(done).length, total = 26;
+  document.getElementById('progBar').style.width = (n / total * 100) + '%';
+  document.getElementById('progLbl').textContent = n + ' of ' + total + ' topics done';
+}
+prog();
+document.getElementById('resetProg').addEventListener('click', () => {
+  done = {}; save(); document.querySelectorAll('.deck').forEach(el => { el.classList.remove('is-done'); el.querySelector('input').checked = false; }); prog();
+});
+
+const tabs = document.querySelectorAll('nav.tabs button');
+function filter(f){
+  tabs.forEach(b => b.setAttribute('aria-pressed', b.dataset.f === f));
+  document.querySelectorAll('.module').forEach(s => s.classList.toggle('hidden', f !== 'all' && s.id !== f));
+  try { localStorage.setItem('dpe-filter', f); } catch (e) {}
+}
+tabs.forEach(b => b.addEventListener('click', () => { filter(b.dataset.f); document.getElementById('modules').scrollIntoView({behavior:'smooth'}); }));
+document.querySelectorAll('a[href^="#m"]').forEach(a => a.addEventListener('click', () => filter('all')));
+document.querySelector('[data-jump="all"]').addEventListener('click', () => filter('all'));
+let saved = 'all';
+try { saved = localStorage.getItem('dpe-filter') || 'all'; } catch (e) {}
+filter(saved);
+</script>
+</body>
+</html>

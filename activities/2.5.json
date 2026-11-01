@@ -1,0 +1,88 @@
+{
+  "topic": "2.5",
+  "title": "Page Layout and Printing Setup",
+  "activities": [
+    {
+      "id": "2.5-a",
+      "slide": "Try it now",
+      "kind": "task",
+      "title": "Set up the page like a pro",
+      "minutes": 8,
+      "intro": "Work on your own invitation letter. Tick each step as you finish it, then check your print preview.",
+      "blocks": [
+        {
+          "type": "steps",
+          "id": "steps",
+          "items": [
+            "Set 1-inch margins on all sides.",
+            "Choose your office's paper size (A4 or long 8.5 × 13 in). Keep it portrait.",
+            "Add a footer with Page X of Y.",
+            "At the end of the letter, press Ctrl + Enter and type \"Annex A: Workshop Schedule\" on the new page.",
+            "Open print preview (Ctrl + P) and check: 2 pages, numbers correct, no lonely signature."
+          ]
+        },
+        {
+          "type": "number",
+          "id": "pages",
+          "prompt": "How many pages does your print preview show?",
+          "unit": "pages"
+        },
+        {
+          "type": "short",
+          "id": "footer",
+          "prompt": "What does the footer say on the Annex A page?",
+          "placeholder": "Page ... of ..."
+        },
+        {
+          "type": "mcq",
+          "id": "margins",
+          "prompt": "In Word, which Margins choice gives 1 inch on every side?",
+          "options": ["Narrow", "Normal", "Moderate", "Wide"]
+        },
+        {
+          "type": "mcq",
+          "id": "long",
+          "prompt": "Which size is our long bond paper?",
+          "options": ["8.5 × 11 in (Letter)", "8.5 × 13 in", "8.5 × 14 in (Legal)", "210 × 297 mm (A4)"]
+        },
+        {
+          "type": "mcq",
+          "id": "break",
+          "prompt": "Which keys start the annex on a fresh page?",
+          "options": ["Enter, many times", "Ctrl + Enter", "Shift + Enter", "Ctrl + P"]
+        },
+        {
+          "type": "upload",
+          "id": "shot",
+          "prompt": "A screenshot of your print preview"
+        }
+      ],
+      "help": [
+        "No 8.5 × 13: Size › More Paper Sizes › type width 8.5\", height 13\".",
+        "Number on page 1 only: it's in the body, not the footer. Delete it and use Insert › Page Number.",
+        "Annex starts mid-page: you pressed Enter, not Ctrl + Enter."
+      ]
+    },
+    {
+      "id": "2.5-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: print three sets",
+      "minutes": 1,
+      "intro": "Pick one answer.",
+      "blocks": [
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "You need pages 2, 3 and 5 only, 3 complete sets for 3 signatories. What do you set?",
+          "options": [
+            "Pages: 2-5 · Copies: 3 · Uncollated",
+            "Pages: 2-3, 5 · Copies: 3 · Collated",
+            "Pages: 2, 3, 5 · Copies: 1",
+            "Print All Pages · Copies: 3"
+          ]
+        }
+      ]
+    }
+  ]
+}

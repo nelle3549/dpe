@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.7 AI in Presentation Design · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* 4.7 drawn UI + charts */
+.dz{display:grid;grid-template-columns:1.5fr 1fr}
+.dz .cur{padding:calc(var(--u)*1.2);background:#fff;border-right:1px solid var(--border)}
+.dz .cur .pg{aspect-ratio:16/9;border:1px solid var(--border-strong);border-radius:4px;padding:6% 7%;display:grid;grid-template-columns:1fr .8fr;gap:6%;align-items:center}
+.dz .cur .pg .t{font-weight:800;font-size:calc(var(--u)*1.6);line-height:1.2;color:var(--text-1)}
+.dz .cur .pg .ph{height:100%;min-height:calc(var(--u)*7);border-radius:3px;background:linear-gradient(135deg,#7aa2d6,#2b4c7e)}
+.dz .side{background:#FAFBFD;padding:calc(var(--u)*1)}
+.dz .side .hd{font-size:calc(var(--u)*1.2);font-weight:800;color:var(--text-1);margin-bottom:.6em}
+.dz .th{aspect-ratio:16/9;border-radius:4px;border:1px solid var(--border);margin-bottom:.55em;position:relative;overflow:hidden;background:#fff}
+.dz .th.sel{outline:2px solid var(--mod);outline-offset:1px}
+.dz .th i{position:absolute;display:block}
+.chatw .body{display:flex;flex-direction:column;gap:calc(var(--u)*.8)}
+.bub{border-radius:calc(var(--u)*1);padding:calc(var(--u)*.9) calc(var(--u)*1.2);font-size:calc(var(--u)*1.4);line-height:1.45;max-width:92%}
+.bub.me{align-self:flex-end;background:var(--mod);color:#fff}
+.bub.ai{align-self:flex-start;background:var(--surface-2);color:var(--text-1)}
+.bub.ai ol{margin:.3em 0 0;padding-left:1.3em}.bub.ai li{margin:.15em 0}
+.flag{background:var(--coral-soft);color:var(--coral);font-weight:700;padding:0 .3em;border-radius:3px}
+.prompt{font-family:var(--font-mono);font-size:calc(var(--u)*1.3);line-height:1.55;background:#0F1B2E;color:#E8EEF8;border-radius:var(--radius-lg);padding:calc(var(--u)*1.3) calc(var(--u)*1.6)}
+.prompt .v{color:var(--gold)}
+.hbars{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:calc(var(--u)*1.2) calc(var(--u)*1.4);box-shadow:var(--shadow)}
+.hbars h4{font-size:calc(var(--u)*1.3)}
+.hbars .r{display:grid;grid-template-columns:26% 1fr;gap:.8em;align-items:center;margin:.6em 0;font-size:calc(var(--u)*1.05);color:var(--text-2)}
+.hbars .tr{position:relative;height:calc(var(--u)*2.2);background:var(--surface-2);border-radius:4px}
+.hbars .b{position:absolute;left:0;top:0;bottom:0;background:var(--mod);border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:.5em;color:#fff;font-weight:700;font-size:calc(var(--u)*.95);white-space:nowrap}
+.hbars .b.tiny{padding:0;overflow:visible}
+.hbars .b.tiny span{position:absolute;left:calc(100% + .5em);color:var(--text-1)}
+.hbars .ax{display:flex;justify-content:space-between;margin-left:calc(26% + .8em);font-family:var(--font-mono);font-size:calc(var(--u)*.85);color:var(--text-3)}
+.chk{list-style:none;margin:0;padding:0}
+.chk li{position:relative;padding:calc(var(--u)*.75) 0 calc(var(--u)*.75) calc(var(--u)*3);border-bottom:1px dashed var(--border-strong);font-size:calc(var(--u)*1.45);line-height:1.4}
+.chk li:last-child{border-bottom:0}
+.chk li::before{content:"";position:absolute;left:0;top:calc(var(--u)*.8);width:calc(var(--u)*1.7);height:calc(var(--u)*1.7);border:calc(var(--u)*.18) solid var(--mod);border-radius:calc(var(--u)*.35);background:#fff}
+.gbar{display:flex;height:calc(var(--u)*3.4);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.gbar div{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:calc(var(--u)*1.2)}
+.mods .card h4{font-size:calc(var(--u)*1.45)}
+.mods .card .tag{margin-bottom:.6em}
+</style>
+</head>
+<body class="m4" data-brand="Digital Productivity Essentials · <b>Module 4</b> · 4.7 AI in Presentation Design">
+<div class="deck">
+
+  <!-- 1 · Cover -->
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 4 · Multimedia Presentation Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">AI in <span style="color:var(--gold)">Presentation Design</span></h1>
+      <p class="lede" data-anim="fade-up">Let AI suggest layouts and outlines. You stay in charge of the facts. Then: Lab 4 and our course closing.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 4.7</span><span class="tag ghost">~35 minutes + Lab 4</span><span class="tag ghost">Last topic</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m4/4-7-cover.jpg" alt="A woman designing on a drawing tablet at her desk"><div class="cv-num">4.7</div></div>
+    <div class="notes">
+      <p><b>Our last topic, everyone!</b> Kapoy na ba? Almost there.</p>
+      <p>Today AI helps with the parts of slide-making that take the longest: <b>arranging the layout</b> and <b>getting a first outline</b>. But just like in Module 2 with AI drafting, AI is a copilot. Every suggestion gets a human check.</p>
+      <p>After this topic I'll brief you on <b>Lab 4</b>, and we'll close the course with a look back at our 16 hours together.</p>
+    </div>
+  </section>
+
+  <!-- 2 · Warm-up -->
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · type in the chat</p><h2 class="h2">Have you used AI to help make slides?</h2></div>
+      <span class="tag gold">1 minute</span>
+    </div>
+    <div class="grid g4 mt-m anim-stagger-list">
+      <div class="card center"><span class="ic">🙅</span><h4>A</h4><p>Not yet</p></div>
+      <div class="card center"><span class="ic">🎨</span><h4>B</h4><p>PowerPoint's Designer suggestions popped up</p></div>
+      <div class="card center"><span class="ic">✨</span><h4>C</h4><p>Canva's AI or templates</p></div>
+      <div class="card center"><span class="ic">💬</span><h4>D</h4><p>A chatbot for my outline or speaker notes</p></div>
+    </div>
+    <div class="callout gold mt-l"><b>Follow-up:</b> if you've used one, did you have to fix anything it made? Type one word: "yes" or "no".</div>
+    <div class="notes">
+      <p>Ask for <b>A, B, C or D</b>. Many will say B without knowing it: the Designer pane often opens by itself when you insert a picture.</p>
+      <p>Then the follow-up. Most people who used AI say <b>yes, I had to fix it</b>. That's our theme: AI gives a fast first draft; we make it accurate.</p>
+    </div>
+  </section>
+
+  <!-- 3 · Agenda -->
+  <section class="slide" data-title="Agenda">
+    <div class="slide-head">
+      <div><p class="kicker">Our last session</p><h2 class="h2">Three parts</h2></div>
+    </div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Part A · 35 min</span><h4>AI in presentation design</h4><p>Design helpers, a worked outline, visual ethics, privacy.</p></div>
+      <div class="card top"><span class="k">Part B · 4 hours</span><h4>Lab 4 brief</h4><p>"My Digital Skills Journey": steps, checklist, rubric, 5-minute share.</p></div>
+      <div class="card top"><span class="k">Part C · 10 min</span><h4>Course closing</h4><p>Our 16-hour journey and how your grade is made up.</p></div>
+    </div>
+    <div class="callout mt-l"><b>Keep open:</b> your Lab 4 file, your Lab 3 inventory chart, and the image you saved in Lab 1.</div>
+    <div class="notes">
+      <p>Here's the map. <b>Part A</b> is short teaching with two hands-on tries. <b>Part B</b> is the Lab 4 brief; most of your remaining time is building and presenting. <b>Part C</b> is the closing.</p>
+      <p>Ask everyone to open the three files in the callout now, so they don't have to search for them later. If your Lab 3 chart is in another file, that's fine; we'll copy it in.</p>
+    </div>
+  </section>
+
+  <!-- 4 · Copilot analogy -->
+  <section class="slide" data-title="The big idea">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">AI is your <em class="mod">copilot</em>, not the pilot.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>Like a mananahi (dressmaker):</b> AI shows you a few cuts. You pick one, and you check it still fits.</li>
+          <li><b>AI is fast at:</b> layouts, colour matching, first outlines, shorter wording.</li>
+          <li><b>You are responsible for:</b> facts, numbers, names, tone, and what's private.</li>
+          <li><b>Rule for every AI step:</b> review, fact-check, edit.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/m4/4-7-tablet.jpg" alt="Hands holding a tablet showing a web page"></div>
+    </div>
+    <div class="notes">
+      <p>The course syllabus says it clearly: <b>AI is a copilot, not a replacement</b> for human thinking, and every AI exercise needs human review, fact-checking and ethical editing.</p>
+      <p>Use the dressmaker picture: she can suggest three styles in a minute, but you still try it on. If the sleeves are wrong, you don't wear it to the office.</p>
+      <p>Ask: <i>"Who's responsible if an AI-made slide shows the wrong total in a report?"</i> The presenter. Always.</p>
+    </div>
+  </section>
+
+  <!-- 5 · The helpers -->
+  <section class="slide" data-title="AI design helpers">
+    <div class="slide-head">
+      <div><p class="kicker">Meet the helpers</p><h2 class="h2">AI design helpers in common apps</h2></div>
+      <span class="tag gold">Availability depends on your plan and account</span>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">🎨</span><h4>PowerPoint · Designer</h4><p><b>Home › Designer</b> suggests layouts for the current slide, especially after you add a picture or chart. Also in PowerPoint for the web.</p><p class="mt-s"><b>Copilot</b> can draft a deck or outline from a prompt, on Copilot-enabled Microsoft 365 plans.</p></div>
+      <div class="card top"><span class="ic-badge">✨</span><h4>Google Slides · Gemini</h4><p>The <b>Gemini</b> side panel can draft slides, suggest wording, and create images, on eligible Google Workspace or Google AI plans.</p><p class="mt-s">Without it: use <b>Slide › Apply layout</b> and a consistent theme.</p></div>
+      <div class="card top"><span class="ic-badge">🖌️</span><h4>Canva · AI tools</h4><p><b>Magic Design</b> turns a prompt into a draft deck; <b>Magic Write</b> drafts text. Free accounts get limited uses.</p><p class="mt-s">Download as .pptx or PDF when you're done.</p></div>
+    </div>
+    <div class="callout mt-l"><b>LibreOffice Impress</b> has no built-in AI assistant. Use its layouts and master slides, and a separate AI chatbot for outlines if your office allows it.</div>
+    <div class="notes">
+      <p>Three helpers. Most BIR desktops have PowerPoint, so <b>Designer</b> is the one you'll likely use for Lab 4. It needs internet and a Microsoft account; PowerPoint for the web has it too.</p>
+      <p>Be honest about availability: Copilot and Gemini features depend on the licence. Some of you will see them, some won't. That's fine; Lab 4 needs the layout assistant, not a full AI deck.</p>
+      <p>Features and menu names change often. If a button has moved, search the app's help for "Designer" or "Gemini".</p>
+    </div>
+  </section>
+
+  <!-- 6 · How Designer works -->
+  <section class="slide" data-title="How Designer works">
+    <div class="split">
+      <div class="win">
+        <div class="bar"><i></i><i></i><i></i><span>Home › Designer</span></div>
+        <div class="dz">
+          <div class="cur">
+            <div class="pg"><div class="t">My Lab 3 chart: Office Supplies Inventory</div><div class="ph"></div></div>
+            <p class="tiny mt-s">Current slide: title + chart, plain layout</p>
+          </div>
+          <div class="side">
+            <div class="hd">Designer</div>
+            <div class="th sel"><i style="left:0;top:0;bottom:0;width:45%;background:var(--mod-deep)"></i><i style="left:52%;top:20%;right:6%;height:22%;background:#ddd"></i><i style="left:52%;top:52%;right:6%;bottom:18%;background:linear-gradient(135deg,#7aa2d6,#2b4c7e)"></i></div>
+            <div class="th"><i style="left:6%;top:10%;right:6%;height:16%;background:#ddd"></i><i style="left:6%;top:34%;right:6%;bottom:8%;background:linear-gradient(135deg,#7aa2d6,#2b4c7e)"></i></div>
+            <div class="th"><i style="left:0;top:0;right:0;bottom:0;background:linear-gradient(135deg,#7aa2d6,#2b4c7e)"></i><i style="left:8%;bottom:12%;width:55%;height:18%;background:rgba(255,255,255,.85)"></i></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="kicker">PowerPoint Designer</p>
+        <h2 class="h2">Pick a design, then check every word.</h2>
+        <ol class="steps mt-m">
+          <li>Put a <b>title + picture or chart</b> on the slide.</li>
+          <li><b>Home › Designer</b> (older versions: Design › Design Ideas).</li>
+          <li>Click a suggestion. Not happy? Click another.</li>
+          <li><b>Compare the text</b> with what you typed. Wrong? <kbd>Ctrl</kbd> + <kbd>Z</kbd>.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Demo live on the slide with the Lab 3 chart. Insert the chart, and the Designer pane often opens on its own. Click two or three suggestions so they see how fast the layout changes.</p>
+      <p>Step 4 is the Lab 4 requirement: "visual improvement… <b>without distorting the core text</b>". Designer sometimes shortens a title, splits a list into boxes, or crops a chart. If anything changed, undo or choose another design.</p>
+      <p>Designer needs internet and a signed-in Microsoft account. If it says "no ideas", try a slide with less text.</p>
+    </div>
+  </section>
+
+  <!-- 7 · Videos -->
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Let AI suggest. You stay in charge of the facts.</h2>
+        <p class="lede mt-m">A dressmaker, PowerPoint Designer and an AI outline with four mistakes: see how to use <b>AI design helpers</b>, make every AI draft <b>true</b>, keep charts <b>honest</b> and prompts <b>private</b>, then get ready for <b>Lab 4</b> and our course closing.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> spot the four things in the AI outline that aren't true. We'll compare answers right after.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/4.7/poster.jpg" alt="Video: AI in Presentation Design"><div class="play"></div><span class="vlen">5:01</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Introduce the video in one or two sentences, then read the <b>While watching</b> task aloud so everyone knows what to look for.</p>
+      <p>Press <b>→</b> to open the video full screen. In Zoom or Meet, share this tab with <b>computer sound</b> turned on.</p>
+    </div>
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/4.7/index.html" title="Video: AI in Presentation Design" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="notes">
+      <p><b>Space</b> or <b>K</b> plays and pauses (or click the video). <b>C</b> turns captions on or off; the speed button offers 1.25× and 0.85×. The arrows still move between slides, and the video pauses when you leave this slide.</p>
+      <p>Length 5:01. Pause anywhere to take a question; captions stay on screen for anyone without sound.</p>
+      <p>After the video, go back to the <b>While watching</b> task: ask two or three people for their answers.</p>
+    </div>
+  </section>
+  <!-- YouTube slide replaced by our own video (2026-11-01):
+  <section class="slide" data-title="Videos">
+    <div class="slide-head">
+      <div><p class="kicker">Watch · under 2 minutes each</p><h2 class="h2">See the helpers in action</h2></div>
+    </div>
+    <div class="grid g2">
+      <div class="vmeta">
+        <div class="video" data-yt="cU2N3HG1rnc"><img src="images/m4/4-7-video-designer.jpg" alt="Video thumbnail: Improve PowerPoint slides with Designer"><div class="play"></div><span class="vlen">1:30</span></div>
+        <h4>Improve PowerPoint slides with Designer</h4>
+        <p class="tiny">YouTube · Microsoft Helps · 1:30 · click to open</p>
+      </div>
+      <div class="vmeta">
+        <div class="video" data-yt="LOBexhRgf78"><img src="images/m4/4-7-video-gemini.jpg" alt="Video thumbnail: How to create Slide presentations with Gemini"><div class="play"></div><span class="vlen">1:48</span></div>
+        <h4>How to create Slide presentations with Gemini</h4>
+        <p class="tiny">YouTube · Google Workspace · 1:48 · click to open</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Two very short official videos: one from Microsoft on Designer, one from Google Workspace on Gemini in Slides. Play both if time allows; together they take under four minutes.</p>
+      <p>While watching, ask them to notice one thing: in both videos, the person still <b>reviews and edits</b> what the AI made. Share the tab with sound on.</p>
+    </div>
+  </section>
+  -->
+
+  <!-- 8 · Worked example: AI outline -->
+  <section class="slide" data-title="Worked example: AI outline">
+    <div class="slide-head">
+      <div><p class="kicker">Worked example · step 1</p><h2 class="h2">Ask AI for an outline of "My Digital Skills Journey"</h2></div>
+      <span class="tag coral">Sample AI draft</span>
+    </div>
+    <div class="win chatw">
+      <div class="bar"><i></i><i></i><i></i><span>AI assistant</span></div>
+      <div class="body">
+        <div class="bub me">Outline a 6-slide presentation titled "My Digital Skills Journey" for a 5-minute share. I'm an admin staff member who just finished a 16-hour course on computers, word processing, spreadsheets and presentations.</div>
+        <div class="bub ai">Here's an outline:
+          <ol>
+            <li>Title: My Digital Skills Journey · [Insert Name]</li>
+            <li>Where I started: <span class="flag">I was afraid of computers</span></li>
+            <li>What I learned: Word, Excel, <span class="flag">advanced Excel macros</span>, PowerPoint</li>
+            <li>Results: <span class="flag">my productivity increased by 50%</span></li>
+            <li>My favourite tool: <span class="flag">Microsoft Access databases</span></li>
+            <li>Thank you for your attention!</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Here's a realistic AI draft. The structure is actually useful: a title, a starting point, what I learned, results, a closing.</p>
+      <p>Now ask the group: <i>"What's wrong with it?"</i> Let them type in the chat. I've highlighted four problems: a feeling you may not have had, a skill we <b>didn't</b> learn (macros), an <b>invented statistic</b> (50%), and a tool we never used (Access). Plus the [Insert Name] placeholder.</p>
+      <p>AI fills gaps with things that <b>sound</b> right. Our job is to make them <b>true</b>.</p>
+    </div>
+  </section>
+
+  <!-- 9 · Worked example: human edits -->
+  <section class="slide" data-title="Worked example: human edits">
+    <div class="slide-head">
+      <div><p class="kicker">Worked example · step 2</p><h2 class="h2">Human edits make it true and yours</h2></div>
+    </div>
+    <table class="tbl">
+      <tr><th style="width:34%">AI said</th><th style="width:40%">I changed it to</th><th>Why</th></tr>
+      <tr><td>[Insert Name]</td><td><b>Maria Santos, Administrative Section</b></td><td>No placeholders in graded work</td></tr>
+      <tr><td>I was afraid of computers</td><td><b>I used email, but saved files anywhere</b></td><td>My real starting point</td></tr>
+      <tr><td>Advanced Excel macros</td><td><b>An inventory with SUM, AVERAGE and a chart</b></td><td>What we actually did in Lab 3</td></tr>
+      <tr><td>Productivity increased by 50%</td><td><b>I can now find any file in under a minute</b></td><td>No invented statistics</td></tr>
+      <tr><td>Microsoft Access databases</td><td><b>Mail merge: 3 letters from one template</b></td><td>A tool I really used (Lab 2)</td></tr>
+      <tr><td>Thank you for your attention!</td><td><b>What I'll use at work on Monday</b></td><td>A stronger ending</td></tr>
+    </table>
+    <div class="callout tip mt-m"><b>Keep:</b> the AI's six-slide structure. <b>Replace:</b> anything you can't prove or didn't do.</div>
+    <div class="notes">
+      <p>Go row by row. The sample name, Maria Santos, is fictional; participants use their own.</p>
+      <p>The key row is the <b>50%</b>. Nobody measured that. An invented number in a report to your chief is a credibility problem, and in government work it can become a bigger problem.</p>
+      <p>Notice we kept what AI did well: the six-slide flow. That's the healthy way to use AI: <b>accept the structure, own the content</b>.</p>
+    </div>
+  </section>
+
+  <!-- 10 · Try: outline -->
+  <section class="slide" data-title="Try it: your outline">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · AI outline + human edits</p><h2 class="h2">Draft your Lab 4 outline with AI, then fix it</h2></div>
+      <button class="timer" data-min="6">6:00</button>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <div class="prompt">Outline a <span class="v">6</span>-slide presentation titled "<span class="v">My Digital Skills Journey</span>" for a 5-minute share. I am <span class="v">[your role, no real names of others]</span>. In this course I made: <span class="v">a file folder system, a formal letter with mail merge, an inventory with SUM, AVERAGE and a chart</span>. Use only these facts.</div>
+        <p class="tiny mt-s">Use Copilot, Gemini, Canva's AI or any assistant your office allows.</p>
+      </div>
+      <div class="try">
+        <div class="try-head"><span class="try-label">Then edit</span></div>
+        <ol>
+          <li>Highlight anything you <b>didn't do</b> or <b>can't prove</b>.</li>
+          <li>Replace it with your <b>real</b> example.</li>
+          <li>Remove every <b>[placeholder]</b>.</li>
+          <li>Type your slide titles into your Lab 4 file.</li>
+        </ol>
+        <div class="callout gold mt-m"><b>Share:</b> paste one line you changed into the chat.</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Start the <b>6-minute</b> timer. Paste the prompt into the chat so they can copy it.</p>
+      <p>Point out the last sentence of the prompt: <b>"Use only these facts."</b> It reduces made-up content, but doesn't eliminate it, so the edit step still matters.</p>
+      <p>At the end, read a few of the changed lines from the chat. Praise specific, true edits like "I can now make a chart from my inventory."</p>
+    </div>
+  </section>
+
+  <!-- 11 · Try: Designer on 2 slides -->
+  <section class="slide" data-title="Try it: Designer on two slides">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · Lab 4 requirement</p><h2 class="h2">Improve two slides with the AI layout assistant</h2></div>
+      <button class="timer" data-min="5">5:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Before → after, text unchanged</span><span class="tiny">Good candidates: your chart slide and your title slide</span></div>
+      <div class="grid g3">
+        <div class="card soft"><h4>1 · Before</h4><p>Take a screenshot of the slide (<kbd>Win</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>) so you can show the improvement.</p></div>
+        <div class="card soft"><h4>2 · Apply</h4><p><b>Home › Designer</b>, choose a layout. Google Slides: Gemini, if available. Canva: try another layout.</p></div>
+        <div class="card soft"><h4>3 · Check</h4><p>Read every word against your original. Same title? Same numbers? Chart not cropped?</p></div>
+      </div>
+      <div class="callout warn mt-m"><b>No AI layout tool on your PC?</b> Try PowerPoint for the web with a free Microsoft account, or tell me in the chat and we'll find a fallback together.</div>
+    </div>
+    <div class="notes">
+      <p>Start the <b>5-minute</b> timer. Lab 4 needs <b>at least two slides</b> improved by the built-in AI layout assistant, with the core text unchanged.</p>
+      <p>The before-screenshot is optional but helpful: it lets you show the improvement during your 5-minute share.</p>
+      <p>If someone's PC has no Designer, PowerPoint for the web usually does. Note anyone still stuck and help them during lab time; don't let it block their progress.</p>
+    </div>
+  </section>
+
+  <!-- 12 · Visual ethics: misleading chart -->
+  <section class="slide" data-title="Visual ethics">
+    <div class="slide-head">
+      <div><p class="kicker">Visual ethics</p><h2 class="h2">Same numbers, different story</h2></div>
+      <span class="tag">Lab 3 inventory · Total Cost (₱)</span>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <div class="hbars">
+          <h4>✅ Honest: axis starts at 0</h4>
+          <div class="r"><span>Bond paper, long</span><div class="tr"><div class="b" style="width:99.4%">7,950</div></div></div>
+          <div class="r"><span>Bond paper, A4</span><div class="tr"><div class="b" style="width:76.6%">6,125</div></div></div>
+          <div class="ax"><span>0</span><span>2,000</span><span>4,000</span><span>6,000</span><span>8,000</span></div>
+        </div>
+        <div class="hbars mt-m">
+          <h4>❌ Misleading: axis starts at 6,000</h4>
+          <div class="r"><span>Bond paper, long</span><div class="tr"><div class="b" style="width:97.5%;background:var(--coral)">7,950</div></div></div>
+          <div class="r"><span>Bond paper, A4</span><div class="tr"><div class="b tiny" style="width:6.25%;background:var(--coral)"><span>6,125</span></div></div></div>
+          <div class="ax"><span>6,000</span><span>6,500</span><span>7,000</span><span>7,500</span><span>8,000</span></div>
+        </div>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li><b>No misleading charts:</b> bar charts start at zero; keep the real data range.</li>
+          <li><b>No fake images of real people:</b> never generate a photo of an official, colleague or taxpayer saying or doing something.</li>
+          <li><b>Label AI images:</b> a small caption, "Image: AI-generated".</li>
+          <li><b>Keep text accurate</b> when AI changes the layout: same words, same numbers.</li>
+        </ul>
+        <div class="callout gold mt-m"><b>Ask yourself:</b> would a viewer reach the same conclusion if they saw the raw numbers?</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>These two charts use the <b>same</b> numbers from our Lab 3 inventory: ₱7,950 for long bond paper and ₱6,125 for A4. The difference is about 30%.</p>
+      <p>In the bottom chart, the axis starts at 6,000, so the long bond paper bar looks <b>about fifteen times</b> bigger. Nothing is false, but the picture lies. AI tools and chart defaults can do this, so always check the axis.</p>
+      <p>Then go through the other three rules. Fake images of real people are the most serious: they can mislead the public and harm reputations.</p>
+    </div>
+  </section>
+
+  <!-- 13 · Privacy (pair) -->
+  <section class="slide" data-title="Privacy">
+    <div class="slide-head">
+      <div><p class="kicker">Privacy · what you paste is shared</p><h2 class="h2">Never feed personal data to an AI tool</h2></div>
+      <span class="tag coral">Data Privacy Act · RA 10173</span>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li><b>Don't paste:</b> taxpayer names, TINs, addresses, payroll, case details or internal memos.</li>
+          <li><b>Do:</b> use sample data, e.g. "Juan Dela Cruz, TIN 123-456-789-000".</li>
+          <li>Follow your office's rules on which AI tools are allowed.</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li>Think twice before uploading your <b>children's photos</b> to an unfamiliar AI app.</li>
+          <li>A Canva AI poster for the sari-sari store? Great, but leave out your GCash number and home address.</li>
+          <li>Read what the app does with your uploads.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout mt-l"><b>Simple test:</b> would you post this text on a public bulletin board? If not, don't paste it into an AI tool.</div>
+    <div class="notes">
+      <p>When you paste something into an AI tool, it goes to that company's servers. Depending on the tool and settings, it may be stored or used to improve the service.</p>
+      <p>For BIR staff this is critical. Taxpayer information is personal and confidential; the <b>Data Privacy Act</b> applies, and the <b>National Privacy Commission</b> enforces it. Use obviously fake sample data for any AI practice.</p>
+      <p>At home, the same care applies to your family's photos and numbers. The bulletin-board test is easy to remember.</p>
+    </div>
+  </section>
+
+  <!-- 14 · Quick check -->
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">Designer changed your title "Office Supplies Inventory, 3rd Quarter" to "Inventory". What do you do?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>Keep it; the design looks better<div class="why">No. Lab 4 requires the core text to stay accurate.</div></div></div>
+      <div class="opt" data-correct><span class="l">B</span><div>Undo or pick another design, then confirm the full title<div class="why">Yes. Take the layout, keep your words.</div></div></div>
+      <div class="opt"><span class="l">C</span><div>Delete the slide and start over<div class="why">No need. <kbd>Ctrl</kbd> + <kbd>Z</kbd> fixes it in a second.</div></div></div>
+      <div class="opt"><span class="l">D</span><div>Add an animation so no one notices<div class="why">No. Motion doesn't fix wrong text.</div></div></div>
+    </div>
+    <div class="notes">
+      <p>Let them answer in the chat, then click to reveal. <b>B</b> is correct.</p>
+      <p>This happens more than you'd think: layout tools shorten long titles or move words into a small caption. The habit is simple: after every AI change, <b>read the slide once</b> against your original.</p>
+      <p>Ask: <i>"Who has already seen Designer change something on your slide today?"</i> Let one or two people describe what changed and how they fixed it.</p>
+    </div>
+  </section>
+
+  <!-- 15 · Recap 4.7 → Lab 4 -->
+  <section class="slide statement" data-title="Recap and Lab 4">
+    <p class="kicker">Recap · Topic 4.7</p>
+    <h2 class="h2">AI suggests. You decide, check and own it.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Design helpers</h4><p>Designer, Copilot, Gemini, Canva: fast layouts and outlines, availability varies.</p></div>
+      <div class="card dark"><h4>Human edits</h4><p>Keep the structure; replace anything untrue, unproven or a placeholder.</p></div>
+      <div class="card dark"><h4>Ethics + privacy</h4><p>Honest charts, no fake people, label AI images, no personal data in prompts.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">Lab 4: Multimedia Presentation and Ethical Design</b>, then our course closing.</p>
+    <div class="notes">
+      <p>One-line summary: <b>AI suggests; you decide, check and own it.</b></p>
+      <p>Ask for one reaction: 👍 if you now have an outline and at least one slide improved by AI with your text unchanged.</p>
+      <p>Now let's look at Lab 4 properly, because everything from 4.1 to 4.7 comes together in it.</p>
+    </div>
+  </section>
+
+  <!-- 16 · Lab 4 objectives + scenario -->
+  <section class="slide" data-title="Lab 4 brief">
+    <div class="slide-head">
+      <div><p class="kicker">Lab 4 · 4 hours · Multimedia Presentation and Ethical Design</p><h2 class="h2">Your brief</h2></div>
+      <span class="tag gold">30% of the final grade</span>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div class="card top">
+        <h4>Objectives</h4>
+        <ul class="ticks">
+          <li>Organize information <b>in sequence</b> across multiple slides.</li>
+          <li>Integrate text, bullets and <b>media</b> (images, charts) cleanly.</li>
+          <li>Use <b>AI design tools</b> to improve layout while keeping text accurate.</li>
+          <li>Apply basic mechanics: <b>transitions</b>.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card dark"><span class="tag gold">Default scenario</span><h4 class="mt-s">"My Digital Skills Journey"</h4><p>Summarize what you learned in this course, from Module 1 to Module 4.</p></div>
+        <div class="grid g2 mt-m">
+          <div class="card soft"><h4>Adaptation 1</h4><p>Present your <b>Lab 3 Office Supplies Inventory</b>: totals, the chart, what to reorder.</p></div>
+          <div class="card soft"><h4>Adaptation 2</h4><p>A <b>5-minute pitch</b> for a community project, e.g. a barangay clean-up drive.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Read the four objectives; they come straight from the lab manual.</p>
+      <p>Most of you will do the default, <b>"My Digital Skills Journey."</b> If you'd rather present your inventory, or pitch a small community project like a clean-up drive or a church outreach, that's allowed. Just tell me in the chat which one you choose.</p>
+      <p>Whatever you choose, the checklist on the next slides is the same.</p>
+    </div>
+  </section>
+
+  <!-- 17 · Lab 4 step plan -->
+  <section class="slide" data-title="Lab 4 step plan">
+    <div class="slide-head">
+      <div><p class="kicker">Lab 4 · step plan</p><h2 class="h2">Four hours, seven steps</h2></div>
+    </div>
+    <div class="grid g2" style="align-items:start;grid-template-columns:1.15fr .85fr">
+      <table class="tbl">
+        <tr><th style="width:8%">#</th><th>Step</th><th style="width:20%">Time</th></tr>
+        <tr><td>1</td><td><b>Outline</b> with AI, then human edits (4.7)</td><td>30 min</td></tr>
+        <tr><td>2</td><td><b>Build 5+ slides</b>, one theme, varied layouts (4.1 to 4.3)</td><td>60 min</td></tr>
+        <tr><td>3</td><td><b>Add media:</b> Lab 3 chart or Lab 1 image, optional clip (4.4, 4.6)</td><td>30 min</td></tr>
+        <tr><td>4</td><td><b>AI layout</b> on 2+ slides, text checked (4.7)</td><td>30 min</td></tr>
+        <tr><td>5</td><td><b>One transition</b> to all; light animation (4.5)</td><td>20 min</td></tr>
+        <tr><td>6</td><td><b>Rehearse</b> with a timer; test sound</td><td>30 min</td></tr>
+        <tr><td>7</td><td><b>Present</b> 5 minutes and submit</td><td>40 min</td></tr>
+      </table>
+      <div class="card">
+        <h4>Suggested 6-slide flow</h4>
+        <ol class="steps">
+          <li>Title slide: name, section</li>
+          <li>Where I started</li>
+          <li>What I learned (bullets)</li>
+          <li>My Lab 3 chart</li>
+          <li>What I'll use at work</li>
+          <li>Thank you + questions</li>
+        </ol>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Here's how to spend the four hours. Steps 1 to 5 build the deck; step 6 is rehearsal, which people always skip and then regret; step 7 is the 5-minute share for everyone.</p>
+      <p>The six-slide flow on the right is the one we drafted in the worked example. Five slides is the minimum, so six gives you a small cushion.</p>
+      <p>Remind them to <b>save often</b> with <kbd>Ctrl</kbd>+<kbd>S</kbd>; four hours of work and a brownout is a painful combination.</p>
+    </div>
+  </section>
+
+  <!-- 18 · Graded-output checklist -->
+  <section class="slide" data-title="Graded-output checklist">
+    <div class="split">
+      <div>
+        <p class="kicker">Lab 4 · minimum graded output</p>
+        <h2 class="h2">Tick all five before you submit</h2>
+        <ul class="chk mt-m">
+          <li>At least <b>5 slides</b> with a <b>consistent theme</b> or background</li>
+          <li><b>Varied layouts</b>, e.g. Title slide and Title &amp; Content</li>
+          <li>Your <b>Lab 3 chart</b> or <b>Lab 1 image</b>, placed cleanly</li>
+          <li><b>AI layout</b> improvement on <b>2+ slides</b>, core text unchanged</li>
+          <li><b>Transitions</b> that work, applied <b>uniformly</b></li>
+        </ul>
+      </div>
+      <div>
+        <div class="card top">
+          <h4>Submit</h4>
+          <p>File name: <b>Lab 4 - Lastname - My Digital Skills Journey.pptx</b> (or .odp / Google Slides link set to "Anyone with the link: Viewer").</p>
+        </div>
+        <div class="callout tip mt-m"><b>Also check:</b> no [placeholders], sample data only, AI images labelled, and credits for any clip or music.</div>
+        <div class="callout gold mt-m"><b>Tip:</b> keep your before/after screenshots of the AI slides; they make a great talking point.</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>These five boxes are the <b>minimum graded output</b> from the lab manual. Read each one slowly and ask them to type the number of any item they're unsure about.</p>
+      <p>Explain the file name rule so I can sort submissions. If you use Google Slides, share the link with view access.</p>
+      <p>The "also check" box is the ethics part: it's not optional in a course called "Ethical Design."</p>
+    </div>
+  </section>
+
+  <!-- 19 · Rubric -->
+  <section class="slide" data-title="Rubric">
+    <div class="slide-head">
+      <div><p class="kicker">Lab 4 · how it's scored</p><h2 class="h2">Simple rubric: 30 points = 30% of your grade</h2></div>
+    </div>
+    <table class="tbl">
+      <tr><th style="width:30%">Criterion</th><th>Full marks when…</th><th style="width:10%">Points</th></tr>
+      <tr><td><b>Content and sequence</b></td><td>5+ slides in a clear order; true, specific content; no placeholders</td><td><b>8</b></td></tr>
+      <tr><td><b>Design and readability</b></td><td>One theme, varied layouts, readable fonts, short text</td><td><b>6</b></td></tr>
+      <tr><td><b>Media integration</b></td><td>Lab 3 chart or Lab 1 image placed cleanly; any clip plays</td><td><b>5</b></td></tr>
+      <tr><td><b>AI layout, accurate text</b></td><td>2+ slides improved with the AI assistant; text and numbers unchanged</td><td><b>5</b></td></tr>
+      <tr><td><b>Transitions</b></td><td>One transition, applied uniformly, working in Slide Show</td><td><b>3</b></td></tr>
+      <tr><td><b>Ethics</b></td><td>Honest visuals, credits given, AI images labelled, no personal data</td><td><b>3</b></td></tr>
+      <tr><td colspan="2" style="text-align:right"><b>Total</b></td><td><b>30</b></td></tr>
+    </table>
+    <div class="notes">
+      <p>This is how I'll score Lab 4. The six criteria map directly to the checklist: content, design, media, AI with accurate text, transitions, and ethics.</p>
+      <p>Content carries the most points because a beautiful deck with untrue content fails its purpose.</p>
+      <p>Your 5-minute share is where I see the transitions work and hear your story, so rehearse. Questions about the rubric? Type them in the chat now.</p>
+    </div>
+  </section>
+
+  <!-- 20 · Presentation tips -->
+  <section class="slide" data-title="Presentation tips">
+    <div class="split rev">
+      <div class="media"><img src="images/m4/4-7-presenter.jpg" alt="A smiling woman gesturing as she presents"></div>
+      <div>
+        <p class="kicker">Your 5-minute share</p>
+        <h2 class="h2">Tips for presenting online</h2>
+        <ol class="steps mt-m">
+          <li><b>Plan about 45 to 60 seconds</b> per slide. Rehearse once with a timer.</li>
+          <li><b>Start in Slide Show</b> (<kbd>F5</kbd>), then share that window or your screen.</li>
+          <li><b>Look at the camera</b>, not your slides. Speak to one friendly face.</li>
+          <li><b>Share sound</b> only if you play a clip; test it first.</li>
+          <li><b>End strong:</b> one thing you'll use at work, then "Questions?"</li>
+        </ol>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Five minutes goes fast. Six slides at about 50 seconds each is just right.</p>
+      <p>Show them how to share: start the slide show first with <kbd>F5</kbd>, then share the slide show window or the entire screen. If you have two monitors, share the one showing the slides, not your presenter notes.</p>
+      <p>Nervous is normal. Speak slowly, smile, and remember: everyone in this meeting is cheering for you. Taglish or Bisaya for a quick joke is fine.</p>
+    </div>
+  </section>
+
+  <!-- 21 · Course closing: journey + grade -->
+  <section class="slide" data-title="Our 16-hour journey">
+    <div class="slide-head">
+      <div><p class="kicker">Course closing</p><h2 class="h2">Our 16-hour journey</h2></div>
+      <span class="tag">Digital Productivity Essentials · DICT ILCDB</span>
+    </div>
+    <div class="grid g4 mods anim-stagger-list">
+      <div class="card top"><span class="tag">Module 1 · 1 h</span><h4>Computers &amp; Internet</h4><p>Folders that make sense, safe browsing, everyday AI.</p></div>
+      <div class="card top"><span class="tag">Module 2 · 4 h</span><h4>Word Processing</h4><p>A formal letter, a table, and a mail merge to 3 colleagues.</p></div>
+      <div class="card top"><span class="tag">Module 3 · 6 h</span><h4>Spreadsheets</h4><p>The office supplies inventory: formulas, ₱22,039 total, a chart.</p></div>
+      <div class="card top"><span class="tag">Module 4 · 5 h</span><h4>Presentations</h4><p>"My Digital Skills Journey", designed, animated, presented.</p></div>
+    </div>
+    <h4 class="mt-l">How your grade is made up</h4>
+    <div class="gbar mt-s">
+      <div style="width:10%;background:var(--navy-2)">10%</div>
+      <div style="width:30%;background:#2B579A">Word 30%</div>
+      <div style="width:30%;background:#16794A">Spreadsheet 30%</div>
+      <div style="width:30%;background:#C2482B">Presentation 30%</div>
+    </div>
+    <div class="row mt-s small" style="justify-content:space-between"><span><b>Digital Foundations Quiz</b> 10% (Module 1)</span><span>Word Processing Output · Spreadsheet Data Output · Multimedia Presentation Output</span></div>
+    <div class="notes">
+      <p>Let's look back. <b>Module 1</b>: we organized files and learned to browse safely. <b>Module 2</b>: a real formal letter and a mail merge. <b>Module 3</b>: our inventory, with a grand total of ₱22,039 computed by formulas, not typed. <b>Module 4</b>: the deck you're about to present.</p>
+      <p>The grade: the <b>Digital Foundations Quiz</b> is 10%, and each of the three lab outputs, Word, Spreadsheet and Presentation, is 30%. Together, 100%.</p>
+      <p>Ask: <i>"Which module will you use most at work starting Monday?"</i></p>
+    </div>
+  </section>
+
+  <!-- 22 · Thank you -->
+  <section class="slide cover" data-title="Thank you">
+    <div class="cv-text">
+      <p class="kicker">Digital Productivity Essentials · Thank you</p>
+      <h1 class="h1">Daghang salamat, <span style="color:var(--gold)">BIR Misamis Oriental!</span></h1>
+      <p class="lede">You came as users of computers. You leave as people who make clear letters, honest spreadsheets and confident presentations. Keep practising, and keep helping the colleague beside you.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">16 hours · 4 modules · 4 labs</span><span class="tag ghost">Engr. Ronelle Pabellan</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m4/4-7-celebration.jpg" alt="Office colleagues smiling and cheering together"><div class="cv-num">16h</div></div>
+    <div class="notes">
+      <p><b>Daghang salamat kaayo, everyone!</b> Thank you for your patience with the brownouts, the Wi-Fi, and my many "share your screen" requests.</p>
+      <p>Thank the organizers and the ICT focal persons who helped behind the scenes. Remind everyone of the submission time for Lab 4 and where to send it.</p>
+      <p>End with an invitation: <i>"Type one word in the chat that describes this training for you."</i> Read a few out loud, then take a group screenshot with cameras on, if everyone agrees.</p>
+    </div>
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

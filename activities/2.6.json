@@ -1,0 +1,136 @@
+{
+  "topic": "2.6",
+  "title": "Responsible AI Drafting",
+  "activities": [
+    {
+      "id": "2.6-a",
+      "slide": "Try it now: spot the problems",
+      "kind": "task",
+      "title": "Find 5 problems in the AI draft",
+      "minutes": 3,
+      "intro": "Read the AI draft on the slide. Our prompt gave the AI the real facts: Thursday, 19 November 2026, 1:00 to 4:00 PM, Conference Room, confirm by Friday, 13 November. Sort each part of the draft.",
+      "blocks": [
+        {
+          "type": "sort",
+          "id": "parts",
+          "prompt": "Is each part of the AI draft a problem, or fine as given in our prompt?",
+          "bins": ["Problem", "Fine"],
+          "items": [
+            "Dear [Insert Name],",
+            "Friday, 19 November 2026",
+            "from 1:00 to 4:00 PM",
+            "at the Conference Room",
+            "Memorandum Order No. 2026-117",
+            "word processing, spreadsheets and presentations",
+            "Participants will earn 8 CPD units.",
+            "\"thrilled\", \"exciting\" and \"!\"",
+            "Kindly confirm your attendance by [Date]."
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "day",
+          "prompt": "What day of the week is 19 November 2026?",
+          "options": ["Thursday", "Friday", "Saturday", "Monday"]
+        },
+        {
+          "type": "mcq",
+          "id": "worst",
+          "prompt": "Which problem is the most dangerous?",
+          "options": [
+            "The placeholders",
+            "The invented memo number",
+            "The casual tone"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2.6-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: a memo you've never seen",
+      "minutes": 1,
+      "intro": "Pick one answer.",
+      "blocks": [
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "The AI draft cites \"Memorandum Order No. 2026-117\". You've never seen it. What do you do?",
+          "options": [
+            "Keep it. It makes the letter sound official.",
+            "Ask the AI, \"Is this memo real?\"",
+            "Look for it in an official source; delete it if you can't find it.",
+            "Change the number slightly so it looks less copied."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab2",
+      "slide": "Lab 2 checklist and rubric",
+      "kind": "lab",
+      "title": "Lab 2: AI-Assisted Word Processing and Mail Merge",
+      "minutes": 210,
+      "intro": "Draft a formal Invitation to the Digital Skills Workshop from the Administrative Section of a sample Revenue District Office with AI help, then check and edit it yourself, format it, add a table and mail merge it to at least 3 colleagues. You may adapt the scenario (a parent-teacher meeting notice, a promo letter to 3 loyal customers, or a barangay or church invitation); the requirements stay the same. Lab 2 is worth 30% of the course grade.",
+      "blocks": [
+        {
+          "type": "steps",
+          "id": "checklist",
+          "items": [
+            "Multi-paragraph letter with every fact checked (dates and days on a calendar, names, positions).",
+            "No [Insert Name] or other placeholders, and no chat leftovers.",
+            "AI help disclosed in one line.",
+            "Justified text, standard font sizes and 1-inch margins, with a consistent, readable layout.",
+            "An embedded table inside the letter: at least 2 columns × 3 rows, with headers.",
+            "Mail merge linked to a separate data source (Name, Position, Section, Email).",
+            "At least 3 distinct, personalised letters in one file, and no blank letters.",
+            "Only sample or permitted data used, no confidential information, and sources credited.",
+            "Merged file named Lab 2 - Lastname - Merged Invitations - 2026-11-xx.docx"
+          ]
+        },
+        {
+          "type": "text",
+          "id": "prompt",
+          "prompt": "Paste the prompt you gave the AI (Role, Task, Context, Format, Tone). Sample data only.",
+          "lines": 6
+        },
+        {
+          "type": "text",
+          "id": "disclosure",
+          "prompt": "Your one-line AI disclosure",
+          "lines": 2
+        },
+        {
+          "type": "upload",
+          "id": "merged",
+          "prompt": "Upload your merged file: Lab 2 - Lastname - Merged Invitations - 2026-11-xx.docx"
+        },
+        {
+          "type": "upload",
+          "id": "sources",
+          "prompt": "Optional: your main document and spreadsheet, in case the facilitator asks",
+          "optional": true
+        },
+        {
+          "type": "rubric",
+          "id": "rubric",
+          "criteria": [
+            { "name": "Content and human editing: multi-paragraph letter, facts checked, no placeholders, AI help disclosed", "points": 8 },
+            { "name": "Formatting: justified text, standard font sizes, 1-inch margins, consistent and readable layout", "points": 6 },
+            { "name": "Embedded table: at least 2 columns × 3 rows, with headers, inside the letter", "points": 5 },
+            { "name": "Mail merge: linked to a separate data source; at least 3 distinct, personalised letters in one file, no blank letters", "points": 8 },
+            { "name": "Responsible AI: only sample or permitted data used; no confidential information; sources credited", "points": 3 }
+          ]
+        }
+      ],
+      "help": [
+        "Sample disclosure: \"First draft prepared with an AI assistant; reviewed, fact-checked and edited by Maria Santos.\"",
+        "Save your prompt in a text file at step 2. It helps you write the disclosure.",
+        "Do the mail merge last, after the letter is final, so you merge only once.",
+        "Before saving, press Ctrl + F and search for [ to catch leftover placeholders.",
+        "Type \"help\" in the chat any time to ask for a screen-share."
+      ]
+    }
+  ]
+}

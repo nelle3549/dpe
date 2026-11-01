@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.2 Application Navigation and Slide Management · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* 4.2 extras: drawn presentation-app UI (uses dpe.css tokens) */
+.pp{position:relative}
+.pp .body{padding:0}
+.pp .tabs{display:flex;gap:calc(var(--u)*1.1);font-size:calc(var(--u)*.82);padding:calc(var(--u)*.45) calc(var(--u)*.9);border-bottom:1px solid var(--border);color:var(--text-2)}
+.pp .tabs b{color:var(--mod);border-bottom:2px solid var(--mod)}
+.pp .rib{display:flex;gap:calc(var(--u)*.5);padding:calc(var(--u)*.5) calc(var(--u)*.9);background:#F7F8FA;border-bottom:1px solid var(--border);align-items:center}
+.pp .rib span{height:calc(var(--u)*2);width:calc(var(--u)*2.6);border-radius:calc(var(--u)*.3);background:#E3E6ED}
+.pp .rib span.w{width:calc(var(--u)*5)}
+.pp .rib em{width:1px;height:calc(var(--u)*2);background:var(--border-strong);margin:0 calc(var(--u)*.3)}
+.pp .main{display:grid;grid-template-columns:calc(var(--u)*7.5) 1fr}
+.pp .thumbs{background:#F3F4F7;padding:calc(var(--u)*.6);display:flex;flex-direction:column;gap:calc(var(--u)*.55);border-right:1px solid var(--border)}
+.pp .th{display:flex;gap:calc(var(--u)*.3);font-size:calc(var(--u)*.65);color:var(--text-3)}
+.pp .th div{flex:1;aspect-ratio:16/9;background:#fff;border:1px solid var(--border-strong);border-radius:2px;padding:calc(var(--u)*.3)}
+.pp .th div i{display:block;height:calc(var(--u)*.3);background:var(--mod);width:70%;border-radius:9px}
+.pp .th.sel div{outline:calc(var(--u)*.18) solid var(--mod)}
+.pp .canvas{background:#E7E9EE;padding:calc(var(--u)*1) calc(var(--u)*1.6);display:flex;flex-direction:column;gap:calc(var(--u)*.6)}
+.pp .sl{aspect-ratio:16/9;background:#fff;box-shadow:var(--shadow);padding:calc(var(--u)*1.4) calc(var(--u)*1.8);display:flex;flex-direction:column;gap:calc(var(--u)*.5)}
+.pp .sl .t{font-weight:800;font-size:calc(var(--u)*1.35);color:var(--mod-deep)}
+.pp .sl .ph{flex:1;border:1px dashed var(--text-3);border-radius:3px;font-size:calc(var(--u)*.8);color:var(--text-3);padding:calc(var(--u)*.5)}
+.pp .np{background:#fff;border:1px solid var(--border-strong);font-size:calc(var(--u)*.78);color:var(--text-3);padding:calc(var(--u)*.4) calc(var(--u)*.6)}
+.pp .status{display:flex;justify-content:space-between;align-items:center;font-size:calc(var(--u)*.75);padding:calc(var(--u)*.35) calc(var(--u)*.9);background:#F3F4F7;border-top:1px solid var(--border);color:var(--text-2)}
+.pin{position:absolute;width:calc(var(--u)*2);height:calc(var(--u)*2);border-radius:50%;background:var(--gold);color:var(--ink);font-weight:800;font-size:calc(var(--u)*1);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.3);z-index:3}
+.legend{list-style:none;margin:0;padding:0}
+.legend li{display:flex;gap:calc(var(--u)*1);align-items:flex-start;margin:calc(var(--u)*.85) 0;font-size:calc(var(--u)*1.4);line-height:1.4}
+.legend .pin{position:static;flex:none}
+.lay{aspect-ratio:16/9;background:#fff;border:1px solid var(--border-strong);border-radius:calc(var(--u)*.4);box-shadow:var(--shadow);padding:calc(var(--u)*.8);display:flex;flex-direction:column;gap:calc(var(--u)*.45);position:relative}
+.lay i{display:block;border:1px dashed var(--text-3);border-radius:3px;background:var(--surface-2)}
+.sorter{display:grid;grid-template-columns:repeat(4,1fr);gap:calc(var(--u)*1)}
+.sorter .s{position:relative}
+.sorter .s div{aspect-ratio:16/9;background:#fff;border:1px solid var(--border-strong);border-radius:calc(var(--u)*.3);padding:calc(var(--u)*.6);font-size:calc(var(--u)*.85);font-weight:700;color:var(--mod-deep);box-shadow:var(--shadow)}
+.sorter .s span{font-size:calc(var(--u)*.8);color:var(--text-3)}
+.sorter .s.hid div{opacity:.4}
+.sorter .s.hid span{text-decoration:line-through}
+.sec{grid-column:1/-1;font-size:calc(var(--u)*.85);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mod);border-bottom:1px solid var(--border-strong);padding-bottom:calc(var(--u)*.2);margin-top:calc(var(--u)*.3)}
+.pv{background:#1F2329;border-radius:calc(var(--u)*.8);padding:calc(var(--u)*1.2);display:grid;grid-template-columns:1.6fr 1fr;gap:calc(var(--u)*1);color:#fff;box-shadow:var(--shadow-lg)}
+.pv .cur{aspect-ratio:16/9;background:#fff;border-radius:3px;padding:calc(var(--u)*1);color:var(--mod-deep);font-weight:800;font-size:calc(var(--u)*1.3)}
+.pv .nx{aspect-ratio:16/9;background:#fff;border-radius:3px;padding:calc(var(--u)*.6);color:var(--mod-deep);font-weight:800;font-size:calc(var(--u)*.85);opacity:.9}
+.pv .lbl{font-size:calc(var(--u)*.75);color:#9AA3B2;margin:calc(var(--u)*.4) 0 calc(var(--u)*.2);letter-spacing:.08em;text-transform:uppercase}
+.pv .nt{font-size:calc(var(--u)*1.05);line-height:1.4;color:#E9ECF2}
+.pv .tm{font-family:var(--font-mono);font-size:calc(var(--u)*1.3);color:var(--gold)}
+</style>
+</head>
+<body class="m4" data-brand="Digital Productivity Essentials · <b>Module 4</b> · 4.2 Application Navigation and Slide Management">
+<div class="deck">
+
+  <!-- 1 · Cover -->
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 4 · Multimedia Presentation Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Application Navigation and <span style="color:var(--gold)">Slide Management</span></h1>
+      <p class="lede" data-anim="fade-up">Find your way around PowerPoint, Google Slides and Impress, then add, arrange and present slides with confidence.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 4.2</span><span class="tag ghost">~45 minutes</span><span class="tag ghost">BIR Misamis Oriental</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m4/4-2-cover.jpg" alt="A projector shining light on a table"><div class="cv-num">4.2</div></div>
+    <div class="notes">
+      <p><b>Welcome back.</b> In 4.1 we planned our Lab 4 deck on paper. Now we open the app and turn those boxes into real slides.</p>
+      <p>I'll demo in PowerPoint because most BIR desktops have it, and I'll name where things are in Google Slides and LibreOffice Impress. Ask everyone to open their presentation app now and keep their storyboard paper beside the keyboard.</p>
+    </div>
+  </section>
+
+  <!-- 2 · Warm-up -->
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · type in the chat</p><h2 class="h2">Which presentation app will you use for Lab 4?</h2></div>
+      <span class="tag gold">30 seconds</span>
+    </div>
+    <div class="grid g4 mt-m anim-stagger-list">
+      <div class="card center"><span class="ic">🟧</span><h4>A</h4><p>Microsoft PowerPoint</p></div>
+      <div class="card center"><span class="ic">🟨</span><h4>B</h4><p>Google Slides</p></div>
+      <div class="card center"><span class="ic">🟦</span><h4>C</h4><p>LibreOffice Impress</p></div>
+      <div class="card center"><span class="ic">❓</span><h4>D</h4><p>Not sure / something else</p></div>
+    </div>
+    <div class="callout gold mt-l"><b>Any of them is fine.</b> The ideas are the same in all three; only the menu names change. We'll point out the differences as we go.</div>
+    <div class="notes">
+      <p>Ask for <b>A, B, C or D</b> in the chat. Expect mostly A. Some may use Google Slides on a personal Gmail account. A few may only have WPS or Canva at home: tell them WPS Presentation looks very similar to PowerPoint, and Canva works for the concepts but the lab asks for a standard presentation app.</p>
+      <p>Tell those who answered D to use Google Slides in the browser: it's free with any Google account and needs no installation.</p>
+    </div>
+  </section>
+
+  <!-- 3 · Objectives -->
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head">
+      <div><p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2></div>
+    </div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Navigate</span><h4>Name the parts of the window</h4><p>Slide pane, thumbnails, ribbon or menus, notes pane, status bar.</p></div>
+      <div class="card top"><span class="k">Manage</span><h4>Add, duplicate, delete, reorder and hide slides</h4><p>Using themes, layouts, the slide sorter and sections.</p></div>
+      <div class="card top"><span class="k">Present</span><h4>Run a slide show and save a PDF</h4><p>Views, show keys like <kbd>F5</kbd> and <kbd>B</kbd>, and exporting.</p></div>
+    </div>
+    <div class="callout mt-l"><b>By the end:</b> your Lab 4 file "My Digital Skills Journey" will exist, with a theme and five slides in the right order.</div>
+    <div class="notes">
+      <p>Three goals: <b>navigate, manage, present</b>. This topic is very hands-on, so expect two "Try it now" activities.</p>
+      <p>Promise them a concrete result: at the end of 45 minutes, every participant has a saved Lab 4 file with a consistent theme, varied layouts and five slides. That already covers two of the Lab 4 grading points.</p>
+    </div>
+  </section>
+
+  <!-- 4 · Three apps -->
+  <section class="slide" data-title="Three apps, one idea">
+    <div class="split">
+      <div>
+        <p class="kicker">The apps · like driving any brand of jeep</p>
+        <h2 class="h2">Three apps, same driving skills</h2>
+        <div class="grid mt-m anim-stagger-list" style="gap:calc(var(--u)*.9)">
+          <div class="card top" style="padding:calc(var(--u)*1.1) calc(var(--u)*1.5)"><h4>🟧 Microsoft PowerPoint</h4><p>On most office PCs and on the web. Saves as <b>.pptx</b>. Commands live in the <b>Ribbon</b> tabs.</p></div>
+          <div class="card top" style="padding:calc(var(--u)*1.1) calc(var(--u)*1.5)"><h4>🟨 Google Slides</h4><p>In the browser; saves automatically to Google Drive; easy to share and co-edit. <b>Menus + toolbar</b>.</p></div>
+          <div class="card top" style="padding:calc(var(--u)*1.1) calc(var(--u)*1.5)"><h4>🟦 LibreOffice Impress</h4><p>Free and open source. Saves as <b>.odp</b>, and can open and save .pptx. <b>Menus + Sidebar</b>.</p></div>
+        </div>
+        <div class="callout tip mt-m"><b>Tip:</b> a .pptx opens in all three, but fonts and effects may shift. Check your slides after switching apps.</div>
+      </div>
+      <div class="media"><img src="images/m4/4-2-laptop.jpg" alt="An open laptop on an office desk"></div>
+    </div>
+    <div class="notes">
+      <p>Use the jeepney idea from Module 1: whether it's a Sarao or a Francisco jeep, the steering wheel, brake and gears are where you expect. Same here: slides, layouts, themes and slide show exist in all three apps.</p>
+      <p>Mention real office life: you may build a briefing in PowerPoint at the office and finish it in Google Slides at home. It works, but check fonts and spacing after switching.</p>
+    </div>
+  </section>
+
+  <!-- 5 · Interface tour -->
+  <section class="slide" data-title="The interface">
+    <div class="slide-head">
+      <div><p class="kicker">The window · PowerPoint shown</p><h2 class="h2">Five parts to know by name</h2></div>
+    </div>
+    <div class="grid" style="grid-template-columns:1.35fr 1fr;gap:calc(var(--u)*2.4);align-items:center">
+      <div class="win pp">
+        <div class="bar"><i></i><i></i><i></i><span>Lab4 - Juan Dela Cruz.pptx · PowerPoint</span></div>
+        <div class="body">
+          <div class="tabs"><span>File</span><b>Home</b><span>Insert</span><span>Design</span><span>Transitions</span><span>Animations</span><span>Slide Show</span><span>Review</span><span>View</span></div>
+          <div class="rib"><span class="w"></span><span></span><em></em><span></span><span></span><span class="w"></span><em></em><span></span><span></span><span></span><em></em><span class="w"></span></div>
+          <div class="main">
+            <div class="thumbs">
+              <div class="th"><span>1</span><div><i></i></div></div>
+              <div class="th sel"><span>2</span><div><i></i></div></div>
+              <div class="th"><span>3</span><div><i></i></div></div>
+              <div class="th"><span>4</span><div><i></i></div></div>
+            </div>
+            <div class="canvas">
+              <div class="sl"><div class="t">Where I started</div><div class="ph">• Click to add text</div></div>
+              <div class="np">Click to add notes</div>
+            </div>
+          </div>
+          <div class="status"><span>Slide 2 of 5 · English (Philippines)</span><span>Notes · ▭ ▦ ▤ ▷ · 72%</span></div>
+        </div>
+        <span class="pin" style="left:30%;top:13%">1</span>
+        <span class="pin" style="left:1.5%;top:44%">2</span>
+        <span class="pin" style="left:62%;top:44%">3</span>
+        <span class="pin" style="left:45%;top:83%">4</span>
+        <span class="pin" style="left:58%;top:93%">5</span>
+      </div>
+      <ul class="legend">
+        <li><span class="pin">1</span><span><b>Ribbon</b>: tabs of commands (Home, Insert, Design…). Google Slides and Impress use menus and a toolbar.</span></li>
+        <li><span class="pin">2</span><span><b>Thumbnails</b>: every slide in order. Click to jump, drag to reorder.</span></li>
+        <li><span class="pin">3</span><span><b>Slide pane</b>: the big slide you edit.</span></li>
+        <li><span class="pin">4</span><span><b>Notes pane</b>: your speaker notes. The audience doesn't see them.</span></li>
+        <li><span class="pin">5</span><span><b>Status bar</b>: slide number, Notes button, views and zoom.</span></li>
+      </ul>
+    </div>
+    <div class="notes">
+      <p>Share your real PowerPoint window side by side with this drawing. Point to each part as you say its name: ribbon, thumbnails, slide pane, notes pane, status bar.</p>
+      <p>If someone can't see the notes pane, click <b>Notes</b> on the status bar, or <b>View, Notes</b>. In Google Slides, the notes area is under the slide too: <b>View, Show speaker notes</b>. Ask: "What slide number does your status bar show right now?"</p>
+    </div>
+  </section>
+
+  <!-- 6 · Themes -->
+  <section class="slide" data-title="Themes">
+    <div class="split">
+      <div>
+        <p class="kicker">Themes</p>
+        <h2 class="h2">Pick one theme for the whole deck</h2>
+        <p class="lede mt-m">A theme sets the colours, fonts and backgrounds of every slide at once. That gives you <b>repetition</b> for free.</p>
+        <table class="tbl mt-l">
+          <tr><th>App</th><th>Where</th></tr>
+          <tr><td><b>PowerPoint</b></td><td>Design tab › Themes, then Variants for colour options</td></tr>
+          <tr><td><b>Google Slides</b></td><td>Slide › Change theme (Themes panel opens on the right)</td></tr>
+          <tr><td><b>Impress</b></td><td>Sidebar › Master Slides</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="grid g2" style="gap:calc(var(--u)*1)">
+          <div class="lay" style="background:#0B2545;border:0"><b style="color:#fff;font-size:calc(var(--u)*1.1)">Clean, dark</b><span style="height:calc(var(--u)*.3);width:40%;background:#F4B400;border-radius:9px"></span></div>
+          <div class="lay"><b style="color:#0B2545;font-size:calc(var(--u)*1.1)">Clean, light</b><span style="height:calc(var(--u)*.3);width:40%;background:#1366D6;border-radius:9px"></span></div>
+          <div class="lay" style="background:linear-gradient(120deg,#ff6f00,#d500f9,#00e5ff);border:0"><b style="color:#fff;font-size:calc(var(--u)*1.1);font-family:'Comic Sans MS',cursive">Busy</b></div>
+          <div class="lay" style="background:repeating-linear-gradient(45deg,#c8e6c9 0 10px,#fff9c4 10px 20px)"><b style="color:#558b2f;font-size:calc(var(--u)*1.1)">Patterned</b></div>
+        </div>
+        <div class="callout gold mt-m"><b>For Lab 4:</b> choose a clean theme (top row). Busy backgrounds fight with your text and your chart.</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Demo: <b>Design tab</b>, hover over themes to preview, click one, then try a Variant. Show that every slide changes together.</p>
+      <p>Lab 4 asks for a <b>consistent theme or background</b>, so apply the theme once and don't recolour slides one by one. Ask: "Which of these four would still be readable on a projector in a bright hall?" The top two. Remind them of 4.1: the theme is decoration; it comes after the message.</p>
+    </div>
+  </section>
+
+  <!-- 7 · Layouts -->
+  <section class="slide" data-title="Slide layouts">
+    <div class="slide-head">
+      <div><p class="kicker">Slide layouts</p><h2 class="h2">Choose a layout for each slide's job</h2></div>
+      <span class="tag">Home › Layout</span>
+    </div>
+    <div class="grid g5 anim-stagger-list">
+      <div><div class="lay" style="justify-content:center;align-items:center"><i style="width:80%;height:28%"></i><i style="width:55%;height:14%"></i></div><h4 class="mt-m">Title Slide</h4><p class="small">The first slide: title, your name, date.</p></div>
+      <div><div class="lay"><i style="height:20%"></i><i style="flex:1"></i></div><h4 class="mt-m">Title and Content</h4><p class="small">The workhorse: bullets, a chart or a picture.</p></div>
+      <div><div class="lay" style="justify-content:center"><i style="width:75%;height:26%"></i><i style="width:45%;height:12%"></i></div><h4 class="mt-m">Section Header</h4><p class="small">Starts a new part: "What I learned".</p></div>
+      <div><div class="lay"><i style="height:20%"></i><div style="display:flex;gap:6%;flex:1"><i style="flex:1"></i><i style="flex:1"></i></div></div><h4 class="mt-m">Two Content</h4><p class="small">Before and after, text beside a picture.</p></div>
+      <div><div class="lay"></div><h4 class="mt-m">Blank</h4><p class="small">A full-slide photo or a big number.</p></div>
+    </div>
+    <div class="callout mt-l"><b>Same idea elsewhere:</b> Google Slides has Title slide, Title and body, Section header, Title and two columns and Blank (<b>Slide › Apply layout</b>). Impress lists its layouts in <b>Sidebar › Layouts</b>.</div>
+    <div class="notes">
+      <p>Demo: <b>Home, Layout</b>, and change a slide's layout. The content moves into the new placeholders.</p>
+      <p>Lab 4 asks for <b>varied layouts</b>, for example a Title Slide plus Title and Content. Look at the storyboard: box 1 is a Title Slide, the proof slides are Title and Content or Two Content, and the closing slide could be a Section Header or Blank with one big sentence. Ask them to label each box on their paper with a layout name.</p>
+    </div>
+  </section>
+
+  <!-- 8 · Managing slides -->
+  <section class="slide" data-title="Add, duplicate, delete, reorder">
+    <div class="slide-head">
+      <div><p class="kicker">Managing slides</p><h2 class="h2">Add, duplicate, delete, reorder</h2></div>
+      <span class="tag gold">Works in the thumbnails pane</span>
+    </div>
+    <div class="grid g2" style="gap:calc(var(--u)*3)">
+      <div class="keys">
+        <span><kbd>Ctrl</kbd> + <kbd>M</kbd></span><span><b>New slide</b> (PowerPoint and Google Slides). Or Home › New Slide.</span>
+        <span><kbd>Ctrl</kbd> + <kbd>D</kbd></span><span><b>Duplicate</b> the selected slide: keeps its layout and formatting.</span>
+        <span><kbd>Delete</kbd></span><span><b>Delete</b> the selected thumbnail.</span>
+        <span>Drag ↕</span><span><b>Reorder</b>: drag a thumbnail up or down.</span>
+        <span><kbd>Ctrl</kbd> + <kbd>Z</kbd></span><span><b>Undo</b> if you deleted the wrong one.</span>
+      </div>
+      <div>
+        <div class="card soft"><h4>🖱️ Or right-click a thumbnail</h4><p>New Slide, Duplicate Slide, Delete Slide, Hide Slide and Layout are all on the right-click menu in PowerPoint. Google Slides and Impress have the same idea.</p></div>
+        <div class="callout tip mt-m"><b>Pro habit:</b> design one slide well, then <b>duplicate</b> it and change the words. Your slides stay consistent.</div>
+        <p class="tiny mt-s">Mac: use <kbd>Cmd</kbd> in place of <kbd>Ctrl</kbd>. In PowerPoint for Mac, new slide is <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd>.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Demo each one slowly in the thumbnails pane: <b>Ctrl+M</b> for a new slide, <b>Ctrl+D</b> to duplicate, <b>Delete</b>, then drag to reorder. Undo with Ctrl+Z.</p>
+      <p>The right-click menu is the safest route for beginners because everything is listed. Stress the pro habit: duplicate a finished slide so titles stay in the same place. That's the <b>repetition</b> principle from 4.1, done by the app for you.</p>
+    </div>
+  </section>
+
+  <!-- 9 · Try it: build the skeleton -->
+  <section class="slide" data-title="Try it: build your skeleton">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · in your app</p><h2 class="h2">Build the skeleton of your Lab 4 deck</h2></div>
+      <button class="timer" data-min="6">6:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Follow your paper storyboard</span><span class="tiny">Type "done" in the chat when finished</span></div>
+      <ol>
+        <li>Start a new blank presentation and apply <b>one clean theme</b>.</li>
+        <li>Slide 1 (Title Slide): <b>My Digital Skills Journey</b> + your name.</li>
+        <li>Add 4 more slides with <kbd>Ctrl</kbd>+<kbd>M</kbd>. Give each the <b>layout</b> you wrote on your paper.</li>
+        <li>Type only the <b>titles</b> from your storyboard. Content comes later.</li>
+        <li><b>Duplicate</b> one slide, then <b>delete</b> the copy. Drag one slide to a new position and back.</li>
+        <li>Save as <b>Lab4 - Your Name.pptx</b> (or .odp in Impress).</li>
+      </ol>
+    </div>
+    <div class="notes">
+      <p>Start the <b>6-minute</b> timer. This is the first real step of Lab 4.</p>
+      <p>Watch the chat for "done" and for questions. Common issues: they can't find Layout (it's on the Home tab), or the new slide comes out as Title Only. Ask one or two people to share their screen briefly so others can see a finished skeleton. Remind Google Slides users their file saves automatically, but they should rename it at the top left.</p>
+    </div>
+  </section>
+
+  <!-- 10 · Slide sorter, sections, hide -->
+  <section class="slide" data-title="Slide Sorter, sections, hide">
+    <div class="slide-head">
+      <div><p class="kicker">The big picture</p><h2 class="h2">Slide Sorter, sections and hidden slides</h2></div>
+    </div>
+    <div class="grid" style="grid-template-columns:1.2fr 1fr;gap:calc(var(--u)*2.6);align-items:start">
+      <div class="sorter">
+        <div class="sec">▾ Intro</div>
+        <div class="s"><div>My Digital Skills Journey</div><span>1</span></div>
+        <div class="s"><div>Where I started</div><span>2</span></div>
+        <div class="sec">▾ What I learned</div>
+        <div class="s"><div>Letters that send themselves</div><span>3</span></div>
+        <div class="s"><div>Our supplies chart</div><span>4</span></div>
+        <div class="s hid"><div>Backup: the full inventory table</div><span>5 (hidden)</span></div>
+        <div class="sec">▾ Closing</div>
+        <div class="s"><div>What I'll do next</div><span>6</span></div>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li><b>Slide Sorter</b> shows all slides as tiles: best for reordering a long deck. PowerPoint: View › Slide Sorter. Google Slides: View › Grid view. Impress: View › Slide Sorter.</li>
+          <li><b>Sections</b> group slides under names (PowerPoint: right-click between slides › Add Section).</li>
+          <li><b>Hide Slide</b> keeps a backup slide in the file but skips it in the show. Right-click › Hide Slide (Google Slides: <b>Skip slide</b>).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Demo the <b>Slide Sorter</b> view and drag a tile. Then add a section in PowerPoint by right-clicking between two thumbnails. Sections are a PowerPoint feature; in Google Slides and Impress, a Section Header slide does the same job for the audience.</p>
+      <p>The hidden slide is a great office trick: keep the detailed inventory table as a backup. If the section chief asks "how did you get that total?", jump to it. Otherwise nobody sees it.</p>
+    </div>
+  </section>
+
+  <!-- 11 · Views -->
+  <section class="slide" data-title="Views">
+    <div class="slide-head">
+      <div><p class="kicker">Views · PowerPoint View tab and status bar</p><h2 class="h2">Five views, five jobs</h2></div>
+    </div>
+    <div class="grid g5 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">✏️</span><h4>Normal</h4><p>Where you build: thumbnails, slide, notes.</p></div>
+      <div class="card top"><span class="ic-badge">▦</span><h4>Slide Sorter</h4><p>All slides as tiles to reorder and review.</p></div>
+      <div class="card top"><span class="ic-badge">📖</span><h4>Reading View</h4><p>Plays the show inside the window. Good for checking alone.</p></div>
+      <div class="card top"><span class="ic-badge">▶️</span><h4>Slide Show</h4><p>Full screen, what the audience sees.</p></div>
+      <div class="card top"><span class="ic-badge">🎤</span><h4>Presenter View</h4><p>Your private screen: notes, next slide, timer.</p></div>
+    </div>
+    <div class="callout mt-l"><b>Shortcut:</b> the four small icons at the bottom right of PowerPoint's status bar switch between Normal, Slide Sorter, Reading View and Slide Show.</div>
+    <div class="notes">
+      <p>Click through each view on your own screen. Reading View is underused: it's perfect for checking your deck while still seeing the taskbar and other windows.</p>
+      <p>Google Slides keeps it simpler: the editor, Grid view, and Slideshow with a Presenter view option. Impress has Normal, Outline, Notes, Slide Sorter and the Presenter Console. Ask: "Which view would you use to check the order of 20 slides?" Slide Sorter.</p>
+    </div>
+  </section>
+
+  <!-- 12 · Presenter view -->
+  <section class="slide" data-title="Presenter View">
+    <div class="split rev">
+      <div class="pv">
+        <div><div class="lbl">Current slide (audience sees this)</div><div class="cur">Our supplies chart<div style="display:flex;gap:6%;align-items:flex-end;height:55%;margin-top:6%"><b style="flex:1;height:77%;background:#C2482B"></b><b style="flex:1;height:100%;background:#C2482B"></b><b style="flex:1;height:12%;background:#C2482B"></b><b style="flex:1;height:26%;background:#C2482B"></b></div></div>
+          <div class="lbl">Notes (only you see this)</div><p class="nt">Bond paper is our biggest cost. Pause. Ask the chief about reordering this week.</p></div>
+        <div><div class="lbl">Elapsed</div><div class="tm">00:02:41</div><div class="lbl">Next slide</div><div class="nx">What I'll do next</div><div class="lbl">Slide 4 of 6</div></div>
+      </div>
+      <div>
+        <p class="kicker">Presenter View</p>
+        <h2 class="h2">The audience sees the slide; you see your notes</h2>
+        <ul class="ticks mt-m">
+          <li><b>PowerPoint:</b> Slide Show tab › tick <b>Use Presenter View</b>, or press <kbd>Alt</kbd> + <kbd>F5</kbd>.</li>
+          <li><b>Google Slides:</b> Slideshow ▾ › <b>Presenter view</b>.</li>
+          <li><b>Impress:</b> the Presenter Console opens on a second screen.</li>
+          <li><b>Online:</b> with one monitor, practise first: share only the slide show window, never your notes.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>With a projector or a second monitor, PowerPoint shows Presenter View on your laptop and the clean slide on the projector automatically.</p>
+      <p>For Zoom or Meet on a single screen, it gets tricky: practise sharing the correct window before the real meeting. A safe fallback is to print your notes or keep them on your phone. Honest confession: I read my notes in presenter mode right now, and you only see the slide.</p>
+    </div>
+  </section>
+
+  <!-- 13 · Show keys -->
+  <section class="slide" data-title="Keys during a show">
+    <div class="slide-head">
+      <div><p class="kicker">During the slide show</p><h2 class="h2">Eight keys that make you look like a pro</h2></div>
+      <span class="tag">PowerPoint and Impress</span>
+    </div>
+    <div class="grid g2" style="gap:calc(var(--u)*3)">
+      <div class="keys">
+        <span><kbd>F5</kbd></span><span>Start from the <b>first</b> slide</span>
+        <span><kbd>Shift</kbd> + <kbd>F5</kbd></span><span>Start from the <b>current</b> slide</span>
+        <span><kbd>→</kbd> <kbd>Space</kbd> <kbd>N</kbd></span><span>Next slide</span>
+        <span><kbd>←</kbd> <kbd>P</kbd></span><span>Previous slide</span>
+      </div>
+      <div class="keys">
+        <span><kbd>3</kbd> + <kbd>Enter</kbd></span><span><b>Jump</b> to slide 3 (any number)</span>
+        <span><kbd>B</kbd></span><span><b>Black screen</b>; press again to return</span>
+        <span><kbd>W</kbd></span><span><b>White screen</b>; press again to return</span>
+        <span><kbd>Esc</kbd></span><span><b>End</b> the show</span>
+      </div>
+    </div>
+    <div class="callout gold mt-l"><b>Google Slides:</b> click <b>Slideshow</b> at the top right (or <kbd>Ctrl</kbd> + <kbd>F5</kbd>). Arrow keys and <kbd>Esc</kbd> work the same; <kbd>B</kbd> and <kbd>W</kbd> also blank the screen.</div>
+    <div class="notes">
+      <p>Demo every key live. The favourite is <b>B for black</b>: when discussion starts, press B so everyone looks at the speaker instead of the slide. Press B again to come back.</p>
+      <p>Number plus Enter is how you jump to a hidden backup slide during Q and A. <b>Shift+F5</b> saves time when you're fixing slide 7 and want to test it. Ask: "Which key would you press when the section chief starts asking questions?" B.</p>
+    </div>
+  </section>
+
+  <!-- 14 · Try it: show keys -->
+  <section class="slide" data-title="Try it: present">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · in your app</p><h2 class="h2">Rehearse with the show keys</h2></div>
+      <button class="timer" data-min="3">3:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Use your Lab 4 skeleton</span><span class="tiny">React with 👍 when you finish all 6</span></div>
+      <ol>
+        <li>Press <kbd>F5</kbd>. Go forward with <kbd>Space</kbd> and back with <kbd>←</kbd>.</li>
+        <li>Type <kbd>4</kbd> then <kbd>Enter</kbd> to jump to slide 4.</li>
+        <li>Press <kbd>B</kbd>. The screen goes black. Press <kbd>B</kbd> again.</li>
+        <li>Press <kbd>Esc</kbd>. Click slide 3, then press <kbd>Shift</kbd> + <kbd>F5</kbd>.</li>
+        <li>Right-click slide 5 › <b>Hide Slide</b>, run the show and confirm it's skipped.</li>
+        <li>Unhide it, then open <b>View › Slide Sorter</b> and back to <b>Normal</b>.</li>
+      </ol>
+    </div>
+    <div class="notes">
+      <p>Start the <b>3-minute</b> timer. Participants practise on their own five-slide skeleton.</p>
+      <p>Laptop users: <kbd>F5</kbd> might need the <kbd>Fn</kbd> key, because on many laptops F5 controls brightness or volume. If F5 doesn't work, try <b>Fn + F5</b>, or click the Slide Show icon on the status bar. Google Slides users skip step 5's wording and use <b>Skip slide</b>.</p>
+    </div>
+  </section>
+
+  <!-- 15 · Before you present -->
+  <section class="slide" data-title="Before you present">
+    <div class="split rev">
+      <div class="media"><img src="images/m4/4-2-room.jpg" alt="An empty conference room with a ceiling projector"></div>
+      <div>
+        <p class="kicker">Room check · 2 minutes before</p>
+        <h2 class="h2">Test in the real room before people arrive</h2>
+        <ol class="steps mt-m">
+          <li><b>Connect</b> the projector or TV, then press <kbd>Win</kbd> + <kbd>P</kbd> and choose <b>Duplicate</b> or <b>Extend</b>.</li>
+          <li><b>Run</b> <kbd>F5</kbd> once: are the fonts, chart and photos all there?</li>
+          <li><b>Plug in</b> the laptop charger (or a UPS). Brownouts happen.</li>
+          <li><b>Online:</b> open Zoom or Meet, share the slide show window, and ask "Can you see my slide?"</li>
+        </ol>
+      </div>
+    </div>
+    <div class="notes">
+      <p><b>Windows + P</b> opens the projection menu: PC screen only, Duplicate, Extend, Second screen only. <b>Duplicate</b> shows the same thing on both screens. <b>Extend</b> lets PowerPoint put Presenter View on your laptop and the slide on the projector.</p>
+      <p>Tell a short story: a briefing where the projector showed only the desktop wallpaper while the presenter clicked away. Two minutes of testing prevents that. For online sessions, always ask one participant to confirm what they see.</p>
+    </div>
+  </section>
+
+  <!-- 15 · Office and home -->
+  <section class="slide" data-title="Office and home">
+    <div class="slide-head">
+      <div><p class="kicker">Use it for real</p><h2 class="h2">The same skills, on the job and at home</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li>Before a briefing: run the show once in the conference room to check the projector and fonts.</li>
+          <li>Hide backup slides (the full inventory table) and jump to them during Q and A.</li>
+          <li>Press <kbd>B</kbd> when the discussion starts; send the chief a PDF afterwards.</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li>A family reunion or birthday slideshow on the TV: Slide Show view, one photo per slide.</li>
+          <li>Reorder the photos by dragging tiles in the Slide Sorter: oldest to newest.</li>
+          <li>Send the PDF to the family group chat for relatives abroad.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Walk through both columns. The office habit that saves the most embarrassment is the <b>test run</b> in the real room, especially in older conference rooms with VGA cables and power interruptions.</p>
+      <p>At home, the Slide Sorter is perfect for arranging photos for a parent's birthday or a debut. Ask in the chat: "What slideshow will you make for your family this Christmas season?"</p>
+    </div>
+  </section>
+
+  <!-- 16 · Save and PDF -->
+  <section class="slide" data-title="Save and export to PDF">
+    <div class="slide-head">
+      <div><p class="kicker">Save and share</p><h2 class="h2">Save the editable file, share a PDF</h2></div>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><h4>PowerPoint</h4><p><kbd>Ctrl</kbd> + <kbd>S</kbd> saves the .pptx.<br><b>PDF:</b> File › Export › Create PDF/XPS, or File › Save As and choose PDF.</p></div>
+      <div class="card top"><h4>Google Slides</h4><p>Saves automatically to Drive.<br><b>PDF:</b> File › Download › PDF document (.pdf).</p></div>
+      <div class="card top"><h4>Impress</h4><p><kbd>Ctrl</kbd> + <kbd>S</kbd> saves the .odp (or Save As .pptx).<br><b>PDF:</b> File › Export as › Export as PDF.</p></div>
+    </div>
+    <div class="grid g2 mt-l">
+      <div class="callout tip"><b>Why PDF?</b> It looks the same on every phone and PC, opens without PowerPoint, and is hard to edit by accident.</div>
+      <div class="callout warn"><b>But:</b> transitions, animations and videos don't play in a PDF. Keep the .pptx for presenting.</div>
+    </div>
+    <div class="notes">
+      <p>Demo the PowerPoint export and open the PDF to show it. Explain the two-file habit: the <b>.pptx is your working copy</b>; the <b>PDF is for sharing</b>, like sending the briefing deck to the section chief or the family group chat.</p>
+      <p>File name tip: <b>Lab4 - Juan Dela Cruz - My Digital Skills Journey</b>. Clear names help everyone, including the Resource Person who checks 30 labs. Ask everyone to export a PDF of their skeleton now, just to practise.</p>
+    </div>
+  </section>
+
+  <!-- 17 · Video -->
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 4½ minutes</p>
+        <h2 class="h2">Know the window, manage the slides, run the show</h2>
+        <p class="lede mt-m">A tour of the <b>presentation window</b>, then themes, layouts, new and hidden slides, the views, the show keys like <b>F5</b> and <b>B</b>, and saving a PDF.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> the shortcut for a new slide and the key that blacks out the screen. You'll use both when you build and rehearse your Lab 4 skeleton.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/4.2/poster.jpg" alt="Video: Application Navigation and Slide Management"><div class="play"></div><span class="vlen">4:38</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Introduce the video in one or two sentences, then read the <b>While watching</b> task aloud so everyone knows what to look for.</p>
+      <p>Press <b>→</b> to open the video full screen. In Zoom or Meet, share this tab with <b>computer sound</b> turned on.</p>
+    </div>
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/4.2/index.html" title="Video: Application Navigation and Slide Management" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="notes">
+      <p><b>Space</b> or <b>K</b> plays and pauses (or click the video). <b>C</b> turns captions on or off; the speed button offers 1.25× and 0.85×. The arrows still move between slides, and the video pauses when you leave this slide.</p>
+      <p>Length 4:38. Pause anywhere to take a question; captions stay on screen for anyone without sound.</p>
+      <p>After the video, go back to the <b>While watching</b> task: ask two or three people for their answers.</p>
+    </div>
+  </section>
+  <!-- YouTube slide replaced by our own video (2026-11-01):
+  <section class="slide" data-title="Video">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · about 5 minutes</p>
+        <h2 class="h2">A tour of the PowerPoint window</h2>
+        <p class="lede mt-m">The Ribbon, Quick Access Toolbar, Backstage view and the different views, explained step by step.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> find one button or feature we haven't covered, and type it in the chat.</div>
+      </div>
+      <div class="vmeta">
+        <div class="video" data-yt="k6pg4nZS6fA"><img src="images/m4/4-2-video.jpg" alt="Video thumbnail: PowerPoint Getting Started"><div class="play"></div><span class="vlen">5:03</span></div>
+        <p class="tiny">YouTube · "PowerPoint: Getting Started" · LearnFree (GCFGlobal) · click to open</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Click the thumbnail; it opens YouTube in a new tab. Share that tab with sound.</p>
+      <p>This is a good review for slower learners and a reference they can rewatch after the session. GCFGlobal's site also has free written lessons for Google Slides. After it ends, read a few of the "new feature" answers from the chat, such as the Quick Access Toolbar or the Tell Me search box.</p>
+    </div>
+  </section>
+  -->
+
+  <!-- 18 · Quick check -->
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">Mid-presentation, the chief starts asking questions. You want everyone to look at you, not the slide. You press…</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div><kbd>Esc</kbd><div class="why">That ends the whole show. You'd have to restart and find your place.</div></div></div>
+      <div class="opt" data-correct><span class="l">B</span><div><kbd>B</kbd><div class="why">Yes. The screen goes black; press B again to return to the same slide.</div></div></div>
+      <div class="opt"><span class="l">C</span><div><kbd>F5</kbd><div class="why">No. F5 restarts the show from slide 1.</div></div></div>
+      <div class="opt"><span class="l">D</span><div><kbd>Shift</kbd> + <kbd>F5</kbd><div class="why">No. That starts a show from the current slide; you're already presenting.</div></div></div>
+    </div>
+    <div class="notes">
+      <p>Let them type A, B, C or D in the chat first, then reveal. <b>B</b> is right.</p>
+      <p>Mention <b>W</b> for a white screen too, useful when you want to draw attention to a whiteboard in the room. Ask a follow-up: "And how do you jump to hidden backup slide 5?" Type 5, then Enter.</p>
+    </div>
+  </section>
+
+  <!-- 19 · Recap -->
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 4.2</p>
+    <h2 class="h2">Know the window, manage the slides, run the show.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Navigate</h4><p>Ribbon or menus, thumbnails, slide pane, notes, status bar.</p></div>
+      <div class="card dark"><h4>Manage</h4><p>One theme, varied layouts; Ctrl+M, Ctrl+D, drag, hide, sections.</p></div>
+      <div class="card dark"><h4>Present</h4><p>F5, Shift+F5, B, Esc, Presenter View; save the file, share a PDF.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">4.3 Working with Text and Lists in Slides</b>: filling those slides with words people can read.</p>
+    <div class="notes">
+      <p>Summarize: <b>navigate, manage, present</b>. Everyone should now have a saved Lab 4 skeleton with a theme and titled slides.</p>
+      <p>Bridge to 4.3: "Our slides have titles. Next we add the text and bullet points, and learn how to keep them short and readable." Ask everyone to press Ctrl+S one more time. Salamat!</p>
+    </div>
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

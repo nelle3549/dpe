@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.5 Page Layout and Printing Setup · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* deck-local helpers, built on the shared tokens */
+.rib-tabs{display:flex;gap:calc(var(--u)*1.5);padding:calc(var(--u)*.45) calc(var(--u)*1);font-size:calc(var(--u)*.9);color:var(--text-2);background:#F7F8FA;border-bottom:1px solid var(--border)}
+.rib-tabs .on{color:var(--mod);font-weight:700;border-bottom:2px solid var(--mod)}
+.rib{display:flex;background:#fff}
+.grp{padding:calc(var(--u)*.6) calc(var(--u)*.8);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:calc(var(--u)*.4)}
+.grp .btns{display:flex;gap:calc(var(--u)*.4)}
+.grp .b{display:flex;flex-direction:column;align-items:center;font-size:calc(var(--u)*1);color:var(--text-1);padding:.3em .45em;border-radius:.3em;text-align:center;line-height:1.2}
+.grp .b .i{font-size:calc(var(--u)*2)}
+.grp .b.hot{background:var(--gold-soft);outline:2px solid var(--gold)}
+.grp .gl{font-size:calc(var(--u)*.85);color:var(--text-3)}
+/* page anatomy */
+.anat{position:relative;background:#fff;border:1px solid var(--border-strong);box-shadow:var(--shadow-lg);width:calc(var(--u)*28);height:calc(var(--u)*38);margin:0 auto}
+.anat .zone{position:absolute;left:calc(var(--u)*3.4);right:calc(var(--u)*3.4);border:1.5px dashed var(--mod);border-radius:calc(var(--u)*.3);font-size:calc(var(--u)*.9);color:var(--mod);display:flex;align-items:center;justify-content:center;font-weight:700;background:var(--mod-soft)}
+.anat .hd{top:calc(var(--u)*1.1);height:calc(var(--u)*1.8)}
+.anat .ft{bottom:calc(var(--u)*1.1);height:calc(var(--u)*1.8)}
+.anat .bd{top:calc(var(--u)*3.4);bottom:calc(var(--u)*3.4);background:repeating-linear-gradient(transparent 0 calc(var(--u)*1.3),#E3E8F0 calc(var(--u)*1.3) calc(var(--u)*1.5));border-style:solid;border-color:var(--border-strong);color:var(--text-2)}
+.anat .bd span{background:#fff;padding:.2em .6em;border-radius:.3em}
+.anat .mg{position:absolute;font-size:calc(var(--u)*.85);font-weight:700;color:#8A6200;background:var(--gold-soft);padding:.1em .5em;border-radius:.3em}
+.paper{border:1.5px solid var(--mod);background:#fff;box-shadow:var(--shadow);display:flex;align-items:flex-end;justify-content:center;padding-bottom:calc(var(--u)*.8);font-size:calc(var(--u)*1);font-weight:700;color:var(--mod)}
+.papers{display:flex;align-items:flex-end;gap:calc(var(--u)*1.6);justify-content:center}
+.papers .tiny{font-size:calc(var(--u)*1.1);color:var(--text-2)}
+.dlg{display:grid;grid-template-columns:auto 1fr;gap:calc(var(--u)*.7) calc(var(--u)*1.2);align-items:center;font-size:calc(var(--u)*1.25)}
+.dlg .lab{color:var(--text-3);font-weight:600;font-size:.9em}
+.dlg .fld{border:1px solid var(--border-strong);border-radius:calc(var(--u)*.4);padding:.3em .7em;background:#fff;color:var(--text-1)}
+.dlg .fld.hot{outline:2px solid var(--gold);background:var(--gold-soft)}
+.chk{list-style:none;padding:0;margin:0;columns:2;column-gap:calc(var(--u)*2.4)}
+.chk li{break-inside:avoid;position:relative;padding-left:calc(var(--u)*2.4);margin:0 0 calc(var(--u)*.9);font-size:calc(var(--u)*1.4);line-height:1.4}
+.chk li::before{content:"";position:absolute;left:0;top:.15em;width:calc(var(--u)*1.3);height:calc(var(--u)*1.3);border:2px solid var(--mod);border-radius:calc(var(--u)*.3);background:#fff}
+.ex .ex-img{width:100%;height:calc(var(--u)*8.5);object-fit:cover;border-radius:calc(var(--u)*.8);margin-bottom:calc(var(--u)*.9)}
+</style>
+</head>
+<body class="m2" data-brand="Digital Productivity Essentials · <b>Module 2</b> · 2.5 Page Layout and Printing Setup">
+<div class="deck">
+
+  <!-- 1 · Cover -->
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 2 · Word Processing Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Page Layout and <span style="color:var(--gold)">Printing Setup</span></h1>
+      <p class="lede" data-anim="fade-up">Margins, paper sizes, headers, breaks and print settings, so the letter on paper looks exactly like the one on screen.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 2.5</span><span class="tag ghost">~40 minutes with hands-on</span><span class="tag ghost">BIR Misamis Oriental</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m2/2-5-cover.jpg" alt="A blank sheet of paper with a ruler and pens on a desk"><div class="cv-num">2.5</div></div>
+    <div class="notes">
+      <p><b>Welcome back.</b> Our invitation letter is written, formatted and merged. Now we make sure it prints right the first time.</p>
+      <p>This topic saves real money: every wrong printout is wasted bond paper and ink from the office supply budget. By the end you'll set 1-inch margins, choose the right paper, add page numbers, control page breaks and use the print settings with confidence.</p>
+      <p>Keep your merged letters or your invitation letter open.</p>
+    </div>
+  </section>
+
+  <!-- 2 · Warm-up -->
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · react or type in the chat</p><h2 class="h2">Which printing "disgrace" has happened to you?</h2></div>
+      <span class="tag gold">1 minute</span>
+    </div>
+    <div class="grid g4 mt-m anim-stagger-list">
+      <div class="card center"><span class="ic">✍️</span><h4>A</h4><p>The signature block landed alone on page 2.</p></div>
+      <div class="card center"><span class="ic">📏</span><h4>B</h4><p>Formatted for A4, printed on long bond: a big empty strip at the bottom.</p></div>
+      <div class="card center"><span class="ic">🖨️</span><h4>C</h4><p>Clicked Print, got 30 pages instead of the 1 page you needed.</p></div>
+      <div class="card center"><span class="ic">✂️</span><h4>D</h4><p>The table's last column was cut off the edge.</p></div>
+    </div>
+    <div class="callout gold mt-l"><b>Good news:</b> every one of these is fixed by <b>page setup</b> and <b>print preview</b>, and takes less than a minute.</div>
+    <div class="notes">
+      <p>Ask them to type <b>A, B, C or D</b>, or several letters. Laugh a little; everyone has a story. A, the lonely signature, is the classic one on official letters.</p>
+      <p>Point out that none of these are printer problems. They're <b>layout</b> problems we can fix before clicking Print. That's what this topic is about. Ask one volunteer to tell their story in a sentence.</p>
+    </div>
+  </section>
+
+  <!-- 3 · Anatomy -->
+  <section class="slide" data-title="Anatomy of a page">
+    <div class="split" style="grid-template-columns:.8fr 1.2fr">
+      <div class="anat">
+        <div class="zone hd">Header</div>
+        <div class="zone bd"><span>Body text</span></div>
+        <div class="zone ft">Footer · Page 1 of 2</div>
+        <span class="mg" style="top:calc(var(--u)*-1.2);left:50%;transform:translateX(-50%)">top margin</span>
+        <span class="mg" style="left:calc(var(--u)*-3.6);top:50%;transform:rotate(-90deg)">left margin</span>
+      </div>
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">Page setup is the <em class="mod">frame</em> around your words.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>Paper size</b> is the size of the frame: A4, Letter or long bond.</li>
+          <li><b>Margins</b> are the white border inside it.</li>
+          <li><b>Orientation</b> is whether you hang it tall (portrait) or wide (landscape).</li>
+          <li><b>Header and footer</b> are the label on top and the caption below, repeated on every page.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Use the picture frame analogy. When you frame a graduation photo, you pick the frame size, the white border, and whether it stands tall or wide. A page works the same way.</p>
+      <p>Point to the drawing: the <b>header</b> and <b>footer</b> sit inside the top and bottom margins and repeat on every page. The <b>body</b> is where we type.</p>
+      <p>Ask: "If the frame is too small, what happens to the photo?" It gets cropped. Same with a table on the wrong paper size.</p>
+    </div>
+  </section>
+
+  <!-- 4 · Objectives -->
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head">
+      <div><p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2></div>
+      <span class="tag gold">Lab 2: 1-inch margins required</span>
+    </div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Set up</span><h4>Margins, size, orientation</h4><p>1-inch margins on the right paper, portrait or landscape.</p></div>
+      <div class="card top"><span class="k">Organise</span><h4>Headers, numbers, breaks</h4><p>Page numbers in the footer and clean page or section breaks.</p></div>
+      <div class="card top"><span class="k">Print</span><h4>Preview and print smart</h4><p>Page ranges, copies, collate, both sides, scale and PDF.</p></div>
+    </div>
+    <div class="callout mt-l"><b>Lab 2 link:</b> the graded letter must use <b>1-inch margins</b>, justified text and standard font sizes.</div>
+    <div class="notes">
+      <p>Three goals: <b>set up</b> the page, <b>organise</b> it with headers, numbers and breaks, and <b>print</b> smartly.</p>
+      <p>Connect to the lab: 1-inch margins are in the Lab 2 checklist, so this is a direct requirement. The print skills are for real life: they save paper and time every week. Ask: "Which of the three do you find hardest today?"</p>
+    </div>
+  </section>
+
+  <!-- 5 · Margins -->
+  <section class="slide" data-title="Margins">
+    <div class="slide-head">
+      <div><p class="kicker">Page setup · margins</p><h2 class="h2">Set 1-inch margins on every side</h2></div>
+      <span class="tag">Word: Layout tab</span>
+    </div>
+    <div class="win">
+      <div class="bar"><i></i><i></i><i></i><span>Invitation Letter.docx · Word</span></div>
+      <div class="rib-tabs"><span>File</span><span>Home</span><span>Insert</span><span>Design</span><span class="on">Layout</span><span>References</span><span>Mailings</span><span>Review</span></div>
+      <div class="rib">
+        <div class="grp"><div class="btns"><span class="b hot"><span class="i">⬜</span>Margins ▾</span><span class="b"><span class="i">🔄</span>Orientation ▾</span><span class="b"><span class="i">📄</span>Size ▾</span><span class="b"><span class="i">▥</span>Columns ▾</span></div><span class="gl">Page Setup</span></div>
+        <div class="grp"><div class="btns"><span class="b"><span class="i">⤓</span>Breaks ▾</span><span class="b"><span class="i">🔢</span>Line Numbers ▾</span><span class="b"><span class="i">‐</span>Hyphenation ▾</span></div><span class="gl">Page Setup</span></div>
+        <div class="grp" style="border-right:0;align-items:flex-start;justify-content:center"><span class="small"><b>Margins › Normal</b> = Top, Bottom, Left, Right <b>1"</b><br>Or <b>Margins › Custom Margins…</b> and type 1"</span></div>
+      </div>
+    </div>
+    <div class="grid g3 mt-l anim-stagger-list">
+      <div class="card soft"><h4>Microsoft Word</h4><p><b>Layout › Margins › Normal</b>, or Custom Margins.</p></div>
+      <div class="card soft"><h4>Google Docs</h4><p><b>File › Page setup</b>, then type 1 in each margin box (inches).</p></div>
+      <div class="card soft"><h4>LibreOffice Writer</h4><p><b>Format › Page Style › Page</b>, set margins to 1" (2.54 cm).</p></div>
+    </div>
+    <div class="notes">
+      <p><b>Demo in Word:</b> Layout tab, Margins, Normal. Normal is 1 inch on all four sides. Then open Custom Margins to show where you'd type exact values.</p>
+      <p>If someone's ruler shows centimetres, 1 inch is <b>2.54 cm</b>. In Word you can still type <i>1"</i> and it converts.</p>
+      <p>Ask everyone to set 1-inch margins on their invitation letter now and react with a thumbs up when done.</p>
+    </div>
+  </section>
+
+  <!-- 6 · Paper size and orientation -->
+  <section class="slide" data-title="Paper size and orientation">
+    <div class="slide-head">
+      <div><p class="kicker">Page setup · size and orientation</p><h2 class="h2">Match the paper in the document to the paper in the tray</h2></div>
+    </div>
+    <div class="split" style="grid-template-columns:1fr 1fr">
+      <div>
+        <div class="papers">
+          <div><div class="paper" style="width:calc(var(--u)*13.2);height:calc(var(--u)*18.7)">A4</div><p class="tiny center mt-s">210 × 297 mm<br>(8.27 × 11.69 in)</p></div>
+          <div><div class="paper" style="width:calc(var(--u)*13.6);height:calc(var(--u)*17.6)">Letter</div><p class="tiny center mt-s">8.5 × 11 in<br>"short"</p></div>
+          <div><div class="paper" style="width:calc(var(--u)*13.6);height:calc(var(--u)*20.8);border-color:var(--gold);color:#8A6200">Long</div><p class="tiny center mt-s">8.5 × 13 in<br>"long bond"</p></div>
+        </div>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li><b>Size:</b> Word <b>Layout › Size</b>. If 8.5 × 13 in is not listed, use <b>More Paper Sizes</b> and type a custom size.</li>
+          <li><b>Long ≠ Legal.</b> Legal is 8.5 × <b>14</b> in. Our long bond is 8.5 × <b>13</b> in.</li>
+          <li><b>Portrait</b> for letters and memos. <b>Landscape</b> for wide tables, like an inventory list.</li>
+          <li>Follow your <b>office's practice</b> for official letters, and change the printer's paper setting too.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>The three sizes they'll meet: <b>A4</b>, <b>Letter</b> or "short", and our Philippine <b>long bond</b>, 8.5 by 13 inches. The drawings are to scale.</p>
+      <p>Common trap: people pick <b>Legal</b> thinking it's long bond. Legal is 14 inches, so the layout shifts. If the 8.5 × 13 size isn't in the list, make a custom size. Some printer drivers call it "Folio".</p>
+      <p>Ask: "Which paper does your section use for official letters?" Answers will differ; follow your office's practice.</p>
+    </div>
+  </section>
+
+  <!-- 7 · Headers, footers, page numbers -->
+  <section class="slide" data-title="Headers, footers and page numbers">
+    <div class="split" style="grid-template-columns:1.1fr .9fr">
+      <div>
+        <p class="kicker">Repeat on every page</p>
+        <h2 class="h2">Headers, footers and page numbers</h2>
+        <ol class="steps mt-m">
+          <li><b>Insert › Header</b> or <b>Footer</b>, or double-click the top or bottom of the page.</li>
+          <li><b>Insert › Page Number › Bottom of Page</b>. Pick "Page X of Y" for multi-page reports.</li>
+          <li>Tick <b>Different First Page</b> when page 1 has a letterhead and no number.</li>
+          <li>Double-click the body (or <b>Close Header and Footer</b>) to go back.</li>
+        </ol>
+      </div>
+      <div class="grid" style="gap:calc(var(--u)*1)">
+        <div class="card top"><h4>Good header and footer content</h4><p>Office name or letterhead, document title, "Page 1 of 3", a file reference.</p></div>
+        <div class="card soft"><h4>Other apps</h4><p><b>Google Docs:</b> Insert › Headers &amp; footers; Insert › Page numbers.<br><b>LibreOffice:</b> Insert › Header and Footer; Insert › Page Number.</p></div>
+        <div class="callout warn"><b>Never type page numbers by hand.</b> They break the moment you add a paragraph.</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p><b>Demo:</b> double-click the top of the page to open the header, type the office name, then add a page number at the bottom with "Page X of Y".</p>
+      <p>Show <b>Different First Page</b>: very useful when page 1 carries the letterhead and you don't want a number on it.</p>
+      <p>Ask: "Who has typed page numbers by hand?" A few hands. Explain that automatic numbers update themselves when the document grows; typed ones don't.</p>
+    </div>
+  </section>
+
+  <!-- 8 · Breaks -->
+  <section class="slide" data-title="Page and section breaks">
+    <div class="slide-head">
+      <div><p class="kicker">Control where pages start</p><h2 class="h2">Page breaks and section breaks</h2></div>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">⤓</span><h4>Page break</h4><p>Starts a new page right here. <kbd>Ctrl</kbd> + <kbd>Enter</kbd> in Word, Google Docs and LibreOffice.</p><p class="mt-s"><b>Use it for:</b> an annex or attendance sheet that must start on a fresh page.</p></div>
+      <div class="card top"><span class="ic-badge">§</span><h4>Section break</h4><p>Word: <b>Layout › Breaks › Next Page</b>. Each section can have its own orientation, margins or numbering.</p><p class="mt-s"><b>Use it for:</b> one landscape page with a wide table inside a portrait report.</p></div>
+      <div class="card top" style="border-top-color:var(--coral)"><span class="ic-badge" style="background:var(--coral-soft)">🚫</span><h4>Don't press Enter 15 times</h4><p>Blank lines push text down today, but everything shifts the moment you edit a paragraph above.</p><p class="mt-s"><b>Tip:</b> turn on <b>Show/Hide ¶</b> (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>8</kbd>) to see breaks.</p></div>
+    </div>
+    <div class="notes">
+      <p>A <b>page break</b> says "start a new page here". <kbd>Ctrl</kbd>+<kbd>Enter</kbd> works in all three apps.</p>
+      <p>A <b>section break</b> is more powerful: it splits the document so one part can be landscape, or have different margins. Demo it: insert Next Page section breaks before and after a wide table, then set only that section to landscape.</p>
+      <p>Then show the Show/Hide ¶ button on the Home tab. Pressing Enter many times is the most common cause of a lonely signature block.</p>
+    </div>
+  </section>
+
+  <!-- 9 · Columns and line numbers -->
+  <section class="slide" data-title="Columns and line numbers">
+    <div class="split">
+      <div>
+        <p class="kicker">Two more Layout buttons</p>
+        <h2 class="h2">Columns: sometimes. Line numbers: off.</h2>
+        <div class="grid g2 mt-l">
+          <div class="card top"><h4>Columns</h4><p><b>Layout › Columns › Two</b> for a newsletter, bulletin board notice or flyer. Letters and memos stay in <b>one</b> column.</p><p class="tiny mt-s">Google Docs: Format › Columns · LibreOffice: Format › Columns</p></div>
+          <div class="card top"><h4>Line numbers</h4><p>Small numbers in the left margin? Turn them off: <b>Layout › Line Numbers › None</b>.</p><p class="tiny mt-s">LibreOffice: Tools › Line Numbering</p></div>
+        </div>
+        <div class="callout mt-m"><b>Rule of thumb:</b> official letters use one column, no line numbers, 1-inch margins.</div>
+      </div>
+      <div class="media"><img src="images/m2/2-5-binders.jpg" alt="A stack of white office binders"></div>
+    </div>
+    <div class="notes">
+      <p><b>Columns</b> are for newsletters and notices: a two-column barangay bulletin or an office newsletter. Letters stay in one column.</p>
+      <p><b>Line numbers</b> are used for legal drafts and reviews, not letters. If a template arrives with tiny numbers in the margin, Layout, Line Numbers, None.</p>
+      <p>Quick demo: switch the letter to two columns, show how odd it looks, then undo with <kbd>Ctrl</kbd>+<kbd>Z</kbd>.</p>
+    </div>
+  </section>
+
+  <!-- 10 · Video -->
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Set up the page, preview, print once</h2>
+        <p class="lede mt-m">See <b>1-inch margins</b>, the right paper size, <b>automatic page numbers</b>, clean page breaks and the print settings that save bond paper and ink.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> find where the long bond size, 8.5 × 13 in, is typed in, and how pages 1, 2, 3 and 5 are printed.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/2.5/poster.jpg" alt="Video: Page Layout and Printing Setup"><div class="play"></div><span class="vlen">4:46</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Introduce the video in one or two sentences, then read the <b>While watching</b> task aloud so everyone knows what to look for.</p>
+      <p>Press <b>→</b> to open the video full screen. In Zoom or Meet, share this tab with <b>computer sound</b> turned on.</p>
+    </div>
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/2.5/index.html" title="Video: Page Layout and Printing Setup" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="notes">
+      <p><b>Space</b> or <b>K</b> plays and pauses (or click the video). <b>C</b> turns captions on or off; the speed button offers 1.25× and 0.85×. The arrows still move between slides, and the video pauses when you leave this slide.</p>
+      <p>Length 4:46. Pause anywhere to take a question; captions stay on screen for anyone without sound.</p>
+      <p>After the video, go back to the <b>While watching</b> task: ask two or three people for their answers.</p>
+    </div>
+  </section>
+  <!-- YouTube slide replaced by our own video (2026-11-01):
+  <section class="slide" data-title="Video">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · under 3 minutes</p>
+        <h2 class="h2">Page layout in Word, quickly</h2>
+        <p class="lede mt-m">Orientation, paper size and margins, in one short walkthrough.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> find where the video sets <b>Custom Margins</b>. Where would you type 8.5 × 13 for long bond?</div>
+      </div>
+      <div class="vmeta">
+        <div class="video" data-yt="jgNpoksYOLE"><img src="images/m2/2-5-video.jpg" alt="Video thumbnail: Word Page Layout"><div class="play"></div><span class="vlen">2:42</span></div>
+        <p class="tiny">YouTube · "Word: Page Layout" · LearnFree (GCFGlobal) · click to open</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Click the thumbnail; it opens YouTube in a new tab. Share that tab with sound on. It's under 3 minutes.</p>
+      <p>Afterwards, answer the "while watching" question: custom paper sizes are in <b>Layout › Size › More Paper Sizes</b>, the same dialog box family as Custom Margins.</p>
+      <p>Note that GCFGlobal's examples use US paper; our long bond needs the custom size.</p>
+    </div>
+  </section>
+  -->
+
+  <!-- 11 · Try it now -->
+  <section class="slide" data-title="Try it now">
+    <div class="slide-head">
+      <div><p class="kicker">Hands-on · your invitation letter</p><h2 class="h2">Set up the page like a pro</h2></div>
+      <button class="timer" data-min="8">8:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Try it now</span><span class="tiny">Share a screenshot of your print preview in the chat when done</span></div>
+      <div class="grid g2">
+        <ol>
+          <li>Set <b>1-inch margins</b> on all sides.</li>
+          <li>Choose your office's <b>paper size</b> (A4 or long 8.5 × 13 in). Keep it <b>portrait</b>.</li>
+          <li>Add a <b>footer</b> with <b>Page X of Y</b>.</li>
+        </ol>
+        <ol start="4">
+          <li>At the end of the letter, press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> and type "Annex A: Workshop Schedule" on the new page.</li>
+          <li>Open <b>print preview</b> (<kbd>Ctrl</kbd> + <kbd>P</kbd>) and check: 2 pages, numbers correct, no lonely signature.</li>
+        </ol>
+      </div>
+      <div class="row mt-m"><button class="reveal-btn" data-target="ans-try">Stuck? Show quick fixes</button></div>
+      <div class="answer mt-s" id="ans-try">
+        <div class="grid g3">
+          <div class="callout"><b>No 8.5 × 13:</b> Size › More Paper Sizes › type width 8.5", height 13".</div>
+          <div class="callout"><b>Number on page 1 only:</b> it's in the body, not the footer. Delete it and use Insert › Page Number.</div>
+          <div class="callout"><b>Annex starts mid-page:</b> you pressed Enter, not <kbd>Ctrl</kbd> + <kbd>Enter</kbd>.</div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Start the <b>8-minute</b> timer. Everyone works on their own invitation letter.</p>
+      <p>The annex page is practice for the page break, and it will be useful in Lab 2 if they want to add a schedule table on its own page.</p>
+      <p>Ask two or three people to share a screenshot of their print preview in the chat. Praise a clean one on screen. Reveal the quick fixes if several people are stuck.</p>
+    </div>
+  </section>
+
+  <!-- 12 · Print preview -->
+  <section class="slide" data-title="Print preview">
+    <div class="slide-head">
+      <div><p class="kicker">Look before you print</p><h2 class="h2">Print preview catches mistakes for free</h2></div>
+      <span class="tag gold">Ctrl + P</span>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">🟦</span><h4>Microsoft Word</h4><p><b>File › Print</b> or <kbd>Ctrl</kbd> + <kbd>P</kbd>. The preview is on the right; use the arrows to page through.</p></div>
+      <div class="card top"><span class="ic-badge">🟨</span><h4>Google Docs</h4><p><b>File › Print</b> or <kbd>Ctrl</kbd> + <kbd>P</kbd> opens the browser's print preview.</p></div>
+      <div class="card top"><span class="ic-badge">🟩</span><h4>LibreOffice Writer</h4><p><b>File › Print Preview</b> (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd>), or the preview inside File › Print.</p></div>
+    </div>
+    <h4 class="mt-l">In the preview, check:</h4>
+    <div class="chips mt-s">
+      <span class="chip">How many pages?</span><span class="chip">Signature with its paragraph?</span><span class="chip">Table fits the width?</span><span class="chip">Page numbers right?</span><span class="chip">Correct paper size?</span>
+    </div>
+    <div class="notes">
+      <p>Print preview is <b>free</b>; paper and ink are not. Make it a habit: <kbd>Ctrl</kbd>+<kbd>P</kbd>, look, then decide.</p>
+      <p>Mac users press <kbd>Cmd</kbd>+<kbd>P</kbd>.</p>
+      <p>Read the five checks out loud. Ask: "Which one would have saved you in the warm-up?" Most will say the signature or the page count.</p>
+    </div>
+  </section>
+
+  <!-- 13 · Print settings -->
+  <section class="slide" data-title="Print settings">
+    <div class="split" style="grid-template-columns:.9fr 1.1fr">
+      <div class="win">
+        <div class="bar"><i></i><i></i><i></i><span>Word · File › Print</span></div>
+        <div class="body">
+          <div class="dlg">
+            <span class="lab">Copies</span><span class="fld hot">3</span>
+            <span class="lab">Printer</span><span class="fld">Section printer · or Microsoft Print to PDF</span>
+            <span class="lab">Pages</span><span class="fld hot">1-3, 5</span>
+            <span class="lab">Sides</span><span class="fld">Print on Both Sides ▾</span>
+            <span class="lab">Collate</span><span class="fld">Collated · 1,2,3 1,2,3 1,2,3</span>
+            <span class="lab">Paper</span><span class="fld">A4 or 8.5" × 13"</span>
+            <span class="lab">Scale</span><span class="fld">1 Page Per Sheet › Scale to Paper Size</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="kicker">Print settings</p>
+        <h2 class="h2">Print only what you need, the way you need it</h2>
+        <ul class="ticks mt-m">
+          <li><b>Pages:</b> type <kbd>1-3, 5</kbd> for pages 1, 2, 3 and 5.</li>
+          <li><b>Collated</b> gives complete sets (1-2-3, 1-2-3). Uncollated gives 1-1-1, 2-2-2.</li>
+          <li><b>Both sides:</b> automatic if the printer supports it, or "manually" (you flip the stack).</li>
+          <li><b>Scale to Paper Size</b> fits an A4 file onto long bond, or the reverse.</li>
+          <li><b>Print to PDF</b> makes a file instead of paper.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p><b>Demo:</b> press <kbd>Ctrl</kbd>+<kbd>P</kbd> in Word and walk down the settings. Type a page range like <i>1-3, 5</i>.</p>
+      <p>Explain <b>collated</b> with a real case: three copies of a 3-page report for three signatories. Collated gives three ready sets; uncollated means sorting by hand.</p>
+      <p><b>Both sides</b> depends on the printer. "Manually print on both sides" prints the odd pages first, then asks you to flip the stack. Do one test sheet first so you know which way to flip.</p>
+    </div>
+  </section>
+
+  <!-- 14 · PDF -->
+  <section class="slide" data-title="Print to PDF">
+    <div class="slide-head">
+      <div><p class="kicker">Paperless option</p><h2 class="h2">Save as PDF when it doesn't need ink</h2></div>
+      <span class="tag green">Looks the same on every screen</span>
+    </div>
+    <div class="grid g4 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">🟦</span><h4>Word</h4><p><b>File › Save As › PDF</b>, or File › Export › Create PDF/XPS.</p></div>
+      <div class="card top"><span class="ic-badge">🟨</span><h4>Google Docs</h4><p><b>File › Download › PDF Document (.pdf)</b>.</p></div>
+      <div class="card top"><span class="ic-badge">🟩</span><h4>LibreOffice</h4><p><b>File › Export as PDF</b>, or the PDF button on the toolbar.</p></div>
+      <div class="card top"><span class="ic-badge">🖨️</span><h4>Any app on Windows</h4><p>Choose <b>Microsoft Print to PDF</b> as the printer in the print window.</p></div>
+    </div>
+    <div class="callout tip mt-l"><b>Why PDF?</b> Fonts, margins and page breaks stay exactly as you set them, and nobody can accidentally edit the letter. Keep the .docx as your editable master copy.</div>
+    <div class="notes">
+      <p>A PDF is "digital paper". Use it when a document will be emailed, uploaded or archived rather than printed.</p>
+      <p>Point out that Word, Google Docs and LibreOffice all export PDF directly, and on Windows any app can "print" to PDF.</p>
+      <p>Stress: keep the <b>.docx</b> too. The PDF is for sharing; the .docx is for editing. Ask: "How do you usually send a signed scanned letter?" Often as a PDF already.</p>
+    </div>
+  </section>
+
+  <!-- 15 · Save paper and ink: office vs home -->
+  <section class="slide" data-title="Saving paper and ink">
+    <div class="slide-head">
+      <div><p class="kicker">Save paper, ink and money</p><h2 class="h2">Small habits, big savings</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><img class="ex-img" src="images/m2/2-5-printer.jpg" alt="An office printer with paper in the tray"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li><b>Preview first</b>, then print <b>one test copy</b> before the batch.</li>
+          <li>Print internal drafts <b>double-sided</b> and in <b>grayscale</b>.</li>
+          <li><b>Email the PDF</b> instead of printing copies just to read.</li>
+          <li>Scrap paper only if it has <b>no personal or taxpayer data</b>; shred the rest.</li>
+        </ul>
+      </div>
+      <div class="ex home"><img class="ex-img" src="images/m2/2-5-ink.jpg" alt="Ink cartridges inside a printer"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li>Kids' school modules: print <b>only the pages needed</b> with a page range.</li>
+          <li>Use <b>grayscale</b> for worksheets; save colour ink for photos.</li>
+          <li>Print two pages per sheet for reviewers and reading notes.</li>
+          <li>Keep receipts and bills as <b>PDF</b> in a folder instead of printing.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Tie this to real costs: a ream of bond paper and a bottle of ink are line items in the supply budget, and at home they come out of the household budget. We'll see those exact items in Module 3's inventory.</p>
+      <p>Highlight the data privacy point: never reuse scrap paper that has personal or taxpayer information on it. That goes to the shredder.</p>
+      <p>Ask: "What's your best ink-saving trick at home?" Read two or three answers.</p>
+    </div>
+  </section>
+
+  <!-- 16 · Quick check -->
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">You need pages 2, 3 and 5 only, 3 complete sets for 3 signatories. What do you set?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>Pages: 2-5 · Copies: 3 · Uncollated<div class="why">No. 2-5 also prints page 4, and uncollated means sorting by hand.</div></div></div>
+      <div class="opt" data-correct><span class="l">B</span><div>Pages: 2-3, 5 · Copies: 3 · Collated<div class="why">Yes. Exactly the pages you need, in three ready-to-sign sets.</div></div></div>
+      <div class="opt"><span class="l">C</span><div>Pages: 2, 3, 5 · Copies: 1<div class="why">No. Right pages, but only one set. You need three.</div></div></div>
+      <div class="opt"><span class="l">D</span><div>Print All Pages · Copies: 3<div class="why">No. That wastes paper on pages 1 and 4 for every copy.</div></div></div>
+    </div>
+    <div class="notes">
+      <p>Let them answer in the chat first, then click to reveal. <b>B</b>: page range 2-3, 5, three copies, collated.</p>
+      <p>Mention that "2, 3, 5" and "2-3, 5" both work as page ranges; option C fails only on the copies.</p>
+      <p>Count the waste in D: two extra pages per copy, six sheets wasted for one job. Across a year, that's reams.</p>
+    </div>
+  </section>
+
+  <!-- 17 · Checklist before printing for signature -->
+  <section class="slide" data-title="Before you print for signature">
+    <div class="split" style="grid-template-columns:1.3fr .7fr">
+      <div>
+        <p class="kicker">Checklist · official letter for signature</p>
+        <h2 class="h2">Ten checks before it goes to the chief's table</h2>
+        <ul class="chk mt-l">
+          <li>Correct <b>paper size</b> in file and tray</li>
+          <li><b>1-inch margins</b>, portrait</li>
+          <li><b>Letterhead</b> or header in place</li>
+          <li><b>Date</b> and reference are correct</li>
+          <li>Names and positions <b>spelled right</b></li>
+          <li>No placeholders like <b>[Insert Name]</b></li>
+          <li>Justified text, <b>standard font sizes</b></li>
+          <li><b>Signature block</b> stays with its paragraph</li>
+          <li><b>Page X of Y</b> if 2 or more pages</li>
+          <li>Right <b>number of copies</b>, incl. receiving and file copy</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/m2/2-5-signing.jpg" alt="A person signing a printed document at a desk"></div>
+    </div>
+    <div class="notes">
+      <p>This is the slide to screenshot and keep. Run through it before anything goes for signature.</p>
+      <p>The most painful mistakes are names and positions. A wrong title on a letter to a taxpayer or a partner office is embarrassing and means reprinting.</p>
+      <p>Mention the placeholder check: it leads straight into our next topic, where AI drafts sometimes leave "[Insert Name]" behind. Ask: "Which of the ten do you already do? Which one will you add?"</p>
+    </div>
+  </section>
+
+  <!-- 18 · Recap -->
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 2.5</p>
+    <h2 class="h2">Set up the page first. Preview always. Print once.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Page setup</h4><p>1-inch margins, the right paper (A4, Letter, long 8.5 × 13), portrait or landscape.</p></div>
+      <div class="card dark"><h4>Structure</h4><p>Headers, footers, automatic page numbers, page and section breaks.</p></div>
+      <div class="card dark"><h4>Smart printing</h4><p>Preview, page ranges, collate, both sides, scale, or PDF.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">2.6 Responsible AI Drafting</b>: letting AI help with the first draft, while you stay in charge.</p>
+    <div class="notes">
+      <p>Summarize in one breath: <b>set up first, preview always, print once</b>.</p>
+      <p>Bridge to 2.6: "We've done everything by hand so far. Next, we'll see how an AI assistant can write a first draft of this same invitation in seconds, and why the human, you, still has the final say."</p>
+    </div>
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{
+  "topic": "4.2",
+  "title": "Application Navigation and Slide Management",
+  "activities": [
+    {
+      "id": "4.2-a",
+      "slide": "Try it: build your skeleton",
+      "kind": "task",
+      "title": "Build the skeleton of your Lab 4 deck",
+      "minutes": 6,
+      "intro": "Open PowerPoint, Google Slides or Impress and follow your paper storyboard. Type only the titles for now. Tick each step as you finish it.",
+      "blocks": [
+        { "type": "steps", "id": "steps", "items": [
+          "Start a new blank presentation and apply one clean theme.",
+          "Slide 1 (Title Slide): My Digital Skills Journey + your name.",
+          "Add 4 more slides with Ctrl+M. Give each the layout you wrote on your paper.",
+          "Type only the titles from your storyboard. Content comes later.",
+          "Duplicate one slide, then delete the copy. Drag one slide to a new position and back.",
+          "Save as Lab4 - Your Name.pptx (or .odp in Impress)."
+        ] },
+        { "type": "number", "id": "slides", "prompt": "How many slides does your skeleton have now?", "unit": "slides" },
+        { "type": "mcq", "id": "new", "prompt": "Which shortcut adds a new slide?", "options": ["Ctrl + D", "Ctrl + M", "Ctrl + S", "Ctrl + Z"] },
+        { "type": "mcq", "id": "layout", "prompt": "Which layout does slide 1 use?", "options": ["Title Slide", "Title and Content", "Section Header", "Blank"] },
+        { "type": "upload", "id": "shot", "prompt": "Optional: a screenshot of your skeleton in the thumbnails pane", "optional": true }
+      ],
+      "help": [
+        "Can't find Layout? It's on the Home tab.",
+        "New slide came out as Title Only? Change it with Home › Layout.",
+        "Google Slides saves automatically, but rename the file at the top left."
+      ]
+    },
+    {
+      "id": "4.2-b",
+      "slide": "Try it: present",
+      "kind": "task",
+      "title": "Rehearse with the show keys",
+      "minutes": 3,
+      "intro": "Use your Lab 4 skeleton and try all six steps. React with 👍 in the chat when you finish.",
+      "blocks": [
+        { "type": "steps", "id": "steps", "items": [
+          "Press F5. Go forward with Space and back with ←.",
+          "Type 4 then Enter to jump to slide 4.",
+          "Press B. The screen goes black. Press B again.",
+          "Press Esc. Click slide 3, then press Shift + F5.",
+          "Right-click slide 5 › Hide Slide, run the show and confirm it's skipped.",
+          "Unhide it, then open View › Slide Sorter and back to Normal."
+        ] },
+        { "type": "mcq", "id": "current", "prompt": "Which key starts the show from the current slide?", "options": ["F5", "Shift + F5", "Esc", "B"] },
+        { "type": "mcq", "id": "jump", "prompt": "During the show, how do you jump to slide 4?", "options": ["Press F4", "Type 4 then Enter", "Press Ctrl + 4"] },
+        { "type": "mcq", "id": "hidden", "prompt": "What happens to a hidden slide when you run the show?", "options": ["It is skipped", "It shows last", "It is deleted from the file"] }
+      ],
+      "help": [
+        "F5 does nothing? On many laptops F5 controls brightness or volume. Try Fn + F5, or click the Slide Show icon on the status bar.",
+        "Google Slides: use Skip slide instead of Hide Slide."
+      ]
+    },
+    {
+      "id": "4.2-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: all eyes on you",
+      "minutes": 1,
+      "intro": "Pick one answer.",
+      "blocks": [
+        { "type": "mcq", "id": "q", "prompt": "Mid-presentation, the chief starts asking questions. You want everyone to look at you, not the slide. You press…", "options": ["Esc", "B", "F5", "Shift + F5"] }
+      ]
+    }
+  ]
+}

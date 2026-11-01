@@ -1,0 +1,61 @@
+{
+  "topic": "1.4",
+  "title": "Internet Safety, Netiquette and Data Privacy",
+  "activities": [
+    {
+      "id": "1.4-a",
+      "slide": "Spot the red flags",
+      "kind": "task",
+      "title": "How many red flags can you spot?",
+      "minutes": 2,
+      "intro": "Look at the sample phishing email on the slide. Count the red flags, then answer the questions.",
+      "blocks": [
+        {
+          "type": "number",
+          "id": "count",
+          "prompt": "How many red flags did you find?",
+          "unit": "red flags"
+        },
+        {
+          "type": "text",
+          "id": "flag",
+          "prompt": "Type one red flag you are sure about.",
+          "lines": 2
+        },
+        {
+          "type": "mcq",
+          "id": "sender",
+          "prompt": "The email is from refunds@bir-gov-ph.help-desk.site. Who really owns that address?",
+          "options": ["BIR (bir.gov.ph)", "help-desk.site", "gov.ph", "The taxpayer"]
+        },
+        {
+          "type": "mcq",
+          "id": "attach",
+          "prompt": "The attachment is called Refund_Form.pdf.exe. What is it really?",
+          "options": ["A PDF form", "A program (.exe)", "A picture", "A compressed folder"]
+        }
+      ]
+    },
+    {
+      "id": "1.4-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: the BIR caller",
+      "minutes": 1,
+      "intro": "One question. Pick the best answer.",
+      "blocks": [
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "A caller says: \"This is BIR. You have a pending tax case. Pay ₱5,000 by GCash today to settle it.\" Best move?",
+          "options": [
+            "Pay quickly to avoid trouble",
+            "Give your TIN so they can check your record",
+            "Hang up, verify through official BIR channels, and report the number",
+            "Post the number in the family GC and ask what to do"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "topic": "1.3",
+  "title": "Web Browsing and Search Engines",
+  "activities": [
+    {
+      "id": "1.3-a",
+      "slide": "Lab 1 Part B",
+      "kind": "task",
+      "title": "Lab 1 Part B: find it, snip it, file it",
+      "minutes": 7,
+      "intro": "Use your master folder from Part A. Find a page on the official BIR website, take a screenshot and save it in the right folder.",
+      "blocks": [
+        {
+          "type": "steps",
+          "id": "steps",
+          "items": [
+            "Search \"internet safety tips\". Then try site:bir.gov.ph with a topic you choose.",
+            "Open one useful page on the official BIR website (check the address!).",
+            "Press Win + Shift + S and drag around the useful part.",
+            "Click the pop-up that appears, then press Ctrl + S to save.",
+            "Save it into 01 Screenshots as YYYY-MM-DD Screenshot - BIR Website."
+          ]
+        },
+        {
+          "type": "short",
+          "id": "domain",
+          "prompt": "Look at the address of the page you opened. Type the domain, the part just before the first single \"/\".",
+          "placeholder": "e.g. example.gov.ph"
+        },
+        {
+          "type": "mcq",
+          "id": "snip",
+          "prompt": "Which keys open the snip tool so you can drag around part of the screen?",
+          "options": ["Win + Shift + S", "Ctrl + S", "Win + E", "Ctrl + Shift + T"]
+        },
+        {
+          "type": "mcq",
+          "id": "folder",
+          "prompt": "Which folder did you save your screenshot into?",
+          "options": ["Downloads", "01 Screenshots", "02 AI Responses", "Pictures › Screenshots"]
+        },
+        {
+          "type": "upload",
+          "id": "shot",
+          "prompt": "Optional: the screenshot you saved",
+          "optional": true
+        }
+      ],
+      "help": [
+        "The pop-up disappeared? Open the Snipping Tool from Start, or paste with Ctrl + V into Paint and save.",
+        "Check the address: your page must be on bir.gov.ph.",
+        "Other ways to capture: PrtSc for the whole screen, Win + PrtSc to save it to Pictures › Screenshots, or right-click an image › Save image as. On a Mac: Cmd + Shift + 4."
+      ]
+    },
+    {
+      "id": "1.3-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: the right search",
+      "minutes": 1,
+      "intro": "One question. Pick the best answer.",
+      "blocks": [
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "You want only PDF files about data privacy, from government websites. Which search?",
+          "options": [
+            "data privacy pdf government",
+            "\"data privacy\" site:gov.ph filetype:pdf",
+            "data privacy -pdf -gov",
+            "www.dataprivacy.pdf"
+          ]
+        }
+      ]
+    }
+  ]
+}

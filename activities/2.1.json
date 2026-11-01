@@ -1,0 +1,126 @@
+{
+  "topic": "2.1",
+  "title": "Application Navigation and File Handling",
+  "activities": [
+    {
+      "id": "2.1-a",
+      "slide": "Try it: find the parts",
+      "kind": "task",
+      "title": "Scavenger hunt on your screen",
+      "minutes": 3,
+      "intro": "Open a blank document in your own word processor. Find each part, tick the step, then answer the questions.",
+      "blocks": [
+        {
+          "type": "steps",
+          "id": "steps",
+          "items": [
+            "Turn on the ruler.",
+            "Set the zoom to 120%, then back to 100%.",
+            "Find the word count of your blank page.",
+            "Open the File tab or menu and find Save As and Export (Docs: Download). Press Esc to go back."
+          ]
+        },
+        {
+          "type": "number",
+          "id": "words",
+          "prompt": "What word count does your blank page show?",
+          "unit": "words"
+        },
+        {
+          "type": "mcq",
+          "id": "where",
+          "prompt": "In Word, where did you find the word count?",
+          "options": [
+            "Status bar at the bottom",
+            "Title bar at the top",
+            "Ribbon, Home tab",
+            "File tab"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "zoom",
+          "prompt": "You set the zoom to 120%. What happens when you print?",
+          "options": [
+            "The page prints 20% bigger",
+            "Nothing changes. Zoom is for the screen only.",
+            "The page prints on two sheets"
+          ]
+        }
+      ],
+      "help": [
+        "Ruler: View › Ruler.",
+        "Zoom: slider at the bottom right (Docs: zoom box on the toolbar).",
+        "Word count: status bar (Docs: Ctrl + Shift + C)."
+      ]
+    },
+    {
+      "id": "2.1-b",
+      "slide": "Try it: save the letter",
+      "kind": "task",
+      "title": "Start the letter and save it the right way",
+      "minutes": 6,
+      "intro": "Paste the raw text of our invitation letter into a new document and save it with a proper name. Keep this file: you will improve it in 2.2 and 2.3.",
+      "blocks": [
+        {
+          "type": "steps",
+          "id": "steps",
+          "items": [
+            "Open a new blank document (Ctrl + N).",
+            "Copy the raw text from the chat and paste it (Ctrl + V).",
+            "Save As (F12 in Word) into your training folder from Topic 1.2.",
+            "Name it Letter - Digital Skills Workshop Invitation - 2026-11-03",
+            "Keep the type Word Document (.docx). Writer: .odt or .docx. Docs: click the title at the top left and rename.",
+            "Export a PDF copy into the same folder."
+          ]
+        },
+        {
+          "type": "short",
+          "id": "fname",
+          "prompt": "Type the exact file name you used (without .docx).",
+          "placeholder": "Type · Subject · Date"
+        },
+        {
+          "type": "mcq",
+          "id": "first",
+          "prompt": "This letter had never been saved. Which command did you use to give it a name and a folder?",
+          "options": ["Save As", "Export", "Print", "Zoom"]
+        },
+        {
+          "type": "mcq",
+          "id": "files",
+          "prompt": "Which files of the letter should be in your training folder now? Pick all that apply.",
+          "options": [".docx (or .odt)", ".pdf", ".txt", ".doc"],
+          "multi": true
+        },
+        {
+          "type": "upload",
+          "id": "shot",
+          "prompt": "Optional: a screenshot of your training folder showing both files",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "id": "2.1-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: Save or Save As?",
+      "minutes": 1,
+      "intro": "Pick one answer.",
+      "blocks": [
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "You want to update October's report for November, but keep October's file unchanged. What do you do first?",
+          "options": [
+            "Edit it, then press Ctrl+S",
+            "Save As with a new name, then edit",
+            "Export it as PDF, then edit the PDF",
+            "Zoom to 150% so the changes stand out"
+          ]
+        }
+      ]
+    }
+  ]
+}

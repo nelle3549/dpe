@@ -1,0 +1,73 @@
+{
+  "topic": "4.3",
+  "title": "Working with Text and Lists in Slides",
+  "activities": [
+    {
+      "id": "4.3-a",
+      "slide": "Hook: 5-second test",
+      "kind": "task",
+      "title": "The 5-second test",
+      "minutes": 1,
+      "intro": "Read the slide on the screen. You have only five seconds. Then answer here without looking back.",
+      "blocks": [
+        { "type": "text", "id": "remember", "prompt": "Type one rule you remember from that slide", "lines": 2 },
+        { "type": "mcq", "id": "rules", "multi": true, "prompt": "Pick all the rules that were really on the slide.", "options": [
+          "Follow the agreed folder structure and naming convention",
+          "No personal photos, music or videos in the shared drive",
+          "The drive is backed up every Monday morning",
+          "Don't delete or move files without informing the section head",
+          "Save personal files on the desktop instead"
+        ] }
+      ]
+    },
+    {
+      "id": "4.3-b",
+      "slide": "Try it: trim the text",
+      "kind": "task",
+      "title": "Turn a notice into 3 short bullets",
+      "minutes": 4,
+      "intro": "Turn the 62-word workshop notice on the screen into a slide people can read in five seconds. Type your version here, in the chat, or as a new slide in your app.",
+      "blocks": [
+        { "type": "steps", "id": "steps", "items": [
+          "Read the 62-word notice on the screen.",
+          "Write a title that says something.",
+          "Write 3 bullets, at most 6 words each.",
+          "Move anything extra to the speaker notes."
+        ] },
+        { "type": "text", "id": "slide", "prompt": "Your title and 3 bullets", "lines": 4 },
+        { "type": "mcq", "id": "when", "prompt": "When and where is the workshop?", "options": [
+          "Monday, 9 AM, Conference Room",
+          "Friday, 1 PM, Conference Room",
+          "Friday, 1 PM, Administrative Section"
+        ] },
+        { "type": "mcq", "id": "notes", "prompt": "Which detail can move to the speaker notes?", "options": [
+          "Bring laptop + charger",
+          "Install a presentation app first",
+          "Snacks are on the Admin Section",
+          "Conference Room"
+        ] },
+        { "type": "number", "id": "words", "prompt": "At most how many words should each bullet have?", "unit": "words" }
+      ],
+      "help": [
+        "Cut polite phrases like \"Please be informed that\". Keep nouns, verbs and numbers.",
+        "The test: someone glancing for five seconds knows when, where and what to bring."
+      ]
+    },
+    {
+      "id": "4.3-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: 9 bullets at 14 pt",
+      "minutes": 1,
+      "intro": "Pick one answer.",
+      "blocks": [
+        { "type": "mcq", "id": "q", "prompt": "PowerPoint shrank your 9 bullets to 14 pt so they fit. What's the best fix?", "options": [
+          "Make it 12 pt so it fits better",
+          "Cut to key words, split into two slides, move details to the notes",
+          "Change to a narrow, condensed font",
+          "Leave it; people can zoom in"
+        ] }
+      ]
+    }
+  ]
+}

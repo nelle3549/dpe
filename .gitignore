@@ -1,0 +1,4 @@
+.DS_Store
+.claude/
+.e2e-sessions.json
+__pycache__/

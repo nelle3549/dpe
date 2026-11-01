@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.2 Desktop and File Management · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* 1.2 only: drawn desktop, File Explorer and folder tree */
+.dsk{position:relative;height:calc(var(--u)*31);border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(135deg,#4F8EDC 0%,#1B4F9C 55%,#0B2545 100%);box-shadow:var(--shadow-lg)}
+.dsk .icons{position:absolute;left:calc(var(--u)*1.4);top:calc(var(--u)*1.4);display:grid;gap:calc(var(--u)*1.1)}
+.dsk .di{width:calc(var(--u)*7);text-align:center;color:#fff;font-size:calc(var(--u)*.85);line-height:1.25}
+.dsk .di span{display:block;font-size:calc(var(--u)*2.5);line-height:1.1}
+.dsk .win-mini{position:absolute;left:calc(var(--u)*13);top:calc(var(--u)*3);width:calc(var(--u)*22);background:#fff;border-radius:calc(var(--u)*.6);box-shadow:var(--shadow-lg);font-size:calc(var(--u)*.85);color:var(--text-2)}
+.dsk .win-mini .t{display:flex;justify-content:space-between;padding:calc(var(--u)*.5) calc(var(--u)*.8);background:#EEF1F6;border-radius:calc(var(--u)*.6) calc(var(--u)*.6) 0 0;font-weight:600}
+.dsk .win-mini .c{padding:calc(var(--u)*1) calc(var(--u)*.8);height:calc(var(--u)*9)}
+.dsk .tb{position:absolute;left:0;right:0;bottom:0;height:calc(var(--u)*3.6);background:rgba(243,246,251,.94);display:flex;align-items:center;justify-content:center;gap:calc(var(--u)*1.1)}
+.dsk .tb span{font-size:calc(var(--u)*1.7);line-height:1}
+.dsk .tb .start{width:calc(var(--u)*1.9);height:calc(var(--u)*1.9);display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.dsk .tb .start i{background:#1366D6;border-radius:1px}
+.dsk .tb .srch{font-size:calc(var(--u)*.85);background:#fff;border:1px solid var(--border-strong);border-radius:999px;padding:.3em 1.2em;color:var(--text-3)}
+.dsk .clock{position:absolute;right:calc(var(--u)*1.2);bottom:calc(var(--u)*.75);font-size:calc(var(--u)*.8);color:var(--text-2);text-align:right;line-height:1.2}
+.pin{position:absolute;width:calc(var(--u)*2.2);height:calc(var(--u)*2.2);border-radius:50%;background:var(--gold);color:var(--ink);font-weight:800;font-size:calc(var(--u)*1.1);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.35);z-index:3}
+.legend{list-style:none;padding:0;margin:0}
+.legend li{display:flex;gap:calc(var(--u)*1);align-items:flex-start;margin:calc(var(--u)*1.05) 0;font-size:calc(var(--u)*1.4);line-height:1.4;color:var(--text-2)}
+.legend li .pin{position:static;flex:none;width:calc(var(--u)*2);height:calc(var(--u)*2);font-size:calc(var(--u)*1);box-shadow:none}
+.legend li b{color:var(--text-1)}
+.fx{display:grid;grid-template-columns:calc(var(--u)*15) 1fr;font-size:calc(var(--u)*1.05);color:var(--text-2)}
+.fx .nav{background:#F6F8FB;border-right:1px solid var(--border);padding:calc(var(--u)*1) calc(var(--u)*.9);line-height:1.95}
+.fx .nav .h{font-size:calc(var(--u)*.8);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-top:calc(var(--u)*.5)}
+.fx .nav .on{background:var(--mod-soft);color:var(--mod);font-weight:700;border-radius:calc(var(--u)*.4);padding:0 .4em;margin:0 -.4em}
+.fx .main{padding:calc(var(--u)*1)}
+.fx .crumb{display:flex;align-items:center;gap:calc(var(--u)*.8);margin-bottom:calc(var(--u)*1)}
+.fx .crumb .addr{flex:1}
+.fx table{width:100%;border-collapse:collapse}
+.fx th{font-size:calc(var(--u)*.85);font-weight:600;color:var(--text-3);text-align:left;padding:.35em .4em;border-bottom:1px solid var(--border)}
+.fx td{padding:.42em .4em;border-bottom:1px solid var(--border);white-space:nowrap}
+.fx td:first-child{color:var(--text-1);font-weight:600}
+.tree{font-family:var(--font-mono);font-size:calc(var(--u)*1.15);line-height:1.75;color:var(--text-1);margin:0;white-space:pre}
+.tree .d{color:var(--text-3)}
+.namegood{font-family:var(--font-mono);font-size:calc(var(--u)*1.25)}
+</style>
+</head>
+<body class="m1" data-brand="Digital Productivity Essentials · <b>Module 1</b> · 1.2 Desktop and File Management">
+<div class="deck">
+
+  <!-- 1 · Cover -->
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 1 · Computers and Internet Essentials</p>
+      <h1 class="h1" data-anim="fade-up">Desktop and <span style="color:var(--gold)">File Management</span></h1>
+      <p class="lede" data-anim="fade-up">Find any file in seconds: the desktop, File Explorer, folders, smart file names and the shortcuts that save your day.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 1.2</span><span class="tag ghost">~15 minutes</span><span class="tag ghost">Lab 1 · Part A</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m1/1-2-cover.jpg" alt="Shelves of neatly labelled office binders"><div class="cv-num">1.2</div></div>
+    <div class="notes">
+      <p>From the three parts of a computer system, we now go to the thing we touch most every day: <b>our files</b>.</p>
+      <p>Point at the photo: every binder has a label and a place. Our computers deserve the same. In the next 15 minutes we'll tour the desktop and File Explorer, agree on a naming habit, and then you'll build the <b>master folder</b> you'll use for the whole Lab 1. Keep File Explorer handy; you'll need it soon.</p>
+    </div>
+  </section>
+
+  <!-- 2 · Warm-up -->
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · type in the chat</p><h2 class="h2">Which desk looks like your computer desktop?</h2></div>
+      <span class="tag gold">1 minute</span>
+    </div>
+    <div class="grid g2">
+      <div class="card photo"><img src="images/m1/1-2-messy-desk.jpg" alt="A cluttered office desk piled with papers" style="height:calc(var(--u)*21)"><div class="body"><h4>A · "It's in there somewhere"</h4><p>Forty icons, three copies of the same memo, and "New folder (7)".</p></div></div>
+      <div class="card photo"><img src="images/m1/1-2-clean-desk.jpg" alt="A tidy desk with only a laptop" style="height:calc(var(--u)*21)"><div class="body"><h4>B · "Give me five seconds"</h4><p>A few folders with clear names. Anything can be found fast.</p></div></div>
+    </div>
+    <div class="notes">
+      <p>Ask everyone to type <b>A or B</b> in the chat. Be honest! Laugh with them; most of us are an A on a busy week.</p>
+      <p>Then ask: <i>"How long did it take you last time to find an old letter or report?"</i> Someone will say ten minutes or more. That lost time adds up every week, and when a taxpayer or your chief is waiting, it feels even longer. By the end of this topic we all move closer to B.</p>
+    </div>
+  </section>
+
+  <!-- 3 · Objectives -->
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head">
+      <div><p class="kicker">In this topic</p><h2 class="h2">By the end, you can…</h2></div>
+    </div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Navigate</span><h4>Find your way around</h4><p>Desktop, taskbar, Start menu, windows and File Explorer, including drives like C: and a flash drive.</p></div>
+      <div class="card top"><span class="k">Organize</span><h4>Name and arrange files</h4><p>Create, rename, move, copy and delete files and folders using a clear naming habit.</p></div>
+      <div class="card top"><span class="k">Find</span><h4>Get it back fast</h4><p>Use search, sorting and the Recycle Bin, plus five shortcuts worth memorizing.</p></div>
+    </div>
+    <div class="callout tip mt-l"><b>Hands-on today:</b> Lab 1 Part A, the File Management Exercise. You'll build a master folder that we keep using in 1.3 and 1.5.</div>
+    <div class="notes">
+      <p>Three goals: <b>navigate, organize, find</b>. We'll use Windows because most of our office PCs run it, but the ideas are the same on a Mac (Finder) and in Google Drive or OneDrive.</p>
+      <p>Mention that the folder they build in the lab is not throwaway: Part B (a screenshot) and Part C (an AI response) both go inside it, and the finished folder is part of what you check for Lab 1.</p>
+    </div>
+  </section>
+
+  <!-- 4 · Analogy -->
+  <section class="slide" data-title="The filing cabinet idea">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">Your computer is a <em class="mod">filing cabinet</em>.</h2>
+        <table class="tbl mt-l">
+          <tr><th style="width:38%">In the records room</th><th>On the computer</th></tr>
+          <tr><td><b>The cabinet</b></td><td>A <b>drive</b>: C: (this PC), a flash drive, a shared drive, the cloud</td></tr>
+          <tr><td><b>A drawer or folder</b></td><td>A <b>folder</b> 📁, which can hold more folders</td></tr>
+          <tr><td><b>One paper or form</b></td><td>A <b>file</b> 📄: a letter, a spreadsheet, a scanned PDF</td></tr>
+          <tr><td><b>The label on the folder</b></td><td>The <b>file name</b>, so anyone can find it</td></tr>
+        </table>
+      </div>
+      <div class="media"><img src="images/m1/1-2-filing-drawer.jpg" alt="An open filing cabinet drawer full of index cards"></div>
+    </div>
+    <div class="notes">
+      <p>Everyone in this group knows a records room. A <b>drive</b> is the cabinet, <b>folders</b> are the drawers and envelopes, and <b>files</b> are the actual papers.</p>
+      <p>Point out the key difference: a folder holds files; a file holds the content. You open a file to read or edit it. Ask: <i>"Would you throw all your papers loose into the cabinet with no folders?"</i> No, yet that's exactly what a crowded desktop is. Also mention the shared drive many offices use: it's just a cabinet everyone in the section can open.</p>
+    </div>
+  </section>
+
+  <!-- 5 · Desktop tour -->
+  <section class="slide" data-title="The desktop">
+    <div class="slide-head">
+      <div><p class="kicker">Tour 1 · The desktop</p><h2 class="h2">Your home screen in Windows</h2></div>
+      <span class="tag">Windows 11 shown · Windows 10 is similar</span>
+    </div>
+    <div class="grid" style="grid-template-columns:1.25fr .75fr;gap:calc(var(--u)*2.4);align-items:center">
+      <div class="dsk">
+        <div class="icons">
+          <div class="di"><span>🗑️</span>Recycle Bin</div>
+          <div class="di"><span>📁</span>DPE Lab 1</div>
+          <div class="di"><span>📄</span>2026-10-26 Memo</div>
+        </div>
+        <div class="win-mini"><div class="t"><span>Document1 · Word</span><span>–  ▢  ✕</span></div><div class="c">An open <b>window</b>. Minimize, maximize or close it with the three buttons at the top right.</div></div>
+        <div class="tb"><div class="start"><i></i><i></i><i></i><i></i></div><span class="srch">🔍 Search</span><span>📁</span><span>🌐</span><span>✉️</span><span>📊</span></div>
+        <div class="clock">10:24 AM<br>10/26/2026</div>
+        <span class="pin" style="left:calc(var(--u)*8.2);top:calc(var(--u)*1)">1</span>
+        <span class="pin" style="left:calc(var(--u)*34);top:calc(var(--u)*1.8)">2</span>
+        <span class="pin" style="left:calc(50% - var(--u)*10.2);bottom:calc(var(--u)*4.2)">3</span>
+        <span class="pin" style="left:calc(50% + var(--u)*4);bottom:calc(var(--u)*4.2)">4</span>
+        <span class="pin" style="right:calc(var(--u)*1.6);bottom:calc(var(--u)*4.4)">5</span>
+      </div>
+      <ul class="legend">
+        <li><span class="pin">1</span><span><b>Icons</b> on the desktop: shortcuts, files, the Recycle Bin.</span></li>
+        <li><span class="pin">2</span><span>A <b>window</b>: each open app or folder lives in one.</span></li>
+        <li><span class="pin">3</span><span><b>Start button</b>: all apps, settings, power off.</span></li>
+        <li><span class="pin">4</span><span><b>Taskbar</b>: pinned apps and open windows. Click to switch.</span></li>
+        <li><span class="pin">5</span><span><b>Clock and tray</b>: Wi-Fi, sound, battery, date.</span></li>
+        <li style="margin-top:calc(var(--u)*1.6)"><span><kbd>Win</kbd> + <kbd>D</kbd> shows the desktop; press again to bring windows back.</span></li>
+      </ul>
+    </div>
+    <div class="notes">
+      <p>Share your real desktop now and point to each part as you name it: <b>icons, a window, Start, the taskbar, the clock area</b>.</p>
+      <p>Demo <kbd>Win</kbd>+<kbd>D</kbd>: everything hides, press again and it all comes back. Then minimize, maximize and close a window. Tip for beginners: the desktop is a <b>work table, not a storage room</b>. Keep only what you're working on this week there; everything else goes into folders.</p>
+    </div>
+  </section>
+
+  <!-- 6 · File Explorer -->
+  <section class="slide" data-title="File Explorer">
+    <div class="slide-head">
+      <div><p class="kicker">Tour 2 · File Explorer</p><h2 class="h2">Where every file lives</h2></div>
+      <span class="tag gold">Open it: <kbd>Win</kbd> + <kbd>E</kbd></span>
+    </div>
+    <div class="win">
+      <div class="bar"><i></i><i></i><i></i><span>File Explorer</span></div>
+      <div class="fx">
+        <div class="nav">
+          <div>🏠 Home</div><div>🖥️ Desktop</div><div>⬇️ Downloads</div><div>📄 Documents</div><div>🖼️ Pictures</div>
+          <div class="h">This PC</div>
+          <div class="on">💽 Local Disk (C:)</div><div>🔌 USB Drive (E:)</div><div>🗄️ Shared (S:)</div>
+        </div>
+        <div class="main">
+          <div class="crumb"><span>← → ↑</span><span class="addr">This PC › Local Disk (C:) › Admin Section › 2026 › 01 Memos</span><span class="addr" style="flex:none">🔍 Search 01 Memos</span></div>
+          <table>
+            <tr><th>Name</th><th>Date modified</th><th>Type</th><th>Size</th></tr>
+            <tr><td>📄 2026-10-26 Memo - Supplies Request.docx</td><td>10/26/2026 9:14 AM</td><td>Word Document</td><td>24 KB</td></tr>
+            <tr><td>📄 2026-10-20 Memo - Training Schedule.docx</td><td>10/20/2026 3:02 PM</td><td>Word Document</td><td>31 KB</td></tr>
+            <tr><td>📕 2026-10-15 Memo - Office Hours (signed).pdf</td><td>10/15/2026 11:40 AM</td><td>PDF Document</td><td>412 KB</td></tr>
+            <tr><td>📁 Drafts</td><td>10/14/2026 8:05 AM</td><td>File folder</td><td></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="grid g3 mt-m">
+      <div class="callout"><b>Left pane:</b> quick places and your <b>drives</b>. C: is this computer; a flash drive gets the next free letter.</div>
+      <div class="callout"><b>Address bar:</b> the path. Read it like an address: cabinet › drawer › folder.</div>
+      <div class="callout"><b>File list:</b> click a column header to <b>sort</b> by name, date or type.</div>
+    </div>
+    <div class="notes">
+      <p>Press <kbd>Win</kbd>+<kbd>E</kbd> live so they see it open. Walk through the <b>left pane</b> (Desktop, Downloads, Documents, drives), the <b>address bar</b> path, and the <b>file list</b>.</p>
+      <p>Plug in a flash drive if you have one and show it appear as a new drive letter. Mention that a shared or network drive looks the same, and its letter is set by IT. Click "Date modified" to show sorting. Mac users: the same job is done by <b>Finder</b>.</p>
+    </div>
+  </section>
+
+  <!-- 7 · Files, folders, extensions -->
+  <section class="slide" data-title="File types">
+    <div class="slide-head">
+      <div><p class="kicker">Files vs folders</p><h2 class="h2">The last letters tell you what a file is</h2></div>
+      <span class="tag">name<b>.extension</b></span>
+    </div>
+    <div class="grid" style="grid-template-columns:1.2fr .8fr;gap:calc(var(--u)*2.4);align-items:start">
+      <table class="tbl">
+        <tr><th>Extension</th><th>What it is</th><th>Opens with</th></tr>
+        <tr><td><b>.docx</b></td><td>Document: letters, memos</td><td>Word · Google Docs · LibreOffice Writer</td></tr>
+        <tr><td><b>.xlsx</b></td><td>Spreadsheet: inventory, budget</td><td>Excel · Google Sheets · LibreOffice Calc</td></tr>
+        <tr><td><b>.pptx</b></td><td>Slide presentation</td><td>PowerPoint · Google Slides · LibreOffice Impress</td></tr>
+        <tr><td><b>.pdf</b></td><td>Fixed page: forms, scans, signed copies</td><td>Any browser or PDF reader</td></tr>
+        <tr><td><b>.jpg .png</b></td><td>Pictures and screenshots</td><td>Photos app, any browser</td></tr>
+        <tr><td><b>.txt</b></td><td>Plain text, no formatting</td><td>Notepad, TextEdit</td></tr>
+        <tr><td><b>.zip</b></td><td>Compressed folder of files</td><td>Built into Windows and macOS</td></tr>
+      </table>
+      <div>
+        <div class="card soft"><h4>📁 Folder vs 📄 file</h4><p>A <b>folder</b> holds files and other folders; it has no extension. A <b>file</b> holds the actual content.</p></div>
+        <div class="callout warn mt-m"><b>Careful:</b> a file ending in <b>.exe</b> is a program. Never open one that arrived by email or chat.</div>
+        <div class="callout tip mt-m"><b>See extensions:</b> in File Explorer, <b>View › Show › File name extensions</b> (Windows 11) or tick <b>File name extensions</b> on the View tab (Windows 10).</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>The <b>extension</b> is the short part after the last dot. It tells Windows which app opens the file. Turn on "File name extensions" live so they can see them.</p>
+      <p>Point out that the same .docx opens in Word, Google Docs or LibreOffice. LibreOffice also has its own formats (.odt, .ods) but saves .docx fine. Stress the warning: an attachment called "Notice.pdf.exe" is a program pretending to be a PDF. That's a classic trick we'll see again in 1.4.</p>
+    </div>
+  </section>
+
+  <!-- 8 · Actions + shortcuts -->
+  <section class="slide" data-title="Everyday actions">
+    <div class="slide-head">
+      <div><p class="kicker">Everyday actions</p><h2 class="h2">Create, rename, move, copy, delete</h2></div>
+      <span class="tag gold">Right-click works for all of these</span>
+    </div>
+    <div class="grid g2" style="gap:calc(var(--u)*2.4);align-items:start">
+      <div class="keys">
+        <span><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd></span><span><b>New folder</b> (in File Explorer)</span>
+        <span><kbd>F2</kbd></span><span><b>Rename</b> the selected file or folder</span>
+        <span><kbd>Ctrl</kbd> + <kbd>C</kbd></span><span><b>Copy</b>: the original stays</span>
+        <span><kbd>Ctrl</kbd> + <kbd>X</kbd></span><span><b>Cut</b>: to move it somewhere else</span>
+        <span><kbd>Ctrl</kbd> + <kbd>V</kbd></span><span><b>Paste</b> into the folder you're in</span>
+        <span><kbd>Ctrl</kbd> + <kbd>Z</kbd></span><span><b>Undo</b> the last action. Your best friend.</span>
+        <span><kbd>Delete</kbd></span><span>Send to the <b>Recycle Bin</b></span>
+      </div>
+      <div>
+        <div class="card top"><h4>🗑️ The Recycle Bin is a safety net</h4><p>Deleted by mistake? Open the Recycle Bin, right-click the file, choose <b>Restore</b>. It goes back where it was.</p></div>
+        <div class="callout warn mt-m"><b>No safety net:</b> <kbd>Shift</kbd> + <kbd>Delete</kbd>, and files deleted from most flash drives and shared drives, skip the Recycle Bin.</div>
+        <p class="small mt-m">On a Mac, use <kbd>Cmd</kbd> instead of <kbd>Ctrl</kbd>; the bin is called Trash.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Demo each one live in a practice folder: <b>new folder, F2 rename, copy-paste, cut-paste, delete, then restore from the Recycle Bin</b>. Go slowly; this is the most useful slide of the topic for beginners.</p>
+      <p>Explain copy versus cut: copy makes a twin; cut moves the original. And <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes most mistakes, including an accidental move. Stress the warning: on the <b>shared drive</b>, a delete may be permanent for everyone, so think twice.</p>
+    </div>
+  </section>
+
+  <!-- 9 · Naming convention -->
+  <section class="slide" data-title="Naming convention">
+    <div class="slide-head">
+      <div><p class="kicker">A naming habit</p><h2 class="h2">Date first, then type, then subject</h2></div>
+    </div>
+    <div class="card dark center" style="padding:calc(var(--u)*2)">
+      <p class="namegood" style="color:#fff;font-size:calc(var(--u)*2.2)"><span style="color:var(--gold)">2026-10-26</span> <span style="color:#9CC3FF">Memo</span> - Supplies Request.docx</p>
+      <p class="tiny mt-s" style="color:rgba(255,255,255,.7)">YEAR-MONTH-DAY · Type · Subject</p>
+    </div>
+    <div class="grid g2 mt-l">
+      <div>
+        <h4>✅ Why it works</h4>
+        <ul class="ticks">
+          <li><b>YYYY-MM-DD sorts by itself</b> in date order, oldest to newest.</li>
+          <li>The <b>type</b> (Memo, Letter, Report, Receipt) lets you scan a long list.</li>
+          <li>The <b>subject</b> tells anyone what's inside without opening it.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>❌ Names we've all seen</h4>
+        <ul class="ticks x">
+          <li><span class="namegood">final na jud (2) FINAL.docx</span></li>
+          <li><span class="namegood">Document1.docx</span>, <span class="namegood">New folder (7)</span></li>
+          <li><span class="namegood">memo 10/26.docx</span>: Windows won't allow <span class="namegood">\ / : * ? " &lt; &gt; |</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>This is the habit I want you to take home. <b>Year-month-day</b> first, because then the computer sorts your files by date automatically. Then the <b>type</b>, then a short <b>subject</b>.</p>
+      <p>Ask: <i>"Who has a file named 'final' that isn't final?"</i> Everyone laughs. If you need versions, add _v1, _v2 at the end instead. Point out that slashes and colons are not allowed in Windows file names, which is another reason to write dates as 2026-10-26.</p>
+    </div>
+  </section>
+
+  <!-- 10 · Office vs home folders -->
+  <section class="slide" data-title="Folder structures">
+    <div class="slide-head">
+      <div><p class="kicker">Folder structure</p><h2 class="h2">A place for everything, at work and at home</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office · one section</div>
+<pre class="tree">📁 Admin Section
+ └ 📁 2026
+    ├ 📁 01 Memos and Letters
+    ├ 📁 02 Reports
+    ├ 📁 03 Inventory
+    ├ 📁 04 Attendance
+    └ 📁 05 Scanned Signed Copies</pre>
+        <p class="mt-s">One folder per year, then by type. Numbers keep the order fixed.</p>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home · the family PC or phone</div>
+<pre class="tree">📁 Family
+ ├ 📁 Kids School
+ │  └ 📁 Grade 4 - Ana <span class="d">(report cards, IDs)</span>
+ ├ 📁 Receipts 2026
+ │  └ 📁 CEPALCO and Water Bills
+ └ 📁 Sari-sari Store <span class="d">(stock list)</span></pre>
+        <p class="mt-s">Snap receipts and school forms, then file them the same day.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Here's the same idea in two settings. At the office: a section folder, a year folder, then numbered type folders. The numbers 01, 02 keep the order the same on every PC. Agree on one structure as a section so the shared drive looks the same for everyone.</p>
+      <p>At home: kids' school files, receipts for CEPALCO and water bills, a side business. Ask: <i>"Where do your kids' report card photos live right now?"</i> Usually: lost somewhere in the phone gallery.</p>
+    </div>
+  </section>
+
+  <!-- 11 · Search + video -->
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Find any file in seconds</h2>
+        <p class="lede mt-m">A records room, a crowded desktop and a lost memo: see how <b>File Explorer</b>, <b>folders</b> and <b>smart file names</b> get every file back in seconds.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> note the naming pattern and two shortcuts you'll use first. You'll need both in Lab 1 Part A right after the video.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/1.2/poster.jpg" alt="Video: Desktop and File Management"><div class="play"></div><span class="vlen">4:54</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Introduce the video in one or two sentences, then read the <b>While watching</b> task aloud so everyone knows what to look for.</p>
+      <p>Press <b>→</b> to open the video full screen. In Zoom or Meet, share this tab with <b>computer sound</b> turned on.</p>
+    </div>
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/1.2/index.html" title="Video: Desktop and File Management" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="notes">
+      <p><b>Space</b> or <b>K</b> plays and pauses (or click the video). <b>C</b> turns captions on or off; the speed button offers 1.25× and 0.85×. The arrows still move between slides, and the video pauses when you leave this slide.</p>
+      <p>Length 4:54. Pause anywhere to take a question; captions stay on screen for anyone without sound.</p>
+      <p>After the video, go back to the <b>While watching</b> task: ask two or three people for their answers.</p>
+    </div>
+  </section>
+  <!-- YouTube slide replaced by our own video (2026-11-01):
+  <section class="slide" data-title="Find it fast">
+    <div class="split">
+      <div>
+        <p class="kicker">Find it fast</p>
+        <h2 class="h2">Can't remember where you saved it?</h2>
+        <ol class="steps mt-m">
+          <li><b>Start search:</b> press <kbd>Win</kbd>, type part of the name, press Enter.</li>
+          <li><b>File Explorer search box</b> (top right) searches the open folder and every folder inside it.</li>
+          <li><b>Sort by Date modified</b> to see what you worked on most recently.</li>
+          <li><b>Home</b> in File Explorer lists your recent files.</li>
+        </ol>
+        <p class="small mt-m">Good names make search work: typing "Supplies" finds the memo instantly.</p>
+      </div>
+      <div class="vmeta">
+        <div class="video" data-yt="BY1y_RQxIdg"><img src="images/m1/1-2-video.jpg" alt="Video thumbnail: organizing files and folders in Windows"><div class="play"></div><span class="vlen">2:16</span></div>
+        <h4>Watch · 2 minutes</h4>
+        <p class="tiny">YouTube · "How to Organize Files and Folders in Windows for Beginners" · LearnFree (GCFGlobal) · click to open</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Demo search live: press <kbd>Win</kbd> and type "memo", then do the same in a File Explorer search box. Show that searching inside a folder also looks inside its sub-folders.</p>
+      <p>If time allows, play the 2-minute LearnFree video (opens in a new tab; share it with audio). It recaps creating, moving and organizing folders right before the lab. If time is tight, skip it and send the link in the chat for later.</p>
+    </div>
+  </section>
+  -->
+
+  <!-- 12 · Lab 1 Part A -->
+  <section class="slide" data-title="Lab 1 Part A">
+    <div class="slide-head">
+      <div><p class="kicker">Lab 1 · Part A · File Management Exercise</p><h2 class="h2">Build your master folder</h2></div>
+      <button class="timer" data-min="8">8:00</button>
+    </div>
+    <div class="grid" style="grid-template-columns:1.25fr .75fr;gap:calc(var(--u)*2);align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">Try it now · on your Desktop</span><span class="tiny">Use your real name</span></div>
+        <ol>
+          <li>Right-click the Desktop › <b>New › Folder</b>. Name it <b>DPE Lab 1 - Juan Dela Cruz</b>.</li>
+          <li>Open it. Create two sub-folders: <b>01 Screenshots</b> and <b>02 AI Responses</b>.</li>
+          <li>Inside the master folder, right-click › <b>New › Text Document</b>. Name it <b>Practice Note</b>.</li>
+          <li>Press <kbd>F2</kbd> and rename it with today's date: <b>YYYY-MM-DD Note - Practice</b>.</li>
+          <li><b>Copy</b> it into 01 Screenshots, then <b>cut and paste</b> it into 02 AI Responses.</li>
+          <li><b>Delete</b> the copy in 01 Screenshots, then <b>restore</b> it from the Recycle Bin.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="win"><div class="bar"><i></i><i></i><i></i><span>Goal</span></div>
+<pre class="tree body" style="font-size:calc(var(--u)*1.05)">📁 DPE Lab 1 - Juan Dela Cruz
+ ├ 📁 01 Screenshots
+ │  └ 📄 2026-11-03 Note - Practice.txt
+ └ 📁 02 AI Responses
+    └ 📄 2026-11-03 Note - Practice.txt</pre></div>
+        <div class="callout gold mt-m"><b>Done?</b> Type "Done A" in the chat. Ready to show your File Explorer if asked.</div>
+        <p class="tiny mt-s">End result after step 6. The date is a sample; use today's date.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Click the timer for <b>8 minutes</b>. Do steps 1 and 2 together on your shared screen, then let them continue alone.</p>
+      <p>Walk around virtually: ask two or three people to share their screen. Common slips: typing the name into the wrong folder, or creating "New folder" and forgetting to rename. Remind them <kbd>F2</kbd> renames. Keep this folder; the <b>01 Screenshots</b> folder is used in 1.3 and <b>02 AI Responses</b> in 1.5. Early finishers can move the note back to the master folder.</p>
+    </div>
+  </section>
+
+  <!-- 13 · Quick check -->
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">Which file name will be easiest to find and sort next year?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div><span class="namegood">final na talaga.docx</span><div class="why">No. It says nothing about the content or the date, and "final" rarely is.</div></div></div>
+      <div class="opt"><span class="l">B</span><div><span class="namegood">memo supplies 10/26/26.docx</span><div class="why">No. Windows won't even accept the slashes, and month-first dates don't sort well.</div></div></div>
+      <div class="opt" data-correct><span class="l">C</span><div><span class="namegood">2026-10-26 Memo - Supplies Request.docx</span><div class="why">Yes. Date first sorts itself, then type and subject say what's inside.</div></div></div>
+      <div class="opt"><span class="l">D</span><div><span class="namegood">Document1.docx</span><div class="why">No. That's the app's default name; you'll have ten of them by Friday.</div></div></div>
+    </div>
+    <div class="notes">
+      <p>Let them type A, B, C or D in the chat first, then click each option to reveal. The answer is <b>C</b>.</p>
+      <p>Spend a moment on B: it looks reasonable, but the slashes are not allowed in Windows file names, and 10/26/26 can be read different ways. YYYY-MM-DD removes the guesswork. This exact idea appears again in the Digital Foundations Quiz at the end of Module 1.</p>
+    </div>
+  </section>
+
+  <!-- 14 · Recap -->
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 1.2</p>
+    <h2 class="h2">A place for every file, and a name that finds it.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Navigate</h4><p>Desktop is a work table; File Explorer (<kbd>Win</kbd>+<kbd>E</kbd>) shows every drive and folder.</p></div>
+      <div class="card dark"><h4>Organize</h4><p>Folders by year and type; names like 2026-10-26 Memo - Subject.</p></div>
+      <div class="card dark"><h4>Recover</h4><p><kbd>Ctrl</kbd>+<kbd>Z</kbd> and the Recycle Bin undo most mistakes. Search finds the rest.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">1.3 Web Browsing and Search Engines</b>: finding the right information online, and saving it into your 01 Screenshots folder.</p>
+    <div class="notes">
+      <p>Summarize: <b>navigate, organize, recover</b>. Ask one volunteer to say their master folder name out loud as a final check.</p>
+      <p>Bridge to 1.3: "Our folders are ready. Now let's go online, find something useful from an official website, and save it properly into the folder we just made." Keep File Explorer open; they'll need it again in a few minutes.</p>
+    </div>
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

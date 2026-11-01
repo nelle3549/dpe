@@ -1,0 +1,67 @@
+{
+  "topic": "4.6",
+  "title": "Adding Media Clips",
+  "activities": [
+    {
+      "id": "4.6-a",
+      "slide": "Try it: insert a clip",
+      "kind": "task",
+      "title": "Add one clip to \"My Digital Skills Journey\"",
+      "minutes": 6,
+      "intro": "Work in your Lab 4 file. Pick one path: a video file, an online video or your own voice. Keep it under 30 seconds.",
+      "blocks": [
+        { "type": "steps", "id": "steps", "items": [
+          "Pick one path below.",
+          "A video file: record 10 seconds of your desk or workspace with your phone, copy it to the PC, then Insert › Video › This Device.",
+          "An online video: Insert › Video › Online Videos and paste a YouTube link from this course, e.g. a GCFLearnFree tutorial.",
+          "Your voice: Insert › Audio › Record Audio. Say one sentence: \"The skill I'll use most at work is…\"",
+          "Resize the clip so it doesn't cover your text. Set Start to When Clicked On.",
+          "Trim if needed, then press Shift + F5 and click it. Does it play?"
+        ] },
+        { "type": "text", "id": "path", "prompt": "Which path did you choose, and did your clip play in Slide Show?", "lines": 2 },
+        { "type": "number", "id": "secs", "prompt": "Keep your clip under how many seconds?", "unit": "seconds" },
+        { "type": "mcq", "id": "fastest", "prompt": "Which path is the fastest and needs no internet?", "options": ["A video file", "An online video", "Your voice"] },
+        { "type": "mcq", "id": "start", "prompt": "For a live talk, which Start setting lets the clip wait for you?", "options": ["Automatically", "When Clicked On"] }
+      ],
+      "help": [
+        "On a slow connection? Choose the voice path: it needs no internet.",
+        "A headset or phone earphones with a mic sound better than the laptop mic."
+      ]
+    },
+    {
+      "id": "4.6-b",
+      "slide": "Try it: sound check",
+      "kind": "task",
+      "title": "Live sound check over our meeting",
+      "minutes": 4,
+      "intro": "Two volunteers play their clip, first without sound sharing, then with it. Everyone else: react, don't unmute.",
+      "blocks": [
+        { "type": "steps", "id": "steps", "items": [
+          "Volunteer shares screen without sound and plays their clip.",
+          "Audience reacts 🔇 if they hear nothing.",
+          "Volunteer stops, shares again with \"Share sound\" ticked.",
+          "Audience reacts 🔊 when they hear it clearly."
+        ] },
+        { "type": "text", "id": "heard", "prompt": "What did you notice? Was the volume comfortable, the voice clear, and did the clip start on the presenter's click?", "lines": 3 },
+        { "type": "mcq", "id": "zoom", "prompt": "In Zoom's Share Screen window, what must you tick before you click Share?", "options": ["Compress Media", "Share sound", "Play Full Screen"] },
+        { "type": "mcq", "id": "meet", "prompt": "In Google Meet, which way includes the clip's sound?", "options": ["Turn on captions", "Present a Chrome tab", "Mute your microphone"] }
+      ]
+    },
+    {
+      "id": "4.6-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: no sound on Zoom",
+      "minutes": 1,
+      "intro": "Pick one answer.",
+      "blocks": [
+        { "type": "mcq", "id": "q", "prompt": "On Zoom, your video plays, but participants hear nothing. The most likely fix?", "options": [
+          "Compress the media to 720p",
+          "Share again with \"Share sound\" ticked",
+          "Change the slide transition to Fade",
+          "Set the video to Loop until Stopped"
+        ] }
+      ]
+    }
+  ]
+}

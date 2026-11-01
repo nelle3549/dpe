@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.1 Application Navigation and Cell Manipulation · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* Module 3 · drawn spreadsheet grid (uses dpe.css tokens) */
+.xl{background:#fff;border-radius:calc(var(--u)*.8);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--border-strong);font-size:calc(var(--u)*1.12)}
+.xl .rib{display:flex;gap:calc(var(--u)*1.3);padding:calc(var(--u)*.45) calc(var(--u)*1);background:var(--mod);color:#fff;font-size:calc(var(--u)*.85);font-weight:600;align-items:center}
+.xl .rib span{opacity:.72}.xl .rib span.on{opacity:1;border-bottom:2px solid #fff}
+.xl .tools{display:flex;gap:calc(var(--u)*.5);padding:calc(var(--u)*.45) calc(var(--u)*1);background:#F6F8FA;border-bottom:1px solid #E1E5EB;font-size:calc(var(--u)*.85);flex-wrap:wrap;align-items:center}
+.xl .tools b{display:inline-flex;align-items:center;gap:.3em;padding:.2em .6em;border-radius:.3em;background:#fff;border:1px solid #D6DBE2;font-weight:600;color:var(--text-1)}
+.xl .tools b.on{background:var(--mod-soft);border-color:var(--mod);color:var(--mod)}
+.xl .fbar{display:flex;align-items:center;gap:calc(var(--u)*.6);padding:calc(var(--u)*.45) calc(var(--u)*.7);border-bottom:1px solid #D6DBE2;background:#fff}
+.xl .nb{font-family:var(--font-mono);font-size:calc(var(--u)*1);min-width:calc(var(--u)*6);padding:.2em .5em;border:1px solid #C9D0DA;border-radius:.25em;color:var(--text-1)}
+.xl .fx{font-style:italic;font-family:Georgia,serif;color:var(--text-3);font-weight:700}
+.xl .fv{flex:1;font-family:var(--font-mono);font-size:calc(var(--u)*1);padding:.2em .5em;border:1px solid #C9D0DA;border-radius:.25em;color:var(--text-1);white-space:nowrap;overflow:hidden}
+.xl table{border-collapse:collapse;width:100%;table-layout:fixed}
+.xl col.rn{width:calc(var(--u)*2.6)}
+.xl th{background:#F1F3F6;color:#5F6B7A;font-weight:600;border:1px solid #D6DBE2;padding:.22em .3em;text-align:center;font-size:.88em}
+.xl th.on{background:var(--mod-soft);color:var(--mod);font-weight:800}
+.xl td{border:1px solid #E3E7ED;padding:.28em .55em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text-1);height:1.55em}
+.xl td.n{text-align:right;font-family:var(--font-mono);font-size:.94em}
+.xl td.c{text-align:center}
+.xl td.f{font-family:var(--font-mono);color:var(--mod);font-size:.9em}
+.xl td.mute{color:var(--text-3);font-style:italic}
+.xl tr.hd td{font-weight:700}
+.xl tr.tot td{font-weight:700;border-top:2px solid var(--text-2)}
+.xl td.rng{background:color-mix(in srgb,var(--mod) 13%,#fff)}
+.xl td.sel{outline:calc(var(--u)*.22) solid var(--mod);outline-offset:calc(var(--u)*-.22);background:#fff}
+.xl td.ants{outline:calc(var(--u)*.16) dashed var(--mod);outline-offset:calc(var(--u)*-.2)}
+.xl td.hi{background:var(--coral-soft);color:#B3261E}
+.xl td.err{color:var(--coral);font-weight:700}
+.xl td.tri{position:relative}
+.xl td.tri::before{content:"";position:absolute;left:0;top:0;border-top:calc(var(--u)*.55) solid var(--green);border-right:calc(var(--u)*.55) solid transparent}
+.xl td.handle{position:relative}
+.xl td.handle::after{content:"";position:absolute;right:-1px;bottom:-1px;width:calc(var(--u)*.6);height:calc(var(--u)*.6);background:var(--mod);border:1px solid #fff}
+.xl .tabs{display:flex;gap:2px;padding:0 calc(var(--u)*.7);background:#F1F3F6;border-top:1px solid #D6DBE2;font-size:calc(var(--u)*.85);align-items:center}
+.xl .tabs span{padding:.3em 1em;color:var(--text-2)}
+.xl .tabs span.on{background:#fff;color:var(--mod);font-weight:700;border-bottom:2px solid var(--mod)}
+.xl.sm{font-size:calc(var(--u)*1)}
+.xl.xs{font-size:calc(var(--u)*.9)}
+.mk{display:inline-flex;flex:none;width:calc(var(--u)*1.7);height:calc(var(--u)*1.7);border-radius:50%;background:var(--gold);color:var(--ink);font-weight:800;font-size:calc(var(--u)*.9);align-items:center;justify-content:center;font-style:normal;font-family:var(--font-sans)}
+.fcode{font-family:var(--font-mono);background:var(--mod-soft);color:var(--mod-deep);padding:.08em .45em;border-radius:.3em;font-size:.9em;white-space:nowrap}
+.cap{font-size:calc(var(--u)*1);color:var(--text-3);margin-top:calc(var(--u)*.6)}
+</style>
+</head>
+<body class="m3" data-brand="Digital Productivity Essentials · <b>Module 3</b> · 3.1 Application Navigation and Cell Manipulation">
+<div class="deck">
+
+  <!-- 1 · Cover -->
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 3 · Electronic Spreadsheet Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Application Navigation and <span style="color:var(--gold)">Cell Manipulation</span></h1>
+      <p class="lede" data-anim="fade-up">Find your way around a spreadsheet, put data in the right cells, and reshape the sheet without fear.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 3.1</span><span class="tag ghost">~45 minutes</span><span class="tag ghost">BIR Misamis Oriental</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m3/3-1-cover.jpg" alt="Hands typing on a laptop showing a spreadsheet"><div class="cv-num">3.1</div></div>
+    <div class="notes">
+      <p><b>Welcome to Module 3.</b> Maayong hapon, everyone! For the next six hours we live inside a spreadsheet.</p>
+      <p>This first topic is all about getting comfortable: knowing what you're looking at, moving around quickly, and typing data into the right place. Please open Excel, Google Sheets or LibreOffice Calc now and keep it beside Zoom. Everything I show, you'll do on your own screen right after.</p>
+    </div>
+  </section>
+
+  <!-- 2 · Warm-up -->
+  <section class="slide" data-title="Warm-up">
+    <div class="split">
+      <div>
+        <div class="row" style="justify-content:space-between"><p class="kicker">Warm-up · type in the chat</p><span class="tag gold">1 minute</span></div>
+        <h2 class="h2">How do you keep track of things today?</h2>
+        <div class="grid g2 mt-l anim-stagger-list">
+          <div class="card"><h4>📒 A</h4><p>A logbook or notebook with ruled columns</p></div>
+          <div class="card"><h4>🧮 B</h4><p>Calculator and scratch paper, then I type the total</p></div>
+          <div class="card"><h4>📊 C</h4><p>Excel or Google Sheets already</p></div>
+          <div class="card"><h4>🧠 D</h4><p>Mostly in my head (and I hope I remember)</p></div>
+        </div>
+        <div class="callout gold mt-m"><b>Think of one list you keep:</b> supplies, attendance, documents received, the household budget, or a sari-sari store's stock.</div>
+      </div>
+      <div class="media"><img src="images/m3/3-1-calculator.jpg" alt="Desk calculator on top of a receipt book and papers"></div>
+    </div>
+    <div class="notes">
+      <p>Ask them to type <b>A, B, C or D</b> in the chat. Read a few answers aloud and thank people who admit "D". Everyone has been there.</p>
+      <p>Then ask two or three people: "What list did you think of?" Write their examples down. We'll come back to them, because <b>every one of those lists fits in a spreadsheet</b>. Option B is the one we want to retire: the spreadsheet will do the calculator part for us.</p>
+    </div>
+  </section>
+
+  <!-- 3 · What it's for -->
+  <section class="slide" data-title="What a spreadsheet is for">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">A spreadsheet is a <em class="mod">columnar notebook</em> that does the math for you.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>Organize</b> lists into rows and columns: one record per row.</li>
+          <li><b>Calculate</b> totals, averages and differences, and redo them instantly when a number changes.</li>
+          <li><b>Show</b> the result as a neat table or a chart for your report.</li>
+        </ul>
+        <div class="chips mt-m"><span class="chip">Microsoft Excel</span><span class="chip">Google Sheets</span><span class="chip">LibreOffice Calc</span></div>
+      </div>
+      <div class="media"><img src="images/m3/3-1-ledger.jpg" alt="An old handwritten ledger book with ruled columns"></div>
+    </div>
+    <div class="notes">
+      <p>Show the old ledger: rows, columns, a total at the bottom. Our parents and the older offices did exactly this by hand. A spreadsheet is the <b>same ruled notebook</b>, except it adds for you and never gets tired.</p>
+      <p>Three apps do this job. Most of our office PCs have <b>Excel</b>; <b>Google Sheets</b> runs free in the browser; <b>LibreOffice Calc</b> is free to install. The skills transfer: what you learn in one works in the others, with small differences I'll point out.</p>
+    </div>
+  </section>
+
+  <!-- 4 · Objectives -->
+  <section class="slide" data-title="Objectives">
+    <div class="split rev">
+      <div class="media"><img src="images/m3/3-1-hands-on.jpg" alt="Office worker at a laptop by the window"></div>
+      <div>
+        <p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2>
+        <ol class="steps mt-m anim-stagger-list">
+          <li><b>Find:</b> name the parts: workbook, worksheet, cell, column, row, Name Box, formula bar.</li>
+          <li><b>Move:</b> jump around with the keyboard and select any range you need.</li>
+          <li><b>Build:</b> type, edit, AutoFill, copy, insert rows, resize columns, and undo.</li>
+        </ol>
+        <div class="callout tip mt-m"><b>Today's build:</b> the <b>Office Supplies Inventory</b>, our dataset for all of Module 3 and for Lab 3.</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Three goals: <b>find</b>, <b>move</b>, <b>build</b>. Nothing fancy yet. No formulas until Topic 3.3.</p>
+      <p>Tell them the inventory they type today is not throwaway work. We will format it in 3.2, add formulas in 3.3 and functions in 3.4, and chart it later. By the end of the module it becomes their <b>Lab 3 graded output</b>. So save it carefully.</p>
+    </div>
+  </section>
+
+  <!-- 5 · Workbook / worksheet / cell -->
+  <section class="slide" data-title="Workbook, worksheet, cell">
+    <div class="slide-head">
+      <div><p class="kicker">Three words to know</p><h2 class="h2">Workbook, worksheet, cell</h2></div>
+      <span class="tag">Like a binder of columnar pads</span>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">📁</span><h4>Workbook</h4><p>The whole <b>file</b>, like a binder. Excel saves it as <span class="fcode">.xlsx</span>, LibreOffice as <span class="fcode">.ods</span>; a Google Sheets file lives in Google Drive.</p></div>
+      <div class="card top"><span class="ic-badge">📄</span><h4>Worksheet</h4><p>One <b>page</b> inside the binder, shown as a tab at the bottom: <i>Sheet1</i>, <i>Sheet2</i>. A workbook can hold many.</p></div>
+      <div class="card top"><span class="ic-badge">▢</span><h4>Cell</h4><p>One <b>box</b> on the page, where a column meets a row. Each cell holds one piece of data: a word, a number or a date.</p></div>
+    </div>
+    <div class="callout mt-l"><b>Example:</b> the workbook <i>Supplies 2026.xlsx</i> could have one worksheet per month: <i>Oct</i>, <i>Nov</i>, <i>Dec</i>. Each worksheet has thousands of cells.</div>
+    <div class="notes">
+      <p>Use the <b>binder</b> picture. The workbook is the binder you save and email. Each worksheet is a page, a tab at the bottom. Each cell is one box on the page.</p>
+      <p>Ask: "If I email you <i>Supplies 2026.xlsx</i>, did I send a workbook or a worksheet?" A workbook, with all its tabs. This matters later when someone says "check the November sheet": they mean the tab, not a different file.</p>
+    </div>
+  </section>
+
+  <!-- 6 · Anatomy -->
+  <section class="slide" data-title="The spreadsheet window">
+    <div class="slide-head">
+      <div><p class="kicker">Tour of the window</p><h2 class="h2">What you're looking at</h2></div>
+      <span class="tag">Excel shown · Sheets and Calc look similar</span>
+    </div>
+    <div class="split" style="grid-template-columns:1.35fr .65fr">
+      <div class="xl sm">
+        <div class="rib"><i class="mk">1</i><span>File</span><span class="on">Home</span><span>Insert</span><span>Page Layout</span><span>Formulas</span><span>Data</span><span>View</span></div>
+        <div class="tools"><b>Paste</b><b>𝐁</b><b><i>I</i></b><b>Borders</b><b>Fill</b><b>Merge</b><b>₱ Number</b><b>Σ AutoSum</b></div>
+        <div class="fbar"><i class="mk">2</i><span class="nb">A6</span><span class="fx">fx</span><i class="mk">3</i><span class="fv">Fastener</span></div>
+        <table>
+          <colgroup><col class="rn"><col style="width:30%"><col><col><col></colgroup>
+          <tr><th><i class="mk" style="width:calc(var(--u)*1.4);height:calc(var(--u)*1.4)">4</i></th><th class="on">A</th><th>B</th><th>C</th><th>D</th></tr>
+          <tr class="hd"><th>1</th><td>Item</td><td>Unit</td><td>Qty</td><td>Unit Cost</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td></tr>
+          <tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td></tr>
+          <tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td></tr>
+          <tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td></tr>
+          <tr><th class="on">6</th><td class="sel">Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td></tr>
+          <tr><th>7</th><td></td><td></td><td></td><td></td></tr>
+        </table>
+        <div class="tabs"><i class="mk" style="width:calc(var(--u)*1.4);height:calc(var(--u)*1.4)">6</i><span class="on">Inventory</span><span>Sheet2</span><span>＋</span></div>
+      </div>
+      <ol class="steps" style="font-size:calc(var(--u)*1.3)">
+        <li><b>Ribbon / menus:</b> every command, grouped in tabs.</li>
+        <li><b>Name Box:</b> the address of the active cell.</li>
+        <li><b>Formula bar:</b> what is really inside the cell.</li>
+        <li><b>Column letters and row numbers.</b></li>
+        <li><b>Active cell:</b> the one with the thick border (A6).</li>
+        <li><b>Sheet tabs:</b> the worksheets in this workbook.</li>
+      </ol>
+    </div>
+    <div class="notes">
+      <p>Share your own Excel window and point to each numbered part as you say it. <b>Ribbon</b> on top; in Google Sheets it's a menu bar plus a toolbar, same idea.</p>
+      <p>Spend time on <b>2 and 3</b>: the Name Box tells you <i>where</i> you are; the formula bar tells you <i>what's really in</i> the cell. Ask everyone to click any cell and read the Name Box aloud in the chat. Number 5 has no marker on purpose: it's the cell with the thick border.</p>
+    </div>
+  </section>
+
+  <!-- 7 · Columns, rows, address -->
+  <section class="slide" data-title="Cell addresses">
+    <div class="split">
+      <div>
+        <p class="kicker">Columns · rows · addresses</p>
+        <h2 class="h2">Every cell has an address, like a <em class="mod">classroom seat plan</em>.</h2>
+        <ul class="ticks mt-l">
+          <li><b>Columns</b> go down and use letters: A, B, C … Z, AA, AB…</li>
+          <li><b>Rows</b> go across and use numbers: 1, 2, 3…</li>
+          <li><b>Address</b> = column letter + row number: <span class="fcode">C4</span>, never 4C.</li>
+        </ul>
+        <div class="callout gold mt-m"><b>Chat quiz:</b> what is the address of the cell that says <i>Fastener</i>?
+          <button class="reveal-btn" data-target="ans-addr" style="margin-left:.6em">Show</button>
+          <span class="answer" id="ans-addr"> <b>A6</b>: column A, row 6.</span></div>
+      </div>
+      <div class="xl">
+        <div class="fbar"><span class="nb">C4</span><span class="fx">fx</span><span class="fv">10</span></div>
+        <table>
+          <colgroup><col class="rn"><col style="width:36%"><col><col><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th class="on">C</th><th>D</th></tr>
+          <tr class="hd"><th>1</th><td>Item</td><td>Unit</td><td class="rng">Qty</td><td>Unit Cost</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n rng">25</td><td class="n">245.00</td></tr>
+          <tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n rng">30</td><td class="n">265.00</td></tr>
+          <tr><th class="on">4</th><td class="rng">Ballpen, black</td><td class="rng">box of 12</td><td class="n sel">10</td><td class="n rng">96.00</td></tr>
+          <tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n rng">4</td><td class="n">520.00</td></tr>
+          <tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n rng">6</td><td class="n">85.00</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Seat plan analogy: the teacher says "column C, row 4" and everyone knows which child. Same here: <b>C4</b>. Letter first, then number.</p>
+      <p>Point out the shaded column C and row 4 crossing at the thick-bordered cell, and the Name Box saying C4. Excel has over a million rows and 16,384 columns (up to XFD), so you will never run out.</p>
+      <p>Run the chat quiz, then click <b>Show</b>: A6.</p>
+    </div>
+  </section>
+
+  <!-- 8 · Name Box and formula bar -->
+  <section class="slide" data-title="Name Box and formula bar">
+    <div class="slide-head">
+      <div><p class="kicker">Two small boxes, big help</p><h2 class="h2">The Name Box and the formula bar</h2></div>
+    </div>
+    <div class="grid g2">
+      <div class="card top"><span class="ic-badge">📍</span><h4>Name Box · "Where am I?"</h4>
+        <p>Shows the address of the active cell. You can also <b>type an address</b> in it and press <kbd>Enter</kbd> to jump there.</p>
+        <div class="xl xs mt-m"><div class="fbar"><span class="nb" style="border-color:var(--mod);color:var(--mod)">F9 ↵</span><span class="fx">fx</span><span class="fv"></span></div></div>
+        <p class="cap">Type F9, press Enter: you land on cell F9.</p>
+      </div>
+      <div class="card top"><span class="ic-badge">🔍</span><h4>Formula bar · "What's really inside?"</h4>
+        <p>Shows the <b>true content</b> of the cell. The cell may show a result while the bar shows the formula behind it.</p>
+        <div class="xl xs mt-m"><div class="fbar"><span class="nb">E2</span><span class="fx">fx</span><span class="fv">=C2*D2</span></div>
+          <table><colgroup><col class="rn"><col><col></colgroup><tr><th></th><th>D</th><th class="on">E</th></tr><tr><th>2</th><td class="n">245.00</td><td class="n sel">6,125.00</td></tr></table></div>
+        <p class="cap">The cell shows 6,125.00; the bar shows the formula. (Preview of Topic 3.3.)</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Demo both live. Click the Name Box, type <b>F9</b>, press Enter: the cursor jumps. Handy in a long sheet.</p>
+      <p>Then the formula bar. Show a cell with a formula: the cell shows the answer, the bar shows the recipe. This is exactly how the Lab 3 checker will look at your work: <b>click the cell, read the formula bar</b>. If it shows a typed number instead of a formula, that's a problem. We'll get there in 3.3.</p>
+    </div>
+  </section>
+
+  <!-- 9 · Moving around -->
+  <section class="slide" data-title="Moving around">
+    <div class="slide-head">
+      <div><p class="kicker">Keyboard first</p><h2 class="h2">Moving around without the mouse</h2></div>
+      <span class="tag">Mac: use Cmd where it says Ctrl</span>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div class="keys">
+        <span><kbd>←</kbd> <kbd>↑</kbd> <kbd>→</kbd> <kbd>↓</kbd></span><span>One cell at a time</span>
+        <span><kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd></span><span>Right / left (great for typing a row)</span>
+        <span><kbd>Enter</kbd> / <kbd>Shift</kbd>+<kbd>Enter</kbd></span><span>Down / up</span>
+        <span><kbd>Ctrl</kbd>+<kbd>Home</kbd></span><span>Back to cell A1</span>
+        <span><kbd>Ctrl</kbd>+<kbd>End</kbd></span><span>Last used cell of the sheet</span>
+        <span><kbd>Ctrl</kbd>+<kbd>→</kbd> / <kbd>↓</kbd></span><span>Jump to the edge of your data</span>
+        <span><kbd>Page Down</kbd> / <kbd>Page Up</kbd></span><span>One screen down / up</span>
+      </div>
+      <div>
+        <div class="callout tip"><b>Typing tip:</b> type a cell, press <kbd>Tab</kbd>, type the next… then press <kbd>Enter</kbd> at the end of the row. Excel returns to the column where you started, one row down.</div>
+        <div class="callout mt-m"><b>Long list?</b> In a 500-row attendance sheet, <kbd>Ctrl</kbd>+<kbd>↓</kbd> takes you to the last entry in one press instead of 50 scrolls.</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Demo each key on your screen while they copy you. Make it a little drill: "Everyone press <b>Ctrl+Home</b>. Where are you? A1. Now <b>Ctrl+Down Arrow</b>."</p>
+      <p>The <b>Tab-then-Enter</b> trick is the one encoders love: type across a row with Tab, press Enter, and you're back at the start of the next row. It works in Excel; Google Sheets and Calc behave very similarly. Mac users: Cmd for Ctrl, though some Mac keyboards need Fn for Home and End.</p>
+    </div>
+  </section>
+
+  <!-- 10 · Selecting ranges -->
+  <section class="slide" data-title="Selecting ranges">
+    <div class="split rev">
+      <div class="xl">
+        <div class="fbar"><span class="nb">B2</span><span class="fx">fx</span><span class="fv">ream</span></div>
+        <table>
+          <colgroup><col class="rn"><col style="width:34%"><col><col><col></colgroup>
+          <tr><th></th><th>A</th><th class="on">B</th><th class="on">C</th><th class="on">D</th></tr>
+          <tr class="hd"><th>1</th><td>Item</td><td>Unit</td><td>Qty</td><td>Unit Cost</td></tr>
+          <tr><th class="on">2</th><td>Bond paper, A4</td><td class="sel">ream</td><td class="n rng">25</td><td class="n rng">245.00</td></tr>
+          <tr><th class="on">3</th><td>Bond paper, long</td><td class="rng">ream</td><td class="n rng">30</td><td class="n rng">265.00</td></tr>
+          <tr><th class="on">4</th><td>Ballpen, black</td><td class="rng">box of 12</td><td class="n rng">10</td><td class="n rng">96.00</td></tr>
+          <tr><th class="on">5</th><td>Folder, long</td><td class="rng">pack of 100</td><td class="n rng">4</td><td class="n rng">520.00</td></tr>
+          <tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td></tr>
+        </table>
+        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">Selected range: <b>B2:D5</b>, read "B2 to D5" (12 cells)</p>
+      </div>
+      <div>
+        <p class="kicker">Selecting</p>
+        <h2 class="h2">A <em class="mod">range</em> is a block of cells.</h2>
+        <ul class="ticks mt-m" style="font-size:calc(var(--u)*1.4)">
+          <li><b>Click and drag</b> from the first cell to the last.</li>
+          <li><b>Click</b> the first cell, <b>Shift+click</b> the last.</li>
+          <li><kbd>Shift</kbd>+arrows grows the selection; <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>↓</kbd> selects to the end of the data.</li>
+          <li>Click a <b>column letter</b> or <b>row number</b> to select the whole column or row. <kbd>Ctrl</kbd>+<kbd>A</kbd> selects all.</li>
+          <li><kbd>Ctrl</kbd>+click adds a separate block.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>A range is written <b>first cell, colon, last cell</b>: B2:D5. The colon means "to". You'll type ranges like this in every function in 3.4, so get used to reading them now.</p>
+      <p>Have everyone select B2:D5 three ways: drag, Shift+click, and Shift+arrows. Then click the letter C to select the whole column. Ask: "How many cells are in B2:D5?" Three columns times four rows: <b>12</b>.</p>
+    </div>
+  </section>
+
+  <!-- 11 · Enter, edit, clear -->
+  <section class="slide" data-title="Enter, edit, clear">
+    <div class="slide-head">
+      <div><p class="kicker">Cell manipulation</p><h2 class="h2">Enter, edit and clear data</h2></div>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">⌨️</span><h4>Enter</h4><p>Click a cell, type, then press <kbd>Enter</kbd> or <kbd>Tab</kbd>. Typing into a filled cell <b>replaces</b> everything in it.</p><p class="mt-s"><kbd>Esc</kbd> cancels before you press Enter.</p></div>
+      <div class="card top"><span class="ic-badge">✏️</span><h4>Edit</h4><p>To fix part of a cell, press <kbd>F2</kbd> (or double-click the cell, or click in the formula bar). Now the arrow keys move inside the text.</p></div>
+      <div class="card top"><span class="ic-badge">🧽</span><h4>Clear</h4><p><kbd>Delete</kbd> clears the <b>contents</b> but keeps the formatting. To wipe everything: Excel <i>Home › Clear › Clear All</i>.</p></div>
+    </div>
+    <div class="callout warn mt-l"><b>One cell, one value.</b> Type <span class="fcode">25</span> in Qty and <span class="fcode">ream</span> in Unit. Typing <span class="fcode">25 reams</span> in one cell turns the number into text, and the math breaks later.</div>
+    <div class="notes">
+      <p>Demo the classic mistake: click a cell with "Bond paper, A4" and just start typing "long". The whole cell is replaced. Undo, then do it properly with <b>F2</b>, move the cursor, and fix only the word.</p>
+      <p>On some laptops F2 needs the <b>Fn</b> key too; double-clicking the cell always works. Stress the warning box: numbers and units go in <b>separate columns</b>. We'll see in 3.2 why "25 reams" breaks every total.</p>
+    </div>
+  </section>
+
+  <!-- 12 · Try it: type the inventory -->
+  <section class="slide" data-title="Try it: type the inventory">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · hands-on</p><h2 class="h2">Type the Office Supplies Inventory</h2></div>
+      <button class="timer" data-min="10">10:00</button>
+    </div>
+    <div class="grid" style="grid-template-columns:.8fr 1.2fr;align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">Your steps</span></div>
+        <ol>
+          <li>New blank workbook. Click <b>A1</b>.</li>
+          <li>Type the 6 headers using <kbd>Tab</kbd>. Leave <b>E</b> for later: just type its header.</li>
+          <li>Type rows 2 to 9 exactly as shown.</li>
+          <li>Rename the tab <b>Inventory</b> (double-click it).</li>
+          <li>Save as <b>Lab3 Inventory - YourName</b>.</li>
+        </ol>
+      </div>
+      <div class="xl xs">
+        <table>
+          <colgroup><col class="rn"><col style="width:27%"><col style="width:18%"><col style="width:8%"><col style="width:13%"><col style="width:14%"><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
+          <tr class="hd"><th>1</th><td>Item</td><td>Unit</td><td>Qty</td><td>Unit Cost</td><td>Total Cost</td><td>Reorder Level</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245</td><td></td><td class="n">10</td></tr>
+          <tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265</td><td></td><td class="n">10</td></tr>
+          <tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96</td><td></td><td class="n">5</td></tr>
+          <tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520</td><td></td><td class="n">5</td></tr>
+          <tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85</td><td></td><td class="n">6</td></tr>
+          <tr><th>7</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32</td><td></td><td class="n">5</td></tr>
+          <tr><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350</td><td></td><td class="n">4</td></tr>
+          <tr><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410</td><td></td><td class="n">5</td></tr>
+        </table>
+        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">Column E stays empty today. It gets a formula in Topic 3.3.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Start the <b>10-minute</b> timer. Paste the data into the Zoom chat as text so slow typists can copy item names, but ask them to <b>type the numbers</b> themselves for practice.</p>
+      <p>Type unit costs as plain numbers, <b>245</b> not "₱245"; we add the peso sign with formatting in 3.2. Walk around virtually: ask two volunteers to share their screens. Check that numbers sit on the <b>right</b> side of their cells. Left-aligned numbers mean something was typed as text.</p>
+    </div>
+  </section>
+
+  <!-- 13 · AutoFill -->
+  <section class="slide" data-title="AutoFill">
+    <div class="slide-head">
+      <div><p class="kicker">Let the sheet type for you</p><h2 class="h2">AutoFill: drag the fill handle</h2></div>
+      <span class="tag">Works in Excel, Sheets and Calc</span>
+    </div>
+    <div class="grid" style="grid-template-columns:1fr 1.1fr;align-items:center">
+      <div>
+        <ol class="steps">
+          <li>Type the start of a pattern: <span class="fcode">Jan</span>, or <span class="fcode">1</span> and <span class="fcode">2</span> in two cells.</li>
+          <li>Select it and find the <b>fill handle</b>: the small square at the bottom-right corner.</li>
+          <li>Drag it down or across. The sheet continues the series.</li>
+        </ol>
+        <div class="callout tip mt-m"><b>Shortcut:</b> double-click the fill handle to fill down as far as the column beside it has data.</div>
+      </div>
+      <div class="xl sm">
+        <table>
+          <colgroup><col class="rn"><col><col><col><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+          <tr class="hd"><th>1</th><td>Month</td><td>No.</td><td>Day</td><td>Week</td></tr>
+          <tr><th>2</th><td class="rng">Jan</td><td class="n rng">1</td><td class="rng">Mon</td><td class="rng">Week 1</td></tr>
+          <tr><th>3</th><td>Feb</td><td class="n rng">2</td><td>Tue</td><td>Week 2</td></tr>
+          <tr><th>4</th><td>Mar</td><td class="n">3</td><td>Wed</td><td>Week 3</td></tr>
+          <tr><th>5</th><td>Apr</td><td class="n">4</td><td>Thu</td><td>Week 4</td></tr>
+          <tr><th>6</th><td>May</td><td class="n">5</td><td>Fri</td><td>Week 5</td></tr>
+          <tr><th>7</th><td class="handle">Jun</td><td class="n handle">6</td><td class="handle">Sat</td><td class="handle">Week 6</td></tr>
+        </table>
+        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">Shaded = what you typed. The rest came from one drag each.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Demo on a new sheet: type <b>Jan</b>, drag the little square down: Feb, Mar, Apr. Type <b>Mon</b>: Tue, Wed. For numbers, type <b>1 and 2</b> in two cells, select both, then drag, so the sheet sees the step.</p>
+      <p>Office use: month headers for a monthly report, numbered rows for an attendance sheet. Home use: the 12 months of a budget. If a plain number only copies instead of counting, that's why: select two cells first.</p>
+    </div>
+  </section>
+
+  <!-- 14 · Copy, cut, paste -->
+  <section class="slide" data-title="Copy, cut, paste">
+    <div class="split">
+      <div>
+        <p class="kicker">Move data around</p>
+        <h2 class="h2">Copy, cut and paste</h2>
+        <div class="keys mt-l">
+          <span><kbd>Ctrl</kbd>+<kbd>C</kbd></span><span><b>Copy</b>: a moving dashed border appears ("marching ants").</span>
+          <span><kbd>Ctrl</kbd>+<kbd>X</kbd></span><span><b>Cut</b>: the data moves when you paste.</span>
+          <span><kbd>Ctrl</kbd>+<kbd>V</kbd></span><span><b>Paste</b> into the cell you click.</span>
+          <span><kbd>Ctrl</kbd>+<kbd>D</kbd></span><span><b>Fill down</b>: copies the top cell into the selected cells below.</span>
+          <span><kbd>Esc</kbd></span><span>Stops the marching ants when you're done.</span>
+        </div>
+        <div class="callout warn mt-m"><b>Careful:</b> pasting over cells that already have data replaces them without asking. If it goes wrong, press <kbd>Ctrl</kbd>+<kbd>Z</kbd>.</div>
+      </div>
+      <div class="xl">
+        <div class="fbar"><span class="nb">B8</span><span class="fx">fx</span><span class="fv">pack of 100</span></div>
+        <table>
+          <colgroup><col class="rn"><col style="width:42%"><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th></tr>
+          <tr><th>5</th><td>Folder, long</td><td class="ants">pack of 100</td></tr>
+          <tr><th>6</th><td>Fastener</td><td>box of 50</td></tr>
+          <tr><th>7</th><td>Staple wire #35</td><td>box</td></tr>
+          <tr><th>8</th><td>Printer ink, black</td><td>bottle</td></tr>
+          <tr><th>9</th><td>Envelope, brown long</td><td class="sel">pack of 100</td></tr>
+        </table>
+        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">Copied B5 (dashed), pasted into B9 (thick border).</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Same shortcuts as in Word, with one difference: the <b>marching ants</b>. After Ctrl+C the source keeps blinking until you press Esc, and you can paste many times.</p>
+      <p>Demo copying "pack of 100" from B5 to B9 so nobody retypes it. Then show <b>Ctrl+D</b>: select a cell and the empty cells below it, press Ctrl+D, done. Remind them pasting <b>overwrites without warning</b>, so Ctrl+Z is always nearby.</p>
+    </div>
+  </section>
+
+  <!-- 15 · Rows, columns, sizes -->
+  <section class="slide" data-title="Insert, delete, resize">
+    <div class="slide-head">
+      <div><p class="kicker">Reshape the sheet</p><h2 class="h2">Insert, delete and resize rows and columns</h2></div>
+    </div>
+    <div class="grid g2">
+      <div class="card top"><span class="ic-badge">➕</span><h4>Insert or delete</h4>
+        <ol class="steps" style="font-size:calc(var(--u)*1.3)">
+          <li><b>Right-click</b> the row number or column letter.</li>
+          <li>Choose <b>Insert</b> (Sheets: <i>Insert 1 row above</i>) or <b>Delete</b>.</li>
+          <li>The rows below move down or up to make room.</li>
+        </ol>
+        <p class="mt-s">Use this to add a forgotten item, like <i>Correction tape</i>, in the middle of the list.</p>
+      </div>
+      <div class="card top"><span class="ic-badge">↔️</span><h4>Column width and row height</h4>
+        <ol class="steps" style="font-size:calc(var(--u)*1.3)">
+          <li><b>Drag</b> the line between two column letters (or row numbers).</li>
+          <li><b>Double-click</b> that line to AutoFit to the longest entry.</li>
+          <li>Seeing <span class="fcode">#####</span>? The column is too narrow for the number. Widen it.</li>
+        </ol>
+        <p class="mt-s">Sheets: right-click the column › <i>Resize column</i> › <i>Fit to data</i>.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Demo: right-click row 5, Insert. A blank row appears and Folder moves to row 6. Type "Correction tape", then <b>Ctrl+Z</b> twice to put things back, because our dataset must stay exactly 8 items.</p>
+      <p>Then make column A too narrow on purpose and double-click the border to AutoFit. Shrink the Unit Cost column until <b>#####</b> appears. That scares people, but it only means "I need more room". The number is still there.</p>
+    </div>
+  </section>
+
+  <!-- 16 · Myth / fact -->
+  <section class="slide" data-title="Myth or fact">
+    <div class="slide-head">
+      <div><p class="kicker">Myth or fact? · click each card</p><h2 class="h2">Three things beginners worry about</h2></div>
+      <span class="tag gold">Vote in the chat first</span>
+    </div>
+    <div class="grid g3" style="min-height:calc(var(--u)*17)">
+      <div class="flip"><div class="in">
+        <div class="fr"><span class="tag coral">Myth?</span><h4 class="mt-s">"<span class="fcode">#####</span> means my data is broken."</h4><span class="hint">click to flip</span></div>
+        <div class="bk"><h4>Myth.</h4><p>The column is just too narrow to show the number. Widen it and the value is still there.</p><span class="hint">click to flip</span></div>
+      </div></div>
+      <div class="flip"><div class="in">
+        <div class="fr"><span class="tag coral">Myth?</span><h4 class="mt-s">"Pressing Delete removes the cell's colour and borders too."</h4><span class="hint">click to flip</span></div>
+        <div class="bk"><h4>Myth.</h4><p>Delete clears the contents only. Formatting stays until you use <i>Clear All</i> (Excel) or <i>Clear formatting</i>.</p><span class="hint">click to flip</span></div>
+      </div></div>
+      <div class="flip"><div class="in">
+        <div class="fr"><span class="tag green">Fact?</span><h4 class="mt-s">"Dragging <i>Jan</i> fills Feb, Mar, Apr by itself."</h4><span class="hint">click to flip</span></div>
+        <div class="bk"><h4>Fact.</h4><p>AutoFill knows months and days. For numbers, give it two cells (1, 2) so it sees the pattern.</p><span class="hint">click to flip</span></div>
+      </div></div>
+    </div>
+    <div class="callout tip mt-l"><b>Your safety net:</b> <kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes, <kbd>Ctrl</kbd>+<kbd>Y</kbd> redoes, and <kbd>Ctrl</kbd>+<kbd>S</kbd> saves. Google Sheets saves by itself and keeps a <i>Version history</i>.</div>
+    <div class="notes">
+      <p>Read each statement and have them vote <b>M</b> or <b>F</b> in the chat before you click to flip.</p>
+      <p>Close with the safety net. <b>Ctrl+Z</b> is the most useful key in this whole module: experiment freely, then undo. And with brownouts in mind, <b>Ctrl+S</b> often in Excel and Calc. In Google Sheets, File › Version history lets you go back to an older copy.</p>
+    </div>
+  </section>
+
+  <!-- 17 · Office / home -->
+  <section class="slide" data-title="Office and home">
+    <div class="slide-head">
+      <div><p class="kicker">Where you'll use this</p><h2 class="h2">One skill, many lists</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li><b>Supplies inventory</b>: items, units, quantity, cost, reorder level</li>
+          <li><b>Attendance or training log</b>: AutoFill the dates and row numbers</li>
+          <li><b>Documents received log</b>: date, sender, subject, action taken</li>
+          <li><b>Daily tally</b> of walk-in clients per window</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li><b>Monthly household budget</b>: rice, CEPALCO bill, water, load</li>
+          <li><b>Kids' school expenses</b>: projects, uniforms, field trip fees</li>
+          <li><b>Sari-sari store stock list</b>: what to buy at the market this week</li>
+          <li><b>Fiesta or church event</b> contributions list</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Go back to the lists people named in the warm-up. Read two of them aloud and place them in this picture.</p>
+      <p>Ask: "Which list from the home side will you build this weekend?" The household budget is the favourite, and we'll use it in Topics 3.2 to 3.4 as the home version of every exercise. Same skills, same keys, different data.</p>
+    </div>
+  </section>
+
+  <!-- 18 · Video -->
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Find, move and build in a spreadsheet</h2>
+        <p class="lede mt-m">A binder, a seat plan and the marching ants: learn the parts of the window, move with the keyboard, and <b>type, AutoFill, copy and reshape</b> the Office Supplies Inventory.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> note one shortcut or trick you didn't know before. We'll collect them in the chat after the video.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/3.1/poster.jpg" alt="Video: Application Navigation and Cell Manipulation"><div class="play"></div><span class="vlen">4:54</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Introduce the video in one or two sentences, then read the <b>While watching</b> task aloud so everyone knows what to look for.</p>
+      <p>Press <b>→</b> to open the video full screen. In Zoom or Meet, share this tab with <b>computer sound</b> turned on.</p>
+    </div>
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/3.1/index.html" title="Video: Application Navigation and Cell Manipulation" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="notes">
+      <p><b>Space</b> or <b>K</b> plays and pauses (or click the video). <b>C</b> turns captions on or off; the speed button offers 1.25× and 0.85×. The arrows still move between slides, and the video pauses when you leave this slide.</p>
+      <p>Length 4:54. Pause anywhere to take a question; captions stay on screen for anyone without sound.</p>
+      <p>After the video, go back to the <b>While watching</b> task: ask two or three people for their answers.</p>
+    </div>
+  </section>
+  <!-- YouTube slide replaced by our own video (2026-11-01):
+  <section class="slide" data-title="Video">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 4 minutes</p>
+        <h2 class="h2">Cell basics, in one short video</h2>
+        <p class="lede mt-m">A clear recap of selecting cells and ranges, entering data, copy and paste, and the fill handle.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> note one shortcut or trick you didn't know before, and type it in the chat after.</div>
+      </div>
+      <div class="vmeta">
+        <div class="video" data-yt="6mSKsaquTAM"><img src="images/m3/3-1-video.jpg" alt="Video thumbnail: Excel Cell Basics"><div class="play"></div><span class="vlen">4:28</span></div>
+        <p class="tiny">YouTube · "Excel: Cell Basics" · LearnFree (GCFGlobal) · click to open</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Click the thumbnail; it opens YouTube in a new tab. Share that tab with <b>computer audio</b> on.</p>
+      <p>The video uses Excel, but every step also works in Google Sheets and Calc. Afterward, collect the "new trick" answers from the chat. Common ones: the fill handle and dragging to move cells. Use their answers to fix any confusion before the quick check.</p>
+    </div>
+  </section>
+  -->
+
+  <!-- 19 · Quick check -->
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">You're in cell F9 at the bottom of the inventory. What takes you straight to A1?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div><kbd>Home</kbd><div class="why">Close. Home goes to column A of the same row: A9, not A1.</div></div></div>
+      <div class="opt" data-correct><span class="l">B</span><div><kbd>Ctrl</kbd>+<kbd>Home</kbd><div class="why">Yes. Ctrl+Home always returns to A1. (You can also type A1 in the Name Box.)</div></div></div>
+      <div class="opt"><span class="l">C</span><div><kbd>Ctrl</kbd>+<kbd>End</kbd><div class="why">No. That jumps to the last used cell, the opposite corner.</div></div></div>
+      <div class="opt"><span class="l">D</span><div><kbd>Esc</kbd><div class="why">No. Esc cancels typing or the marching ants; it doesn't move you.</div></div></div>
+    </div>
+    <div class="notes">
+      <p>Let them answer in the chat first, then click the options. <b>B, Ctrl+Home.</b></p>
+      <p>Option A catches many people: plain Home only goes to the start of the row. Mention the Name Box trick again: type A1 and press Enter. Two ways to the same place, pick the one you'll remember.</p>
+    </div>
+  </section>
+
+  <!-- 20 · Recap -->
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 3.1</p>
+    <h2 class="h2">You can find, move and build in a spreadsheet.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Find</h4><p>Workbook › worksheet › cell. The Name Box says where; the formula bar says what.</p></div>
+      <div class="card dark"><h4>Move and select</h4><p>Tab, Enter, Ctrl+Home, Ctrl+arrows. Ranges are written like B2:D5.</p></div>
+      <div class="card dark"><h4>Build</h4><p>Type, F2 to edit, AutoFill, copy, insert, AutoFit, and Ctrl+Z when in doubt.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">3.2 Formatting Worksheets and Data Types</b>: turning your plain inventory into a clean, readable table.</p>
+    <div class="notes">
+      <p>Summarize: <b>find, move, build</b>. Everyone should now have the inventory typed and saved with the tab named Inventory.</p>
+      <p>Ask anyone who didn't finish to raise a hand reaction; give them two minutes while others stretch. Bridge to 3.2: "Our table works, but it looks plain, and the costs don't show the peso sign yet. Next, we make it look professional and make sure every value is the right type."</p>
+    </div>
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

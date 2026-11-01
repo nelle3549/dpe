@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.5 Cell Referencing Basics · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* Module 3 helpers (3.5-3.8): drawn spreadsheet grid, formula bar, sheet tabs, SVG charts, AI chat */
+.xlwin .body{padding:0}
+.fbar{display:flex;align-items:stretch;border-bottom:1px solid var(--border-strong);font-size:calc(var(--u)*1.1);background:#fff}
+.fbar .nb{min-width:calc(var(--u)*5.5);padding:.3em .6em;border-right:1px solid var(--border-strong);font-family:var(--font-mono);color:var(--text-2)}
+.fbar .fx{padding:.3em .7em;border-right:1px solid var(--border);color:var(--text-3);font-style:italic;font-weight:700}
+.fbar .f{padding:.3em .8em;font-family:var(--font-mono);color:var(--text-1);font-weight:600}
+.xl{border-collapse:collapse;width:100%;font-size:calc(var(--u)*1.05);background:#fff}
+.xl th{background:#EEF1F5;color:var(--text-3);font-weight:600;font-size:.86em;border:1px solid #D9DEE5;padding:.12em .4em;text-align:center}
+.xl th.rh{width:calc(var(--u)*2.4)}
+.xl th.cs{background:color-mix(in srgb,var(--mod) 22%,#fff);color:var(--mod-deep)}
+.xl td{border:1px solid #E3E7EC;padding:.17em .55em;color:var(--text-1);white-space:nowrap;line-height:1.35}
+.xl td.n{text-align:right;font-family:var(--font-mono);font-size:.95em}
+.xl td.h{font-weight:700;background:var(--mod-soft);color:var(--mod-deep)}
+.xl td.f{font-family:var(--font-mono);font-size:.92em;color:var(--mod);font-weight:600}
+.xl td.s{outline:calc(var(--u)*.22) solid var(--mod);outline-offset:calc(var(--u)*-.11)}
+.xl td.b{background:var(--coral-soft);color:var(--coral);font-weight:700}
+.xl td.g{background:var(--green-soft);color:var(--green);font-weight:700}
+.xl td.o{background:var(--gold-soft);font-weight:700}
+.xl td.mu{color:var(--text-3)}
+.xl td.r{background:color-mix(in srgb,var(--mod) 13%,#fff)}
+.xl td.k{font-weight:700}
+.xl tr.tot td{border-top:calc(var(--u)*.18) solid var(--mod-deep)}
+.xl tr.frz td,.xl tr.frz th{border-bottom:calc(var(--u)*.32) solid #8E9BB0}
+.xl tr.flt th{color:#1366D6;font-weight:800}
+.xl tr.gap td,.xl tr.gap th{padding:0;height:calc(var(--u)*.5);background:#F7F9FC;border-color:#F7F9FC}
+.xl tr.hid td{background:repeating-linear-gradient(45deg,#f4f6f9 0 6px,#fff 6px 12px);color:var(--text-3)}
+.stabs{display:flex;gap:2px;align-items:flex-start;background:#EEF1F5;border-top:1px solid var(--border-strong);padding:0 calc(var(--u)*.8) calc(var(--u)*.3);font-size:calc(var(--u)*1)}
+.stabs span{padding:.3em 1.1em;background:#E2E6EC;color:var(--text-2);border-radius:0 0 .45em .45em;font-weight:600}
+.stabs span.on{background:#fff;color:var(--text-1);box-shadow:inset 0 calc(var(--u)*-.25) 0 var(--mod)}
+.stabs span.plus{background:none;color:var(--text-3);font-weight:800}
+.stabs span.t1{box-shadow:inset 0 calc(var(--u)*-.3) 0 #1366D6}.stabs span.t2{box-shadow:inset 0 calc(var(--u)*-.3) 0 #16794A}
+.stabs span.t3{box-shadow:inset 0 calc(var(--u)*-.3) 0 #C2482B}.stabs span.t4{box-shadow:inset 0 calc(var(--u)*-.3) 0 #F4B400}
+.chartbox{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow);border:1px solid var(--border);padding:calc(var(--u)*1) calc(var(--u)*1.2)}
+.chartbox svg{width:100%;height:auto;display:block}
+.chartbox.flat{box-shadow:none}
+svg text{font-family:var(--font-sans)}
+.sv-t{font-weight:800;fill:#0B2545}.sv-l{fill:#3E4C63}.sv-m{fill:#7A879C}.sv-v{fill:#0B2545;font-weight:700}
+.sv-grid{stroke:#E3E7EC;stroke-width:1}.sv-ax{stroke:#7A879C;stroke-width:1.5}
+.k1{fill:var(--mod)}.k2{fill:#F4B400}.k3{fill:#1366D6}.k4{fill:#E5533D}.k5{fill:#13315C}.k6{fill:#8BC5A7}.k7{fill:#B9C3D1}.k8{fill:#6B7A90}.k9{fill:#E5533D}
+.anno{fill:none;stroke:#E5533D;stroke-width:3;stroke-dasharray:7 5}
+.menu{background:#fff;border:1px solid var(--border-strong);border-radius:calc(var(--u)*.6);box-shadow:var(--shadow-lg);padding:calc(var(--u)*.5) 0;font-size:calc(var(--u)*1.15)}
+.menu div{padding:.32em 1.2em;color:var(--text-1)}
+.menu div.on{background:var(--mod-soft);color:var(--mod);font-weight:700}
+.menu hr{border:0;border-top:1px solid var(--border);margin:.25em 0}
+.chat{display:flex;flex-direction:column;gap:calc(var(--u)*.9);font-size:calc(var(--u)*1.5)}
+.bub{border-radius:calc(var(--u)*1.2);padding:calc(var(--u)*.8) calc(var(--u)*1.2);line-height:1.45;max-width:92%}
+.bub.me{align-self:flex-end;background:var(--mod);color:#fff;border-bottom-right-radius:.2em}
+.bub.ai{align-self:flex-start;background:var(--surface-2);border:1px solid var(--border);color:var(--text-1);border-bottom-left-radius:.2em}
+.bub code,.code{font-family:var(--font-mono);font-weight:600;background:rgba(11,37,69,.07);padding:.05em .35em;border-radius:.3em;font-size:.95em}
+.bub.me code{background:rgba(255,255,255,.2)}
+.who{font-size:calc(var(--u)*.85);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.big-f{font-family:var(--font-mono);font-weight:700;font-size:calc(var(--u)*2.6);color:var(--mod-deep);letter-spacing:-.01em}
+.big-f .lk{color:var(--coral)}
+.tbl.compact td,.tbl.compact th{padding:calc(var(--u)*.5) calc(var(--u)*.9)}
+.tbl td.c,.tbl th.c{text-align:center}
+.flip .fr h4{color:var(--coral)}
+</style>
+</head>
+<body class="m3" data-brand="Digital Productivity Essentials · <b>Module 3</b> · 3.5 Cell Referencing Basics">
+<div class="deck">
+
+  <!-- 1 · Cover -->
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 3 · Electronic Spreadsheet Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Cell Referencing <span style="color:var(--gold)">Basics</span></h1>
+      <p class="lede" data-anim="fade-up">Why some formulas break when you copy them, and how one small <b>$</b> sign keeps them pointing at the right cell.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 3.5</span><span class="tag ghost">~35 minutes · hands-on</span><span class="tag ghost">BIR Misamis Oriental</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m3/3-5-cover.jpg" alt="Rows of red cinema seats"><div class="cv-num">3.5</div></div>
+    <div class="notes">
+      <p><b>Welcome back.</b> In 3.3 and 3.4 we wrote formulas like <b>=C2*D2</b> and <b>=SUM(E2:E9)</b>. Today we answer a question that confuses even long-time spreadsheet users: <i>"I copied my formula and now it shows zeros. Why?"</i></p>
+      <p>The answer is <b>cell referencing</b>: how a formula points to other cells. By the end you'll know relative, absolute and mixed references, and the one key, <b>F4</b>, that saves you from typing dollar signs. Keep your Lab 3 inventory file open.</p>
+    </div>
+  </section>
+
+  <!-- 2 · Warm-up -->
+  <section class="slide" data-title="Warm-up">
+    <div class="split">
+      <div>
+        <p class="kicker">Warm-up · type in the chat</p>
+        <h2 class="h2">Your cinema ticket says <span class="mod">Row F, Seat 12</span>.</h2>
+        <p class="lede mt-m">You step out to buy popcorn. When you come back, where do you sit?</p>
+        <div class="grid g2 mt-l anim-stagger-list">
+          <div class="card"><h4>A</h4><p>Still F12. It's printed on my ticket.</p></div>
+          <div class="card"><h4>B</h4><p>Wherever is one seat to the right of my friend.</p></div>
+          <div class="card"><h4>C</h4><p>Any free seat in Row F.</p></div>
+          <div class="card"><h4>D</h4><p>Any free seat in column 12.</p></div>
+        </div>
+      </div>
+      <div class="media"><img src="images/m3/3-5-tickets.jpg" alt="Hand holding two cinema tickets"></div>
+    </div>
+    <div class="notes">
+      <p>Ask everyone to type <b>A, B, C or D</b> in the chat. There's no wrong answer yet; we'll come back to all four.</p>
+      <p>Most will say <b>A</b>: a printed seat number is fixed. That's an <b>absolute</b> reference. But <b>B</b> is how we usually give directions, "sit beside your friend": that's a <b>relative</b> reference. <b>C and D</b> lock only the row or only the seat: those are <b>mixed</b> references. So all four answers are on today's menu.</p>
+    </div>
+  </section>
+
+  <!-- 3 · Objectives -->
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head"><div><p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2></div></div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Explain</span><h4>Relative references</h4><p>Predict what a formula becomes when you fill it down or across.</p></div>
+      <div class="card top"><span class="k">Apply</span><h4>Absolute references</h4><p>Lock a rate cell with <b>$B$12</b> and the <kbd>F4</kbd> key so every row uses it.</p></div>
+      <div class="card top"><span class="k">Use</span><h4>Mixed and sheet-wide references</h4><p>Point to any cell on the sheet, and lock only a row or a column when needed.</p></div>
+    </div>
+    <div class="callout tip mt-l"><b>Lab 3 link:</b> your graded inventory needs working formulas, not hard-typed values. Correct references are what make those formulas copy safely.</div>
+    <div class="notes">
+      <p>Three objectives, all practical. Read them quickly.</p>
+      <p>Point out the Lab 3 link: the graders will click your cells and read the <b>formula bar</b>. A formula that was copied wrongly shows the wrong cell address there, and the total will be off. Today protects your Lab 3 score. Ask: "Which of the three sounds new to you?"</p>
+    </div>
+  </section>
+
+  <!-- 4 · Cell address recap -->
+  <section class="slide" data-title="Every cell has an address">
+    <div class="split rev">
+      <div class="media"><img src="images/m3/3-5-chess.jpg" alt="Chessboard seen from above"></div>
+      <div>
+        <p class="kicker">Quick recap</p>
+        <h2 class="h2">Every cell has an address: <span class="mod">column letter + row number</span>.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>E2</b> is column E, row 2: the Total Cost of A4 bond paper.</li>
+          <li>Like a chessboard square, the address tells you exactly where to look.</li>
+          <li>A formula like <b>=C2*D2</b> does not store numbers. It stores <b>directions</b> to other cells.</li>
+          <li>Change the number in C2 and the answer updates by itself.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Chess players name squares the same way we name cells: a letter for the column, a number for the row.</p>
+      <p>The key idea for today: a formula holds <b>directions</b>, not values. <b>=C2*D2</b> means "take the quantity and the unit cost from these two cells." Demo: change C2 from 25 to 26 in your file and watch E2 update. Ask: "So what happens to the directions when I copy the formula to another row?" That's next.</p>
+    </div>
+  </section>
+
+  <!-- 5 · Cinema analogy -->
+  <section class="slide" data-title="The cinema analogy">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">References work like <em class="mod">cinema seats</em>.</h2>
+        <div class="grid g2 mt-l anim-stagger-list">
+          <div class="card top"><span class="ic-badge">👫</span><h4>Relative · <code class="code">C2</code></h4><p>"Sit one seat to the right of your friend." Move the friend, and your seat moves too.</p></div>
+          <div class="card top"><span class="ic-badge">🎟️</span><h4>Absolute · <code class="code">$C$2</code></h4><p>"Row F, Seat 12" printed on the ticket. Whoever holds it, the seat never changes.</p></div>
+        </div>
+        <div class="callout gold mt-m"><b>The $ sign is a lock,</b> not pesos or dollars. <b>$C</b> locks the column, <b>$2</b> locks the row.</div>
+      </div>
+      <div class="media"><img src="images/m3/3-5-cinema.jpg" alt="Rows of cinema seats"></div>
+    </div>
+    <div class="notes">
+      <p>Think of an SM Cinema. A <b>relative</b> reference is a direction from where you stand: "one seat to the right of your friend." An <b>absolute</b> reference is the seat printed on the ticket.</p>
+      <p>Stress the gold box. Many beginners think the dollar sign has to do with money. It doesn't. It's a <b>lock</b>. A dollar sign in front of the letter locks the column; in front of the number, it locks the row. Both means fully locked.</p>
+    </div>
+  </section>
+
+  <!-- 6 · Relative references -->
+  <section class="slide" data-title="Relative references">
+    <div class="split" style="grid-template-columns:1.25fr .75fr">
+      <div><div class="win xlwin">
+<div class="bar"><i></i><i></i><i></i><span>Inventory.xlsx · Formulas view</span></div>
+<div class="fbar"><span class="nb">E5</span><span class="fx">fx</span><span class="f">=C5*D5</span></div>
+<table class="xl"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th class="cs">E</th></tr>
+<tr><th>1</th><td class="h">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h">Total Cost (₱)</td></tr>
+<tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="f">=C2*D2</td></tr>
+<tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="f">=C3*D3</td></tr>
+<tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="f">=C4*D4</td></tr>
+<tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="f s">=C5*D5</td></tr>
+<tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="f">=C6*D6</td></tr>
+<tr><th>7</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="f">=C7*D7</td></tr>
+<tr><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="f">=C8*D8</td></tr>
+<tr><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="f">=C9*D9</td></tr>
+<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="f">=SUM(E2:E9)</td></tr>
+</table>
+</div></div>
+      <div>
+        <p class="kicker">Relative references · the default</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">Fill down, and the row numbers follow you.</h2>
+        <ul class="ticks mt-m">
+          <li>Type <b>=C2*D2</b> in E2.</li>
+          <li>Drag the <b>fill handle</b> (the small square at the cell's corner) down to E9, or double-click it.</li>
+          <li>E5 becomes <b>=C5*D5</b>. Each row uses its own Qty and Unit Cost. That's exactly what we want here.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>This grid is in <b>Formulas view</b>: press <kbd>Ctrl</kbd> + <kbd>`</kbd> (the key under Esc) in Excel or Google Sheets to show formulas instead of results. In LibreOffice it's View, Show Formula.</p>
+      <p>Point at the green column E: every row says "this row's C times this row's D." The spreadsheet adjusted the row numbers for us. That's a <b>relative</b> reference, the default whenever you type a plain address. Demo the fill handle double-click; it fills down to the last row of data.</p>
+    </div>
+  </section>
+
+  <!-- 7 · Try it now: fill down -->
+  <section class="slide" data-title="Try it: fill down">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · your own app</p><h2 class="h2">Fill the Total Cost column in one move</h2></div>
+      <button class="timer" data-min="3">3:00</button>
+    </div>
+    <div class="grid g2" style="grid-template-columns:1.2fr .8fr;align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">Steps</span><span class="tiny">Open your Lab 3 inventory</span></div>
+        <ol>
+          <li>Click <b>E2</b> and type <b>=C2*D2</b>, then <kbd>Enter</kbd>.</li>
+          <li>Click E2 again. Double-click the <b>fill handle</b> at its bottom-right corner.</li>
+          <li>Press <kbd>Ctrl</kbd> + <kbd>`</kbd> to show formulas. Check that E9 says <b>=C9*D9</b>. Press it again to go back.</li>
+          <li>Type in the chat: the value in <b>E3</b>.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="callout"><b>No data yet?</b> Type 3 rows: A4 paper 25 × 245, long paper 30 × 265, ballpen 10 × 96.</div>
+        <div class="row mt-m"><button class="reveal-btn" data-target="ans-e3">Show the answer</button></div>
+        <div class="answer mt-m" id="ans-e3"><div class="callout tip"><b>E3 = 7,950.00</b> (30 reams × ₱265.00). E2 should be 6,125.00.</div></div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Start the <b>3-minute</b> timer. Ask two volunteers to share their screens while they do it.</p>
+      <p>Watch for: people typing the multiplication sign as "x" instead of the asterisk <b>*</b>; people dragging past row 9 into the total row. If someone gets <b>#VALUE!</b>, a number was probably typed with a peso sign or a space as text. Answer: <b>7,950.00</b>.</p>
+    </div>
+  </section>
+
+  <!-- 8 · The problem -->
+  <section class="slide" data-title="When relative goes wrong">
+    <div class="slide-head">
+      <div><p class="kicker">Worked example · 12% VAT for every row</p><h2 class="h2">One rate cell. Fill down. Why all the zeros?</h2></div>
+      <span class="tag coral">Broken</span>
+    </div>
+    <div class="grid" style="grid-template-columns:1.55fr .45fr;align-items:start">
+      <div class="win xlwin">
+<div class="bar"><i></i><i></i><i></i><span>Inventory.xlsx</span></div>
+<div class="fbar"><span class="nb">G3</span><span class="fx">fx</span><span class="f">=E3*B13</span></div>
+<table class="xl" style="font-size:calc(var(--u)*0.98)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th class="cs">G</th></tr>
+<tr><th>1</th><td class="h">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h">Total Cost (₱)</td><td class="h">Reorder Level</td><td class="h">VAT 12% (₱)</td></tr>
+<tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="n">6,125.00</td><td class="n">10</td><td class="n">735.00</td></tr>
+<tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="n">7,950.00</td><td class="n">10</td><td class="b s n">0.00</td></tr>
+<tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="n">960.00</td><td class="n">5</td><td class="b n">0.00</td></tr>
+<tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="n">2,080.00</td><td class="n">5</td><td class="b n">0.00</td></tr>
+<tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="n">510.00</td><td class="n">6</td><td class="b n">0.00</td></tr>
+<tr><th>7</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="n">384.00</td><td class="n">5</td><td class="b n">0.00</td></tr>
+<tr><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="n">2,800.00</td><td class="n">4</td><td class="b n">0.00</td></tr>
+<tr><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="n">1,230.00</td><td class="n">5</td><td class="b n">0.00</td></tr>
+<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="n k">22,039.00</td><td></td><td class="b n">735.00</td></tr>
+<tr><th>11</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th>12</th><td class="k">VAT rate</td><td class="o n">12%</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th>13</th><td></td><td class="b">(blank)</td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+</div>
+      <div>
+        <div class="callout warn"><b>Only row 2 is right.</b> G2 = 6,125.00 × 12% = 735.00. Every row below shows 0.00.</div>
+        <div class="callout gold mt-m"><b>Look at the formula bar:</b> G3 says <b>=E3*B13</b>. B13 is empty, and empty counts as zero.</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Here's the classic mistake. We put the VAT rate, <b>12%</b>, in one cell, <b>B12</b>, so we can change it in one place. In G2 we typed <b>=E2*B12</b>, then filled down.</p>
+      <p>Row 2 is correct: 735.00. Every row below is <b>zero</b>, and the VAT total is only 735.00. Click G3 and read the formula bar: <b>=E3*B13</b>. The rate reference moved down too, onto an empty cell. Ask: "Who has seen a column of zeros like this at work?"</p>
+    </div>
+  </section>
+
+  <!-- 9 · Why it broke -->
+  <section class="slide" data-title="Why it broke">
+    <div class="slide-head"><div><p class="kicker">What the spreadsheet did</p><h2 class="h2">Both addresses moved down one row each time</h2></div></div>
+    <div class="grid g4 anim-stagger-list">
+      <div class="card top"><h4>G2</h4><p class="big-f" style="font-size:calc(var(--u)*1.9)">=E2*B12</p><p class="mt-s">6,125.00 × 12% = <b>735.00</b> ✓</p></div>
+      <div class="card top" style="border-top-color:var(--coral)"><h4>G3</h4><p class="big-f" style="font-size:calc(var(--u)*1.9)">=E3*<span class="lk">B13</span></p><p class="mt-s">7,950.00 × blank = <b>0.00</b> ✗</p></div>
+      <div class="card top" style="border-top-color:var(--coral)"><h4>G4</h4><p class="big-f" style="font-size:calc(var(--u)*1.9)">=E4*<span class="lk">B14</span></p><p class="mt-s">960.00 × blank = <b>0.00</b> ✗</p></div>
+      <div class="card top" style="border-top-color:var(--coral)"><h4>G9</h4><p class="big-f" style="font-size:calc(var(--u)*1.9)">=E9*<span class="lk">B19</span></p><p class="mt-s">1,230.00 × blank = <b>0.00</b> ✗</p></div>
+    </div>
+    <div class="pair mt-l">
+      <div class="ex office"><div class="ex-label">✓ E should move</div><p>Each row needs <b>its own</b> Total Cost, so E2, E3, E4… is right.</p></div>
+      <div class="ex home"><div class="ex-label">✗ B12 should stay</div><p>There is only <b>one</b> VAT rate. Every row must keep pointing at B12.</p></div>
+    </div>
+    <div class="notes">
+      <p>Walk across the four cards. The spreadsheet isn't wrong; it followed our directions. "Use the cell <b>ten rows below</b> me in column B" was fine for row 2, but in row 3 that lands on B13, which is empty.</p>
+      <p>The lesson: in one formula, <b>some references should move and some should stay</b>. E should move with each row. B12 should never move. So we need a way to lock B12. Ask: "From the cinema slide, what's the lock symbol?" The dollar sign.</p>
+    </div>
+  </section>
+
+  <!-- 10 · The fix -->
+  <section class="slide" data-title="The fix: $B$12">
+    <div class="slide-head">
+      <div><p class="kicker">Absolute reference · the fix</p><h2 class="h2">Lock the rate: <span class="mod">=E2*$B$12</span></h2></div>
+      <span class="tag green">Fixed</span>
+    </div>
+    <div class="grid" style="grid-template-columns:1.55fr .45fr;align-items:start">
+      <div class="win xlwin">
+<div class="bar"><i></i><i></i><i></i><span>Inventory.xlsx</span></div>
+<div class="fbar"><span class="nb">G3</span><span class="fx">fx</span><span class="f">=E3*$B$12</span></div>
+<table class="xl" style="font-size:calc(var(--u)*0.98)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th class="cs">G</th></tr>
+<tr><th>1</th><td class="h">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h">Total Cost (₱)</td><td class="h">Reorder Level</td><td class="h">VAT 12% (₱)</td></tr>
+<tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="n">6,125.00</td><td class="n">10</td><td class="g n">735.00</td></tr>
+<tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="n">7,950.00</td><td class="n">10</td><td class="g s n">954.00</td></tr>
+<tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="n">960.00</td><td class="n">5</td><td class="g n">115.20</td></tr>
+<tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="n">2,080.00</td><td class="n">5</td><td class="g n">249.60</td></tr>
+<tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="n">510.00</td><td class="n">6</td><td class="g n">61.20</td></tr>
+<tr><th>7</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="n">384.00</td><td class="n">5</td><td class="g n">46.08</td></tr>
+<tr><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="n">2,800.00</td><td class="n">4</td><td class="g n">336.00</td></tr>
+<tr><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="n">1,230.00</td><td class="n">5</td><td class="g n">147.60</td></tr>
+<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="n k">22,039.00</td><td></td><td class="g n">2,644.68</td></tr>
+<tr><th>11</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th>12</th><td class="k">VAT rate</td><td class="o n">12%</td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+</div>
+      <div>
+        <div class="callout tip"><b>Every row now uses B12.</b> G3 = 7,950.00 × 12% = 954.00.</div>
+        <div class="callout gold mt-m"><b>Check it:</b> ₱22,039.00 × 12% = ₱2,644.68. It matches G10.</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Same sheet, one change. In G2 we typed <b>=E2*$B$12</b>, then filled down. Click G3: the formula bar shows <b>=E3*$B$12</b>. The E part moved; the locked B12 stayed.</p>
+      <p>Show the check in the gold box: the grand total <b>22,039.00 times 12%</b> is <b>2,644.68</b>, the same as the sum of the VAT column. That's a habit for Lab 3: <b>check the total a second way</b>. Now if the rate ever changes, edit B12 once and all eight rows update.</p>
+    </div>
+  </section>
+
+  <!-- 11 · F4 key -->
+  <section class="slide" data-title="The F4 key">
+    <div class="slide-head"><div><p class="kicker">Don't type the $ signs</p><h2 class="h2">Press <kbd>F4</kbd> to cycle through the locks</h2></div></div>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <p class="small">Click inside the address in the formula (or just after it), then press F4 again and again:</p>
+        <ol class="steps mt-s">
+          <li><b class="code">B12</b> · relative, nothing locked</li>
+          <li><b class="code">$B$12</b> · absolute, column and row locked</li>
+          <li><b class="code">B$12</b> · mixed, row locked</li>
+          <li><b class="code">$B12</b> · mixed, column locked, then back to B12</li>
+        </ol>
+      </div>
+      <div>
+        <table class="tbl compact">
+          <tr><th>App</th><th>Toggle key</th></tr>
+          <tr><td><b>Microsoft Excel</b> (Windows)</td><td><kbd>F4</kbd> <span class="tiny">(laptops may need <kbd>Fn</kbd> + <kbd>F4</kbd>)</span></td></tr>
+          <tr><td><b>Excel for Mac</b></td><td><kbd>Cmd</kbd> + <kbd>T</kbd></td></tr>
+          <tr><td><b>Google Sheets</b></td><td><kbd>F4</kbd> while editing a formula</td></tr>
+          <tr><td><b>LibreOffice Calc</b></td><td><kbd>Shift</kbd> + <kbd>F4</kbd></td></tr>
+        </table>
+        <div class="callout tip mt-m"><b>Typing works too.</b> Writing <b>$B$12</b> by hand gives exactly the same result.</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Demo live: type <b>=E2*B12</b>, keep the cursor right after B12, then press <b>F4</b> four times so they see all four forms.</p>
+      <p>Many office laptops use the F-keys for brightness or volume, so they may need <b>Fn + F4</b>. Mac users of Excel press <b>Cmd + T</b>. In LibreOffice Calc it's <b>Shift + F4</b>. If the key won't cooperate, just type the dollar signs; the result is the same.</p>
+    </div>
+  </section>
+
+  <!-- 12 · Try it: VAT -->
+  <section class="slide" data-title="Try it: VAT column">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · break it, then fix it</p><h2 class="h2">Add a 12% VAT column to your inventory</h2></div>
+      <button class="timer" data-min="5">5:00</button>
+    </div>
+    <div class="grid g2" style="grid-template-columns:1.15fr .85fr;align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">Steps</span><span class="tiny">About 5 minutes</span></div>
+        <ol>
+          <li>In <b>A12</b> type <b>VAT rate</b>; in <b>B12</b> type <b>12%</b>. In <b>G1</b> type <b>VAT 12%</b>.</li>
+          <li>In G2 type <b>=E2*B12</b> and fill down to G9. See the zeros?</li>
+          <li>Fix G2: click after B12, press <kbd>F4</kbd> to get <b>$B$12</b>, <kbd>Enter</kbd>, fill down again.</li>
+          <li>In G10 type <b>=SUM(G2:G9)</b>. Post the result in the chat.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="callout gold"><b>Stretch:</b> in H1 type <b>Total with VAT</b>, and in H2 <b>=E2+G2</b>. Fill down. Which reference style did you need?</div>
+        <div class="row mt-m"><button class="reveal-btn" data-target="ans-vat">Show the answers</button></div>
+        <div class="answer mt-m" id="ans-vat"><div class="callout tip"><b>G10 = 2,644.68.</b> G3 = 954.00, G9 = 147.60. The stretch needs only relative references: H10 = 24,683.68.</div></div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Start the <b>5-minute</b> timer. We break it on purpose first, because seeing the zeros yourself is how you remember the fix.</p>
+      <p>Answers: <b>G10 is 2,644.68</b>. If someone posts 735.00, their G column still uses B13 and beyond. For the stretch, <b>=E2+G2</b> stays relative because each row adds its own two cells; the grand total with VAT is <b>24,683.68</b>. Ask one participant to share and click G5 so everyone reads the formula bar.</p>
+    </div>
+  </section>
+
+  <!-- 13 · Mixed -->
+  <section class="slide" data-title="Mixed references">
+    <div class="split" style="grid-template-columns:1fr 1fr">
+      <div>
+        <p class="kicker">Mixed references · in brief</p>
+        <h2 class="h2">Lock only the row, or only the column.</h2>
+        <ul class="ticks mt-m">
+          <li><b>$A3</b>: the column stays A (unit costs), the row can move.</li>
+          <li><b>C$1</b>: the row stays 1 (quantities), the column can move.</li>
+          <li>Type <b>=$A2*B$1</b> once in B2, fill right and down, and the whole price table fills itself.</li>
+        </ul>
+        <div class="callout mt-m"><b>Good to know:</b> beginners rarely need mixed references. Relative and absolute cover most office sheets.</div>
+      </div>
+      <div><div class="win xlwin">
+<div class="bar"><i></i><i></i><i></i><span>Price list.xlsx</span></div>
+<div class="fbar"><span class="nb">C3</span><span class="fx">fx</span><span class="f">=$A3*C$1</span></div>
+<table class="xl" style="font-size:calc(var(--u)*1.2)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+<tr><th>1</th><td class="h">Unit cost ↓ · Qty →</td><td class="h">1</td><td class="h">5</td><td class="h">10</td></tr>
+<tr><th>2</th><td class="n">32.00</td><td class="n">32.00</td><td class="n">160.00</td><td class="n">320.00</td></tr>
+<tr><th>3</th><td class="n">85.00</td><td class="n">85.00</td><td class="g s n">425.00</td><td class="n">850.00</td></tr>
+<tr><th>4</th><td class="n">96.00</td><td class="n">96.00</td><td class="n">480.00</td><td class="n">960.00</td></tr>
+</table>
+</div>
+        <p class="tiny mt-s">Price for buying 1, 5 or 10 of staple wire (₱32), fastener (₱85) and ballpen (₱96). C3 = 85.00 × 5 = 425.00.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Keep this short. Mixed references are seats where only the row or only the column is fixed, like answers C and D in our warm-up.</p>
+      <p>The classic use is a two-way table: unit costs down column A, quantities across row 1. One formula, <b>=$A2*B$1</b>, filled right and down, builds the whole table. Click C3: it reads <b>=$A3*C$1</b>, 85 times 5, <b>425.00</b>. Tell them: if this feels advanced, that's fine; it won't be graded in Lab 3.</p>
+    </div>
+  </section>
+
+  <!-- 14 · References across the sheet -->
+  <section class="slide" data-title="Pointing anywhere on the sheet">
+    <div class="slide-head">
+      <div><p class="kicker">References across the sheet</p><h2 class="h2">A formula can point to any cell, near or far</h2></div>
+      <span class="tag">Click the cell instead of typing it</span>
+    </div>
+    <div class="grid g2" style="grid-template-columns:1.2fr .8fr;align-items:start">
+      <table class="tbl num compact">
+        <tr><th>Cell</th><th>Label</th><th>Formula</th><th>Result (₱)</th></tr>
+        <tr><td>J1</td><td style="text-align:left;font-family:var(--font-sans)">Grand total</td><td>=E10</td><td>22,039.00</td></tr>
+        <tr><td>J2</td><td style="text-align:left;font-family:var(--font-sans)">VAT total</td><td>=G10</td><td>2,644.68</td></tr>
+        <tr><td>J3</td><td style="text-align:left;font-family:var(--font-sans)">Total with VAT</td><td>=J1+J2</td><td>24,683.68</td></tr>
+        <tr><td>J4</td><td style="text-align:left;font-family:var(--font-sans)">Number of items</td><td>=COUNT(C2:C9)</td><td>8</td></tr>
+        <tr><td>J5</td><td style="text-align:left;font-family:var(--font-sans)">Most expensive line</td><td>=MAX(E2:E9)</td><td>7,950.00</td></tr>
+      </table>
+      <div>
+        <ul class="ticks">
+          <li>A <b>range</b> like <b>C2:C9</b> is a reference too: from C2 to C9.</li>
+          <li>Build formulas by <b>clicking</b>: type <b>=</b>, click the cell, and the address is written for you. Fewer typos.</li>
+          <li>Coming in 3.6: point to <b>another sheet</b>, like <b>=Jan!E10</b>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>References are not limited to the same row. A small <b>summary box</b> in column J can pull numbers from anywhere: <b>=E10</b> copies the grand total, <b>=J1+J2</b> adds two summary cells, and ranges like <b>C2:C9</b> feed functions from 3.4.</p>
+      <p>Demo the click method: type equals, click E10, press Enter. Clicking avoids typing the wrong row. Then tease the next topic: references can even reach into another worksheet, like January's tab.</p>
+    </div>
+  </section>
+
+  <!-- 15 · Office / home -->
+  <section class="slide" data-title="At the office and at home">
+    <div class="slide-head"><div><p class="kicker">See it everywhere</p><h2 class="h2">One input cell, many rows that use it</h2></div></div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li><b>12% VAT</b> on a supplies list: one rate cell, locked with $.</li>
+          <li><b>Share of the budget:</b> each item's cost ÷ the grand total, <b>=E2/$E$10</b>. A4 paper is 27.8% of ₱22,039.00.</li>
+          <li><b>Training allowance:</b> days attended × one daily rate cell.</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li><b>Sari-sari markup:</b> selling price = cost × (1 + markup). With 15% in E1: <b>=B2*(1+$E$1)</b>. A ₱24 can of sardines sells at ₱27.60.</li>
+          <li><b>Savings goal:</b> 10% of each payday, one rate cell for all 24 paydays.</li>
+          <li><b>Kids' allowance:</b> school days × one daily amount.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>The pattern is always the same: <b>one input cell</b> that many rows depend on. Rates, prices per day, markups, percentages.</p>
+      <p>The sari-sari example: if the markup in E1 changes from 15% to 20%, every price updates at once. Ask the chat: <b>"What's one rate or fixed number you use in your own sheets?"</b> Common answers: per diem, a meal allowance, the electricity rate per kWh.</p>
+    </div>
+  </section>
+
+  <!-- 16 · Myth / fact -->
+  <section class="slide" data-title="Myth or fact">
+    <div class="slide-head"><div><p class="kicker">Myth or fact · click each card</p><h2 class="h2">Three things people get wrong about $</h2></div></div>
+    <div class="grid g3">
+      <div class="flip"><div class="in"><div class="fr"><h4>Myth</h4><p>"The $ in $B$12 means the cell holds money."</p><span class="hint">click to flip</span></div><div class="bk"><h4>Fact</h4><p>It's a lock. It has nothing to do with currency; ₱ formatting is a separate setting.</p><span class="hint">click to flip back</span></div></div></div>
+      <div class="flip"><div class="in"><div class="fr"><h4>Myth</h4><p>"To be safe, make every reference absolute."</p><span class="hint">click to flip</span></div><div class="bk"><h4>Fact</h4><p>Then =$C$2*$D$2 filled down gives 6,125.00 on every row. Lock only what must stay.</p><span class="hint">click to flip back</span></div></div></div>
+      <div class="flip"><div class="in"><div class="fr"><h4>Myth</h4><p>"Inserting a row will break all my formulas."</p><span class="hint">click to flip</span></div><div class="bk"><h4>Fact</h4><p>The spreadsheet updates the addresses for you, even $B$12, when rows are inserted above it.</p><span class="hint">click to flip back</span></div></div></div>
+    </div>
+    <div class="notes">
+      <p>Ask the chat to vote <b>myth or fact</b> before you flip each card.</p>
+      <p>Card 2 is the most important: if you lock everything, every row copies row 2's answer, <b>6,125.00</b> all the way down, which is just as wrong. Card 3: insert a row above row 12 in your file and watch the formula change to <b>$B$13</b> on its own. The lock stops <b>copying</b> from shifting it, not <b>inserting</b>.</p>
+    </div>
+  </section>
+
+  <!-- 17 · Video -->
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Decide what moves and what stays</h2>
+        <p class="lede mt-m">Cinema seats, a column of zeros and one small lock: see how <b>relative</b> references follow you when you fill down, and how <b>$B$12</b> keeps a VAT rate fixed for every row.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> note the moment the formula breaks, and what gets locked to fix it.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/3.5/poster.jpg" alt="Video: Cell Referencing Basics"><div class="play"></div><span class="vlen">5:00</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Introduce the video in one or two sentences, then read the <b>While watching</b> task aloud so everyone knows what to look for.</p>
+      <p>Press <b>→</b> to open the video full screen. In Zoom or Meet, share this tab with <b>computer sound</b> turned on.</p>
+    </div>
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/3.5/index.html" title="Video: Cell Referencing Basics" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="notes">
+      <p><b>Space</b> or <b>K</b> plays and pauses (or click the video). <b>C</b> turns captions on or off; the speed button offers 1.25× and 0.85×. The arrows still move between slides, and the video pauses when you leave this slide.</p>
+      <p>Length 5:00. Pause anywhere to take a question; captions stay on screen for anyone without sound.</p>
+      <p>After the video, go back to the <b>While watching</b> task: ask two or three people for their answers.</p>
+    </div>
+  </section>
+  <!-- YouTube slide replaced by our own video (2026-11-01):
+  <section class="slide" data-title="Video">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Relative and absolute references, step by step</h2>
+        <p class="lede mt-m">A clear walkthrough from GCFLearnFree, including the F4 shortcut.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> note the moment the formula breaks, and what they lock to fix it.</div>
+      </div>
+      <div class="vmeta">
+        <div class="video" data-yt="iDg9s7BJ2m4"><img src="images/m3/3-5-video.jpg" alt="Video thumbnail: Excel relative and absolute cell references"><div class="play"></div><span class="vlen">5:25</span></div>
+        <p class="tiny">YouTube · "Excel: Relative and Absolute Cell References" · LearnFree (GCFGlobal) · click to open</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Click the thumbnail; it opens YouTube in a new tab. Share that tab with sound.</p>
+      <p>Use this as a review for anyone who got lost during the VAT exercise, or share the link in the chat so they can watch it again before Lab 3. The video uses Excel, but the idea is identical in Google Sheets and LibreOffice.</p>
+    </div>
+  </section>
+  -->
+
+  <!-- 18 · Quick check -->
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head"><div><p class="kicker">Quick check · click an answer</p><h2 class="h2">G2 holds =E2*B12. You fill it down to G5. What does G5 contain?</h2></div></div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>=E5*B12<div class="why">No. That would need B12 locked as $B$12.</div></div></div>
+      <div class="opt" data-correct><span class="l">B</span><div>=E5*B15<div class="why">Yes. Both relative references moved down 3 rows, so B12 became B15.</div></div></div>
+      <div class="opt"><span class="l">C</span><div>=E2*B12<div class="why">No. That only happens if both references are absolute.</div></div></div>
+      <div class="opt"><span class="l">D</span><div>=E5*$B$12<div class="why">No. Filling down never adds $ signs; you add them with F4.</div></div></div>
+    </div>
+    <div class="notes">
+      <p>Let them type the letter in the chat first, then click to reveal. Answer: <b>B, =E5*B15</b>.</p>
+      <p>From G2 to G5 is three rows, so <b>every relative row number goes up by 3</b>: E2 becomes E5 and B12 becomes B15. If many chose A, go back to the "why it broke" slide for one more minute.</p>
+    </div>
+  </section>
+
+  <!-- 19 · Recap -->
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 3.5</p>
+    <h2 class="h2">Decide what moves and what stays.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Relative · E2</h4><p>Moves when you fill. Use it for "this row's" values.</p></div>
+      <div class="card dark"><h4>Absolute · $B$12</h4><p>Never moves. Use it for one rate or total shared by every row. Press F4.</p></div>
+      <div class="card dark"><h4>Mixed · $A2, B$1</h4><p>Locks only the column or only the row, for two-way tables.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">3.6 Worksheet Management</b>: one tab per month, and a Summary sheet that reads them all.</p>
+    <div class="notes">
+      <p>One sentence to remember: <b>"Before you fill, decide what moves and what stays."</b> Moving parts stay relative; the one rate cell gets the dollar signs.</p>
+      <p>Bridge to 3.6: "So far everything lived on one sheet. In real offices we keep January, February and March on separate tabs, and a Summary tab that adds them up. That's next."</p>
+    </div>
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

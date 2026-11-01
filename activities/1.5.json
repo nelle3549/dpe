@@ -1,0 +1,174 @@
+{
+  "topic": "1.5",
+  "title": "Everyday AI",
+  "activities": [
+    {
+      "id": "1.5-a",
+      "slide": "Lab 1 Part C",
+      "kind": "task",
+      "title": "Lab 1 Part C: ask an AI, save the answer",
+      "minutes": 7,
+      "intro": "Use any free AI assistant and your master folder from Part A. Tick each step as you finish it. No names, TINs or office data in the prompt.",
+      "blocks": [
+        {
+          "type": "steps",
+          "id": "steps",
+          "items": [
+            "Open a free AI assistant: Copilot, Gemini, ChatGPT or Meta AI.",
+            "Type: List 3 ways AI helps with organizing office files",
+            "Read the answer. Is each idea sensible? Anything to double-check?",
+            "Copy the answer into Notepad (or Word, Google Docs, LibreOffice Writer).",
+            "Add one line: My note: the most useful idea, and why.",
+            "Save it in 02 AI Responses as YYYY-MM-DD AI Response - Organizing Files."
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "folder",
+          "prompt": "Which folder did you save your AI response in?",
+          "options": ["01 Screenshots", "02 AI Responses", "Downloads", "The Desktop"]
+        },
+        {
+          "type": "mcq",
+          "id": "never",
+          "prompt": "Which of these must never go into your prompt? Pick all that apply.",
+          "options": ["Names", "TINs", "Office data", "The topic \"organizing office files\""],
+          "multi": true
+        },
+        {
+          "type": "text",
+          "id": "note",
+          "prompt": "Copy your \"My note\" line here: the most useful idea, and why.",
+          "lines": 3
+        },
+        {
+          "type": "upload",
+          "id": "file",
+          "prompt": "Optional: your saved AI response file",
+          "optional": true
+        }
+      ],
+      "help": [
+        "Asked to sign in? A personal account is fine, or try another tool.",
+        "Got an error or a refusal? Try another topic: a household budget, a sari-sari store, a kids' science project."
+      ]
+    },
+    {
+      "id": "lab1",
+      "slide": "Lab 1 checklist",
+      "kind": "lab",
+      "title": "Lab 1: File Management and Everyday AI",
+      "minutes": 5,
+      "intro": "Hand in your Lab 1 master folder. It should have your name, two clearly named sub-folders, your BIR website screenshot from Part B and your AI response with your note from Part C. Missing something? Go back to Part A, B or C now.",
+      "blocks": [
+        {
+          "type": "steps",
+          "id": "checklist",
+          "items": [
+            "A master folder with your name, on the Desktop",
+            "At least two clearly named sub-folders",
+            "One screenshot or downloaded image inside a sub-folder (Part B)",
+            "One text document with an AI response and your note (Part C)",
+            "File names follow YYYY-MM-DD Type - Subject"
+          ]
+        },
+        {
+          "type": "upload",
+          "id": "output",
+          "prompt": "Upload your master folder as a ZIP file (right-click the folder › Compress to ZIP file), or a screenshot of it open in File Explorer."
+        },
+        {
+          "type": "rubric",
+          "id": "rubric",
+          "criteria": [
+            { "name": "Master folder with your name, on the Desktop", "points": 4 },
+            { "name": "At least two clearly named sub-folders", "points": 4 },
+            { "name": "Screenshot or downloaded image inside a sub-folder (Part B)", "points": 4 },
+            { "name": "Text document with an AI response and your note (Part C)", "points": 4 },
+            { "name": "File names follow YYYY-MM-DD Type - Subject", "points": 4 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1.5-quiz",
+      "slide": "Digital Foundations Quiz",
+      "kind": "quiz",
+      "title": "Digital Foundations Quiz",
+      "minutes": 10,
+      "intro": "10 items, 1 point each. Pick the one best answer for each item. Everything on it was covered in Topics 1.1 to 1.5.",
+      "blocks": [
+        {
+          "type": "mcq",
+          "id": "q1",
+          "prompt": "1. Which of these is software?",
+          "options": ["The office printer", "A spreadsheet program", "A flash drive", "The ICT focal person"]
+        },
+        {
+          "type": "mcq",
+          "id": "q2",
+          "prompt": "2. A scanner that turns a signed form into a file is what kind of hardware?",
+          "options": ["Input", "Output", "Processing", "Storage"]
+        },
+        {
+          "type": "mcq",
+          "id": "q3",
+          "prompt": "3. Which file name is easiest to find and sort?",
+          "options": ["final na jud.docx", "memo 10/26.docx", "2026-10-26 Memo - Supplies Request.docx", "Document1.docx"]
+        },
+        {
+          "type": "mcq",
+          "id": "q4",
+          "prompt": "4. You pressed Delete on a file on your Desktop by mistake. Where can you get it back?",
+          "options": ["The Downloads folder", "The Recycle Bin", "The taskbar", "Nowhere; it's gone forever"]
+        },
+        {
+          "type": "mcq",
+          "id": "q5",
+          "prompt": "5. In https://www.bir.gov.ph/index.php, which part tells you who owns the site?",
+          "options": ["https://", "www.", "bir.gov.ph", "/index.php"]
+        },
+        {
+          "type": "mcq",
+          "id": "q6",
+          "prompt": "6. Which search finds only PDF files from Philippine government websites?",
+          "options": ["tax forms pdf gov", "tax forms site:gov.ph filetype:pdf", "tax forms -pdf -gov", "\"tax forms gov.ph pdf\""]
+        },
+        {
+          "type": "mcq",
+          "id": "q7",
+          "prompt": "7. A text says your account will be closed unless you send the OTP now. Best response?",
+          "options": [
+            "Send the OTP quickly",
+            "Reply and ask who they are",
+            "Don't reply or click; verify officially and report it",
+            "Forward it to the office group chat"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q8",
+          "prompt": "8. Which password is strongest?",
+          "options": ["Juan1985", "Password123!", "Mangga-Ulan-Jeepney-27", "123-456-789-000"]
+        },
+        {
+          "type": "mcq",
+          "id": "q9",
+          "prompt": "9. Which of these uses AI that learned from examples?",
+          "options": ["An email spam filter", "A basic calculator adding numbers", "A light switch", "A printed wall calendar"]
+        },
+        {
+          "type": "mcq",
+          "id": "q10",
+          "prompt": "10. What is the safe way to use a public AI chatbot at work?",
+          "options": [
+            "Paste a taxpayer's return and ask for a summary",
+            "Ask for a generic template, then check and edit it",
+            "Copy its answer straight into an official letter",
+            "Give it your office login so it can read your email"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.1 Application Navigation and File Handling · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* Deck-local: drawn word-processor window (Module 2) */
+.wp{display:flex;flex-direction:column;border-radius:calc(var(--u)*.8);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--border-strong);background:#fff;font-size:calc(var(--u)*.95)}
+.wp .tt{display:flex;align-items:center;gap:calc(var(--u)*.9);background:#2B579A;color:#fff;padding:calc(var(--u)*.45) calc(var(--u)*1);font-size:calc(var(--u)*.85)}
+.wp .tt .nm{flex:1;text-align:center;font-weight:600}
+.wp .tt .as{font-size:calc(var(--u)*.75);background:rgba(255,255,255,.18);padding:.1em .7em;border-radius:999px}
+.wp .tabs{display:flex;gap:calc(var(--u)*1.4);align-items:flex-end;background:#F3F6FB;padding:calc(var(--u)*.45) calc(var(--u)*1) 0;font-size:calc(var(--u)*.85);color:var(--text-2)}
+.wp .tabs span{padding-bottom:calc(var(--u)*.3)}
+.wp .tabs .on{color:var(--mod);font-weight:700;border-bottom:calc(var(--u)*.2) solid var(--mod)}
+.wp .rib{display:flex;gap:calc(var(--u)*.2);padding:calc(var(--u)*.5) calc(var(--u)*.8);border-bottom:1px solid var(--border);background:#fff}
+.wp .grp{display:flex;flex-direction:column;align-items:center;gap:calc(var(--u)*.35);padding:0 calc(var(--u)*.8);border-right:1px solid var(--border);font-size:calc(var(--u)*.68);color:var(--text-3)}
+.wp .ctl{display:flex;gap:calc(var(--u)*.3);font-size:calc(var(--u)*.9);color:var(--text-1);align-items:center}
+.wp .btn{display:inline-flex;align-items:center;justify-content:center;min-width:calc(var(--u)*1.7);height:calc(var(--u)*1.7);padding:0 .35em;border:1px solid var(--border);border-radius:calc(var(--u)*.3);background:#fff;font-weight:700}
+.wp .dd{border:1px solid var(--border-strong);border-radius:calc(var(--u)*.3);padding:.12em .5em;background:#fff;font-weight:600}
+.wp .ruler{height:calc(var(--u)*1);margin:0 calc(var(--u)*3);background:#fff repeating-linear-gradient(90deg,#B8C1CE 0 1px,transparent 1px calc(var(--u)*1)) 0 60%/100% 40% no-repeat;border:1px solid var(--border)}
+.wp .canvas{background:#E4E8EF;padding:calc(var(--u)*1) calc(var(--u)*3);flex:1;min-height:0;overflow:hidden;position:relative}
+.wp .sb{display:flex;justify-content:space-between;align-items:center;gap:calc(var(--u)*1);background:#F3F6FB;padding:calc(var(--u)*.35) calc(var(--u)*1);font-size:calc(var(--u)*.75);color:var(--text-2);border-top:1px solid var(--border)}
+.page{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.18);padding:calc(var(--u)*1.4) calc(var(--u)*2.2);font-family:Calibri,Carlito,'Segoe UI',Arial,sans-serif;font-size:calc(var(--u)*.85);line-height:1.45;color:#222}
+.page p{margin:0 0 .55em}
+.pin{display:inline-flex;align-items:center;justify-content:center;width:calc(var(--u)*1.6);height:calc(var(--u)*1.6);border-radius:50%;background:var(--gold);color:var(--ink);font-weight:800;font-size:calc(var(--u)*.85);box-shadow:0 0 0 calc(var(--u)*.15) #fff;flex:none;font-family:var(--font-sans)}
+.legend{list-style:none;margin:0;padding:0}
+.legend li{display:flex;gap:calc(var(--u)*.9);align-items:flex-start;margin:calc(var(--u)*.55) 0;font-size:calc(var(--u)*1.2);line-height:1.35;color:var(--text-2)}
+.legend li b{color:var(--text-1)}
+.plain{font-family:var(--font-mono);font-size:calc(var(--u)*.92);white-space:pre-wrap;line-height:1.45;color:#333;margin:0}
+.card .steps li{font-size:calc(var(--u)*1.25);padding-top:calc(var(--u)*.55);padding-bottom:calc(var(--u)*.55);padding-left:calc(var(--u)*3)}
+.card .steps li::before{width:calc(var(--u)*2);height:calc(var(--u)*2);font-size:calc(var(--u)*1);top:calc(var(--u)*.5)}
+.fname{font-family:var(--font-mono);font-size:calc(var(--u)*1.1);background:var(--surface-2);border-radius:calc(var(--u)*.4);padding:.15em .5em;display:inline-block}
+</style>
+</head>
+<body class="m2" data-brand="Digital Productivity Essentials · <b>Module 2</b> · 2.1 Application Navigation and File Handling">
+<div class="deck">
+
+  <!-- 1 · Cover -->
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 2 · Word Processing Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Application Navigation and <span style="color:var(--gold)">File Handling</span></h1>
+      <p class="lede" data-anim="fade-up">Find your way around a word processor, then save every document so you, and your office, can find it again.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 2.1</span><span class="tag ghost">~40 minutes</span><span class="tag ghost">Hands-on</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m2/2-1-cover.jpg" alt="Woman typing a document on a laptop at an office desk"><div class="cv-num">2.1</div></div>
+    <div class="notes">
+      <p><b>Welcome to Module 2, Word Processing.</b> Maayong hapon, mga kauban! This is the module where we stop talking and start making things.</p>
+      <p>Over the next four hours we will build <b>one real document together</b>: an invitation letter to a Digital Skills Workshop. Each topic adds a layer. Today in 2.1 we open the app, learn the screen, and save the letter properly. By 2.4 you'll be mail merging it to three colleagues.</p>
+      <p>Please open your word processor now, even before we start.</p>
+    </div>
+  </section>
+
+  <!-- 2 · Warm-up -->
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · type in the chat</p><h2 class="h2">What did you use to type your<br>last letter or report?</h2></div>
+      <span class="tag gold">1 minute</span>
+    </div>
+    <div class="grid g4 mt-m anim-stagger-list">
+      <div class="card center"><span class="ic">🟦</span><h4>A</h4><p>Microsoft Word</p></div>
+      <div class="card center"><span class="ic">🟩</span><h4>B</h4><p>Google Docs</p></div>
+      <div class="card center"><span class="ic">📄</span><h4>C</h4><p>LibreOffice Writer or WPS</p></div>
+      <div class="card center"><span class="ic">⌨️</span><h4>D</h4><p>A typewriter, or I asked a co-worker to type it</p></div>
+    </div>
+    <div class="callout gold mt-l"><b>Good news:</b> whatever you picked, today's skills carry over. The buttons move around, but the ideas are the same in every word processor.</div>
+    <div class="notes">
+      <p>Ask everyone to type <b>A, B, C or D</b> in the chat. Read out the mix. Most BIR desktops run Microsoft Word, so expect lots of A, but some will use Google Docs on their phones or at home.</p>
+      <p>Treat the D answers warmly: some of our senior colleagues learned on typewriters, and that's actually a great starting point, as the next slides show.</p>
+      <p>Note who uses which app so you can call on them during the hands-on parts.</p>
+    </div>
+  </section>
+
+  <!-- 3 · Objectives -->
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head">
+      <div><p class="kicker">By the end of this topic</p><h2 class="h2">Three things you'll be able to do</h2></div>
+    </div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Navigate</span><h4>Name the parts of the screen</h4><p>Title bar, ribbon or menus, ruler, document area, status bar, views and zoom.</p></div>
+      <div class="card top"><span class="k">Handle files</span><h4>Create, open and save properly</h4><p>Know when to use Save and when to use Save As, and pick the right file format.</p></div>
+      <div class="card top"><span class="k">Protect your work</span><h4>Never lose a document again</h4><p>Name files well, export a PDF, and recover work after a brownout.</p></div>
+    </div>
+    <div class="callout mt-l"><b>Our running example:</b> the letter <i>"Invitation to the Digital Skills Workshop"</i>. Today we paste in its plain text and save it the right way.</div>
+    <div class="notes">
+      <p>Keep this short. Three goals: <b>navigate, handle files, protect your work</b>.</p>
+      <p>Point out the running example. Everything in Module 2 builds on the same letter, so participants who keep their file safe today will have an easier time in every topic after this. That's why saving properly is lesson one, not an afterthought.</p>
+      <p>Ask: "Who has ever retyped a whole document because the file disappeared?" Expect a few hands.</p>
+    </div>
+  </section>
+
+  <!-- 4 · Typewriter analogy -->
+  <section class="slide" data-title="The big idea">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">A word processor is a typewriter that lets you <em class="mod">change your mind</em>.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>Typewriter:</b> one typo near the end and you retype the whole page, or reach for the correction fluid.</li>
+          <li><b>Word processor:</b> fix one letter, move a paragraph, change the font, and the rest of the page adjusts by itself.</li>
+          <li><b>And it remembers:</b> save the file once and you can reuse it next year with a new date.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/m2/2-1-typewriter.jpg" alt="Vintage typewriter with a sheet of paper"></div>
+    </div>
+    <div class="notes">
+      <p>The typewriter is a great anchor because many offices here still had one in the corner not so long ago.</p>
+      <p>Three differences: <b>you can edit</b> without retyping, <b>you can format</b> after typing, and <b>you can reuse</b> the file. That last one is the real time-saver in government work: the same memo, notice or letter comes back every year with new dates.</p>
+      <p>Ask: "What document do you prepare every month that you could reuse from a saved file?"</p>
+    </div>
+  </section>
+
+  <!-- 5 · Three apps -->
+  <section class="slide" data-title="Three word processors">
+    <div class="slide-head">
+      <div><p class="kicker">What is a word processor?</p><h2 class="h2">An app for typing, editing and formatting documents</h2></div>
+      <span class="tag">Same skills, three apps</span>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">🟦</span><h4>Microsoft Word</h4><p>Desktop app in Microsoft Office and Microsoft 365. Most office PCs have it. Saves as <b>.docx</b>.</p><div class="chips mt-m"><span class="chip">Ribbon</span><span class="chip">Paid licence</span></div></div>
+      <div class="card top"><span class="ic-badge">🟩</span><h4>Google Docs</h4><p>Runs in the web browser with a Google account. Saves to Google Drive by itself as you type.</p><div class="chips mt-m"><span class="chip">Menus</span><span class="chip">Free, online</span></div></div>
+      <div class="card top"><span class="ic-badge">📄</span><h4>LibreOffice Writer</h4><p>Free, open-source desktop app. Saves as <b>.odt</b> by default and also opens and saves .docx.</p><div class="chips mt-m"><span class="chip">Menus</span><span class="chip">Free, offline</span></div></div>
+    </div>
+    <div class="callout tip mt-l"><b>Use what your office provides.</b> We'll show Word first, then where the same command lives in Google Docs and LibreOffice.</div>
+    <div class="notes">
+      <p>A <b>word processor</b> is application software, remember 1.1, for creating text documents: letters, memos, reports, notices.</p>
+      <p>Three common ones. <b>Word</b> is what most of you have at the office. <b>Google Docs</b> is free and online, handy at home or on your phone. <b>LibreOffice Writer</b> is free and works offline, a good option for a home PC or a kid's laptop.</p>
+      <p>WPS Office users: it looks a lot like Word, so follow the Word steps.</p>
+    </div>
+  </section>
+
+  <!-- 6 · Opening the app -->
+  <section class="slide" data-title="Opening the app">
+    <div class="slide-head">
+      <div><p class="kicker">Step 1 · Open the app</p><h2 class="h2">Three ways in, one blank page</h2></div>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card"><h4>🟦 Word</h4><ol class="steps"><li>Press the <kbd>⊞ Win</kbd> key and type <b>Word</b></li><li>Press <kbd>Enter</kbd></li><li>Click <b>Blank document</b></li></ol></div>
+      <div class="card"><h4>🟩 Google Docs</h4><ol class="steps"><li>Open the browser and sign in to Google</li><li>Go to <span class="fname">docs.new</span></li><li>A blank document opens</li></ol></div>
+      <div class="card"><h4>📄 LibreOffice</h4><ol class="steps"><li>Press <kbd>⊞ Win</kbd>, type <b>Writer</b></li><li>Press <kbd>Enter</kbd></li><li>A blank document opens</li></ol></div>
+    </div>
+    <div class="callout mt-l"><b>Shortcut for later:</b> double-click any saved document in File Explorer and its app opens with the file already loaded.</div>
+    <div class="notes">
+      <p>Demo on your screen: press the Windows key, type "Word", Enter, then <b>Blank document</b>. Point out the templates beside it: résumés, letters, flyers. We start blank today.</p>
+      <p>For Google Docs, typing <b>docs.new</b> in the address bar creates a new document instantly. A nice trick for the home crowd.</p>
+      <p>On a Mac it's <kbd>Cmd</kbd>+<kbd>Space</kbd> then type Word. Ask: "Thumbs up when you see a blank page."</p>
+    </div>
+  </section>
+
+  <!-- 7 · Interface tour -->
+  <section class="slide" data-title="The screen, part by part">
+    <div class="slide-head">
+      <div><p class="kicker">Step 2 · Know the screen</p><h2 class="h2">Eight parts of the Word window</h2></div>
+      <span class="tag">Microsoft Word</span>
+    </div>
+    <div class="grid" style="grid-template-columns:1.5fr 1fr;align-items:center;gap:calc(var(--u)*2.4)">
+      <div class="wp" style="height:calc(var(--u)*32)">
+        <div class="tt"><span class="pin">2</span><span>💾 ↶ ↷</span><span class="as">AutoSave ○ Off</span><span class="nm">Letter - Digital Skills Workshop Invitation · Word</span><span class="pin">1</span></div>
+        <div class="tabs"><span class="pin" style="margin-bottom:calc(var(--u)*.25)">3</span><span>File</span><span class="on">Home</span><span>Insert</span><span>Layout</span><span>References</span><span>Mailings</span><span>Review</span><span>View</span></div>
+        <div class="rib">
+          <div class="grp"><div class="ctl"><span class="btn">📋</span><span class="btn">🖌</span></div>Clipboard</div>
+          <div class="grp"><div class="ctl"><span class="dd">Aptos</span><span class="dd">11</span><span class="btn">B</span><span class="btn"><i>I</i></span><span class="btn"><u>U</u></span></div>Font</div>
+          <div class="grp"><div class="ctl"><span class="btn">≡</span><span class="btn">☰</span><span class="btn">⋮≡</span></div>Paragraph</div>
+          <div class="grp" style="border:0"><div class="ctl"><span class="dd">Normal</span><span class="dd">Heading 1</span></div>Styles</div>
+        </div>
+        <div style="display:flex;align-items:center;background:#fff;padding:calc(var(--u)*.3) 0 calc(var(--u)*.3) calc(var(--u)*.6)"><span class="pin">4</span><div class="ruler" style="flex:1;margin-left:calc(var(--u)*1.2)"></div></div>
+        <div class="canvas">
+          <div class="page" style="height:calc(var(--u)*30)">
+            <p style="display:flex;justify-content:space-between;align-items:center"><b>Sample Revenue District Office</b><span class="pin">5</span></p>
+            <p>Administrative Section</p>
+            <p>Dear Colleagues,</p>
+            <p>The Administrative Section invites you to a one-day Digital Skills Workshop on Thursday, 19 November 2026<span style="border-left:2px solid #222;margin-left:1px">&nbsp;</span></p>
+          </div>
+        </div>
+        <div class="sb"><span style="display:flex;align-items:center;gap:.6em"><span class="pin">6</span>Page 1 of 1 · 142 words · English (Philippines)</span><span style="display:flex;align-items:center;gap:.6em"><span class="pin">7</span>📖 ▭ 🌐<span class="pin">8</span>− ━━●━━ + 100%</span></div>
+      </div>
+      <ol class="legend">
+        <li><span class="pin">1</span><span><b>Title bar:</b> the file's name. AutoSave works for files in OneDrive or SharePoint.</span></li>
+        <li><span class="pin">2</span><span><b>Quick Access Toolbar:</b> Save, Undo, Redo, always in reach.</span></li>
+        <li><span class="pin">3</span><span><b>Ribbon:</b> tabs of command groups. <b>File</b> holds New, Open, Save As, Print, Export.</span></li>
+        <li><span class="pin">4</span><span><b>Ruler:</b> margins, indents and tabs. Turn on in View › Ruler.</span></li>
+        <li><span class="pin">5</span><span><b>Document area:</b> the page. The blinking line is the <b>cursor</b>, where text appears.</span></li>
+        <li><span class="pin">6</span><span><b>Status bar:</b> page number, word count, language.</span></li>
+        <li><span class="pin">7</span><span><b>Views:</b> Read Mode, Print Layout, Web Layout.</span></li>
+        <li><span class="pin">8</span><span><b>Zoom:</b> bigger on screen only. Printing is not affected.</span></li>
+      </ol>
+    </div>
+    <div class="notes">
+      <p>This is the map. Share your real Word window beside this slide and point to each part in order, <b>1 to 8</b>.</p>
+      <p>Key points: the <b>File tab</b> is where all file handling lives: New, Open, Save As, Print, Export. If you can't see the Quick Access Toolbar, right-click the ribbon and choose <b>Show Quick Access Toolbar</b>; newer versions hide it by default.</p>
+      <p>Zoom only changes what you see. A common worry is "I zoomed to 150%, will it print big?" No.</p>
+    </div>
+  </section>
+
+  <!-- 8 · Docs and Writer equivalents -->
+  <section class="slide" data-title="Same parts, other apps">
+    <div class="slide-head">
+      <div><p class="kicker">Vendor-agnostic</p><h2 class="h2">Where the same parts live in Docs and Writer</h2></div>
+    </div>
+    <table class="tbl">
+      <tr><th style="width:20%">Part</th><th>🟦 Microsoft Word</th><th>🟩 Google Docs</th><th>📄 LibreOffice Writer</th></tr>
+      <tr><td><b>Commands</b></td><td>Ribbon tabs</td><td>Menu bar + toolbar</td><td>Menu bar + toolbars (or View › User Interface › Tabbed)</td></tr>
+      <tr><td><b>File commands</b></td><td>File tab</td><td>File menu</td><td>File menu</td></tr>
+      <tr><td><b>Ruler</b></td><td>View › Ruler</td><td>View › Show ruler</td><td>View › Rulers</td></tr>
+      <tr><td><b>Word count</b></td><td>Status bar</td><td>Tools › Word count (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>)</td><td>Status bar</td></tr>
+      <tr><td><b>Zoom</b></td><td>Slider, bottom right</td><td>Zoom box on the toolbar</td><td>Slider, bottom right</td></tr>
+      <tr><td><b>Saving</b></td><td>Save / Save As (AutoSave in the cloud)</td><td>Automatic, "Saved to Drive"</td><td>Save / Save As</td></tr>
+    </table>
+    <div class="callout tip mt-l"><b>Lost a button?</b> Every app has a search box: Word's <b>Search</b> bar at the top, Docs' <b>Help › Search the menus</b> (<kbd>Alt</kbd>+<kbd>/</kbd>). Type what you want to do.</div>
+    <div class="notes">
+      <p>Don't read the whole table. Pick two rows and demo them if you have Docs open in another tab: the <b>menus instead of a ribbon</b>, and <b>no Save button</b> because Docs saves on its own.</p>
+      <p>The best tip on this slide is the last one: <b>search the menus</b>. In Word, click the search bar at the top and type "ruler" or "word count". In Google Docs press <kbd>Alt</kbd>+<kbd>/</kbd>. Participants who remember only this will never be stuck.</p>
+    </div>
+  </section>
+
+  <!-- 9 · Try 1 -->
+  <section class="slide" data-title="Try it: find the parts">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · in your own app</p><h2 class="h2">Scavenger hunt on your screen</h2></div>
+      <button class="timer" data-min="3">3:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Find these four things</span><span class="tiny">Type the number in the chat when you find each one</span></div>
+      <ol>
+        <li>Turn on the <b>ruler</b>. Type <b>1</b> in the chat.</li>
+        <li>Set the <b>zoom to 120%</b>, then back to 100%. Type <b>2</b>.</li>
+        <li>Find the <b>word count</b> of your blank page. (It should say 0.) Type <b>3</b>.</li>
+        <li>Open the <b>File</b> tab or menu and find <b>Save As</b> and <b>Export</b> (Docs: <b>Download</b>). Type <b>4</b>, then press <kbd>Esc</kbd> to go back.</li>
+      </ol>
+      <div class="row mt-m"><button class="reveal-btn" data-target="ans-hunt">Stuck? Show hints</button></div>
+      <div class="answer mt-s" id="ans-hunt"><div class="callout">Ruler: <b>View › Ruler</b> · Zoom: slider at the bottom right (Docs: zoom box on the toolbar) · Word count: status bar (Docs: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>)</div></div>
+    </div>
+    <div class="notes">
+      <p>Click the timer to start <b>3 minutes</b>. Ask participants to type 1, 2, 3, 4 in the chat as they go so you can see who is stuck.</p>
+      <p>Watch for people who have no ribbon visible: double-clicking a tab collapses or expands it. If someone is lost, ask them to <b>share their screen</b> and guide them out loud; the whole class learns from it.</p>
+      <p>Reveal the hints only after about two minutes.</p>
+    </div>
+  </section>
+
+  <!-- 10 · Video -->
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Know the screen. Save it right. Never lose it.</h2>
+        <p class="lede mt-m">A typewriter, last month's report and a brownout: tour the <b>word processor window</b>, learn <b>Save vs Save As</b>, pick the right <b>file format</b>, and start our running letter the right way.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> spot one part of the screen you haven't used before, and remember when to use Save As instead of Save.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/2.1/poster.jpg" alt="Video: Application Navigation and File Handling"><div class="play"></div><span class="vlen">4:59</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Introduce the video in one or two sentences, then read the <b>While watching</b> task aloud so everyone knows what to look for.</p>
+      <p>Press <b>→</b> to open the video full screen. In Zoom or Meet, share this tab with <b>computer sound</b> turned on.</p>
+    </div>
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/2.1/index.html" title="Video: Application Navigation and File Handling" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="notes">
+      <p><b>Space</b> or <b>K</b> plays and pauses (or click the video). <b>C</b> turns captions on or off; the speed button offers 1.25× and 0.85×. The arrows still move between slides, and the video pauses when you leave this slide.</p>
+      <p>Length 4:59. Pause anywhere to take a question; captions stay on screen for anyone without sound.</p>
+      <p>After the video, go back to the <b>While watching</b> task: ask two or three people for their answers.</p>
+    </div>
+  </section>
+  <!-- YouTube slide replaced by our own video (2026-11-01):
+  <section class="slide" data-title="Video">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">A guided tour of the Word window</h2>
+        <p class="lede mt-m">A clear walkthrough of the ribbon, the Quick Access Toolbar, Backstage view and the zoom and view controls.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> spot one part of the screen we didn't cover, and share it in the chat.</div>
+      </div>
+      <div class="vmeta">
+        <div class="video" data-yt="j-ZAVHk5SaU"><img src="images/m2/2-1-video.jpg" alt="Video thumbnail: Word Getting Started"><div class="play"></div><span class="vlen">4:42</span></div>
+        <p class="tiny">YouTube · "Word: Getting Started" · LearnFree (GCFGlobal) · click to open</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Optional if time is short. Click the thumbnail; it opens YouTube in a new tab. Share that tab with <b>audio on</b>.</p>
+      <p>The LearnFree team at GCFGlobal makes very clear, slow-paced tutorials; recommend their free site for anyone who wants to review at home.</p>
+      <p>Afterwards, ask what new part they spotted. Common answers: the <b>Tell me / Search</b> box, the <b>ribbon display options</b>, or <b>Backstage view</b>, which is just the File tab.</p>
+    </div>
+  </section>
+  -->
+
+  <!-- 11 · New, open, save, save as -->
+  <section class="slide" data-title="New, Open, Save, Save As">
+    <div class="slide-head">
+      <div><p class="kicker">Step 3 · File handling</p><h2 class="h2">Four commands you'll use every day</h2></div>
+      <span class="tag gold">File tab / File menu</span>
+    </div>
+    <div class="grid g4 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">📄</span><h4>New</h4><p>Start a blank document.</p><p class="mt-s"><kbd>Ctrl</kbd>+<kbd>N</kbd></p></div>
+      <div class="card top"><span class="ic-badge">📂</span><h4>Open</h4><p>Bring back a saved file.</p><p class="mt-s"><kbd>Ctrl</kbd>+<kbd>O</kbd></p></div>
+      <div class="card top"><span class="ic-badge">💾</span><h4>Save</h4><p>Update the <b>same</b> file, same name, same place.</p><p class="mt-s"><kbd>Ctrl</kbd>+<kbd>S</kbd></p></div>
+      <div class="card top"><span class="ic-badge">🗂️</span><h4>Save As</h4><p>Make a <b>new copy</b>: new name, folder or format.</p><p class="mt-s"><kbd>F12</kbd> in Word · <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> in Writer</p></div>
+    </div>
+    <div class="grid g2 mt-l">
+      <div class="callout"><b>Think photocopier:</b> Save writes on the original. Save As runs a photocopy and gives the copy a new label, leaving the original as it was.</div>
+      <div class="callout gold"><b>Google Docs:</b> no Save button. Use <b>File › Make a copy</b> instead of Save As, and <b>File › Download</b> for a file on your PC.</div>
+    </div>
+    <div class="notes">
+      <p>The most common mistake I see: someone opens <b>last month's report</b>, updates it, and presses <kbd>Ctrl</kbd>+<kbd>S</kbd>. Last month's version is gone forever.</p>
+      <p>Rule: if you want to <b>keep the old one</b>, do <b>Save As first</b>, give the new name, then edit. Also note: the very first time you save a new document, Save behaves like Save As because the file has no name yet.</p>
+      <p>On a Mac, use <kbd>Cmd</kbd> instead of <kbd>Ctrl</kbd>.</p>
+    </div>
+  </section>
+
+  <!-- 12 · File formats -->
+  <section class="slide" data-title="File formats">
+    <div class="slide-head">
+      <div><p class="kicker">Save as type</p><h2 class="h2">Which file format, and when?</h2></div>
+      <span class="tag">The letters after the dot</span>
+    </div>
+    <table class="tbl">
+      <tr><th style="width:16%">Format</th><th>What it is</th><th style="width:22%">Best for</th></tr>
+      <tr><td><b>.docx</b></td><td>Word's standard format. Google Docs and LibreOffice open it too.</td><td>Editing and sharing drafts</td></tr>
+      <tr><td><b>.doc</b></td><td>The old Word 97 to 2003 format. Re-save as .docx when you can.</td><td>Opening old files only</td></tr>
+      <tr><td><b>.odt</b></td><td>OpenDocument Text, LibreOffice's standard. Word and Docs open it too.</td><td>Editing in LibreOffice</td></tr>
+      <tr><td><b>.pdf</b></td><td>A fixed "print" copy. Looks the same on any phone or PC.</td><td>Final copies to send or print</td></tr>
+      <tr><td><b>Google Docs</b></td><td>Lives in Google Drive, not on your PC. Download as .docx or .pdf.</td><td>Editing together online</td></tr>
+      <tr><td><b>.txt</b></td><td>Plain text only: no fonts, bold or tables.</td><td>Raw text, like our letter today</td></tr>
+    </table>
+    <div class="callout tip mt-m"><b>Rule of thumb:</b> edit in <b>.docx</b> (or .odt), send the final in <b>.pdf</b>, and keep both.</div>
+    <div class="notes">
+      <p>The extension tells the computer which app opens the file. If you can't see extensions, in File Explorer go to <b>View › Show › File name extensions</b>.</p>
+      <p>Emphasize the rule of thumb. When you email a letter to another office or a taxpayer, send <b>PDF</b> so it looks exactly as you intended and isn't easily edited. Keep the .docx for your own future edits.</p>
+      <p>Ask: "Have you received a .docx that looked broken on your phone?" That's why PDF exists.</p>
+    </div>
+  </section>
+
+  <!-- 13 · AutoSave, cloud vs local -->
+  <section class="slide" data-title="Cloud or local">
+    <div class="split rev">
+      <div class="media"><img src="images/m2/2-1-anywhere.jpg" alt="Woman working on a laptop outdoors"></div>
+      <div>
+        <p class="kicker">Where does the file live?</p>
+        <h2 class="h2">Local or cloud, and what AutoSave does</h2>
+        <div class="grid g2 mt-m">
+          <div class="card top"><h4>💻 Local</h4><p>This PC, a shared network drive or a flash drive. Works offline, but if the drive dies, so does the file.</p></div>
+          <div class="card top"><h4>☁️ Cloud</h4><p>OneDrive, SharePoint or Google Drive. Saves as you type, keeps <b>version history</b>, opens on any device.</p></div>
+        </div>
+        <ul class="ticks mt-m">
+          <li><b>Word:</b> the AutoSave switch works only for files saved in OneDrive or SharePoint.</li>
+          <li><b>Docs:</b> always saving. Watch for "Saved to Drive".</li>
+          <li><b>Writer:</b> no AutoSave; it keeps recovery copies every 10 minutes by default.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Explain the trade-off. <b>Cloud</b> is convenient and safe from a broken PC, but needs internet. <b>Local</b> works during an internet outage, but needs backups.</p>
+      <p>Important for BIR: taxpayer information is <b>personal data</b> under the Data Privacy Act. Store office files only where your office allows, usually the official shared drive, never a personal Google Drive. When unsure, ask your ICT focal person.</p>
+      <p>At home, the cloud is perfect for your kids' school files.</p>
+    </div>
+  </section>
+
+  <!-- 14 · Naming habits (pair) -->
+  <section class="slide" data-title="File-naming habits">
+    <div class="slide-head">
+      <div><p class="kicker">Good habits</p><h2 class="h2">Name it so anyone can find it in 10 seconds</h2></div>
+      <span class="tag gold">Type · Subject · Date</span>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <p><span class="fname">Letter - Digital Skills Workshop Invitation - 2026-11-03.docx</span></p>
+        <p class="mt-s"><span class="fname">Report - Monthly Collection Summary - 2026-10.pdf</span></p>
+        <p class="mt-s">Folder: <b>Shared drive › Admin › 2026 › Letters</b></p>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <p><span class="fname">Budget - Household - 2026-11.xlsx</span></p>
+        <p class="mt-s"><span class="fname">Enrollment Form - Juan Jr - SY 2026-2027.pdf</span></p>
+        <p class="mt-s">Folder: <b>Documents › Family › School</b></p>
+      </div>
+    </div>
+    <div class="grid g2 mt-m">
+      <ul class="ticks"><li>Dates as <b>YYYY-MM-DD</b> so files sort in order</li><li>Versions as <b>_v1</b>, <b>_v2</b>, never "final final"</li></ul>
+      <ul class="ticks x"><li>Avoid <b>Document1</b>, <b>new letter (2)</b>, <b>FINAL na talaga.docx</b></li><li>Windows refuses <b>\ / : * ? " &lt; &gt; |</b> in names</li></ul>
+    </div>
+    <div class="notes">
+      <p>A simple pattern: <b>Type, Subject, Date</b>. Year-month-day order means files sort themselves by date in any folder.</p>
+      <p>Get a laugh with "FINAL na talaga" and "final final v3": everyone has one. Then make the serious point: your <b>co-worker or successor</b> must be able to find the file when you're on leave.</p>
+      <p>Ask: "Type in the chat the worst file name on your desktop right now." It's fun and it makes the point.</p>
+    </div>
+  </section>
+
+  <!-- 15 · Export to PDF -->
+  <section class="slide" data-title="Export as PDF">
+    <div class="slide-head">
+      <div><p class="kicker">Sharing the final copy</p><h2 class="h2">Turn any document into a PDF</h2></div>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card"><h4>🟦 Word</h4><ol class="steps"><li><b>File › Save As</b> (or <b>Export</b>)</li><li>Save as type: <b>PDF (*.pdf)</b></li><li>Click <b>Save</b></li></ol></div>
+      <div class="card"><h4>🟩 Google Docs</h4><ol class="steps"><li><b>File › Download</b></li><li>Pick <b>PDF Document (.pdf)</b></li><li>It lands in <b>Downloads</b></li></ol></div>
+      <div class="card"><h4>📄 LibreOffice</h4><ol class="steps"><li><b>File › Export as</b></li><li><b>Export as PDF…</b></li><li>Click <b>Export</b>, then Save</li></ol></div>
+    </div>
+    <div class="grid g2 mt-l">
+      <div class="callout"><b>Keep the original.</b> The PDF is for reading and printing. Future edits happen in the .docx.</div>
+      <div class="callout gold"><b>Any other app:</b> Print, then choose the printer <b>Microsoft Print to PDF</b>.</div>
+    </div>
+    <div class="notes">
+      <p>Demo the Word path live: <b>File, Save As, Browse</b>, change "Save as type" to <b>PDF</b>, Save. Then open the PDF to show it looks identical.</p>
+      <p>For Google Docs, remind them the PDF goes to the <b>Downloads</b> folder, so they should move it to the right folder right away.</p>
+      <p>The <b>Microsoft Print to PDF</b> trick works from almost any Windows program, even a browser page or an old app without an export button.</p>
+    </div>
+  </section>
+
+  <!-- 16 · Recovering unsaved work -->
+  <section class="slide" data-title="Recover unsaved work">
+    <div class="slide-head">
+      <div><p class="kicker">The brownout survival guide</p><h2 class="h2">The power went out. Is my letter gone?</h2></div>
+      <span class="tag coral">Don't panic</span>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><h4>🟦 Word</h4><p>Reopen Word: a <b>Document Recovery</b> pane lists rescued files. Never saved at all? <b>File › Info › Manage Document › Recover Unsaved Documents</b>.</p></div>
+      <div class="card top"><h4>🟩 Google Docs</h4><p>Already saved. For an older state: <b>File › Version history › See version history</b>, then restore.</p></div>
+      <div class="card top"><h4>📄 LibreOffice</h4><p>Reopen Writer: the <b>Document Recovery</b> window appears. Click <b>Start</b> to restore.</p></div>
+    </div>
+    <div class="callout warn mt-l"><b>Recovery is a safety net, not a plan.</b> Word and Writer save recovery copies about every 10 minutes, so you can still lose 10 minutes of work. Press <kbd>Ctrl</kbd>+<kbd>S</kbd> after every paragraph.</div>
+    <div class="notes">
+      <p>Everyone in Mindanao knows this feeling. Walk through what happens: when Word restarts after a crash or brownout, the <b>Document Recovery</b> pane appears on the left. Open each file, check it, and <b>Save As</b> right away.</p>
+      <p>The "Recover Unsaved Documents" button is for files you <b>never saved</b>. It doesn't always have everything.</p>
+      <p>The real lesson: <kbd>Ctrl</kbd>+<kbd>S</kbd> habit, and a UPS, from 1.1.</p>
+    </div>
+  </section>
+
+  <!-- 17 · Raw text -->
+  <section class="slide" data-title="Our raw text">
+    <div class="slide-head">
+      <div><p class="kicker">Running example · start the letter</p><h2 class="h2">Our raw material: plain, unformatted text</h2></div>
+      <span class="tag gold">Sample only</span>
+    </div>
+    <div class="grid" style="grid-template-columns:1.35fr 1fr;gap:calc(var(--u)*2.4);align-items:center">
+      <div class="win">
+        <div class="bar"><i></i><i></i><i></i><span>workshop-invitation.txt · Notepad</span></div>
+        <div class="body"><p class="plain">Sample Revenue District Office
+Administrative Section
+3 November 2026
+Subject: Invitation to the Digital Skills Workshop
+Dear Collegues,
+The Administrative Section invites you to a one-day Digital Skills Workshop on Thursday, 19 November 2026, from 8:30 AM to 4:30 PM at the Conference Room, 2nd Floor.
+The workshop covers word processing, spreadsheets and presentations using the apps we use every day. Please bring your laptop if you have one.
+Kindly confirm your attendance on or before Friday, 13 November 2026.
+Respectfully,
+Maria Santos
+Administrative Officer</p></div>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li>No fonts, no bold, no spacing: just words.</li>
+          <li>This is how text often arrives: from an email, a chat, an old file, or an AI assistant.</li>
+          <li>Today: <b>paste it in and save it properly</b>.</li>
+          <li>2.2 makes it look like a real letter. 2.3 adds a table and a logo.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Paste this text into the meeting chat now, or share the .txt file from the training folder.</p>
+      <p>Explain why we start plain: in real work, text rarely arrives perfectly formatted. It comes from an email, a Messenger thread, a scanned page or an AI tool. Knowing how to <b>bring raw text in and shape it</b> is the core skill of this module.</p>
+      <p>Point out that the office, names and dates are <b>samples</b>. In the lab you may adapt it. The typo "Collegues" is <b>on purpose</b>: leave it, spell check will catch it in 2.2.</p>
+    </div>
+  </section>
+
+  <!-- 18 · Try 2 -->
+  <section class="slide" data-title="Try it: save the letter">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · hands-on</p><h2 class="h2">Start the letter and save it the right way</h2></div>
+      <button class="timer" data-min="6">6:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Six steps</span><span class="tiny">Type SAVED in the chat with your file name when done</span></div>
+      <ol>
+        <li>Open a <b>new blank document</b> (<kbd>Ctrl</kbd>+<kbd>N</kbd>).</li>
+        <li>Copy the raw text from the chat and <b>paste</b> it (<kbd>Ctrl</kbd>+<kbd>V</kbd>).</li>
+        <li><b>Save As</b> (<kbd>F12</kbd> in Word) into your training folder from Topic 1.2.</li>
+        <li>Name it <span class="fname">Letter - Digital Skills Workshop Invitation - 2026-11-03</span></li>
+        <li>Keep the type <b>Word Document (.docx)</b>. Writer: .odt or .docx. Docs: click the title at the top left and rename.</li>
+        <li><b>Export a PDF copy</b> into the same folder.</li>
+      </ol>
+    </div>
+    <div class="notes">
+      <p>Start the <b>6-minute</b> timer. Do it yourself on screen at the same pace, step by step, so slower participants can copy you.</p>
+      <p>Check the chat for "SAVED" plus the file name, and gently correct names like "Document1" or "letter".</p>
+      <p>Anyone using Google Docs: the document is already in Drive. Have them rename it and use <b>File, Download, PDF</b> for step 6. Remind everyone: <b>keep this file</b>. We'll keep improving it in 2.2 and 2.3.</p>
+    </div>
+  </section>
+
+  <!-- 19 · Quick check -->
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">You want to update October's report for November, but keep October's file unchanged. What do you do first?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>Edit it, then press <kbd>Ctrl</kbd>+<kbd>S</kbd><div class="why">No. Save writes over October's file, and the old version is gone.</div></div></div>
+      <div class="opt" data-correct><span class="l">B</span><div>Save As with a new name, then edit<div class="why">Yes. October stays safe, and you work on a fresh November copy.</div></div></div>
+      <div class="opt"><span class="l">C</span><div>Export it as PDF, then edit the PDF<div class="why">No. A PDF is a final copy and isn't meant for editing.</div></div></div>
+      <div class="opt"><span class="l">D</span><div>Zoom to 150% so the changes stand out<div class="why">No. Zoom only changes the view on screen, not the file.</div></div></div>
+    </div>
+    <div class="notes">
+      <p>Let them answer in the chat first, then click each option to reveal. The answer is <b>B, Save As first</b>.</p>
+      <p>Stress the order: <b>Save As first, then edit</b>. If you edit first and then remember, use Save As before you press Ctrl+S, and the original is still safe.</p>
+      <p>Google Docs users: the equivalent is <b>File, Make a copy</b>.</p>
+    </div>
+  </section>
+
+  <!-- 20 · Recap -->
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 2.1</p>
+    <h2 class="h2">Know the screen. Save it right. Never lose it.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Navigate</h4><p>Title bar, ribbon or menus, ruler, page, status bar, views and zoom.</p></div>
+      <div class="card dark"><h4>Handle files</h4><p>Save updates the file; Save As makes a copy. Edit in .docx, send in .pdf.</p></div>
+      <div class="card dark"><h4>Protect</h4><p>Type · Subject · Date names, <kbd>Ctrl</kbd>+<kbd>S</kbd> often, and know where recovery lives.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">2.2 Text Formatting and Editing Tools</b>: turning our plain text into a proper formal letter.</p>
+    <div class="notes">
+      <p>Summarize in one breath: <b>know the screen, save it right, never lose it</b>.</p>
+      <p>Check: does everyone have the letter saved with the correct name? If anyone doesn't, help them now; 2.2 starts from this file.</p>
+      <p>Bridge: "Right now our letter looks like a text message. In the next topic we'll make it look like something the Regional Director would happily sign."</p>
+    </div>
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

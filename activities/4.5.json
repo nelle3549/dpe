@@ -1,0 +1,70 @@
+{
+  "topic": "4.5",
+  "title": "Applying Animations and Slide Transitions",
+  "activities": [
+    {
+      "id": "4.5-a",
+      "slide": "Try it: one transition for all",
+      "kind": "task",
+      "title": "Apply one transition to every slide",
+      "minutes": 4,
+      "intro": "Work in your Lab 4 file. Lab 4 asks for transitions applied uniformly, so every slide gets the same one. Tick each step as you finish it.",
+      "blocks": [
+        { "type": "steps", "id": "steps", "items": [
+          "Click any slide, then open the Transitions tab.",
+          "Pick Fade or Push from the gallery.",
+          "Set Duration to about 0.5 to 1 second. Sound: [No Sound].",
+          "Click Apply To All, then press F5 to test."
+        ] },
+        { "type": "text", "id": "chosen", "prompt": "Which transition did you choose?", "lines": 1 },
+        { "type": "mcq", "id": "missed", "prompt": "Which step do people miss most often?", "options": ["Picking an effect", "Apply To All", "Pressing F5"] },
+        { "type": "mcq", "id": "star", "prompt": "In PowerPoint, how can you tell from the thumbnails that a slide has a transition?", "options": ["A red border around it", "A small star icon beside it", "Its number turns bold"] }
+      ],
+      "help": [
+        "Google Slides: Slide › Transition opens the Motion panel; click Apply to all slides.",
+        "Impress: Sidebar › Slide Transition panel › Apply Transition to All Slides."
+      ]
+    },
+    {
+      "id": "4.5-b",
+      "slide": "Try it: animate your bullets",
+      "kind": "task",
+      "title": "Animate your \"What I learned\" slide",
+      "minutes": 5,
+      "intro": "Make your bullets appear one per click. No Lab 4 file yet? Use any slide with 3 bullets.",
+      "blocks": [
+        { "type": "steps", "id": "steps", "items": [
+          "Select the bullet text box by its border.",
+          "Add Appear or Fade, Sequence By Paragraph.",
+          "Set Start: On Click, Duration 0.5.",
+          "Open the Animation Pane and check the order is 1, 2, 3.",
+          "Press Shift + F5 and click through. One bullet per click?"
+        ] },
+        { "type": "mcq", "id": "atonce", "prompt": "All your bullets come in at once. What do you change?", "options": ["Start to After Previous", "Sequence to By Paragraph", "Duration to 2 seconds"] },
+        { "type": "mcq", "id": "oneword", "prompt": "Only one word moves. What went wrong?", "options": ["You selected text, not the box", "The transition is missing", "The Duration is too short"] },
+        { "type": "mcq", "id": "noclick", "prompt": "The bullets play without a click. Which Start setting do you need?", "options": ["With Previous", "After Previous", "On Click"] }
+      ],
+      "help": [
+        "All bullets at once? Sequence is \"As One Object\". Change it to By Paragraph.",
+        "Only one word moves? You selected text, not the box. Click the border.",
+        "Plays without a click? Start is After Previous. Change it to On Click."
+      ]
+    },
+    {
+      "id": "4.5-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: one bullet per click",
+      "minutes": 1,
+      "intro": "Pick one answer.",
+      "blocks": [
+        { "type": "mcq", "id": "q", "prompt": "You want your three bullets to show up one per click. What do you use?", "options": [
+          "A Push transition on that slide",
+          "An entrance animation, By Paragraph, Start On Click",
+          "An exit animation on the text box",
+          "Morph on the next slide"
+        ] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "topic": "4.4",
+  "title": "Inserting and Manipulating Graphical Elements",
+  "activities": [
+    {
+      "id": "4.4-a",
+      "slide": "Insert the Lab 3 chart",
+      "kind": "task",
+      "title": "Bring the Lab 3 chart into a slide",
+      "minutes": 3,
+      "intro": "Watch the demo of copying the Lab 3 chart from Excel into PowerPoint. Follow the steps, then answer from the chart on the screen.",
+      "blocks": [
+        { "type": "steps", "id": "steps", "items": [
+          "In Excel, click the chart's edge and press Ctrl + C.",
+          "In PowerPoint, go to your chart slide and press Ctrl + V.",
+          "Click the Paste Options icon: keep it embedded (editable) or paste as a Picture (fixed).",
+          "Rewrite the chart title as a message."
+        ] },
+        { "type": "number", "id": "bond", "prompt": "Bond paper, long (₱7,950) plus bond paper, A4 (₱6,125) is how much?", "unit": "₱" },
+        { "type": "number", "id": "pct", "prompt": "About what percent of the ₱22,039.00 total is bond paper?", "unit": "%" },
+        { "type": "mcq", "id": "theme", "prompt": "Which Paste Option makes the chart match the slide colours?", "options": ["Keep Source Formatting", "Use Destination Theme"] },
+        { "type": "mcq", "id": "send", "prompt": "You will send the file to others. Which paste is safest?", "options": ["Embedded (editable)", "Picture (fixed)"] }
+      ],
+      "help": [
+        "Google Slides: Insert › Chart › From Sheets. It stays linked; click Update when the data changes.",
+        "Impress: copy the chart from Calc and paste it.",
+        "No chart? Use Insert › Chart in PowerPoint and type the numbers."
+      ]
+    },
+    {
+      "id": "4.4-b",
+      "slide": "Try it: add your chart",
+      "kind": "task",
+      "title": "Put your Lab 3 chart (or Lab 1 image) on a slide",
+      "minutes": 6,
+      "intro": "This step completes one of the Lab 4 graded requirements. Work in your Lab 4 file, slide 4. Tick each step as you finish it.",
+      "blocks": [
+        { "type": "steps", "id": "steps", "items": [
+          "Open your Lab 3 file, copy the chart (Ctrl + C).",
+          "In Lab 4, go to your chart slide and paste (Ctrl + V). No chart? Insert your Lab 1 image.",
+          "Resize from a corner so it fills the content area, not the whole slide.",
+          "Change the slide title to a message, e.g. \"Bond paper is 64% of our supplies cost\".",
+          "Add alt text: right-click › View Alt Text.",
+          "Save with Ctrl + S."
+        ] },
+        { "type": "mcq", "id": "handle", "prompt": "Which handle do you drag to resize without stretching?", "options": ["A side handle", "A corner handle", "The rotate handle"] },
+        { "type": "mcq", "id": "title", "prompt": "Which chart slide title states a message?", "options": ["Chart 1", "Total cost per item (₱)", "Bond paper is 64% of our supplies cost"] },
+        { "type": "mcq", "id": "alt", "prompt": "In PowerPoint, where do you add alt text?", "options": ["Insert › Text Box", "Right-click › View Alt Text", "Design › Themes"] },
+        { "type": "upload", "id": "shot", "prompt": "Optional: a screenshot of your chart slide", "optional": true }
+      ],
+      "help": [
+        "Chart pasted huge? Resize it from a corner.",
+        "Colours changed? That's \"Use Destination Theme\", which is fine.",
+        "Google Slides: the chart must be in Google Sheets first.",
+        "Pie chart? The message title still works: \"Bond paper takes the biggest slice.\""
+      ]
+    },
+    {
+      "id": "4.4-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: the wide group photo",
+      "minutes": 1,
+      "intro": "Pick one answer.",
+      "blocks": [
+        { "type": "mcq", "id": "q", "prompt": "You enlarged a group photo and now everyone looks wide and short. What happened?", "options": [
+          "The photo was compressed too much",
+          "The photo needs alt text",
+          "You dragged a side handle, which stretched it",
+          "The picture style is wrong"
+        ] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.6 Adding Media Clips · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* 4.6 drawn app UI */
+.rb{font-size:calc(var(--u)*1.2)}
+.rb .tabs{display:flex;gap:1.1em;padding:.5em .9em;background:#fff;border-bottom:1px solid var(--border);color:var(--text-2)}
+.rb .tabs .on{color:var(--mod);font-weight:800;box-shadow:inset 0 -2px 0 var(--mod)}
+.rb .grp{display:flex;gap:1em;padding:.8em .9em;background:#FAFBFD;align-items:flex-start;flex-wrap:wrap}
+.rb .col{display:flex;flex-direction:column;gap:.45em;font-size:calc(var(--u)*1.1);color:var(--text-2)}
+.rb .btn{border:1px solid var(--border-strong);border-radius:5px;padding:.2em .6em;background:#fff;white-space:nowrap}
+.rb .btn.hot{border-color:var(--coral);background:var(--coral-soft);color:var(--coral);font-weight:800}
+.rb .ck::before{content:"☐ ";color:var(--text-3)}
+.rb .ck.on::before{content:"☑ ";color:var(--mod)}
+.menu{background:#fff;border:1px solid var(--border-strong);border-radius:6px;box-shadow:var(--shadow-lg);font-size:calc(var(--u)*1);overflow:hidden}
+.menu div{padding:.5em 1em;color:var(--text-2);border-bottom:1px solid var(--border)}
+.menu div:last-child{border-bottom:0}
+.menu .sel{background:var(--mod-soft);color:var(--mod);font-weight:700}
+/* trim dialog */
+.trim .vid{position:relative;aspect-ratio:16/8;background:linear-gradient(135deg,#1d2b44,#3b4f74);border-radius:6px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.85);font-weight:700;font-size:calc(var(--u)*1.2)}
+.trim .tlb{position:relative;height:calc(var(--u)*2.4);margin-top:calc(var(--u)*1);background:repeating-linear-gradient(90deg,#d9dee8 0 6px,#e9edf3 6px 12px);border-radius:5px}
+.trim .keep{position:absolute;top:0;bottom:0;left:16%;right:22%;background:rgba(194,72,43,.18);border-top:2px solid var(--mod);border-bottom:2px solid var(--mod)}
+.trim .h{position:absolute;top:-12%;bottom:-12%;width:calc(var(--u)*.7);border-radius:3px}
+.trim .h.s{left:16%;background:var(--green)}.trim .h.e{right:22%;background:var(--coral)}
+.trim .ph{position:absolute;top:-20%;bottom:-20%;width:2px;background:var(--ink);left:16%}
+.slide.is-active .trim .ph{animation:x-ph 4s infinite linear}
+@keyframes x-ph{0%{left:16%}90%,100%{left:78%}}
+.trim .times{display:flex;justify-content:space-between;margin-top:calc(var(--u)*.8);font-size:calc(var(--u)*.95);color:var(--text-2)}
+.trim .times b{font-family:var(--font-mono);color:var(--text-1)}
+.eq{display:inline-flex;gap:3px;align-items:flex-end;height:1em;margin-right:.4em}
+.eq i{width:4px;background:var(--mod);height:40%}
+.slide.is-active .eq i{animation:x-eq .9s infinite ease-in-out alternate}
+.slide.is-active .eq i:nth-child(2){animation-delay:.2s}.slide.is-active .eq i:nth-child(3){animation-delay:.4s}.slide.is-active .eq i:nth-child(4){animation-delay:.1s}
+@keyframes x-eq{0%{height:25%}100%{height:100%}}
+</style>
+</head>
+<body class="m4" data-brand="Digital Productivity Essentials · <b>Module 4</b> · 4.6 Adding Media Clips">
+<div class="deck">
+
+  <!-- 1 · Cover -->
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 4 · Multimedia Presentation Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Adding <span style="color:var(--gold)">Media Clips</span></h1>
+      <p class="lede" data-anim="fade-up">Video, music and your own voice in a slide, and making sure they actually play on the day.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 4.6</span><span class="tag ghost">~30 minutes</span><span class="tag ghost">Hands-on</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m4/4-6-cover.jpg" alt="A studio microphone and headphones in front of a computer"><div class="cv-num">4.6</div></div>
+    <div class="notes">
+      <p><b>Maayong hapon po!</b> Our slides now have text, pictures, a chart and smooth transitions. Today we add <b>sound and video</b>.</p>
+      <p>Media is powerful: a 30-second clip can explain what three slides of text can't. But media is also the number one cause of "wait lang po, ayaw mag-play" moments.</p>
+      <p>So we'll learn both: how to insert and trim clips, and how to <b>test</b> them so they play on the office PC and over Zoom or Meet.</p>
+    </div>
+  </section>
+
+  <!-- 2 · Warm-up -->
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · type in the chat</p><h2 class="h2">Which media fail have you seen?</h2></div>
+      <span class="tag gold">1 minute</span>
+    </div>
+    <div class="grid g4 mt-m anim-stagger-list">
+      <div class="card center"><span class="ic">🚫</span><h4>A</h4><p>"This video is unavailable" in the middle of a talk</p></div>
+      <div class="card center"><span class="ic">🔇</span><h4>B</h4><p>The video plays, but nobody online hears it</p></div>
+      <div class="card center"><span class="ic">📦</span><h4>C</h4><p>The file is too big to email or upload</p></div>
+      <div class="card center"><span class="ic">🎵</span><h4>D</h4><p>Loud music that drowned out the speaker</p></div>
+    </div>
+    <div class="callout gold mt-l"><b>Good news:</b> every one of these can be prevented in under five minutes. That's what this topic is for.</div>
+    <div class="notes">
+      <p>Ask them to type <b>A, B, C or D</b>. Many will pick B: over Zoom or Meet, sound is the most common failure.</p>
+      <p>Share a quick story if you have one, for example a seminar where the video only showed a black box.</p>
+      <p>Then reassure them: each fail on this slide has a simple fix, and by the end of this topic we'll have covered all four.</p>
+    </div>
+  </section>
+
+  <!-- 3 · Objectives -->
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head">
+      <div><p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2></div>
+    </div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Insert</span><h4>Video and audio</h4><p>From a file or online; background music or narration.</p></div>
+      <div class="card top"><span class="k">Control</span><h4>Trim and playback</h4><p>Keep only the part you need; choose how and when it plays.</p></div>
+      <div class="card top"><span class="k">Prepare</span><h4>Size, testing and permission</h4><p>Embed or link wisely, test on the real setup, and respect copyright.</p></div>
+    </div>
+    <div class="callout mt-l"><b>Lab 4 link:</b> the course grades "embedded media". A short clip or audio in your "My Digital Skills Journey" deck is a strong way to show it.</div>
+    <div class="notes">
+      <p>Three goals: <b>insert</b>, <b>control</b>, <b>prepare</b>. Most tutorials stop at "insert". The other two are what separate a smooth presentation from an awkward one.</p>
+      <p>Mention the Lab 4 link: the syllabus describes the presentation output as showing consistent design, clear text, <b>embedded media</b> and transitions. Your Lab 3 chart or Lab 1 image counts as media; a short clip or narration is a bonus that makes your deck stand out.</p>
+    </div>
+  </section>
+
+  <!-- 4 · Analogy -->
+  <section class="slide" data-title="The big idea">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">A media clip is the <em class="mod">intermission number</em> at a barangay program.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>Book it:</b> choose the right clip and insert it.</li>
+          <li><b>Rehearse it:</b> trim it short and set when it starts.</li>
+          <li><b>Check the sound system:</b> test on the real computer and online.</li>
+          <li><b>Get permission:</b> use music and videos you are allowed to use.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/m4/4-6-headphones.jpg" alt="Headphones on a white desk next to a keyboard and mouse"></div>
+    </div>
+    <div class="notes">
+      <p>Everyone has been to a barangay or church program with a dance or song number in the middle. When it works, it's the best part. When the sound system fails, everyone waits awkwardly.</p>
+      <p>A media clip in your slides is the same. Four jobs: <b>book it, rehearse it, check the sound, get permission</b>. We'll do each one today, in that order.</p>
+    </div>
+  </section>
+
+  <!-- 5 · Kinds of media -->
+  <section class="slide" data-title="Kinds of media">
+    <div class="slide-head">
+      <div><p class="kicker">What you can add</p><h2 class="h2">Four kinds of media clips</h2></div>
+    </div>
+    <div class="grid g4 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">🎞️</span><h4>Video file</h4><p>A clip saved on your computer, e.g. a 20-second phone video of the new filing room.</p></div>
+      <div class="card top"><span class="ic-badge">▶️</span><h4>Online video</h4><p>A YouTube video played inside the slide. Needs internet while presenting.</p></div>
+      <div class="card top"><span class="ic-badge">🎵</span><h4>Background music</h4><p>Soft music under a photo slideshow. Keep it quiet and short.</p></div>
+      <div class="card top"><span class="ic-badge">🎙️</span><h4>Narration</h4><p>Your own recorded voice explaining a slide, for decks people watch on their own.</p></div>
+    </div>
+    <div class="callout tip mt-l"><b>Ask first:</b> does this clip say something my words and pictures can't? If not, leave it out.</div>
+    <div class="notes">
+      <p>Four kinds. A <b>video file</b> lives on your computer. An <b>online video</b> stays on YouTube and streams when you play it. <b>Background music</b> plays under other slides. <b>Narration</b> is your voice recorded for a self-running deck.</p>
+      <p>Stress the tip: media should <b>earn</b> its place. A 20-second clip showing how to use a scanner beats two slides of steps. Random music because "it's nicer" usually doesn't help.</p>
+    </div>
+  </section>
+
+  <!-- 6 · Insert video -->
+  <section class="slide" data-title="Inserting video">
+    <div class="slide-head">
+      <div><p class="kicker">Inserting video</p><h2 class="h2">From a file, or from online?</h2></div>
+      <span class="tag">PowerPoint: Insert › Video</span>
+    </div>
+    <div class="grid g3" style="grid-template-columns:.8fr 1.1fr 1.1fr;align-items:start">
+      <div>
+        <div class="menu">
+          <div style="font-weight:800;color:var(--text-1)">Insert › Video ▾</div>
+          <div class="sel">This Device…</div>
+          <div>Stock Videos…</div>
+          <div class="sel">Online Videos…</div>
+        </div>
+        <p class="tiny mt-s">PowerPoint for Microsoft 365. Older versions word it slightly differently.</p>
+      </div>
+      <div class="card top">
+        <h4>📁 From a file (This Device)</h4>
+        <ul class="ticks">
+          <li>Plays <b>without internet</b>, even during a brownout on a laptop.</li>
+          <li>Makes the file <b>bigger</b>.</li>
+          <li>Best for clips you made yourself.</li>
+        </ul>
+      </div>
+      <div class="card top">
+        <h4>🌐 Online (paste a YouTube link)</h4>
+        <ul class="ticks">
+          <li>Keeps the file <b>small</b>.</li>
+          <li><b>Needs internet</b> while presenting.</li>
+          <li>Breaks if the owner removes or privates it.</li>
+        </ul>
+      </div>
+    </div>
+    <table class="tbl mt-l">
+      <tr><th style="width:24%">Google Slides</th><td><b>Insert › Video</b>: search YouTube, paste a URL, or pick a file from <b>Google Drive</b>.</td></tr>
+      <tr><th>LibreOffice Impress</th><td><b>Insert › Audio or Video</b>: files on your computer only.</td></tr>
+    </table>
+    <div class="notes">
+      <p>Demo in PowerPoint: Insert › Video › <b>This Device</b>, then show <b>Online Videos</b> and paste a YouTube link.</p>
+      <p>The trade-off is simple. A file is reliable but heavy. An online video is light but depends on the internet, and on the owner keeping it public. That's where "This video is unavailable" comes from.</p>
+      <p>For a training room with unstable Wi-Fi, use a <b>file</b>. For a deck you'll email, an online link keeps it small.</p>
+    </div>
+  </section>
+
+  <!-- 7 · Insert audio -->
+  <section class="slide" data-title="Inserting audio">
+    <div class="slide-head">
+      <div><p class="kicker">Inserting audio</p><h2 class="h2">Background music or narration</h2></div>
+      <span class="tag">PowerPoint: Insert › Audio</span>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <h4><span class="eq"><i></i><i></i><i></i><i></i></span>Background music</h4>
+        <ol class="steps">
+          <li>Go to the first slide → <b>Insert › Audio › Audio on My PC</b>.</li>
+          <li>Playback tab → <b>Play in Background</b>.</li>
+          <li>Set <b>Volume: Low</b>. Music plays across slides and loops.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h4>🎙️ Narration for one slide</h4>
+        <ol class="steps">
+          <li><b>Insert › Audio › Record Audio</b>, then click record.</li>
+          <li>Speak 20 to 40 seconds, stop, name the clip, OK.</li>
+          <li>Playback: Start <b>In Click Sequence</b> or <b>Automatically</b>.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="grid g2 mt-m">
+      <div class="callout"><b>Google Slides:</b> Insert › Audio, from <b>Google Drive</b> (MP3 or WAV). Untick "Stop on slide change" to keep it playing.</div>
+      <div class="callout"><b>LibreOffice Impress:</b> Insert › Audio or Video. Test playback in Slide Show.</div>
+    </div>
+    <div class="notes">
+      <p><b>Play in Background</b> is the one-click setting for music: it starts automatically, plays across slides, loops, and hides the speaker icon during the show.</p>
+      <p>For narration, show <b>Record Audio</b> live. A headset mic gives much cleaner sound than a laptop mic.</p>
+      <p>Warn about volume: background music should sit <b>under</b> your voice. If you'll speak live, you may not need music at all.</p>
+    </div>
+  </section>
+
+  <!-- 8 · Trimming -->
+  <section class="slide" data-title="Trimming">
+    <div class="split">
+      <div>
+        <p class="kicker">Rehearse it · keep only what you need</p>
+        <h2 class="h2">Trim a 3-minute video to the 30 seconds that matter.</h2>
+        <ol class="steps mt-m">
+          <li>Click the video → <b>Playback</b> tab → <b>Trim Video</b>.</li>
+          <li>Drag the <b style="color:var(--green)">green</b> start marker and the <b style="color:var(--coral)">red</b> end marker.</li>
+          <li>Press play to check, then <b>OK</b>.</li>
+          <li>Add a short <b>Fade In / Fade Out</b> (0.5 s) so it doesn't start abruptly.</li>
+        </ol>
+        <p class="small mt-m">Google Slides: Format options › Video playback › <b>Start at / End at</b>. Impress has no trim: cut the file first, e.g. in Clipchamp on Windows 11.</p>
+      </div>
+      <div class="win trim">
+        <div class="bar"><i></i><i></i><i></i><span>Trim Video</span></div>
+        <div class="body">
+          <div class="vid">▶ office-scanner-howto.mp4</div>
+          <div class="tlb"><div class="keep"></div><div class="h s"></div><div class="h e"></div><div class="ph"></div></div>
+          <div class="times"><span>Start Time <b>00:28.0</b></span><span>Duration <b>00:30.0</b></span><span>End Time <b>00:58.0</b></span></div>
+          <div class="row mt-m" style="justify-content:flex-end;gap:.6em"><span class="tag">OK</span><span class="tag coral">Cancel</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Trimming doesn't cut the original file; PowerPoint just plays the part you choose. That's great because you can widen it again later.</p>
+      <p>Demo: open Trim Video, drag the green marker to where the useful part starts and the red marker to where it ends. The window shows a 30-second piece of a longer clip.</p>
+      <p>Note that trimming in PowerPoint doesn't make the file smaller by itself. To actually shrink it, we'll use <b>Compress Media</b> in a moment.</p>
+    </div>
+  </section>
+
+  <!-- 9 · Playback options -->
+  <section class="slide" data-title="Playback options">
+    <div class="slide-head">
+      <div><p class="kicker">Playback options</p><h2 class="h2">Decide how and when the clip plays</h2></div>
+    </div>
+    <div class="win rb">
+      <div class="bar"><i></i><i></i><i></i><span>My Digital Skills Journey.pptx · PowerPoint</span></div>
+      <div class="tabs"><span>Home</span><span>Insert</span><span>Animations</span><span>Video Format</span><span class="on">Playback</span></div>
+      <div class="grp">
+        <div class="col"><span class="btn">✂ Trim Video</span><span class="btn">Fade In 00.50 · Fade Out 00.50</span></div>
+        <div class="col"><span class="btn">🔊 Volume ▾</span><span class="btn hot">Start: When Clicked On ▾</span></div>
+        <div class="col"><span class="ck">Play Full Screen</span><span class="ck">Hide While Not Playing</span></div>
+        <div class="col"><span class="ck">Loop until Stopped</span><span class="ck">Rewind after Playing</span></div>
+      </div>
+    </div>
+    <table class="tbl mt-l">
+      <tr><th style="width:30%">Setting</th><th>Use it when…</th></tr>
+      <tr><td><b>Start: In Click Sequence / When Clicked On</b></td><td>You present live and want to choose the moment. Safest choice.</td></tr>
+      <tr><td><b>Start: Automatically</b></td><td>The clip should begin as soon as the slide appears, e.g. a kiosk loop.</td></tr>
+      <tr><td><b>Play Full Screen · Loop · Rewind</b></td><td>Fill the screen for a short demo · repeat for a lobby display · reset to the start after playing.</td></tr>
+    </table>
+    <div class="notes">
+      <p>Click the video, open the <b>Playback</b> tab, and walk through the settings left to right.</p>
+      <p>For a live talk, choose <b>When Clicked On</b> or <b>In Click Sequence</b>: the clip waits for you. <b>Automatically</b> suits a self-running slideshow, like a birthday loop or a lobby display.</p>
+      <p>Google Slides has similar choices: <b>Play (on click)</b>, <b>Play (automatically)</b> or <b>Play (manual)</b>, plus Mute, under Format options.</p>
+    </div>
+  </section>
+
+  <!-- 10 · Try: insert a clip -->
+  <section class="slide" data-title="Try it: insert a clip">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · your Lab 4 file</p><h2 class="h2">Add one clip to "My Digital Skills Journey"</h2></div>
+      <button class="timer" data-min="6">6:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Pick one path</span><span class="tiny">Keep it under 30 seconds</span></div>
+      <div class="grid g3">
+        <div class="card soft"><h4>🎞️ A video file</h4><p>Record 10 seconds of your desk or workspace with your phone, copy it to the PC, then <b>Insert › Video › This Device</b>.</p></div>
+        <div class="card soft"><h4>▶️ An online video</h4><p><b>Insert › Video › Online Videos</b> and paste a YouTube link from this course, e.g. a GCFLearnFree tutorial.</p></div>
+        <div class="card soft"><h4>🎙️ Your voice</h4><p><b>Insert › Audio › Record Audio</b>. Say one sentence: "The skill I'll use most at work is…"</p></div>
+      </div>
+      <ol class="mt-m">
+        <li>Resize the clip so it doesn't cover your text. Set Start to <b>When Clicked On</b>.</li>
+        <li>Trim if needed, then press <kbd>Shift</kbd> + <kbd>F5</kbd> and click it. Does it play?</li>
+      </ol>
+    </div>
+    <div class="notes">
+      <p>Start the <b>6-minute</b> timer. Everyone chooses one path.</p>
+      <p>The voice option is the fastest and needs no internet; suggest it to anyone on a slow connection. A headset or phone earphones with a mic sound better than the laptop mic.</p>
+      <p>When time is up, ask for a <b>👍 reaction</b> from everyone whose clip played in Slide Show. Help anyone with a 👎 now, before we talk about sharing sound online.</p>
+    </div>
+  </section>
+
+  <!-- 11 · File size -->
+  <section class="slide" data-title="File size: embed or link">
+    <div class="split rev">
+      <div class="media"><img src="images/m4/4-6-video-editing.jpg" alt="A laptop showing a video editing timeline"></div>
+      <div>
+        <p class="kicker">File size</p>
+        <h2 class="h2">Embedded or linked?</h2>
+        <table class="tbl mt-m">
+          <tr><th></th><th>Embedded (default)</th><th>Linked</th></tr>
+          <tr><td><b>Where</b></td><td>Inside the .pptx</td><td>A separate file beside it</td></tr>
+          <tr><td><b>Size</b></td><td>Bigger deck</td><td>Smaller deck</td></tr>
+          <tr><td><b>Risk</b></td><td>Too big to email</td><td>Breaks if the file moves</td></tr>
+        </table>
+        <ul class="ticks mt-m">
+          <li><b>Shrink it:</b> File › Info › <b>Compress Media</b> (choose 720p for most uses).</li>
+          <li><b>Too big to email?</b> Gmail attachments stop at 25 MB; share a Drive link instead.</li>
+          <li><b>Linked?</b> Keep the deck and its clips in <b>one folder</b> and copy the whole folder.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>When you insert from This Device, PowerPoint <b>embeds</b> the clip: it's stored inside the .pptx. Phone videos are large, so a deck can quickly pass 100 MB.</p>
+      <p>Demo <b>File › Info › Compress Media</b>. 720p looks fine on a projector or Zoom share.</p>
+      <p>Linking (the small arrow on the Insert button, then <b>Insert and Link</b>) keeps the deck light, but if you copy only the .pptx to a flash drive, the video won't come along. Copy the whole folder.</p>
+    </div>
+  </section>
+
+  <!-- 12 · Office and home -->
+  <section class="slide" data-title="Office and home">
+    <div class="slide-head">
+      <div><p class="kicker">Media with a purpose</p><h2 class="h2">Good uses of media clips</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li>A 30-second <b>screen recording</b> showing how to save a form as PDF, for a staff briefing.</li>
+          <li>A short phone video of the <b>new records room layout</b> for colleagues working remotely.</li>
+          <li>A self-running orientation deck with <b>narration</b> for new staff.</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li>Lola's 80th birthday slideshow with soft <b>background music</b>, looping on the TV.</li>
+          <li>Your child's science report with a 15-second <b>experiment video</b>.</li>
+          <li>A church or barangay event recap with photos and a short <b>video greeting</b>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warn mt-l"><b>At work, mind privacy:</b> never film taxpayers, their documents or screens with personal data. Clips with identifiable people need their consent (Data Privacy Act, RA 10173).</div>
+    <div class="notes">
+      <p>Read two examples from each side. At the office, the best clips are <b>short how-to recordings</b>: they save you from answering the same question ten times.</p>
+      <p>Spend a moment on the warning. A video of the front desk might show a taxpayer's face or a TIN on a form. That's personal information under the <b>Data Privacy Act</b>. Film empty rooms, your own screen with sample data, or ask consent.</p>
+    </div>
+  </section>
+
+  <!-- 13 · Testing -->
+  <section class="slide" data-title="Test before the day">
+    <div class="split">
+      <div>
+        <p class="kicker">Check the sound system</p>
+        <h2 class="h2">Test on the real setup, not just your laptop.</h2>
+        <ol class="steps mt-m">
+          <li><b>On the presentation PC:</b> open the deck from your flash drive or Drive and play every clip.</li>
+          <li><b>Speakers and volume:</b> check the room speakers, or your headset if online.</li>
+          <li><b>Zoom:</b> Share Screen → tick <b>Share sound</b> before you click Share.</li>
+          <li><b>Google Meet:</b> present a Chrome <b>tab</b> (tab audio is included), or tick <b>share system audio</b> when sharing your whole screen on Windows.</li>
+          <li><b>Plan B:</b> a backup copy, and the clip's link ready to paste in the chat.</li>
+        </ol>
+      </div>
+      <div class="media"><img src="images/m4/4-6-online-meeting.jpg" alt="A laptop showing an online video meeting with many participants"></div>
+    </div>
+    <div class="notes">
+      <p>This is the "sound system check" from our barangay program analogy, and the fix for fail B in the warm-up.</p>
+      <p>Show Zoom's share window now and point to <b>Share sound</b> at the bottom. Without it, you hear the video and your audience hears silence.</p>
+      <p>Always test on the <b>actual</b> computer: a newer PowerPoint on your laptop may play a clip that an older office PC can't. And keep a Plan B; brownouts and slow internet happen.</p>
+    </div>
+  </section>
+
+  <!-- 14 · Try: sound check -->
+  <section class="slide" data-title="Try it: sound check">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · together</p><h2 class="h2">Live sound check over our meeting</h2></div>
+      <button class="timer" data-min="4">4:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Two volunteers</span><span class="tiny">Everyone else: react, don't unmute</span></div>
+      <div class="grid g2">
+        <ol>
+          <li>Volunteer shares screen <b>without</b> sound and plays their clip.</li>
+          <li>Audience reacts 🔇 if they hear nothing.</li>
+          <li>Volunteer stops, shares again <b>with</b> "Share sound" ticked.</li>
+          <li>Audience reacts 🔊 when they hear it clearly.</li>
+        </ol>
+        <div class="callout gold"><b>Listen for:</b> Is the volume comfortable? Does the voice sound clear or echoey? Does the clip start when the presenter clicks, not before?</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Ask for two volunteers who finished the previous Try it. Run the test <b>twice</b> on purpose: once without sound sharing, once with it.</p>
+      <p>Hearing the difference themselves is far more memorable than me saying "tick the box." Let the audience give feedback with reactions and the chat, so the speakers stay clear.</p>
+      <p>If no one volunteers, do it yourself with a short clip from your own deck.</p>
+    </div>
+  </section>
+
+  <!-- 15 · Copyright -->
+  <section class="slide" data-title="Copyright and permission">
+    <div class="slide-head">
+      <div><p class="kicker">Get permission</p><h2 class="h2">Just because you can play it doesn't mean you may use it.</h2></div>
+    </div>
+    <div class="grid g2">
+      <div class="card top">
+        <h4>✅ Safer choices</h4>
+        <ul class="ticks">
+          <li><b>Your own</b> recordings, voice and photos.</li>
+          <li>Stock media built into your app, e.g. PowerPoint's <b>Stock Videos</b> (Microsoft 365).</li>
+          <li>Free libraries with a clear licence, e.g. <b>Pixabay</b>. Read the terms.</li>
+          <li>A YouTube video played through <b>Online Videos</b>, with the title and channel shown.</li>
+        </ul>
+      </div>
+      <div class="card top" style="border-top-color:var(--coral)">
+        <h4>❌ Avoid</h4>
+        <ul class="ticks x">
+          <li>Popular songs from Spotify or YouTube as background music.</li>
+          <li>Downloading someone's YouTube video to embed it, without permission.</li>
+          <li>Movie or TV clips "because everyone shares them".</li>
+          <li>Clips of colleagues or the public without their consent.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout mt-l"><b>Credit line habit:</b> add a small caption, e.g. "Video: PowerPoint: Inserting Videos, LearnFree (YouTube)". Credit is good manners, but it doesn't replace permission.</div>
+    <div class="notes">
+      <p>This is the ethics part of Lab 4: "Multimedia Presentation and <b>Ethical</b> Design".</p>
+      <p>Popular songs are copyrighted, even if you give credit. For a government office deck, the safest music is <b>no music</b>, or stock audio with a clear licence.</p>
+      <p>Playing a YouTube video through its own player is the normal way to share it. Downloading it to embed as a file is different; YouTube's terms don't allow that without permission. And for people in your clips: <b>ask consent</b>.</p>
+    </div>
+  </section>
+
+  <!-- 16 · Myth or fact -->
+  <section class="slide" data-title="Myth or fact">
+    <div class="slide-head">
+      <div><p class="kicker">Myth or fact? · click a card to flip</p><h2 class="h2">Three common beliefs about media</h2></div>
+    </div>
+    <div class="grid g3">
+      <div class="flip" style="min-height:calc(var(--u)*19)"><div class="in">
+        <div class="fr"><span class="tag coral">Myth or fact?</span><h4 class="mt-m">"If I credit the artist, I can use any song."</h4><span class="hint">click to flip</span></div>
+        <div class="bk"><span class="tag gold">Myth</span><p class="mt-m">Credit doesn't equal permission. You need a licence, or music that is free to use.</p></div>
+      </div></div>
+      <div class="flip" style="min-height:calc(var(--u)*19)"><div class="in">
+        <div class="fr"><span class="tag coral">Myth or fact?</span><h4 class="mt-m">"If my video plays on my laptop, it will play anywhere."</h4><span class="hint">click to flip</span></div>
+        <div class="bk"><span class="tag gold">Myth</span><p class="mt-m">Linked files, older app versions, missing internet or speakers can all stop it. Test on the real setup.</p></div>
+      </div></div>
+      <div class="flip" style="min-height:calc(var(--u)*19)"><div class="in">
+        <div class="fr"><span class="tag coral">Myth or fact?</span><h4 class="mt-m">"A short, trimmed clip usually works better than a long one."</h4><span class="hint">click to flip</span></div>
+        <div class="bk"><span class="tag gold">Fact</span><p class="mt-m">Attention drops fast. 15 to 60 seconds that make one point beats a full 5-minute video.</p></div>
+      </div></div>
+    </div>
+    <div class="callout mt-l"><b>Type in the chat first:</b> M for myth, F for fact. Then we flip.</div>
+    <div class="notes">
+      <p>Ask the group to vote <b>M or F</b> in the chat for each card, then flip it.</p>
+      <p>The first one surprises many people: giving credit is polite, but it doesn't give you the right to use the song.</p>
+      <p>The second one ties back to testing. The third is our trimming rule: play only the part that makes your point.</p>
+    </div>
+  </section>
+
+  <!-- 17 · Optional: record yourself -->
+  <section class="slide" data-title="Optional: record a voice-over">
+    <div class="split rev">
+      <div class="media"><img src="images/m4/4-6-selfie-video.jpg" alt="A man recording himself with a phone held up at arm's length"></div>
+      <div>
+        <p class="kicker">Optional extra</p>
+        <h2 class="h2">Record a voice-over or a screen recording</h2>
+        <ul class="ticks mt-m">
+          <li><b>Voice-over for the whole deck:</b> PowerPoint <b>Slide Show › Record</b>. Your timings and narration are saved per slide.</li>
+          <li><b>Screen recording:</b> PowerPoint <b>Insert › Screen Recording</b>, or the Windows 11 <b>Snipping Tool</b> (record mode).</li>
+          <li><b>Any app:</b> record on your phone's voice recorder, then insert the file.</li>
+          <li><b>Share as a video:</b> File › Export › <b>Create a Video</b>.</li>
+        </ul>
+        <div class="callout tip mt-m"><b>Before you record:</b> close email and chat pop-ups, and use sample data only.</div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>This is optional, for those who want to go further. A narrated deck exported as a video is great for people who missed a meeting.</p>
+      <p>Demo the <b>Record</b> button if time allows; it records your voice slide by slide, and you can redo just one slide.</p>
+      <p>The tip matters: a screen recording captures everything, including a Messenger pop-up from your family group chat. Turn on Do Not Disturb, and show only sample data, never a real taxpayer record.</p>
+    </div>
+  </section>
+
+  <!-- 18 · Videos -->
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Video, music and your own voice, that actually play</h2>
+        <p class="lede mt-m">A barangay program, a scanner how-to and Lola's birthday slideshow: see how to <b>insert</b> video and audio, <b>trim</b> and set playback, keep the file small, <b>test the sound</b> online and use only media you're allowed to use.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> note the one setting you'd check before playing a clip over Zoom or Meet.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/4.6/poster.jpg" alt="Video: Adding Media Clips"><div class="play"></div><span class="vlen">4:53</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Introduce the video in one or two sentences, then read the <b>While watching</b> task aloud so everyone knows what to look for.</p>
+      <p>Press <b>→</b> to open the video full screen. In Zoom or Meet, share this tab with <b>computer sound</b> turned on.</p>
+    </div>
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/4.6/index.html" title="Video: Adding Media Clips" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="notes">
+      <p><b>Space</b> or <b>K</b> plays and pauses (or click the video). <b>C</b> turns captions on or off; the speed button offers 1.25× and 0.85×. The arrows still move between slides, and the video pauses when you leave this slide.</p>
+      <p>Length 4:53. Pause anywhere to take a question; captions stay on screen for anyone without sound.</p>
+      <p>After the video, go back to the <b>While watching</b> task: ask two or three people for their answers.</p>
+    </div>
+  </section>
+  <!-- YouTube slide replaced by our own video (2026-11-01):
+  <section class="slide" data-title="Videos">
+    <div class="slide-head">
+      <div><p class="kicker">Watch later · about 5 minutes each</p><h2 class="h2">Two short step-by-step reviews</h2></div>
+    </div>
+    <div class="grid g2">
+      <div class="vmeta">
+        <div class="video" data-yt="UJBCanWJD0k"><img src="images/m4/4-6-video-insert.jpg" alt="Video thumbnail: PowerPoint Inserting Videos"><div class="play"></div><span class="vlen">4:13</span></div>
+        <h4>PowerPoint: Inserting Videos</h4>
+        <p class="tiny">YouTube · LearnFree (GCFGlobal) · 4:13 · click to open</p>
+      </div>
+      <div class="vmeta">
+        <div class="video" data-yt="pP3kTmsnbnY"><img src="images/m4/4-6-video-audio.jpg" alt="Video thumbnail: PowerPoint Inserting Audio"><div class="play"></div><span class="vlen">5:51</span></div>
+        <h4>PowerPoint: Inserting Audio</h4>
+        <p class="tiny">YouTube · LearnFree (GCFGlobal) · 5:51 · click to open</p>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Two GCFLearnFree videos that repeat today's steps slowly: inserting and trimming video, and inserting and recording audio.</p>
+      <p>Click a card to open it in a new tab. If you play one now, this is a perfect moment to practise: share the tab <b>with sound</b>, and ask the group to react 🔊 if they can hear it.</p>
+      <p>Otherwise, post both links in the chat for review at home.</p>
+    </div>
+  </section>
+  -->
+
+  <!-- 19 · Quick check -->
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">On Zoom, your video plays, but participants hear nothing. The most likely fix?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>Compress the media to 720p<div class="why">No. Compressing changes file size, not whether sound is shared.</div></div></div>
+      <div class="opt" data-correct><span class="l">B</span><div>Share again with "Share sound" ticked<div class="why">Yes. Zoom only sends your computer's audio when Share sound is on.</div></div></div>
+      <div class="opt"><span class="l">C</span><div>Change the slide transition to Fade<div class="why">No. Transitions don't affect audio sharing.</div></div></div>
+      <div class="opt"><span class="l">D</span><div>Set the video to Loop until Stopped<div class="why">No. Looping repeats the clip; it still won't reach the audience.</div></div></div>
+    </div>
+    <div class="notes">
+      <p>Let them type A to D first, then click to reveal. The answer is <b>B</b>.</p>
+      <p>Ask: <i>"What's the Google Meet version of this fix?"</i> Answer: present a Chrome tab, or tick share system audio when sharing the whole screen on Windows.</p>
+      <p>If anyone picked A, remind them that Compress Media is about file size for emailing and uploading. Sound sharing is a meeting setting, not a slide setting.</p>
+    </div>
+  </section>
+
+  <!-- 20 · Recap -->
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 4.6</p>
+    <h2 class="h2">Book it, rehearse it, check the sound, get permission.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Insert</h4><p>File for reliability, online for small size. Music in the background, narration for self-running decks.</p></div>
+      <div class="card dark"><h4>Control</h4><p>Trim to the part that matters; start When Clicked On; compress before you share.</p></div>
+      <div class="card dark"><h4>Prepare</h4><p>Test on the real PC and with "Share sound". Use media you may use, with consent.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">4.7 AI in Presentation Design</b>, then the Lab 4 brief and our course closing.</p>
+    <div class="notes">
+      <p>Summarize with the barangay program: <b>book it, rehearse it, check the sound system, get permission</b>.</p>
+      <p>Quick chat check: "Type 1 if your Lab 4 deck now has at least one image, chart or clip." Anyone without one can add the Lab 3 chart during the lab.</p>
+      <p>Bridge to 4.7: "Our last topic: letting AI suggest layouts and outlines, while we stay in charge of the facts."</p>
+    </div>
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>
