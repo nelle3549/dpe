@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.3 Basic Formulas (Arithmetic Operators) · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* Module 3 · drawn spreadsheet grid (uses dpe.css tokens) */
+.xl{background:#fff;border-radius:calc(var(--u)*.8);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--border-strong);font-size:calc(var(--u)*1.12)}
+.xl .rib{display:flex;gap:calc(var(--u)*1.3);padding:calc(var(--u)*.45) calc(var(--u)*1);background:var(--mod);color:#fff;font-size:calc(var(--u)*.85);font-weight:600;align-items:center}
+.xl .rib span{opacity:.72}.xl .rib span.on{opacity:1;border-bottom:2px solid #fff}
+.xl .tools{display:flex;gap:calc(var(--u)*.5);padding:calc(var(--u)*.45) calc(var(--u)*1);background:#F6F8FA;border-bottom:1px solid #E1E5EB;font-size:calc(var(--u)*.85);flex-wrap:wrap;align-items:center}
+.xl .tools b{display:inline-flex;align-items:center;gap:.3em;padding:.2em .6em;border-radius:.3em;background:#fff;border:1px solid #D6DBE2;font-weight:600;color:var(--text-1)}
+.xl .tools b.on{background:var(--mod-soft);border-color:var(--mod);color:var(--mod)}
+.xl .fbar{display:flex;align-items:center;gap:calc(var(--u)*.6);padding:calc(var(--u)*.45) calc(var(--u)*.7);border-bottom:1px solid #D6DBE2;background:#fff}
+.xl .nb{font-family:var(--font-mono);font-size:calc(var(--u)*1);min-width:calc(var(--u)*6);padding:.2em .5em;border:1px solid #C9D0DA;border-radius:.25em;color:var(--text-1)}
+.xl .fx{font-style:italic;font-family:Georgia,serif;color:var(--text-3);font-weight:700}
+.xl .fv{flex:1;font-family:var(--font-mono);font-size:calc(var(--u)*1);padding:.2em .5em;border:1px solid #C9D0DA;border-radius:.25em;color:var(--text-1);white-space:nowrap;overflow:hidden}
+.xl table{border-collapse:collapse;width:100%;table-layout:fixed}
+.xl col.rn{width:calc(var(--u)*2.6)}
+.xl th{background:#F1F3F6;color:#5F6B7A;font-weight:600;border:1px solid #D6DBE2;padding:.22em .3em;text-align:center;font-size:.88em}
+.xl th.on{background:var(--mod-soft);color:var(--mod);font-weight:800}
+.xl td{border:1px solid #E3E7ED;padding:.28em .55em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text-1);height:1.55em}
+.xl td.n{text-align:right;font-family:var(--font-mono);font-size:.94em}
+.xl td.c{text-align:center}
+.xl td.f{font-family:var(--font-mono);color:var(--mod);font-size:.9em}
+.xl td.mute{color:var(--text-3);font-style:italic}
+.xl tr.hd td{font-weight:700}
+.xl tr.tot td{font-weight:700;border-top:2px solid var(--text-2)}
+.xl td.rng{background:color-mix(in srgb,var(--mod) 13%,#fff)}
+.xl td.sel{outline:calc(var(--u)*.22) solid var(--mod);outline-offset:calc(var(--u)*-.22);background:#fff}
+.xl td.ants{outline:calc(var(--u)*.16) dashed var(--mod);outline-offset:calc(var(--u)*-.2)}
+.xl td.hi{background:var(--coral-soft);color:#B3261E}
+.xl td.err{color:var(--coral);font-weight:700}
+.xl td.tri{position:relative}
+.xl td.tri::before{content:"";position:absolute;left:0;top:0;border-top:calc(var(--u)*.55) solid var(--green);border-right:calc(var(--u)*.55) solid transparent}
+.xl td.handle{position:relative}
+.xl td.handle::after{content:"";position:absolute;right:-1px;bottom:-1px;width:calc(var(--u)*.6);height:calc(var(--u)*.6);background:var(--mod);border:1px solid #fff}
+.xl .tabs{display:flex;gap:2px;padding:0 calc(var(--u)*.7);background:#F1F3F6;border-top:1px solid #D6DBE2;font-size:calc(var(--u)*.85);align-items:center}
+.xl .tabs span{padding:.3em 1em;color:var(--text-2)}
+.xl .tabs span.on{background:#fff;color:var(--mod);font-weight:700;border-bottom:2px solid var(--mod)}
+.xl.sm{font-size:calc(var(--u)*1)}
+.xl.xs{font-size:calc(var(--u)*.9)}
+.mk{display:inline-flex;flex:none;width:calc(var(--u)*1.7);height:calc(var(--u)*1.7);border-radius:50%;background:var(--gold);color:var(--ink);font-weight:800;font-size:calc(var(--u)*.9);align-items:center;justify-content:center;font-style:normal;font-family:var(--font-sans)}
+.fcode{font-family:var(--font-mono);background:var(--mod-soft);color:var(--mod-deep);padding:.08em .45em;border-radius:.3em;font-size:.9em;white-space:nowrap}
+.cap{font-size:calc(var(--u)*1);color:var(--text-3);margin-top:calc(var(--u)*.6)}
+.xl tr.fmt td{background:var(--mod-deep);color:#fff;font-weight:700}
+.xl.bd td{border-color:#AEB7C4}
+.xl td.wrap{white-space:normal;line-height:1.15}
+.xl td.bad{background:var(--coral-soft);box-shadow:inset 0 0 0 1px var(--coral)}
+.xl td.ok{background:var(--green-soft)}
+.xl tr.frz td,.xl tr.frz th{border-bottom:calc(var(--u)*.3) solid #9AA5B4}
+</style>
+</head>
+<body class="m3" data-brand="Digital Productivity Essentials · <b>Module 3</b> · 3.3 Basic Formulas (Arithmetic Operators)">
+<div class="deck">
+
+  
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 3 · Electronic Spreadsheet Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Basic Formulas: <span style="color:var(--gold)">Arithmetic Operators</span></h1>
+      <p class="lede" data-anim="fade-up">Teach the sheet to add, subtract, multiply and divide, so totals update themselves and never need retyping.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 3.3</span><span class="tag ghost">~50 minutes</span><span class="tag ghost">BIR Misamis Oriental</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m3/3-3-cover.jpg" alt="Desk calculator on a dark surface"><div class="cv-num">3.3</div></div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · mental math in the chat</p><h2 class="h2">25 reams of A4 bond paper at ₱245 each. How much?</h2></div>
+      <span class="tag gold">1 minute</span>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">⏱</span><h4>Round 1</h4><p>Type your answer in the chat. First correct answer wins bragging rights.</p></div>
+      <div class="card top"><span class="ic-badge">📦</span><h4>Round 2</h4><p>Now do the same for all <b>8 items</b> in the inventory, without mistakes.</p></div>
+      <div class="card top"><span class="ic-badge">🔁</span><h4>Round 3</h4><p>The supplier raises the A4 price to <b>₱255</b>. Redo everything that depends on it.</p></div>
+    </div>
+    <div class="row mt-l"><button class="reveal-btn" data-target="ans-wu">Show the answer</button>
+      </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="The big idea">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">A formula is a calculator that <em class="mod">remembers</em>.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li>At the sari-sari store, the tindera punches the numbers, writes the total, and forgets how she got it.</li>
+          <li>A formula keeps the <b>recipe</b>: "quantity times unit cost". Change an ingredient and the answer changes too.</li>
+          <li>You see the <b>answer</b> in the cell and the <b>recipe</b> in the formula bar.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/m3/3-3-receipt.jpg" alt="Hand holding a printed store receipt"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Objectives">
+    <div class="split rev">
+      <div class="media"><img src="images/m3/3-3-calculator.jpg" alt="Scientific calculator on a page of notes"></div>
+      <div>
+        <p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2>
+        <ol class="steps mt-m anim-stagger-list">
+          <li><b>Write:</b> start with =, use + − * / ^ and parentheses in the right order.</li>
+          <li><b>Reference:</b> use C2*D2 instead of typed numbers, then fill it down.</li>
+          <li><b>Check:</b> read #DIV/0!, #VALUE!, #NAME? and #####, and show all formulas.</li>
+        </ol>
+        <div class="callout warn mt-m"><b>Lab 3 rule:</b> values must not be hard-typed. Every calculated cell must show a <b>formula</b> in the formula bar.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Every formula starts with =">
+    <div class="slide-head">
+      <div><p class="kicker">Rule number one</p><h2 class="h2">Every formula starts with an equals sign</h2></div>
+      <span class="tag">Same in Excel, Sheets and Calc</span>
+    </div>
+    <div class="grid g2">
+      <div class="card"><span class="tag coral">Without =</span>
+        <div class="xl sm mt-m"><div class="fbar"><span class="nb">E2</span><span class="fx">fx</span><span class="fv">C2*D2</span></div>
+          <table><colgroup><col class="rn"><col><col><col></colgroup><tr><th></th><th>C</th><th>D</th><th>E</th></tr><tr><th>2</th><td class="n">25</td><td class="n">₱245.00</td><td class="err">C2*D2</td></tr></table></div>
+        <p class="mt-m">The sheet treats it as <b>text</b> and just shows what you typed.</p>
+      </div>
+      <div class="card"><span class="tag green">With =</span>
+        <div class="xl sm mt-m"><div class="fbar"><span class="nb">E2</span><span class="fx">fx</span><span class="fv">=C2*D2</span></div>
+          <table><colgroup><col class="rn"><col><col><col></colgroup><tr><th></th><th>C</th><th>D</th><th>E</th></tr><tr><th>2</th><td class="n">25</td><td class="n">₱245.00</td><td class="n sel">₱6,125.00</td></tr></table></div>
+        <p class="mt-m">The <b>=</b> says "calculate this". The cell shows the answer.</p>
+      </div>
+    </div>
+    <div class="callout tip mt-l"><b>Fast and accurate:</b> type <kbd>=</kbd>, then <b>click</b> C2, type <kbd>*</kbd>, <b>click</b> D2, press <kbd>Enter</kbd>. Clicking avoids typing the wrong address.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Arithmetic operators">
+    <div class="slide-head">
+      <div><p class="kicker">The six symbols</p><h2 class="h2">Arithmetic operators, on our inventory</h2></div>
+    </div>
+    <div class="grid" style="grid-template-columns:1.25fr .75fr;align-items:start">
+      <table class="tbl">
+        <tr><th>Symbol</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+        <tr><td><b class="fcode">+</b></td><td>Add</td><td class="fcode">=C2+C3</td><td>55 reams of bond paper</td></tr>
+        <tr><td><b class="fcode">-</b></td><td>Subtract</td><td class="fcode">=C2-F2</td><td>15 above the reorder level</td></tr>
+        <tr><td><b class="fcode">*</b></td><td>Multiply</td><td class="fcode">=C2*D2</td><td>₱6,125.00 total cost</td></tr>
+        <tr><td><b class="fcode">/</b></td><td>Divide</td><td class="fcode">=D4/12</td><td>₱8.00 per ballpen</td></tr>
+        <tr><td><b class="fcode">^</b></td><td>Power</td><td class="fcode">=2^3</td><td>8 (2 × 2 × 2)</td></tr>
+        <tr><td><b class="fcode">( )</b></td><td>Do this first</td><td class="fcode">=(C2+C3)*2</td><td>110</td></tr>
+      </table>
+      <div>
+        <div class="xl xs"><table>
+          <colgroup><col class="rn"><col style="width:40%"><col><col><col></colgroup>
+          <tr><th></th><th>A</th><th>C</th><th>D</th><th>F</th></tr>
+          <tr class="hd"><th>1</th><td>Item</td><td>Qty</td><td>Unit Cost</td><td>Reorder</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td class="n">25</td><td class="n">₱245.00</td><td class="n">10</td></tr>
+          <tr><th>3</th><td>Bond paper, long</td><td class="n">30</td><td class="n">₱265.00</td><td class="n">10</td></tr>
+          <tr><th>4</th><td>Ballpen, black</td><td class="n">10</td><td class="n">₱96.00</td><td class="n">5</td></tr>
+        </table></div>
+        <div class="callout gold mt-m"><b>Keyboard:</b> <kbd>*</kbd> is Shift+8, <kbd>^</kbd> is Shift+6. The number pad has + − * / too.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Order of operations">
+    <div class="slide-head">
+      <div><p class="kicker">Who goes first?</p><h2 class="h2">Order of operations: parentheses first</h2></div>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <ol class="steps">
+          <li><b>( )</b> Parentheses</li>
+          <li><b>^</b> Powers</li>
+          <li><b>* and /</b> Multiply and divide, left to right</li>
+          <li><b>+ and −</b> Add and subtract, left to right</li>
+        </ol>
+        <div class="grid g2 mt-m" style="gap:calc(var(--u)*.8)">
+          <div class="card soft center"><span class="fcode" style="font-size:calc(var(--u)*1.5)">=2+3*4</span><p class="mt-s"><b>14</b></p></div>
+          <div class="card soft center"><span class="fcode" style="font-size:calc(var(--u)*1.5)">=(2+3)*4</span><p class="mt-s"><b>20</b></p></div>
+        </div>
+      </div>
+      <div class="card top"><h4>Real example: average of Budget and Actual for rice</h4>
+        <p>Budget B2 = ₱2,500 · Actual C2 = ₱2,650</p>
+        <table class="tbl mt-m">
+          <tr><th>Formula</th><th>Result</th></tr>
+          <tr><td class="fcode">=B2+C2/2</td><td><b style="color:var(--coral)">3,825</b> ✗ divides only C2</td></tr>
+          <tr><td class="fcode">=(B2+C2)/2</td><td><b style="color:var(--green)">2,575</b> ✓ adds first</td></tr>
+        </table>
+        <div class="row mt-m"><button class="reveal-btn" data-target="ans-ooo">Why?</button></div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Cell references">
+    <div class="slide-head">
+      <div><p class="kicker">The most important habit</p><h2 class="h2">Point to cells. Don't type the numbers.</h2></div>
+    </div>
+    <div class="grid g2">
+      <div class="card"><span class="tag coral">Typed numbers</span>
+        <div class="xl sm mt-m"><div class="fbar"><span class="nb">E2</span><span class="fx">fx</span><span class="fv">=25*245</span></div>
+          <table><colgroup><col class="rn"><col><col><col></colgroup><tr><th></th><th>C</th><th>D</th><th>E</th></tr><tr><th>2</th><td class="n">25</td><td class="n hi">₱255.00</td><td class="n hi">₱6,125.00</td></tr></table></div>
+        <p class="mt-m">Price changed to ₱255, but E2 still says <b>₱6,125.00</b>. Wrong, and nobody is warned.</p>
+      </div>
+      <div class="card"><span class="tag green">Cell references</span>
+        <div class="xl sm mt-m"><div class="fbar"><span class="nb">E2</span><span class="fx">fx</span><span class="fv">=C2*D2</span></div>
+          <table><colgroup><col class="rn"><col><col><col></colgroup><tr><th></th><th>C</th><th>D</th><th>E</th></tr><tr><th>2</th><td class="n">25</td><td class="n ok">₱255.00</td><td class="n ok">₱6,375.00</td></tr></table></div>
+        <p class="mt-m">Change D2 and E2 updates <b>by itself</b> to ₱6,375.00.</p>
+      </div>
+    </div>
+    <div class="callout mt-l"><b>Why it matters at work:</b> one price update fixes the row total, the grand total, and later the chart. With typed numbers, you'd have to find and fix every one by hand.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Total Cost, filled down">
+    <div class="slide-head">
+      <div><p class="kicker">Build the Total Cost column</p><h2 class="h2">One formula in E2, then fill it down</h2></div>
+    </div>
+    <div class="grid" style="grid-template-columns:.85fr 1.15fr;align-items:start">
+      <div>
+        <ol class="steps" style="font-size:calc(var(--u)*1.35)">
+          <li>Click <b>E2</b>. Type <kbd>=</kbd>, click <b>C2</b>, type <kbd>*</kbd>, click <b>D2</b>, press <kbd>Enter</kbd>.</li>
+          <li>Click E2 again. <b>Double-click the fill handle</b> (or drag it down to E9).</li>
+          <li>Click <b>E5</b> and read the formula bar: <span class="fcode">=C5*D5</span>. The row number changed by itself.</li>
+        </ol>
+        <div class="callout tip mt-m"><b>Why it adjusts:</b> the formula means "this row's Qty × this row's Unit Cost". More on this in 3.5 Cell Referencing.</div>
+      </div>
+      <div class="xl sm bd">
+        <div class="fbar"><span class="nb">E5</span><span class="fx">fx</span><span class="fv">=C5*D5</span></div>
+        <table>
+          <colgroup><col class="rn"><col style="width:29%"><col style="width:8%"><col style="width:16%"><col style="width:19%"><col></colgroup>
+          <tr><th></th><th>A</th><th>C</th><th>D</th><th class="on">E</th><th style="background:#fff;border-color:#fff"></th></tr>
+          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Qty</td><td class="c">Unit Cost</td><td class="c">Total Cost</td><td class="c" style="background:var(--gold-soft);color:#8A6200">Inside E</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td class="n">25</td><td class="n">₱245.00</td><td class="n rng">₱6,125.00</td><td class="f">=C2*D2</td></tr>
+          <tr><th>3</th><td>Bond paper, long</td><td class="n">30</td><td class="n">₱265.00</td><td class="n rng">₱7,950.00</td><td class="f">=C3*D3</td></tr>
+          <tr><th>4</th><td>Ballpen, black</td><td class="n">10</td><td class="n">₱96.00</td><td class="n rng">₱960.00</td><td class="f">=C4*D4</td></tr>
+          <tr><th>5</th><td>Folder, long</td><td class="n">4</td><td class="n">₱520.00</td><td class="n sel">₱2,080.00</td><td class="f">=C5*D5</td></tr>
+          <tr><th>6</th><td>Fastener</td><td class="n">6</td><td class="n">₱85.00</td><td class="n rng">₱510.00</td><td class="f">=C6*D6</td></tr>
+          <tr><th>7</th><td>Staple wire #35</td><td class="n">12</td><td class="n">₱32.00</td><td class="n rng">₱384.00</td><td class="f">=C7*D7</td></tr>
+          <tr><th>8</th><td>Printer ink, black</td><td class="n">8</td><td class="n">₱350.00</td><td class="n rng">₱2,800.00</td><td class="f">=C8*D8</td></tr>
+          <tr><th>9</th><td>Envelope, brown long</td><td class="n">3</td><td class="n">₱410.00</td><td class="n rng">₱1,230.00</td><td class="f">=C9*D9</td></tr>
+        </table>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Try it: Total Cost">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · hands-on</p><h2 class="h2">Fill your Total Cost column and a grand total</h2></div>
+      <button class="timer" data-min="8">8:00</button>
+    </div>
+    <div class="grid" style="grid-template-columns:1.1fr .9fr;align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">Your steps</span></div>
+        <ol>
+          <li>In <b>E2</b>: <span class="fcode">=C2*D2</span>, then fill down to E9.</li>
+          <li>In <b>A10</b> type <b>TOTAL</b>.</li>
+          <li>In <b>E10</b>, add the eight totals with +:<br><span class="fcode">=E2+E3+E4+E5+E6+E7+E8+E9</span></li>
+          <li>Click E2, E9 and E10 and read each formula bar. No typed numbers anywhere.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="card soft"><h4>Check your answers</h4>
+          <p>E2 <b>₱6,125.00</b> · E3 <b>₱7,950.00</b> · E9 <b>₱1,230.00</b></p>
+          <div class="row mt-m"><button class="reveal-btn" data-target="ans-tot">Show the grand total</button></div>
+          
+        </div>
+        <div class="callout gold mt-m"><b>Long, isn't it?</b> In 3.4, <span class="fcode">=SUM(E2:E9)</span> does the same in one short step.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Budget vs Actual">
+    <div class="slide-head">
+      <div><p class="kicker">At home · Monthly Household Budget</p><h2 class="h2">Budget vs Actual: difference and percentage</h2></div>
+    </div>
+    <div class="grid" style="grid-template-columns:1.3fr .7fr;align-items:start">
+      <div class="xl sm bd">
+        <div class="fbar"><span class="nb">E3</span><span class="fx">fx</span><span class="fv">=C3/B3</span></div>
+        <table>
+          <colgroup><col class="rn"><col style="width:32%"><col><col><col><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th>C</th><th class="on">D</th><th class="on">E</th></tr>
+          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Budget</td><td class="c">Actual</td><td class="c">Difference</td><td class="c">% of Budget</td></tr>
+          <tr><th>2</th><td>Rice</td><td class="n">₱2,500.00</td><td class="n">₱2,650.00</td><td class="n">₱150.00</td><td class="n">106.0%</td></tr>
+          <tr><th>3</th><td>CEPALCO electricity</td><td class="n">₱2,800.00</td><td class="n">₱3,120.00</td><td class="n">₱320.00</td><td class="n sel">111.4%</td></tr>
+          <tr><th>4</th><td>Water</td><td class="n">₱450.00</td><td class="n">₱420.00</td><td class="n">-₱30.00</td><td class="n">93.3%</td></tr>
+          <tr><th>5</th><td>Mobile load and internet</td><td class="n">₱1,500.00</td><td class="n">₱1,500.00</td><td class="n">₱0.00</td><td class="n">100.0%</td></tr>
+          <tr><th>6</th><td>Fare and fuel</td><td class="n">₱2,000.00</td><td class="n">₱2,240.00</td><td class="n">₱240.00</td><td class="n">112.0%</td></tr>
+          <tr><th>7</th><td>School allowance</td><td class="n">₱3,000.00</td><td class="n">₱2,800.00</td><td class="n">-₱200.00</td><td class="n">93.3%</td></tr>
+          <tr><th>8</th><td>Groceries</td><td class="n">₱5,000.00</td><td class="n">₱5,480.00</td><td class="n">₱480.00</td><td class="n">109.6%</td></tr>
+          <tr><th>9</th><td>Savings</td><td class="n">₱3,000.00</td><td class="n">₱3,000.00</td><td class="n">₱0.00</td><td class="n">100.0%</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="card top"><h4>Difference · D2</h4><p><span class="fcode">=C2-B2</span><br>Positive = over budget. Negative = saved.</p></div>
+        <div class="card top mt-m"><h4>% of Budget · E2</h4><p><span class="fcode">=C2/B2</span>, then format as <b>Percentage</b>. Don't multiply by 100.</p></div>
+        <div class="figure mt-m" style="height:calc(var(--u)*10)"><img src="images/m3/3-3-planner.jpg" alt="Hand writing in a budget planner notebook"></div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Office and home">
+    <div class="slide-head">
+      <div><p class="kicker">Formulas you'll actually use</p><h2 class="h2">The same four operators, everywhere</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li><b>Supplies request:</b> Qty × Unit Cost per line, then a grand total</li>
+          <li><b>Delivered vs requested:</b> <span class="fcode">=C2-B2</span> shows what's still missing</li>
+          <li><b>Percent of a monthly target</b> reached: <span class="fcode">=C2/B2</span> as %</li>
+          <li><b>Per-piece cost:</b> box price ÷ pieces per box</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li><b>Budget vs Actual:</b> difference and % of budget</li>
+          <li><b>Sari-sari profit:</b> selling price − cost per piece</li>
+          <li><b>Fiesta food:</b> guests × servings × cost per serving</li>
+          <li><b>School project shares:</b> total cost ÷ number of classmates</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Common errors">
+    <div class="slide-head">
+      <div><p class="kicker">Don't panic</p><h2 class="h2">Error messages tell you what went wrong</h2></div>
+    </div>
+    <div class="grid g4 anim-stagger-list">
+      <div class="card top"><h4 style="color:var(--coral)">#DIV/0!</h4><p>Dividing by zero or an <b>empty</b> cell.</p><p class="mt-s"><span class="fcode">=C2/B2</span> when B2 is blank.</p><p class="mt-s"><b>Fix:</b> fill in the divisor.</p></div>
+      <div class="card top"><h4 style="color:var(--coral)">#VALUE!</h4><p>Math on <b>text</b>.</p><p class="mt-s"><span class="fcode">=C3*D3</span> when C3 says "30 reams".</p><p class="mt-s"><b>Fix:</b> plain numbers only.</p></div>
+      <div class="card top"><h4 style="color:var(--coral)">#NAME?</h4><p>The sheet doesn't recognise a <b>word</b>.</p><p class="mt-s"><span class="fcode">=C2xD2</span> or a misspelled function like <span class="fcode">=SUMM( )</span>.</p><p class="mt-s"><b>Fix:</b> use <kbd>*</kbd>; check spelling.</p></div>
+      <div class="card top"><h4 style="color:var(--coral)">#####</h4><p>Not an error: the column is <b>too narrow</b>.</p><p class="mt-s">Long peso amounts in a thin column.</p><p class="mt-s"><b>Fix:</b> double-click the column border.</p></div>
+    </div>
+    <div class="callout tip mt-l"><b>Find the cause:</b> click the error cell and read the formula bar. The coloured borders show which cells the formula uses.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Show formulas">
+    <div class="split">
+      <div>
+        <p class="kicker">Check your whole sheet at once</p>
+        <h2 class="h2">Show formulas with <kbd>Ctrl</kbd>+<kbd>`</kbd></h2>
+        <ul class="ticks mt-m">
+          <li><b>Excel:</b> <kbd>Ctrl</kbd>+<kbd>`</kbd> (the key left of 1), or Formulas › <b>Show Formulas</b>.</li>
+          <li><b>Google Sheets:</b> <kbd>Ctrl</kbd>+<kbd>`</kbd>, or View › Show › <b>Formulas</b>.</li>
+          <li><b>LibreOffice Calc:</b> View › <b>Show Formula</b>.</li>
+        </ul>
+        <div class="callout mt-m"><b>Press it again</b> to go back to normal. Great for checking that no total was typed by hand.</div>
+      </div>
+      <div class="xl sm">
+        <table>
+          <colgroup><col class="rn"><col style="width:34%"><col style="width:11%"><col style="width:15%"><col></colgroup>
+          <tr><th></th><th>A</th><th>C</th><th>D</th><th>E</th></tr>
+          <tr class="hd"><th>1</th><td>Item</td><td>Qty</td><td>Unit Cost</td><td>Total Cost</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td class="n">25</td><td class="n">245</td><td class="f">=C2*D2</td></tr>
+          <tr><th>3</th><td>Bond paper, long</td><td class="n">30</td><td class="n">265</td><td class="f">=C3*D3</td></tr>
+          <tr><th>4</th><td>Ballpen, black</td><td class="n">10</td><td class="n">96</td><td class="f">=C4*D4</td></tr>
+          <tr><th>5</th><td>Folder, long</td><td class="n">4</td><td class="n">520</td><td class="n hi">2080</td></tr>
+          <tr><th>6</th><td>Fastener</td><td class="n">6</td><td class="n">85</td><td class="f">=C6*D6</td></tr>
+          <tr><th>…</th><td>…</td><td></td><td></td><td class="f">…</td></tr>
+          <tr><th>10</th><td>TOTAL</td><td></td><td></td><td class="f">=E2+E3+E4+E5+E6+E7+E8+E9</td></tr>
+        </table>
+        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">Formula view: E5 is a typed number. Caught!</p>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Never hard-type values">
+    <div class="slide-head">
+      <div><p class="kicker">The Lab 3 rule · click each card</p><h2 class="h2">Why we never hard-type calculated values</h2></div>
+      <span class="tag gold">Vote M or F in the chat</span>
+    </div>
+    <div class="grid g3" style="min-height:calc(var(--u)*17)">
+      <div class="flip"><div class="in">
+        <div class="fr"><span class="tag coral">Myth?</span><h4 class="mt-s">"If the number is correct, it doesn't matter if I typed it."</h4><span class="hint">click to flip</span></div>
+        <div class="bk"><h4>Myth.</h4><p>It's correct only until something changes. A typed total never updates, and Lab 3 requires visible formulas.</p><span class="hint">click to flip</span></div>
+      </div></div>
+      <div class="flip"><div class="in">
+        <div class="fr"><span class="tag coral">Myth?</span><h4 class="mt-s">"<span class="fcode">=6125</span> counts as a formula."</h4><span class="hint">click to flip</span></div>
+        <div class="bk"><h4>Myth.</h4><p>It starts with =, but it's still a typed number. A real formula points to cells: <span class="fcode" style="background:rgba(255,255,255,.15);color:#fff">=C2*D2</span>.</p><span class="hint">click to flip</span></div>
+      </div></div>
+      <div class="flip"><div class="in">
+        <div class="fr"><span class="tag green">Fact?</span><h4 class="mt-s">"One formula, filled down, is faster than a calculator."</h4><span class="hint">click to flip</span></div>
+        <div class="bk"><h4>Fact.</h4><p>8 rows or 800, it's still one formula and one double-click, with no typing errors.</p><span class="hint">click to flip</span></div>
+      </div></div>
+    </div>
+    <div class="callout warn mt-l"><b>Golden rule:</b> type only the <b>raw data</b> (items, quantities, prices). Everything you calculate comes from a formula.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5½ minutes</p>
+        <h2 class="h2">Type the data. Let formulas do the math.</h2>
+        <p class="lede mt-m">A receipt, a price change and a grand total: see how to write formulas with <b>= and the six operators</b>, point to cells instead of typing numbers, and fill the Total Cost column in one move.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> notice what happens to the answer when a cell the formula points to changes.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/3.3/poster.jpg" alt="Video: Basic Formulas (Arithmetic Operators)"><div class="play"></div><span class="vlen">5:31</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/3.3/index.html" title="Video: Basic Formulas (Arithmetic Operators)" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    
+  </section>
+  
+
+  
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">Which formula correctly computes the Total Cost of folders in E5?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div><span class="fcode">=4*520</span></div></div>
+      <div class="opt"><span class="l">B</span><div><span class="fcode">=C5*D5</span></div></div>
+      <div class="opt"><span class="l">C</span><div><span class="fcode">C5*D5</span></div></div>
+      <div class="opt"><span class="l">D</span><div><span class="fcode">=C5xD5</span></div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 3.3</p>
+    <h2 class="h2">Type the data. Let formulas do the math.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Write</h4><p>Start with =. Use + − * / ^ and parentheses; * and / go before + and −.</p></div>
+      <div class="card dark"><h4>Reference</h4><p>=C2*D2, filled down. Change a price and every total follows.</p></div>
+      <div class="card dark"><h4>Check</h4><p>Read #DIV/0!, #VALUE!, #NAME?, #####. Press Ctrl+` to show all formulas.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">3.4 Core Functions (SUM, AVERAGE, COUNT, MIN, MAX)</b>: replacing that long plus formula with one short function.</p>
+    
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

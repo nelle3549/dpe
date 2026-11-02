@@ -21,14 +21,16 @@ window.CATALOG = [
       "kind": "task",
       "title": "Hardware, software or peopleware?",
       "slide": "Activity: sort it out",
-      "minutes": 2
+      "minutes": 2,
+      "slideNo": 11
      },
      {
       "id": "1.1-qc",
       "kind": "check",
-      "title": "Quick check: the UPS",
+      "title": "Quick check: the Windows update",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 12
      }
     ]
    },
@@ -45,14 +47,16 @@ window.CATALOG = [
       "kind": "task",
       "title": "Lab 1 Part A: build your master folder",
       "slide": "Lab 1 Part A",
-      "minutes": 8
+      "minutes": 8,
+      "slideNo": 13
      },
      {
       "id": "1.2-qc",
       "kind": "check",
       "title": "Quick check: the best file name",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 14
      }
     ]
    },
@@ -69,14 +73,16 @@ window.CATALOG = [
       "kind": "task",
       "title": "Lab 1 Part B: find it, snip it, file it",
       "slide": "Lab 1 Part B",
-      "minutes": 7
+      "minutes": 7,
+      "slideNo": 11
      },
      {
       "id": "1.3-qc",
       "kind": "check",
       "title": "Quick check: the right search",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 12
      }
     ]
    },
@@ -93,14 +99,16 @@ window.CATALOG = [
       "kind": "task",
       "title": "How many red flags can you spot?",
       "slide": "Spot the red flags",
-      "minutes": 2
+      "minutes": 2,
+      "slideNo": 5
      },
      {
       "id": "1.4-qc",
       "kind": "check",
       "title": "Quick check: the BIR caller",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 14
      }
     ]
    },
@@ -117,21 +125,24 @@ window.CATALOG = [
       "kind": "task",
       "title": "Lab 1 Part C: ask an AI, save the answer",
       "slide": "Lab 1 Part C",
-      "minutes": 7
+      "minutes": 7,
+      "slideNo": 12
      },
      {
       "id": "lab1",
       "kind": "lab",
       "title": "Lab 1: File Management and Everyday AI",
       "slide": "Lab 1 checklist",
-      "minutes": 5
+      "minutes": 5,
+      "slideNo": 13
      },
      {
       "id": "1.5-quiz",
       "kind": "quiz",
       "title": "Digital Foundations Quiz",
       "slide": "Digital Foundations Quiz",
-      "minutes": 10
+      "minutes": 10,
+      "slideNo": 14
      }
     ]
    }
@@ -158,21 +169,24 @@ window.CATALOG = [
       "kind": "task",
       "title": "Scavenger hunt on your screen",
       "slide": "Try it: find the parts",
-      "minutes": 3
+      "minutes": 3,
+      "slideNo": 9
      },
      {
       "id": "2.1-b",
       "kind": "task",
       "title": "Start the letter and save it the right way",
       "slide": "Try it: save the letter",
-      "minutes": 6
+      "minutes": 6,
+      "slideNo": 19
      },
      {
       "id": "2.1-qc",
       "kind": "check",
       "title": "Quick check: Save or Save As?",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 20
      }
     ]
    },
@@ -189,14 +203,16 @@ window.CATALOG = [
       "kind": "task",
       "title": "Turn your plain text into a formal letter",
       "slide": "Try it: format the letter",
-      "minutes": 10
+      "minutes": 10,
+      "slideNo": 20
      },
      {
       "id": "2.2-qc",
       "kind": "check",
       "title": "Quick check: fix a messy paste",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 21
      }
     ]
    },
@@ -213,21 +229,24 @@ window.CATALOG = [
       "kind": "task",
       "title": "Add the workshop schedule to your letter",
       "slide": "Try it: add the schedule",
-      "minutes": 8
+      "minutes": 8,
+      "slideNo": 11
      },
      {
       "id": "2.3-b",
       "kind": "task",
       "title": "Add a letterhead with a logo or graphic",
       "slide": "Try it: add a logo",
-      "minutes": 6
+      "minutes": 6,
+      "slideNo": 18
      },
      {
       "id": "2.3-qc",
       "kind": "check",
       "title": "Quick check: the squashed logo",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 21
      }
     ]
    },
@@ -244,21 +263,24 @@ window.CATALOG = [
       "kind": "task",
       "title": "Merge your invitation to 3 people",
       "slide": "Try it now",
-      "minutes": 12
+      "minutes": 12,
+      "slideNo": 13
      },
      {
       "id": "2.4-b",
       "kind": "task",
       "title": "Spot the problem in these merged letters",
       "slide": "Spot the problem",
-      "minutes": 2
+      "minutes": 2,
+      "slideNo": 17
      },
      {
       "id": "2.4-qc",
       "kind": "check",
       "title": "Quick check: two extra letters",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 19
      }
     ]
    },
@@ -275,14 +297,16 @@ window.CATALOG = [
       "kind": "task",
       "title": "Set up the page like a pro",
       "slide": "Try it now",
-      "minutes": 8
+      "minutes": 8,
+      "slideNo": 12
      },
      {
       "id": "2.5-qc",
       "kind": "check",
       "title": "Quick check: print three sets",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 17
      }
     ]
    },
@@ -299,21 +323,24 @@ window.CATALOG = [
       "kind": "task",
       "title": "Find 5 problems in the AI draft",
       "slide": "Try it now: spot the problems",
-      "minutes": 3
+      "minutes": 3,
+      "slideNo": 8
      },
      {
       "id": "2.6-qc",
       "kind": "check",
       "title": "Quick check: a memo you've never seen",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 19
      },
      {
       "id": "lab2",
       "kind": "lab",
       "title": "Lab 2: AI-Assisted Word Processing and Mail Merge",
       "slide": "Lab 2 checklist and rubric",
-      "minutes": 210
+      "minutes": 210,
+      "slideNo": 22
      }
     ]
    }
@@ -340,14 +367,16 @@ window.CATALOG = [
       "kind": "task",
       "title": "Type the Office Supplies Inventory",
       "slide": "Try it: type the inventory",
-      "minutes": 10
+      "minutes": 10,
+      "slideNo": 12
      },
      {
       "id": "3.1-qc",
       "kind": "check",
       "title": "Quick check: back to A1",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 20
      }
     ]
    },
@@ -364,14 +393,16 @@ window.CATALOG = [
       "kind": "task",
       "title": "Format your Lab 3 inventory",
       "slide": "Try it: format the inventory",
-      "minutes": 12
+      "minutes": 12,
+      "slideNo": 15
      },
      {
       "id": "3.2-qc",
       "kind": "check",
       "title": "Quick check: the total is too small",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 20
      }
     ]
    },
@@ -388,14 +419,16 @@ window.CATALOG = [
       "kind": "task",
       "title": "Fill your Total Cost column and a grand total",
       "slide": "Try it: Total Cost",
-      "minutes": 8
+      "minutes": 8,
+      "slideNo": 10
      },
      {
       "id": "3.3-qc",
       "kind": "check",
       "title": "Quick check: Total Cost of folders",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 18
      }
     ]
    },
@@ -412,14 +445,16 @@ window.CATALOG = [
       "kind": "task",
       "title": "Add a summary block to your inventory",
       "slide": "Try it: the summary block",
-      "minutes": 10
+      "minutes": 10,
+      "slideNo": 11
      },
      {
       "id": "3.4-qc",
       "kind": "check",
       "title": "Quick check: AVERAGE on the inventory",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 17
      }
     ]
    },
@@ -436,21 +471,24 @@ window.CATALOG = [
       "kind": "task",
       "title": "Fill the Total Cost column in one move",
       "slide": "Try it: fill down",
-      "minutes": 3
+      "minutes": 3,
+      "slideNo": 7
      },
      {
       "id": "3.5-b",
       "kind": "task",
       "title": "Add a 12% VAT column: break it, then fix it",
       "slide": "Try it: VAT column",
-      "minutes": 5
+      "minutes": 5,
+      "slideNo": 12
      },
      {
       "id": "3.5-qc",
       "kind": "check",
       "title": "Quick check: fill down to G5",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 19
      }
     ]
    },
@@ -467,28 +505,32 @@ window.CATALOG = [
       "kind": "task",
       "title": "Turn your inventory into a 4-tab workbook",
       "slide": "Try it: build the tabs",
-      "minutes": 4
+      "minutes": 4,
+      "slideNo": 7
      },
      {
       "id": "3.6-b",
       "kind": "task",
       "title": "Make the Summary sheet read every month",
       "slide": "Try it: Summary formulas",
-      "minutes": 4
+      "minutes": 4,
+      "slideNo": 10
      },
      {
       "id": "3.6-c",
       "kind": "task",
       "title": "Freeze, sort, filter, then put it back",
       "slide": "Try it: freeze, sort, filter",
-      "minutes": 5
+      "minutes": 5,
+      "slideNo": 16
      },
      {
       "id": "3.6-qc",
       "kind": "check",
       "title": "Quick check: renaming a linked sheet",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 21
      }
     ]
    },
@@ -505,21 +547,24 @@ window.CATALOG = [
       "kind": "task",
       "title": "Which chart would you use?",
       "slide": "Which chart would you use?",
-      "minutes": 2
+      "minutes": 2,
+      "slideNo": 6
      },
      {
       "id": "3.7-b",
       "kind": "task",
       "title": "Chart your inventory's Total Cost",
       "slide": "Try it: your Lab 3 chart",
-      "minutes": 6
+      "minutes": 6,
+      "slideNo": 12
      },
      {
       "id": "3.7-qc",
       "kind": "check",
       "title": "Quick check: the half-pie slice",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 20
      }
     ]
    },
@@ -536,35 +581,40 @@ window.CATALOG = [
       "kind": "task",
       "title": "Three checks before you trust any AI answer",
       "slide": "Three checks",
-      "minutes": 2
+      "minutes": 2,
+      "slideNo": 10
      },
      {
       "id": "3.8-b",
       "kind": "task",
       "title": "Be the supervisor: find the 3 mistakes",
       "slide": "Spot the mistakes",
-      "minutes": 3
+      "minutes": 3,
+      "slideNo": 11
      },
      {
       "id": "3.8-c",
       "kind": "task",
       "title": "Ask, paste, then run the three checks",
       "slide": "Try it: ask and verify",
-      "minutes": 6
+      "minutes": 6,
+      "slideNo": 13
      },
      {
       "id": "3.8-qc",
       "kind": "check",
       "title": "Quick check: #NAME? from an AI formula",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 18
      },
      {
       "id": "lab3",
       "kind": "lab",
       "title": "Lab 3: Spreadsheet Tracking and Verification",
       "slide": "Lab 3 checklist and rubric",
-      "minutes": 240
+      "minutes": 240,
+      "slideNo": 22
      }
     ]
    }
@@ -591,35 +641,40 @@ window.CATALOG = [
       "kind": "task",
       "title": "Write your Lab 4 key message",
       "slide": "Try it: your key message",
-      "minutes": 2
+      "minutes": 2,
+      "slideNo": 6
      },
      {
       "id": "4.1-b",
       "kind": "task",
       "title": "Read the 5-box storyboard",
       "slide": "Storyboard: Lab 4",
-      "minutes": 2
+      "minutes": 2,
+      "slideNo": 8
      },
      {
       "id": "4.1-c",
       "kind": "task",
       "title": "Storyboard your Lab 4 deck on paper",
       "slide": "Try it: storyboard",
-      "minutes": 5
+      "minutes": 5,
+      "slideNo": 10
      },
      {
       "id": "4.1-d",
       "kind": "task",
       "title": "Spot the problems on a bad slide",
       "slide": "Makeover: spot the problems",
-      "minutes": 2
+      "minutes": 2,
+      "slideNo": 15
      },
      {
       "id": "4.1-qc",
       "kind": "check",
       "title": "Quick check: what to decide first",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 20
      }
     ]
    },
@@ -636,21 +691,24 @@ window.CATALOG = [
       "kind": "task",
       "title": "Build the skeleton of your Lab 4 deck",
       "slide": "Try it: build your skeleton",
-      "minutes": 6
+      "minutes": 6,
+      "slideNo": 9
      },
      {
       "id": "4.2-b",
       "kind": "task",
       "title": "Rehearse with the show keys",
       "slide": "Try it: present",
-      "minutes": 3
+      "minutes": 3,
+      "slideNo": 14
      },
      {
       "id": "4.2-qc",
       "kind": "check",
       "title": "Quick check: all eyes on you",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 20
      }
     ]
    },
@@ -667,21 +725,24 @@ window.CATALOG = [
       "kind": "task",
       "title": "The 5-second test",
       "slide": "Hook: 5-second test",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 2
      },
      {
       "id": "4.3-b",
       "kind": "task",
       "title": "Turn a notice into 3 short bullets",
       "slide": "Try it: trim the text",
-      "minutes": 4
+      "minutes": 4,
+      "slideNo": 12
      },
      {
       "id": "4.3-qc",
       "kind": "check",
       "title": "Quick check: 9 bullets at 14 pt",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 19
      }
     ]
    },
@@ -698,21 +759,24 @@ window.CATALOG = [
       "kind": "task",
       "title": "Bring the Lab 3 chart into a slide",
       "slide": "Insert the Lab 3 chart",
-      "minutes": 3
+      "minutes": 3,
+      "slideNo": 9
      },
      {
       "id": "4.4-b",
       "kind": "task",
       "title": "Put your Lab 3 chart (or Lab 1 image) on a slide",
       "slide": "Try it: add your chart",
-      "minutes": 6
+      "minutes": 6,
+      "slideNo": 11
      },
      {
       "id": "4.4-qc",
       "kind": "check",
       "title": "Quick check: the wide group photo",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 20
      }
     ]
    },
@@ -729,21 +793,24 @@ window.CATALOG = [
       "kind": "task",
       "title": "Apply one transition to every slide",
       "slide": "Try it: one transition for all",
-      "minutes": 4
+      "minutes": 4,
+      "slideNo": 9
      },
      {
       "id": "4.5-b",
       "kind": "task",
       "title": "Animate your \"What I learned\" slide",
       "slide": "Try it: animate your bullets",
-      "minutes": 5
+      "minutes": 5,
+      "slideNo": 13
      },
      {
       "id": "4.5-qc",
       "kind": "check",
       "title": "Quick check: one bullet per click",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 20
      }
     ]
    },
@@ -760,21 +827,24 @@ window.CATALOG = [
       "kind": "task",
       "title": "Add one clip to \"My Digital Skills Journey\"",
       "slide": "Try it: insert a clip",
-      "minutes": 6
+      "minutes": 6,
+      "slideNo": 10
      },
      {
       "id": "4.6-b",
       "kind": "task",
       "title": "Live sound check over our meeting",
       "slide": "Try it: sound check",
-      "minutes": 4
+      "minutes": 4,
+      "slideNo": 14
      },
      {
       "id": "4.6-qc",
       "kind": "check",
       "title": "Quick check: no sound on Zoom",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 20
      }
     ]
    },
@@ -791,28 +861,32 @@ window.CATALOG = [
       "kind": "task",
       "title": "Draft your Lab 4 outline with AI, then fix it",
       "slide": "Try it: your outline",
-      "minutes": 6
+      "minutes": 6,
+      "slideNo": 11
      },
      {
       "id": "4.7-b",
       "kind": "task",
       "title": "Improve two slides with the AI layout assistant",
       "slide": "Try it: Designer on two slides",
-      "minutes": 5
+      "minutes": 5,
+      "slideNo": 12
      },
      {
       "id": "4.7-qc",
       "kind": "check",
       "title": "Quick check: Designer shortened your title",
       "slide": "Quick check",
-      "minutes": 1
+      "minutes": 1,
+      "slideNo": 15
      },
      {
       "id": "lab4",
       "kind": "lab",
       "title": "Lab 4: Multimedia Presentation and Ethical Design",
       "slide": "Graded-output checklist",
-      "minutes": 240
+      "minutes": 240,
+      "slideNo": 19
      }
     ]
    }

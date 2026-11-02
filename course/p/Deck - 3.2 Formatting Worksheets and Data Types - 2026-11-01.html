@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.2 Formatting Worksheets and Data Types · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* Module 3 · drawn spreadsheet grid (uses dpe.css tokens) */
+.xl{background:#fff;border-radius:calc(var(--u)*.8);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--border-strong);font-size:calc(var(--u)*1.12)}
+.xl .rib{display:flex;gap:calc(var(--u)*1.3);padding:calc(var(--u)*.45) calc(var(--u)*1);background:var(--mod);color:#fff;font-size:calc(var(--u)*.85);font-weight:600;align-items:center}
+.xl .rib span{opacity:.72}.xl .rib span.on{opacity:1;border-bottom:2px solid #fff}
+.xl .tools{display:flex;gap:calc(var(--u)*.5);padding:calc(var(--u)*.45) calc(var(--u)*1);background:#F6F8FA;border-bottom:1px solid #E1E5EB;font-size:calc(var(--u)*.85);flex-wrap:wrap;align-items:center}
+.xl .tools b{display:inline-flex;align-items:center;gap:.3em;padding:.2em .6em;border-radius:.3em;background:#fff;border:1px solid #D6DBE2;font-weight:600;color:var(--text-1)}
+.xl .tools b.on{background:var(--mod-soft);border-color:var(--mod);color:var(--mod)}
+.xl .fbar{display:flex;align-items:center;gap:calc(var(--u)*.6);padding:calc(var(--u)*.45) calc(var(--u)*.7);border-bottom:1px solid #D6DBE2;background:#fff}
+.xl .nb{font-family:var(--font-mono);font-size:calc(var(--u)*1);min-width:calc(var(--u)*6);padding:.2em .5em;border:1px solid #C9D0DA;border-radius:.25em;color:var(--text-1)}
+.xl .fx{font-style:italic;font-family:Georgia,serif;color:var(--text-3);font-weight:700}
+.xl .fv{flex:1;font-family:var(--font-mono);font-size:calc(var(--u)*1);padding:.2em .5em;border:1px solid #C9D0DA;border-radius:.25em;color:var(--text-1);white-space:nowrap;overflow:hidden}
+.xl table{border-collapse:collapse;width:100%;table-layout:fixed}
+.xl col.rn{width:calc(var(--u)*2.6)}
+.xl th{background:#F1F3F6;color:#5F6B7A;font-weight:600;border:1px solid #D6DBE2;padding:.22em .3em;text-align:center;font-size:.88em}
+.xl th.on{background:var(--mod-soft);color:var(--mod);font-weight:800}
+.xl td{border:1px solid #E3E7ED;padding:.28em .55em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text-1);height:1.55em}
+.xl td.n{text-align:right;font-family:var(--font-mono);font-size:.94em}
+.xl td.c{text-align:center}
+.xl td.f{font-family:var(--font-mono);color:var(--mod);font-size:.9em}
+.xl td.mute{color:var(--text-3);font-style:italic}
+.xl tr.hd td{font-weight:700}
+.xl tr.tot td{font-weight:700;border-top:2px solid var(--text-2)}
+.xl td.rng{background:color-mix(in srgb,var(--mod) 13%,#fff)}
+.xl td.sel{outline:calc(var(--u)*.22) solid var(--mod);outline-offset:calc(var(--u)*-.22);background:#fff}
+.xl td.ants{outline:calc(var(--u)*.16) dashed var(--mod);outline-offset:calc(var(--u)*-.2)}
+.xl td.hi{background:var(--coral-soft);color:#B3261E}
+.xl td.err{color:var(--coral);font-weight:700}
+.xl td.tri{position:relative}
+.xl td.tri::before{content:"";position:absolute;left:0;top:0;border-top:calc(var(--u)*.55) solid var(--green);border-right:calc(var(--u)*.55) solid transparent}
+.xl td.handle{position:relative}
+.xl td.handle::after{content:"";position:absolute;right:-1px;bottom:-1px;width:calc(var(--u)*.6);height:calc(var(--u)*.6);background:var(--mod);border:1px solid #fff}
+.xl .tabs{display:flex;gap:2px;padding:0 calc(var(--u)*.7);background:#F1F3F6;border-top:1px solid #D6DBE2;font-size:calc(var(--u)*.85);align-items:center}
+.xl .tabs span{padding:.3em 1em;color:var(--text-2)}
+.xl .tabs span.on{background:#fff;color:var(--mod);font-weight:700;border-bottom:2px solid var(--mod)}
+.xl.sm{font-size:calc(var(--u)*1)}
+.xl.xs{font-size:calc(var(--u)*.9)}
+.mk{display:inline-flex;flex:none;width:calc(var(--u)*1.7);height:calc(var(--u)*1.7);border-radius:50%;background:var(--gold);color:var(--ink);font-weight:800;font-size:calc(var(--u)*.9);align-items:center;justify-content:center;font-style:normal;font-family:var(--font-sans)}
+.fcode{font-family:var(--font-mono);background:var(--mod-soft);color:var(--mod-deep);padding:.08em .45em;border-radius:.3em;font-size:.9em;white-space:nowrap}
+.cap{font-size:calc(var(--u)*1);color:var(--text-3);margin-top:calc(var(--u)*.6)}
+.xl tr.fmt td{background:var(--mod-deep);color:#fff;font-weight:700}
+.xl.bd td{border-color:#AEB7C4}
+.xl td.wrap{white-space:normal;line-height:1.15}
+.xl td.bad{background:var(--coral-soft);box-shadow:inset 0 0 0 1px var(--coral)}
+.xl td.ok{background:var(--green-soft)}
+.xl tr.frz td,.xl tr.frz th{border-bottom:calc(var(--u)*.3) solid #9AA5B4}
+</style>
+</head>
+<body class="m3" data-brand="Digital Productivity Essentials · <b>Module 3</b> · 3.2 Formatting Worksheets and Data Types">
+<div class="deck">
+
+  
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 3 · Electronic Spreadsheet Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Formatting Worksheets and <span style="color:var(--gold)">Data Types</span></h1>
+      <p class="lede" data-anim="fade-up">Make every value the right type, then make the whole table easy to read, print and check.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 3.2</span><span class="tag ghost">~50 minutes</span><span class="tag ghost">BIR Misamis Oriental</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m3/3-2-cover.jpg" alt="Printed spreadsheet with highlighted columns"><div class="cv-num">3.2</div></div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · type A or B in the chat</p><h2 class="h2">Same data. Which one would you rather sign?</h2></div>
+      <span class="tag gold">30 seconds</span>
+    </div>
+    <div class="grid g2">
+      <div>
+        <p class="h3" style="margin-bottom:calc(var(--u)*.6)">A</p>
+        <div class="xl sm"><table>
+          <colgroup><col class="rn"><col style="width:40%"><col><col><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+          <tr><th>1</th><td>Item</td><td>Unit</td><td>Qty</td><td>Unit Cost</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245</td></tr>
+          <tr><th>3</th><td>Bond paper, lo</td><td>ream</td><td class="n">30</td><td class="n">265</td></tr>
+          <tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96</td></tr>
+          <tr><th>5</th><td>Folder, long</td><td>pack of 1</td><td class="n">4</td><td class="n">520</td></tr>
+        </table></div>
+      </div>
+      <div>
+        <p class="h3" style="margin-bottom:calc(var(--u)*.6)">B</p>
+        <div class="xl sm bd"><table>
+          <colgroup><col class="rn"><col style="width:40%"><col><col><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+          <tr class="fmt"><th>1</th><td>Item</td><td>Unit</td><td class="c">Qty</td><td class="c">Unit Cost</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">₱245.00</td></tr>
+          <tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">₱265.00</td></tr>
+          <tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">₱96.00</td></tr>
+          <tr><th>5</th><td class="hi">Folder, long</td><td class="hi">pack of 100</td><td class="n hi">4</td><td class="n hi">₱520.00</td></tr>
+        </table></div>
+      </div>
+    </div>
+    <div class="callout gold mt-l"><b>Spot the differences:</b> name at least three things B does that A doesn't. Type them in the chat.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head">
+      <div><p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2></div>
+    </div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Types</span><h4>Choose the right data type</h4><p>Text, number, currency, date, percentage, and spot numbers stored as text.</p></div>
+      <div class="card top"><span class="k">Format</span><h4>Make it readable</h4><p>Currency ₱, dates, alignment, wrap, bold, borders, fill, freeze panes, conditional formatting.</p></div>
+      <div class="card top"><span class="k">Clean</span><h4>Clean raw data</h4><p>Fix extra spaces, mixed units, typed totals and blank rows before you calculate.</p></div>
+    </div>
+    <div class="callout tip mt-l"><b>Lab 3 check:</b> at least one column must be formatted for its data type, for example <b>Currency</b> or <b>Date</b>.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Data types">
+    <div class="slide-head">
+      <div><p class="kicker">Data types</p><h2 class="h2">Five kinds of values you'll type every day</h2></div>
+      <span class="tag">Numbers align right · text aligns left</span>
+    </div>
+    <div class="grid g5 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">🔤</span><h4>Text</h4><p>Names, units, remarks.</p><p class="mt-s"><span class="fcode">Bond paper, A4</span></p></div>
+      <div class="card top"><span class="ic-badge">🔢</span><h4>Number</h4><p>Counts you can add.</p><p class="mt-s"><span class="fcode">25</span></p></div>
+      <div class="card top"><span class="ic-badge">₱</span><h4>Currency</h4><p>Money, with ₱ and 2 decimals.</p><p class="mt-s"><span class="fcode">₱245.00</span></p></div>
+      <div class="card top"><span class="ic-badge">📅</span><h4>Date</h4><p>Days you can sort and subtract.</p><p class="mt-s"><span class="fcode">Nov 1, 2026</span></p></div>
+      <div class="card top"><span class="ic-badge">%</span><h4>Percentage</h4><p>Parts of a whole.</p><p class="mt-s"><span class="fcode">25%</span> = 0.25</p></div>
+    </div>
+    <div class="callout mt-l"><b>Quick test:</b> after you press Enter, a real number or date jumps to the <b>right</b> side of the cell. If it stays on the left, the sheet is treating it as text.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Format changes the look">
+    <div class="split">
+      <div>
+        <p class="kicker">Key idea</p>
+        <h2 class="h2">Formatting is the <em class="mod">uniform</em>, not the person.</h2>
+        <p class="lede mt-m">A format changes how a value <b>looks</b>. The value inside stays the same, and the formula bar shows it.</p>
+        <table class="tbl mt-m">
+          <tr><th>You type</th><th>Format</th><th>The cell shows</th></tr>
+          <tr><td class="fcode">245</td><td>Currency ₱</td><td><b>₱245.00</b></td></tr>
+          <tr><td class="fcode">0.25</td><td>Percentage</td><td><b>25%</b></td></tr>
+          <tr><td class="fcode">2026-11-01</td><td>Long date</td><td><b>Sunday, November 1, 2026</b></td></tr>
+          <tr><td class="fcode">1234.5</td><td>Number, comma</td><td><b>1,234.50</b></td></tr>
+        </table>
+      </div>
+      <div class="media"><img src="images/m3/3-2-peso.jpg" alt="Stack of Philippine 500-peso bills"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Numbers stored as text">
+    <div class="slide-head">
+      <div><p class="kicker">The trap</p><h2 class="h2">"Numbers stored as text" break your formulas</h2></div>
+    </div>
+    <div class="grid" style="grid-template-columns:1.05fr .95fr;align-items:start">
+      <div class="xl">
+        <div class="fbar"><span class="nb">C10</span><span class="fx">fx</span><span class="fv">=SUM(C2:C5)</span></div>
+        <table>
+          <colgroup><col class="rn"><col style="width:44%"><col><col></colgroup>
+          <tr><th></th><th>A</th><th>C</th><th>D</th></tr>
+          <tr class="hd"><th>1</th><td>Item</td><td>Qty</td><td>Unit Cost</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td class="n">25</td><td class="n">245</td></tr>
+          <tr><th>3</th><td>Bond paper, long</td><td class="tri bad">30 reams</td><td class="n">265</td></tr>
+          <tr><th>4</th><td>Ballpen, black</td><td class="tri bad">10</td><td class="n">96</td></tr>
+          <tr><th>5</th><td>Folder, long</td><td class="n">4</td><td class="bad">₱ 520</td></tr>
+          <tr class="tot"><th>10</th><td>Total Qty</td><td class="n err">29</td><td></td></tr>
+        </table>
+        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">The real total is 69. The sheet skipped the two text cells.</p>
+      </div>
+      <div>
+        <ul class="ticks x">
+          <li><b>Units typed in:</b> <span class="fcode">30 reams</span> is text. Units go in the Unit column.</li>
+          <li><b>Left-aligned with a green triangle:</b> the number was imported or typed as text.</li>
+          <li><b>Symbols typed in:</b> <span class="fcode">₱ 520</span> can become text. Type 520, then format.</li>
+        </ul>
+        <div class="callout tip mt-m"><b>Fix:</b> retype the plain number, or click the ⚠ icon › <i>Convert to Number</i> (Excel).</div>
+        <div class="callout gold mt-m"><b>When text is right:</b> mobile numbers like 09171234567 (keeps the 0) and a TIN like 123-456-789-000. You never add those.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Currency format">
+    <div class="slide-head">
+      <div><p class="kicker">Format the money columns</p><h2 class="h2">Unit Cost and Total Cost as Currency (₱)</h2></div>
+      <span class="tag gold">Lab 3 requirement</span>
+    </div>
+    <div class="grid" style="grid-template-columns:1fr 1fr;align-items:start">
+      <div>
+        <ol class="steps">
+          <li>Select <b>D2:E9</b> (Unit Cost and the empty Total Cost cells).</li>
+          <li>Excel: press <kbd>Ctrl</kbd>+<kbd>1</kbd> › <b>Number</b> tab › <b>Currency</b>.</li>
+          <li>Set <b>Symbol: ₱</b> (Philippines) and <b>2 decimal places</b>. Click OK.</li>
+        </ol>
+        <div class="grid g2 mt-m" style="gap:calc(var(--u)*.8)">
+          <div class="callout"><b>Google Sheets:</b> Format › Number › Custom currency › search "Philippine peso".</div>
+          <div class="callout"><b>LibreOffice Calc:</b> Format Cells › Numbers › Currency › choose ₱ (Philippines).</div>
+        </div>
+      </div>
+      <div class="xl">
+        <div class="tools"><b>Paste</b><b>𝐁</b><b class="on">₱ Currency ▾</b><b>%</b><b>.00</b></div>
+        <div class="fbar"><span class="nb">D2</span><span class="fx">fx</span><span class="fv">245</span></div>
+        <table>
+          <colgroup><col class="rn"><col style="width:38%"><col style="width:12%"><col><col></colgroup>
+          <tr><th></th><th>A</th><th>C</th><th class="on">D</th><th class="on">E</th></tr>
+          <tr class="hd"><th>1</th><td>Item</td><td>Qty</td><td>Unit Cost</td><td>Total Cost</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td class="n">25</td><td class="n sel">₱245.00</td><td class="rng"></td></tr>
+          <tr><th>3</th><td>Bond paper, long</td><td class="n">30</td><td class="n rng">₱265.00</td><td class="rng"></td></tr>
+          <tr><th>4</th><td>Ballpen, black</td><td class="n">10</td><td class="n rng">₱96.00</td><td class="rng"></td></tr>
+          <tr><th>5</th><td>Folder, long</td><td class="n">4</td><td class="n rng">₱520.00</td><td class="rng"></td></tr>
+          <tr><th>6</th><td>Fastener</td><td class="n">6</td><td class="n rng">₱85.00</td><td class="rng"></td></tr>
+          <tr><th>7</th><td>Staple wire #35</td><td class="n">12</td><td class="n rng">₱32.00</td><td class="rng"></td></tr>
+          <tr><th>8</th><td>Printer ink, black</td><td class="n">8</td><td class="n rng">₱350.00</td><td class="rng"></td></tr>
+          <tr><th>9</th><td>Envelope, brown long</td><td class="n">3</td><td class="n rng">₱410.00</td><td class="rng"></td></tr>
+        </table>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Dates">
+    <div class="split rev">
+      <div class="media"><img src="images/m3/3-2-calendar.jpg" alt="Calendar page with red push pins on dates"></div>
+      <div>
+        <p class="kicker">Dates that behave</p>
+        <h2 class="h2">Type a date the sheet understands</h2>
+        <ul class="ticks mt-m" style="font-size:calc(var(--u)*1.4)">
+          <li>Safest way to type: <span class="fcode">2026-11-01</span> (year-month-day). Then choose the look you want.</li>
+          <li><span class="fcode">11/01/2026</span> means Nov 1 or Jan 11 depending on the computer's region setting. Check it.</li>
+          <li><kbd>Ctrl</kbd>+<kbd>;</kbd> types today's date (Excel and Sheets).</li>
+          <li>Excel: <kbd>Ctrl</kbd>+<kbd>1</kbd> › <b>Date</b>. Sheets: Format › Number › <b>Date</b>.</li>
+        </ul>
+        <div class="callout mt-m"><b>Office example:</b> a <i>Date Received</i> column in a documents log. Formatted as dates, it sorts from oldest to newest correctly.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Alignment, wrap, bold">
+    <div class="slide-head">
+      <div><p class="kicker">Make the header row stand out</p><h2 class="h2">Bold, alignment and wrap text</h2></div>
+    </div>
+    <div class="grid" style="grid-template-columns:1.1fr .9fr;align-items:center">
+      <div class="xl">
+        <div class="tools"><b class="on">𝐁 Bold</b><b>≡ Left</b><b class="on">≡ Center</b><b>≡ Right</b><b class="on">↵ Wrap Text</b></div>
+        <div class="fbar"><span class="nb">F1</span><span class="fx">fx</span><span class="fv">Reorder Level</span></div>
+        <table>
+          <colgroup><col class="rn"><col style="width:30%"><col style="width:20%"><col><col><col style="width:13%"></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>F</th></tr>
+          <tr class="hd"><th>1</th><td>Item</td><td class="c">Unit</td><td class="c">Qty</td><td class="c">Unit Cost</td><td class="c wrap sel">Reorder Level</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td class="c">ream</td><td class="n">25</td><td class="n">₱245.00</td><td class="n">10</td></tr>
+          <tr><th>3</th><td>Bond paper, long</td><td class="c">ream</td><td class="n">30</td><td class="n">₱265.00</td><td class="n">10</td></tr>
+          <tr><th>4</th><td>Ballpen, black</td><td class="c">box of 12</td><td class="n">10</td><td class="n">₱96.00</td><td class="n">5</td></tr>
+        </table>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li><b>Bold headers:</b> select row 1, press <kbd>Ctrl</kbd>+<kbd>B</kbd>.</li>
+          <li><b>Center</b> short headers and units. Leave numbers <b>right</b>-aligned so the digits line up.</li>
+          <li><b>Wrap Text</b> lets a long header use two lines instead of a very wide column.</li>
+        </ul>
+        <div class="callout tip mt-m"><b>Where:</b> Excel Home tab · Sheets toolbar and Format › Wrapping · Calc Format Cells › Alignment.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Borders and fill">
+    <div class="slide-head">
+      <div><p class="kicker">Lines and colour</p><h2 class="h2">Borders and fill colour, with restraint</h2></div>
+    </div>
+    <div class="grid" style="grid-template-columns:.9fr 1.1fr;align-items:center">
+      <div>
+        <ol class="steps">
+          <li>Select <b>A1:F9</b>. Borders ▾ › <b>All Borders</b>, so the table prints with lines.</li>
+          <li>Select <b>A1:F1</b>. Fill colour › a <b>dark</b> shade, then font colour <b>white</b>.</li>
+          <li>Keep data rows <b>white</b> or a very light tint. One or two colours is enough.</li>
+        </ol>
+        <div class="callout warn mt-m"><b>Print check:</b> gridlines you see on screen usually do <b>not</b> print. Borders do. Use Print Preview before you print a report.</div>
+      </div>
+      <div class="xl bd">
+        <table>
+          <colgroup><col class="rn"><col style="width:27%"><col style="width:17%"><col style="width:8%"><col style="width:15%"><col style="width:15%"><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
+          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Unit</td><td class="c">Qty</td><td class="c">Unit Cost</td><td class="c">Total Cost</td><td class="c wrap">Reorder Level</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td class="c">ream</td><td class="n">25</td><td class="n">₱245.00</td><td></td><td class="n">10</td></tr>
+          <tr><th>3</th><td>Bond paper, long</td><td class="c">ream</td><td class="n">30</td><td class="n">₱265.00</td><td></td><td class="n">10</td></tr>
+          <tr><th>4</th><td>Ballpen, black</td><td class="c">box of 12</td><td class="n">10</td><td class="n">₱96.00</td><td></td><td class="n">5</td></tr>
+          <tr><th>5</th><td>Folder, long</td><td class="c">pack of 100</td><td class="n">4</td><td class="n">₱520.00</td><td></td><td class="n">5</td></tr>
+          <tr><th>6</th><td>Fastener</td><td class="c">box of 50</td><td class="n">6</td><td class="n">₱85.00</td><td></td><td class="n">6</td></tr>
+        </table>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Merge and Center">
+    <div class="slide-head">
+      <div><p class="kicker">Use sparingly</p><h2 class="h2">Merge &amp; Center: fine for a title, risky inside data</h2></div>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <div class="xl sm bd"><table>
+          <colgroup><col class="rn"><col style="width:36%"><col><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+          <tr><th>1</th><td colspan="3" class="c" style="font-weight:800;color:var(--mod-deep)">Monthly Household Budget · November</td></tr>
+          <tr class="fmt"><th>2</th><td>Item</td><td class="c">Budget</td><td class="c">Actual</td></tr>
+          <tr><th>3</th><td>Rice</td><td class="n">₱2,500.00</td><td class="n">₱2,650.00</td></tr>
+          <tr><th>4</th><td>CEPALCO electricity</td><td class="n">₱2,800.00</td><td class="n">₱3,120.00</td></tr>
+        </table></div>
+        <p class="cap">Row 1: A1:C1 merged for a title. OK. Excel: Home › <b>Merge &amp; Center</b> · Sheets: Format › Merge cells · Calc: Format › Merge and Unmerge Cells.</p>
+      </div>
+      <div>
+        <ul class="ticks x">
+          <li><b>Sorting and filtering</b> refuse to work across merged cells.</li>
+          <li><b>Selecting a column</b> grabs its merged neighbours too.</li>
+          <li><b>Copy and paste</b> into merged areas gives errors.</li>
+        </ul>
+        <div class="callout tip mt-m"><b>Better in Excel:</b> select A1:C1 › <kbd>Ctrl</kbd>+<kbd>1</kbd> › Alignment › Horizontal: <b>Center Across Selection</b>. Looks the same, no merge.</div>
+        <div class="callout mt-m"><b>Our inventory:</b> keep the headers in row 1 and don't merge anything. Put the title in the file name or the print header.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Freeze the top row">
+    <div class="split">
+      <div>
+        <p class="kicker">Long lists</p>
+        <h2 class="h2">Freeze the top row so the headers never scroll away</h2>
+        <ul class="ticks mt-m">
+          <li><b>Excel:</b> View › Freeze Panes › <b>Freeze Top Row</b></li>
+          <li><b>Google Sheets:</b> View › Freeze › <b>1 row</b></li>
+          <li><b>LibreOffice Calc:</b> View › Freeze Cells › <b>Freeze First Row</b></li>
+        </ul>
+        <div class="callout mt-m"><b>Undo it</b> with the same menu: <i>Unfreeze Panes</i> (Excel) or <i>No rows</i> (Sheets).</div>
+      </div>
+      <div class="xl sm bd">
+        <div class="fbar"><span class="nb">B152</span><span class="fx">fx</span><span class="fv">Dela Cruz, Juan</span></div>
+        <table>
+          <colgroup><col style="width:calc(var(--u)*3.4)"><col style="width:10%"><col style="width:34%"><col><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+          <tr class="fmt frz"><th>1</th><td>No.</td><td>Name</td><td>Section</td><td>Time In</td></tr>
+          <tr><th>150</th><td class="n">149</td><td>Santos, Maria</td><td>Admin</td><td class="n">7:52 AM</td></tr>
+          <tr><th>151</th><td class="n">150</td><td>Reyes, Ana</td><td>Records</td><td class="n">7:55 AM</td></tr>
+          <tr><th>152</th><td class="n">151</td><td class="sel">Dela Cruz, Juan</td><td>Collection</td><td class="n">7:58 AM</td></tr>
+          <tr><th>153</th><td class="n">152</td><td>Garcia, Jose</td><td>Admin</td><td class="n">8:01 AM</td></tr>
+          <tr><th>154</th><td class="n">153</td><td>Bautista, Liza</td><td>Records</td><td class="n">8:03 AM</td></tr>
+        </table>
+        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">Sample attendance sheet: scrolled to row 150, row 1 still visible.</p>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Conditional formatting">
+    <div class="slide-head">
+      <div><p class="kicker">Let the sheet warn you</p><h2 class="h2">Highlight items at or below the Reorder Level</h2></div>
+      <span class="tag">Rule: Qty ≤ Reorder Level</span>
+    </div>
+    <div class="grid" style="grid-template-columns:.95fr 1.05fr;align-items:start">
+      <div>
+        <ol class="steps" style="font-size:calc(var(--u)*1.35)">
+          <li>Select <b>C2:C9</b> (the Qty cells).</li>
+          <li>Excel: Home › <b>Conditional Formatting</b> › New Rule › <i>Use a formula to determine which cells to format</i>.</li>
+          <li>Type <span class="fcode">=C2&lt;=F2</span>, click Format › <b>Fill</b> light red › OK.</li>
+        </ol>
+        <div class="callout mt-m" style="font-size:calc(var(--u)*1.25)"><b>Sheets:</b> Format › Conditional formatting › <i>Custom formula is</i> <span class="fcode">=C2&lt;=F2</span>. <b>Calc:</b> Format › Conditional › Condition › <i>Formula is</i>.</div>
+      </div>
+      <div class="xl bd">
+        <table>
+          <colgroup><col class="rn"><col style="width:40%"><col><col><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th class="on">C</th><th>F</th></tr>
+          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Unit</td><td class="c">Qty</td><td class="c">Reorder Lvl</td></tr>
+          <tr><th>2</th><td>Bond paper, A4</td><td class="c">ream</td><td class="n">25</td><td class="n">10</td></tr>
+          <tr><th>3</th><td>Bond paper, long</td><td class="c">ream</td><td class="n">30</td><td class="n">10</td></tr>
+          <tr><th>4</th><td>Ballpen, black</td><td class="c">box of 12</td><td class="n">10</td><td class="n">5</td></tr>
+          <tr><th>5</th><td>Folder, long</td><td class="c">pack of 100</td><td class="n hi">4</td><td class="n">5</td></tr>
+          <tr><th>6</th><td>Fastener</td><td class="c">box of 50</td><td class="n hi">6</td><td class="n">6</td></tr>
+          <tr><th>7</th><td>Staple wire #35</td><td class="c">box</td><td class="n">12</td><td class="n">5</td></tr>
+          <tr><th>8</th><td>Printer ink, black</td><td class="c">bottle</td><td class="n">8</td><td class="n">4</td></tr>
+          <tr><th>9</th><td>Envelope, brown long</td><td class="c">pack of 100</td><td class="n hi">3</td><td class="n">5</td></tr>
+        </table>
+        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">3 items to reorder: Folder (4 ≤ 5), Fastener (6 ≤ 6), Envelope (3 ≤ 5).</p>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Cleaning a raw dataset">
+    <div class="slide-head">
+      <div><p class="kicker">Before you calculate</p><h2 class="h2">Clean the raw data first</h2></div>
+      <span class="tag coral">Shaded = needs fixing</span>
+    </div>
+    <div class="grid" style="grid-template-columns:1.05fr .95fr;align-items:start">
+      <div class="xl sm">
+        <table>
+          <colgroup><col class="rn"><col style="width:33%"><col><col><col><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+          <tr class="hd"><th>1</th><td>Item</td><td>Unit</td><td>Qty</td><td>Unit Cost</td><td>Total</td></tr>
+          <tr><th>2</th><td class="bad">&nbsp;&nbsp;&nbsp;Bond paper, A4</td><td class="bad">Ream</td><td class="n">25</td><td class="n">245</td><td class="n bad">6125</td></tr>
+          <tr><th>3</th><td class="bad"></td><td class="bad"></td><td class="bad"></td><td class="bad"></td><td class="bad"></td></tr>
+          <tr><th>4</th><td>Bond paper, long</td><td class="bad">rm</td><td class="bad">30 reams</td><td class="bad">₱265</td><td class="n bad">7950</td></tr>
+          <tr><th>5</th><td class="bad">ballpen black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="n bad">960</td></tr>
+          <tr><th>6</th><td>Folder, long</td><td class="bad">pck</td><td class="n">4</td><td class="n">520</td><td class="n bad">2,080</td></tr>
+        </table>
+        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">A typical "raw dataset" copied from an old file or a printout.</p>
+      </div>
+      <ul class="ticks" style="font-size:calc(var(--u)*1.35)">
+        <li><b>Extra spaces:</b> Excel <span class="fcode">=TRIM(A2)</span> · Sheets Data › Data cleanup › <i>Trim whitespace</i>.</li>
+        <li><b>Inconsistent units and names:</b> one spelling each (<i>ream</i>, <i>pack of 100</i>). <kbd>Ctrl</kbd>+<kbd>H</kbd> Find &amp; Replace.</li>
+        <li><b>Text in number cells:</b> numbers only; units and ₱ go elsewhere.</li>
+        <li><b>Typed totals:</b> delete them. A formula replaces them in 3.3.</li>
+        <li><b>Blank rows:</b> right-click the row number › Delete.</li>
+      </ul>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Try it: format the inventory">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · hands-on</p><h2 class="h2">Format your Lab 3 inventory</h2></div>
+      <button class="timer" data-min="12">12:00</button>
+    </div>
+    <div class="grid" style="grid-template-columns:1.15fr .85fr;align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">Checklist</span><span class="tiny">Submit in the portal when finished</span></div>
+        <ol>
+          <li><b>Check types:</b> every Qty, Unit Cost and Reorder Level sits on the right.</li>
+          <li>Row 1: <b>bold</b>, centered, dark fill, white text. Wrap <i>Reorder Level</i>.</li>
+          <li><b>D2:E9 → Currency ₱</b>, 2 decimals.</li>
+          <li><b>A1:F9 → All Borders.</b> AutoFit the columns.</li>
+          <li><b>Freeze</b> the top row.</li>
+          <li><b>Conditional formatting</b> on C2:C9: <span class="fcode">=C2&lt;=F2</span>, light red.</li>
+          <li>Save (<kbd>Ctrl</kbd>+<kbd>S</kbd>).</li>
+        </ol>
+      </div>
+      <div>
+        <div class="card soft"><h4>✅ You're right if…</h4><p>Exactly <b>3 Qty cells</b> are red: Folder, Fastener and Envelope.</p><p class="mt-s">D2 shows <b>₱245.00</b> but the formula bar shows <b>245</b>.</p></div>
+        <div class="callout gold mt-m"><b>Finished early?</b> Format a <i>Date Received</i> column on a new sheet with today's date (<kbd>Ctrl</kbd>+<kbd>;</kbd>).</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Office and home">
+    <div class="slide-head">
+      <div><p class="kicker">Where formatting pays off</p><h2 class="h2">Readable at work, useful at home</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li><b>Supplies report:</b> ₱ currency, bold header, reorder warnings in red</li>
+          <li><b>Documents received log:</b> a proper Date column that sorts oldest to newest</li>
+          <li><b>Attendance:</b> frozen header row on a 300-row list</li>
+          <li><b>Contact list:</b> mobile numbers kept as text so the 0 stays</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li><b>Household budget:</b> ₱ format, and Actual turns red when it's over Budget</li>
+          <li><b>Kids' school fees:</b> due dates in a Date column, sorted by nearest</li>
+          <li><b>Sari-sari stock list:</b> highlight items running low</li>
+          <li><b>Paluwagan or contributions:</b> who paid, when, how much</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Home: format the budget">
+    <div class="split">
+      <div>
+        <p class="kicker">Bring it home · Monthly Household Budget</p>
+        <h2 class="h2">Same skills, your own money</h2>
+        <ul class="ticks mt-m" style="font-size:calc(var(--u)*1.4)">
+          <li>B and C as <b>Currency ₱</b>.</li>
+          <li>Header bold with a fill; top row frozen.</li>
+          <li>Rule on C2:C9: <span class="fcode">=C2&gt;B2</span> turns overspending red.</li>
+        </ul>
+        <div class="media mt-m" style="height:calc(var(--u)*13)"><img src="images/m3/3-2-budget.jpg" alt="Bills, a pink calculator and printed charts on a table"></div>
+      </div>
+      <div class="xl bd">
+        <table>
+          <colgroup><col class="rn"><col style="width:44%"><col><col></colgroup>
+          <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Budget</td><td class="c">Actual</td></tr>
+          <tr><th>2</th><td>Rice</td><td class="n">₱2,500.00</td><td class="n hi">₱2,650.00</td></tr>
+          <tr><th>3</th><td>CEPALCO electricity</td><td class="n">₱2,800.00</td><td class="n hi">₱3,120.00</td></tr>
+          <tr><th>4</th><td>Water</td><td class="n">₱450.00</td><td class="n">₱420.00</td></tr>
+          <tr><th>5</th><td>Mobile load and internet</td><td class="n">₱1,500.00</td><td class="n">₱1,500.00</td></tr>
+          <tr><th>6</th><td>Fare and fuel</td><td class="n">₱2,000.00</td><td class="n hi">₱2,240.00</td></tr>
+          <tr><th>7</th><td>School allowance</td><td class="n">₱3,000.00</td><td class="n">₱2,800.00</td></tr>
+          <tr><th>8</th><td>Groceries</td><td class="n">₱5,000.00</td><td class="n hi">₱5,480.00</td></tr>
+          <tr><th>9</th><td>Savings</td><td class="n">₱3,000.00</td><td class="n">₱3,000.00</td></tr>
+        </table>
+        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">Sample figures. Red = Actual is more than Budget.</p>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Right type first, then a clean look</h2>
+        <p class="lede mt-m">A uniform, a hidden text trap and a red warning: see how to give every value the <b>right data type</b>, format the money as <b>₱ currency</b>, and let the sheet flag items to reorder.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> spot one formatting tool we haven't used yet, and try it on your inventory after the video.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/3.2/poster.jpg" alt="Video: Formatting Worksheets and Data Types"><div class="play"></div><span class="vlen">4:55</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/3.2/index.html" title="Video: Formatting Worksheets and Data Types" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    
+  </section>
+  
+
+  
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">The Qty column looks fine, but its total is too small. Some quantities sit on the left of their cells. Why?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>The column is too narrow</div></div>
+      <div class="opt"><span class="l">B</span><div>The cells need Currency format</div></div>
+      <div class="opt"><span class="l">C</span><div>Those quantities are stored as text</div></div>
+      <div class="opt"><span class="l">D</span><div>The top row is frozen</div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 3.2</p>
+    <h2 class="h2">Right type first, then a clean look.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Types</h4><p>Text, number, currency, date, percentage. Numbers on the right; no units or ₱ typed in.</p></div>
+      <div class="card dark"><h4>Format</h4><p>₱ currency, dates, bold header, borders, freeze the top row, and a reorder warning in red.</p></div>
+      <div class="card dark"><h4>Clean</h4><p>Trim spaces, one spelling per unit, no typed totals, no blank rows.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">3.3 Basic Formulas (Arithmetic Operators)</b>: filling the Total Cost column, the right way.</p>
+    
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

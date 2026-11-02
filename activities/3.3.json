@@ -10,18 +10,47 @@
       "minutes": 8,
       "intro": "Open your Lab3 Inventory file. Fill column E with formulas, not typed numbers, then add a grand total.",
       "blocks": [
-        { "type": "steps", "id": "steps", "items": [
-          "In E2 type =C2*D2 (or type =, click C2, type *, click D2), then press Enter.",
-          "Fill E2 down to E9: double-click the fill handle or drag it.",
-          "In A10 type TOTAL.",
-          "In E10 add the eight totals with +: =E2+E3+E4+E5+E6+E7+E8+E9",
-          "Click E2, E9 and E10 and read each formula bar. No typed numbers anywhere."
-        ] },
-        { "type": "number", "id": "e2", "prompt": "What amount does E2 show?", "unit": "₱" },
-        { "type": "number", "id": "e9", "prompt": "What amount does E9 show?", "unit": "₱" },
-        { "type": "number", "id": "e10", "prompt": "What is your grand total in E10?", "unit": "₱" },
-        { "type": "short", "id": "e5", "prompt": "Click E5. What formula does the formula bar show?", "placeholder": "Starts with =" },
-        { "type": "upload", "id": "shot", "prompt": "Optional: a screenshot of column E", "optional": true }
+        {
+          "type": "steps",
+          "id": "steps",
+          "items": [
+            "In E2 type =C2*D2 (or type =, click C2, type *, click D2), then press Enter.",
+            "Fill E2 down to E9: double-click the fill handle or drag it.",
+            "In A10 type TOTAL.",
+            "In E10 add the eight totals with +: =E2+E3+E4+E5+E6+E7+E8+E9",
+            "Click E2, E9 and E10 and read each formula bar. No typed numbers anywhere."
+          ]
+        },
+        {
+          "type": "number",
+          "id": "e2",
+          "prompt": "What amount does E2 show?",
+          "unit": "₱"
+        },
+        {
+          "type": "number",
+          "id": "e9",
+          "prompt": "What amount does E9 show?",
+          "unit": "₱"
+        },
+        {
+          "type": "number",
+          "id": "e10",
+          "prompt": "What is your grand total in E10?",
+          "unit": "₱"
+        },
+        {
+          "type": "short",
+          "id": "e5",
+          "prompt": "Click E5. What formula does the formula bar show?",
+          "placeholder": "Starts with ="
+        },
+        {
+          "type": "upload",
+          "id": "shot",
+          "prompt": "A screenshot of column E",
+          "optional": true
+        }
       ],
       "help": [
         "Your cell shows C2*D2 as text? You forgot the = at the start.",
@@ -37,7 +66,17 @@
       "minutes": 1,
       "intro": "Pick one answer.",
       "blocks": [
-        { "type": "mcq", "id": "q", "prompt": "Which formula correctly computes the Total Cost of folders in E5?", "options": ["=4*520", "=C5*D5", "C5*D5", "=C5xD5"] }
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "Which formula correctly computes the Total Cost of folders in E5?",
+          "options": [
+            "=4*520",
+            "=C5*D5",
+            "C5*D5",
+            "=C5xD5"
+          ]
+        }
       ]
     }
   ]

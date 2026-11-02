@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.7 Generating Basic Charts · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* Module 3 helpers (3.5-3.8): drawn spreadsheet grid, formula bar, sheet tabs, SVG charts, AI chat */
+.xlwin .body{padding:0}
+.fbar{display:flex;align-items:stretch;border-bottom:1px solid var(--border-strong);font-size:calc(var(--u)*1.1);background:#fff}
+.fbar .nb{min-width:calc(var(--u)*5.5);padding:.3em .6em;border-right:1px solid var(--border-strong);font-family:var(--font-mono);color:var(--text-2)}
+.fbar .fx{padding:.3em .7em;border-right:1px solid var(--border);color:var(--text-3);font-style:italic;font-weight:700}
+.fbar .f{padding:.3em .8em;font-family:var(--font-mono);color:var(--text-1);font-weight:600}
+.xl{border-collapse:collapse;width:100%;font-size:calc(var(--u)*1.05);background:#fff}
+.xl th{background:#EEF1F5;color:var(--text-3);font-weight:600;font-size:.86em;border:1px solid #D9DEE5;padding:.12em .4em;text-align:center}
+.xl th.rh{width:calc(var(--u)*2.4)}
+.xl th.cs{background:color-mix(in srgb,var(--mod) 22%,#fff);color:var(--mod-deep)}
+.xl td{border:1px solid #E3E7EC;padding:.17em .55em;color:var(--text-1);white-space:nowrap;line-height:1.35}
+.xl td.n{text-align:right;font-family:var(--font-mono);font-size:.95em}
+.xl td.h{font-weight:700;background:var(--mod-soft);color:var(--mod-deep)}
+.xl td.f{font-family:var(--font-mono);font-size:.92em;color:var(--mod);font-weight:600}
+.xl td.s{outline:calc(var(--u)*.22) solid var(--mod);outline-offset:calc(var(--u)*-.11)}
+.xl td.b{background:var(--coral-soft);color:var(--coral);font-weight:700}
+.xl td.g{background:var(--green-soft);color:var(--green);font-weight:700}
+.xl td.o{background:var(--gold-soft);font-weight:700}
+.xl td.mu{color:var(--text-3)}
+.xl td.r{background:color-mix(in srgb,var(--mod) 13%,#fff)}
+.xl td.k{font-weight:700}
+.xl tr.tot td{border-top:calc(var(--u)*.18) solid var(--mod-deep)}
+.xl tr.frz td,.xl tr.frz th{border-bottom:calc(var(--u)*.32) solid #8E9BB0}
+.xl tr.flt th{color:#1366D6;font-weight:800}
+.xl tr.gap td,.xl tr.gap th{padding:0;height:calc(var(--u)*.5);background:#F7F9FC;border-color:#F7F9FC}
+.xl tr.hid td{background:repeating-linear-gradient(45deg,#f4f6f9 0 6px,#fff 6px 12px);color:var(--text-3)}
+.stabs{display:flex;gap:2px;align-items:flex-start;background:#EEF1F5;border-top:1px solid var(--border-strong);padding:0 calc(var(--u)*.8) calc(var(--u)*.3);font-size:calc(var(--u)*1)}
+.stabs span{padding:.3em 1.1em;background:#E2E6EC;color:var(--text-2);border-radius:0 0 .45em .45em;font-weight:600}
+.stabs span.on{background:#fff;color:var(--text-1);box-shadow:inset 0 calc(var(--u)*-.25) 0 var(--mod)}
+.stabs span.plus{background:none;color:var(--text-3);font-weight:800}
+.stabs span.t1{box-shadow:inset 0 calc(var(--u)*-.3) 0 #1366D6}.stabs span.t2{box-shadow:inset 0 calc(var(--u)*-.3) 0 #16794A}
+.stabs span.t3{box-shadow:inset 0 calc(var(--u)*-.3) 0 #C2482B}.stabs span.t4{box-shadow:inset 0 calc(var(--u)*-.3) 0 #F4B400}
+.chartbox{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow);border:1px solid var(--border);padding:calc(var(--u)*1) calc(var(--u)*1.2)}
+.chartbox svg{width:100%;height:auto;display:block}
+.chartbox.flat{box-shadow:none}
+svg text{font-family:var(--font-sans)}
+.sv-t{font-weight:800;fill:#0B2545}.sv-l{fill:#3E4C63}.sv-m{fill:#7A879C}.sv-v{fill:#0B2545;font-weight:700}
+.sv-grid{stroke:#E3E7EC;stroke-width:1}.sv-ax{stroke:#7A879C;stroke-width:1.5}
+.k1{fill:var(--mod)}.k2{fill:#F4B400}.k3{fill:#1366D6}.k4{fill:#E5533D}.k5{fill:#13315C}.k6{fill:#8BC5A7}.k7{fill:#B9C3D1}.k8{fill:#6B7A90}.k9{fill:#E5533D}
+.anno{fill:none;stroke:#E5533D;stroke-width:3;stroke-dasharray:7 5}
+.menu{background:#fff;border:1px solid var(--border-strong);border-radius:calc(var(--u)*.6);box-shadow:var(--shadow-lg);padding:calc(var(--u)*.5) 0;font-size:calc(var(--u)*1.15)}
+.menu div{padding:.32em 1.2em;color:var(--text-1)}
+.menu div.on{background:var(--mod-soft);color:var(--mod);font-weight:700}
+.menu hr{border:0;border-top:1px solid var(--border);margin:.25em 0}
+.chat{display:flex;flex-direction:column;gap:calc(var(--u)*.8);font-size:calc(var(--u)*1.2)}
+.bub{border-radius:calc(var(--u)*1.2);padding:calc(var(--u)*.8) calc(var(--u)*1.2);line-height:1.45;max-width:92%}
+.bub.me{align-self:flex-end;background:var(--mod);color:#fff;border-bottom-right-radius:.2em}
+.bub.ai{align-self:flex-start;background:var(--surface-2);border:1px solid var(--border);color:var(--text-1);border-bottom-left-radius:.2em}
+.bub code,.code{font-family:var(--font-mono);font-weight:600;background:rgba(11,37,69,.07);padding:.05em .35em;border-radius:.3em;font-size:.95em}
+.bub.me code{background:rgba(255,255,255,.2)}
+.who{font-size:calc(var(--u)*.85);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.big-f{font-family:var(--font-mono);font-weight:700;font-size:calc(var(--u)*2.6);color:var(--mod-deep);letter-spacing:-.01em}
+.big-f .lk{color:var(--coral)}
+.tbl.compact td,.tbl.compact th{padding:calc(var(--u)*.5) calc(var(--u)*.9)}
+.tbl td.c,.tbl th.c{text-align:center}
+.flip .fr h4{color:var(--coral)}
+</style>
+</head>
+<body class="m3" data-brand="Digital Productivity Essentials · <b>Module 3</b> · 3.7 Generating Basic Charts">
+<div class="deck">
+
+  
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 3 · Electronic Spreadsheet Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Generating Basic <span style="color:var(--gold)">Charts</span></h1>
+      <p class="lede" data-anim="fade-up">Pick the right chart, select the right data, and label it so anyone understands it in five seconds.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 3.7</span><span class="tag ghost">~40 minutes · hands-on</span><span class="tag ghost">BIR Misamis Oriental</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m3/3-7-cover.jpg" alt="A presenter pointing at a bar chart on a large screen"><div class="cv-num">3.7</div></div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Hook: table or chart?">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · 3 seconds each</p><h2 class="h2">Which item cost the office the most in January?</h2></div>
+      <span class="tag gold">Answer in the chat</span>
+    </div>
+    <div class="grid g2" style="grid-template-columns:.8fr 1.2fr;align-items:center">
+      <table class="tbl num compact">
+        <tr><th>Item</th><th>Total Cost (₱)</th></tr>
+        <tr><td>A4 paper</td><td>6,125.00</td></tr><tr><td>Long paper</td><td>7,950.00</td></tr>
+        <tr><td>Ballpen</td><td>960.00</td></tr><tr><td>Folder</td><td>2,080.00</td></tr>
+        <tr><td>Fastener</td><td>510.00</td></tr><tr><td>Staple wire</td><td>384.00</td></tr>
+        <tr><td>Printer ink</td><td>2,800.00</td></tr><tr><td>Envelope</td><td>1,230.00</td></tr>
+      </table>
+      <div class="chartbox"><svg viewBox="0 0 800 462" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Total Cost by Item (January)"><text x="400.0" y="34" text-anchor="middle" class="sv-t" font-size="26">Total Cost by Item (January)</text><line x1="150.0" y1="58" x2="150.0" y2="400" class="sv-grid"/><text x="150.0" y="422" text-anchor="middle" class="sv-m" font-size="18">0</text><line x1="287.5" y1="58" x2="287.5" y2="400" class="sv-grid"/><text x="287.5" y="422" text-anchor="middle" class="sv-m" font-size="18">2,000</text><line x1="425.0" y1="58" x2="425.0" y2="400" class="sv-grid"/><text x="425.0" y="422" text-anchor="middle" class="sv-m" font-size="18">4,000</text><line x1="562.5" y1="58" x2="562.5" y2="400" class="sv-grid"/><text x="562.5" y="422" text-anchor="middle" class="sv-m" font-size="18">6,000</text><line x1="700.0" y1="58" x2="700.0" y2="400" class="sv-grid"/><text x="700.0" y="422" text-anchor="middle" class="sv-m" font-size="18">8,000</text><text x="138" y="86.0" text-anchor="end" class="sv-l" font-size="21">A4 paper</text><rect x="150" y="64" width="421.1" height="32" rx="4" class="k1"/><text x="579.1" y="86.0" class="sv-v" font-size="20">₱6,125</text><text x="138" y="128.0" text-anchor="end" class="sv-l" font-size="21">Long paper</text><rect x="150" y="106" width="546.6" height="32" rx="4" class="k1"/><text x="704.6" y="128.0" class="sv-v" font-size="20">₱7,950</text><text x="138" y="170.0" text-anchor="end" class="sv-l" font-size="21">Ballpen</text><rect x="150" y="148" width="66.0" height="32" rx="4" class="k1"/><text x="224.0" y="170.0" class="sv-v" font-size="20">₱960</text><text x="138" y="212.0" text-anchor="end" class="sv-l" font-size="21">Folder</text><rect x="150" y="190" width="143.0" height="32" rx="4" class="k1"/><text x="301.0" y="212.0" class="sv-v" font-size="20">₱2,080</text><text x="138" y="254.0" text-anchor="end" class="sv-l" font-size="21">Fastener</text><rect x="150" y="232" width="35.1" height="32" rx="4" class="k1"/><text x="193.1" y="254.0" class="sv-v" font-size="20">₱510</text><text x="138" y="296.0" text-anchor="end" class="sv-l" font-size="21">Staple wire</text><rect x="150" y="274" width="26.4" height="32" rx="4" class="k1"/><text x="184.4" y="296.0" class="sv-v" font-size="20">₱384</text><text x="138" y="338.0" text-anchor="end" class="sv-l" font-size="21">Printer ink</text><rect x="150" y="316" width="192.5" height="32" rx="4" class="k1"/><text x="350.5" y="338.0" class="sv-v" font-size="20">₱2,800</text><text x="138" y="380.0" text-anchor="end" class="sv-l" font-size="21">Envelope</text><rect x="150" y="358" width="84.6" height="32" rx="4" class="k1"/><text x="242.6" y="380.0" class="sv-v" font-size="20">₱1,230</text><line x1="150" y1="58" x2="150" y2="400" class="sv-ax"/></svg></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head"><div><p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2></div></div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Choose</span><h4>The right chart type</h4><p>Column or bar to compare, line for trends, pie for parts of one whole.</p></div>
+      <div class="card top"><span class="k">Create</span><h4>A chart from the right range</h4><p>Select labels and values only, never the TOTAL row, and insert the chart.</p></div>
+      <div class="card top"><span class="k">Label</span><h4>A chart anyone can read</h4><p>Add a chart title, axis titles and data labels; tidy the legend; avoid common mistakes.</p></div>
+    </div>
+    <div class="callout tip mt-l"><b>Lab 3 requirement:</b> a Pie, Bar or Line chart that accurately reflects the selected data range, complete with a chart title.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Why charts">
+    <div class="split rev">
+      <div class="media"><img src="images/m3/3-7-printed-charts.jpg" alt="Printed charts on a desk next to a calculator"></div>
+      <div>
+        <p class="kicker">Why charts</p>
+        <h2 class="h2">A good chart answers one question at a glance.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>Compare:</b> which item, section or month is biggest?</li>
+          <li><b>See a trend:</b> are supply costs going up or down?</li>
+          <li><b>Show a share:</b> how much of the budget goes to food?</li>
+          <li><b>Spot the odd one:</b> a month that suddenly jumps stands out.</li>
+        </ul>
+        <div class="callout gold mt-m"><b>Rule of thumb:</b> before you make a chart, write the one question it should answer. That question becomes the title.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Pick the right chart">
+    <div class="slide-head"><div><p class="kicker">Pick the right chart</p><h2 class="h2">Three charts cover most office reports</h2></div></div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><div class="chartbox flat" style="padding:0;border:0"><svg viewBox="0 0 420 294" xmlns="http://www.w3.org/2000/svg" role="img" aria-label=""><line x1="72" y1="224.0" x2="400" y2="224.0" class="sv-grid"/><text x="64" y="230.0" text-anchor="end" class="sv-m" font-size="19">0</text><line x1="72" y1="176.5" x2="400" y2="176.5" class="sv-grid"/><text x="64" y="182.5" text-anchor="end" class="sv-m" font-size="19">2,000</text><line x1="72" y1="129.0" x2="400" y2="129.0" class="sv-grid"/><text x="64" y="135.0" text-anchor="end" class="sv-m" font-size="19">4,000</text><line x1="72" y1="81.5" x2="400" y2="81.5" class="sv-grid"/><text x="64" y="87.5" text-anchor="end" class="sv-m" font-size="19">6,000</text><line x1="72" y1="34.0" x2="400" y2="34.0" class="sv-grid"/><text x="64" y="40.0" text-anchor="end" class="sv-m" font-size="19">8,000</text><rect x="87.6" y="78.5" width="50.8" height="145.5" rx="3" class="k1"/><text x="113.0" y="248" text-anchor="middle" class="sv-l" font-size="20">A4</text><rect x="169.6" y="35.2" width="50.8" height="188.8" rx="3" class="k1"/><text x="195.0" y="248" text-anchor="middle" class="sv-l" font-size="20">Long</text><rect x="251.6" y="157.5" width="50.8" height="66.5" rx="3" class="k1"/><text x="277.0" y="248" text-anchor="middle" class="sv-l" font-size="20">Ink</text><rect x="333.6" y="174.6" width="50.8" height="49.4" rx="3" class="k1"/><text x="359.0" y="248" text-anchor="middle" class="sv-l" font-size="20">Folder</text><line x1="72" y1="224" x2="400" y2="224" class="sv-ax"/></svg></div><h4 class="mt-s">Column / Bar · compare</h4><p>Items, sections or people side by side. Use a <b>bar</b> (sideways) when the labels are long.</p></div>
+      <div class="card top"><div class="chartbox flat" style="padding:0;border:0"><svg viewBox="0 0 420 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label=""><line x1="64" y1="210.0" x2="390" y2="210.0" class="sv-grid"/><text x="56" y="216.0" text-anchor="end" class="sv-m" font-size="19">0</text><line x1="64" y1="162.5" x2="390" y2="162.5" class="sv-grid"/><text x="56" y="168.5" text-anchor="end" class="sv-m" font-size="19">1,000</text><line x1="64" y1="115.0" x2="390" y2="115.0" class="sv-grid"/><text x="56" y="121.0" text-anchor="end" class="sv-m" font-size="19">2,000</text><line x1="64" y1="67.5" x2="390" y2="67.5" class="sv-grid"/><text x="56" y="73.5" text-anchor="end" class="sv-m" font-size="19">3,000</text><line x1="64" y1="20.0" x2="390" y2="20.0" class="sv-grid"/><text x="56" y="26.0" text-anchor="end" class="sv-m" font-size="19">4,000</text><text x="91.2" y="234" text-anchor="middle" class="sv-l" font-size="20">Jan</text><text x="145.5" y="234" text-anchor="middle" class="sv-l" font-size="20">Feb</text><text x="199.8" y="234" text-anchor="middle" class="sv-l" font-size="20">Mar</text><text x="254.2" y="234" text-anchor="middle" class="sv-l" font-size="20">Apr</text><text x="308.5" y="234" text-anchor="middle" class="sv-l" font-size="20">May</text><text x="362.8" y="234" text-anchor="middle" class="sv-l" font-size="20">Jun</text><polyline fill="none" stroke="var(--mod)" stroke-width="4" stroke-linejoin="round" points="91.2,84.1 145.5,87.5 199.8,72.2 254.2,50.9 308.5,39.0 362.8,60.4"/><circle cx="91.2" cy="84.1" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="91.2" y="70.1" text-anchor="middle" class="sv-v" font-size="19"></text><circle cx="145.5" cy="87.5" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="145.5" y="73.5" text-anchor="middle" class="sv-v" font-size="19"></text><circle cx="199.8" cy="72.2" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="199.8" y="58.2" text-anchor="middle" class="sv-v" font-size="19"></text><circle cx="254.2" cy="50.9" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="254.2" y="36.9" text-anchor="middle" class="sv-v" font-size="19"></text><circle cx="308.5" cy="39.0" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="308.5" y="25.0" text-anchor="middle" class="sv-v" font-size="19"></text><circle cx="362.8" cy="60.4" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="362.8" y="46.4" text-anchor="middle" class="sv-v" font-size="19"></text><line x1="64" y1="210" x2="390" y2="210" class="sv-ax"/></svg></div><h4 class="mt-s">Line · trend over time</h4><p>Months, weeks or days in order. Shows rises, dips and seasons.</p></div>
+      <div class="card top"><div class="chartbox flat" style="padding:0 18%;border:0"><svg viewBox="0 0 330 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label=""><path d="M170,160 L170.0,20.0 A140,140 0 0 1 271.8,256.1 Z" class="k1" stroke="#fff" stroke-width="3"/><path d="M170,160 L271.8,256.1 A140,140 0 0 1 143.0,297.4 Z" class="k2" stroke="#fff" stroke-width="3"/><path d="M170,160 L143.0,297.4 A140,140 0 0 1 43.7,220.4 Z" class="k3" stroke="#fff" stroke-width="3"/><path d="M170,160 L43.7,220.4 A140,140 0 0 1 46.1,94.8 Z" class="k4" stroke="#fff" stroke-width="3"/><path d="M170,160 L46.1,94.8 A140,140 0 0 1 107.2,34.9 Z" class="k5" stroke="#fff" stroke-width="3"/><path d="M170,160 L107.2,34.9 A140,140 0 0 1 170.0,20.0 Z" class="k6" stroke="#fff" stroke-width="3"/><rect x="360" y="62.0" width="20" height="20" rx="4" class="k1"/><text x="390" y="78.0" class="sv-l" font-size="20"></text><rect x="360" y="98.0" width="20" height="20" rx="4" class="k2"/><text x="390" y="114.0" class="sv-l" font-size="20"></text><rect x="360" y="134.0" width="20" height="20" rx="4" class="k3"/><text x="390" y="150.0" class="sv-l" font-size="20"></text><rect x="360" y="170.0" width="20" height="20" rx="4" class="k4"/><text x="390" y="186.0" class="sv-l" font-size="20"></text><rect x="360" y="206.0" width="20" height="20" rx="4" class="k5"/><text x="390" y="222.0" class="sv-l" font-size="20"></text><rect x="360" y="242.0" width="20" height="20" rx="4" class="k6"/><text x="390" y="258.0" class="sv-l" font-size="20"></text></svg></div><h4 class="mt-s">Pie · parts of one whole</h4><p>Shares that add up to 100%. Keep it to about <b>6 slices</b> or fewer.</p></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Which chart would you use?">
+    <div class="slide-head">
+      <div><p class="kicker">Activity · in the portal</p><h2 class="h2">Which chart would you use?</h2></div>
+      <button class="timer" data-min="2">2:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Sort them in the portal</span><span class="tiny">C = column/bar · L = line · P = pie</span></div>
+      <div class="grid g2 mt-s">
+        <div class="card soft"><h4>1 · Supplies cost per item this month</h4></div>
+        <div class="card soft"><h4>2 · The office's electricity bill, January to June</h4></div>
+        <div class="card soft"><h4>3 · How a ₱20,250 household budget is split</h4></div>
+        <div class="card soft"><h4>4 · Number of staff present per section today</h4></div>
+      </div>
+      <div class="row mt-m"><button class="reveal-btn" data-target="ans-which">Show answers</button>
+        </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Select the right data">
+    <div class="split" style="grid-template-columns:1.15fr .85fr">
+      <div><div class="win xlwin">
+<div class="bar"><i></i><i></i><i></i><span>Inventory 2026.xlsx · Jan</span></div>
+<div class="fbar"><span class="nb">A1</span><span class="fx">fx</span><span class="f">Item</span></div>
+<table class="xl" style="font-size:calc(var(--u)*1.12)"><tr><th class="rh"></th><th class="cs">A</th><th>B</th><th>C</th><th>D</th><th class="cs">E</th></tr>
+<tr><th>1</th><td class="h r">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h r">Total Cost (₱)</td></tr>
+<tr><th>2</th><td class="r">Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="r n">6,125.00</td></tr>
+<tr><th>3</th><td class="r">Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="r n">7,950.00</td></tr>
+<tr><th>4</th><td class="r">Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="r n">960.00</td></tr>
+<tr><th>5</th><td class="r">Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="r n">2,080.00</td></tr>
+<tr><th>6</th><td class="r">Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="r n">510.00</td></tr>
+<tr><th>7</th><td class="r">Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="r n">384.00</td></tr>
+<tr><th>8</th><td class="r">Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="r n">2,800.00</td></tr>
+<tr><th>9</th><td class="r">Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="r n">1,230.00</td></tr>
+<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="n k">22,039.00</td></tr>
+</table>
+</div></div>
+      <div>
+        <p class="kicker">Step 1 · select the data</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.7)">Labels + values only. Leave out the TOTAL row.</h2>
+        <ol class="steps mt-m">
+          <li>Drag over <b>A1:A9</b> (the item names, with the header).</li>
+          <li>Hold <kbd>Ctrl</kbd> and drag over <b>E1:E9</b> (the totals). Mac: <kbd>Cmd</kbd>.</li>
+          <li>Check: both selections cover the <b>same rows</b>, 1 to 9.</li>
+        </ol>
+        <div class="callout warn mt-s"><b>Row 10 stays out.</b> The TOTAL is not an item; including it distorts the chart.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Insert a chart">
+    <div class="slide-head"><div><p class="kicker">Step 2 · insert</p><h2 class="h2">Insert the chart in your app</h2></div><span class="tag">Data still selected</span></div>
+    <table class="tbl compact">
+      <tr><th>App</th><th>Where</th><th>Then</th></tr>
+      <tr><td><b>Microsoft Excel</b></td><td>Insert &gt; Charts &gt; <b>Recommended Charts</b>, or pick Column / Bar / Line / Pie</td><td>Chart appears on the sheet; the <b>Chart Design</b> tab opens</td></tr>
+      <tr><td><b>Google Sheets</b></td><td>Insert &gt; <b>Chart</b></td><td>The <b>Chart editor</b> opens on the right: Setup and Customize</td></tr>
+      <tr><td><b>LibreOffice Calc</b></td><td>Insert &gt; <b>Chart…</b></td><td>The <b>Chart Wizard</b> walks you through type, range and titles</td></tr>
+    </table>
+    <div class="grid g2 mt-m">
+      <div class="callout tip"><b>Excel shortcut:</b> <kbd>Alt</kbd> + <kbd>F1</kbd> drops a default chart on the sheet; <kbd>F11</kbd> puts it on its own chart sheet.</div>
+      <div class="callout gold"><b>Wrong type?</b> No problem. You can change the chart type later without starting over.</div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="The result">
+    <div class="split" style="grid-template-columns:1.35fr .65fr">
+      <div class="chartbox"><svg viewBox="0 0 800 494" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="January Office Supplies: Total Cost by Item"><text x="400.0" y="34" text-anchor="middle" class="sv-t" font-size="24">January Office Supplies: Total Cost by Item</text><line x1="150.0" y1="58" x2="150.0" y2="432" class="sv-grid"/><text x="150.0" y="454" text-anchor="middle" class="sv-m" font-size="16">0</text><line x1="287.5" y1="58" x2="287.5" y2="432" class="sv-grid"/><text x="287.5" y="454" text-anchor="middle" class="sv-m" font-size="16">2,000</text><line x1="425.0" y1="58" x2="425.0" y2="432" class="sv-grid"/><text x="425.0" y="454" text-anchor="middle" class="sv-m" font-size="16">4,000</text><line x1="562.5" y1="58" x2="562.5" y2="432" class="sv-grid"/><text x="562.5" y="454" text-anchor="middle" class="sv-m" font-size="16">6,000</text><line x1="700.0" y1="58" x2="700.0" y2="432" class="sv-grid"/><text x="700.0" y="454" text-anchor="middle" class="sv-m" font-size="16">8,000</text><text x="138" y="87.0" text-anchor="end" class="sv-l" font-size="19">Long paper</text><rect x="150" y="64" width="546.6" height="34" rx="4" class="k1"/><text x="704.6" y="87.0" class="sv-v" font-size="18">₱7,950</text><text x="138" y="133.0" text-anchor="end" class="sv-l" font-size="19">A4 paper</text><rect x="150" y="110" width="421.1" height="34" rx="4" class="k1"/><text x="579.1" y="133.0" class="sv-v" font-size="18">₱6,125</text><text x="138" y="179.0" text-anchor="end" class="sv-l" font-size="19">Printer ink</text><rect x="150" y="156" width="192.5" height="34" rx="4" class="k1"/><text x="350.5" y="179.0" class="sv-v" font-size="18">₱2,800</text><text x="138" y="225.0" text-anchor="end" class="sv-l" font-size="19">Folder</text><rect x="150" y="202" width="143.0" height="34" rx="4" class="k1"/><text x="301.0" y="225.0" class="sv-v" font-size="18">₱2,080</text><text x="138" y="271.0" text-anchor="end" class="sv-l" font-size="19">Envelope</text><rect x="150" y="248" width="84.6" height="34" rx="4" class="k1"/><text x="242.6" y="271.0" class="sv-v" font-size="18">₱1,230</text><text x="138" y="317.0" text-anchor="end" class="sv-l" font-size="19">Ballpen</text><rect x="150" y="294" width="66.0" height="34" rx="4" class="k1"/><text x="224.0" y="317.0" class="sv-v" font-size="18">₱960</text><text x="138" y="363.0" text-anchor="end" class="sv-l" font-size="19">Fastener</text><rect x="150" y="340" width="35.1" height="34" rx="4" class="k1"/><text x="193.1" y="363.0" class="sv-v" font-size="18">₱510</text><text x="138" y="409.0" text-anchor="end" class="sv-l" font-size="19">Staple wire</text><rect x="150" y="386" width="26.4" height="34" rx="4" class="k1"/><text x="184.4" y="409.0" class="sv-v" font-size="18">₱384</text><line x1="150" y1="58" x2="150" y2="432" class="sv-ax"/><text x="425.0" y="486" text-anchor="middle" class="sv-l" font-size="18" font-weight="700">Total Cost (₱)</text></svg></div>
+      <div>
+        <p class="kicker">What we're aiming for</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">A bar chart the boss reads in five seconds</h2>
+        <ul class="ticks mt-m">
+          <li>A title that says <b>what, where and when</b>.</li>
+          <li>Sorted largest to smallest (sort the data first).</li>
+          <li><b>Data labels</b> show the exact peso amounts.</li>
+          <li>No legend needed: there is only one series.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Parts of a chart">
+    <div class="split" style="grid-template-columns:1.4fr .6fr">
+      <div class="chartbox"><svg viewBox="0 0 900 444" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="January Office Supplies: Total Cost by Item"><text x="450.0" y="34" text-anchor="middle" class="sv-t" font-size="23">January Office Supplies: Total Cost by Item</text><line x1="86" y1="374.0" x2="880" y2="374.0" class="sv-grid"/><text x="78" y="380.0" text-anchor="end" class="sv-m" font-size="14">0</text><line x1="86" y1="299.0" x2="880" y2="299.0" class="sv-grid"/><text x="78" y="305.0" text-anchor="end" class="sv-m" font-size="14">2,000</text><line x1="86" y1="224.0" x2="880" y2="224.0" class="sv-grid"/><text x="78" y="230.0" text-anchor="end" class="sv-m" font-size="14">4,000</text><line x1="86" y1="149.0" x2="880" y2="149.0" class="sv-grid"/><text x="78" y="155.0" text-anchor="end" class="sv-m" font-size="14">6,000</text><line x1="86" y1="74.0" x2="880" y2="74.0" class="sv-grid"/><text x="78" y="80.0" text-anchor="end" class="sv-m" font-size="14">8,000</text><rect x="104.9" y="144.3" width="61.5" height="229.7" rx="3" class="k1"/><text x="135.6" y="137.3" text-anchor="middle" class="sv-v" font-size="14">6,125</text><text x="135.6" y="398" text-anchor="middle" class="sv-l" font-size="15">A4 paper</text><rect x="204.1" y="75.9" width="61.5" height="298.1" rx="3" class="k1"/><text x="234.9" y="68.9" text-anchor="middle" class="sv-v" font-size="14">7,950</text><text x="234.9" y="398" text-anchor="middle" class="sv-l" font-size="15">Long paper</text><rect x="303.4" y="338.0" width="61.5" height="36.0" rx="3" class="k1"/><text x="334.1" y="331.0" text-anchor="middle" class="sv-v" font-size="14">960</text><text x="334.1" y="398" text-anchor="middle" class="sv-l" font-size="15">Ballpen</text><rect x="402.6" y="296.0" width="61.5" height="78.0" rx="3" class="k1"/><text x="433.4" y="289.0" text-anchor="middle" class="sv-v" font-size="14">2,080</text><text x="433.4" y="398" text-anchor="middle" class="sv-l" font-size="15">Folder</text><rect x="501.9" y="354.9" width="61.5" height="19.1" rx="3" class="k1"/><text x="532.6" y="347.9" text-anchor="middle" class="sv-v" font-size="14">510</text><text x="532.6" y="398" text-anchor="middle" class="sv-l" font-size="15">Fastener</text><rect x="601.1" y="359.6" width="61.5" height="14.4" rx="3" class="k1"/><text x="631.9" y="352.6" text-anchor="middle" class="sv-v" font-size="14">384</text><text x="631.9" y="398" text-anchor="middle" class="sv-l" font-size="15">Staple wire</text><rect x="700.4" y="269.0" width="61.5" height="105.0" rx="3" class="k1"/><text x="731.1" y="262.0" text-anchor="middle" class="sv-v" font-size="14">2,800</text><text x="731.1" y="398" text-anchor="middle" class="sv-l" font-size="15">Printer ink</text><rect x="799.6" y="327.9" width="61.5" height="46.1" rx="3" class="k1"/><text x="830.4" y="320.9" text-anchor="middle" class="sv-v" font-size="14">1,230</text><text x="830.4" y="398" text-anchor="middle" class="sv-l" font-size="15">Envelope</text><line x1="86" y1="374" x2="880" y2="374" class="sv-ax"/><text transform="translate(20 224.0) rotate(-90)" text-anchor="middle" class="sv-l" font-size="16" font-weight="700">Total Cost (₱)</text><text x="483.0" y="430" text-anchor="middle" class="sv-l" font-size="16" font-weight="700">Item</text></svg></div>
+      <div>
+        <p class="kicker">Step 3 · label it</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.5)">The parts of a chart</h2>
+        <ol class="steps mt-s">
+          <li><b>Chart title</b> · required in Lab 3</li>
+          <li><b>Axis titles</b> · what and which unit (₱)</li>
+          <li><b>Data labels</b> · the numbers on the bars</li>
+          <li><b>Legend</b> · only when there are 2+ series</li>
+        </ol>
+        <p class="tiny mt-s">Excel: the <b>+</b> button beside the chart. Sheets: Chart editor &gt; Customize. Calc: double-click the chart, then Insert.</p>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Move, resize, change type">
+    <div class="slide-head"><div><p class="kicker">Tidy up</p><h2 class="h2">Move it, resize it, change its type</h2></div></div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">✋</span><h4>Move</h4><p>Drag the chart by its <b>border</b>, not the bars. Place it beside the table, not on top of the data. Excel can also <b>Move Chart</b> to its own sheet.</p></div>
+      <div class="card top"><span class="ic-badge">↘️</span><h4>Resize</h4><p>Drag a <b>corner handle</b>. Make it big enough that every label is readable, without overlapping text.</p></div>
+      <div class="card top"><span class="ic-badge">🔄</span><h4>Change type</h4><p>Excel: Chart Design &gt; <b>Change Chart Type</b>. Sheets: Chart editor &gt; Setup &gt; Chart type. Calc: right-click the chart in edit mode &gt; Chart Type.</p></div>
+    </div>
+    <div class="callout mt-l"><b>Delete the legend</b> when there is only one series: click it and press <kbd>Delete</kbd>. Less clutter, same meaning.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Try it: your Lab 3 chart">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · counts toward Lab 3</p><h2 class="h2">Chart your inventory's Total Cost</h2></div>
+      <button class="timer" data-min="6">6:00</button>
+    </div>
+    <div class="grid g2" style="grid-template-columns:1.2fr .8fr;align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">Steps</span><span class="tiny">On your Jan sheet</span></div>
+        <ol>
+          <li>Select <b>A1:A9</b>, hold <kbd>Ctrl</kbd>, select <b>E1:E9</b>.</li>
+          <li>Insert a <b>Bar</b> or <b>Column</b> chart.</li>
+          <li>Type a real chart title: what, where, when.</li>
+          <li>Add axis titles and data labels. Delete the legend.</li>
+          <li>Move it beside the table and resize until every label reads clearly. Share your screen or paste a screenshot.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="callout tip"><b>Self-check:</b> is the longest bar Long paper at 7,950? Is there no "TOTAL" bar? Does the title say more than "Chart Title"?</div>
+        <img src="images/m3/3-7-laptop.jpg" alt="Laptop showing a sales dashboard with bar charts" class="mt-m" style="width:100%;height:calc(var(--u)*15);object-fit:cover;border-radius:var(--radius-lg);box-shadow:var(--shadow)">
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Pie: parts of one whole">
+    <div class="split" style="grid-template-columns:1.3fr .7fr">
+      <div class="chartbox"><svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Where the ₱20,250 Monthly Budget Goes"><text x="430.0" y="34" text-anchor="middle" class="sv-t" font-size="26">Where the ₱20,250 Monthly Budget Goes</text><path d="M195,235 L195.0,70.0 A165,165 0 0 1 315.0,348.2 Z" class="k1" stroke="#fff" stroke-width="3"/><text x="292.0" y="199.2" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="2">37%</text><path d="M195,235 L315.0,348.2 A165,165 0 0 1 163.2,396.9 Z" class="k2" stroke="#fff" stroke-width="3"/><text x="227.2" y="341.6" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="2">16%</text><path d="M195,235 L163.2,396.9 A165,165 0 0 1 46.1,306.2 Z" class="k3" stroke="#fff" stroke-width="3"/><text x="130.3" y="324.5" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="2">14.8%</text><path d="M195,235 L46.1,306.2 A165,165 0 0 1 49.0,158.1 Z" class="k4" stroke="#fff" stroke-width="3"/><text x="89.4" y="239.0" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="2">14.8%</text><path d="M195,235 L49.0,158.1 A165,165 0 0 1 120.9,87.6 Z" class="k5" stroke="#fff" stroke-width="3"/><text x="121.1" y="165.6" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="2">9.9%</text><path d="M195,235 L120.9,87.6 A165,165 0 0 1 195.0,70.0 Z" class="k6" stroke="#fff" stroke-width="3"/><text x="170.6" y="138.2" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="2">7.4%</text><rect x="410" y="137.0" width="20" height="20" rx="4" class="k1"/><text x="440" y="153.0" class="sv-l" font-size="21">Food (rice + groceries) <tspan class="sv-m">· ₱7,500</tspan></text><rect x="410" y="173.0" width="20" height="20" rx="4" class="k2"/><text x="440" y="189.0" class="sv-l" font-size="21">Utilities (CEPALCO + water) <tspan class="sv-m">· ₱3,250</tspan></text><rect x="410" y="209.0" width="20" height="20" rx="4" class="k3"/><text x="440" y="225.0" class="sv-l" font-size="21">School allowance <tspan class="sv-m">· ₱3,000</tspan></text><rect x="410" y="245.0" width="20" height="20" rx="4" class="k4"/><text x="440" y="261.0" class="sv-l" font-size="21">Savings <tspan class="sv-m">· ₱3,000</tspan></text><rect x="410" y="281.0" width="20" height="20" rx="4" class="k5"/><text x="440" y="297.0" class="sv-l" font-size="21">Fare and fuel <tspan class="sv-m">· ₱2,000</tspan></text><rect x="410" y="317.0" width="20" height="20" rx="4" class="k6"/><text x="440" y="333.0" class="sv-l" font-size="21">Load and internet <tspan class="sv-m">· ₱1,500</tspan></text></svg></div>
+      <div>
+        <p class="kicker">Pie chart · at home</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">Share of one monthly budget</h2>
+        <ul class="ticks mt-m">
+          <li>The 8 budget lines were <b>grouped into 6</b> so every slice is readable.</li>
+          <li>The slices add up to <b>100%</b> of one ₱20,250 budget.</li>
+          <li>Show percentages as data labels; keep the legend.</li>
+        </ul>
+        <div class="callout gold mt-s"><b>About 6 slices max.</b> More than that? Group the small ones, or use a bar chart.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Two series need a legend">
+    <div class="split" style="grid-template-columns:1.4fr .6fr">
+      <div class="chartbox"><svg viewBox="0 0 900 474" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Household Budget vs Actual (₱)"><text x="450.0" y="34" text-anchor="middle" class="sv-t" font-size="23">Household Budget vs Actual (₱)</text><line x1="86" y1="364.0" x2="880" y2="364.0" class="sv-grid"/><text x="78" y="370.0" text-anchor="end" class="sv-m" font-size="14">0</text><line x1="86" y1="315.7" x2="880" y2="315.7" class="sv-grid"/><text x="78" y="321.7" text-anchor="end" class="sv-m" font-size="14">1,000</text><line x1="86" y1="267.3" x2="880" y2="267.3" class="sv-grid"/><text x="78" y="273.3" text-anchor="end" class="sv-m" font-size="14">2,000</text><line x1="86" y1="219.0" x2="880" y2="219.0" class="sv-grid"/><text x="78" y="225.0" text-anchor="end" class="sv-m" font-size="14">3,000</text><line x1="86" y1="170.7" x2="880" y2="170.7" class="sv-grid"/><text x="78" y="176.7" text-anchor="end" class="sv-m" font-size="14">4,000</text><line x1="86" y1="122.3" x2="880" y2="122.3" class="sv-grid"/><text x="78" y="128.3" text-anchor="end" class="sv-m" font-size="14">5,000</text><line x1="86" y1="74.0" x2="880" y2="74.0" class="sv-grid"/><text x="78" y="80.0" text-anchor="end" class="sv-m" font-size="14">6,000</text><rect x="99.9" y="243.2" width="32.7" height="120.8" rx="3" class="k1"/><rect x="135.6" y="235.9" width="32.7" height="128.1" rx="3" class="k2"/><text x="135.6" y="388" text-anchor="middle" class="sv-l" font-size="15">Rice</text><rect x="199.1" y="228.7" width="32.7" height="135.3" rx="3" class="k1"/><rect x="234.9" y="213.2" width="32.7" height="150.8" rx="3" class="k2"/><text x="234.9" y="388" text-anchor="middle" class="sv-l" font-size="15">CEPALCO</text><rect x="298.4" y="342.2" width="32.7" height="21.8" rx="3" class="k1"/><rect x="334.1" y="343.7" width="32.7" height="20.3" rx="3" class="k2"/><text x="334.1" y="388" text-anchor="middle" class="sv-l" font-size="15">Water</text><rect x="397.6" y="291.5" width="32.7" height="72.5" rx="3" class="k1"/><rect x="433.4" y="291.5" width="32.7" height="72.5" rx="3" class="k2"/><text x="433.4" y="388" text-anchor="middle" class="sv-l" font-size="15">Load</text><rect x="496.9" y="267.3" width="32.7" height="96.7" rx="3" class="k1"/><rect x="532.6" y="255.7" width="32.7" height="108.3" rx="3" class="k2"/><text x="532.6" y="388" text-anchor="middle" class="sv-l" font-size="15">Fare</text><rect x="596.1" y="219.0" width="32.7" height="145.0" rx="3" class="k1"/><rect x="631.9" y="228.7" width="32.7" height="135.3" rx="3" class="k2"/><text x="631.9" y="388" text-anchor="middle" class="sv-l" font-size="15">School</text><rect x="695.4" y="122.3" width="32.7" height="241.7" rx="3" class="k1"/><rect x="731.1" y="99.1" width="32.7" height="264.9" rx="3" class="k2"/><text x="731.1" y="388" text-anchor="middle" class="sv-l" font-size="15">Groceries</text><rect x="794.6" y="219.0" width="32.7" height="145.0" rx="3" class="k1"/><rect x="830.4" y="219.0" width="32.7" height="145.0" rx="3" class="k2"/><text x="830.4" y="388" text-anchor="middle" class="sv-l" font-size="15">Savings</text><line x1="86" y1="364" x2="880" y2="364" class="sv-ax"/><text transform="translate(20 219.0) rotate(-90)" text-anchor="middle" class="sv-l" font-size="16" font-weight="700">Amount (₱)</text><rect x="340.0" y="444" width="18" height="18" rx="3" class="k1"/><text x="366.0" y="459" class="sv-l" font-size="16">Budget</text><rect x="470.0" y="444" width="18" height="18" rx="3" class="k2"/><text x="496.0" y="459" class="sv-l" font-size="16">Actual</text></svg></div>
+      <div>
+        <p class="kicker">Budget vs Actual</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.5)">Two series? Now you need the legend.</h2>
+        <ul class="ticks mt-m">
+          <li>Select <b>three columns</b>: Item, Budget, Actual.</li>
+          <li>A <b>clustered column</b> puts each pair side by side.</li>
+          <li>The legend tells green (Budget) from gold (Actual).</li>
+        </ul>
+        <p class="small mt-s">Groceries went ₱480 over, CEPALCO ₱320, fare ₱240, rice ₱150. Total: ₱21,210 against a ₱20,250 budget, ₱960 over.</p>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Line: trend over time">
+    <div class="split" style="grid-template-columns:1.4fr .6fr">
+      <div class="chartbox"><svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Household Electricity Bill, January to June"><text x="430.0" y="34" text-anchor="middle" class="sv-t" font-size="25">Household Electricity Bill, January to June</text><line x1="90" y1="350.0" x2="830" y2="350.0" class="sv-grid"/><text x="82" y="356.0" text-anchor="end" class="sv-m" font-size="16">0</text><line x1="90" y1="277.5" x2="830" y2="277.5" class="sv-grid"/><text x="82" y="283.5" text-anchor="end" class="sv-m" font-size="16">1,000</text><line x1="90" y1="205.0" x2="830" y2="205.0" class="sv-grid"/><text x="82" y="211.0" text-anchor="end" class="sv-m" font-size="16">2,000</text><line x1="90" y1="132.5" x2="830" y2="132.5" class="sv-grid"/><text x="82" y="138.5" text-anchor="end" class="sv-m" font-size="16">3,000</text><line x1="90" y1="60.0" x2="830" y2="60.0" class="sv-grid"/><text x="82" y="66.0" text-anchor="end" class="sv-m" font-size="16">4,000</text><text x="151.7" y="374" text-anchor="middle" class="sv-l" font-size="17">Jan</text><text x="275.0" y="374" text-anchor="middle" class="sv-l" font-size="17">Feb</text><text x="398.3" y="374" text-anchor="middle" class="sv-l" font-size="17">Mar</text><text x="521.7" y="374" text-anchor="middle" class="sv-l" font-size="17">Apr</text><text x="645.0" y="374" text-anchor="middle" class="sv-l" font-size="17">May</text><text x="768.3" y="374" text-anchor="middle" class="sv-l" font-size="17">Jun</text><polyline fill="none" stroke="var(--mod)" stroke-width="4" stroke-linejoin="round" points="151.7,157.9 275.0,162.9 398.3,139.8 521.7,107.1 645.0,89.0 768.3,121.6"/><circle cx="151.7" cy="157.9" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="151.7" y="143.9" text-anchor="middle" class="sv-v" font-size="16">₱2,650</text><circle cx="275.0" cy="162.9" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="275.0" y="148.9" text-anchor="middle" class="sv-v" font-size="16">₱2,580</text><circle cx="398.3" cy="139.8" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="398.3" y="125.8" text-anchor="middle" class="sv-v" font-size="16">₱2,900</text><circle cx="521.7" cy="107.1" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="521.7" y="93.1" text-anchor="middle" class="sv-v" font-size="16">₱3,350</text><circle cx="645.0" cy="89.0" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="645.0" y="75.0" text-anchor="middle" class="sv-v" font-size="16">₱3,600</text><circle cx="768.3" cy="121.6" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="768.3" y="107.6" text-anchor="middle" class="sv-v" font-size="16">₱3,150</text><line x1="90" y1="350" x2="830" y2="350" class="sv-ax"/><text transform="translate(20 205.0) rotate(-90)" text-anchor="middle" class="sv-l" font-size="18" font-weight="700">Bill (₱)</text><text x="460.0" y="406" text-anchor="middle" class="sv-l" font-size="18" font-weight="700">Month (2026)</text></svg></div>
+      <div>
+        <p class="kicker">Line chart · trend</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.5)">Months in order, one line</h2>
+        <ul class="ticks mt-m">
+          <li>Time goes on the <b>horizontal axis</b>, left to right.</li>
+          <li>The line shows the <b>summer peak</b> in April and May, then a drop in June.</li>
+          <li>Axis titles say <b>what</b> and <b>which unit</b>.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Common mistakes">
+    <div class="slide-head"><div><p class="kicker">Common mistakes</p><h2 class="h2">Three charts that tell the wrong story</h2></div></div>
+    <div class="grid g3" style="align-items:stretch">
+      <div class="card"><h4 style="color:var(--coral)">✗ TOTAL row in the pie</h4><div class="chartbox flat" style="padding:0;border:0"><svg viewBox="0 0 360 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label=""><path d="M180,170 L180.0,20.0 A150,150 0 0 1 294.9,73.6 Z" class="k1" stroke="#fff" stroke-width="3"/><path d="M180,170 L294.9,73.6 A150,150 0 0 1 316.0,233.3 Z" class="k2" stroke="#fff" stroke-width="3"/><path d="M180,170 L316.0,233.3 A150,150 0 0 1 306.1,251.2 Z" class="k3" stroke="#fff" stroke-width="3"/><path d="M180,170 L306.1,251.2 A150,150 0 0 1 276.9,284.5 Z" class="k6" stroke="#fff" stroke-width="3"/><path d="M180,170 L276.9,284.5 A150,150 0 0 1 268.3,291.3 Z" class="k5" stroke="#fff" stroke-width="3"/><path d="M180,170 L268.3,291.3 A150,150 0 0 1 261.5,295.9 Z" class="k7" stroke="#fff" stroke-width="3"/><path d="M180,170 L261.5,295.9 A150,150 0 0 1 206.2,317.7 Z" class="k8" stroke="#fff" stroke-width="3"/><path d="M180,170 L206.2,317.7 A150,150 0 0 1 180.0,320.0 Z" class="k1" stroke="#fff" stroke-width="3"/><path d="M180,170 L180.0,320.0 A150,150 0 0 1 180.0,20.0 Z" class="k9" stroke="#fff" stroke-width="3"/><text x="105.0" y="166.0" text-anchor="middle" font-size="24" font-weight="800" fill="#fff">TOTAL</text><text x="105.0" y="194.0" text-anchor="middle" font-size="24" font-weight="800" fill="#fff">50%</text></svg></div><p class="mt-s">The TOTAL slice is always exactly <b>half</b> the pie. Select rows 2 to 9 only.</p></div>
+      <div class="card"><h4 style="color:var(--coral)">✗ Axis starts at 6,000</h4>
+        <div class="grid g2" style="gap:calc(var(--u)*.6)"><div><svg viewBox="0 0 420 404" xmlns="http://www.w3.org/2000/svg" role="img" aria-label=""><line x1="99" y1="334.0" x2="400" y2="334.0" class="sv-grid"/><text x="91" y="340.0" text-anchor="end" class="sv-m" font-size="27">6,000</text><line x1="99" y1="259.0" x2="400" y2="259.0" class="sv-grid"/><text x="91" y="265.0" text-anchor="end" class="sv-m" font-size="27">6,500</text><line x1="99" y1="184.0" x2="400" y2="184.0" class="sv-grid"/><text x="91" y="190.0" text-anchor="end" class="sv-m" font-size="27">7,000</text><line x1="99" y1="109.0" x2="400" y2="109.0" class="sv-grid"/><text x="91" y="115.0" text-anchor="end" class="sv-m" font-size="27">7,500</text><line x1="99" y1="34.0" x2="400" y2="34.0" class="sv-grid"/><text x="91" y="40.0" text-anchor="end" class="sv-m" font-size="27">8,000</text><rect x="127.6" y="315.2" width="93.3" height="18.8" rx="3" class="k1"/><text x="174.2" y="308.2" text-anchor="middle" class="sv-v" font-size="27">6,125</text><text x="174.2" y="358" text-anchor="middle" class="sv-l" font-size="28">A4 paper</text><rect x="278.1" y="41.5" width="93.3" height="292.5" rx="3" class="k1"/><text x="324.8" y="34.5" text-anchor="middle" class="sv-v" font-size="27">7,950</text><text x="324.8" y="358" text-anchor="middle" class="sv-l" font-size="28">Long paper</text><line x1="99" y1="334" x2="400" y2="334" class="sv-ax"/></svg><p class="tiny">Starts at 6,000: looks 15× bigger</p></div><div><svg viewBox="0 0 420 404" xmlns="http://www.w3.org/2000/svg" role="img" aria-label=""><line x1="99" y1="334.0" x2="400" y2="334.0" class="sv-grid"/><text x="91" y="340.0" text-anchor="end" class="sv-m" font-size="27">0</text><line x1="99" y1="259.0" x2="400" y2="259.0" class="sv-grid"/><text x="91" y="265.0" text-anchor="end" class="sv-m" font-size="27">2,000</text><line x1="99" y1="184.0" x2="400" y2="184.0" class="sv-grid"/><text x="91" y="190.0" text-anchor="end" class="sv-m" font-size="27">4,000</text><line x1="99" y1="109.0" x2="400" y2="109.0" class="sv-grid"/><text x="91" y="115.0" text-anchor="end" class="sv-m" font-size="27">6,000</text><line x1="99" y1="34.0" x2="400" y2="34.0" class="sv-grid"/><text x="91" y="40.0" text-anchor="end" class="sv-m" font-size="27">8,000</text><rect x="127.6" y="104.3" width="93.3" height="229.7" rx="3" class="k1"/><text x="174.2" y="97.3" text-anchor="middle" class="sv-v" font-size="27">6,125</text><text x="174.2" y="358" text-anchor="middle" class="sv-l" font-size="28">A4 paper</text><rect x="278.1" y="35.9" width="93.3" height="298.1" rx="3" class="k1"/><text x="324.8" y="28.9" text-anchor="middle" class="sv-v" font-size="27">7,950</text><text x="324.8" y="358" text-anchor="middle" class="sv-l" font-size="28">Long paper</text><line x1="99" y1="334" x2="400" y2="334" class="sv-ax"/></svg><p class="tiny">Starts at 0: about 1.3× bigger</p></div></div>
+        <p class="mt-s">Bar and column axes should <b>start at zero</b>.</p></div>
+      <div class="card photo"><img src="images/m3/3-7-3d-pie.jpg" alt="Printed 3D pie chart with tilted slices" style="height:calc(var(--u)*22)"><div class="body"><h4 style="color:var(--coral)">✗ 3D effects</h4><p>Tilting makes front slices look bigger than they are. Use flat 2D charts.</p></div></div>
+    </div>
+    <div class="callout mt-m"><b>Also avoid:</b> more than ~6 pie slices · "Chart Title" left as is · no axis titles · a pie of unrelated numbers.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="At the office and at home">
+    <div class="slide-head"><div><p class="kicker">See it everywhere</p><h2 class="h2">Match the chart to the question</h2></div></div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li><b>Bar:</b> supplies cost by item, for the property or supply officer.</li>
+          <li><b>Column:</b> staff present per section, from the attendance sheet.</li>
+          <li><b>Line:</b> documents received per week over a quarter.</li>
+          <li><b>Pie:</b> share of this month's supplies budget by category.</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li><b>Pie:</b> where the monthly budget goes.</li>
+          <li><b>Line:</b> the CEPALCO bill month by month.</li>
+          <li><b>Column:</b> sari-sari sales per day of the week. Is Sunday the best?</li>
+          <li><b>Clustered column:</b> budget vs actual for the fiesta handaan.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Right question, right chart, right range, real title</h2>
+        <p class="lede mt-m">Pick <b>column, bar, line or pie</b>, select only the labels and values, insert the chart, and label it so your section chief reads it in five seconds.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> which cells are selected, and which row is left out. That one step decides whether your Lab 3 chart is right.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/3.7/poster.jpg" alt="Video: Generating Basic Charts"><div class="play"></div><span class="vlen">4:59</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/3.7/index.html" title="Video: Generating Basic Charts" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    
+  </section>
+  
+
+  
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head"><div><p class="kicker">Quick check · click an answer</p><h2 class="h2">You select A1:A10 and E1:E10 and insert a pie. One slice is exactly half the pie. Why?</h2></div></div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>Long paper is half of all spending</div></div>
+      <div class="opt"><span class="l">B</span><div>Row 10, the TOTAL, became a slice</div></div>
+      <div class="opt"><span class="l">C</span><div>Pie charts always enlarge the first slice</div></div>
+      <div class="opt"><span class="l">D</span><div>The chart needs a legend to fix it</div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 3.7</p>
+    <h2 class="h2">Right question, right chart, right range, real title.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Choose</h4><p>Column/bar to compare, line for time, pie for parts of one whole (about 6 slices max).</p></div>
+      <div class="card dark"><h4>Select</h4><p>Labels + values with Ctrl. Leave the TOTAL row out.</p></div>
+      <div class="card dark"><h4>Label</h4><p>Title, axis titles, data labels. Flat, axis from zero, legend only for 2+ series.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">3.8 AI-Assisted Data Analysis</b>: letting AI suggest formulas and spot trends, and checking every answer ourselves. Then the Lab 3 brief.</p>
+    
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

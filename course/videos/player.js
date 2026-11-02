@@ -75,12 +75,12 @@
 
   // ---- controls
   var ui = document.createElement('div'); ui.id = 'ui';
-  ui.innerHTML = '<div class="pl-row"><button id="pp" title="Play (Space)">▶</button><span class="pl-time"></span>' +
+  ui.innerHTML = '<div class="pl-row"><button id="pp" title="Play (Space)" aria-label="Play">▶</button><span class="pl-time"></span>' +
     '<input type="range" min="0" max="1000" value="0" aria-label="Seek">' +
-    '<button id="cc" title="Captions (C)">CC</button><button id="sp" title="Speed">1×</button>' +
-    '<button id="fs" title="Fullscreen (F)">⛶</button></div>';
+    '<button id="cc" title="Captions (C)" aria-label="Captions">CC</button><button id="sp" title="Speed" aria-label="Playback speed 1×">1×</button>' +
+    '<button id="fs" title="Fullscreen (F)" aria-label="Fullscreen">⛶</button></div>';
   document.body.appendChild(ui);
-  var big = document.createElement('button'); big.id = 'big'; big.title = 'Play'; document.body.appendChild(big);
+  var big = document.createElement('button'); big.id = 'big'; big.title = 'Play'; big.setAttribute('aria-label', 'Play video'); document.body.appendChild(big);
   var pp = ui.querySelector('#pp'), time = ui.querySelector('.pl-time'), bar = ui.querySelector('input');
   var cc = ui.querySelector('#cc'), sp = ui.querySelector('#sp'), fs = ui.querySelector('#fs');
 
@@ -107,16 +107,16 @@
     if (playing) return;
     if (t >= TOTAL - 0.05 || started === false) { t = 0; }
     started = true; playing = true; last = performance.now();
-    syncAudio(); pp.textContent = '❚❚'; big.classList.add('hide');
+    syncAudio(); pp.textContent = '❚❚'; pp.setAttribute('aria-label', 'Pause'); big.classList.add('hide');
     raf = requestAnimationFrame(tick); idle();
   }
   function pause() {
     playing = false; cancelAnimationFrame(raf); vo.pause(); bed.pause();
-    pp.textContent = t >= TOTAL ? '↺' : '▶'; ui.classList.remove('hide');
+    pp.textContent = t >= TOTAL ? '↺' : '▶'; pp.setAttribute('aria-label', t >= TOTAL ? 'Replay' : 'Play'); ui.classList.remove('hide');
     if (t >= TOTAL) big.classList.remove('hide');
   }
   function toggle() { if (playing) pause(); else play(); }
-  function seek(x) { started = true; render(x); syncAudio(); big.classList.add('hide'); if (!playing) pp.textContent = '▶'; }
+  function seek(x) { started = true; render(x); syncAudio(); big.classList.add('hide'); if (!playing) { pp.textContent = '▶'; pp.setAttribute('aria-label', 'Play'); } }
   var started = false;
 
   pp.onclick = function (e) { e.stopPropagation(); toggle(); };
@@ -127,7 +127,7 @@
   var rates = [1, 1.25, 0.85];
   sp.onclick = function (e) {
     e.stopPropagation(); rate = rates[(rates.indexOf(rate) + 1) % rates.length];
-    vo.playbackRate = rate; sp.textContent = rate + '×';
+    vo.playbackRate = rate; sp.textContent = rate + '×'; sp.setAttribute('aria-label', 'Playback speed ' + rate + '×');
   };
   fs.onclick = function (e) {
     e.stopPropagation();

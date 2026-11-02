@@ -14,7 +14,10 @@
           "type": "sort",
           "id": "parts",
           "prompt": "Is each part of the AI draft a problem, or fine as given in our prompt?",
-          "bins": ["Problem", "Fine"],
+          "bins": [
+            "Problem",
+            "Fine"
+          ],
           "items": [
             "Dear [Insert Name],",
             "Friday, 19 November 2026",
@@ -31,7 +34,12 @@
           "type": "mcq",
           "id": "day",
           "prompt": "What day of the week is 19 November 2026?",
-          "options": ["Thursday", "Friday", "Saturday", "Monday"]
+          "options": [
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Monday"
+          ]
         },
         {
           "type": "mcq",
@@ -109,18 +117,33 @@
         {
           "type": "upload",
           "id": "sources",
-          "prompt": "Optional: your main document and spreadsheet, in case the facilitator asks",
+          "prompt": "Your main document and spreadsheet, in case the facilitator asks",
           "optional": true
         },
         {
           "type": "rubric",
           "id": "rubric",
           "criteria": [
-            { "name": "Content and human editing: multi-paragraph letter, facts checked, no placeholders, AI help disclosed", "points": 8 },
-            { "name": "Formatting: justified text, standard font sizes, 1-inch margins, consistent and readable layout", "points": 6 },
-            { "name": "Embedded table: at least 2 columns × 3 rows, with headers, inside the letter", "points": 5 },
-            { "name": "Mail merge: linked to a separate data source; at least 3 distinct, personalised letters in one file, no blank letters", "points": 8 },
-            { "name": "Responsible AI: only sample or permitted data used; no confidential information; sources credited", "points": 3 }
+            {
+              "name": "Content and human editing: multi-paragraph letter, facts checked, no placeholders, AI help disclosed",
+              "points": 8
+            },
+            {
+              "name": "Formatting: justified text, standard font sizes, 1-inch margins, consistent and readable layout",
+              "points": 6
+            },
+            {
+              "name": "Embedded table: at least 2 columns × 3 rows, with headers, inside the letter",
+              "points": 5
+            },
+            {
+              "name": "Mail merge: linked to a separate data source; at least 3 distinct, personalised letters in one file, no blank letters",
+              "points": 8
+            },
+            {
+              "name": "Responsible AI: only sample or permitted data used; no confidential information; sources credited",
+              "points": 3
+            }
           ]
         }
       ],

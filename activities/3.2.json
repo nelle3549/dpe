@@ -10,20 +10,60 @@
       "minutes": 12,
       "intro": "Open your Lab3 Inventory file from Topic 3.1. Work through the checklist and tick each step as you finish it.",
       "blocks": [
-        { "type": "steps", "id": "steps", "items": [
-          "Check types: every Qty, Unit Cost and Reorder Level sits on the right of its cell.",
-          "Row 1: bold, centered, dark fill, white text. Wrap Text on Reorder Level.",
-          "Select D2:E9 and format as Currency ₱ with 2 decimals.",
-          "Select A1:F9 and add All Borders. AutoFit the columns.",
-          "Freeze the top row.",
-          "Select C2:C9 and add a conditional formatting rule: =C2<=F2, light red fill.",
-          "Save with Ctrl+S."
-        ] },
-        { "type": "number", "id": "red", "prompt": "How many Qty cells turned red?", "unit": "cells" },
-        { "type": "mcq", "id": "which", "multi": true, "prompt": "Which items turned red? Pick all that apply.", "options": ["Bond paper, A4", "Folder, long", "Fastener", "Printer ink, black", "Envelope, brown long"] },
-        { "type": "mcq", "id": "d2", "prompt": "Click D2. What does the formula bar show?", "options": ["₱245.00", "245", "₱245"] },
-        { "type": "short", "id": "rule", "prompt": "What formula did you type for the conditional formatting rule?", "placeholder": "Starts with =" },
-        { "type": "upload", "id": "shot", "prompt": "Optional: a screenshot of your formatted inventory", "optional": true }
+        {
+          "type": "steps",
+          "id": "steps",
+          "items": [
+            "Check types: every Qty, Unit Cost and Reorder Level sits on the right of its cell.",
+            "Row 1: bold, centered, dark fill, white text. Wrap Text on Reorder Level.",
+            "Select D2:E9 and format as Currency ₱ with 2 decimals.",
+            "Select A1:F9 and add All Borders. AutoFit the columns.",
+            "Freeze the top row.",
+            "Select C2:C9 and add a conditional formatting rule: =C2<=F2, light red fill.",
+            "Save with Ctrl+S."
+          ]
+        },
+        {
+          "type": "number",
+          "id": "red",
+          "prompt": "How many Qty cells turned red?",
+          "unit": "cells"
+        },
+        {
+          "type": "mcq",
+          "id": "which",
+          "multi": true,
+          "prompt": "Which items turned red? Pick all that apply.",
+          "options": [
+            "Bond paper, A4",
+            "Folder, long",
+            "Fastener",
+            "Printer ink, black",
+            "Envelope, brown long"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "d2",
+          "prompt": "Click D2. What does the formula bar show?",
+          "options": [
+            "₱245.00",
+            "245",
+            "₱245"
+          ]
+        },
+        {
+          "type": "short",
+          "id": "rule",
+          "prompt": "What formula did you type for the conditional formatting rule?",
+          "placeholder": "Starts with ="
+        },
+        {
+          "type": "upload",
+          "id": "shot",
+          "prompt": "A screenshot of your formatted inventory",
+          "optional": true
+        }
       ],
       "help": [
         "Currency shows a dollar sign? Press Ctrl+1 and pick the ₱ (Philippines) symbol.",
@@ -40,7 +80,17 @@
       "minutes": 1,
       "intro": "Pick one answer.",
       "blocks": [
-        { "type": "mcq", "id": "q", "prompt": "The Qty column looks fine, but its total is too small. Some quantities sit on the left of their cells. Why?", "options": ["The column is too narrow", "The cells need Currency format", "Those quantities are stored as text", "The top row is frozen"] }
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "The Qty column looks fine, but its total is too small. Some quantities sit on the left of their cells. Why?",
+          "options": [
+            "The column is too narrow",
+            "The cells need Currency format",
+            "Those quantities are stored as text",
+            "The top row is frozen"
+          ]
+        }
       ]
     }
   ]

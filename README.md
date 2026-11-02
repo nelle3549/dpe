@@ -7,6 +7,7 @@ Static site on GitHub Pages; sign-up, activity answers and scores live in Supaba
 |---|---|
 | `index.html`, `app/` | The LMS: registration, topics, activity pages, facilitator presenter and results |
 | `course/` | The 26 topic decks, narrated videos and images (copied from Google Drive by `tools/sync.py`) |
+| `course/p/` | Participant copies of the decks, built by `tools/sync.py` without speaker notes, answer reveals or right-answer markers |
 | `activities/` | Activity pages per topic (questions only; answer keys are stored only in the database) |
 | `tools/sync.py` | Refresh `course/`, `activities/` and `app/catalog.js` from the Drive folder |
 | `tools/keys_sql.py` | SQL to load the answer keys from Drive into Supabase |

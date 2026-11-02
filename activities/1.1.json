@@ -8,13 +8,17 @@
       "kind": "task",
       "title": "Hardware, software or peopleware?",
       "minutes": 2,
-      "intro": "Sort the 9 items on the slide. Put each one in the right group: hardware, software or peopleware.",
+      "intro": "Sort the 9 items below. Put each one in the right group: hardware, software or peopleware.",
       "blocks": [
         {
           "type": "sort",
           "id": "sort",
           "prompt": "Sort each item into the right group.",
-          "bins": ["Hardware", "Software", "Peopleware"],
+          "bins": [
+            "Hardware",
+            "Software",
+            "Peopleware"
+          ],
           "items": [
             "Biometric scanner",
             "Web browser",
@@ -29,24 +33,29 @@
         }
       ],
       "help": [
-        "Can you touch it? Then it is hardware.",
-        "Instructions you can't touch, like a program or Windows, are software.",
-        "Any person who uses or supports the system is peopleware, including the taxpayer."
+        "Is it a physical device or part? Then it is hardware.",
+        "Programs and instructions that run on the device, like Windows or an app, are software.",
+        "People who use, run or support the system are peopleware."
       ]
     },
     {
       "id": "1.1-qc",
       "slide": "Quick check",
       "kind": "check",
-      "title": "Quick check: the UPS",
+      "title": "Quick check: the Windows update",
       "minutes": 1,
       "intro": "One question. Pick the best answer.",
       "blocks": [
         {
           "type": "mcq",
           "id": "q",
-          "prompt": "During a brownout, the UPS beeps and keeps your PC on. The UPS is…",
-          "options": ["System software", "Hardware", "Application software", "Peopleware"]
+          "prompt": "Your PC feels slow, so the ICT focal person installs a Windows update. What part of the system did they update?",
+          "options": [
+            "Hardware",
+            "System software",
+            "Application software",
+            "Peopleware"
+          ]
         }
       ]
     }

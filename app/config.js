@@ -2,6 +2,7 @@
 window.DPE_CONFIG = {
   supabaseUrl: 'https://xlqxedwuekjfldblqocv.supabase.co',
   supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhscXhlZHd1ZWtqZmxkYmxxb2N2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM1MTIyMjIsImV4cCI6MjEwOTA4ODIyMn0.Zht5d0iCgkWYMGVeSD4XwGFvSLvGXg4TUW3lsuQb3Xc',
-  privacyVersion: 'v1-2026-11-01',
-  defaultOrganization: 'BIR-Mis Or.'
+  privacyVersion: 'v2-2026-11-02',
+  defaultOrganization: 'Bureau of Internal Revenue - Misamis Oriental',
+  privacyContact: 'the facilitator, Engr. Ronelle Pabellan (nelle3549@gmail.com)'
 };

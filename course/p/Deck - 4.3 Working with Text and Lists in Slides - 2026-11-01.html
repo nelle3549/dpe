@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.3 Working with Text and Lists in Slides · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* 4.3 extras: drawn mini slides and text demos (uses dpe.css tokens) */
+.mini{aspect-ratio:16/9;background:#fff;border:1px solid var(--border-strong);border-radius:calc(var(--u)*.7);box-shadow:var(--shadow);overflow:hidden;position:relative;display:flex;flex-direction:column;padding:calc(var(--u)*1.3) calc(var(--u)*1.7);color:var(--text-1)}
+.mini .t{font-size:calc(var(--u)*1.8);font-weight:800;color:var(--mod-deep);line-height:1.15}
+.mini .bar{height:calc(var(--u)*.3);width:calc(var(--u)*5);background:var(--mod);border-radius:9px;margin:calc(var(--u)*.5) 0 calc(var(--u)*.9)}
+.mcap{font-size:calc(var(--u)*.9);font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:calc(var(--u)*.6)}
+.mcap.bad{color:var(--coral)}.mcap.good{color:var(--green)}
+.ph{border:calc(var(--u)*.12) dashed var(--text-3);border-radius:calc(var(--u)*.3);padding:calc(var(--u)*.6) calc(var(--u)*.8);color:var(--text-3);font-size:calc(var(--u)*1.05)}
+.tb{border:calc(var(--u)*.12) solid var(--mod);border-radius:2px;padding:calc(var(--u)*.3) calc(var(--u)*.6);font-size:calc(var(--u)*.95);position:absolute;background:#fff}
+.lv{list-style:none;margin:0;padding:0}
+.lv li{position:relative;line-height:1.35;margin:calc(var(--u)*.55) 0}
+.lv li::before{position:absolute;left:-1.1em}
+.lv .l1{font-size:calc(var(--u)*1.55);padding-left:1.2em;font-weight:600}.lv .l1::before{content:"●";left:0;color:var(--mod);font-size:.8em;top:.1em}
+.lv .l2{font-size:calc(var(--u)*1.3);padding-left:3em;color:var(--text-2)}.lv .l2::before{content:"–";left:1.8em}
+.lv .l3{font-size:calc(var(--u)*1.1);padding-left:4.8em;color:var(--text-3)}.lv .l3::before{content:"·";left:3.8em;font-weight:800}
+.sizes{display:flex;flex-direction:column;gap:calc(var(--u)*.55)}
+.sizes div{display:flex;align-items:baseline;gap:calc(var(--u)*1.2);border-bottom:1px dashed var(--border-strong);padding-bottom:calc(var(--u)*.35)}
+.sizes .pt{font-family:var(--font-mono);font-size:calc(var(--u)*1);color:var(--text-3);width:calc(var(--u)*6);flex:none}
+.para{font-size:calc(var(--u)*1.02);line-height:1.35;color:var(--text-2)}
+.bigstat{font-size:calc(var(--u)*3.2);font-weight:800;color:var(--mod);letter-spacing:-.03em;line-height:1}
+.np{background:#fff;border:1px solid var(--border-strong);border-radius:calc(var(--u)*.4);padding:calc(var(--u)*.9) calc(var(--u)*1.2);font-size:calc(var(--u)*1.2);line-height:1.5;color:var(--text-2)}
+.np .lbl{font-size:calc(var(--u)*.8);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);display:block;margin-bottom:.3em}
+</style>
+</head>
+<body class="m4" data-brand="Digital Productivity Essentials · <b>Module 4</b> · 4.3 Working with Text and Lists in Slides">
+<div class="deck">
+
+  
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 4 · Multimedia Presentation Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Working with Text and <span style="color:var(--gold)">Lists in Slides</span></h1>
+      <p class="lede" data-anim="fade-up">Fewer words, bigger letters, clear lists. The rest goes in your speaker notes.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 4.3</span><span class="tag ghost">~40 minutes</span><span class="tag ghost">BIR Misamis Oriental</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m4/4-3-cover.jpg" alt="A microphone in front of a blurred audience"><div class="cv-num">4.3</div></div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Hook: 5-second test">
+    <div class="slide-head">
+      <div><p class="kicker">Hook · 5-second test</p><h2 class="h2">Read this slide. You have five seconds.</h2></div>
+      <button class="timer" data-min="0.0834">0:05</button>
+    </div>
+    <div class="grid" style="grid-template-columns:1.3fr 1fr;gap:calc(var(--u)*2.4);align-items:center">
+      <div class="mini">
+        <div class="t" style="font-size:calc(var(--u)*1.4)">Reminders on the Use of the Shared Drive</div>
+        <p class="para mt-s" style="font-size:calc(var(--u)*1.05)">All personnel are reminded that files saved in the shared drive must follow the agreed folder structure and naming convention, which includes the section name, the type of document and the date in year-month-day format, and that personal files such as photos, music and videos should not be saved in the shared drive as these take up space needed for official records, and that files must not be deleted or moved without informing the section head, and that the drive is backed up every Friday afternoon so files saved after the backup will only be protected the following week…</p>
+      </div>
+      <div class="try" style="padding:calc(var(--u)*1.4) calc(var(--u)*1.8)">
+        <div class="try-head"><span class="try-label">In the chat</span></div>
+        <p class="lede" style="font-size:calc(var(--u)*1.5)">What do you remember? Type <b>one</b> rule from that slide.</p>
+        <div class="row mt-m"><button class="reveal-btn" data-target="ans-hook">The point</button></div>
+        
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head">
+      <div><p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2></div>
+    </div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Type</span><h4>Use placeholders, text boxes, bullets and numbered lists</h4><p>Including bullet levels with <kbd>Tab</kbd> and <kbd>Shift</kbd>+<kbd>Tab</kbd>.</p></div>
+      <div class="card top"><span class="k">Format</span><h4>Choose readable font sizes and spacing</h4><p>Body text at about 24 pt or more, with room to breathe.</p></div>
+      <div class="card top"><span class="k">Trim</span><h4>Turn a wall of text into 3 bullets or a visual</h4><p>And move the details into the speaker notes.</p></div>
+    </div>
+    <div class="callout mt-l"><b>Lab 4 link:</b> today you'll fill slides 2 to 5 of "My Digital Skills Journey" with short, readable text.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="The big idea">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">A slide is a <em class="mod">jeepney signboard</em>, not a letter.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li>The signboard says <b>"Carmen · Cogon · Divisoria"</b>. You read it in one glance from the sidewalk.</li>
+          <li>Nobody paints the whole route description on the jeep.</li>
+          <li>Your slide: a few <b>key words</b> the audience reads in seconds.</li>
+          <li>Your voice and your <b>speaker notes</b>: the full explanation.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/m4/4-3-audience.jpg" alt="An audience listening closely to a speaker"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Placeholders and text boxes">
+    <div class="slide-head">
+      <div><p class="kicker">Where text goes</p><h2 class="h2">Placeholders first, text boxes for extras</h2></div>
+    </div>
+    <div class="grid g2" style="gap:calc(var(--u)*2.6);align-items:center">
+      <div class="mini" style="gap:calc(var(--u)*.7)">
+        <div class="ph" style="font-size:calc(var(--u)*1.4);font-weight:700">Click to add title</div>
+        <div class="ph" style="flex:1">• Click to add text</div>
+        <div class="tb" style="right:6%;bottom:9%">Source: Lab 3 inventory</div>
+      </div>
+      <table class="tbl">
+        <tr><th></th><th>Placeholder</th><th>Text box</th></tr>
+        <tr><td><b>Looks like</b></td><td>Dashed box: "Click to add…"</td><td>A box you draw anywhere</td></tr>
+        <tr><td><b>Comes from</b></td><td>The slide layout</td><td>Insert › Text Box</td></tr>
+        <tr><td><b>Follows theme</b></td><td>Yes, fonts and position</td><td>Only partly</td></tr>
+        <tr><td><b>Use for</b></td><td>Titles and main text</td><td>Small labels, sources</td></tr>
+      </table>
+    </div>
+    <div class="callout tip mt-l"><b>Why it matters:</b> titles typed in the <b>title placeholder</b> show up in the outline, help screen readers, and change together when you switch themes.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Bullet levels">
+    <div class="slide-head">
+      <div><p class="kicker">Bulleted lists</p><h2 class="h2">Move bullets in and out with <kbd>Tab</kbd></h2></div>
+      <span class="tag">Same keys in all three apps</span>
+    </div>
+    <div class="grid g2" style="gap:calc(var(--u)*3);align-items:center">
+      <div class="card">
+        <ul class="lv">
+          <li class="l1">Word processing</li>
+          <li class="l2">Formal letter, justified text</li>
+          <li class="l2">Mail merge to 3 colleagues</li>
+          <li class="l1">Spreadsheets</li>
+          <li class="l2">SUM and AVERAGE formulas</li>
+          <li class="l3">Level 3: usually too deep</li>
+        </ul>
+      </div>
+      <div>
+        <div class="keys">
+          <span><kbd>Enter</kbd></span><span>New bullet at the same level</span>
+          <span><kbd>Tab</kbd></span><span><b>Demote</b>: move the bullet one level in (put the cursor at the start of the line)</span>
+          <span><kbd>Shift</kbd> + <kbd>Tab</kbd></span><span><b>Promote</b>: move it back out</span>
+          <span><kbd>Shift</kbd> + <kbd>Enter</kbd></span><span>New line <b>without</b> a new bullet</span>
+        </div>
+        <div class="callout gold mt-l"><b>Rule of thumb:</b> two levels at most. If you need a third, the idea deserves its own slide.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Numbered lists">
+    <div class="slide-head">
+      <div><p class="kicker">Numbered lists</p><h2 class="h2">Numbers when order matters, bullets when it doesn't</h2></div>
+    </div>
+    <div class="grid g2">
+      <div class="card top">
+        <h4>1, 2, 3 · Steps and rankings</h4>
+        <ol class="steps mt-s">
+          <li>Open the Lab 3 file</li>
+          <li>Click the chart, press <kbd>Ctrl</kbd>+<kbd>C</kbd></li>
+          <li>Go to slide 4, press <kbd>Ctrl</kbd>+<kbd>V</kbd></li>
+        </ol>
+      </div>
+      <div class="card top">
+        <h4>● · Items with no order</h4>
+        <ul class="ticks mt-s">
+          <li>Bond paper</li>
+          <li>Ballpens</li>
+          <li>Printer ink</li>
+        </ul>
+      </div>
+    </div>
+    <table class="tbl mt-l">
+      <tr><th>App</th><th>Turn a list into a numbered list</th></tr>
+      <tr><td><b>PowerPoint</b></td><td>Home › <b>Numbering</b> (next to Bullets); the arrow gives 1. 2. 3. or a. b. c.</td></tr>
+      <tr><td><b>Google Slides</b></td><td>Toolbar <b>Numbered list</b> button, or Format › Bullets &amp; numbering</td></tr>
+      <tr><td><b>Impress</b></td><td>Format › Bullets and Numbering, or the ordered-list button</td></tr>
+    </table>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Font size guidance">
+    <div class="split">
+      <div>
+        <p class="kicker">Font size</p>
+        <h2 class="h2">Body text at about 24 pt or bigger</h2>
+        <div class="sizes mt-m">
+          <div><span class="pt">36–44 pt</span><b style="font-size:calc(var(--u)*2.4)">Slide title</b></div>
+          <div><span class="pt">24–32 pt</span><span style="font-size:calc(var(--u)*1.6)">Body text and bullets</span></div>
+          <div><span class="pt">18 pt</span><span style="font-size:calc(var(--u)*1.15)">Smallest: labels, sources</span></div>
+        </div>
+        <div class="callout warn mt-m"><b>Watch AutoFit:</b> PowerPoint quietly shrinks text that overflows. If your bullets drop below 24 pt, cut words or split the slide. The <b>AutoFit Options</b> button even offers <b>Split Text Between Two Slides</b>.</div>
+      </div>
+      <div class="media"><img src="images/m4/4-3-fonts.jpg" alt="A typography poster showing the alphabet in large Helvetica letters"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Line spacing and white space">
+    <div class="slide-head">
+      <div><p class="kicker">Spacing</p><h2 class="h2">Give your text room to breathe</h2></div>
+    </div>
+    <div class="grid g2">
+      <div>
+        <p class="mcap bad">✗ Cramped</p>
+        <div class="mini" style="padding:calc(var(--u)*1) calc(var(--u)*1.2)">
+          <div class="t" style="font-size:calc(var(--u)*1.4)">Shared drive rules</div>
+          <ul style="margin:.2em 0 0;padding-left:1.1em;line-height:1.1;font-size:calc(var(--u)*1.45)"><li>Follow the folder structure</li><li>Name files: Section_Type_Date</li><li>No personal photos or videos</li><li>Ask before moving files</li><li>Backup every Friday</li><li>Report missing files</li><li>Close files before leaving</li></ul>
+        </div>
+      </div>
+      <div>
+        <p class="mcap good">✓ Comfortable</p>
+        <div class="mini">
+          <div class="t">Shared drive: 3 rules</div><div class="bar"></div>
+          <ul style="margin:0;padding-left:1.1em;line-height:1.6;font-size:calc(var(--u)*1.45)"><li>Name files: Section_Type_Date</li><li>Official files only</li><li>Ask before moving files</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="grid g3 mt-l">
+      <div class="callout"><b>PowerPoint:</b> Home › Line Spacing (1.0, 1.5…) or Paragraph › Spacing Before/After.</div>
+      <div class="callout"><b>Google Slides:</b> Format › Line &amp; paragraph spacing.</div>
+      <div class="callout"><b>Impress:</b> Format › Spacing, or Sidebar › Paragraph.</div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Avoid walls of text">
+    <div class="slide-head">
+      <div><p class="kicker">Trim the text</p><h2 class="h2">Three moves to break a wall of text</h2></div>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><div class="num">1</div><span class="ic-badge">✂️</span><h4>Cut to key words</h4><p>Remove "please be informed that", "in order to", "the said". Keep nouns, verbs and numbers.</p></div>
+      <div class="card top"><div class="num">2</div><span class="ic-badge">☰</span><h4>Split into 3 bullets</h4><p>One idea per bullet, about 6 words each. Three is easy to remember.</p></div>
+      <div class="card top"><div class="num">3</div><span class="ic-badge">📊</span><h4>Turn it into a visual</h4><p>Numbers become a chart, steps become a diagram, places become a photo (Topic 4.4).</p></div>
+    </div>
+    <div class="callout gold mt-l"><b>The 6 × 6 guide:</b> about 6 bullets per slide and 6 words per bullet, at most. It's a guide, not a law, but it keeps you honest.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Text makeover">
+    <div class="slide-head">
+      <div><p class="kicker">Text-heavy slide makeover · Lab 4 slide</p><h2 class="h2">From a paragraph to a slide people read</h2></div>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <p class="mcap bad">✗ Before: 80 words</p>
+        <div class="mini">
+          <div class="t" style="font-size:calc(var(--u)*1.4)">Module 3</div>
+          <p class="para mt-s" style="font-size:calc(var(--u)*1.2)">In Module 3 we learned how to use spreadsheets. We made an Office Supplies Inventory with eight items and typed formulas for the Total Cost by multiplying the quantity by the unit cost. We also used SUM to get the grand total and AVERAGE, and we formatted the costs as currency. Finally we made a chart which showed that bond paper is our biggest cost.</p>
+        </div>
+      </div>
+      <div>
+        <p class="mcap good">✓ After: 20 words + one number</p>
+        <div class="mini">
+          <div class="t">Formulas now do my math</div><div class="bar"></div>
+          <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:calc(var(--u)*1);align-items:center;flex:1">
+            <ul class="ticks" style="margin:0"><li style="font-size:calc(var(--u)*1.2);margin:.3em 0">Total = Qty × Unit Cost</li><li style="font-size:calc(var(--u)*1.2);margin:.3em 0">SUM and AVERAGE</li><li style="font-size:calc(var(--u)*1.2);margin:.3em 0">Bond paper costs the most</li></ul>
+            <div style="text-align:center"><div class="bigstat">₱22,039</div><p class="tiny" style="margin-top:.4em">grand total, 8 items</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="callout mt-l"><b>What changed:</b> the title became a message, the paragraph became 3 bullets, one number got the spotlight, and the full story moved to the notes.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Try it: trim the text">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · in the portal</p><h2 class="h2">Turn this notice into 3 short bullets</h2></div>
+      <button class="timer" data-min="4">4:00</button>
+    </div>
+    <div class="grid" style="grid-template-columns:1.2fr 1fr;gap:calc(var(--u)*2);align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">The paragraph (62 words)</span></div>
+        <p class="small" style="font-size:calc(var(--u)*1.35)">Please be informed that the Digital Skills Workshop will be held on Friday at the Conference Room starting at one o'clock in the afternoon. All participants are requested to bring their own laptops and chargers, and to make sure that they have installed a presentation application before the workshop. Snacks will be provided by the Administrative Section.</p>
+        <p class="tiny mt-m">Rules: a title that says something, 3 bullets, at most 6 words each.</p>
+      </div>
+      <div>
+        <div class="row"><button class="reveal-btn" data-target="ans-trim">Show one answer</button></div>
+        
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Speaker notes">
+    <div class="split rev">
+      <div class="media"><img src="images/m4/4-3-speaker.jpg" alt="Speakers at a lectern facing an audience in an auditorium"></div>
+      <div>
+        <p class="kicker">The speaker notes pane</p>
+        <h2 class="h2">The words you cut go here</h2>
+        <div class="np mt-m"><span class="lbl">Notes · slide 4</span>Bond paper, A4 and long, is ₱14,075 of our ₱22,039 total. Pause. Ask: should we buy in bulk next quarter?</div>
+        <ul class="ticks mt-m">
+          <li><b>Open it:</b> PowerPoint status bar › <b>Notes</b>, or View › Notes. Google Slides: under the slide. Impress: View › Notes.</li>
+          <li><b>Write cues</b>, not an essay: numbers, names, questions to ask.</li>
+          <li><b>Print</b> as Notes Pages, or read them in Presenter View.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Spelling and capitalisation">
+    <div class="slide-head">
+      <div><p class="kicker">Final polish</p><h2 class="h2">Check spelling and keep capitals consistent</h2></div>
+    </div>
+    <div class="grid g2" style="gap:calc(var(--u)*2.4)">
+      <div class="card top">
+        <h4>🔤 Spelling check</h4>
+        <div class="keys mt-m">
+          <span><kbd>F7</kbd></span><span>Spelling in PowerPoint (Review › Spelling) and Impress (Tools › Spelling)</span>
+          <span>Menu</span><span>Google Slides: Tools › Spelling and grammar</span>
+          <span>Right-click</span><span>Any red wavy line shows suggestions</span>
+        </div>
+        <div class="callout tip mt-m"><b>Names:</b> choose <b>Add to Dictionary</b> for names like "Pabellan" or "Cagayan de Oro" so they stop being flagged.</div>
+      </div>
+      <div class="card top">
+        <h4>Aa Capitalisation</h4>
+        <p>Pick one style for titles and one for bullets, then stick to it.</p>
+        <table class="tbl mt-m" style="box-shadow:none">
+          <tr><td><b>Sentence case</b></td><td>Formulas now do my math</td></tr>
+          <tr><td><b>Title Case</b></td><td>Formulas Now Do My Math</td></tr>
+          <tr><td style="color:var(--coral)"><b>ALL CAPS</b></td><td style="color:var(--coral)">FEELS LIKE SHOUTING</td></tr>
+        </table>
+        <p class="small mt-m">PowerPoint: Home › <b>Change Case</b> (Aa), or <kbd>Shift</kbd>+<kbd>F3</kbd> to cycle. Google Slides: Format › Text › Capitalisation.</p>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Myth or fact">
+    <div class="slide-head">
+      <div><p class="kicker">Myth or fact? · click a card to flip</p><h2 class="h2">Vote in the chat before each flip</h2></div>
+    </div>
+    <div class="grid g3">
+      <div class="flip" style="min-height:calc(var(--u)*17)"><div class="in"><div class="fr"><h4>"Full sentences on slides look more professional."</h4><span class="hint">click to flip</span></div><div class="bk"><h4>Myth</h4><p>People read ahead and stop listening. Put sentences in your notes and key words on the slide.</p><span class="hint">click to flip back</span></div></div></div>
+      <div class="flip" style="min-height:calc(var(--u)*17)"><div class="in"><div class="fr"><h4>"ALL CAPS makes text easier to read."</h4><span class="hint">click to flip</span></div><div class="bk"><h4>Myth</h4><p>Lines of capitals are slower to read, and they read like shouting. Use bold or the accent colour for emphasis.</p><span class="hint">click to flip back</span></div></div></div>
+      <div class="flip" style="min-height:calc(var(--u)*17)"><div class="in"><div class="fr"><h4>"The audience can't see your speaker notes during the show."</h4><span class="hint">click to flip</span></div><div class="bk"><h4>Fact, if…</h4><p>…you share only the slide show window. Share the whole editing window and everyone reads your notes.</p><span class="hint">click to flip back</span></div></div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Office and home">
+    <div class="slide-head">
+      <div><p class="kicker">Text that works</p><h2 class="h2">Short text, at work and at home</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li><b>Orientation for new staff:</b> a numbered "First week" list: ID and biometrics, email account, shared drive folders, who to ask.</li>
+          <li><b>Briefing:</b> three bullets and one number on screen; the policy details and figures in your notes.</li>
+          <li><b>Taxpayer-facing screen in a lobby:</b> big text, plain words, one reminder per slide.</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li><b>Church or barangay event:</b> the schedule as a numbered list in large fonts for the elders.</li>
+          <li><b>Sari-sari store promo on the TV or Facebook:</b> "New: iced coffee · ₱25" beats a paragraph.</li>
+          <li><b>Kids' school report:</b> help them turn their essay into 3 bullets per slide.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Fewer words, bigger letters, clear lists</h2>
+        <p class="lede mt-m">A jeepney signboard, a shared drive reminder and a real Lab 4 slide: see how <b>placeholders</b>, <b>bullet levels</b>, <b>numbered lists</b>, readable sizes and <b>speaker notes</b> turn a wall of text into a slide people actually read.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> note one shortcut or button you didn't know before. We'll use it on your Lab 4 slides right after.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/4.3/poster.jpg" alt="Video: Working with Text and Lists in Slides"><div class="play"></div><span class="vlen">4:59</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/4.3/index.html" title="Video: Working with Text and Lists in Slides" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    
+  </section>
+  
+
+  
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">PowerPoint shrank your 9 bullets to 14 pt so they fit. What's the best fix?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>Make it 12 pt so it fits better</div></div>
+      <div class="opt"><span class="l">B</span><div>Cut to key words, split into two slides, move details to the notes</div></div>
+      <div class="opt"><span class="l">C</span><div>Change to a narrow, condensed font</div></div>
+      <div class="opt"><span class="l">D</span><div>Leave it; people can zoom in</div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 4.3</p>
+    <h2 class="h2">Key words on the slide. The full story in your voice and notes.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Type</h4><p>Placeholders for titles and text; Tab and Shift+Tab for levels; numbers for steps.</p></div>
+      <div class="card dark"><h4>Format</h4><p>About 24 pt or more, comfortable spacing, one capitalisation style, no typos.</p></div>
+      <div class="card dark"><h4>Trim</h4><p>Cut, split into 3 bullets, or turn it into a visual. Details go to the notes.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">4.4 Inserting and Manipulating Graphical Elements</b>: pictures, shapes, icons and your Lab 3 chart.</p>
+    
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

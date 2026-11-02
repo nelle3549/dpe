@@ -10,18 +10,41 @@
       "minutes": 2,
       "intro": "Write one sentence that people should remember from your Lab 4 deck. Write it on paper first, then type it here.",
       "blocks": [
-        { "type": "steps", "id": "steps", "items": [
-          "Fill in the blanks: \"After this course, I can [a skill], which helps me [a task at work or at home].\"",
-          "Write your sentence on your paper first.",
-          "Type it below, then paste it in the chat too.",
-          "Keep it. It becomes the title or the closing line of your Lab 4 deck."
-        ] },
-        { "type": "text", "id": "message", "prompt": "Your key message in one sentence", "lines": 2 },
-        { "type": "mcq", "id": "strong", "prompt": "Which one is a strong key message?", "options": [
-          "I learned many things about computers.",
-          "After this course, I can build a spreadsheet with formulas, which helps me total our office supplies in seconds."
-        ] },
-        { "type": "mcq", "id": "which", "prompt": "Your section chief hears only one sentence from your briefing. Which planning question does that sentence answer?", "options": ["Audience: who?", "Purpose: why?", "Key message: what?"] }
+        {
+          "type": "steps",
+          "id": "steps",
+          "items": [
+            "Fill in the blanks: \"After this course, I can [a skill], which helps me [a task at work or at home].\"",
+            "Write your sentence on your paper first.",
+            "Type it below, then paste it in the chat too.",
+            "Keep it. It becomes the title or the closing line of your Lab 4 deck."
+          ]
+        },
+        {
+          "type": "text",
+          "id": "message",
+          "prompt": "Your key message in one sentence",
+          "lines": 2
+        },
+        {
+          "type": "mcq",
+          "id": "strong",
+          "prompt": "Which one is a strong key message?",
+          "options": [
+            "I learned many things about computers.",
+            "After this course, I can build a spreadsheet with formulas, which helps me total our office supplies in seconds."
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "which",
+          "prompt": "Your section chief hears only one sentence from your briefing. Which planning question does that sentence answer?",
+          "options": [
+            "Audience: who?",
+            "Purpose: why?",
+            "Key message: what?"
+          ]
+        }
       ],
       "help": [
         "Is it specific? Name the skill, not just \"computers\".",
@@ -36,19 +59,39 @@
       "minutes": 2,
       "intro": "Look at the example storyboard for \"My Digital Skills Journey\" on the screen. Each box is one slide with one idea. Match each box to its job.",
       "blocks": [
-        { "type": "steps", "id": "steps", "items": [
-          "Look at the five boxes on the screen.",
-          "Notice that each box has one idea and a title that says something.",
-          "Match each box below to its job: title, hook, proof or close."
-        ] },
-        { "type": "sort", "id": "jobs", "prompt": "What job does each box do?", "bins": ["Title", "Hook", "Proof", "Close"], "items": [
-          "Name, date, one photo",
-          "\"I typed letters twice because I didn't save.\"",
-          "Lab 2: 3 letters in one click",
-          "The Lab 3 chart",
-          "Key message + next step"
-        ] },
-        { "type": "number", "id": "boxes", "prompt": "How many boxes (slides) meet the Lab 4 minimum?", "unit": "slides" }
+        {
+          "type": "steps",
+          "id": "steps",
+          "items": [
+            "Look at the five boxes on the screen.",
+            "Notice that each box has one idea and a title that says something.",
+            "Match each box below to its job: title, hook, proof or close."
+          ]
+        },
+        {
+          "type": "sort",
+          "id": "jobs",
+          "prompt": "What job does each box do?",
+          "bins": [
+            "Title",
+            "Hook",
+            "Proof",
+            "Close"
+          ],
+          "items": [
+            "Name, date, one photo",
+            "\"I typed letters twice because I didn't save.\"",
+            "Lab 2: 3 letters in one click",
+            "The Lab 3 chart",
+            "Key message + next step"
+          ]
+        },
+        {
+          "type": "number",
+          "id": "boxes",
+          "prompt": "How many boxes (slides) meet the Lab 4 minimum?",
+          "unit": "slides"
+        }
       ]
     },
     {
@@ -59,16 +102,43 @@
       "minutes": 5,
       "intro": "Paper and pen, no computer. Sketch your Lab 4 deck one box per slide, then show your paper to the camera. You may storyboard \"Our Office Supplies Inventory\" or a community project pitch instead.",
       "blocks": [
-        { "type": "steps", "id": "steps", "items": [
-          "Write your key message at the top of the page.",
-          "Draw 5 or 6 boxes (fold the paper in half, then in thirds).",
-          "In each box: a title that says something and a rough sketch (chart, photo, icon).",
-          "Mark where your Lab 3 chart or Lab 1 image goes.",
-          "Number the boxes in the order you'll present them."
-        ] },
-        { "type": "mcq", "id": "title", "prompt": "Which slide title says something, not just a label?", "options": ["Module 3", "Formulas do the math"] },
-        { "type": "mcq", "id": "chart", "prompt": "In the example storyboard, which box holds the Lab 3 chart?", "options": ["Box 1 · Title", "Box 2 · Hook", "Box 4 · Proof 2", "Box 5 · Close"] },
-        { "type": "upload", "id": "photo", "prompt": "Optional: a photo of your paper storyboard", "optional": true }
+        {
+          "type": "steps",
+          "id": "steps",
+          "items": [
+            "Write your key message at the top of the page.",
+            "Draw 5 or 6 boxes (fold the paper in half, then in thirds).",
+            "In each box: a title that says something and a rough sketch (chart, photo, icon).",
+            "Mark where your Lab 3 chart or Lab 1 image goes.",
+            "Number the boxes in the order you'll present them."
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "title",
+          "prompt": "Which slide title says something, not just a label?",
+          "options": [
+            "Module 3",
+            "Formulas do the math"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "chart",
+          "prompt": "In the example storyboard, which box holds the Lab 3 chart?",
+          "options": [
+            "Box 1 · Title",
+            "Box 2 · Hook",
+            "Box 4 · Proof 2",
+            "Box 5 · Close"
+          ]
+        },
+        {
+          "type": "upload",
+          "id": "photo",
+          "prompt": "A photo of your paper storyboard",
+          "optional": true
+        }
       ],
       "help": [
         "Rough is fine: stick figures and wavy lines for text.",
@@ -84,14 +154,40 @@
       "minutes": 2,
       "intro": "Look at the \"MY DIGITAL SKILLS JOURNEY!!!\" slide on the screen. Find at least five problems, using the design words: contrast, alignment, repetition, proximity, readability.",
       "blocks": [
-        { "type": "text", "id": "problems", "prompt": "Type the problems you found", "lines": 4 },
-        { "type": "sort", "id": "principle", "prompt": "Which principle does each problem break?", "bins": ["Contrast", "Readability", "Repetition", "Planning"], "items": [
-          "Yellow text on a purple gradient",
-          "A wall of small text",
-          "Three fonts, ALL CAPS and \"!!!\"",
-          "No key message: it's a list of topics"
-        ] },
-        { "type": "mcq", "id": "float", "prompt": "Nothing lines up and the text floats mid-slide. Which principle is that?", "options": ["Contrast", "Alignment", "Repetition", "Proximity"] }
+        {
+          "type": "text",
+          "id": "problems",
+          "prompt": "Type the problems you found",
+          "lines": 4
+        },
+        {
+          "type": "sort",
+          "id": "principle",
+          "prompt": "Which principle does each problem break?",
+          "bins": [
+            "Contrast",
+            "Readability",
+            "Repetition",
+            "Planning"
+          ],
+          "items": [
+            "Yellow text on a purple gradient",
+            "A wall of small text",
+            "Three fonts, ALL CAPS and \"!!!\"",
+            "No key message: it's a list of topics"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "float",
+          "prompt": "Nothing lines up and the text floats mid-slide. Which principle is that?",
+          "options": [
+            "Contrast",
+            "Alignment",
+            "Repetition",
+            "Proximity"
+          ]
+        }
       ]
     },
     {
@@ -102,12 +198,17 @@
       "minutes": 1,
       "intro": "Pick one answer.",
       "blocks": [
-        { "type": "mcq", "id": "q", "prompt": "You must brief your section chief on the supplies inventory in 5 minutes. What do you decide first?", "options": [
-          "The theme and colours",
-          "The one key message and what you need from the chief",
-          "Which transitions to use",
-          "How many slides to make"
-        ] }
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "You must brief your section chief on the supplies inventory in 5 minutes. What do you decide first?",
+          "options": [
+            "The theme and colours",
+            "The one key message and what you need from the chief",
+            "Which transitions to use",
+            "How many slides to make"
+          ]
+        }
       ]
     }
   ]

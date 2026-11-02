@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.2 Text Formatting and Editing Tools · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* Deck-local: drawn word-processor parts and document pages (Module 2) */
+.wp{display:flex;flex-direction:column;border-radius:calc(var(--u)*.8);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--border-strong);background:#fff;font-size:calc(var(--u)*.95)}
+.wp .tabs{display:flex;gap:calc(var(--u)*1.4);align-items:flex-end;background:#F3F6FB;padding:calc(var(--u)*.45) calc(var(--u)*1) 0;font-size:calc(var(--u)*.85);color:var(--text-2)}
+.wp .tabs span{padding-bottom:calc(var(--u)*.3)}
+.wp .tabs .on{color:var(--mod);font-weight:700;border-bottom:calc(var(--u)*.2) solid var(--mod)}
+.wp .rib{display:flex;gap:calc(var(--u)*.2);padding:calc(var(--u)*.6) calc(var(--u)*.8);background:#fff}
+.wp .grp{display:flex;flex-direction:column;align-items:center;gap:calc(var(--u)*.4);padding:0 calc(var(--u)*.9);border-right:1px solid var(--border);font-size:calc(var(--u)*.75);color:var(--text-3)}
+.wp .ctl{display:flex;gap:calc(var(--u)*.35);font-size:calc(var(--u)*1);color:var(--text-1);align-items:center}
+.wp .btn{display:inline-flex;align-items:center;justify-content:center;min-width:calc(var(--u)*2);height:calc(var(--u)*2);padding:0 .4em;border:1px solid var(--border);border-radius:calc(var(--u)*.3);background:#fff;font-weight:700}
+.wp .btn.on{background:var(--mod-soft);border-color:var(--mod);color:var(--mod)}
+.wp .dd{border:1px solid var(--border-strong);border-radius:calc(var(--u)*.3);padding:.15em .55em;background:#fff;font-weight:600}
+.page{background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.18);border:1px solid var(--border);padding:calc(var(--u)*1.6) calc(var(--u)*2.2);font-family:Calibri,Carlito,'Segoe UI',Arial,sans-serif;font-size:calc(var(--u)*.8);line-height:1.4;color:#222}
+.page p{margin:0 0 .5em}
+.page.raw{font-family:var(--font-mono);font-size:calc(var(--u)*.74);line-height:1.35;color:#444}
+.page.raw p{margin:0}
+.page .j{text-align:justify}
+.sample{border:1px solid var(--border);border-radius:var(--radius);background:#fff;padding:calc(var(--u)*1) calc(var(--u)*1.2);font-family:Calibri,Carlito,'Segoe UI',Arial,sans-serif;font-size:calc(var(--u)*1);line-height:1.45;color:#333}
+.label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:calc(var(--u)*.6)}
+.sel{background:#B9D3F5}
+.flip{min-height:calc(var(--u)*19)}
+.flip h4{font-size:calc(var(--u)*1.75);line-height:1.3}
+.flip .bk p{font-size:calc(var(--u)*1.4);line-height:1.5}
+.flip .bk h4{color:var(--gold)}
+.card .ticks li{font-size:calc(var(--u)*1.3);margin:calc(var(--u)*.6) 0}
+.tbl kbd{font-size:.78em}
+.fname{font-family:var(--font-mono);font-size:calc(var(--u)*1.05);background:var(--surface-2);border-radius:calc(var(--u)*.4);padding:.1em .45em}
+</style>
+</head>
+<body class="m2" data-brand="Digital Productivity Essentials · <b>Module 2</b> · 2.2 Text Formatting and Editing Tools">
+<div class="deck">
+
+  
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 2 · Word Processing Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Text Formatting and <span style="color:var(--gold)">Editing Tools</span></h1>
+      <p class="lede" data-anim="fade-up">Turn plain text into a clean, official-looking letter, and fix mistakes in seconds instead of minutes.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 2.2</span><span class="tag ghost">~50 minutes</span><span class="tag ghost">Hands-on</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m2/2-2-cover.jpg" alt="Printed typography sample sheet in yellow and blue"><div class="cv-num">2.2</div></div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · type in the chat</p><h2 class="h2">Which formatting problem has<br>wasted your time the most?</h2></div>
+      <span class="tag gold">1 minute</span>
+    </div>
+    <div class="grid g4 mt-m anim-stagger-list">
+      <div class="card center"><span class="ic">🌀</span><h4>A</h4><p>Bullets and numbers that won't behave</p></div>
+      <div class="card center"><span class="ic">🎨</span><h4>B</h4><p>Pasted text arrives in a strange font and size</p></div>
+      <div class="card center"><span class="ic">↕️</span><h4>C</h4><p>Spacing is different in every paragraph</p></div>
+      <div class="card center"><span class="ic">🔁</span><h4>D</h4><p>Changing the same word 40 times by hand</p></div>
+    </div>
+    <div class="callout gold mt-l"><b>Every one of these has a one-click fix.</b> You'll learn all four in this topic.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Objectives">
+    <div class="split">
+      <div>
+        <p class="kicker">By the end of this topic</p>
+        <h2 class="h2">You'll be able to…</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>Select</b> text quickly with the mouse or keyboard.</li>
+          <li><b>Format</b> characters and paragraphs: font, size, bold, colour, alignment, spacing, lists, styles.</li>
+          <li><b>Edit</b> safely: copy and paste cleanly, undo, find and replace.</li>
+          <li><b>Proofread</b> with spelling and grammar check and word count.</li>
+        </ul>
+        <div class="callout mt-m"><b>Running example:</b> our workshop invitation letter goes from plain text to a formal letter.</div>
+      </div>
+      <div class="media"><img src="images/m2/2-2-letters.jpg" alt="Colourful letter tiles scattered on a table"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Select, then do">
+    <div class="split rev">
+      <div class="media"><img src="images/m2/2-2-highlight.jpg" alt="Hand highlighting lines in a notebook with coloured markers"></div>
+      <div>
+        <p class="kicker">The golden rule</p>
+        <h2 class="h2">First <em class="mod">select</em>, then tell it what to do.</h2>
+        <p class="lede mt-m">Like a highlighter: you mark the lines first, then you decide what to do with them.</p>
+        <ul class="ticks mt-m anim-stagger-list">
+          <li>Selected text turns <span class="sel">&nbsp;light blue&nbsp;</span>.</li>
+          <li>Every command, Bold, Font, Justify, Delete, acts <b>only on the selection</b>.</li>
+          <li>Nothing selected? Most commands act on the word or paragraph where the cursor sits.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Selecting text">
+    <div class="slide-head">
+      <div><p class="kicker">Selecting text</p><h2 class="h2">Mouse or keyboard, pick your favourite</h2></div>
+      <span class="tag">Works in Word, Docs and Writer</span>
+    </div>
+    <table class="tbl">
+      <tr><th style="width:20%">To select…</th><th>With the mouse</th><th>With the keyboard</th></tr>
+      <tr><td><b>A word</b></td><td>Double-click it</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>→</kbd> word by word</td></tr>
+      <tr><td><b>A paragraph</b></td><td>Triple-click it (Writer: click four times)</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>↓</kbd> to the end of the paragraph</td></tr>
+      <tr><td><b>To the end of a line</b></td><td>Drag across it</td><td><kbd>Shift</kbd>+<kbd>End</kbd> (<kbd>Shift</kbd>+<kbd>Home</kbd> to the start)</td></tr>
+      <tr><td><b>A long stretch</b></td><td>Click at the start, <kbd>Shift</kbd>+click at the end</td><td><kbd>Shift</kbd>+arrow keys</td></tr>
+      <tr><td><b>Everything</b></td><td>No easy way</td><td><kbd>Ctrl</kbd>+<kbd>A</kbd></td></tr>
+    </table>
+    <div class="callout tip mt-m"><b>Shift means "stretch".</b> Hold <kbd>Shift</kbd> with any movement key and the selection follows. Click anywhere else to deselect.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Font and character formatting">
+    <div class="slide-head">
+      <div><p class="kicker">Character formatting</p><h2 class="h2">Font, size, bold, italic, underline, colour</h2></div>
+      <span class="tag gold">Home tab › Font</span>
+    </div>
+    <div class="wp">
+      <div class="tabs"><span>File</span><span class="on">Home</span><span>Insert</span><span>Layout</span><span>Review</span><span>View</span></div>
+      <div class="rib">
+        <div class="grp"><div class="ctl"><span class="dd" style="min-width:calc(var(--u)*9)">Arial ▾</span><span class="dd">12 ▾</span><span class="btn">A⁺</span><span class="btn">A⁻</span><span class="btn" title="Clear formatting">A⌫</span></div><div class="ctl"><span class="btn on">B</span><span class="btn"><i>I</i></span><span class="btn"><u>U</u></span><span class="btn" style="color:#C00">A</span><span class="btn" style="background:#FFF59D">ab</span></div>Font</div>
+        <div class="grp" style="border:0;align-items:flex-start;justify-content:center;font-size:calc(var(--u)*1.05);color:var(--text-2);line-height:1.6">
+          <span><kbd>Ctrl</kbd>+<kbd>B</kbd> <b>Bold</b> · <kbd>Ctrl</kbd>+<kbd>I</kbd> <i>Italic</i> · <kbd>Ctrl</kbd>+<kbd>U</kbd> <u>Underline</u></span>
+          <span class="tiny">Same shortcuts in Word, Google Docs and LibreOffice Writer</span>
+        </div>
+      </div>
+    </div>
+    <div class="grid g3 mt-l anim-stagger-list">
+      <div class="card top"><h4>Font</h4><p>Pick one clean font for the whole letter: <b>Arial</b>, <b>Calibri</b>, <b>Aptos</b> or <b>Times New Roman</b>.</p></div>
+      <div class="card top"><h4>Size</h4><p>Body text <b>11 or 12 pt</b>. Headings 14 to 16 pt. Fine print no smaller than 9 pt.</p></div>
+      <div class="card top"><h4>Emphasis and colour</h4><p><b>Bold</b> for the subject line. Keep official letters in <b>black</b> or dark blue. Underline mostly for links.</p></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Alignment">
+    <div class="slide-head">
+      <div><p class="kicker">Paragraph formatting</p><h2 class="h2">Four ways to line up a paragraph</h2></div>
+      <span class="tag gold">Home tab › Paragraph</span>
+    </div>
+    <div class="grid g4 anim-stagger-list">
+      <div><div class="label-row"><b>Left</b><span><kbd>Ctrl</kbd>+<kbd>L</kbd></span></div><div class="sample" style="text-align:left">The workshop covers word processing, spreadsheets and presentations using the apps we use every day.</div><p class="small mt-s">Default. Easy to read.</p></div>
+      <div><div class="label-row"><b>Center</b><span><kbd>Ctrl</kbd>+<kbd>E</kbd></span></div><div class="sample" style="text-align:center">The workshop covers word processing, spreadsheets and presentations using the apps we use every day.</div><p class="small mt-s">Titles, letterheads, invitations.</p></div>
+      <div><div class="label-row"><b>Right</b><span><kbd>Ctrl</kbd>+<kbd>R</kbd></span></div><div class="sample" style="text-align:right">The workshop covers word processing, spreadsheets and presentations using the apps we use every day.</div><p class="small mt-s">Dates, page numbers, amounts.</p></div>
+      <div><div class="label-row"><b>Justify</b><span><kbd>Ctrl</kbd>+<kbd>J</kbd></span></div><div class="sample" style="text-align:justify">The workshop covers word processing, spreadsheets and presentations using the apps we use every day.</div><p class="small mt-s">Straight edges on both sides. <b>Lab 2 body text.</b></p></div>
+    </div>
+    <div class="callout mt-l"><b>Google Docs:</b> add <kbd>Shift</kbd>: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd> / <kbd>E</kbd> / <kbd>R</kbd> / <kbd>J</kbd>. <b>Never</b> center with the spacebar: it breaks the moment the font changes.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Line and paragraph spacing">
+    <div class="slide-head">
+      <div><p class="kicker">Paragraph formatting</p><h2 class="h2">Line spacing and space between paragraphs</h2></div>
+    </div>
+    <div class="grid" style="grid-template-columns:1fr 1fr 1.25fr;gap:calc(var(--u)*1.8);align-items:start">
+      <div><div class="label-row"><b style="color:var(--coral)">✗ Pressing Enter twice</b></div>
+        <div class="sample" style="line-height:1.15">Dear Colleagues,<br><br>The Administrative Section invites you to a one-day workshop.<br><br><br>Please confirm your attendance.<br><br>Respectfully,</div>
+        <p class="small mt-s">Uneven gaps, and blank lines that end up at the top of a page.</p></div>
+      <div><div class="label-row"><b style="color:var(--green)">✓ Space After: 8 pt</b></div>
+        <div class="sample" style="line-height:1.15"><p style="margin-bottom:.65em">Dear Colleagues,</p><p style="margin-bottom:.65em">The Administrative Section invites you to a one-day workshop.</p><p style="margin-bottom:.65em">Please confirm your attendance.</p><p>Respectfully,</p></div>
+        <p class="small mt-s">Even gaps, set once for every paragraph.</p></div>
+      <div class="card soft">
+        <h4>Where to set it</h4>
+        <ul class="ticks">
+          <li><b>Word:</b> Home › Line and Paragraph Spacing (1.0, 1.15, 1.5, 2.0), or Layout › Spacing Before / After</li>
+          <li><b>Docs:</b> Format › Line &amp; paragraph spacing</li>
+          <li><b>Writer:</b> Format › Paragraph › Indents &amp; Spacing</li>
+        </ul>
+        <p class="mt-s"><b>For our letter:</b> line spacing 1.0 or 1.15, with 6 to 8 pt after each paragraph.</p>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Bullets and numbering">
+    <div class="slide-head">
+      <div><p class="kicker">Lists</p><h2 class="h2">Bullets for items, numbers for steps</h2></div>
+      <span class="tag gold">Home tab › Paragraph</span>
+    </div>
+    <div class="grid g2" style="gap:calc(var(--u)*2.4)">
+      <div class="grid g2">
+        <div class="card top"><h4>• Bullets</h4><p>Order doesn't matter.</p><div class="sample mt-s" style="font-size:calc(var(--u)*.95)">What to bring:<ul style="margin:.3em 0 0;padding-left:1.2em"><li>Laptop and charger</li><li>Company ID</li><li>Ballpen and notebook</li></ul></div></div>
+        <div class="card top"><h4>1. Numbering</h4><p>Order matters.</p><div class="sample mt-s" style="font-size:calc(var(--u)*.95)">To register:<ol style="margin:.3em 0 0;padding-left:1.3em"><li>Fill in the form</li><li>Have it signed</li><li>Submit by 13 Nov</li></ol></div></div>
+      </div>
+      <div class="keys">
+        <span><kbd>* </kbd> or <kbd>1.</kbd> + <kbd>Space</kbd></span><span>Starts a list automatically as you type</span>
+        <span><kbd>Enter</kbd></span><span>Next item</span>
+        <span><kbd>Enter</kbd> <kbd>Enter</kbd></span><span>Ends the list</span>
+        <span><kbd>Tab</kbd></span><span>Moves an item one level in (sub-item)</span>
+        <span><kbd>Shift</kbd>+<kbd>Tab</kbd></span><span>Moves it back out</span>
+      </div>
+    </div>
+    <div class="callout tip mt-l"><b>Don't type the bullets yourself.</b> Hand-typed "-" or "1)" won't renumber when you add or remove an item. The list buttons do it for you.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Styles and headings">
+    <div class="split">
+      <div>
+        <p class="kicker">Styles</p>
+        <h2 class="h2">A style is a saved <em class="mod">bundle</em> of formatting.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>One click</b> applies font, size, colour and spacing together.</li>
+          <li><b>Change the style once</b> and every heading using it updates.</li>
+          <li>Headings feed the <b>Navigation Pane</b> and an automatic table of contents.</li>
+        </ul>
+        <div class="callout mt-m"><b>Where:</b> Word: Home › Styles · Docs: the "Normal text" box · Writer: the style box or <kbd>F11</kbd></div>
+      </div>
+      <div class="wp" style="align-self:center">
+        <div class="tabs"><span>File</span><span class="on">Home</span><span>Insert</span></div>
+        <div class="body" style="padding:calc(var(--u)*1.2);display:flex;flex-direction:column;gap:calc(var(--u)*.7)">
+          <div style="border:1px solid var(--border);border-radius:calc(var(--u)*.5);padding:calc(var(--u)*.7) calc(var(--u)*1);font-size:calc(var(--u)*2);font-weight:300;color:#111">Title</div>
+          <div style="border:2px solid var(--mod);border-radius:calc(var(--u)*.5);padding:calc(var(--u)*.7) calc(var(--u)*1);font-size:calc(var(--u)*1.5);color:#2F5496">Heading 1 <span class="tiny" style="float:right">Ctrl+Alt+1</span></div>
+          <div style="border:1px solid var(--border);border-radius:calc(var(--u)*.5);padding:calc(var(--u)*.7) calc(var(--u)*1);font-size:calc(var(--u)*1.25);color:#2F5496">Heading 2 <span class="tiny" style="float:right">Ctrl+Alt+2</span></div>
+          <div style="border:1px solid var(--border);border-radius:calc(var(--u)*.5);padding:calc(var(--u)*.7) calc(var(--u)*1);font-size:calc(var(--u)*1);color:#222">Normal: body text</div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Format Painter and Clear Formatting">
+    <div class="slide-head">
+      <div><p class="kicker">Two time-savers</p><h2 class="h2">Copy a look, or wipe it clean</h2></div>
+    </div>
+    <div class="grid g2" style="gap:calc(var(--u)*2)">
+      <div class="card top"><span class="ic-badge">🖌️</span><h4>Format Painter</h4><p>Copies the <b>look</b> of some text, not the words.</p>
+        <ol class="steps mt-s"><li>Click inside text that looks right</li><li>Click <b>Format Painter</b> (Home › Clipboard)</li><li>Drag over the text to fix</li></ol>
+        <p class="mt-s"><b>Double-click</b> the brush to paint many places; <kbd>Esc</kbd> to stop. Docs: <b>Paint format</b> (roller). Writer: <b>Clone Formatting</b>.</p></div>
+      <div class="card top"><span class="ic-badge">🧽</span><h4>Clear Formatting</h4><p>Removes the formatting, keeps the words.</p>
+        <table class="tbl mt-s" style="box-shadow:none">
+          <tr><th>App</th><th>Shortcut</th></tr>
+          <tr><td><b>Word</b></td><td>Clear All Formatting button (A with eraser)</td></tr>
+          <tr><td><b>Docs</b></td><td><kbd>Ctrl</kbd>+<kbd>\</kbd></td></tr>
+          <tr><td><b>Writer</b></td><td><kbd>Ctrl</kbd>+<kbd>M</kbd> (Clear Direct Formatting)</td></tr>
+        </table>
+        <p class="mt-s">Great for text pasted from emails and websites.</p></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Cut, copy, paste">
+    <div class="slide-head">
+      <div><p class="kicker">Editing</p><h2 class="h2">Cut, copy, paste, and paste <em class="mod">clean</em></h2></div>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card center"><span class="ic">✂️</span><h4>Cut</h4><p>Move text</p><p class="mt-s"><kbd>Ctrl</kbd>+<kbd>X</kbd></p></div>
+      <div class="card center"><span class="ic">📄</span><h4>Copy</h4><p>Duplicate text</p><p class="mt-s"><kbd>Ctrl</kbd>+<kbd>C</kbd></p></div>
+      <div class="card center"><span class="ic">📋</span><h4>Paste</h4><p>Put it here</p><p class="mt-s"><kbd>Ctrl</kbd>+<kbd>V</kbd></p></div>
+    </div>
+    <div class="grid g2 mt-l">
+      <div class="card soft"><h4>Paste Options in Word</h4><p>After pasting, click the small <b>(Ctrl)</b> clipboard tag, or right-click:</p>
+        <ul class="ticks"><li><b>Keep Source Formatting:</b> brings the old look along</li><li><b>Merge Formatting:</b> matches the text around it</li><li><b>Keep Text Only:</b> plain words, your formatting. <b>Use this for email, web and AI text.</b></li></ul></div>
+      <div class="card soft"><h4>Paste as plain text elsewhere</h4>
+        <ul class="ticks"><li><b>Google Docs:</b> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd></li><li><b>LibreOffice:</b> <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd></li><li><b>Any app:</b> paste into Notepad first, then copy again</li></ul></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Undo and Find and Replace">
+    <div class="slide-head">
+      <div><p class="kicker">Editing</p><h2 class="h2">Undo your mistakes, replace in one go</h2></div>
+    </div>
+    <div class="grid" style="grid-template-columns:.8fr 1.2fr;gap:calc(var(--u)*2)">
+      <div class="card top"><h4>↶ Undo and ↷ Redo</h4>
+        <div class="keys mt-s"><span><kbd>Ctrl</kbd>+<kbd>Z</kbd></span><span>Undo the last action, again and again</span><span><kbd>Ctrl</kbd>+<kbd>Y</kbd></span><span>Redo what you undid</span></div>
+        <p class="mt-m">Deleted a whole paragraph by accident? <kbd>Ctrl</kbd>+<kbd>Z</kbd> before you do anything else.</p></div>
+      <div class="card top"><h4>🔎 Find and Replace</h4>
+        <div class="keys mt-s"><span><kbd>Ctrl</kbd>+<kbd>F</kbd></span><span>Find a word (Word opens the Navigation Pane)</span><span><kbd>Ctrl</kbd>+<kbd>H</kbd></span><span>Find and Replace, in Word, Docs and Writer</span></div>
+        <div class="win mt-m"><div class="bar"><i></i><i></i><i></i><span>Find and Replace</span></div>
+          <div class="body" style="font-size:calc(var(--u)*1.1);display:grid;grid-template-columns:auto 1fr;gap:calc(var(--u)*.6) calc(var(--u)*1);align-items:center">
+            <span>Find what:</span><span class="addr" style="border-radius:calc(var(--u)*.3)">apps</span>
+            <span>Replace with:</span><span class="addr" style="border-radius:calc(var(--u)*.3)">applications</span>
+            <span></span><span class="small">☑ Find whole words only &nbsp; ☐ Match case &nbsp; <b>[Replace] [Replace All]</b></span>
+          </div></div></div>
+    </div>
+    <div class="callout warn mt-m"><b>Careful with Replace All.</b> Replacing "Ana" with "Anna" also turns "Analysis" into "Annalysis". Tick <b>Find whole words only</b> (Word: click More), or click <b>Replace</b> one at a time.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Spelling, grammar, word count">
+    <div class="split">
+      <div>
+        <p class="kicker">Proofreading tools</p>
+        <h2 class="h2">Let the app spot errors, then <em class="mod">you</em> decide</h2>
+        <table class="tbl mt-m">
+          <tr><th>Tool</th><th>Word</th><th>Docs</th><th>Writer</th></tr>
+          <tr><td><b>Spelling &amp; grammar</b></td><td><kbd>F7</kbd> (Review › Editor)</td><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>X</kbd></td><td><kbd>F7</kbd></td></tr>
+          <tr><td><b>Word count</b></td><td>Status bar or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd></td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd></td><td>Status bar</td></tr>
+        </table>
+        <ul class="ticks mt-m">
+          <li>A <b style="color:var(--coral)">red wavy underline</b> means a possible misspelling. Right-click for suggestions.</li>
+          <li>Names like <b>Pabellan</b> or <b>Alubijid</b> get flagged too: choose <b>Ignore</b> or <b>Add to Dictionary</b>.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/m2/2-2-red-pen.jpg" alt="Hand holding a red pen over a blank notepad"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Myth or fact">
+    <div class="slide-head">
+      <div><p class="kicker">Myth or fact? · click a card to flip</p><h2 class="h2">Three things people believe about formatting</h2></div>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="flip"><div class="in">
+        <div class="fr"><h4>"If spell check shows no red lines, the letter is error-free."</h4><span class="hint">Click to flip</span></div>
+        <div class="bk"><h4>Myth</h4><p>"Form" for "from", or "pubic" for "public", are real words, so they pass. Wrong dates and names pass too. Always read it yourself.</p><span class="hint">Click to flip back</span></div>
+      </div></div>
+      <div class="flip"><div class="in">
+        <div class="fr"><h4>"Pressing the spacebar many times is fine for centering a title."</h4><span class="hint">Click to flip</span></div>
+        <div class="bk"><h4>Myth</h4><p>Spaces shift when the font, size or printer changes. Use <b>Center</b> (<kbd>Ctrl</kbd>+<kbd>E</kbd>), and tabs for columns.</p><span class="hint">Click to flip back</span></div>
+      </div></div>
+      <div class="flip"><div class="in">
+        <div class="fr"><h4>"Formatting is just decoration. Only the words matter."</h4><span class="hint">Click to flip</span></div>
+        <div class="bk"><h4>Myth</h4><p>Formatting guides the reader to the date, the venue and the deadline. A clean letter also looks official and trustworthy.</p><span class="hint">Click to flip back</span></div>
+      </div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Before and after">
+    <div class="slide-head">
+      <div><p class="kicker">Running example · before and after</p><h2 class="h2">Same words, very different letter</h2></div>
+      <span class="tag gold">Sample only</span>
+    </div>
+    <div class="grid g2" style="gap:calc(var(--u)*2.6)">
+      <div>
+        <p class="small" style="margin-bottom:calc(var(--u)*.5)"><b style="color:var(--coral)">Before:</b> pasted plain text</p>
+        <div class="page raw" style="height:calc(var(--u)*33);overflow:hidden;font-size:calc(var(--u)*.98)">
+          <p>Sample Revenue District Office</p><p>Administrative Section</p><p>3 November 2026</p><p>Subject: Invitation to the Digital Skills Workshop</p><p>Dear Collegues,</p><p>The Administrative Section invites you to a one-day Digital Skills Workshop on Thursday, 19 November 2026, from 8:30 AM to 4:30 PM at the Conference Room, 2nd Floor.</p><p>The workshop covers word processing, spreadsheets and presentations using the apps we use every day. Please bring your laptop if you have one.</p><p>Kindly confirm your attendance on or before Friday, 13 November 2026.</p><p>Respectfully,</p><p>Maria Santos</p><p>Administrative Officer</p>
+        </div>
+      </div>
+      <div>
+        <p class="small" style="margin-bottom:calc(var(--u)*.5)"><b style="color:var(--green)">After:</b> formatted in about 5 minutes</p>
+        <div class="page" style="height:calc(var(--u)*33);overflow:hidden;font-family:Arial,Helvetica,sans-serif;font-size:calc(var(--u)*1)">
+          <p style="text-align:center;margin:0;font-weight:700;font-size:1.25em;color:#14284B">SAMPLE REVENUE DISTRICT OFFICE</p>
+          <p style="text-align:center;margin-bottom:1em">Administrative Section</p>
+          <p>3 November 2026</p>
+          <p><b>Subject: Invitation to the Digital Skills Workshop</b></p>
+          <p>Dear Colleagues,</p>
+          <p class="j">The Administrative Section invites you to a one-day <b>Digital Skills Workshop</b> on <b>Thursday, 19 November 2026</b>, from 8:30 AM to 4:30 PM at the Conference Room, 2nd Floor.</p>
+          <p class="j">The workshop covers word processing, spreadsheets and presentations using the applications we use every day. Please bring your laptop if you have one.</p>
+          <p class="j">Kindly confirm your attendance on or before <b>Friday, 13 November 2026</b>.</p>
+          <p style="margin-top:1em">Respectfully,</p>
+          <p style="margin:1.6em 0 0"><b>MARIA SANTOS</b></p>
+          <p>Administrative Officer</p>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="At the office and at home">
+    <div class="slide-head">
+      <div><p class="kicker">Same tools, two worlds</p><h2 class="h2">Where you'll use these skills this week</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li><b>Formal letter or memo:</b> one font at 12 pt, justified body, bold subject line</li>
+          <li><b>Notice to taxpayers:</b> a clear heading style, numbered steps, deadline in bold</li>
+          <li><b>Report from many contributors:</b> Paste as text only, then one Format Painter pass</li>
+          <li><b>Venue changed?</b> Find and Replace across the whole document</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <div class="sample" style="font-size:calc(var(--u)*.95)">
+          <p style="text-align:center;font-weight:800;font-size:1.3em;color:#A87900;margin:0">Dela Cruz Family Reunion 2026</p>
+          <p style="text-align:center;margin:.2em 0 .5em">Sunday, 27 December · Lolo's house, Alubijid</p>
+          <b>Please bring:</b>
+          <ul style="margin:.2em 0 0;padding-left:1.2em"><li>One dish per family</li><li>Old family photos</li><li>Games for the kids</li></ul>
+        </div>
+        <p class="mt-s">Or a <b>sari-sari price list</b>: bold item names, right-aligned prices, Find and Replace when prices go up.</p>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">From plain text to a formal letter</h2>
+        <p class="lede mt-m">Watch our workshop invitation get its <b>font, alignment, spacing and lists</b>, then see mistakes fixed in seconds with <b>Keep Text Only</b>, <b>Find and Replace</b> and spell check.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> count how many changes are made to the letter without retyping a single word.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/2.2/poster.jpg" alt="Video: Text Formatting and Editing Tools"><div class="play"></div><span class="vlen">4:58</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/2.2/index.html" title="Video: Text Formatting and Editing Tools" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    
+  </section>
+  
+
+  
+  <section class="slide" data-title="Try it: format the letter">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · hands-on</p><h2 class="h2">Turn your plain text into a formal letter</h2></div>
+      <button class="timer" data-min="10">10:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Open your letter from 2.1, then</span><span class="tiny">Submit in the portal when done</span></div>
+      <div class="grid g2" style="gap:calc(var(--u)*2)">
+        <ol>
+          <li><kbd>Ctrl</kbd>+<kbd>A</kbd>, then set <b>Arial</b> (or Calibri) <b>12 pt</b>.</li>
+          <li>Office name: <b>bold, 14 pt, centered</b>. Section name: centered.</li>
+          <li>Make the <b>Subject</b> line bold.</li>
+          <li>Select the three body paragraphs and <b>Justify</b> (<kbd>Ctrl</kbd>+<kbd>J</kbd>).</li>
+        </ol>
+        <ol start="5">
+          <li>Line spacing <b>1.15</b>, <b>8 pt</b> after paragraphs.</li>
+          <li><kbd>Ctrl</kbd>+<kbd>H</kbd>: replace <b>apps</b> with <b>applications</b> (whole words only).</li>
+          <li>Run spell check (<kbd>F7</kbd>) and fix <b>Collegues</b> if you see it.</li>
+          <li>Save with <kbd>Ctrl</kbd>+<kbd>S</kbd>.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="callout tip mt-m"><b>Finished early?</b> Make the signature name bold and add two blank lines above it for the signature.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">You pasted a paragraph from an email into the letter. It came in a different font, size and colour. The fastest fix?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>Retype the paragraph by hand</div></div>
+      <div class="opt"><span class="l">B</span><div>Undo, then paste with Keep Text Only</div></div>
+      <div class="opt"><span class="l">C</span><div>Change the whole letter to match the pasted font</div></div>
+      <div class="opt"><span class="l">D</span><div>Save the letter as PDF so nobody notices</div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 2.2</p>
+    <h2 class="h2">Select, format, edit, proofread.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Format</h4><p>One font at 11 to 12 pt, justified body, spacing after, lists and styles instead of manual tricks.</p></div>
+      <div class="card dark"><h4>Edit</h4><p>Keep Text Only for pasted text, <kbd>Ctrl</kbd>+<kbd>Z</kbd> to undo, <kbd>Ctrl</kbd>+<kbd>H</kbd> to replace everywhere.</p></div>
+      <div class="card dark"><h4>Proofread</h4><p>Spell check helps, but you are the final proofreader of names, dates and amounts.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">2.3 Working with Tables and Graphical Elements</b>: adding the workshop schedule and a logo to our letter.</p>
+    
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

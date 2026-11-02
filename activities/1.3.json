@@ -31,18 +31,28 @@
           "type": "mcq",
           "id": "snip",
           "prompt": "Which keys open the snip tool so you can drag around part of the screen?",
-          "options": ["Win + Shift + S", "Ctrl + S", "Win + E", "Ctrl + Shift + T"]
+          "options": [
+            "Win + Shift + S",
+            "Ctrl + S",
+            "Win + E",
+            "Ctrl + Shift + T"
+          ]
         },
         {
           "type": "mcq",
           "id": "folder",
           "prompt": "Which folder did you save your screenshot into?",
-          "options": ["Downloads", "01 Screenshots", "02 AI Responses", "Pictures › Screenshots"]
+          "options": [
+            "Downloads",
+            "01 Screenshots",
+            "02 AI Responses",
+            "Pictures › Screenshots"
+          ]
         },
         {
           "type": "upload",
           "id": "shot",
-          "prompt": "Optional: the screenshot you saved",
+          "prompt": "The screenshot you saved",
           "optional": true
         }
       ],

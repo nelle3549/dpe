@@ -84,19 +84,29 @@
           "type": "mcq",
           "id": "first",
           "prompt": "This letter had never been saved. Which command did you use to give it a name and a folder?",
-          "options": ["Save As", "Export", "Print", "Zoom"]
+          "options": [
+            "Save As",
+            "Export",
+            "Print",
+            "Zoom"
+          ]
         },
         {
           "type": "mcq",
           "id": "files",
           "prompt": "Which files of the letter should be in your training folder now? Pick all that apply.",
-          "options": [".docx (or .odt)", ".pdf", ".txt", ".doc"],
+          "options": [
+            ".docx (or .odt)",
+            ".pdf",
+            ".txt",
+            ".doc"
+          ],
           "multi": true
         },
         {
           "type": "upload",
           "id": "shot",
-          "prompt": "Optional: a screenshot of your training folder showing both files",
+          "prompt": "A screenshot of your training folder showing both files",
           "optional": true
         }
       ]

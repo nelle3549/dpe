@@ -18,7 +18,7 @@
             "Open it. Create two sub-folders: 01 Screenshots and 02 AI Responses.",
             "Inside the master folder, right-click › New › Text Document. Name it Practice Note.",
             "Press F2 and rename it with today's date: YYYY-MM-DD Note - Practice.",
-            "Copy it into 01 Screenshots, then cut and paste it into 02 AI Responses.",
+            "Copy your dated note into 01 Screenshots. Then cut the original (still in the master folder) and paste it into 02 AI Responses.",
             "Delete the copy in 01 Screenshots, then restore it from the Recycle Bin."
           ]
         },
@@ -36,14 +36,19 @@
             "01 Screenshots and 02 AI Responses",
             "Screenshots and AI Responses",
             "New folder and New folder (2)",
-            "01 Memos and Letters and 02 Reports"
+            "01 Memos/Letters and 02 Reports"
           ]
         },
         {
           "type": "mcq",
           "id": "rename",
           "prompt": "Which key renames the selected file or folder?",
-          "options": ["F2", "Delete", "Ctrl + Z", "Ctrl + V"]
+          "options": [
+            "F2",
+            "Delete",
+            "Ctrl + Z",
+            "Ctrl + V"
+          ]
         },
         {
           "type": "mcq",
@@ -59,7 +64,7 @@
         {
           "type": "upload",
           "id": "shot",
-          "prompt": "Optional: a screenshot of your master folder in File Explorer",
+          "prompt": "A screenshot of your master folder in File Explorer",
           "optional": true
         }
       ],

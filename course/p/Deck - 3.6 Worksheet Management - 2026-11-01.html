@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.6 Worksheet Management · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* Module 3 helpers (3.5-3.8): drawn spreadsheet grid, formula bar, sheet tabs, SVG charts, AI chat */
+.xlwin .body{padding:0}
+.fbar{display:flex;align-items:stretch;border-bottom:1px solid var(--border-strong);font-size:calc(var(--u)*1.1);background:#fff}
+.fbar .nb{min-width:calc(var(--u)*5.5);padding:.3em .6em;border-right:1px solid var(--border-strong);font-family:var(--font-mono);color:var(--text-2)}
+.fbar .fx{padding:.3em .7em;border-right:1px solid var(--border);color:var(--text-3);font-style:italic;font-weight:700}
+.fbar .f{padding:.3em .8em;font-family:var(--font-mono);color:var(--text-1);font-weight:600}
+.xl{border-collapse:collapse;width:100%;font-size:calc(var(--u)*1.05);background:#fff}
+.xl th{background:#EEF1F5;color:var(--text-3);font-weight:600;font-size:.86em;border:1px solid #D9DEE5;padding:.12em .4em;text-align:center}
+.xl th.rh{width:calc(var(--u)*2.4)}
+.xl th.cs{background:color-mix(in srgb,var(--mod) 22%,#fff);color:var(--mod-deep)}
+.xl td{border:1px solid #E3E7EC;padding:.17em .55em;color:var(--text-1);white-space:nowrap;line-height:1.35}
+.xl td.n{text-align:right;font-family:var(--font-mono);font-size:.95em}
+.xl td.h{font-weight:700;background:var(--mod-soft);color:var(--mod-deep)}
+.xl td.f{font-family:var(--font-mono);font-size:.92em;color:var(--mod);font-weight:600}
+.xl td.s{outline:calc(var(--u)*.22) solid var(--mod);outline-offset:calc(var(--u)*-.11)}
+.xl td.b{background:var(--coral-soft);color:var(--coral);font-weight:700}
+.xl td.g{background:var(--green-soft);color:var(--green);font-weight:700}
+.xl td.o{background:var(--gold-soft);font-weight:700}
+.xl td.mu{color:var(--text-3)}
+.xl td.r{background:color-mix(in srgb,var(--mod) 13%,#fff)}
+.xl td.k{font-weight:700}
+.xl tr.tot td{border-top:calc(var(--u)*.18) solid var(--mod-deep)}
+.xl tr.frz td,.xl tr.frz th{border-bottom:calc(var(--u)*.32) solid #8E9BB0}
+.xl tr.flt th{color:#1366D6;font-weight:800}
+.xl tr.gap td,.xl tr.gap th{padding:0;height:calc(var(--u)*.5);background:#F7F9FC;border-color:#F7F9FC}
+.xl tr.hid td{background:repeating-linear-gradient(45deg,#f4f6f9 0 6px,#fff 6px 12px);color:var(--text-3)}
+.stabs{display:flex;gap:2px;align-items:flex-start;background:#EEF1F5;border-top:1px solid var(--border-strong);padding:0 calc(var(--u)*.8) calc(var(--u)*.3);font-size:calc(var(--u)*1)}
+.stabs span{padding:.3em 1.1em;background:#E2E6EC;color:var(--text-2);border-radius:0 0 .45em .45em;font-weight:600}
+.stabs span.on{background:#fff;color:var(--text-1);box-shadow:inset 0 calc(var(--u)*-.25) 0 var(--mod)}
+.stabs span.plus{background:none;color:var(--text-3);font-weight:800}
+.stabs span.t1{box-shadow:inset 0 calc(var(--u)*-.3) 0 #1366D6}.stabs span.t2{box-shadow:inset 0 calc(var(--u)*-.3) 0 #16794A}
+.stabs span.t3{box-shadow:inset 0 calc(var(--u)*-.3) 0 #C2482B}.stabs span.t4{box-shadow:inset 0 calc(var(--u)*-.3) 0 #F4B400}
+.chartbox{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow);border:1px solid var(--border);padding:calc(var(--u)*1) calc(var(--u)*1.2)}
+.chartbox svg{width:100%;height:auto;display:block}
+.chartbox.flat{box-shadow:none}
+svg text{font-family:var(--font-sans)}
+.sv-t{font-weight:800;fill:#0B2545}.sv-l{fill:#3E4C63}.sv-m{fill:#7A879C}.sv-v{fill:#0B2545;font-weight:700}
+.sv-grid{stroke:#E3E7EC;stroke-width:1}.sv-ax{stroke:#7A879C;stroke-width:1.5}
+.k1{fill:var(--mod)}.k2{fill:#F4B400}.k3{fill:#1366D6}.k4{fill:#E5533D}.k5{fill:#13315C}.k6{fill:#8BC5A7}.k7{fill:#B9C3D1}.k8{fill:#6B7A90}.k9{fill:#E5533D}
+.anno{fill:none;stroke:#E5533D;stroke-width:3;stroke-dasharray:7 5}
+.menu{background:#fff;border:1px solid var(--border-strong);border-radius:calc(var(--u)*.6);box-shadow:var(--shadow-lg);padding:calc(var(--u)*.5) 0;font-size:calc(var(--u)*1.15)}
+.menu div{padding:.32em 1.2em;color:var(--text-1)}
+.menu div.on{background:var(--mod-soft);color:var(--mod);font-weight:700}
+.menu hr{border:0;border-top:1px solid var(--border);margin:.25em 0}
+.chat{display:flex;flex-direction:column;gap:calc(var(--u)*.9);font-size:calc(var(--u)*1.5)}
+.bub{border-radius:calc(var(--u)*1.2);padding:calc(var(--u)*.8) calc(var(--u)*1.2);line-height:1.45;max-width:92%}
+.bub.me{align-self:flex-end;background:var(--mod);color:#fff;border-bottom-right-radius:.2em}
+.bub.ai{align-self:flex-start;background:var(--surface-2);border:1px solid var(--border);color:var(--text-1);border-bottom-left-radius:.2em}
+.bub code,.code{font-family:var(--font-mono);font-weight:600;background:rgba(11,37,69,.07);padding:.05em .35em;border-radius:.3em;font-size:.95em}
+.bub.me code{background:rgba(255,255,255,.2)}
+.who{font-size:calc(var(--u)*.85);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.big-f{font-family:var(--font-mono);font-weight:700;font-size:calc(var(--u)*2.6);color:var(--mod-deep);letter-spacing:-.01em}
+.big-f .lk{color:var(--coral)}
+.tbl.compact td,.tbl.compact th{padding:calc(var(--u)*.5) calc(var(--u)*.9)}
+.tbl td.c,.tbl th.c{text-align:center}
+.flip .fr h4{color:var(--coral)}
+</style>
+</head>
+<body class="m3" data-brand="Digital Productivity Essentials · <b>Module 3</b> · 3.6 Worksheet Management">
+<div class="deck">
+
+  
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 3 · Electronic Spreadsheet Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Worksheet <span style="color:var(--gold)">Management</span></h1>
+      <p class="lede" data-anim="fade-up">One workbook, many tabs: organise months on their own sheets, find and sort what you need, and print it on one clean page.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 3.6</span><span class="tag ghost">~40 minutes · hands-on</span><span class="tag ghost">BIR Misamis Oriental</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m3/3-6-cover.jpg" alt="Office shelves full of labelled ring binders"><div class="cv-num">3.6</div></div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · type in the chat</p><h2 class="h2">How does your section keep a year of records?</h2></div>
+      <span class="tag gold">1 minute</span>
+    </div>
+    <div class="grid g4 anim-stagger-list">
+      <div class="card center"><span class="ic">📄</span><h4>A</h4><p>One very long sheet, January to December</p></div>
+      <div class="card center"><span class="ic">🗂️</span><h4>B</h4><p>One file with a tab per month</p></div>
+      <div class="card center"><span class="ic">📁</span><h4>C</h4><p>A separate file for every month</p></div>
+      <div class="card center"><span class="ic">🤷</span><h4>D</h4><p>Honestly, it depends on who made it</p></div>
+    </div>
+    <div class="callout gold mt-l"><b>No wrong answer.</b> But if your boss asks "What did we spend on supplies this quarter?", which setup answers fastest?</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head"><div><p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2></div></div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Organise</span><h4>Manage worksheets</h4><p>Insert, rename, colour, move, copy, hide and delete sheet tabs.</p></div>
+      <div class="card top"><span class="k">Connect</span><h4>Build a Summary sheet</h4><p>Pull each month's total with references like <b>=Jan!E10</b>.</p></div>
+      <div class="card top"><span class="k">Work faster</span><h4>Navigate, sort, filter, print</h4><p>Freeze headers, find items, sort and filter a list, and fit it on one page.</p></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Workbook = binder">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">A workbook is a <em class="mod">binder</em>. Each worksheet is a tabbed divider.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>Workbook</b> = the whole file, like one binder on the shelf.</li>
+          <li><b>Worksheet</b> = one page section inside, with its own tab at the bottom of the screen.</li>
+          <li>Coloured, clearly labelled tabs help anyone find January in a second.</li>
+          <li>The <b>Summary</b> divider in front gives the boss the totals first.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/m3/3-6-tabs.jpg" alt="Book with coloured sticky tabs marking sections"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Sheet tabs">
+    <div class="slide-head">
+      <div><p class="kicker">Where the tabs live</p><h2 class="h2">Right-click a sheet tab to manage it</h2></div>
+      <span class="tag">Bottom-left of the window</span>
+    </div>
+    <div class="grid" style="grid-template-columns:1.45fr .55fr;align-items:end">
+      <div class="win xlwin">
+<div class="bar"><i></i><i></i><i></i><span>Inventory 2026.xlsx</span></div>
+<div class="fbar"><span class="nb">E10</span><span class="fx">fx</span><span class="f">=SUM(E2:E9)</span></div>
+<table class="xl" style="font-size:calc(var(--u)*0.98)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+<tr><th>1</th><td class="h">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h">Total Cost (₱)</td></tr>
+<tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="n">6,125.00</td></tr>
+<tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="n">7,950.00</td></tr>
+<tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="n">960.00</td></tr>
+<tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="n">2,080.00</td></tr>
+<tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="n">510.00</td></tr>
+<tr><th>7</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="n">384.00</td></tr>
+<tr><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="n">2,800.00</td></tr>
+<tr><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="n">1,230.00</td></tr>
+<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="n k">22,039.00</td></tr>
+</table>
+<div class="stabs"><span class="on t1">Jan</span><span class="t2">Feb</span><span class="t3">Mar</span><span class="t4">Summary</span><span class="plus">+</span></div>
+</div>
+      <div class="menu">
+        <div>Insert…</div><div>Delete</div><div class="on">Rename</div><div>Move or Copy…</div><hr>
+        <div>Tab Color ▸</div><div>Protect Sheet…</div><hr><div>Hide</div><div>Unhide…</div>
+      </div>
+    </div>
+    <p class="small mt-m">Excel's right-click menu shown. Google Sheets and LibreOffice Calc have the same ideas with slightly different names.</p>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Same task, three apps">
+    <div class="slide-head"><div><p class="kicker">Vendor-agnostic</p><h2 class="h2">Same task, three apps</h2></div><span class="tag">Right-click the tab first</span></div>
+    <table class="tbl compact">
+      <tr><th>Task</th><th>Microsoft Excel</th><th>Google Sheets</th><th>LibreOffice Calc</th></tr>
+      <tr><td><b>Insert</b></td><td>+ button, or <kbd>Shift</kbd> + <kbd>F11</kbd></td><td>+ button (bottom-left)</td><td>+ button, or Insert Sheet…</td></tr>
+      <tr><td><b>Rename</b></td><td>Double-click the tab, or Rename</td><td>Double-click the tab, or Rename</td><td>Rename Sheet…</td></tr>
+      <tr><td><b>Colour</b></td><td>Tab Color</td><td>Change color</td><td>Tab Color…</td></tr>
+      <tr><td><b>Move / copy</b></td><td>Drag the tab · <kbd>Ctrl</kbd> + drag copies · Move or Copy…</td><td>Drag the tab · Duplicate · Copy to</td><td>Drag the tab · Move or Copy Sheet…</td></tr>
+      <tr><td><b>Delete</b></td><td>Delete <span class="tiny">(cannot be undone)</span></td><td>Delete</td><td>Delete Sheet…</td></tr>
+      <tr><td><b>Hide / show</b></td><td>Hide · Unhide…</td><td>Hide sheet · View &gt; Hidden sheets</td><td>Hide Sheet · Show Sheet…</td></tr>
+    </table>
+    <div class="callout warn mt-m"><b>Excel warning:</b> a deleted sheet can't be brought back with <kbd>Ctrl</kbd> + <kbd>Z</kbd>. Save a copy of the file first if you're unsure.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Try it: build the tabs">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · your own app</p><h2 class="h2">Turn your inventory into a 4-tab workbook</h2></div>
+      <button class="timer" data-min="4">4:00</button>
+    </div>
+    <div class="grid g2" style="grid-template-columns:1.2fr .8fr;align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">Steps</span><span class="tiny">Use your Lab 3 inventory</span></div>
+        <ol>
+          <li>Rename <b>Sheet1</b> to <b>Jan</b>. Give it a colour.</li>
+          <li>Copy the Jan sheet twice (Move or Copy, tick <b>Create a copy</b>; in Sheets use <b>Duplicate</b>). Rename the copies <b>Feb</b> and <b>Mar</b>.</li>
+          <li>Insert a new sheet named <b>Summary</b>. Drag it to the far left.</li>
+          <li>Screenshot your tabs and upload it in the portal.</li>
+        </ol>
+      </div>
+      <div class="media" style="max-height:calc(var(--u)*26);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg)"><img src="images/m3/3-6-divider.jpg" alt="Hand opening a folder with tabbed dividers" style="width:100%;height:calc(var(--u)*26);object-fit:cover"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Hide, delete or protect?">
+    <div class="slide-head"><div><p class="kicker">Choose the right action</p><h2 class="h2">Hide, delete or protect: they are not the same</h2></div></div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">🙈</span><h4>Hide</h4><p>Takes a sheet out of view, for example a helper sheet of price lists. <b>Anyone can unhide it</b> in two clicks.</p></div>
+      <div class="card top" style="border-top-color:var(--coral)"><span class="ic-badge">🗑️</span><h4>Delete</h4><p>Removes the sheet and everything on it. Formulas that pointed to it show <b>#REF!</b>.</p></div>
+      <div class="card top" style="border-top-color:var(--gold)"><span class="ic-badge">🔒</span><h4>Protect</h4><p>Lets people see the sheet but stops them from changing locked cells, like your formulas.</p></div>
+    </div>
+    <div class="callout warn mt-l"><b>Hiding is not security.</b> Never "hide" taxpayer details or other confidential data in a shared file. If people shouldn't see it, it shouldn't be in that file.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="A Summary sheet">
+    <div class="split" style="grid-template-columns:1.1fr .9fr">
+      <div><div class="win xlwin">
+<div class="bar"><i></i><i></i><i></i><span>Inventory 2026.xlsx</span></div>
+<div class="fbar"><span class="nb">B2</span><span class="fx">fx</span><span class="f">=Jan!E10</span></div>
+<table class="xl" style="font-size:calc(var(--u)*1.2)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th></tr>
+<tr><th>1</th><td class="h">Month</td><td class="h">Total Cost (₱)</td><td class="h">Formula in column B</td></tr>
+<tr><th>2</th><td>Jan</td><td class="s n">22,039.00</td><td class="f">=Jan!E10</td></tr>
+<tr><th>3</th><td>Feb</td><td class="n">17,518.00</td><td class="f">=Feb!E10</td></tr>
+<tr><th>4</th><td>Mar</td><td class="n">24,652.00</td><td class="f">=Mar!E10</td></tr>
+<tr class="tot"><th>5</th><td class="k">Q1 total</td><td class="g k n">64,209.00</td><td class="f">=SUM(B2:B4)</td></tr>
+<tr><th>6</th><td class="k">Monthly average</td><td class="k n">21,403.00</td><td class="f">=AVERAGE(B2:B4)</td></tr>
+</table>
+<div class="stabs"><span class="t1">Jan</span><span class="t2">Feb</span><span class="t3">Mar</span><span class="on t4">Summary</span><span class="plus">+</span></div>
+</div></div>
+      <div>
+        <p class="kicker">Referencing other sheets</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.7)">Sheet name, then <span class="mod">!</span>, then the cell.</h2>
+        <ul class="ticks mt-m">
+          <li><b>=Jan!E10</b> means "cell E10 on the Jan sheet".</li>
+          <li>Easiest way: type <b>=</b>, click the Jan tab, click E10, press <kbd>Enter</kbd>.</li>
+          <li>Names with spaces need quotes: <b>='Jan 2026'!E10</b>.</li>
+          <li>LibreOffice writes it as <b>=$Jan.E10</b>. Clicking writes it for you.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Try it: Summary formulas">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · link the sheets</p><h2 class="h2">Make the Summary sheet read every month</h2></div>
+      <button class="timer" data-min="4">4:00</button>
+    </div>
+    <div class="grid g2" style="grid-template-columns:1.15fr .85fr;align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">Steps</span><span class="tiny">On the Summary tab</span></div>
+        <ol>
+          <li>Type headers: <b>A1 Month</b>, <b>B1 Total Cost</b>. In A2:A4 type <b>Jan, Feb, Mar</b>.</li>
+          <li>In B2 type <b>=</b>, click the <b>Jan</b> tab, click <b>E10</b>, press <kbd>Enter</kbd>. Repeat for Feb and Mar.</li>
+          <li>In B5 type <b>=SUM(B2:B4)</b>; in B6 <b>=AVERAGE(B2:B4)</b>.</li>
+          <li>On the <b>Feb</b> tab, change some quantities. Watch the Summary change.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="callout"><b>Want the deck's numbers?</b> Feb quantities: 20, 25, 8, 3, 5, 10, 6, 2. Mar: 30, 28, 12, 5, 6, 15, 10, 4.</div>
+        <div class="row mt-m"><button class="reveal-btn" data-target="ans-q1">Show the answers</button></div>
+        
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="At the office and at home">
+    <div class="slide-head"><div><p class="kicker">See it everywhere</p><h2 class="h2">One tab per period, one Summary in front</h2></div></div>
+    <div class="split" style="grid-template-columns:1.35fr .65fr">
+      <div class="pair" style="grid-template-columns:1fr">
+        <div class="ex office"><div class="ex-label">🏢 At the office</div>
+          <ul>
+            <li><b>Supplies inventory:</b> Jan, Feb, Mar tabs; a Summary for the quarterly report.</li>
+            <li><b>Attendance:</b> one tab per month, a Summary that counts days present per person.</li>
+            <li><b>Incoming documents log:</b> one tab per week, frozen headers, filter by section.</li>
+          </ul>
+        </div>
+        <div class="ex home"><div class="ex-label">🏠 At home</div>
+          <ul>
+            <li><b>Household budget:</b> a tab per month (rice, CEPALCO bill, water, load), and a Year tab.</li>
+            <li><b>Sari-sari sales:</b> a tab per week, Summary shows the best week.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="media"><img src="images/m3/3-6-budget.jpg" alt="Hands using a phone calculator over printed bills"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Freeze panes and zoom">
+    <div class="split" style="grid-template-columns:1.1fr .9fr">
+      <div><div class="win xlwin">
+<div class="bar"><i></i><i></i><i></i><span>Attendance · November.xlsx</span></div>
+<table class="xl" style="font-size:calc(var(--u)*1.15)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+<tr class="frz"><th>1</th><td class="h">No.</td><td class="h">Name</td><td class="h">Section</td><td class="h">Date</td><td class="h">Time in</td></tr>
+<tr><th>88</th><td class="n">87</td><td>Dela Cruz, Juan</td><td>Admin</td><td class="n">03-Nov-2026</td><td class="n">7:52 AM</td></tr>
+<tr><th>89</th><td class="n">88</td><td>Santos, Maria</td><td>Records</td><td class="n">03-Nov-2026</td><td class="n">7:58 AM</td></tr>
+<tr><th>90</th><td class="n">89</td><td>Reyes, Ana</td><td>Collection</td><td class="n">03-Nov-2026</td><td class="n">8:01 AM</td></tr>
+<tr><th>91</th><td class="n">90</td><td>Garcia, Jose</td><td>Admin</td><td class="n">03-Nov-2026</td><td class="n">7:45 AM</td></tr>
+<tr><th>92</th><td class="n">91</td><td>Bautista, Liza</td><td>Records</td><td class="n">03-Nov-2026</td><td class="n">7:56 AM</td></tr>
+<tr><th>93</th><td class="n">92</td><td>Ramos, Carlo</td><td>Collection</td><td class="n">03-Nov-2026</td><td class="n">8:00 AM</td></tr>
+</table>
+</div>
+        <p class="tiny mt-s">Scrolled down to row 88, yet the header row stays on top. Names are samples.</p>
+      </div>
+      <div>
+        <p class="kicker">Navigate long lists</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.7)">Freeze the header row so it never scrolls away.</h2>
+        <table class="tbl compact mt-m">
+          <tr><th>App</th><th>Freeze the top row</th></tr>
+          <tr><td><b>Excel</b></td><td>View &gt; Freeze Panes &gt; Freeze Top Row</td></tr>
+          <tr><td><b>Sheets</b></td><td>View &gt; Freeze &gt; 1 row</td></tr>
+          <tr><td><b>Calc</b></td><td>View &gt; Freeze Cells &gt; Freeze First Row</td></tr>
+        </table>
+        <div class="callout tip mt-m"><b>Zoom:</b> the slider at the bottom-right (Excel, Calc) or the zoom box in the Sheets toolbar. <kbd>Ctrl</kbd> + mouse wheel works in Excel and Calc.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Find and replace">
+    <div class="split rev">
+      <div class="media"><img src="images/m3/3-6-binders.jpg" alt="Shelves of colourful office binders"></div>
+      <div>
+        <p class="kicker">Find it in seconds</p>
+        <h2 class="h2">Find and Replace</h2>
+        <div class="keys mt-l">
+          <span><kbd>Ctrl</kbd> + <kbd>F</kbd></span><span><b>Find</b> a word or number anywhere on the sheet, like "Envelope".</span>
+          <span><kbd>Ctrl</kbd> + <kbd>H</kbd></span><span><b>Replace</b> one spelling with another, for example "Ballpen" with "Ball pen".</span>
+        </div>
+        <p class="small mt-m">Same keys in Excel, Google Sheets and LibreOffice Calc. Mac Excel: <kbd>Cmd</kbd> + <kbd>F</kbd>.</p>
+        <div class="callout warn mt-m"><b>Careful with Replace All.</b> Replacing "long" with "legal" changes all three items that contain it: bond paper, folder and envelope. Use Find first, or tick <b>Match entire cell contents</b>.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Sorting a list">
+    <div class="split" style="grid-template-columns:1.15fr .85fr">
+      <div><div class="win xlwin">
+<div class="bar"><i></i><i></i><i></i><span>Inventory 2026.xlsx · Jan</span></div>
+<table class="xl" style="font-size:calc(var(--u)*1.15)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th class="cs">E</th></tr>
+<tr><th>1</th><td class="h">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h">Total Cost (₱)</td></tr>
+<tr><th>2</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="g n">7,950.00</td></tr>
+<tr><th>3</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="g n">6,125.00</td></tr>
+<tr><th>4</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="g n">2,800.00</td></tr>
+<tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="g n">2,080.00</td></tr>
+<tr><th>6</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="g n">1,230.00</td></tr>
+<tr><th>7</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="g n">960.00</td></tr>
+<tr><th>8</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="g n">510.00</td></tr>
+<tr><th>9</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="g n">384.00</td></tr>
+</table>
+</div></div>
+      <div>
+        <p class="kicker">Sort · Data &gt; Sort</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.7)">Largest Total Cost first</h2>
+        <ol class="steps mt-m">
+          <li>Click <b>one cell</b> inside the table (not the whole column).</li>
+          <li><b>Excel / Calc:</b> Data &gt; Sort. <b>Sheets:</b> Data &gt; Sort range &gt; Advanced, tick "Data has header row".</li>
+          <li>Sort by <b>Total Cost</b>, <b>largest to smallest</b>.</li>
+        </ol>
+        <div class="callout warn mt-s"><b>Never sort one column alone.</b> The rows get mixed up: ink could end up with the price of paper.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Filtering a list">
+    <div class="split" style="grid-template-columns:1.15fr .85fr">
+      <div><div class="win xlwin">
+<div class="bar"><i></i><i></i><i></i><span>Inventory 2026.xlsx · Jan</span></div>
+<table class="xl" style="font-size:calc(var(--u)*1.15)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+<tr><th>1</th><td class="h">Item ▾</td><td class="h">Unit ▾</td><td class="h">Qty ▾</td><td class="h">Unit Cost (₱) ▼</td><td class="h">Total Cost (₱) ▾</td></tr>
+<tr class="flt"><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="o n">520.00</td><td class="n">2,080.00</td></tr>
+<tr class="flt"><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="o n">350.00</td><td class="n">2,800.00</td></tr>
+<tr class="flt"><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="o n">410.00</td><td class="n">1,230.00</td></tr>
+<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="n k">22,039.00</td></tr>
+</table>
+</div>
+        <p class="tiny mt-s">Filter: Unit Cost greater than 300. Rows 2 to 4 and 6 to 7 are hidden, not deleted.</p>
+      </div>
+      <div>
+        <p class="kicker">Filter · show only what you need</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.7)">Show only items over ₱300 each</h2>
+        <ul class="ticks mt-m">
+          <li><b>Excel:</b> Data &gt; Filter (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>). <b>Sheets:</b> Data &gt; Create a filter. <b>Calc:</b> Data &gt; AutoFilter.</li>
+          <li>Click the arrow on <b>Unit Cost</b> &gt; Number Filters &gt; Greater Than &gt; 300.</li>
+          <li>In Excel, blue row numbers tell you a filter is on. Clear it when done.</li>
+        </ul>
+        <div class="callout gold mt-s"><b>Watch out:</b> =SUM still adds hidden rows. E10 stays 22,039.00; the 3 visible rows total 6,110.00.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Try it: freeze, sort, filter">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · on your Jan sheet</p><h2 class="h2">Freeze, sort, filter, then put it back</h2></div>
+      <button class="timer" data-min="5">5:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Four quick tasks</span><span class="tiny">Answer each task in the portal</span></div>
+      <div class="grid g4 mt-s">
+        <div class="card soft"><span class="ic-badge">🧊</span><h4>1 · Freeze</h4><p>Freeze the top row. Scroll down to check.</p></div>
+        <div class="card soft"><span class="ic-badge">↕️</span><h4>2 · Sort</h4><p>Sort A2:E9 by Total Cost, largest to smallest.</p></div>
+        <div class="card soft"><span class="ic-badge">🔎</span><h4>3 · Filter</h4><p>Show only Unit Cost &gt; 300. How many items are left?</p></div>
+        <div class="card soft"><span class="ic-badge">↩️</span><h4>4 · Reset</h4><p>Clear the filter, then sort by Item, A to Z.</p></div>
+      </div>
+      <div class="row mt-m"><button class="reveal-btn" data-target="ans-flt">Show the answer</button></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Sheet protection basics">
+    <div class="slide-head"><div><p class="kicker">Sheet protection · basics</p><h2 class="h2">Let others type inputs, but not break your formulas</h2></div></div>
+    <div class="grid g2" style="align-items:start">
+      <ol class="steps">
+        <li><b>Unlock the input cells</b> (for example Qty, C2:C9): Format Cells &gt; Protection &gt; untick <b>Locked</b>. Every cell is locked by default.</li>
+        <li><b>Turn on protection.</b> Excel: Review &gt; Protect Sheet. Sheets: Data &gt; Protect sheets and ranges. Calc: Tools &gt; Protect Sheet.</li>
+        <li>Add a password only if your section can keep it safe, and record who has it.</li>
+      </ol>
+      <div>
+        <div class="callout tip"><b>Result:</b> co-workers can update quantities, but the Total Cost formulas and the SUM stay safe from accidental typing.</div>
+        <div class="callout warn mt-m"><b>Protection is not encryption.</b> It prevents accidental edits. To keep a file private, store it in the right shared folder with the right access, or use a file password approved by your ICT focal person.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Preparing to print">
+    <div class="split">
+      <div>
+        <p class="kicker">Preparing to print</p>
+        <h2 class="h2">One page wide, headers on every page</h2>
+        <ol class="steps mt-m">
+          <li><b>Preview first:</b> <kbd>Ctrl</kbd> + <kbd>P</kbd>. Count the pages.</li>
+          <li><b>Fit to one page wide.</b> Excel: Scaling &gt; Fit All Columns on One Page. Sheets: Scale &gt; Fit to width. Calc: Format &gt; Page Style &gt; Sheet &gt; Scale.</li>
+          <li><b>Print titles</b> (repeat row 1). Excel: Page Layout &gt; Print Titles &gt; Rows to repeat at top <b>$1:$1</b>. Calc: Format &gt; Print Ranges &gt; Edit. Sheets: freeze row 1, then repeat frozen rows in the print settings.</li>
+          <li>Landscape for wide tables; add the sheet name and page number in the footer.</li>
+        </ol>
+      </div>
+      <div class="media"><img src="images/m3/3-6-printer.jpg" alt="Office printer on a cabinet"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">One workbook, many tabs</h2>
+        <p class="lede mt-m">Turn one inventory sheet into a <b>Jan, Feb, Mar and Summary</b> workbook, link the totals with <b>=Jan!E10</b>, then freeze, find, sort, filter and print a long list.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> the order of the four tab moves (rename, copy, rename, insert Summary). You'll do them on your Lab 3 file right after the video.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/3.6/poster.jpg" alt="Video: Worksheet Management"><div class="play"></div><span class="vlen">5:06</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/3.6/index.html" title="Video: Worksheet Management" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    
+  </section>
+  
+
+  
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head"><div><p class="kicker">Quick check · click an answer</p><h2 class="h2">The Summary shows =Feb!E10. A co-worker renames the Feb tab to "February". What happens?</h2></div></div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>The Summary shows #REF!</div></div>
+      <div class="opt"><span class="l">B</span><div>The formula updates itself to =February!E10</div></div>
+      <div class="opt"><span class="l">C</span><div>The Summary cell turns to 0</div></div>
+      <div class="opt"><span class="l">D</span><div>You must retype every Summary formula</div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 3.6</p>
+    <h2 class="h2">Organise the binder, then find, sort and print with confidence.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Tabs</h4><p>Insert, rename, colour, copy. Hide is not security; delete is permanent.</p></div>
+      <div class="card dark"><h4>Summary</h4><p>=Jan!E10 pulls a total from another sheet and stays linked.</p></div>
+      <div class="card dark"><h4>Everyday tools</h4><p>Freeze headers, Ctrl+F, sort whole rows, filter, fit to one page wide.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">3.7 Generating Basic Charts</b>: turning these totals into a picture the boss reads in five seconds.</p>
+    
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

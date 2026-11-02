@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.5 Applying Animations and Slide Transitions · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* 4.5 live demos: pure CSS, they restart each time the slide opens */
+.stage{position:relative;aspect-ratio:16/9;border-radius:calc(var(--u)*.8);overflow:hidden;background:#fff;border:1px solid var(--border-strong);box-shadow:var(--shadow)}
+.stage .sl{position:absolute;inset:0;padding:7% 8%;display:flex;flex-direction:column;gap:calc(var(--u)*.7);background:#fff}
+.stage .sl.b{background:var(--mod-deep);color:#fff}
+.stage .t{font-weight:800;font-size:calc(var(--u)*1.35);line-height:1.2}
+.stage .ln{height:calc(var(--u)*.55);border-radius:99px;background:rgba(11,37,69,.14);width:78%}
+.stage .ln.s{width:52%}
+.stage .sl.b .ln{background:rgba(255,255,255,.28)}
+.stage ul{margin:0;padding-left:1.1em;font-size:calc(var(--u)*1.15);line-height:1.55}
+.cap{display:flex;justify-content:space-between;align-items:center;gap:1em;margin-top:calc(var(--u)*.7);font-size:calc(var(--u)*1.15);color:var(--text-2)}
+.cap b{color:var(--text-1)}
+/* transitions */
+.fx-fade .sl.b{opacity:0}
+.slide.is-active .fx-fade .sl.b{animation:x-fade 5s infinite}
+@keyframes x-fade{0%,35%{opacity:0}50%,85%{opacity:1}100%{opacity:0}}
+.fx-push .sl.b{transform:translateX(100%)}
+.slide.is-active .fx-push .sl.a{animation:x-pa 5s infinite cubic-bezier(.6,0,.3,1)}
+.slide.is-active .fx-push .sl.b{animation:x-pb 5s infinite cubic-bezier(.6,0,.3,1)}
+@keyframes x-pa{0%,35%{transform:translateX(0)}50%,85%{transform:translateX(-100%)}85.01%{transform:translateX(100%)}100%{transform:translateX(0)}}
+@keyframes x-pb{0%,35%{transform:translateX(100%)}50%,85%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+.fx-cut .sl.b{opacity:0}
+.slide.is-active .fx-cut .sl.b{animation:x-cut 5s infinite}
+@keyframes x-cut{0%,42%{opacity:0}43%,92%{opacity:1}93%,100%{opacity:0}}
+/* appear (animation, instant) */
+.fx-appear li{opacity:0}
+.slide.is-active .fx-appear li:nth-child(1){animation:x-ap1 5s infinite}
+.slide.is-active .fx-appear li:nth-child(2){animation:x-ap2 5s infinite}
+.slide.is-active .fx-appear li:nth-child(3){animation:x-ap3 5s infinite}
+@keyframes x-ap1{0%,10%{opacity:0}11%,92%{opacity:1}93%,100%{opacity:0}}
+@keyframes x-ap2{0%,32%{opacity:0}33%,92%{opacity:1}93%,100%{opacity:0}}
+@keyframes x-ap3{0%,54%{opacity:0}55%,92%{opacity:1}93%,100%{opacity:0}}
+/* entrance · emphasis · exit */
+.stage .obj{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:.45em 1em;border-radius:calc(var(--u)*.6);font-weight:800;font-size:calc(var(--u)*1.35);color:#fff;background:var(--mod);white-space:nowrap}
+.slide.is-active .fx-in .obj{animation:x-in 4s infinite}
+@keyframes x-in{0%,8%{opacity:0;transform:translate(-50%,0%)}28%,88%{opacity:1;transform:translate(-50%,-50%)}100%{opacity:0;transform:translate(-50%,-50%)}}
+.fx-em .obj{background:var(--green)}
+.slide.is-active .fx-em .obj{animation:x-em 4s infinite}
+@keyframes x-em{0%,20%{transform:translate(-50%,-50%) scale(1)}38%{transform:translate(-50%,-50%) scale(1.25);background:var(--gold);color:var(--ink)}56%,100%{transform:translate(-50%,-50%) scale(1)}}
+.fx-out .obj{background:var(--coral)}
+.slide.is-active .fx-out .obj{animation:x-out 4s infinite}
+@keyframes x-out{0%,45%{opacity:1}68%,90%{opacity:0}100%{opacity:1}}
+.slide .flip{min-height:calc(var(--u)*19)}
+.flip h4{font-size:calc(var(--u)*1.9);line-height:1.3}
+.flip .bk p{font-size:calc(var(--u)*1.5)}
+.dot{display:inline-block;width:.8em;height:.8em;border-radius:50%;margin-right:.35em;vertical-align:-.05em}
+/* morph */
+.fx-morph .m1,.fx-morph .m2{position:absolute}
+.fx-morph .m1{left:8%;top:52%;width:20%;height:34%;border-radius:50%;background:var(--mod)}
+.fx-morph .m2{left:8%;top:14%;font-weight:800;font-size:calc(var(--u)*1.5);color:var(--text-1)}
+.slide.is-active .fx-morph .m1{animation:x-m1 3s infinite alternate ease-in-out}
+.slide.is-active .fx-morph .m2{animation:x-m2 3s infinite alternate ease-in-out}
+@keyframes x-m1{0%,25%{left:8%;top:52%;width:20%;height:34%;border-radius:50%;background:var(--mod)}75%,100%{left:52%;top:14%;width:40%;height:72%;border-radius:8%;background:var(--gold)}}
+@keyframes x-m2{0%,25%{left:8%;top:14%;font-size:calc(var(--u)*1.5)}75%,100%{left:8%;top:44%;font-size:calc(var(--u)*2.1)}}
+/* click-to-build bullet demo (checkboxes, no script) */
+.clk{margin:0}
+.clk .kx{position:absolute;opacity:0;pointer-events:none}
+.clk .bl li{opacity:.12}
+.clk #k1:checked ~ .stage .bl li:nth-child(1),.clk #k2:checked ~ .stage .bl li:nth-child(2),.clk #k3:checked ~ .stage .bl li:nth-child(3){opacity:1;animation:kf-fade-up .5s both}
+.clk .ctrl{display:flex;gap:.6em;margin-top:calc(var(--u)*.9);align-items:center}
+.clk .nx{display:none;font:inherit;font-size:calc(var(--u)*1.1);font-weight:800;color:#fff;background:var(--mod);border:0;border-radius:999px;padding:.4em 1.2em;cursor:pointer}
+.clk .nx.n1{display:inline-flex}
+.clk #k1:checked ~ .ctrl .n1,.clk #k2:checked ~ .ctrl .n2,.clk #k3:checked ~ .ctrl .n3{display:none}
+.clk #k1:checked ~ .ctrl .n2,.clk #k2:checked ~ .ctrl .n3,.clk #k3:checked ~ .ctrl .rs{display:inline-flex}
+.clk .rs{background:var(--gold);color:var(--ink)}
+/* drawn ribbon */
+.rb{font-size:calc(var(--u)*1.15)}
+.rb .tabs{display:flex;gap:1.1em;padding:.5em .9em;background:#fff;border-bottom:1px solid var(--border);color:var(--text-2)}
+.rb .tabs .on{color:var(--mod);font-weight:800;box-shadow:inset 0 -2px 0 var(--mod)}
+.rb .grp{display:flex;gap:.55em;padding:.8em .9em;background:#FAFBFD;align-items:stretch}
+.rb .fx{width:calc(var(--u)*5);text-align:center;border:1px solid var(--border);border-radius:6px;padding:.4em .2em;background:#fff;font-size:calc(var(--u)*1);color:var(--text-2)}
+.rb .fx i{display:block;height:calc(var(--u)*2);margin-bottom:.3em;border-radius:4px;background:linear-gradient(135deg,var(--mod-soft),#fff)}
+.rb .fx.sel{border-color:var(--mod);box-shadow:0 0 0 2px var(--mod-soft);color:var(--mod);font-weight:800}
+.rb .opts{margin-left:auto;display:flex;flex-direction:column;gap:.35em;font-size:calc(var(--u)*1);color:var(--text-2)}
+.rb .btn{border:1px solid var(--border-strong);border-radius:5px;padding:.2em .6em;background:#fff;white-space:nowrap}
+.rb .btn.hot{border-color:var(--coral);background:var(--coral-soft);color:var(--coral);font-weight:800}
+/* timeline */
+.tl{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:calc(var(--u)*1.2) calc(var(--u)*1.4);box-shadow:var(--shadow)}
+.tl .r{display:grid;grid-template-columns:34% 1fr;align-items:center;gap:1em;margin:.45em 0;font-size:calc(var(--u)*1.1);color:var(--text-2)}
+.tl .r b{color:var(--text-1)}
+.tl .track{position:relative;height:calc(var(--u)*1.9);background:var(--surface-2);border-radius:6px}
+.tl .bar{position:absolute;top:18%;bottom:18%;border-radius:5px;background:var(--mod)}
+.tl .bar.g{background:var(--gold)}
+.tl .axis{display:flex;justify-content:space-between;margin-left:calc(34% + 1em);font-family:var(--font-mono);font-size:calc(var(--u)*.85);color:var(--text-3)}
+.tl .plot{position:relative}
+.tl .head{position:absolute;top:0;bottom:0;width:2px;background:var(--coral);left:calc(34% + 1em)}
+.slide.is-active .tl .head{animation:x-head 4s infinite linear}
+@keyframes x-head{0%{left:calc(34% + 1em)}80%,100%{left:100%}}
+/* animation pane */
+.pane{display:grid;grid-template-columns:1.25fr 1fr;gap:0}
+.pane .sl2{position:relative;padding:calc(var(--u)*1.4);background:#fff;border-right:1px solid var(--border)}
+.pane .sl2 .t{font-weight:800;font-size:calc(var(--u)*1.8);margin-bottom:.5em}
+.pane .sl2 p{font-size:calc(var(--u)*1.3);color:var(--text-2);margin:.45em 0;position:relative;padding-left:1.8em}
+.pane .sl2 .nb{position:absolute;left:0;top:.1em;font-size:calc(var(--u)*.75);font-weight:800;background:#EEF1F6;border:1px solid var(--border-strong);color:var(--text-2);border-radius:3px;padding:0 .35em}
+.pane .list{background:#FAFBFD;padding:calc(var(--u)*1)}
+.pane .list .hd{display:flex;justify-content:space-between;align-items:center;font-size:calc(var(--u)*1.1);font-weight:800;color:var(--text-1);margin-bottom:.6em}
+.pane .list .it{display:flex;gap:.5em;align-items:center;font-size:calc(var(--u)*1.15);padding:.35em .5em;border-radius:5px;color:var(--text-2)}
+.pane .list .it.sel{background:var(--mod-soft);color:var(--mod);font-weight:700}
+.pane .list .st{color:var(--green)}
+.pane .arrows{display:flex;gap:.4em;margin-top:.7em;font-size:calc(var(--u)*1.05);color:var(--text-2)}
+.pane .arrows span{border:1px solid var(--border-strong);border-radius:4px;padding:.1em .5em;background:#fff}
+</style>
+</head>
+<body class="m4" data-brand="Digital Productivity Essentials · <b>Module 4</b> · 4.5 Applying Animations and Slide Transitions">
+<div class="deck">
+
+  
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 4 · Multimedia Presentation Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Applying Animations and <span style="color:var(--gold)">Slide Transitions</span></h1>
+      <p class="lede" data-anim="fade-up">Motion that helps your audience follow you, not motion that makes them dizzy.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 4.5</span><span class="tag ghost">~30 minutes</span><span class="tag ghost">Hands-on</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m4/4-5-cover.jpg" alt="A lit Ferris wheel spinning at night"><div class="cv-num">4.5</div></div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · type in the chat</p><h2 class="h2">You've sat through a presentation where…</h2></div>
+      <span class="tag gold">1 minute</span>
+    </div>
+    <div class="grid g4 mt-m anim-stagger-list">
+      <div class="card center"><span class="ic">🌀</span><h4>A</h4><p>Every slide spun, flipped or exploded in</p></div>
+      <div class="card center"><span class="ic">🔔</span><h4>B</h4><p>Each bullet came in with a sound effect</p></div>
+      <div class="card center"><span class="ic">⏳</span><h4>C</h4><p>You waited for text to fly in, letter by letter</p></div>
+      <div class="card center"><span class="ic">😴</span><h4>D</h4><p>Nothing moved, and a wall of text appeared at once</p></div>
+    </div>
+    <div class="callout gold mt-l"><b>Both extremes hurt:</b> too much motion distracts, and a whole slide of bullets at once makes people read ahead instead of listening to you.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head">
+      <div><p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2></div>
+    </div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Explain</span><h4>Transitions vs animations</h4><p>Between slides vs on a slide, and the three animation types.</p></div>
+      <div class="card top"><span class="k">Apply</span><h4>One transition to all slides</h4><p>A subtle effect, applied uniformly, as Lab 4 requires.</p></div>
+      <div class="card top"><span class="k">Control</span><h4>Bullets, timing and order</h4><p>One item per click, sensible duration, checked in the Animation Pane.</p></div>
+    </div>
+    <div class="callout mt-l"><b>Lab 4 link:</b> the graded output needs "functioning slide transitions applied uniformly across the presentation." By the end of today, yours will.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="The big idea">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">Think of your deck as a <em class="mod">flipbook</em>.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>Each page is a slide.</b></li>
+          <li><b>A transition</b> is how you turn the page: a soft fade, or a slide-over push.</li>
+          <li><b>An animation</b> is something moving <i>on</i> the page: a bullet appearing, a chart wiping in.</li>
+          <li>Turn every page the same way, and move only what deserves attention.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/m4/4-5-flipbook.jpg" alt="A small open book with orange pages on a wooden table"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Transitions vs animations">
+    <div class="slide-head">
+      <div><p class="kicker">Watch the difference · live</p><h2 class="h2">Between slides, or on a slide?</h2></div>
+    </div>
+    <div class="grid g2">
+      <div>
+        <div class="stage fx-fade">
+          <div class="sl a"><div class="t">My Digital Skills Journey</div><div class="ln"></div><div class="ln s"></div></div>
+          <div class="sl b"><div class="t">Where I started</div><div class="ln"></div><div class="ln s"></div><div class="ln"></div></div>
+        </div>
+        <div class="cap"><span><b>Transition</b> · the whole slide changes</span><span class="tag">Transitions tab</span></div>
+      </div>
+      <div>
+        <div class="stage fx-appear">
+          <div class="sl a"><div class="t">What I learned</div>
+            <ul><li>Word: a formal letter + mail merge</li><li>Spreadsheet: inventory, SUM, a chart</li><li>Presentation: this deck</li></ul>
+          </div>
+        </div>
+        <div class="cap"><span><b>Animation</b> · objects move on one slide</span><span class="tag">Animations tab</span></div>
+      </div>
+    </div>
+    <div class="callout tip mt-l"><b>Quick test:</b> does the effect happen when you <i>move to the next slide</i> (transition) or <i>while you stay on this slide</i> (animation)?</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Subtle effects">
+    <div class="slide-head">
+      <div><p class="kicker">Choose subtle · live</p><h2 class="h2">Three safe picks for office presentations</h2></div>
+      <span class="tag green">Professional</span>
+    </div>
+    <div class="grid g3">
+      <div>
+        <div class="stage fx-fade">
+          <div class="sl a"><div class="t">Slide 2</div><div class="ln"></div><div class="ln s"></div></div>
+          <div class="sl b"><div class="t">Slide 3</div><div class="ln"></div><div class="ln s"></div></div>
+        </div>
+        <div class="cap"><span><b>Fade</b> · soft and calm</span><span class="tag">Transition</span></div>
+      </div>
+      <div>
+        <div class="stage fx-push">
+          <div class="sl a"><div class="t">Slide 2</div><div class="ln"></div><div class="ln s"></div></div>
+          <div class="sl b"><div class="t">Slide 3</div><div class="ln"></div><div class="ln s"></div></div>
+        </div>
+        <div class="cap"><span><b>Push</b> · "next, please"</span><span class="tag">Transition</span></div>
+      </div>
+      <div>
+        <div class="stage fx-appear">
+          <div class="sl a"><div class="t">Agenda</div><ul><li>Inventory</li><li>Chart</li><li>Next steps</li></ul></div>
+        </div>
+        <div class="cap"><span><b>Appear</b> · instant, no fuss</span><span class="tag gold">Animation</span></div>
+      </div>
+    </div>
+    <div class="grid g2 mt-l">
+      <div class="callout tip"><b>Good for work:</b> Fade, Push, Wipe, or no transition. Animations: Appear, Fade, Wipe.</div>
+      <div class="callout warn"><b>Save for parties:</b> Vortex, Origami, Curtains, Bounce, Spin, and any sound effect.</div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Three kinds of animation">
+    <div class="slide-head">
+      <div><p class="kicker">Animations · live</p><h2 class="h2">Enter, emphasize, exit</h2></div>
+      <span class="tag">PowerPoint shows them as green, yellow and red stars</span>
+    </div>
+    <div class="grid g3">
+      <div class="card">
+        <div class="stage fx-in"><div class="obj">Total ₱22,039</div></div>
+        <h4 class="mt-m"><span class="dot" style="background:var(--green)"></span>Entrance</h4>
+        <p>The object <b>arrives</b>. Use it to reveal the next point when you're ready to talk about it.</p>
+      </div>
+      <div class="card">
+        <div class="stage fx-em"><div class="obj">Total ₱22,039</div></div>
+        <h4 class="mt-m"><span class="dot" style="background:var(--gold)"></span>Emphasis</h4>
+        <p>The object is already there and <b>pulses</b> or changes colour. "Look here!"</p>
+      </div>
+      <div class="card">
+        <div class="stage fx-out"><div class="obj">Total ₱22,039</div></div>
+        <h4 class="mt-m"><span class="dot" style="background:var(--coral)"></span>Exit</h4>
+        <p>The object <b>leaves</b>. Rarely needed; use it to clear space for the next item.</p>
+      </div>
+    </div>
+    <div class="callout mt-l"><b>Also there:</b> Motion Paths move an object along a line. Fun, but you won't need them for Lab 4.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Where to find them">
+    <div class="slide-head">
+      <div><p class="kicker">Same idea, three apps</p><h2 class="h2">Where transitions and animations live</h2></div>
+    </div>
+    <table class="tbl">
+      <tr><th style="width:22%">App</th><th>Transitions</th><th>Animations</th></tr>
+      <tr><td><b>Microsoft PowerPoint</b></td><td><b>Transitions</b> tab → pick an effect → <b>Apply To All</b></td><td><b>Animations</b> tab → pick an effect → <b>Animation Pane</b> to check order</td></tr>
+      <tr><td><b>Google Slides</b></td><td><b>Slide › Transition</b> opens the Motion panel → <b>Apply to all slides</b></td><td>Select an object → <b>Insert › Animation</b> (same Motion panel)</td></tr>
+      <tr><td><b>LibreOffice Impress</b></td><td>Sidebar → <b>Slide Transition</b> panel → <b>Apply Transition to All Slides</b></td><td>Sidebar → <b>Animation</b> panel → <b>+</b> to add an effect</td></tr>
+    </table>
+    <div class="callout tip mt-l"><b>Preview:</b> PowerPoint has a <b>Preview</b> button on both tabs. In any app, the real test is Slide Show: <kbd>F5</kbd> from the start, <kbd>Shift</kbd> + <kbd>F5</kbd> from the current slide.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Try it: one transition for all">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · your Lab 4 file</p><h2 class="h2">Apply one transition to every slide</h2></div>
+      <button class="timer" data-min="4">4:00</button>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">PowerPoint steps</span><span class="tiny">Google Slides and Impress: see last slide's table</span></div>
+        <ol class="steps">
+          <li>Click any slide, then open the <b>Transitions</b> tab.</li>
+          <li>Pick <b>Fade</b> or <b>Push</b> from the gallery.</li>
+          <li>Set <b>Duration</b> to about <b>0.5 to 1 second</b>. Sound: <b>[No Sound]</b>.</li>
+          <li>Click <b>Apply To All</b>, then press <kbd>F5</kbd> to test.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="win rb">
+          <div class="bar"><i></i><i></i><i></i><span>My Digital Skills Journey.pptx · PowerPoint</span></div>
+          <div class="tabs"><span>Home</span><span>Insert</span><span>Design</span><span class="on">Transitions</span><span>Animations</span><span>Slide Show</span></div>
+          <div class="grp">
+            <div class="fx"><i></i>None</div><div class="fx"><i></i>Morph</div><div class="fx sel"><i></i>Fade</div><div class="fx"><i></i>Push</div><div class="fx"><i></i>Wipe</div>
+            <div class="opts"><span class="btn">Sound: [No Sound]</span><span class="btn">Duration: 01.00</span><span class="btn hot">⧉ Apply To All</span></div>
+          </div>
+        </div>
+        <p class="tiny mt-s">Drawn for clarity; your ribbon shows more effects and an Effect Options button.</p>
+        <div class="callout gold mt-m"><b>Done?</b> Enter the transition you chose in the portal.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Bullets one at a time">
+    <div class="slide-head">
+      <div><p class="kicker">Animate a list · click to try</p><h2 class="h2">One bullet per click</h2></div>
+    </div>
+    <div class="grid g2" style="align-items:center">
+      <form class="clk">
+        <input type="checkbox" id="k1" class="kx"><input type="checkbox" id="k2" class="kx"><input type="checkbox" id="k3" class="kx">
+        <div class="stage">
+          <div class="sl a"><div class="t">What I learned</div>
+            <ul class="bl"><li>Word: a formal letter + mail merge</li><li>Spreadsheet: inventory, SUM, a chart</li><li>Presentation: this deck</li></ul>
+          </div>
+        </div>
+        <div class="ctrl">
+          <label for="k1" class="nx n1">Click ▸ bullet 1</label><label for="k2" class="nx n2">Click ▸ bullet 2</label><label for="k3" class="nx n3">Click ▸ bullet 3</label>
+          <button type="reset" class="nx rs">↺ Replay</button>
+        </div>
+      </form>
+      <div>
+        <ol class="steps">
+          <li>Click the <b>border</b> of the text box (select the whole box).</li>
+          <li><b>Animations</b> tab → <b>Appear</b> or <b>Fade</b>.</li>
+          <li><b>Effect Options</b> → Sequence: <b>By Paragraph</b>.</li>
+          <li><b>Start: On Click</b>. Small numbers 1, 2, 3 appear beside the bullets.</li>
+        </ol>
+        <div class="callout tip mt-m"><b>Why:</b> people listen to the point you're on, instead of reading ahead.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Timing and duration">
+    <div class="slide-head">
+      <div><p class="kicker">Timing · live</p><h2 class="h2">Start, Duration and Delay</h2></div>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <table class="tbl">
+          <tr><th style="width:38%">Start option</th><th>What happens</th></tr>
+          <tr><td><b>On Click</b></td><td>Waits for your click. Best for bullets you talk about.</td></tr>
+          <tr><td><b>With Previous</b></td><td>Plays at the same time as the item before it.</td></tr>
+          <tr><td><b>After Previous</b></td><td>Plays by itself right after the item before it ends.</td></tr>
+        </table>
+        <div class="grid g2 mt-m">
+          <div class="card soft"><h4>Duration</h4><p>How long one effect takes. <b>About 0.5 s</b> feels smooth; 2 s feels slow.</p></div>
+          <div class="card soft"><h4>Delay</h4><p>Wait time before it starts, e.g. 0.5 s after the title.</p></div>
+        </div>
+      </div>
+      <div class="tl">
+        <div class="axis"><span>0 s</span><span>0.5</span><span>1.0</span><span>1.5</span><span>2.0</span></div>
+        <div class="plot">
+          <div class="r"><span><b>Title</b> · On Click</span><div class="track"><div class="bar" style="left:0;width:25%"></div></div></div>
+          <div class="r"><span><b>Bullet 1</b> · After Previous</span><div class="track"><div class="bar" style="left:25%;width:25%"></div></div></div>
+          <div class="r"><span><b>Bullet 2</b> · After, delay 0.5 s</span><div class="track"><div class="bar" style="left:75%;width:25%"></div></div></div>
+          <div class="r"><span><b>Chart</b> · With Previous</span><div class="track"><div class="bar g" style="left:75%;width:25%"></div></div></div>
+          <div class="head"></div>
+        </div>
+        <p class="tiny mt-s">Each bar is one effect lasting 0.5 s. The red line plays through them.</p>
+      </div>
+    </div>
+    <div class="callout gold mt-s"><b>For a live talk:</b> use <b>On Click</b> for anything you explain, and <b>With</b> or <b>After Previous</b> only for things that belong together, like a chart and its label.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="The Animation Pane">
+    <div class="split rev">
+      <div class="win">
+        <div class="bar"><i></i><i></i><i></i><span>Animations › Animation Pane</span></div>
+        <div class="pane">
+          <div class="sl2">
+            <div class="t">What I learned</div>
+            <p><span class="nb">1</span>Word: a formal letter + mail merge</p>
+            <p><span class="nb">2</span>Spreadsheet: inventory, SUM, a chart</p>
+            <p><span class="nb">3</span>Presentation: this deck</p>
+          </div>
+          <div class="list">
+            <div class="hd"><span>Animation Pane</span><span class="tag" style="font-size:calc(var(--u)*.75)">▶ Play From</span></div>
+            <div class="it"><span>1</span><span class="st">★</span>Word: a formal letter…</div>
+            <div class="it sel"><span>2</span><span class="st">★</span>Spreadsheet: inventory…</div>
+            <div class="it"><span>3</span><span class="st">★</span>Presentation: this deck</div>
+            <div class="arrows"><span>▲</span><span>▼</span><span>Re-order</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="kicker">Your control room</p>
+        <h2 class="h2">The Animation Pane shows every effect, in order.</h2>
+        <ul class="ticks mt-l">
+          <li><b>Open it:</b> Animations tab → <b>Animation Pane</b>.</li>
+          <li><b>Re-order:</b> drag an item, or use the ▲ ▼ arrows.</li>
+          <li><b>Fix or remove:</b> click the item's arrow for timing, or press <kbd>Delete</kbd>.</li>
+          <li><b>Check:</b> the numbers on the slide match the pane.</li>
+        </ul>
+        <p class="small mt-m">Google Slides: the Motion panel lists animations; drag to re-order. Impress: the Animation sidebar list.</p>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Try it: animate your bullets">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · your Lab 4 file</p><h2 class="h2">Animate your "What I learned" slide</h2></div>
+      <button class="timer" data-min="5">5:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Five steps, five minutes</span><span class="tiny">No Lab 4 file yet? Use any slide with 3 bullets.</span></div>
+      <div class="grid g2">
+        <ol>
+          <li>Select the bullet text box by its <b>border</b>.</li>
+          <li>Add <b>Appear</b> or <b>Fade</b>, Sequence <b>By Paragraph</b>.</li>
+          <li>Set <b>Start: On Click</b>, Duration <b>0.5</b>.</li>
+        </ol>
+        <ol start="4">
+          <li>Open the <b>Animation Pane</b> and check the order is 1, 2, 3.</li>
+          <li>Press <kbd>Shift</kbd> + <kbd>F5</kbd> and click through. One bullet per click?</li>
+        </ol>
+      </div>
+      <div class="row mt-m"><button class="reveal-btn" data-target="ans-anim">Common problems</button></div>
+      
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Office and home">
+    <div class="slide-head">
+      <div><p class="kicker">Use motion with a purpose</p><h2 class="h2">When a little motion really helps</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li>A monthly report: reveal <b>three findings one per click</b> so the team discusses each.</li>
+          <li>Show the inventory chart <b>after</b> you explain it, with a Wipe.</li>
+          <li>A short orientation for new staff: <b>Fade</b> between every slide, nothing else.</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li>A photo slideshow for Lola's 80th birthday: <b>Fade</b> with automatic timing, looping on the TV.</li>
+          <li>Your child's school report: one bullet per click so they practise speaking.</li>
+          <li>A sari-sari store promo on a phone: the price <b>pulses</b> once (Emphasis).</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Avoid distracting effects">
+    <div class="split rev">
+      <div class="media"><img src="images/m4/4-5-crowd-blur.jpg" alt="A blurred street crowd under festival lights"></div>
+      <div>
+        <p class="kicker">Less is more</p>
+        <h2 class="h2">Motion should never be the star.</h2>
+        <ul class="ticks x mt-m">
+          <li>A <b>different transition</b> on every slide</li>
+          <li>Animating <b>every</b> title, photo and line</li>
+          <li><b>Flashy effects</b> (Vortex, Bounce, Spin) in a work report</li>
+          <li><b>Sound effects</b> like applause or a cash register</li>
+          <li><b>Slow effects</b> that make the audience wait</li>
+        </ul>
+        <div class="callout gold mt-m"><b>Rule of thumb:</b> one transition for the deck, one or two animation types, about 0.5 to 1 second each.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Myth or fact">
+    <div class="slide-head">
+      <div><p class="kicker">Myth or fact? · click a card to flip</p><h2 class="h2">Three things people believe about motion</h2></div>
+    </div>
+    <div class="grid g3">
+      <div class="flip"><div class="in">
+        <div class="fr"><span class="tag coral">Myth or fact?</span><h4 class="mt-m">"More animation makes a presentation more engaging."</h4><span class="hint">click to flip</span></div>
+        <div class="bk"><span class="tag gold">Myth</span><p class="mt-m">Engagement comes from your content and your voice. Too much motion pulls eyes away from both.</p></div>
+      </div></div>
+      <div class="flip"><div class="in">
+        <div class="fr"><span class="tag coral">Myth or fact?</span><h4 class="mt-m">"A different transition on each slide looks more professional."</h4><span class="hint">click to flip</span></div>
+        <div class="bk"><span class="tag gold">Myth</span><p class="mt-m">Consistency looks professional. Lab 4 asks for transitions applied uniformly.</p></div>
+      </div></div>
+      <div class="flip"><div class="in">
+        <div class="fr"><span class="tag coral">Myth or fact?</span><h4 class="mt-m">"Revealing bullets one at a time helps people listen."</h4><span class="hint">click to flip</span></div>
+        <div class="bk"><span class="tag gold">Fact</span><p class="mt-m">They focus on the point you're making now, instead of reading ahead.</p></div>
+      </div></div>
+    </div>
+    <div class="callout mt-l"><b>Type in the chat first:</b> M for myth, F for fact. Then we flip.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Optional: Morph">
+    <div class="slide-head">
+      <div><p class="kicker">Optional extra · PowerPoint only</p><h2 class="h2">Morph: smooth movement between two slides</h2></div>
+      <span class="tag gold">Microsoft 365 · PowerPoint 2019 or later</span>
+    </div>
+    <div class="grid g2" style="align-items:center">
+      <div>
+        <div class="stage fx-morph"><div class="m2">My Digital Skills Journey</div><div class="m1"></div></div>
+        <p class="tiny mt-s">Live: the same title and shape glide to new positions, sizes and colours.</p>
+      </div>
+      <div>
+        <ol class="steps">
+          <li>Right-click the slide thumbnail → <b>Duplicate Slide</b>.</li>
+          <li>On the copy, <b>move, resize or recolour</b> the same objects.</li>
+          <li>Select the <b>second</b> slide → Transitions → <b>Morph</b>.</li>
+          <li>Press <kbd>Shift</kbd> + <kbd>F5</kbd> on the first slide to watch.</li>
+        </ol>
+        <div class="callout mt-m"><b>Note:</b> Google Slides and LibreOffice Impress don't have Morph. A plain <b>Fade</b> is a good substitute.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Gentle motion, applied uniformly</h2>
+        <p class="lede mt-m">A flipbook, the Transitions tab and a "What I learned" slide: see the difference between a <b>transition</b> and an <b>animation</b>, how to <b>Apply To All</b>, and how to reveal <b>one bullet per click</b>.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> note the button that applies one transition to every slide. Lab 4 grades it.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/4.5/poster.jpg" alt="Video: Applying Animations and Slide Transitions"><div class="play"></div><span class="vlen">4:50</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/4.5/index.html" title="Video: Applying Animations and Slide Transitions" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    
+  </section>
+  
+
+  
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">You want your three bullets to show up one per click. What do you use?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>A Push transition on that slide</div></div>
+      <div class="opt"><span class="l">B</span><div>An entrance animation, By Paragraph, Start On Click</div></div>
+      <div class="opt"><span class="l">C</span><div>An exit animation on the text box</div></div>
+      <div class="opt"><span class="l">D</span><div>Morph on the next slide</div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 4.5</p>
+    <h2 class="h2">Turn every page the same way. Move only what matters.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Transitions</h4><p>Between slides. One subtle effect, Apply To All, as Lab 4 requires.</p></div>
+      <div class="card dark"><h4>Animations</h4><p>On a slide. Entrance, emphasis, exit; bullets By Paragraph, On Click.</p></div>
+      <div class="card dark"><h4>Control</h4><p>About 0.5 to 1 second, checked in the Animation Pane. No sound effects.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">4.6 Adding Media Clips</b>: video, music and narration, and making sure they play on the day.</p>
+    
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

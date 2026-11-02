@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.3 Web Browsing and Search Engines · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* 1.3 only: drawn browser, URL anatomy, search boxes */
+.br .tabs{display:flex;align-items:flex-end;gap:calc(var(--u)*.4);padding:calc(var(--u)*.6) calc(var(--u)*.9) 0;background:#DCE3EE}
+.br .tab{background:#EEF1F6;border-radius:calc(var(--u)*.6) calc(var(--u)*.6) 0 0;padding:calc(var(--u)*.5) calc(var(--u)*1.2);font-size:calc(var(--u)*.95);color:var(--text-2);min-width:calc(var(--u)*11)}
+.br .tab.on{background:#fff;color:var(--text-1);font-weight:600}
+.br .tool{display:flex;align-items:center;gap:calc(var(--u)*1);padding:calc(var(--u)*.7) calc(var(--u)*1);background:#fff;border-bottom:1px solid var(--border);font-size:calc(var(--u)*1.2);color:var(--text-2)}
+.br .tool .addr{flex:1;font-size:calc(var(--u)*1.05)}
+.br .page{padding:calc(var(--u)*1.4);display:grid;grid-template-columns:1fr 1fr 1fr;gap:calc(var(--u)*1);background:#fff}
+.br .page .ban{grid-column:1/-1;height:calc(var(--u)*5);border-radius:calc(var(--u)*.5);background:linear-gradient(90deg,var(--mod-soft),#fff);display:flex;align-items:center;padding:0 calc(var(--u)*1.2);font-weight:700;color:var(--mod-deep);font-size:calc(var(--u)*1.2)}
+.br .page .blk{height:calc(var(--u)*4.2);border-radius:calc(var(--u)*.5);background:var(--surface-2)}
+.pinw{position:relative}
+.pin{position:absolute;width:calc(var(--u)*2.1);height:calc(var(--u)*2.1);border-radius:50%;background:var(--gold);color:var(--ink);font-weight:800;font-size:calc(var(--u)*1.05);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.3);z-index:3}
+.legend{list-style:none;padding:0;margin:0}
+.legend li{display:flex;gap:calc(var(--u)*1);align-items:flex-start;margin:calc(var(--u)*.9) 0;font-size:calc(var(--u)*1.35);line-height:1.4;color:var(--text-2)}
+.legend li .pin{position:static;flex:none;width:calc(var(--u)*1.9);height:calc(var(--u)*1.9);font-size:calc(var(--u)*.95);box-shadow:none}
+.legend li b{color:var(--text-1)}
+.url{display:flex;justify-content:center;font-family:var(--font-mono);font-size:calc(var(--u)*3);font-weight:600;gap:0}
+.url .p{display:flex;flex-direction:column;align-items:center}
+.url .p span{padding:.1em .15em;border-radius:.2em}
+.url .p small{font-family:var(--font-sans);font-size:calc(var(--u)*1);font-weight:700;color:var(--text-2);margin-top:calc(var(--u)*.8);text-align:center;max-width:calc(var(--u)*14);line-height:1.3}
+.sbox{font-family:var(--font-mono);font-size:calc(var(--u)*1.15);background:#fff;border:1px solid var(--border-strong);border-radius:999px;padding:.45em 1em;color:var(--text-1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sbox::before{content:"🔍 ";}
+.namegood{font-family:var(--font-mono);font-size:.92em}
+.op{font-family:var(--font-mono);font-weight:700;color:var(--mod);font-size:calc(var(--u)*1.7)}
+</style>
+</head>
+<body class="m1" data-brand="Digital Productivity Essentials · <b>Module 1</b> · 1.3 Web Browsing and Search Engines">
+<div class="deck">
+
+  
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 1 · Computers and Internet Essentials</p>
+      <h1 class="h1" data-anim="fade-up">Web Browsing and <span style="color:var(--gold)">Search Engines</span></h1>
+      <p class="lede" data-anim="fade-up">Get to the right website, search like a pro, and know which sources to trust.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 1.3</span><span class="tag ghost">~12 minutes</span><span class="tag ghost">Lab 1 · Part B</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m1/1-3-cover.jpg" alt="Person typing a search on a laptop"><div class="cv-num">1.3</div></div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Warm-up">
+    <div class="split rev">
+      <div class="media"><img src="images/m1/1-3-phone-browsing.jpg" alt="Hands using a smartphone"></div>
+      <div>
+        <p class="kicker">Warm-up · type in the chat</p>
+        <h2 class="h2">What was the last thing you searched for online?</h2>
+        <div class="chips mt-l">
+          <span class="chip">🍲 A recipe</span><span class="chip">📄 A tax form</span><span class="chip">🌀 Typhoon update</span>
+          <span class="chip">📚 Kids' homework</span><span class="chip">🛒 A price check</span><span class="chip">🎤 Song lyrics</span>
+        </div>
+        <div class="callout gold mt-l"><b>Bonus question:</b> did you click the very first result? Type 👍 or 👎.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Three words people mix up">
+    <div class="split" style="grid-template-columns:1.35fr .65fr">
+      <div>
+        <p class="kicker">The big idea · the internet is a huge library</p>
+        <h2 class="h2">Browser, search engine, website</h2>
+        <div class="grid g3 mt-l anim-stagger-list">
+          <div class="card top"><span class="ic">🧭</span><h4>Browser</h4><p>The app you use to walk in and read pages.</p><p class="tiny mt-s">Chrome · Edge · Firefox · Safari</p></div>
+          <div class="card top"><span class="ic">🔎</span><h4>Search engine</h4><p>The librarian: a website that finds pages for you.</p><p class="tiny mt-s">Google · Bing</p></div>
+          <div class="card top"><span class="ic">🏛️</span><h4>Website</h4><p>One "book" on the shelf, owned by someone.</p><p class="tiny mt-s">www.bir.gov.ph · dict.gov.ph</p></div>
+        </div>
+        <div class="callout mt-m"><b>Example:</b> you open <b>Edge</b> (browser), search in <b>Google</b> (search engine), and land on <b>www.bir.gov.ph</b> (website).</div>
+      </div>
+      <div class="media"><img src="images/m1/1-3-library.jpg" alt="Rows of bookshelves in a large library" style="object-position:center 75%"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Parts of a browser">
+    <div class="slide-head">
+      <div><p class="kicker">Inside the browser</p><h2 class="h2">Five parts you use every day</h2></div>
+      <span class="tag">Chrome and Edge shown · Firefox and Safari are similar</span>
+    </div>
+    <div class="grid" style="grid-template-columns:1.3fr .7fr;gap:calc(var(--u)*2.4);align-items:center">
+      <div class="pinw">
+        <div class="win br">
+          <div class="tabs"><span class="tab on">BIR · Official Website  ✕</span><span class="tab">Google Search  ✕</span><span class="tab" style="min-width:0">＋</span></div>
+          <div class="tool"><span>←  →  ⟳</span><span class="addr">🔒 https://www.bir.gov.ph</span><span>☆</span><span>⬇</span><span>⋮</span></div>
+          <div class="page"><div class="ban">Official website page</div><div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="blk"></div><div class="blk"></div></div>
+        </div>
+        <span class="pin" style="left:calc(var(--u)*12.5);top:calc(var(--u)*-.9)">1</span>
+        <span class="pin" style="left:calc(var(--u)*.2);top:calc(var(--u)*2.6)">2</span>
+        <span class="pin" style="left:calc(var(--u)*16);top:calc(var(--u)*2.6)">3</span>
+        <span class="pin" style="right:calc(var(--u)*5.2);top:calc(var(--u)*2.6)">4</span>
+        <span class="pin" style="right:calc(var(--u)*2.6);top:calc(var(--u)*2.6)">5</span>
+      </div>
+      <ul class="legend">
+        <li><span class="pin">1</span><span><b>Tabs</b>: many pages in one window. <kbd>Ctrl</kbd>+<kbd>T</kbd> new, <kbd>Ctrl</kbd>+<kbd>W</kbd> close.</span></li>
+        <li><span class="pin">2</span><span><b>Back, forward, reload.</b></span></li>
+        <li><span class="pin">3</span><span><b>Address bar</b>: type a web address or a search.</span></li>
+        <li><span class="pin">4</span><span><b>Bookmark</b> ☆ a page you use often: <kbd>Ctrl</kbd>+<kbd>D</kbd>.</span></li>
+        <li><span class="pin">5</span><span><b>Downloads</b>: files land in the <b>Downloads</b> folder. <kbd>Ctrl</kbd>+<kbd>J</kbd> lists them.</span></li>
+      </ul>
+    </div>
+    <div class="callout tip mt-m"><b>Oops, closed a tab?</b> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd> reopens it. After downloading, move the file from Downloads into the right folder, like we did in 1.2.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Reading a web address">
+    <div class="slide-head">
+      <div><p class="kicker">Read the address before you trust the page</p><h2 class="h2">Who really owns this website?</h2></div>
+    </div>
+    <div class="card" style="padding:calc(var(--u)*2.2) calc(var(--u)*2)">
+      <div class="url">
+        <div class="p"><span style="background:var(--green-soft);color:var(--green)">https://</span><small>Secure connection: data is scrambled in transit</small></div>
+        <div class="p"><span style="color:var(--text-3)">www.</span><small>Optional prefix</small></div>
+        <div class="p"><span style="background:var(--gold-soft);color:#8A6200">bir.gov.ph</span><small>The domain: the real owner. Check this part!</small></div>
+        <div class="p"><span style="color:var(--text-3)">/downloads</span><small>A page inside the site (sample path)</small></div>
+      </div>
+    </div>
+    <div class="grid g2 mt-l">
+      <div class="callout tip"><b>.gov.ph</b> is reserved for Philippine government offices. Official examples: <b>www.bir.gov.ph</b> and <b>dict.gov.ph</b>.</div>
+      <div class="callout warn"><b>Fake trick:</b> <span style="font-family:var(--font-mono)">www.bir.gov.ph.claim-refund.site</span> is owned by <b>claim-refund.site</b>, not BIR. Read the part just before the first single "/". <span class="tiny">(made-up example)</span></div>
+    </div>
+    <div class="callout gold mt-m"><b>The padlock 🔒 is not a seal of honesty.</b> It means the connection is private. Scam sites can have padlocks too.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Search tips">
+    <div class="slide-head">
+      <div><p class="kicker">Search like a pro</p><h2 class="h2">Four tricks that work in Google and Bing</h2></div>
+      <span class="tag gold">Type these in the search box</span>
+    </div>
+    <div class="grid g2 anim-stagger-list">
+      <div class="card"><div class="row"><span class="op">" "</span><h4 style="margin:0">Exact phrase</h4></div><div class="sbox mt-s">"internet safety tips"</div><p class="mt-s">Finds those words together, in that order.</p></div>
+      <div class="card"><div class="row"><span class="op">site:</span><h4 style="margin:0">Only one website or domain</h4></div><div class="sbox mt-s">internet safety site:gov.ph</div><p class="mt-s">Only Philippine government pages. <span class="namegood">site:bir.gov.ph</span> searches just BIR.</p></div>
+      <div class="card"><div class="row"><span class="op">-</span><h4 style="margin:0">Leave a word out</h4></div><div class="sbox mt-s">adobo recipe -chicken</div><p class="mt-s">Put a minus right before the word, no space: pork and other adobo only.</p></div>
+      <div class="card"><div class="row"><span class="op">filetype:</span><h4 style="margin:0">Only one kind of file</h4></div><div class="sbox mt-s">data privacy act filetype:pdf</div><p class="mt-s">Only PDF documents, great for forms and official papers.</p></div>
+    </div>
+    <div class="callout tip mt-m"><b>Mix them:</b> <span style="font-family:var(--font-mono)">"data privacy" site:gov.ph filetype:pdf</span> finds PDF files about data privacy from government sites.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Search smart, and know which sources to trust</h2>
+        <p class="lede mt-m">A library, a lookalike address and a fake deadline: learn to <b>read a web address</b>, <b>search like a pro</b> and <b>judge a source</b> before you believe or share it.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> note one search trick you'll try on your next work search, and type it in the chat after.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/1.3/poster.jpg" alt="Video: Web Browsing and Search Engines"><div class="play"></div><span class="vlen">4:56</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/1.3/index.html" title="Video: Web Browsing and Search Engines" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    
+  </section>
+  
+
+  
+  <section class="slide" data-title="Judging sources">
+    <div class="split rev">
+      <div class="media"><img src="images/m1/1-3-magnifier.jpg" alt="Magnifying glass over a laptop keyboard"></div>
+      <div>
+        <p class="kicker">Before you believe or share</p>
+        <h2 class="h2">Five questions for any website</h2>
+        <ol class="steps mt-m">
+          <li><b>Who</b> made it? Check the domain and the "About" page.</li>
+          <li><b>When</b> was it posted or updated? Old rules may have changed.</li>
+          <li><b>Why</b> does it exist? To inform, to sell, or to scare you?</li>
+          <li><b>Does another source agree?</b> Check the official site or a reputable news outlet.</li>
+          <li><b>Is it an ad?</b> Results marked "Sponsored" are paid placements.</li>
+        </ol>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Office and home">
+    <div class="slide-head">
+      <div><p class="kicker">Use it well</p><h2 class="h2">Smart searching at work and at home</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li>Get forms and announcements from <b>www.bir.gov.ph</b>, not from reposts.</li>
+          <li>Bookmark the sites your section uses daily in one bookmarks folder.</li>
+          <li>Search <span class="namegood">site:gov.ph</span> when checking any government notice.</li>
+          <li>Move downloads into the right section folder, with a good file name.</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li>Help with kids' homework: search with quotes, then compare two sources.</li>
+          <li>Class suspension or typhoon news: trust official pages, not chain messages.</li>
+          <li>Online shopping: check the seller's reviews before paying.</li>
+          <li>A recipe for the fiesta? <span class="namegood">lechon kawali -oven</span> 😄</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Lab 1 Part B">
+    <div class="slide-head">
+      <div><p class="kicker">Lab 1 · Part B · Search, capture, save</p><h2 class="h2">Find it, snip it, file it</h2></div>
+      <button class="timer" data-min="7">7:00</button>
+    </div>
+    <div class="grid" style="grid-template-columns:1.2fr .8fr;gap:calc(var(--u)*2);align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">Try it now</span><span class="tiny">Use your master folder from Part A</span></div>
+        <ol>
+          <li>Search <span class="namegood">"internet safety tips"</span>. Then try <span class="namegood">site:bir.gov.ph</span> with a topic you choose.</li>
+          <li>Open one useful page <b>on the official BIR website</b> (check the address!).</li>
+          <li>Press <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> and drag around the useful part.</li>
+          <li>Click the pop-up that appears, then <kbd>Ctrl</kbd>+<kbd>S</kbd> to save.</li>
+          <li>Save into <b>01 Screenshots</b> as <b>YYYY-MM-DD Screenshot - BIR Website</b>.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="card soft"><h4>Other ways to capture</h4>
+          <div class="keys mt-s" style="font-size:calc(var(--u)*1.25)">
+            <span><kbd>PrtSc</kbd></span><span>Whole screen. On newer Windows 11 it opens the same snip tool.</span>
+            <span><kbd>Win</kbd>+<kbd>PrtSc</kbd></span><span>Saves the whole screen to Pictures › Screenshots.</span>
+            <span>Right-click</span><span>An image › <b>Save image as…</b></span>
+          </div>
+          <p class="tiny mt-s">Mac: <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd></p>
+        </div>
+        <div class="callout gold mt-m"><b>Done?</b> Tick each step and submit in the portal.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">You want only PDF files about data privacy, from government websites. Which search?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div><span class="namegood">data privacy pdf government</span></div></div>
+      <div class="opt"><span class="l">B</span><div><span class="namegood">"data privacy" site:gov.ph filetype:pdf</span></div></div>
+      <div class="opt"><span class="l">C</span><div><span class="namegood">data privacy -pdf -gov</span></div></div>
+      <div class="opt"><span class="l">D</span><div><span class="namegood">www.dataprivacy.pdf</span></div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 1.3</p>
+    <h2 class="h2">Read the address, search smart, check the source.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Know the tools</h4><p>Browser to read, search engine to find, website to visit. Tabs, bookmarks, Downloads.</p></div>
+      <div class="card dark"><h4>Search smart</h4><p>Quotes, site:gov.ph, minus, filetype:pdf. Official sites like bir.gov.ph first.</p></div>
+      <div class="card dark"><h4>Judge sources</h4><p>Who, when, why, does another source agree, is it an ad?</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">1.4 Internet Safety, Netiquette and Data Privacy</b>: spotting scams and protecting your accounts and taxpayer data.</p>
+    
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

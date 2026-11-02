@@ -20,6 +20,55 @@ def copy_tree(src, dst, skip=('_to delete', '.DS_Store')):
 copy_tree(f'{SRC}/Decks', f'{REPO}/course')
 copy_tree(f'{SRC}/LMS/activities', f'{REPO}/activities')
 
+
+def drop(html, start):
+    """Remove every element whose opening tag matches `start`, with all its contents (nesting-aware)."""
+    out, i = [], 0
+    for m in re.finditer(start, html):
+        if m.start() < i:
+            continue
+        tag = re.match(r'<(\w+)', m[0])[1]
+        depth, j = 0, m.start()
+        for t in re.finditer(rf'<(/?){tag}\b[^>]*>', html[m.start():]):
+            depth += -1 if t[1] else 1
+            if not depth:
+                j = m.start() + t.end()
+                break
+        out.append(html[i:m.start()])
+        i = j
+    return ''.join(out) + html[i:]
+
+
+def participant_copy(html):
+    """The deck without speaker notes, answer reveals, option explanations or right-answer markers."""
+    html = re.sub(r'<!--.*?-->', '', html, flags=re.S)
+    for start in (r'<div class="notes"', r'<aside class="notes"', r'<(div|span) class="answer[ "]', r'<div class="why"'):
+        html = drop(html, start)
+    html = re.sub(r'\sdata-correct\b', '', html)
+    return html.replace('<head>', '<head>\n<base href="../">', 1)
+
+
+# participants load course/p/<deck>: the same slides with the answers left out of the page source
+os.makedirs(f'{REPO}/course/p')
+for f in os.listdir(f'{REPO}/course'):
+    if f.startswith('Deck - ') and f.endswith('.html'):
+        html = participant_copy(open(f'{REPO}/course/{f}', encoding='utf-8').read())
+        assert 'data-correct' not in html and 'class="notes"' not in html and 'class="why"' not in html, f
+        open(f'{REPO}/course/p/{f}', 'w', encoding='utf-8').write(html)
+
+def slide_no(slides, a):
+    """Which slide (1-based) shows this activity: its data-title first, else its title in the slide text."""
+    by_title = [i for i, (attrs, _) in enumerate(slides) if f'data-title="{a["slide"]}"' in attrs]
+    if len(by_title) == 1:
+        return by_title[0] + 1
+    want = a['title'].split(':')[-1].strip().lower()
+    for i, (_, body) in enumerate(slides):
+        body = re.sub(r'<(aside|div) class="notes".*?</\1>', '', body, flags=re.S)
+        if want in re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', body)).lower():
+            return i + 1
+    return None
+
+
 # catalog from the course index (modules, topics, deck files, video lengths) + activity titles
 idx = open(f'{SRC}/Decks/index.html').read()
 mods = []
@@ -31,8 +80,14 @@ for m in re.finditer(r"D\('(\d\.\d)','((?:[^'\\]|\\.)*)','([^']*)','((?:[^'\\]|\
     deck = f'Deck - {tid} {title} - 2026-11-01.html'
     assert os.path.exists(f'{REPO}/course/{deck}'), deck
     spec = json.load(open(f'{REPO}/activities/{tid}.json'))
-    acts = [dict(id=a['id'], kind=a['kind'], title=a['title'], slide=a['slide'], minutes=a['minutes'])
-            for a in spec['activities']]
+    slides = re.findall(r'<section class="slide[^"]*"([^>]*)>(.*?)</section>', re.sub(r'<!--.*?-->', '', open(f'{REPO}/course/{deck}').read(), flags=re.S), re.S)
+    acts = [dict(id=a['id'], kind=a['kind'], title=a['title'], slide=a['slide'], minutes=a['minutes'],
+                 slideNo=slide_no(slides, a)) for a in spec['activities']]
+    # the slide's countdown should match the portal timer the facilitator starts with Go live
+    for a in acts:
+        t = a['slideNo'] and re.search(r'data-min="([\d.]+)"', slides[a['slideNo'] - 1][1])
+        if t and float(t[1]) >= 1 and float(t[1]) != a['minutes']:   # sub-minute ones are reading tests
+            print(f'warning: {a["id"]} slide timer {t[1]} min, portal {a["minutes"]} min')
     mods[int(tid[0]) - 1]['topics'].append(dict(id=tid, title=title, dur=dur, desc=desc, deck=deck,
                                                video=vlen.get(tid), activities=acts))
 n = sum(len(m['topics']) for m in mods)

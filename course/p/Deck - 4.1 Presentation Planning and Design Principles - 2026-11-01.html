@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.1 Presentation Planning and Design Principles · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* 4.1 extras: drawn mini slides and principle demos (uses dpe.css tokens) */
+.mini{aspect-ratio:16/9;background:#fff;border:1px solid var(--border-strong);border-radius:calc(var(--u)*.7);box-shadow:var(--shadow);overflow:hidden;position:relative;display:flex;flex-direction:column;padding:calc(var(--u)*1.3) calc(var(--u)*1.7);color:var(--text-1)}
+.mcap{font-size:calc(var(--u)*.9);font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:calc(var(--u)*.6)}
+.mcap.bad{color:var(--coral)}.mcap.good{color:var(--green)}
+.mini.bad{background:linear-gradient(135deg,#6a1b9a,#1565c0 60%,#c2185b);font-family:'Comic Sans MS','Chalkboard SE',cursive}
+.mini.bad .t{color:#ff1744;font-size:calc(var(--u)*2.1);font-weight:800;text-align:center;text-shadow:2px 2px 0 #ffeb3b}
+.mini.bad .p{color:#ffe082;font-size:calc(var(--u)*.95);line-height:1.25;margin-top:calc(var(--u)*.6);font-family:'Times New Roman',serif;font-style:italic}
+.mini.bad .clip{position:absolute;font-size:calc(var(--u)*2.6)}
+.mini.good .t{font-size:calc(var(--u)*1.9);font-weight:800;color:var(--mod-deep);letter-spacing:-.01em}
+.mini.good .bar{height:calc(var(--u)*.3);width:calc(var(--u)*5);background:var(--mod);border-radius:9px;margin:calc(var(--u)*.5) 0 calc(var(--u)*1)}
+.mini.good .cells{display:grid;grid-template-columns:repeat(4,1fr);gap:calc(var(--u)*.8);flex:1}
+.mini.good .cell{background:var(--mod-soft);border-radius:calc(var(--u)*.6);padding:calc(var(--u)*.8);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.mini.good .cell b{font-size:calc(var(--u)*1.05);color:var(--mod-deep);margin-top:.3em}
+.mini.good .cell span{font-size:calc(var(--u)*2.8)}
+.sb{display:grid;grid-template-columns:repeat(5,1fr);gap:calc(var(--u)*1.1)}
+.sb .box{aspect-ratio:16/10;border:calc(var(--u)*.16) solid var(--text-2);border-radius:calc(var(--u)*.4);background:#fff;padding:calc(var(--u)*.7);font-family:'Bradley Hand','Segoe Print','Comic Sans MS',cursive;font-size:calc(var(--u)*1.05);line-height:1.25;color:var(--text-1);position:relative}
+.sb .box i{display:block;height:calc(var(--u)*.25);background:var(--text-3);margin-top:calc(var(--u)*.5);border-radius:9px;opacity:.6}
+.sb .cap{font-size:calc(var(--u)*1.1);color:var(--text-2);margin-top:calc(var(--u)*.6);line-height:1.35}
+.demo{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*.6);margin-top:calc(var(--u)*.9)}
+.demo>div{border-radius:calc(var(--u)*.5);padding:calc(var(--u)*.6);min-height:calc(var(--u)*8);font-size:calc(var(--u)*1.05);line-height:1.3;position:relative;border:1px solid var(--border)}
+.demo .no{background:#fff}.demo .yes{background:#fff}
+.demo .lab{position:absolute;right:calc(var(--u)*.4);top:calc(var(--u)*.3);font-size:calc(var(--u)*.8);font-weight:800}
+.demo .no .lab{color:var(--coral)}.demo .yes .lab{color:var(--green)}
+.ln{height:calc(var(--u)*.6);border-radius:9px;background:var(--text-3);margin:calc(var(--u)*.45) 0;opacity:.7}
+.sw{display:flex;gap:calc(var(--u)*.6);margin-top:calc(var(--u)*.8)}
+.sw span{width:calc(var(--u)*4.4);height:calc(var(--u)*4.4);border-radius:calc(var(--u)*.6);display:flex;align-items:flex-end;padding:calc(var(--u)*.3);font-size:calc(var(--u)*.75);font-weight:700;font-family:var(--font-mono);box-shadow:var(--shadow)}
+.sizes{display:flex;flex-direction:column;gap:calc(var(--u)*.5)}
+.sizes div{display:flex;align-items:baseline;gap:calc(var(--u)*1.2);border-bottom:1px dashed var(--border-strong);padding-bottom:calc(var(--u)*.35)}
+.sizes .pt{font-family:var(--font-mono);font-size:calc(var(--u)*1);color:var(--text-3);width:calc(var(--u)*6);flex:none}
+</style>
+</head>
+<body class="m4" data-brand="Digital Productivity Essentials · <b>Module 4</b> · 4.1 Presentation Planning and Design Principles">
+<div class="deck">
+
+  
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 4 · Multimedia Presentation Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">Presentation Planning and <span style="color:var(--gold)">Design Principles</span></h1>
+      <p class="lede" data-anim="fade-up">Plan the message on paper first, then design slides people can actually read.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 4.1</span><span class="tag ghost">~40 minutes</span><span class="tag ghost">BIR Misamis Oriental</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m4/4-1-cover.jpg" alt="People sketching a storyboard on paper with pens and sticky notes"><div class="cv-num">4.1</div></div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · type in the chat</p><h2 class="h2">Think of the most boring presentation<br>you ever sat through. What went wrong?</h2></div>
+      <span class="tag gold">1 minute</span>
+    </div>
+    <div class="grid g4 mt-m anim-stagger-list">
+      <div class="card center"><span class="ic">🔍</span><h4>A</h4><p>Text too small to read</p></div>
+      <div class="card center"><span class="ic">📜</span><h4>B</h4><p>Walls of text, read word for word</p></div>
+      <div class="card center"><span class="ic">🌈</span><h4>C</h4><p>Colours and effects everywhere</p></div>
+      <div class="card center"><span class="ic">🤷</span><h4>D</h4><p>I never knew what the point was</p></div>
+    </div>
+    <div class="callout gold mt-l"><b>Good news:</b> every one of these problems is fixed <i>before</i> you open PowerPoint, by planning and by four simple design principles.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head">
+      <div><p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2></div>
+    </div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Plan</span><h4>Name your audience, purpose and one key message</h4><p>Before you make a single slide.</p></div>
+      <div class="card top"><span class="k">Sketch</span><h4>Storyboard a deck on paper</h4><p>One idea per slide, in a clear order.</p></div>
+      <div class="card top"><span class="k">Design</span><h4>Apply contrast, alignment, repetition and proximity</h4><p>Plus readable fonts, colours and accessibility.</p></div>
+    </div>
+    <div class="callout mt-l"><b>Our running project:</b> Lab 4, <b>"My Digital Skills Journey"</b>, a 5-slide deck about what you learned in this course. You will plan it today and build it in the next topics.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="The big idea">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">Plan a deck like you plan a <em class="mod">fiesta handaan</em>.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>Who is coming?</b> Lolas, kids, the barangay captain. That is your <b>audience</b>.</li>
+          <li><b>Why the party?</b> A birthday, a homecoming, the patron saint. That is your <b>purpose</b>.</li>
+          <li><b>What is the star dish?</b> The lechon everyone remembers. That is your <b>one key message</b>.</li>
+          <li>Only then do you choose the <b>tablecloth and decorations</b>: the design.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/m4/4-1-sticky.jpg" alt="Hands arranging sticky notes on a planning sheet"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Three planning questions">
+    <div class="slide-head">
+      <div><p class="kicker">Step 1 · Plan</p><h2 class="h2">Answer three questions before any slide</h2></div>
+      <span class="tag">Example: Lab 4</span>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">👥</span><h4>Audience: who?</h4><p>What do they already know? What do they need from me?</p><div class="callout mt-m" style="font-size:calc(var(--u)*1.2)"><b>Lab 4:</b> my classmates and the Resource Person; they know the course, not my story.</div></div>
+      <div class="card top"><span class="ic-badge">🎯</span><h4>Purpose: why?</h4><p>To inform, to persuade, to train, or to ask for a decision?</p><div class="callout mt-m" style="font-size:calc(var(--u)*1.2)"><b>Lab 4:</b> to inform them what I can now do, and show proof.</div></div>
+      <div class="card top"><span class="ic-badge">💬</span><h4>Key message: what?</h4><p>The one sentence they should remember tomorrow.</p><div class="callout mt-m" style="font-size:calc(var(--u)*1.2)"><b>Lab 4:</b> "In 16 hours I went from typing letters to building charts."</div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Try it: your key message">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · in the portal</p><h2 class="h2">Write your Lab 4 key message in one sentence</h2></div>
+      <button class="timer" data-min="2">2:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Fill in the blanks</span><span class="tiny">Then type your sentence in the portal</span></div>
+      <p class="h3" style="line-height:1.5">"After this course, I can <span class="hl">&nbsp;[a skill]&nbsp;</span>, which helps me <span class="hl">&nbsp;[a task at work or at home]&nbsp;</span>."</p>
+      <div class="grid g2 mt-l">
+        <div class="callout tip"><b>Strong:</b> "After this course, I can build a spreadsheet with formulas, which helps me total our office supplies in seconds."</div>
+        <div class="callout warn"><b>Weak:</b> "I learned many things about computers." (Too vague. What things? So what?)</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Outline on paper first">
+    <div class="split rev">
+      <div class="media"><img src="images/m4/4-1-storyboard.jpg" alt="A hand-drawn storyboard in a notebook"></div>
+      <div>
+        <p class="kicker">Step 2 · Sketch</p>
+        <h2 class="h2">Outline on paper first, then open the app</h2>
+        <ol class="steps mt-m">
+          <li><b>Brain-dump:</b> write every idea on sticky notes or a list. No order yet.</li>
+          <li><b>Group:</b> put similar ideas together. Cross out what doesn't serve the key message.</li>
+          <li><b>Order:</b> beginning (hook), middle (proof), end (message or request).</li>
+          <li><b>Storyboard:</b> draw one box per slide with a title and a rough picture.</li>
+        </ol>
+        <div class="callout gold mt-m"><b>Why paper?</b> It's fast, cheap and you can't waste time picking fonts.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Storyboard: Lab 4">
+    <div class="slide-head">
+      <div><p class="kicker">Storyboard example</p><h2 class="h2">"My Digital Skills Journey" in five boxes</h2></div>
+      <span class="tag gold">One idea per box</span>
+    </div>
+    <div class="sb anim-stagger-list">
+      <div><div class="box">My Digital Skills Journey<br><small>Juan Dela Cruz</small><i style="width:60%"></i></div><p class="cap"><b>1 · Title</b><br>Name, date, one photo</p></div>
+      <div><div class="box">Where I started<i></i><i style="width:70%"></i><i style="width:50%"></i></div><p class="cap"><b>2 · Hook</b><br>"I typed letters twice because I didn't save."</p></div>
+      <div><div class="box">Letters &amp; mail merge<span style="position:absolute;right:8%;bottom:10%;font-size:calc(var(--u)*2)">✉️</span><i style="width:55%"></i></div><p class="cap"><b>3 · Proof 1</b><br>Lab 2: 3 letters in one click</p></div>
+      <div><div class="box">Our supplies chart<span style="position:absolute;left:12%;bottom:12%;display:flex;gap:4px;align-items:flex-end"><b style="width:10px;height:20px;background:#C2482B"></b><b style="width:10px;height:34px;background:#C2482B"></b><b style="width:10px;height:12px;background:#C2482B"></b><b style="width:10px;height:26px;background:#C2482B"></b></span></div><p class="cap"><b>4 · Proof 2</b><br>The Lab 3 chart</p></div>
+      <div><div class="box">What I'll do next<i></i><i style="width:65%"></i></div><p class="cap"><b>5 · Close</b><br>Key message + next step</p></div>
+    </div>
+    <div class="callout mt-l"><b>Notice:</b> each box has <b>one</b> idea and a title that says something. Five boxes, five slides. That already meets the Lab 4 minimum.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="One idea per slide">
+    <div class="slide-head">
+      <div><p class="kicker">Rule of thumb</p><h2 class="h2">One idea per slide. Slides are free.</h2></div>
+    </div>
+    <div class="grid g2">
+      <div>
+        <p class="mcap bad">✗ One crowded slide</p>
+        <div class="mini" style="font-size:calc(var(--u)*1.3)"><b style="font-size:calc(var(--u)*1.6)">Module 2, 3 and 4</b>
+          <ul style="margin:.4em 0 0;padding-left:1.1em;line-height:1.35;color:var(--text-2)"><li>Letter format, margins, justified text, tables</li><li>Mail merge with 3 recipients from a data source</li><li>Spreadsheet formulas SUM, AVERAGE, currency</li><li>Pie chart of supplies, bar chart of budget</li><li>Presentation themes, layouts, transitions, AI design</li></ul></div>
+      </div>
+      <div>
+        <p class="mcap good">✓ Three focused slides</p>
+        <div class="grid g3" style="gap:calc(var(--u)*.7)">
+          <div class="mini" style="padding:calc(var(--u)*.7)"><b style="font-size:calc(var(--u)*1.05)">Letters that send themselves</b><span style="font-size:calc(var(--u)*2.2);margin-top:auto">✉️</span></div>
+          <div class="mini" style="padding:calc(var(--u)*.7)"><b style="font-size:calc(var(--u)*1.05)">Formulas do the math</b><span style="font-size:calc(var(--u)*2.2);margin-top:auto">🧮</span></div>
+          <div class="mini" style="padding:calc(var(--u)*.7)"><b style="font-size:calc(var(--u)*1.05)">Slides that tell a story</b><span style="font-size:calc(var(--u)*2.2);margin-top:auto">🎞️</span></div>
+        </div>
+        <ul class="ticks mt-m">
+          <li>The <b>title states the point</b>, not just the topic.</li>
+          <li>If you need a second title, you need a second slide.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Try it: storyboard">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · on paper</p><h2 class="h2">Storyboard your Lab 4 deck</h2></div>
+      <button class="timer" data-min="5">5:00</button>
+    </div>
+    <div class="try">
+      <div class="try-head"><span class="try-label">Paper and pen, no computer</span><span class="tiny">Show your paper to the camera when done</span></div>
+      <ol>
+        <li>Write your <b>key message</b> at the top of the page.</li>
+        <li>Draw <b>5 or 6 boxes</b> (fold the paper in half, then in thirds).</li>
+        <li>In each box: a <b>title that says something</b> and a rough sketch (chart, photo, icon).</li>
+        <li>Mark where your <b>Lab 3 chart</b> or <b>Lab 1 image</b> goes.</li>
+        <li>Number the boxes in the order you'll present them.</li>
+      </ol>
+      <div class="callout gold mt-m"><b>Alternative:</b> storyboard "Our Office Supplies Inventory" for your section chief, or a 5-minute pitch for a community project.</div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Four design principles">
+    <div class="slide-head">
+      <div><p class="kicker">Step 3 · Design</p><h2 class="h2">Four principles do most of the work</h2></div>
+      <span class="tag">From The Non-Designer's Design Book</span>
+    </div>
+    <div class="grid g4 anim-stagger-list">
+      <div class="card top"><h4>Contrast</h4><p>Make different things <b>very</b> different: dark on light, big title, small label.</p>
+        <div class="demo"><div class="no"><span class="lab">✗</span><b style="color:#C9CED8;font-size:calc(var(--u)*1.5)">Aa</b><div style="color:#B9BFCB">grey on white</div></div><div class="yes"><span class="lab">✓</span><b style="color:var(--mod-deep);font-size:calc(var(--u)*1.5)">Aa</b><div style="color:var(--text-1)">dark on white</div></div></div></div>
+      <div class="card top"><h4>Alignment</h4><p>Every item lines up with something. Nothing placed "anywhere".</p>
+        <div class="demo"><div class="no"><span class="lab">✗</span><div class="ln" style="width:60%;margin-left:20%"></div><div class="ln" style="width:45%;margin-left:5%"></div><div class="ln" style="width:55%;margin-left:35%"></div></div><div class="yes"><span class="lab">✓</span><div class="ln" style="width:70%"></div><div class="ln" style="width:50%"></div><div class="ln" style="width:62%"></div></div></div></div>
+      <div class="card top"><h4>Repetition</h4><p>Repeat the same colours, fonts and title position on every slide.</p>
+        <div class="demo"><div class="no"><span class="lab">✗</span><div class="ln" style="background:#7b1fa2;width:70%"></div><div class="ln" style="background:#2e7d32;width:40%;margin-left:30%"></div><div class="ln" style="background:#f57c00;width:55%;margin-left:10%"></div></div><div class="yes"><span class="lab">✓</span><div class="ln" style="background:var(--mod);width:55%"></div><div class="ln" style="background:var(--mod);width:55%"></div><div class="ln" style="background:var(--mod);width:55%"></div></div></div></div>
+      <div class="card top"><h4>Proximity</h4><p>Keep related items close; put space between groups.</p>
+        <div class="demo"><div class="no"><span class="lab">✗</span><span style="font-size:calc(var(--u)*1.4)">📷</span><div style="margin-top:calc(var(--u)*2.2);font-size:calc(var(--u)*.85)">caption far away</div></div><div class="yes"><span class="lab">✓</span><span style="font-size:calc(var(--u)*1.4)">📷</span><div style="font-size:calc(var(--u)*.85)">caption right below</div></div></div></div>
+    </div>
+    <div class="callout tip mt-l"><b>Quick test:</b> squint at your slide. If you can still tell what's most important and what belongs together, the design works.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Colour and fonts">
+    <div class="split">
+      <div>
+        <p class="kicker">Colour and font choices</p>
+        <h2 class="h2">Few colours, one or two fonts</h2>
+        <div class="grid g2 mt-m">
+          <div class="card soft"><h4>🎨 Colour</h4><p>2 or 3 colours plus <b>one accent</b> for what matters. Keep the same palette on every slide.</p>
+            <div class="sw"><span style="background:#0B2545;color:#fff">navy</span><span style="background:#fff;color:#0B2545;border:1px solid #ccd">white</span><span style="background:#E8F1FD;color:#0B2545">light</span><span style="background:#F4B400;color:#0B2545">accent</span></div></div>
+          <div class="card soft"><h4>🔤 Fonts</h4><p>One for titles, one for body, or just one. <b>Plain sans-serif</b> reads best on screens.</p>
+            <div class="chips mt-m"><span class="chip" style="font-family:Arial">Arial</span><span class="chip" style="font-family:Calibri,Arial">Calibri</span><span class="chip" style="font-family:Verdana">Verdana</span><span class="chip">Aptos</span></div></div>
+        </div>
+        <ul class="ticks x mt-m">
+          <li>Script or decorative fonts for body text</li>
+          <li>Red text on green, or yellow on white</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/m4/4-1-colors.jpg" alt="A fan of colour swatch cards"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Readability">
+    <div class="slide-head">
+      <div><p class="kicker">Readability</p><h2 class="h2">If they can't read it, it doesn't exist</h2></div>
+      <span class="tag gold">Online: many join on a phone</span>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <h4>Font size guide (in the app's points)</h4>
+        <div class="sizes mt-m">
+          <div><span class="pt">36–44 pt</span><b style="font-size:calc(var(--u)*2.4)">Slide title</b></div>
+          <div><span class="pt">24–32 pt</span><span style="font-size:calc(var(--u)*1.6)">Body text and bullets</span></div>
+          <div><span class="pt">18 pt</span><span style="font-size:calc(var(--u)*1.15)">Smallest: labels, sources</span></div>
+          <div><span class="pt">12 pt</span><span style="font-size:calc(var(--u)*.75);color:var(--coral)">Too small for slides. Leave it for printed handouts.</span></div>
+        </div>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li><b>High contrast:</b> dark text on a light background, or white on a dark one. Never text over a busy photo.</li>
+          <li><b>Short lines:</b> a few words per bullet, not paragraphs.</li>
+          <li><b>The phone test:</b> view your slide small on your phone. Still readable? Good.</li>
+          <li><b>The bright-room test:</b> projectors in bright halls wash out light colours. Choose strong contrast.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Accessibility">
+    <div class="slide-head">
+      <div><p class="kicker">Accessibility</p><h2 class="h2">Design for everyone in the room</h2></div>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">👓</span><h4>Low vision and seniors</h4><p>Big fonts, high contrast, plain backgrounds. Helpful for lolas at a family event and for anyone at the back of the room.</p></div>
+      <div class="card top"><span class="ic-badge">🎨</span><h4>Colour blindness</h4><p>Some people can't tell red from green. Don't use colour <b>alone</b> to show meaning: add a label, icon or pattern.</p></div>
+      <div class="card top"><span class="ic-badge">🔊</span><h4>Screen readers</h4><p>Give every slide a unique title and add <b>alt text</b> to pictures and charts (Topic 4.4).</p></div>
+    </div>
+    <div class="callout tip mt-l"><b>Built-in helper:</b> in PowerPoint, <b>Review › Check Accessibility</b> lists missing alt text, missing slide titles and low-contrast text. Run it before you present or send.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Makeover: spot the problems">
+    <div class="slide-head">
+      <div><p class="kicker">Slide makeover · in the portal</p><h2 class="h2">Find at least five problems</h2></div>
+      <button class="timer" data-min="2">2:00</button>
+    </div>
+    <div class="grid" style="grid-template-columns:1.15fr .85fr;align-items:start">
+      <div class="mini bad">
+        <span class="clip" style="left:4%;top:6%;transform:rotate(-18deg)">⭐</span><span class="clip" style="right:5%;bottom:8%;transform:rotate(20deg)">🎉</span>
+        <div class="t">MY DIGITAL SKILLS JOURNEY!!!</div>
+        <p class="p" style="margin-left:14%">During the sixteen hours of the training I learned many things such as computers and the internet and how to manage files and folders, word processing like formatting letters with margins and justified text and the mail merge, spreadsheets with formulas like SUM and AVERAGE and making a chart of the office supplies, and also making presentations with themes and transitions which I will use in the office and at home.</p>
+      </div>
+      <div class="try" style="padding:calc(var(--u)*1.4) calc(var(--u)*1.6)">
+        <div class="try-head"><span class="try-label">Type the problems</span></div>
+        <p class="small">Use the design words: contrast, alignment, repetition, proximity, readability.</p>
+        <div class="row mt-m"><button class="reveal-btn" data-target="ans-make">Show the problems</button></div>
+        
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Makeover: before and after">
+    <div class="slide-head">
+      <div><p class="kicker">Slide makeover</p><h2 class="h2">Same content, planned and designed</h2></div>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <p class="mcap bad">✗ Before</p>
+        <div class="mini bad" style="opacity:.9">
+          <span class="clip" style="left:4%;top:6%;transform:rotate(-18deg)">⭐</span><span class="clip" style="right:5%;bottom:8%;transform:rotate(20deg)">🎉</span>
+          <div class="t" style="font-size:calc(var(--u)*1.6)">MY DIGITAL SKILLS JOURNEY!!!</div>
+          <p class="p" style="margin-left:14%;font-size:calc(var(--u)*.75)">During the sixteen hours of the training I learned many things such as computers and the internet and how to manage files and folders, word processing like formatting letters with margins and justified text and the mail merge, spreadsheets with formulas like SUM and AVERAGE and making a chart…</p>
+        </div>
+      </div>
+      <div>
+        <p class="mcap good">✓ After</p>
+        <div class="mini good">
+          <div class="t">Four modules, four new skills</div><div class="bar"></div>
+          <div class="cells">
+            <div class="cell"><span>🗂️</span><b>Find any file fast</b></div>
+            <div class="cell"><span>✉️</span><b>Merge 3 letters at once</b></div>
+            <div class="cell"><span>🧮</span><b>Formulas, not a calculator</b></div>
+            <div class="cell"><span>🎞️</span><b>Slides people can read</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chips mt-l"><span class="chip">✓ Title states the message</span><span class="chip">✓ One font, sentence case</span><span class="chip">✓ Dark on white: high contrast</span><span class="chip">✓ Four equal cells: aligned, repeated</span><span class="chip">✓ Paragraph moved to the notes</span></div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Office and home">
+    <div class="slide-head">
+      <div><p class="kicker">Plan for the audience</p><h2 class="h2">Same planning, different audiences</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li><b>Briefing for the section chief:</b> purpose is a decision. Put the key number and your request on slide 2, not slide 12. Five slides, no animations.</li>
+          <li><b>Orientation for new staff:</b> purpose is to train. Photos of the office layout, a numbered first-week checklist, who to ask for what.</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li><b>Family reunion slideshow:</b> purpose is to celebrate. One big photo per slide, short captions, large fonts for the lolas on the TV.</li>
+          <li><b>Church or barangay event:</b> purpose is to inform. Schedule, venue and contact on separate slides, high contrast for a projector in a bright hall.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout mt-l"><b>Notice:</b> the audience and purpose changed the design every time, not the other way around.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">Plan the message first, then design</h2>
+        <p class="lede mt-m">Answer <b>audience, purpose and key message</b>, storyboard your Lab 4 deck on paper, then apply four design principles so every slide is easy to read.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> the three planning questions. Keep a pen and a sheet of paper ready: you'll storyboard your own Lab 4 deck next.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/4.1/poster.jpg" alt="Video: Presentation Planning and Design Principles"><div class="play"></div><span class="vlen">4:57</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/4.1/index.html" title="Video: Presentation Planning and Design Principles" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    
+  </section>
+  
+
+  
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">You must brief your section chief on the supplies inventory in 5 minutes. What do you decide first?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>The theme and colours</div></div>
+      <div class="opt"><span class="l">B</span><div>The one key message and what you need from the chief</div></div>
+      <div class="opt"><span class="l">C</span><div>Which transitions to use</div></div>
+      <div class="opt"><span class="l">D</span><div>How many slides to make</div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 4.1</p>
+    <h2 class="h2">Plan first. Then design so everyone can read it.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Plan</h4><p>Audience, purpose and one key message, before any slide.</p></div>
+      <div class="card dark"><h4>Sketch</h4><p>Storyboard on paper: one idea per slide, titles that say something.</p></div>
+      <div class="card dark"><h4>Design</h4><p>Contrast, alignment, repetition, proximity; big fonts; accessible to all.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">4.2 Application Navigation and Slide Management</b>: turning your paper storyboard into real slides.</p>
+    
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

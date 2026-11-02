@@ -287,3 +287,41 @@ kbd,.kbd{display:inline-block;font-family:var(--font-mono);font-size:.82em;font-
 .slide.vslide{padding:0;background:#000;justify-content:center;align-items:center}
 .slide.vslide iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;display:block}
 body:has(.slide.vslide.is-active) .home-btn{display:none}
+
+/* ---------- inside the LMS ---------- */
+/* the LMS bar has its own Home button */
+html.in-lms .home-btn{display:none}
+/* participants: the facilitator reveals answers, not the slide */
+html.participant .reveal-btn,html.participant .answer,html.participant .opt .why{display:none!important}
+html.participant .opt.picked{border-color:var(--mod);background:var(--mod-soft)}
+
+/* ---------- phones: one readable column that scrolls ---------- */
+/* Slides are sized for a 16:9 screen; on a narrow portrait screen that makes
+   text a few pixels high, so reflow each slide into a single column instead. */
+@media (max-width:700px) and (orientation:portrait){
+  :root{--u:2.6vw}
+  .slide{justify-content:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+    padding:calc(var(--u)*5) calc(var(--u)*4.5) calc(var(--u)*9)}
+  .slide.vslide{padding:0}
+  .grid,.g2,.g3,.g4,.g5,.qc,.qc.g2,.split,.split.rev,.pair,.obj,.recap{grid-template-columns:minmax(0,1fr)!important}
+  .split{flex:none;gap:calc(var(--u)*2.4)}
+  .split .media{height:auto;max-height:38vh;aspect-ratio:16/10}
+  .fill{flex:none}
+  .row,.slide-head,.try .try-head{flex-wrap:wrap}
+  .slide-head{align-items:flex-start;gap:calc(var(--u)*1.2)}
+  .h1{font-size:32px}.cover .h1{font-size:32px}.bigq{font-size:26px}
+  .h2{font-size:25px}.h3{font-size:20px}h4,.h4{font-size:17px}
+  .lede{font-size:17px}.small,.ex p,.ex li,.card p{font-size:15px}
+  .kicker,.tiny,.tag,.src,.badge-time,.chip{font-size:13px}
+  .credit{font-size:11px}
+  .slide.cover{display:flex;flex-direction:column;padding:0}
+  .cover .cv-text{padding:calc(var(--u)*7) calc(var(--u)*5)}
+  .cover .cv-img{position:relative;height:28vh;flex:none}
+  .cover .cv-num{display:none}
+  .cv-logos img{height:34px}.cv-logos img.sd{height:18px}
+  .deck-footer{position:static;margin-top:calc(var(--u)*4);flex-wrap:wrap;gap:8px;font-size:12px}
+  .foot-logos{display:none}
+  .tbl{display:block;overflow-x:auto}
+  .flip{min-height:150px}
+  .keys{grid-template-columns:auto minmax(0,1fr)}
+}

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.8 AI-Assisted Data Analysis · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* Module 3 helpers (3.5-3.8): drawn spreadsheet grid, formula bar, sheet tabs, SVG charts, AI chat */
+.xlwin .body{padding:0}
+.fbar{display:flex;align-items:stretch;border-bottom:1px solid var(--border-strong);font-size:calc(var(--u)*1.1);background:#fff}
+.fbar .nb{min-width:calc(var(--u)*5.5);padding:.3em .6em;border-right:1px solid var(--border-strong);font-family:var(--font-mono);color:var(--text-2)}
+.fbar .fx{padding:.3em .7em;border-right:1px solid var(--border);color:var(--text-3);font-style:italic;font-weight:700}
+.fbar .f{padding:.3em .8em;font-family:var(--font-mono);color:var(--text-1);font-weight:600}
+.xl{border-collapse:collapse;width:100%;font-size:calc(var(--u)*1.05);background:#fff}
+.xl th{background:#EEF1F5;color:var(--text-3);font-weight:600;font-size:.86em;border:1px solid #D9DEE5;padding:.12em .4em;text-align:center}
+.xl th.rh{width:calc(var(--u)*2.4)}
+.xl th.cs{background:color-mix(in srgb,var(--mod) 22%,#fff);color:var(--mod-deep)}
+.xl td{border:1px solid #E3E7EC;padding:.17em .55em;color:var(--text-1);white-space:nowrap;line-height:1.35}
+.xl td.n{text-align:right;font-family:var(--font-mono);font-size:.95em}
+.xl td.h{font-weight:700;background:var(--mod-soft);color:var(--mod-deep)}
+.xl td.f{font-family:var(--font-mono);font-size:.92em;color:var(--mod);font-weight:600}
+.xl td.s{outline:calc(var(--u)*.22) solid var(--mod);outline-offset:calc(var(--u)*-.11)}
+.xl td.b{background:var(--coral-soft);color:var(--coral);font-weight:700}
+.xl td.g{background:var(--green-soft);color:var(--green);font-weight:700}
+.xl td.o{background:var(--gold-soft);font-weight:700}
+.xl td.mu{color:var(--text-3)}
+.xl td.r{background:color-mix(in srgb,var(--mod) 13%,#fff)}
+.xl td.k{font-weight:700}
+.xl tr.tot td{border-top:calc(var(--u)*.18) solid var(--mod-deep)}
+.xl tr.frz td,.xl tr.frz th{border-bottom:calc(var(--u)*.32) solid #8E9BB0}
+.xl tr.flt th{color:#1366D6;font-weight:800}
+.xl tr.gap td,.xl tr.gap th{padding:0;height:calc(var(--u)*.5);background:#F7F9FC;border-color:#F7F9FC}
+.xl tr.hid td{background:repeating-linear-gradient(45deg,#f4f6f9 0 6px,#fff 6px 12px);color:var(--text-3)}
+.stabs{display:flex;gap:2px;align-items:flex-start;background:#EEF1F5;border-top:1px solid var(--border-strong);padding:0 calc(var(--u)*.8) calc(var(--u)*.3);font-size:calc(var(--u)*1)}
+.stabs span{padding:.3em 1.1em;background:#E2E6EC;color:var(--text-2);border-radius:0 0 .45em .45em;font-weight:600}
+.stabs span.on{background:#fff;color:var(--text-1);box-shadow:inset 0 calc(var(--u)*-.25) 0 var(--mod)}
+.stabs span.plus{background:none;color:var(--text-3);font-weight:800}
+.stabs span.t1{box-shadow:inset 0 calc(var(--u)*-.3) 0 #1366D6}.stabs span.t2{box-shadow:inset 0 calc(var(--u)*-.3) 0 #16794A}
+.stabs span.t3{box-shadow:inset 0 calc(var(--u)*-.3) 0 #C2482B}.stabs span.t4{box-shadow:inset 0 calc(var(--u)*-.3) 0 #F4B400}
+.chartbox{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow);border:1px solid var(--border);padding:calc(var(--u)*1) calc(var(--u)*1.2)}
+.chartbox svg{width:100%;height:auto;display:block}
+.chartbox.flat{box-shadow:none}
+svg text{font-family:var(--font-sans)}
+.sv-t{font-weight:800;fill:#0B2545}.sv-l{fill:#3E4C63}.sv-m{fill:#7A879C}.sv-v{fill:#0B2545;font-weight:700}
+.sv-grid{stroke:#E3E7EC;stroke-width:1}.sv-ax{stroke:#7A879C;stroke-width:1.5}
+.k1{fill:var(--mod)}.k2{fill:#F4B400}.k3{fill:#1366D6}.k4{fill:#E5533D}.k5{fill:#13315C}.k6{fill:#8BC5A7}.k7{fill:#B9C3D1}.k8{fill:#6B7A90}.k9{fill:#E5533D}
+.anno{fill:none;stroke:#E5533D;stroke-width:3;stroke-dasharray:7 5}
+.menu{background:#fff;border:1px solid var(--border-strong);border-radius:calc(var(--u)*.6);box-shadow:var(--shadow-lg);padding:calc(var(--u)*.5) 0;font-size:calc(var(--u)*1.15)}
+.menu div{padding:.32em 1.2em;color:var(--text-1)}
+.menu div.on{background:var(--mod-soft);color:var(--mod);font-weight:700}
+.menu hr{border:0;border-top:1px solid var(--border);margin:.25em 0}
+.chat{display:flex;flex-direction:column;gap:calc(var(--u)*.9);font-size:calc(var(--u)*1.5)}
+.bub{border-radius:calc(var(--u)*1.2);padding:calc(var(--u)*.8) calc(var(--u)*1.2);line-height:1.45;max-width:92%}
+.bub.me{align-self:flex-end;background:var(--mod);color:#fff;border-bottom-right-radius:.2em}
+.bub.ai{align-self:flex-start;background:var(--surface-2);border:1px solid var(--border);color:var(--text-1);border-bottom-left-radius:.2em}
+.bub code,.code{font-family:var(--font-mono);font-weight:600;background:rgba(11,37,69,.07);padding:.05em .35em;border-radius:.3em;font-size:.95em}
+.bub.me code{background:rgba(255,255,255,.2)}
+.who{font-size:calc(var(--u)*.85);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.big-f{font-family:var(--font-mono);font-weight:700;font-size:calc(var(--u)*2.6);color:var(--mod-deep);letter-spacing:-.01em}
+.big-f .lk{color:var(--coral)}
+.tbl.compact td,.tbl.compact th{padding:calc(var(--u)*.5) calc(var(--u)*.9)}
+.tbl td.c,.tbl th.c{text-align:center}
+.flip .fr h4{color:var(--coral)}
+</style>
+</head>
+<body class="m3" data-brand="Digital Productivity Essentials · <b>Module 3</b> · 3.8 AI-Assisted Data Analysis">
+<div class="deck">
+
+  
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 3 · Electronic Spreadsheet Fundamentals</p>
+      <h1 class="h1" data-anim="fade-up">AI-Assisted <span style="color:var(--gold)">Data Analysis</span></h1>
+      <p class="lede" data-anim="fade-up">Let AI suggest and explain formulas and spot trends, then verify every answer yourself. Plus your Lab 3 brief.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 3.8</span><span class="tag ghost">~35 minutes + Lab 3</span><span class="tag ghost">BIR Misamis Oriental</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m3/3-8-cover.jpg" alt="A robot hand and a human hand reaching toward the letters AI"><div class="cv-num">3.8</div></div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Warm-up">
+    <div class="slide-head">
+      <div><p class="kicker">Warm-up · type in the chat</p><h2 class="h2">Have you asked an AI for help with a spreadsheet?</h2></div>
+      <span class="tag gold">1 minute</span>
+    </div>
+    <div class="grid g4 anim-stagger-list">
+      <div class="card center"><span class="ic">🙋</span><h4>A</h4><p>Yes, and it worked</p></div>
+      <div class="card center"><span class="ic">😅</span><h4>B</h4><p>Yes, but the formula didn't work</p></div>
+      <div class="card center"><span class="ic">🤔</span><h4>C</h4><p>Not yet, but I'm curious</p></div>
+      <div class="card center"><span class="ic">🚫</span><h4>D</h4><p>No, I don't trust it with work files</p></div>
+    </div>
+    <div class="callout gold mt-l"><b>All four are reasonable.</b> By the end of this topic, B and D will know exactly why, and A and C will know how to check.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head"><div><p class="kicker">By the end of this topic</p><h2 class="h2">You will be able to…</h2></div></div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Prompt</span><h4>Ask AI the right way</h4><p>Use column names and ranges to get a formula, an explanation, or a trend summary.</p></div>
+      <div class="card top"><span class="k">Verify</span><h4>Check every answer</h4><p>Test two rows by hand, check the range, and check against the total. Catch invented functions.</p></div>
+      <div class="card top"><span class="k">Protect</span><h4>Keep data private</h4><p>Never paste taxpayer data or confidential records into public AI tools.</p></div>
+    </div>
+    <div class="callout tip mt-l"><b>Lab 3 link:</b> the lab asks you to "apply basic arithmetic formulas and <b>verify AI-suggested logic</b>." This topic shows how.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="AI as a new OJT">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">Treat AI like a fast, eager <em class="mod">new OJT</em>.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>Fast:</b> drafts a formula in seconds.</li>
+          <li><b>Confident:</b> sounds sure even when it's wrong.</li>
+          <li><b>New:</b> doesn't know your file, your office rules or what's confidential unless you say so.</li>
+          <li><b>Supervised:</b> you check the work, because <b>your name is on the report</b>.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/m3/3-8-laptop.jpg" alt="Person at a laptop reviewing charts and figures"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Where AI lives">
+    <div class="slide-head"><div><p class="kicker">Vendor-agnostic</p><h2 class="h2">Three places you might meet AI for spreadsheets</h2></div></div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">🟩</span><h4>Copilot in Excel</h4><p>The <b>Copilot</b> button on the Home tab opens a side pane. Ask for formulas, summaries or charts about your sheet.</p><p class="tiny mt-s">Needs a Microsoft 365 plan that includes Copilot.</p></div>
+      <div class="card top"><span class="ic-badge">🟦</span><h4>Gemini in Google Sheets</h4><p>The <b>Ask Gemini</b> side panel can suggest formulas and summarise data in the open sheet.</p><p class="tiny mt-s">Needs a Google Workspace or Google AI plan that includes Gemini.</p></div>
+      <div class="card top"><span class="ic-badge">💬</span><h4>A chat assistant</h4><p>Copilot, Gemini, ChatGPT and others in a browser. Describe your <b>columns</b>; don't paste real records.</p><p class="tiny mt-s">Works with any app, including LibreOffice Calc, which has no built-in AI.</p></div>
+    </div>
+    <div class="callout warn mt-l"><b>Office rule first:</b> use only AI tools your office allows, and follow your ICT focal person's guidance. Your office copy may not have these features turned on.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Prompts that work">
+    <div class="slide-head"><div><p class="kicker">Prompting</p><h2 class="h2">Name the columns, the rows and the app</h2></div></div>
+    <div class="grid g2">
+      <div class="card" style="border-left:calc(var(--u)*.45) solid var(--coral)"><h4 style="color:var(--coral)">✗ Vague</h4><p class="code" style="display:block;padding:calc(var(--u)*1)">Give me a formula for my inventory.</p><p class="mt-s">Which columns? Which rows? Excel or Sheets? The AI has to guess.</p></div>
+      <div class="card" style="border-left:calc(var(--u)*.45) solid var(--green)"><h4 style="color:var(--green)">✓ Specific</h4><p class="code" style="display:block;padding:calc(var(--u)*1);line-height:1.5">I use Excel. Row 1 has headers: A Item, B Unit, C Qty, D Unit Cost, E Total Cost. Data is in rows 2 to 9. Give me a formula for E2 that multiplies Qty by Unit Cost, and tell me how to copy it down.</p></div>
+    </div>
+    <div class="grid g4 mt-m">
+      <span class="chip">1 · Your app</span><span class="chip">2 · Column letters + names</span><span class="chip">3 · Which rows</span><span class="chip">4 · What you want, in plain words</span>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="1 · Suggest a formula">
+    <div class="split" style="grid-template-columns:1.25fr .75fr">
+      <div class="win"><div class="bar"><i></i><i></i><i></i><span>AI assistant · sample conversation</span></div>
+        <div class="body chat">
+          <div class="bub me">Same headers as before. I also want the grand total in E10, and how many items have a Total Cost above ₱1,000.</div>
+          <div class="who">AI</div>
+          <div class="bub ai">In <b>E2</b>: <code>=C2*D2</code>, then drag the fill handle down to E9.<br>In <b>E10</b>: <code>=SUM(E2:E9)</code><br>Items above ₱1,000: <code>=COUNTIF(E2:E9,"&gt;1000")</code></div>
+        </div>
+      </div>
+      <div>
+        <p class="kicker">Job 1 · suggest a formula</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">Paste it in, then check it</h2>
+        <ul class="ticks mt-m">
+          <li>E10 should show <b>₱22,039.00</b>.</li>
+          <li>The COUNTIF gives <b>5</b>. Count by eye: A4, long, folder, ink, envelope. ✓</li>
+          <li>New function? Ask the AI to explain each part before you trust it.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="2 · Explain a formula">
+    <div class="split" style="grid-template-columns:1.25fr .75fr">
+      <div class="win"><div class="bar"><i></i><i></i><i></i><span>AI assistant · sample conversation</span></div>
+        <div class="body chat">
+          <div class="bub me">A co-worker's file has <code>=SUMIF(B2:B9,"ream",E2:E9)</code>. Explain it in simple words.</div>
+          <div class="who">AI</div>
+          <div class="bub ai">It looks down the <b>Unit</b> column (B2:B9) for cells that say "ream". For each match, it adds the <b>Total Cost</b> from the same row (E2:E9). So it gives the total spent on items bought by the ream.</div>
+        </div>
+      </div>
+      <div>
+        <p class="kicker">Job 2 · explain a formula</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">Great for inherited files</h2>
+        <ul class="ticks mt-m">
+          <li>Check the claim: the ream rows are A4 (6,125.00) and long (7,950.00).</li>
+          <li>6,125 + 7,950 = <b>₱14,075.00</b>. Does the cell show the same? ✓</li>
+          <li>Ask "explain like I'm new" for any formula you didn't write.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="3 · Spot trends">
+    <div class="split" style="grid-template-columns:1.25fr .75fr">
+      <div class="win"><div class="bar"><i></i><i></i><i></i><span>AI assistant · sample conversation</span></div>
+        <div class="body chat">
+          <div class="bub me">Supplies spending: Jan ₱22,039.00, Feb ₱17,518.00, Mar ₱24,652.00. In January, A4 paper was ₱6,125, long paper ₱7,950. What stands out?</div>
+          <div class="who">AI</div>
+          <div class="bub ai">• Bond paper was <b>63.9%</b> of January spending.<br>• February fell <b>20.5%</b> from January.<br>• March rose <b>40.7%</b> from February: the highest month of the quarter.</div>
+        </div>
+      </div>
+      <div>
+        <p class="kicker">Job 3 · spot trends</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">Good questions, not final answers</h2>
+        <ul class="ticks mt-m">
+          <li>Recompute each figure with a formula, e.g. <b>=(B4-B3)/B3</b> for the March rise.</li>
+          <li>AI sees numbers, not reasons. <b>Why</b> did March rise? Ask the supply officer.</li>
+          <li>Share only totals, never records about people.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Three checks">
+    <div class="slide-head"><div><p class="kicker">Human verification</p><h2 class="h2">Three checks before you trust any AI answer</h2></div><span class="tag gold">Takes 2 minutes</span></div>
+    <div class="grid" style="grid-template-columns:1fr 1fr 1fr .9fr;align-items:stretch">
+      <div class="card top"><span class="ic-badge">🧮</span><h4>1 · Check 2 rows by hand</h4><p>Use a calculator on two rows. Row 2: 25 × 245 = 6,125 ✓ Row 9: 3 × 410 = 1,230 ✓</p></div>
+      <div class="card top"><span class="ic-badge">📏</span><h4>2 · Check the range</h4><p>Click the cell and read the formula bar. Does it cover <b>E2:E9</b>, all 8 items, and not the TOTAL row?</p></div>
+      <div class="card top"><span class="ic-badge">⚖️</span><h4>3 · Check against the total</h4><p>Parts should add up to the whole. Shares should add up to 100%. VAT total = grand total × 12%.</p></div>
+      <div class="card photo"><img src="images/m3/3-8-checking.jpg" alt="Person checking printed charts with a calculator" style="height:100%;min-height:calc(var(--u)*20)"></div>
+    </div>
+    <div class="callout mt-l"><b>Also ask yourself:</b> does the answer make sense? An average larger than the biggest item, or a share over 100%, is a red flag.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Spot the mistakes">
+    <div class="slide-head">
+      <div><p class="kicker">Activity · be the supervisor</p><h2 class="h2">This AI answer has 3 mistakes. Find them.</h2></div>
+      <button class="timer" data-min="3">3:00</button>
+    </div>
+    <div class="grid g2" style="grid-template-columns:1.1fr .9fr;align-items:start">
+      <div class="win"><div class="bar"><i></i><i></i><i></i><span>AI assistant · made-up example</span></div>
+        <div class="body chat">
+          <div class="bub ai">1. Grand total: <code>=SUM(E2:E8)</code><br>2. Average Total Cost: <code>=AVERAGE(E2:E9)</code> = ₱2,754.88<br>3. Your most expensive item is printer ink at ₱2,800.00.<br>4. Number of items: <code>=COUNTITEMS(A2:A9)</code></div>
+        </div>
+      </div>
+      <div>
+        <p class="small">Mark the wrong lines in the portal, and say why.</p>
+        <div class="row mt-m"><button class="reveal-btn" data-target="ans-spot">Show answers</button></div>
+        
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Invented functions">
+    <div class="split" style="grid-template-columns:1.1fr .9fr">
+      <div><div class="win xlwin">
+<div class="bar"><i></i><i></i><i></i><span>Inventory 2026.xlsx · Jan</span></div>
+<div class="fbar"><span class="nb">E10</span><span class="fx">fx</span><span class="f">=SUMVALUES(E2:E9)</span></div>
+<table class="xl" style="font-size:calc(var(--u)*1.1)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+<tr><th>1</th><td class="h">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h">Total Cost (₱)</td></tr>
+<tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="n">6,125.00</td></tr>
+<tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="n">7,950.00</td></tr>
+<tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="n">960.00</td></tr>
+<tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="n">2,080.00</td></tr>
+<tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="n">510.00</td></tr>
+<tr><th>7</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="n">384.00</td></tr>
+<tr><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="n">2,800.00</td></tr>
+<tr><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="n">1,230.00</td></tr>
+<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="b s">#NAME?</td></tr>
+</table>
+</div></div>
+      <div>
+        <p class="kicker">Hallucinated functions</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">#NAME? means "I don't know that word."</h2>
+        <ul class="ticks mt-m">
+          <li>AI sometimes invents a name that <b>sounds</b> real, like <b>SUMVALUES</b>.</li>
+          <li>Some real functions exist only in <b>some</b> apps or versions. XLOOKUP, for example, isn't in Excel 2016.</li>
+          <li>Fix: tell the AI your exact app and version, and ask it to use only built-in functions.</li>
+        </ul>
+        <div class="callout tip mt-s"><b>Check fast:</b> type <b>=SUM</b> and look at the function list that pops up. If the name isn't there, it doesn't exist.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Try it: ask and verify">
+    <div class="slide-head">
+      <div><p class="kicker">Try it now · your AI tool or follow the demo</p><h2 class="h2">Ask, paste, then run the three checks</h2></div>
+      <button class="timer" data-min="6">6:00</button>
+    </div>
+    <div class="grid g2" style="grid-template-columns:1.2fr .8fr;align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">Steps</span><span class="tiny">Headers only. No real records.</span></div>
+        <ol>
+          <li>Open an <b>office-approved</b> AI tool. Describe your headers and rows (slide 6).</li>
+          <li>Ask for the <b>AVERAGE</b> of Total Cost, and the formula to count items above ₱1,000.</li>
+          <li>Paste both into empty cells on your Jan sheet.</li>
+          <li>Run the 3 checks. In the portal, write "verified" or the mistake you caught.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="callout"><b>No AI tool at your desk?</b> Pair up with the Resource Person's screen: suggest prompts in the chat and we'll test them together.</div>
+        <div class="row mt-m"><button class="reveal-btn" data-target="ans-try">Expected results</button></div>
+        
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Privacy first">
+    <div class="split rev">
+      <div class="media"><img src="images/m3/3-8-records.jpg" alt="Printed forms and documents on a desk beside a calculator"></div>
+      <div>
+        <p class="kicker">Privacy · non-negotiable</p>
+        <h2 class="h2">Never upload taxpayer data or confidential records to public AI tools.</h2>
+        <div class="grid g2 mt-m">
+          <div><h4 style="color:var(--green)">OK to share</h4><ul class="ticks"><li>Column headers</li><li>Formulas</li><li>Made-up sample rows</li><li>Overall totals that aren't confidential</li></ul></div>
+          <div><h4 style="color:var(--coral)">Never share</h4><ul class="ticks x"><li>Names, TINs, addresses</li><li>Taxpayer returns or payments</li><li>Personnel records</li><li>Screenshots of any of these</li></ul></div>
+        </div>
+        <p class="tiny mt-s">Data Privacy Act of 2012 (RA 10173) · National Privacy Commission (NPC)</p>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="At the office and at home">
+    <div class="slide-head"><div><p class="kicker">See it everywhere</p><h2 class="h2">Helpful AI uses, with the right guardrails</h2></div></div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li>"Write a formula that flags rows where Qty is at or below Reorder Level." Headers only.</li>
+          <li>"Explain this formula from last year's attendance file."</li>
+          <li>"Which month's supplies spending stands out?" Totals only, then verify.</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li>"Which budget lines went over? Budget vs Actual in columns B and C." Then check by hand.</li>
+          <li>"What day sells best?" for the sari-sari store's weekly sales.</li>
+          <li>Never paste a GCash or bank statement, card numbers or account details.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 5 minutes</p>
+        <h2 class="h2">AI drafts. You verify. You sign.</h2>
+        <p class="lede mt-m">Watch an AI assistant <b>suggest</b>, <b>explain</b> and <b>spot trends</b> in our inventory, and see the three quick checks that catch its mistakes before they reach a report.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> the three checks. You'll run them on an AI formula in Lab 3 and write down what you checked.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/3.8/poster.jpg" alt="Video: AI-Assisted Data Analysis"><div class="play"></div><span class="vlen">5:13</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/3.8/index.html" title="Video: AI-Assisted Data Analysis" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    
+  </section>
+  
+
+  
+  <section class="slide" data-title="Quick check">
+    <div class="slide-head"><div><p class="kicker">Quick check · click an answer</p><h2 class="h2">AI suggests =SUMVALUES(E2:E9). The cell shows #NAME?. What happened?</h2></div></div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>The range E2:E9 is wrong</div></div>
+      <div class="opt"><span class="l">B</span><div>The function doesn't exist; the AI invented it</div></div>
+      <div class="opt"><span class="l">C</span><div>The numbers are stored as text</div></div>
+      <div class="opt"><span class="l">D</span><div>The file is corrupted</div></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Lab 3">
+    <p class="kicker">Module 3 laboratory · 4 hours · 30% of the course grade</p>
+    <h2 class="h1" style="color:#fff">Lab 3 · Spreadsheet Tracking and Verification</h2>
+    <p class="lede mt-l">From raw data to a verified, charted tracker. Everything from topics 3.1 to 3.8 comes together here.</p>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Lab 3 brief">
+    <div class="slide-head"><div><p class="kicker">Lab 3 · objectives and scenarios</p><h2 class="h2">Build a working tracker, then prove it's right</h2></div><span class="tag gold">4 hours</span></div>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <h4>Objectives</h4>
+        <ul class="ticks">
+          <li><b>Input, structure and format</b> raw tabular data.</li>
+          <li><b>Apply basic arithmetic formulas</b> and verify AI-suggested logic.</li>
+          <li><b>Calculate totals</b> with core functions: SUM and AVERAGE.</li>
+          <li><b>Translate the data</b> into a visual chart.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card top"><h4>Default scenario · office supplies inventory</h4><p>Item, Unit, Qty, Unit Cost, Total Cost, Reorder Level. Use the 8 items from this module.</p></div>
+        <div class="grid g2 mt-m">
+          <div class="ex office"><div class="ex-label">🏪 Store owner</div><p>A week of sales: Day, Item, Qty Sold, Price, Sales = Qty × Price.</p></div>
+          <div class="ex home"><div class="ex-label">🏠 Student or family</div><p>A monthly budget: Category, Budget, Actual, Difference = Actual − Budget.</p></div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Lab 3 step plan">
+    <div class="slide-head"><div><p class="kicker">Lab 3 · step plan</p><h2 class="h2">From raw data to chart in seven steps</h2></div></div>
+    <div class="grid g2" style="align-items:start">
+      <ol class="steps">
+        <li><b>Enter or clean the raw data.</b> One header row, no blank rows, numbers typed as numbers (no "₱" or spaces typed in).</li>
+        <li><b>Format.</b> Bold headers, Currency (₱) on money columns, a Date column if you have one.</li>
+        <li><b>Formulas.</b> Total = Qty × Unit Cost (<b>=C2*D2</b>), filled down.</li>
+        <li><b>Functions.</b> <b>=SUM()</b> for the grand total, <b>=AVERAGE()</b> for the average.</li>
+      </ol>
+      <ol class="steps" start="5" style="counter-reset:st 4">
+        <li><b>Ask AI for one formula</b> (headers only), paste it, and note what you checked.</li>
+        <li><b>Verify:</b> 2 rows by hand, the range, and the total.</li>
+        <li><b>Chart:</b> a titled Pie, Bar or Line chart from the right range. Save as <b>Lab3_Surname</b>.</li>
+      </ol>
+    </div>
+    <div class="callout tip mt-m"><b>Tip:</b> add a small <b>Notes</b> sheet: "AI suggested =AVERAGE(E2:E9). Checked rows 2 and 9 by hand; totals match." Two lines are enough.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Lab 3 checklist and rubric">
+    <div class="slide-head"><div><p class="kicker">Lab 3 · graded output</p><h2 class="h2">Checklist and scoring · 30% of the course</h2></div><span class="tag">Spreadsheet Data Output</span></div>
+    <table class="tbl compact">
+      <tr><th>What the grader looks for</th><th>Full marks when…</th><th class="c">Points</th></tr>
+      <tr><td><b>Clearly labelled column headers</b></td><td>Every column has a clear header in row 1; data is tidy, no blank rows</td><td class="c"><b>4</b></td></tr>
+      <tr><td><b>Data type formatting</b></td><td>At least one column is properly Currency or Date formatted</td><td class="c"><b>4</b></td></tr>
+      <tr><td><b>Working arithmetic formulas</b></td><td>e.g. Qty × Unit Cost; visible in the formula bar, no hard-typed results</td><td class="c"><b>8</b></td></tr>
+      <tr><td><b>=SUM() and =AVERAGE()</b></td><td>Both used on the correct ranges, results accurate</td><td class="c"><b>6</b></td></tr>
+      <tr><td><b>Chart (Pie, Bar or Line)</b></td><td>Fits the data, reflects the selected range (no TOTAL row), has a real title</td><td class="c"><b>6</b></td></tr>
+      <tr><td><b>Verification of AI-suggested logic</b></td><td>A short note of what was checked and that it matched</td><td class="c"><b>2</b></td></tr>
+      <tr><td colspan="2" style="text-align:right"><b>Total</b></td><td class="c"><b>30</b></td></tr>
+    </table>
+    <p class="tiny mt-s">Checklist items from the course's Lab 3 graded output. Point split proposed by the Resource Person.</p>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 3.8 · Module 3 complete</p>
+    <h2 class="h2">AI drafts. You verify. You sign.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Prompt well</h4><p>App, column letters and names, rows, plain request. Headers only.</p></div>
+      <div class="card dark"><h4>Verify always</h4><p>2 rows by hand, the range, the total. #NAME? means an invented function.</p></div>
+      <div class="card dark"><h4>Protect data</h4><p>No taxpayer or personal records in public AI tools. RA 10173.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">Lab 3</b>, then <b style="color:var(--gold)">Module 4 · 4.1 Presentation Planning and Design Principles</b>, where your Lab 3 chart goes into a slide deck.</p>
+    
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

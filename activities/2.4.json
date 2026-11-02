@@ -32,7 +32,12 @@
           "type": "mcq",
           "id": "tab",
           "prompt": "Which Word tab holds all the mail merge buttons?",
-          "options": ["Insert", "Mailings", "Review", "Layout"]
+          "options": [
+            "Insert",
+            "Mailings",
+            "Review",
+            "Layout"
+          ]
         },
         {
           "type": "mcq",
@@ -47,7 +52,7 @@
         {
           "type": "upload",
           "id": "shot",
-          "prompt": "Optional: a screenshot of one merged letter",
+          "prompt": "A screenshot of one merged letter",
           "optional": true
         }
       ],

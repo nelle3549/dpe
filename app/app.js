@@ -37,8 +37,9 @@
   function later(ms, fn) { timers.push(setTimeout(fn, ms)); }
   function clearTimers() { timers.forEach(function (t) { clearInterval(t); clearTimeout(t); }); timers = []; }
   function toast(msg) {
-    var t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
-    document.body.appendChild(t); setTimeout(function () { t.remove(); }, 2200);
+    var t = document.createElement('div'); t.className = 'toast' + (document.querySelector('.savebar') ? ' up' : ''); t.textContent = msg;
+    document.body.appendChild(t); setTimeout(function () { t.remove(); }, 2600);
+    var sr = document.getElementById('sr'); if (sr) { sr.textContent = ''; setTimeout(function () { sr.textContent = msg; }, 50); }   // screen readers
   }
   function copy(text) {
     var done = function () { toast('Link copied'); };
@@ -62,12 +63,57 @@
       setTimeout(function () { btn.classList.remove('armed'); btn.textContent = old; }, 4000);
     });
   }
+  // pop-ups: focus moves in, Tab stays inside, Esc closes; focus returns on close
+  function modalKeys(root, onEsc) {
+    var prev = document.activeElement;
+    function f() { return root.querySelectorAll('button:not([disabled]),a[href],input,select,textarea'); }
+    function key(e) {
+      if (!root.isConnected) return off();
+      if (e.key === 'Escape') { e.preventDefault(); off(); onEsc(); return; }
+      if (e.key !== 'Tab') return;
+      var all = f(); if (!all.length) return;
+      var first = all[0], last = all[all.length - 1];
+      if (!root.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+      else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+    function off() { document.removeEventListener('keydown', key); if (prev && prev.isConnected && prev.focus) prev.focus(); }
+    document.addEventListener('keydown', key);
+    var all = f(); if (all.length) all[all.length - 1].focus();
+    return off;
+  }
+  // inline field errors: mark the field, put the message under it, focus the first one
+  function fieldErrors(list) {
+    document.querySelectorAll('.field.bad').forEach(function (x) { x.classList.remove('bad'); });
+    document.querySelectorAll('.ferr').forEach(function (x) { x.remove(); });
+    document.querySelectorAll('[aria-invalid]').forEach(function (x) { x.removeAttribute('aria-invalid'); });
+    list.forEach(function (e, k) {
+      var inp = document.getElementById(e.id), fld = inp.closest('.field');
+      fld.classList.add('bad'); inp.setAttribute('aria-invalid', 'true'); inp.setAttribute('aria-describedby', e.id + '-err');
+      fld.insertAdjacentHTML('beforeend', '<div class="ferr" id="' + e.id + '-err">' + (e.html || esc(e.msg)) + '</div>');
+      if (!k) inp.focus();
+    });
+    return list.length;
+  }
+  // Enter in a form field presses the card's main button; fixing a field clears its error
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' || e.isComposing || !e.target.matches('.card[data-form] input')) return;
+    var b = e.target.closest('.card').querySelector('button.btn.primary');
+    if (b && !b.disabled) { e.preventDefault(); b.click(); }
+  });
+  document.addEventListener('input', function (e) {
+    var fld = e.target.closest && e.target.closest('.field.bad');
+    if (fld) { fld.classList.remove('bad'); var x = fld.querySelector('.ferr'); if (x) x.remove(); e.target.removeAttribute('aria-invalid'); }
+    var card = e.target.closest && e.target.closest('.card[data-form]'), err = card && card.querySelector('.err');
+    if (err) err.textContent = '';
+  });
   function when(ts) { return ts ? new Date(ts).toLocaleString('en-PH', { timeZone: 'Asia/Manila', dateStyle: 'medium', timeStyle: 'short' }) : ''; }
   function clock(sec) { sec = Math.max(0, Math.round(sec)); return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0'); }
+  // "2", "₱1,250.50", "2 folders" → a number; "two", "-2", "1e1" stay text (and count as not answered)
   function num(v) {
     if (v == null || v === '') return null;
-    var s = String(v).replace(/[₱,\s]/g, '').replace(/^php/i, '');
-    var n = Number(s); return isFinite(n) && s !== '' ? n : String(v);
+    var s = String(v).trim().replace(/^(php|₱)\s*/i, '').replace(/\s+[a-z][a-z\s\-]*$/i, '').replace(/[,\s]/g, '');
+    return /^\d+(\.\d+)?$/.test(s) ? Number(s) : String(v);
   }
   function pct(a, b) { return b ? Math.round(100 * a / b) : 0; }
   function fullName(p) { return (p.first_name + ' ' + p.last_name).trim(); }
@@ -78,7 +124,7 @@
   }
   function topbar() {
     var p = S.profile;
-    return '<header class="top"><div class="wrap"><a class="brand" href="#/"><span>DPE</span> · Digital Productivity Essentials</a>' +
+    return '<header class="top"><div class="wrap"><a class="brand" href="#/"><span>DPE</span><span class="full"> · Digital Productivity Essentials</span></a>' +
       (p ? '<span class="who">' + esc(p.first_name) + (isAdmin() ? ' · admin' : '') + '</span>' +
         (isAdmin() ? '<a class="btn-top" href="#/people">People</a>' : '') +
         '<button id="signout">Sign out</button>' : '<a class="btn-top" href="#/login">Sign in</a>') +
@@ -86,7 +132,7 @@
   }
   function bindTop() {
     var so = document.getElementById('signout');
-    if (so) so.onclick = function () { sb.auth.signOut().then(function () { S.profile = null; S.session = null; location.hash = '#/'; route(); }); };
+    if (so) so.onclick = function () { clearTimers(); sb.auth.signOut().then(function () { S.profile = null; S.session = null; location.hash = '#/'; route(); }); };
   }
   function render(html) { $app.innerHTML = html; bindTop(); window.scrollTo(0, 0); }
 
@@ -120,6 +166,7 @@
     var parts = hash.split('/'), view = parts[0], arg = decodeURIComponent(parts.slice(1).join('/'));
     if (view === 'reset') return vReset();
     if (!S.session) {
+      if (/^(a|deck|video|topic)$/.test(view)) sessionStorage.setItem('dpeGo', location.hash);   // come back here after signing in
       if (view === 'login') return vLogin();
       if (view === 'forgot') return vForgot();
       if (view === 'register') return vRegister();
@@ -132,7 +179,8 @@
     await loadState();
     if (view === 'a' && ACT[arg]) return vActivity(arg);
     if (view === 'topic' && TOPIC[arg]) return vTopic(arg);
-    if ((view === 'deck' || view === 'video') && TOPIC[arg]) return vViewer(view, arg);
+    var sub = arg.split('/');
+    if ((view === 'deck' || view === 'video') && TOPIC[sub[0]]) return vViewer(view, sub[0], +sub[1] || 0);
     if (isAdmin()) {
       if (view === 'present' && TOPIC[arg]) return vPresent(arg);
       if (view === 'results' && TOPIC[arg]) return vResults(arg);
@@ -146,50 +194,67 @@
     var code = sessionStorage.getItem('dpeJoin') || '';
     var cname = code ? (await sb.rpc('check_join_code', { p_code: code })).data : null;
     render(topbar() +
-      '<section class="hero"><div class="wrap"><p class="kicker">DICT · ILCDB training</p>' +
+      '<section class="hero"><div class="narrow"><p class="kicker">DICT · ILCDB training for BIR Misamis Oriental</p>' +
       '<h1>Digital Productivity <span>Essentials</span></h1>' +
       '<p>Welcome! This is your course home for the next two days: slides, videos and the activities you\'ll do with us live.</p>' +
       logos() + '</div></section>' +
-      '<main class="narrow" style="margin-top:-18px;padding-bottom:40px"><div class="card stack">' +
+      '<main class="narrow" style="margin-top:-18px;padding-bottom:40px"><div class="card stack" data-form>' +
       (cname ? '<h2>Join ' + esc(cname) + '</h2><p class="muted">Class code <b>' + esc(code.toUpperCase()) + '</b>. It takes about a minute.</p>' +
-        '<button class="btn primary block" id="start">Get started</button>'
+        '<div class="err" id="err"></div><button class="btn primary block" id="start">Get started</button>'
         : '<h2>Join the class</h2><p class="muted">Scan the QR code on the facilitator\'s screen, or type the class code.</p>' +
         '<div class="field"><label class="f" for="code">Class code</label><input id="code" autocomplete="off" autocapitalize="characters" value="' + esc(code) + '"></div>' +
         '<div class="err" id="err"></div><button class="btn primary block" id="start">Continue</button>') +
-      '<p class="small muted" style="text-align:center">Already registered? <a href="#/login">Sign in</a></p></div></main>');
+      '<p class="small muted center">Already registered? <a href="#/login">Sign in</a></p></div></main>');
     document.getElementById('start').onclick = async function () {
       var inp = document.getElementById('code');
       if (inp) {
         var c = inp.value.trim();
-        var r = await sb.rpc('check_join_code', { p_code: c });
-        if (!r.data) { document.getElementById('err').textContent = 'That code doesn\'t match a class. Check the facilitator\'s screen.'; return; }
+        if (!c) { fieldErrors([{ id: 'code', msg: 'Please type the class code from the facilitator\'s screen.' }]); return; }
+        // the letter O and zero look alike: try the code as typed, then with them swapped
+        var tries = [c, c.replace(/0/g, 'O'), c.replace(/[oO]/g, '0')].filter(function (x, k, all) { return all.indexOf(x) === k; }), r;
+        for (var k = 0; k < tries.length; k++) { r = await sb.rpc('check_join_code', { p_code: tries[k] }); if (r.data) { c = tries[k]; break; } }
+        if (!r.data) { fieldErrors([{ id: 'code', msg: 'That code doesn\'t match a class. Check the facilitator\'s screen.' }]); return; }
         sessionStorage.setItem('dpeJoin', c);
       }
-      privacy(function () { sessionStorage.setItem('dpePrivacy', C.privacyVersion); location.hash = '#/register'; });
+      privacy(function () { sessionStorage.setItem('dpePrivacy', C.privacyVersion); location.hash = '#/register'; }, function () {
+        var e = document.getElementById('err') || document.querySelector('[data-form] .err');
+        if (e) e.textContent = 'You need to agree to the privacy terms before you can register. Questions? Ask the facilitator.';
+      });
     };
   }
 
-  function privacy(onAgree) {
+  function privacy(onAgree, onDecline) {
     $modal.innerHTML = '<div class="modal-back"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="pv-t">' +
       '<h2 id="pv-t">Data privacy agreement</h2>' +
-      '<p>To take part in this course, we will collect your <b>name, email, organization and position</b>, and the <b>answers and files</b> you submit in the activities.</p>' +
-      '<ul><li>Your data and personal details will be <b>kept private</b>. They are used only to run this course and to prepare your certificate.</li>' +
-      '<li>Your data will be <b>stored for at least 1 year</b> from the day you register.</li>' +
-      '<li>We handle it in line with the Data Privacy Act of 2012 (RA 10173).</li></ul>' +
-      '<div class="row" style="justify-content:flex-end;margin-top:18px"><button class="btn" id="pv-no">Not now</button><button class="btn primary" id="pv-yes">I agree</button></div>' +
+      '<p>To take part in this course, we collect your <b>name, email, organization and position</b>, and the <b>answers and files</b> you submit in the activities.</p>' +
+      '<ul><li><b>Why:</b> to run the course, follow your progress and prepare your certificate. Only the facilitator sees your answers and files.</li>' +
+      '<li><b>Who handles it:</b> the course facilitator, for DICT ILCDB, which runs this training.</li>' +
+      '<li><b>Shared with:</b> DICT ILCDB gets your name, organization and completion for its records and certificates. The data is stored with Supabase, a secure cloud service (servers in Singapore). It is never sold or shared with anyone else.</li>' +
+      '<li><b>How long:</b> kept until the training ends and for <b>up to 1 year after</b>, then deleted.</li>' +
+      '<li><b>Your rights:</b> under the Data Privacy Act of 2012 (RA 10173) you can ask to see, correct or delete your data, and you can complain to the National Privacy Commission.</li>' +
+      '<li><b>Contact:</b> ' + esc(C.privacyContact) + '</li></ul>' +
+      '<div class="row mt-3" style="justify-content:flex-end"><button class="btn" id="pv-no">Not now</button><button class="btn primary" id="pv-yes">I agree</button></div>' +
       '</div></div>';
-    document.getElementById('pv-no').onclick = function () { $modal.innerHTML = ''; };
-    document.getElementById('pv-yes').onclick = function () { $modal.innerHTML = ''; onAgree(); };
+    var dlg = $modal.querySelector('.modal');
+    var off = modalKeys(dlg, function () { $modal.innerHTML = ''; if (onDecline) onDecline(); });
+    dlg.setAttribute('tabindex', '-1'); dlg.focus();   // start at the top of the text, not on "I agree"
+    document.getElementById('pv-no').onclick = function () { off(); $modal.innerHTML = ''; if (onDecline) onDecline(); };
+    document.getElementById('pv-yes').onclick = function () { off(); $modal.innerHTML = ''; onAgree(); };
   }
 
   function pwField(id, label, hint) {
     return '<div class="field"><label class="f" for="' + id + '">' + label + '</label><div class="pw"><input id="' + id + '" type="password" autocomplete="' +
-      (id === 'pw' || id === 'np' ? 'new-password' : 'current-password') + '"><button type="button" data-show="' + id + '">Show</button></div>' +
-      (hint ? '<div class="hint">' + hint + '</div>' : '') + '</div>';
+      (id === 'pw' || id === 'np' ? 'new-password' : 'current-password') + '"' + (hint ? ' aria-describedby="' + id + '-hint"' : '') + '><button type="button" data-show="' + id + '" aria-label="Show password">Show</button></div>' +
+      (hint ? '<div class="hint" id="' + id + '-hint">' + hint + '</div>' : '') + '</div>';
+  }
+  // too easy to guess: under 8 characters, one repeated character, or only digits/letters in a row
+  function weakPw(p) {
+    return p.length < 8 ? 'Your password needs at least 8 characters.'
+      : /^(.)\1+$/.test(p) || /^(0?123456789?0?|password\d*|qwerty\w*|abcdefgh\w*)$/i.test(p) ? 'That password is too easy to guess. Try a few words with a number.' : '';
   }
   function bindShow() {
     document.querySelectorAll('[data-show]').forEach(function (b) {
-      b.onclick = function () { var i = document.getElementById(b.dataset.show); i.type = i.type === 'password' ? 'text' : 'password'; b.textContent = i.type === 'password' ? 'Show' : 'Hide'; };
+      b.onclick = function () { var i = document.getElementById(b.dataset.show); i.type = i.type === 'password' ? 'text' : 'password'; b.textContent = i.type === 'password' ? 'Show' : 'Hide'; b.setAttribute('aria-label', b.textContent + ' password'); };
     });
   }
 
@@ -197,82 +262,98 @@
     var code = sessionStorage.getItem('dpeJoin');
     if (!code) { location.hash = '#/'; return; }
     if (sessionStorage.getItem('dpePrivacy') !== C.privacyVersion) { privacy(function () { sessionStorage.setItem('dpePrivacy', C.privacyVersion); vRegister(); }); return vLanding(); }
-    render(topbar() + '<main class="narrow" style="padding:24px 16px 48px"><div class="card">' +
+    render(topbar() + '<main class="narrow page"><div class="card" data-form>' +
       '<h2>Register</h2><p class="muted small">Class code ' + esc(code.toUpperCase()) + '</p>' +
       '<div class="note blue">Type your name <b>exactly as it should appear on your certificate</b>.</div>' +
-      '<div class="cols2"><div class="field"><label class="f" for="fn">First name</label><input id="fn" autocomplete="given-name"></div>' +
+      '<div class="cols2"><div class="field"><label class="f" for="fn">First name</label><input id="fn" autocomplete="given-name" aria-describedby="fn-hint"><div class="hint" id="fn-hint">Add your middle initial if you use one, e.g. Ana M.</div></div>' +
       '<div class="field"><label class="f" for="ln">Last name</label><input id="ln" autocomplete="family-name"></div></div>' +
-      '<div class="hint" id="cert">Certificate name: <b>…</b></div>' +
+      '<div class="hint" id="cert">Certificate name: <b>…</b></div><div class="hint">Check the spelling: only the facilitator can change it later.</div>' +
       '<div class="field"><label class="f" for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email"><div class="hint">Used to recover your password, so use one you can open.</div></div>' +
       '<div class="field"><label class="f" for="em2">Type your email again</label><input id="em2" type="email" autocomplete="off" inputmode="email"></div>' +
       '<div class="field"><label class="f" for="org">Organization</label><input id="org" value="' + esc(C.defaultOrganization) + '"></div>' +
       '<div class="field"><label class="f" for="pos">Position</label><input id="pos" autocomplete="organization-title"></div>' +
-      pwField('pw', 'Create a password', 'At least 8 characters.') +
+      pwField('pw', 'Create a password', 'At least 8 characters. A few words with a number is easy to remember.') +
       '<div class="err" id="err"></div>' +
-      '<button class="btn primary block" id="go" style="margin-top:18px">Create my account</button>' +
-      '<p class="small muted" style="text-align:center">Already registered? <a href="#/login">Sign in</a></p></div></main>');
+      '<button class="btn primary block mt-3" id="go">Create my account</button>' +
+      '<p class="small muted center">Already registered? <a href="#/login">Sign in</a></p></div></main>');
     bindShow();
     var $ = function (id) { return document.getElementById(id); };
     function cert() { $('cert').innerHTML = 'Certificate name: <b>' + (esc(($('fn').value + ' ' + $('ln').value).trim()) || '…') + '</b>'; }
     $('fn').oninput = cert; $('ln').oninput = cert;
+    // all-lowercase or ALL-CAPS names become Title Case (mixed case is left as typed)
+    ['fn', 'ln'].forEach(function (id) {
+      $(id).onblur = function () {
+        var x = $(id).value.trim();
+        if (x && (x === x.toLowerCase() || x === x.toUpperCase())) { $(id).value = x.toLowerCase().replace(/(^|[\s\-'.])(\S)/g, function (m, a, c) { return a + c.toUpperCase(); }); cert(); }
+      };
+    });
     $('go').onclick = async function () {
       var v = { fn: $('fn').value.trim(), ln: $('ln').value.trim(), em: $('em').value.trim().toLowerCase(), em2: $('em2').value.trim().toLowerCase(),
         org: $('org').value.trim(), pos: $('pos').value.trim(), pw: $('pw').value };
-      var e = !v.fn || !v.ln ? 'Please type your first and last name.' :
-        !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.em) ? 'Please type a valid email.' :
-        v.em !== v.em2 ? 'The two emails don\'t match.' :
-        !v.org ? 'Please type your organization.' : !v.pos ? 'Please type your position.' :
-        v.pw.length < 8 ? 'Your password needs at least 8 characters.' : '';
-      $('err').textContent = e; if (e) return;
+      var bad = [];
+      if (!v.fn) bad.push({ id: 'fn', msg: 'Please type your first name.' });
+      if (!v.ln) bad.push({ id: 'ln', msg: 'Please type your last name.' });
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.em)) bad.push({ id: 'em', msg: 'Please type a valid email.' });
+      else if (v.em !== v.em2) bad.push({ id: 'em2', msg: 'The two emails don\'t match.' });
+      if (!v.org) bad.push({ id: 'org', msg: 'Please type your organization.' });
+      if (!v.pos) bad.push({ id: 'pos', msg: 'Please type your position.' });
+      if (weakPw(v.pw)) bad.push({ id: 'pw', msg: weakPw(v.pw) });
+      $('err').textContent = ''; if (fieldErrors(bad)) return;
       this.disabled = true; this.textContent = 'Creating your account…';
       var r = await sb.auth.signUp({ email: v.em, password: v.pw, options: { emailRedirectTo: BASE, data: {
         first_name: v.fn, last_name: v.ln, organization: v.org, position: v.pos, join_code: code, privacy_version: C.privacyVersion } } });
       if (r.error) {
         this.disabled = false; this.textContent = 'Create my account';
-        $('err').textContent = /already registered/i.test(r.error.message) ? 'This email already has an account. Sign in instead.' :
-          /database error/i.test(r.error.message) ? 'We couldn\'t register you with this class code. Check the code and try again.' : errMsg(r.error);
+        if (/already registered/i.test(r.error.message)) { fieldErrors([{ id: 'em', html: 'This email already has an account. <a href="#/login">Sign in instead</a>.' }]); return; }
+        $('err').textContent = /database error/i.test(r.error.message) ? 'We couldn\'t register you with this class code. Check the code and try again.' : errMsg(r.error);
         return;
       }
-      if (!r.data.session) { render(topbar() + '<main class="narrow" style="padding:32px 16px"><div class="card"><h2>Check your email</h2><p>Open the link we sent to <b>' + esc(v.em) + '</b>, then sign in.</p></div></main>'); return; }
+      if (!r.data.session) { render(topbar() + '<main class="narrow page"><div class="card"><h2>Check your email</h2><p>Open the link we sent to <b>' + esc(v.em) + '</b>, then sign in.</p></div></main>'); return; }
       S.session = r.data.session; sessionStorage.removeItem('dpeJoin');
       toast('Welcome, ' + v.fn + '!'); location.hash = sessionStorage.getItem('dpeGo') || '#/'; route();
     };
   }
 
   function vLogin() {
-    render(topbar() + '<main class="narrow" style="padding:24px 16px 48px"><div class="card"><h2>Sign in</h2>' +
+    render(topbar() + '<main class="narrow page"><div class="card" data-form><h2>Sign in</h2>' +
       '<div class="field"><label class="f" for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email"></div>' +
       pwField('pwl', 'Password') + '<div class="err" id="err"></div>' +
-      '<button class="btn primary block" id="go" style="margin-top:18px">Sign in</button>' +
-      '<p class="small" style="text-align:center"><a href="#/forgot">Forgot your password?</a> · <a href="#/">New here? Join the class</a></p></div></main>');
+      '<button class="btn primary block mt-3" id="go">Sign in</button>' +
+      '<p class="small center"><a href="#/forgot">Forgot your password?</a> · <a href="#/">New here? Join the class</a></p></div></main>');
     bindShow();
     document.getElementById('go').onclick = async function () {
-      var r = await sb.auth.signInWithPassword({ email: document.getElementById('em').value.trim(), password: document.getElementById('pwl').value });
+      var em = document.getElementById('em').value.trim(), pw = document.getElementById('pwl').value, bad = [];
+      if (!em) bad.push({ id: 'em', msg: 'Please type your email.' });
+      if (!pw) bad.push({ id: 'pwl', msg: 'Please type your password.' });
+      if (fieldErrors(bad)) return;
+      var r = await sb.auth.signInWithPassword({ email: em, password: pw });
       if (r.error) { document.getElementById('err').textContent = /invalid/i.test(r.error.message) ? 'Wrong email or password.' : errMsg(r.error); return; }
       S.session = r.data.session; location.hash = sessionStorage.getItem('dpeGo') || '#/'; route();
     };
   }
 
   function vForgot() {
-    render(topbar() + '<main class="narrow" style="padding:24px 16px 48px"><div class="card"><h2>Reset your password</h2>' +
+    render(topbar() + '<main class="narrow page"><div class="card" data-form><h2>Reset your password</h2>' +
       '<p class="muted">We\'ll email you a link to set a new password.</p>' +
       '<div class="field"><label class="f" for="em">Email</label><input id="em" type="email" inputmode="email"></div><div class="err" id="err"></div>' +
-      '<button class="btn primary block" id="go" style="margin-top:18px">Send the link</button><p class="small" style="text-align:center"><a href="#/login">Back to sign in</a></p></div></main>');
+      '<button class="btn primary block mt-3" id="go">Send the link</button><p class="small center"><a href="#/login">Back to sign in</a></p></div></main>');
     document.getElementById('go').onclick = async function () {
-      var r = await sb.auth.resetPasswordForEmail(document.getElementById('em').value.trim(), { redirectTo: BASE });
+      var em = document.getElementById('em').value.trim();
+      if (fieldErrors(em ? [] : [{ id: 'em', msg: 'Please type the email you registered with.' }])) return;
+      var r = await sb.auth.resetPasswordForEmail(em, { redirectTo: BASE });
       if (r.error) { document.getElementById('err').textContent = errMsg(r.error); return; }
       this.disabled = true; this.textContent = 'Sent. Check your email (and spam folder).';
     };
   }
 
   function vReset() {
-    render(topbar() + '<main class="narrow" style="padding:24px 16px 48px"><div class="card"><h2>Set a new password</h2>' +
+    render(topbar() + '<main class="narrow page"><div class="card" data-form><h2>Set a new password</h2>' +
       pwField('np', 'New password', 'At least 8 characters.') + '<div class="err" id="err"></div>' +
-      '<button class="btn primary block" id="go" style="margin-top:18px">Save password</button></div></main>');
+      '<button class="btn primary block mt-3" id="go">Save password</button></div></main>');
     bindShow();
     document.getElementById('go').onclick = async function () {
       var p = document.getElementById('np').value;
-      if (p.length < 8) { document.getElementById('err').textContent = 'At least 8 characters, please.'; return; }
+      if (weakPw(p)) { document.getElementById('err').textContent = weakPw(p); return; }
       var r = await sb.auth.updateUser({ password: p });
       if (r.error) { document.getElementById('err').textContent = errMsg(r.error) + ' Open the link from your email again.'; return; }
       toast('Password saved'); location.hash = '#/'; route();
@@ -280,62 +361,110 @@
   }
 
   function vNoProfile() {
-    render(topbar() + '<main class="narrow" style="padding:32px 16px"><div class="card"><h2>Almost there</h2><p>Your account has no class yet. Scan the class QR code again, or ask the facilitator.</p></div></main>');
+    render(topbar() + '<main class="narrow page"><div class="card"><h2>Almost there</h2><p>Your account has no class yet. Scan the class QR code again, or ask the facilitator.</p></div></main>');
   }
 
   // ---------- participant home
   function actLink(a) {
     var mine = S.mine[a.id], st = S.acts[a.id];
+    var pc = mine && mine.max_score ? Math.round(mine.score / mine.max_score * 100) : null;
     var tag = mine && mine.status === 'submitted'
-      ? '<span class="tag done">✓ ' + (mine.max_score ? Math.round(mine.score * 10) / 10 + '/' + mine.max_score : 'Done') + '</span>'
-      : st && st.status === 'live' ? '<span class="tag live">● Live</span>' : '';
-    return '<a href="#/a/' + a.id + '"><span>' + esc(a.title) + '</span>' + tag + '</a>';
+      ? (pc == null ? '<span class="tag done">✓ Done</span>' : '<span class="tag ' + (pc >= 75 ? 'done' : 'sub') + '">Done · ' + pc + '%</span>')
+      : st && st.status === 'live' ? '<span class="tag live">● Live · ' + (mine ? 'Continue' : 'Start') + '</span>'
+      : mine ? '<span class="tag sub">Not submitted</span>' : '';
+    return '<a href="#/a/' + a.id + '"><span>' + esc(a.title) + '</span>' + tag + '<span class="chev" aria-hidden="true">›</span></a>';
   }
+  var openMods = {};   // which outline modules the participant expanded (kept across the 15 s refresh)
   function vHome() {
+    clearTimers();   // views that re-render themselves must not stack their refresh timers
     var p = S.profile;
     var html = topbar() + '<section class="hero"><div class="wrap"><p class="kicker">' + esc(S.cohort ? S.cohort.name : '') + '</p>' +
       '<h1>Hi, <span>' + esc(p.first_name) + '</span></h1><p>Topics open here as we reach them in class. Your answers save as you go.</p></div></section><main class="wrap" style="padding-bottom:48px">';
     var live = Object.keys(S.acts).filter(function (k) { return S.acts[k].status === 'live' && ACT[k] && !(S.mine[k] && S.mine[k].status === 'submitted'); });
-    if (live.length) html += '<div class="card" style="margin-top:18px;border-color:var(--bad)"><h3>● Live now</h3>' +
-      live.map(function (k) { return '<a class="btn primary" style="margin-top:8px" href="#/a/' + k + '">' + esc(ACT[k].a.title) + ' →</a>'; }).join(' ') + '</div>';
+    if (live.length) html += '<div class="card mt-3" style="border-color:var(--bad)"><h3>● Live now</h3>' +
+      live.map(function (k) { return '<a class="btn primary mt-1" href="#/a/' + k + '">' + (S.mine[k] ? 'Continue: ' : '') + esc(ACT[k].a.title) + ' →</a>'; }).join(' ') + '</div>';
+    // open topics first, so nobody scrolls past locked ones to find them
+    var open = [];
+    CAT.forEach(function (m, mi) { m.topics.forEach(function (t) { if (topicOpen(t.id)) open.push({ t: t, mi: mi }); }); });
+    html += '<h2 class="sec">Open now</h2>' + (open.length ? '<div class="topics">' + open.map(function (o) {
+      var t = o.t;
+      return '<div class="topic is-open" style="--c:var(--m' + (o.mi + 1) + ')"><div class="t"><span class="num">' + t.id + '</span><h4>' + esc(t.title) + '</h4></div>' +
+        '<div class="row"><a class="btn" href="#/deck/' + t.id + '">Slides</a>' + (t.video ? '<a class="btn" href="#/video/' + t.id + '">▶ Video ' + t.video + '</a>' : '') + '</div>' +
+        '<div class="acts">' + t.activities.map(actLink).join('') + '</div></div>';
+    }).join('') + '</div>' : '<div class="card"><p class="muted" style="margin:0">Nothing is open yet. Your facilitator opens each topic as the class reaches it.</p></div>');
+    html += '<h2 class="sec">Course outline</h2>';
     CAT.forEach(function (m, mi) {
-      html += '<section class="module" style="--c:var(--m' + (mi + 1) + ')"><span class="k">' + esc(m.n + ' · ' + m.day) + '</span><h3>' + esc(m.title) + '</h3><div class="topics">';
-      m.topics.forEach(function (t) {
-        var open = topicOpen(t.id);
-        html += '<div class="topic' + (open ? '' : ' locked') + '"><div class="t"><span class="num">' + t.id + '</span><h4>' + esc(t.title) + '</h4></div>' +
-          (open ? '<div class="row"><a class="btn small" href="#/deck/' + t.id + '">Slides</a>' + (t.video ? '<a class="btn small" href="#/video/' + t.id + '">▶ Video ' + t.video + '</a>' : '') + '</div>' +
-            '<div class="acts">' + t.activities.map(actLink).join('') + '</div>'
-            : '<span class="small muted">🔒 Opens when your facilitator starts it</span>') + '</div>';
-      });
-      html += '</div></section>';
+      var nOpen = m.topics.filter(function (t) { return topicOpen(t.id); }).length;
+      html += '<details class="mod" data-mod="' + mi + '" style="--c:var(--m' + (mi + 1) + ')"' + (openMods[mi] ? ' open' : '') + '><summary><span><span class="k">' + esc(m.n + ' · ' + m.day) + '</span><br><b>' + esc(m.title) + '</b></span>' +
+        '<span class="small muted meta">' + m.topics.length + ' topics · ' + (nOpen ? nOpen + ' open' : 'opens later') + '</span></summary><ul class="olist">' +
+        m.topics.map(function (t) {
+          var on = topicOpen(t.id);
+          return '<li' + (on ? '' : ' class="locked"') + '><span class="num">' + t.id + '</span><span class="ttl">' + esc(t.title) + '</span>' +
+            (on ? '<a class="tag open" href="#/deck/' + t.id + '">Open</a>' : '<button type="button" class="tag" data-locked="' + t.id + '">🔒 Later</button>') + '</li>';
+        }).join('') + '</ul></details>';
     });
-    render(html + '<p class="small muted" style="margin-top:32px">Signed in as ' + esc(p.email) + ' · Certificate name: <b>' + esc(fullName(p)) + '</b></p></main>');
-    every(15000, async function () { await loadState(); if (location.hash === '' || location.hash === '#/') { var y = scrollY; vHome(); scrollTo(0, y); } });
+    render(html + '<p class="small muted mt-4">Signed in as ' + esc(p.email) + ' · Certificate name: <b>' + esc(fullName(p)) + '</b> (spelling wrong? Ask the facilitator.)</p></main>');
+    document.querySelectorAll('details.mod').forEach(function (d) { d.ontoggle = function () { openMods[d.dataset.mod] = d.open; }; });
+    document.querySelectorAll('[data-locked]').forEach(function (b) { b.onclick = function () { toast('Topic ' + b.dataset.locked + ' opens later, when the class reaches it.'); }; });
+    // every 15 s (only while the tab is visible): redraw only when something changed, keeping scroll and focus
+    var sig = function () { return JSON.stringify([S.topics, S.acts, S.mine]); }, was = sig();
+    every(15000, async function () {
+      if (document.hidden || !S.profile) return;
+      await loadState();
+      if (!S.profile || !(location.hash === '' || location.hash === '#/') || sig() === was) return;
+      var y = scrollY, f = document.activeElement, fk = f && (f.getAttribute('href') || f.dataset.locked || (f.closest('details.mod') && 'mod' + f.closest('details.mod').dataset.mod));
+      vHome(); scrollTo(0, y);
+      if (fk) { var g = document.querySelector('[href="' + fk + '"],[data-locked="' + fk + '"]') || (/^mod/.test(fk) && document.querySelector('details.mod[data-mod="' + fk.slice(3) + '"] summary')); if (g) g.focus({ preventScroll: true }); }
+    });
   }
 
   function vTopic(tid) { location.hash = '#/deck/' + tid; }
 
   // slides / video viewer (participants and admin)
-  function vViewer(kind, tid) {
+  function vViewer(kind, tid, slide) {
     var T = TOPIC[tid].t;
-    if (!isAdmin() && !topicOpen(tid)) { location.hash = '#/'; return; }
-    var src = kind === 'deck' ? 'course/' + encodeURIComponent(T.deck) : 'course/videos/' + tid + '/index.html';
-    render('<div class="present"><div class="pbar"><a href="#/">⌂ Home</a><span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
+    if (!isAdmin() && !topicOpen(tid)) { toast('Topic ' + tid + ' opens later, when the class reaches it.'); location.hash = '#/'; return; }
+    var back = sessionStorage.getItem('dpeBack'); sessionStorage.removeItem('dpeBack');
+    // participants get course/p/: the same slides with the answers taken out of the page source
+    var src = kind === 'deck' ? 'course/' + (isAdmin() ? '' : 'p/') + encodeURIComponent(T.deck) + (isAdmin() ? '' : '?p=1') + (slide ? '#/' + slide : '')
+      : 'course/videos/' + tid + '/index.html';
+    render('<div class="present"><div class="pbar vbar">' + (back ? '<a href="' + esc(back) + '">← Activity</a>' : '') + '<a href="#/">⌂ Home</a>' +
+      '<span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
       (kind === 'deck' && T.video ? '<a href="#/video/' + tid + '">▶ Video</a>' : kind === 'video' ? '<a href="#/deck/' + tid + '">Slides</a>' : '') +
-      '</div><div class="pbody"><iframe src="' + src + '" title="' + esc(T.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>');
+      '</div><div class="pbody"><iframe id="view" src="' + src + '" title="' + esc(T.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe></div>' +
+      (kind === 'deck' ? '<div class="pnav"><button id="prev" aria-label="Previous slide">‹ Back</button><span id="pcount" aria-live="polite"></span><button id="next" aria-label="Next slide">Next ›</button></div>' : '') +
+      '</div>');
+    var $v = document.getElementById('view');
+    $v.onload = function () { try { $v.contentWindow.focus(); } catch (e) {} };
+    if (kind !== 'deck') return;
+    var send = function (k) { $v.contentWindow.postMessage({ type: 'dpe-key', key: k }, '*'); $v.contentWindow.focus(); };
+    var $nx = document.getElementById('next'); if (back) $nx.dataset.back = back;
+    document.getElementById('prev').onclick = function () { send('ArrowLeft'); };
+    $nx.onclick = function () { if ($nx.dataset.end) location.hash = back || '#/'; else send('ArrowRight'); };
   }
   window.addEventListener('message', function (e) {
-    if (e.data && e.data.type === 'dpe-home') location.hash = '#/';
+    var d = e.data || {};
+    if (d.type === 'dpe-home') location.hash = '#/';
+    if (d.type === 'dpe-slide') {
+      var c = document.getElementById('pcount'); if (!c) return;
+      c.textContent = d.n + ' / ' + d.total;
+      var nx = document.getElementById('next'), end = d.n >= d.total;
+      document.getElementById('prev').disabled = d.n <= 1;
+      nx.textContent = end ? (nx.dataset.back ? 'Activity ›' : 'Home ›') : 'Next ›'; nx.setAttribute('aria-label', end ? nx.textContent.slice(0, -2) : 'Next slide'); nx.dataset.end = end ? '1' : '';
+      // keep the slide in the address, so a reload or the Back button returns to it (without re-rendering)
+      var m = location.hash.match(/^#\/deck\/([\d.]+)/); if (m) history.replaceState(null, '', '#/deck/' + m[1] + '/' + d.n);
+    }
   });
 
   // ---------- activity page (participants)
   async function vActivity(aid) {
+    clearTimers();   // views that re-render themselves must not stack their refresh timers
     var tid = ACT[aid].topic, T = TOPIC[tid].t;
     render(topbar() + '<div class="boot">Opening the activity…</div>');
     var sp = (await spec(tid)).activities.find(function (x) { return x.id === aid; });
     var r = await sb.rpc('touch_attempt', { p_activity: aid, p_topic: tid, p_answers: null });
     if (r.error) {
-      render(topbar() + '<main class="narrow" style="padding:32px 16px"><div class="card stack"><p class="kicker muted small">' + tid + ' · ' + esc(T.title) + '</p><h2>' + esc(sp.title) + '</h2>' +
+      render(topbar() + '<main class="narrow page"><div class="card stack"><p class="kicker muted small">' + tid + ' · ' + esc(T.title) + '</p><h2>' + esc(sp.title) + '</h2>' +
         '<p>⏳ Waiting for your facilitator to open this activity. This page will open it by itself.</p><a class="btn" href="#/">Back to home</a></div></main>');
       every(5000, async function () { var t = await sb.rpc('touch_attempt', { p_activity: aid, p_topic: tid, p_answers: null }); if (!t.error) route(); });
       return;
@@ -348,21 +477,37 @@
     var kindLbl = { task: 'Hands-on', check: 'Quick check', quiz: 'Quiz', lab: 'Lab' }[sp.kind];
     var html = topbar() + '<div class="act-head"><div class="narrow"><div class="kicker">' + tid + ' · ' + esc(kindLbl) + '</div><h1>' + esc(sp.title) + '</h1>' +
       '<div class="timer hide" id="timer"></div></div></div><main class="narrow" style="padding-bottom:24px">';
-    if (done) html += '<div class="card scorebox" style="margin-top:16px"><div class="muted small">Submitted ' + when(at.submitted_at) + '</div>' +
-      (at.max_score ? '<div class="big">' + (Math.round(at.score * 10) / 10) + ' / ' + at.max_score + '</div><div class="muted">Your score. Check the answers below.</div>' : '<div class="big">✓</div><div class="muted">Thank you! Your work is in.</div>') + '</div>';
-    if (sp.intro) html += '<p style="margin-top:16px">' + esc(sp.intro) + '</p>';
-    sp.blocks.forEach(function (b, i) { html += '<div class="block" data-b="' + esc(b.id) + '">' + blockHtml(b, A[b.id], fb[b.id], done, i) + '</div>'; });
-    if (sp.help && sp.help.length) html += '<details class="help"><summary>Stuck? Quick fixes</summary><ul>' + sp.help.map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '</ul></details>';
+    if (done) html += '<div class="card scorebox mt-2"><div class="muted small">Submitted ' + when(at.submitted_at) + '</div>' +
+      (at.max_score ? '<div class="big">' + Math.round(at.score / at.max_score * 100) + '%</div><div class="muted">' + scoreLine(sp, at) + 'The right answers are below.' +
+        (sp.blocks.some(function (b) { return b.type === 'rubric'; }) ? ' Your facilitator scores the rest.' : '') + '</div>'
+        : '<div class="big">✓</div><div class="muted">Thank you! Your work is in. Your facilitator reviews it.</div>') + '</div>';
+    if (sp.intro) html += '<p class="mt-2">' + esc(sp.intro) + '</p>';
+    var aCat = ACT[aid].a;
+    if (aCat.slideNo) html += '<p><a class="btn small" id="toslide" href="#/deck/' + tid + '/' + aCat.slideNo + '">📄 See this on the slides</a></p>';
+    if (sp.help && sp.help.length && !done) html += '<details class="help"><summary>Stuck? Hints</summary><ul>' + sp.help.map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '</ul></details>';
+    sp.blocks.forEach(function (b, i) { html += '<div class="block' + (b.type === 'email' ? ' show' : '') + '" data-b="' + esc(b.id) + '">' + blockHtml(b, A[b.id], fb[b.id], done, i) + '</div>'; });
     html += '</main>';
-    html += done ? '<div class="savebar"><div class="narrow"><span class="st">Your answers are saved.</span><a class="btn primary" href="#/">Back to home</a></div></div>'
-      : '<div class="savebar"><div class="narrow"><span class="st" id="st">Your answers save automatically.</span><button class="btn good" id="submit">Submit</button></div></div>';
-    render(html);
+    // after submitting: the next activity of this topic that isn't done yet
+    var nxt = T.activities.filter(function (x) { return x.id !== aid && !(S.mine[x.id] && S.mine[x.id].status === 'submitted'); })[0];
+    html += done ? '<div class="savebar done"><div class="narrow"><span class="st">Your answers are saved.</span>' +
+        (nxt ? '<a class="btn" href="#/">Home</a><a class="btn primary" href="#/a/' + nxt.id + '">Next: ' + esc(nxt.title) + ' →</a>' : '<a class="btn primary" href="#/">Back to home</a>') + '</div></div>'
+      : '<div class="savebar"><div class="narrow"><span class="st"><b id="prog"></b><br><span id="st">Your answers save automatically.</span></span><button class="btn good" id="submit">Submit</button></div></div>';
+    render('<div class="actpage">' + html + '</div>');
+    var $ts = document.getElementById('toslide'); if ($ts) $ts.onclick = function () { sessionStorage.setItem('dpeBack', '#/a/' + aid); };
 
     // timer from the facilitator's Go live
-    var st = S.acts[aid];
+    // 1 minute left: a reminder. At 0:00 quick checks and quizzes submit what's there; tasks and labs
+    // keep going until the facilitator ends them (they often give extra time).
+    var st = S.acts[aid], onTimeUp = null;
     if (!done && st && st.status === 'live' && sp.minutes) {
       var end = new Date(st.opened_at).getTime() + (st.duration_min || sp.minutes) * 60000, $t = document.getElementById('timer');
-      var tick = function () { var left = (end - Date.now()) / 1000; $t.classList.remove('hide'); $t.classList.toggle('over', left <= 0); $t.textContent = left > 0 ? '⏱ ' + clock(left) + ' left' : '⏱ Time is up: finish and submit'; };
+      var warned = (end - Date.now()) / 1000 <= 60, ended = (end - Date.now()) <= 0;
+      var tick = function () {
+        var left = (end - Date.now()) / 1000; $t.classList.remove('hide'); $t.classList.toggle('over', left <= 0); $t.classList.toggle('soon', left > 0 && left <= 60);
+        $t.textContent = left > 0 ? '⏱ ' + clock(left) + ' left' : '⏱ Time\'s up: finish and submit';
+        if (!warned && left <= 60) { warned = true; toast('1 minute left. Submit when you\'re ready.'); }
+        if (!ended && left <= 0) { ended = true; if (onTimeUp) onTimeUp(); }
+      };
       tick(); every(1000, tick);
     }
     if (done) return;
@@ -374,7 +519,40 @@
       sp.blocks.forEach(function (b) { if (A[b.id] != null) out[b.id] = b.type === 'number' ? num(A[b.id]) : A[b.id]; });
       return out;
     }
+    // what still needs doing: every question and every lab step (rubric, sample emails and optional ones don't count)
+    var needed = sp.blocks.filter(function (b) { return !(b.optional || b.type === 'rubric' || b.type === 'email'); }), flagged = false;
+    function blank(b) {
+      var v = A[b.id]; return v == null || v === '' || (Array.isArray(v) && !v.length) || (b.type === 'sort' && !Object.keys(v).length);
+    }
+    function unanswered() {
+      return needed.filter(function (b) {
+        var v = A[b.id]; return blank(b) || ((b.type === 'sort' ? Object.keys(v) : v).length < (b.items || []).length) || (b.type === 'number' && typeof num(v) !== 'number');
+      });
+    }
+    // sort and steps blocks count each item; everything else counts once
+    function units(b) { return b.items ? b.items.length : 1; }
+    function left(b) {
+      if (b.type === 'sort') return b.items.filter(function (it) { return !A[b.id] || A[b.id][it] == null; }).length;
+      return b.type === 'steps' ? b.items.length - (A[b.id] || []).length : 1;
+    }
+    var total = needed.reduce(function (n, b) { return n + units(b); }, 0);
+    function missCount(miss) { return miss.reduce(function (n, b) { return n + left(b); }, 0); }
+    function progress() {
+      var miss = unanswered(), $p = document.getElementById('prog');
+      if ($p) $p.textContent = total ? 'Done ' + (total - missCount(miss)) + ' of ' + total : '';
+      if (flagged) sp.blocks.forEach(function (b) {
+        var el = document.querySelector('.block[data-b="' + CSS.escape(b.id) + '"]'); if (!el) return;
+        el.classList.toggle('missing', miss.indexOf(b) >= 0);
+        if (b.type === 'sort') el.querySelectorAll('.sortrow').forEach(function (r, k) { r.classList.toggle('missing', !A[b.id] || A[b.id][b.items[k]] == null); });
+        if (b.type === 'steps') el.querySelectorAll('.step').forEach(function (r, k) { r.classList.toggle('missing', (A[b.id] || []).indexOf(k) < 0); });
+      });
+      var $s = document.getElementById('submit');
+      if (!miss.length && $s && $s.classList.contains('armed')) { $s.classList.remove('armed'); $s.textContent = 'Submit'; }
+      return miss;
+    }
+    progress();
     function changed() {
+      progress();
       dirty = true; try { localStorage.setItem(key, JSON.stringify(A)); } catch (e) {}
       document.getElementById('st').textContent = 'Saving…';
       clearTimeout(changed.t); changed.t = setTimeout(save, 1200);
@@ -387,72 +565,116 @@
       $st.textContent = s.error ? 'Not saved yet (connection?). We\'ll keep trying.' : 'Saved ✓ ' + new Date().toLocaleTimeString('en-PH', { timeZone: 'Asia/Manila', hour: 'numeric', minute: '2-digit' });
       if (s.error || dirty) later(4000, save);
     }
-    every(15000, function () { if (!dirty) sb.rpc('touch_attempt', { p_activity: aid, p_topic: tid, p_answers: null }); });
+    every(15000, function () { if (!dirty && !document.hidden) sb.rpc('touch_attempt', { p_activity: aid, p_topic: tid, p_answers: null }); });
     bindBlocks(sp, A, changed);
 
     var $sub = document.getElementById('submit');
+    onTimeUp = function () {
+      if (sp.kind !== 'check' && sp.kind !== 'quiz') return;
+      if (!sp.blocks.some(function (b) { return b.type !== 'email' && !blank(b); })) { toast('Time\'s up. Answer and submit now.'); return; }
+      toast('Time\'s up, so we submitted your answers.'); send();
+    };
     $sub.onclick = async function () {
-      var missing = sp.blocks.filter(function (b) {
-        if (b.optional || b.type === 'rubric' || b.type === 'steps') return false;
-        var v = A[b.id]; return v == null || v === '' || (Array.isArray(v) && !v.length) || (b.type === 'sort' && Object.keys(v).length < b.items.length);
-      }).length;
-      if (missing && !$sub.classList.contains('armed')) {
-        $sub.classList.add('armed'); $sub.textContent = missing + ' not answered: submit anyway?';
-        setTimeout(function () { $sub.classList.remove('armed'); $sub.textContent = 'Submit'; }, 5000); return;
+      flagged = true;
+      var miss = progress(), missing = missCount(miss);
+      if (!sp.blocks.some(function (b) { return b.type !== 'email' && b.type !== 'rubric' && !blank(b); })) {
+        var f0 = needed[0] && document.querySelector('.block[data-b="' + CSS.escape(needed[0].id) + '"]');
+        if (f0) f0.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById('prog').textContent = 'Nothing answered yet'; toast('Answer at least one question before you submit.'); return;
       }
+      if (missing && !$sub.classList.contains('armed')) {
+        var first = document.querySelector('.block[data-b="' + CSS.escape(miss[0].id) + '"]');
+        (first.querySelector('.sortrow.missing,.step.missing') || first).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        $sub.classList.add('armed'); $sub.textContent = 'Submit anyway?';   // stays armed: a second tap submits
+        document.getElementById('prog').textContent = missing + ' not done yet'; return;
+      }
+      send();
+    };
+    async function send() {
+      if ($sub.disabled) return;
       $sub.disabled = true; $sub.textContent = 'Submitting…';
       var s = await sb.rpc('submit_attempt', { p_activity: aid, p_topic: tid, p_answers: payload() });
       if (s.error) { $sub.disabled = false; $sub.textContent = 'Submit'; toast(/ended/.test(s.error.message) ? 'This activity has ended.' : 'Couldn\'t submit. Check your connection and try again.'); return; }
       try { localStorage.removeItem(key); } catch (e) {}
       toast('Submitted!'); await loadState(); vActivity(aid);
-    };
+    }
   }
 
+  // "2 of 3 points." for several questions, "7 of 9 right." for a single sort, nothing for a single question
+  function scoreLine(sp, at) {
+    var r = function (x) { return Math.round(x * 10) / 10; };
+    if (at.max_score > 1) return 'Your score: ' + r(at.score) + ' of ' + at.max_score + ' points. ';
+    var srt = sp.blocks.filter(function (b) { return b.type === 'sort'; });
+    return srt.length === 1 ? 'You sorted ' + Math.round(at.score * srt[0].items.length) + ' of ' + srt[0].items.length + ' right. ' : '';
+  }
   var LETTERS = 'ABCDEFGH';
+  var MIME = { pdf: 'application/pdf', doc: 'application/msword', xls: 'application/vnd.ms-excel', ppt: 'application/vnd.ms-powerpoint',
+    docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation', odt: 'application/vnd.oasis.opendocument.text',
+    ods: 'application/vnd.oasis.opendocument.spreadsheet', odp: 'application/vnd.oasis.opendocument.presentation', jpg: 'image/jpeg', jpeg: 'image/jpeg',
+    png: 'image/png', gif: 'image/gif', webp: 'image/webp', heic: 'image/heic', heif: 'image/heif', bmp: 'image/bmp' };
+  var UPLOAD_ACCEPT = 'image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.odt,.ods,.odp';
+  var UPLOAD_OK = /\.(png|jpe?g|gif|webp|heic|heif|bmp|pdf|docx?|xlsx?|pptx?|odt|ods|odp)$/i;
   function blockHtml(b, v, f, done, i) {
-    var h = b.prompt ? '<p class="p">' + esc(b.prompt) + (b.optional ? ' <span class="tag">optional</span>' : '') + '</p>' : '';
+    var qid = 'q-' + b.id;   // the question text labels its answer controls for screen readers
+    var h = b.prompt ? '<p class="p" id="' + qid + '">' + esc(b.prompt) + (b.optional ? ' <span class="tag">optional</span>' : '') + '</p>' : '';
     var key = f && f.key;
     if (b.type === 'steps') {
       v = v || [];
       return '<p class="p">Steps · tick each one as you finish it</p>' + b.items.map(function (it, k) {
         var on = v.indexOf(k) >= 0;
-        return '<label class="step' + (on ? ' on' : '') + '"><input type="checkbox" data-k="' + k + '"' + (on ? ' checked' : '') + (done ? ' disabled' : '') + '><span>' + esc(it) + '</span></label>';
+        return '<label class="step' + (on ? ' on' : '') + '"><input type="checkbox" data-k="' + k + '" aria-label="Step ' + (k + 1) + ': ' + esc(it) + '"' + (on ? ' checked' : '') + (done ? ' disabled' : '') + '><span>' + esc(it) + '</span></label>';
       }).join('');
+    }
+    if (b.type === 'email') {   // a sample email to read (e.g. the phishing example), not a question
+      return '<div class="mailbox"><div class="mbar">' + esc(b.label || 'Sample email') + '</div><dl><dt>From</dt><dd>' + esc(b.from) + '</dd><dt>Subject</dt><dd>' + esc(b.subject) + '</dd></dl>' +
+        '<div class="mbody">' + (b.body || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') +
+        (b.button ? '<p><span class="mbtn">' + esc(b.button) + '</span>' + (b.link ? ' <span class="small muted">links to ' + esc(b.link) + '</span>' : '') + '</p>' : '') +
+        (b.attachment ? '<p class="matt">📎 ' + esc(b.attachment) + '</p>' : '') + '</div></div>';
     }
     if (b.type === 'mcq') {
       v = v || [];
       h += b.multi ? '<p class="hint" style="margin-top:-6px">Pick all that apply.</p>' : '';
-      h += b.options.map(function (o, k) {
+      h += '<div role="' + (b.multi ? 'group' : 'radiogroup') + '" aria-labelledby="' + qid + '">' + b.options.map(function (o, k) {
         var on = v.indexOf(k) >= 0, cls = on ? ' on' : '';
         if (key) cls += key.mcq.indexOf(k) >= 0 ? ' right' : on ? ' wrong' : '';
-        return '<button type="button" class="opt' + cls + '" data-k="' + k + '"' + (done ? ' disabled' : '') + '><span class="l">' + LETTERS[k] + '</span><span>' + esc(o) + '</span></button>';
-      }).join('');
+        return '<button type="button" class="opt' + cls + '" data-k="' + k + '"' + (b.multi ? ' aria-pressed="' + on + '"' : ' role="radio" aria-checked="' + on + '"') + (done ? ' disabled' : '') + '><span class="l">' + LETTERS[k] + '</span><span>' + esc(o) + '</span></button>';
+      }).join('') + '</div>';
     } else if (b.type === 'number' || b.type === 'short') {
-      h += '<input class="in" ' + (b.type === 'number' ? 'inputmode="decimal"' : 'autocapitalize="off" autocomplete="off" spellcheck="false"') +
+      h += '<input class="in" aria-labelledby="' + qid + '"' + (b.type === 'number' && !done ? ' aria-describedby="' + qid + '-err"' : '') + ' ' + (b.type === 'number' ? 'inputmode="decimal"' : 'autocapitalize="off" autocomplete="off" spellcheck="false"') +
         ' placeholder="' + esc(b.placeholder || (b.type === 'number' ? 'Type a number' : 'Type your answer')) + '" value="' + esc(v == null ? '' : v) + '"' + (done ? ' disabled' : '') + '>' +
-        (b.unit ? '<div class="hint">' + esc(b.unit) + '</div>' : '');
+        (b.unit ? '<div class="hint">' + esc(b.unit) + '</div>' : '') + (b.type === 'number' && !done ? '<div class="ferr numerr" id="' + qid + '-err" hidden>Type a number using digits, e.g. 6.</div>' : '');
     } else if (b.type === 'sort') {
       v = v || {};
       h += b.items.map(function (it) {
-        return '<div class="sortrow"><div class="it">' + esc(it) + '</div><div class="bins">' + b.bins.map(function (bn, k) {
+        return '<div class="sortrow"><div class="it">' + esc(it) + '</div><div class="bins" role="radiogroup" aria-label="' + esc(it) + '">' + b.bins.map(function (bn, k) {
           var on = v[it] === k, cls = on ? ' on' : '';
-          if (key && key.sort) cls = key.sort[it] === k ? (on ? ' right' : ' on right') : on ? ' wrong' : '';
-          return '<button type="button" data-it="' + esc(it) + '" data-k="' + k + '" class="' + cls + '"' + (done ? ' disabled' : '') + '>' + esc(bn) + '</button>';
+          var mark = '';
+          if (key && key.sort) { cls = key.sort[it] === k ? (on ? ' right' : ' on right') : on ? ' wrong' : ''; mark = key.sort[it] === k ? (on ? '✓ ' : '→ ') : on ? '✗ ' : ''; }
+          return '<button type="button" data-it="' + esc(it) + '" data-k="' + k + '" class="' + cls + '" role="radio" aria-checked="' + on + '"' + (done ? ' disabled' : '') + '>' + mark + esc(bn) + '</button>';
         }).join('') + '</div></div>';
       }).join('');
     } else if (b.type === 'text') {
-      h += '<textarea class="in" rows="' + (b.lines || 4) + '" placeholder="' + esc(b.placeholder || 'Type your answer') + '"' + (done ? ' disabled' : '') + '>' + esc(v || '') + '</textarea>';
+      h += '<textarea class="in" aria-labelledby="' + qid + '" rows="' + (b.lines || 4) + '" placeholder="' + esc(b.placeholder || 'Type your answer') + '"' + (done ? ' disabled' : '') + '>' + esc(v || '') + '</textarea>';
     } else if (b.type === 'upload') {
-      h += (v && v.name ? '<p class="ok">✓ Uploaded: ' + esc(v.name) + '</p>' : '') +
-        (done ? '' : '<input type="file" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.odt,.ods,.odp,.zip"><div class="hint">Photo, screenshot or file, up to 15 MB.' + (v ? ' Choosing another file replaces it.' : '') + '</div><div class="err"></div>');
+      // the native file input is hidden (it is wider than a phone screen); the label is the button
+      var fid = 'f-' + b.id;
+      h += '<div class="up"><div class="upst">' + (v && v.name ? '<span class="ok">✓ Uploaded: ' + esc(v.name) + '</span>' : done ? '<span class="muted">No file</span>' : '') + '</div>' +
+        (done ? '' : '<div class="row"><input type="file" id="' + fid + '" class="vh" accept="' + UPLOAD_ACCEPT + '"><label class="btn small" for="' + fid + '">📎 ' + (v && v.name ? 'Replace file' : 'Choose a file') + '</label>' +
+          (v && v.name ? '<button type="button" class="btn small" data-rm>Remove</button>' : '') + '</div>' +
+          '<div class="hint">Photo, screenshot, PDF or Office file, up to 15 MB.</div><div class="err"></div>') + '</div>';
     } else if (b.type === 'rubric') {
       h = '<p class="p">How your facilitator will score this</p><table class="rub">' + b.criteria.map(function (c) { return '<tr><td>' + esc(c.name) + '</td><td style="text-align:right;white-space:nowrap">' + c.points + ' pts</td></tr>'; }).join('') +
         '<tr><th>Total</th><th style="text-align:right">' + b.criteria.reduce(function (s, c) { return s + c.points; }, 0) + ' pts</th></tr></table>';
     }
+    if (done && !f && (b.type === 'text' || b.type === 'steps') && v != null && v !== '' && !(Array.isArray(v) && !v.length))
+      h += '<div class="fb got"><b>✓ Received.</b> Your facilitator reviews this.</div>';
     if (f) {
       var cls = f.points >= 1 ? 'right' : f.points > 0 ? 'part' : 'wrong';
-      var ans = key.number != null ? Number(key.number).toLocaleString('en-PH') : key.short ? key.short[0] : '';
-      h += '<div class="fb ' + cls + '"><b>' + (f.points >= 1 ? '✓ Correct' : f.points > 0 ? 'Partly right (' + Math.round(f.points * 100) + '%)' : '✗ Not quite') + '</b>' +
+      var ans = key.number != null ? (key.tol ? (key.number - key.tol).toLocaleString('en-PH') + ' to ' + (key.number + key.tol).toLocaleString('en-PH') : Number(key.number).toLocaleString('en-PH'))
+        : key.short ? key.short[0] : key.mcq && b.options ? key.mcq.map(function (k) { return LETTERS[k] + '. ' + b.options[k]; }).join(', ') : '';
+      var part = b.type === 'sort' ? Math.round(f.points * b.items.length) + ' of ' + b.items.length + ' right' : Math.round(f.points * 100) + '%';
+      h += '<div class="fb ' + cls + '"><b>' + (f.points >= 1 ? '✓ Correct' : f.points > 0 ? 'Partly right: ' + part : '✗ Not quite') + '</b>' +
         (f.points < 1 && ans ? ' · Answer: <b>' + esc(ans) + '</b>' : '') + (f.why ? '<div>' + esc(f.why) + '</div>' : '') + '</div>';
     }
     return h;
@@ -472,30 +694,46 @@
           var k = +o.dataset.k, v = A[b.id] || [];
           if (b.multi) { v = v.indexOf(k) >= 0 ? v.filter(function (x) { return x !== k; }) : v.concat(k); } else v = [k];
           A[b.id] = v.sort();
-          el.querySelectorAll('.opt').forEach(function (x) { x.classList.toggle('on', v.indexOf(+x.dataset.k) >= 0); });
+          el.querySelectorAll('.opt').forEach(function (x) { var on = v.indexOf(+x.dataset.k) >= 0; x.classList.toggle('on', on); x.setAttribute(b.multi ? 'aria-pressed' : 'aria-checked', on); });
           changed();
         };
       });
       if (b.type === 'number' || b.type === 'short' || b.type === 'text') {
         var inp = el.querySelector('input,textarea'); inp.oninput = function () { A[b.id] = inp.value; changed(); };
+        if (b.type === 'number') inp.onblur = function () {
+          var bad = inp.value.trim() !== '' && typeof num(inp.value) !== 'number';
+          el.querySelector('.numerr').hidden = !bad; inp.classList.toggle('bad', bad); inp.setAttribute('aria-invalid', bad);
+        };
       }
       if (b.type === 'sort') el.querySelectorAll('.bins button').forEach(function (btn) {
         btn.onclick = function () {
           var v = A[b.id] || {}; v[btn.dataset.it] = +btn.dataset.k; A[b.id] = v;
-          btn.parentNode.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === btn); }); changed();
+          btn.parentNode.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === btn); x.setAttribute('aria-checked', x === btn); }); changed();
         };
       });
       if (b.type === 'upload') {
         var fi = el.querySelector('input[type=file]'); if (!fi) return;
+        var $st = el.querySelector('.upst'), $e = el.querySelector('.err'), $lb = el.querySelector('label[for="' + fi.id + '"]');
+        var rm = function () {
+          var x = el.querySelector('[data-rm]'); if (!x) return;
+          x.onclick = function () { A[b.id] = null; $st.innerHTML = ''; $lb.textContent = '📎 Choose a file'; x.remove(); changed(); };
+        };
+        rm();
         fi.onchange = async function () {
-          var file = fi.files[0], $e = el.querySelector('.err'); if (!file) return;
+          var file = fi.files[0]; fi.value = ''; if (!file) return;
+          if (!UPLOAD_OK.test(file.name)) { $e.textContent = 'Please choose a photo, screenshot, PDF or Office file.'; return; }
           if (file.size > 15 * 1024 * 1024) { $e.textContent = 'That file is over 15 MB.'; return; }
-          $e.textContent = ''; var hint = el.querySelector('.hint'); hint.textContent = 'Uploading ' + file.name + '…';
+          $e.textContent = ''; $st.innerHTML = '<span class="muted">Uploading ' + esc(file.name) + '…</span>';
           var path = S.profile.id + '/' + sp.id + '/' + b.id + '-' + Date.now() + '-' + file.name.replace(/[^\w.\-]+/g, '_').slice(-80);
-          var r = await sb.storage.from('outputs').upload(path, file, { upsert: true, contentType: file.type || undefined });
-          if (r.error) { hint.textContent = 'Photo, screenshot or file, up to 15 MB.'; $e.textContent = 'Upload failed: ' + errMsg(r.error); return; }
+          // the storage bucket only takes images, PDFs and Office files; the type comes from the extension
+          var r = await sb.storage.from('outputs').upload(path, file, { upsert: true, contentType: MIME[file.name.split('.').pop().toLowerCase()] });
+          if (r.error) { $st.innerHTML = ''; $e.textContent = 'Upload failed: ' + errMsg(r.error); return; }
           A[b.id] = { path: path, name: file.name, type: file.type, size: file.size };
-          hint.innerHTML = '<span class="ok">✓ Uploaded: ' + esc(file.name) + '</span>'; changed();
+          $st.innerHTML = '<span class="ok">✓ Uploaded: ' + esc(file.name) + '</span>' +
+            (/^image\//.test(file.type) ? '<img class="upthumb" alt="Preview of ' + esc(file.name) + '" src="' + URL.createObjectURL(file) + '">' : '');
+          $lb.textContent = '📎 Replace file';
+          if (!el.querySelector('[data-rm]')) { $lb.insertAdjacentHTML('afterend', '<button type="button" class="btn small" data-rm>Remove</button>'); rm(); }
+          changed();
         };
       }
     });
@@ -503,9 +741,20 @@
 
   // ---------- admin home
   async function vAdminHome() {
+    clearTimers();   // views that re-render themselves must not stack their refresh timers
     var c = S.cohort, joinUrl = BASE + '?join=' + encodeURIComponent(c.join_code);
-    var html = topbar() + '<main class="wrap" style="padding:20px 16px 48px">' +
-      '<div class="card reg"><div class="qr" id="regqr">' + qr(joinUrl) + '</div><div class="stack">' +
+    var html = topbar() + '<main class="wrap page">';
+    // what the class can see right now, above everything else
+    var running = [];
+    CAT.forEach(function (m) { m.topics.forEach(function (t) { if (topicOpen(t.id)) running.push(t); }); });
+    if (running.length) html += '<div class="card now"><h3>Now running</h3>' + running.map(function (t) {
+      var lv = t.activities.filter(function (a) { return S.acts[a.id] && S.acts[a.id].status === 'live'; });
+      return '<div class="nrow"><span class="num">' + t.id + '</span><h4>' + esc(t.title) + '</h4>' +
+        lv.map(function (a) { return '<span class="tag live">● ' + esc(a.title) + '</span>'; }).join('') +
+        '<span class="row" style="margin-left:auto"><a class="btn small primary" href="#/present/' + t.id + '">Present</a><a class="btn small" href="#/results/' + t.id + '">Results</a>' +
+        '<button class="btn small" data-tog="' + t.id + '">Close</button></span></div>';
+    }).join('') + '</div>';
+    html += '<div class="card reg"><div class="qr" id="regqr">' + qr(joinUrl) + '</div><div class="stack">' +
       '<div class="muted small">' + esc(c.name) + ' · registration</div><div>Class code <span class="code">' + esc(c.join_code) + '</span></div>' +
       '<div class="linkbox"><span>' + esc(joinUrl.replace(/^https?:\/\//, '')) + '</span><button class="btn small" id="cpj">Copy</button></div>' +
       '<div class="row"><div><span class="big" id="nreg">…</span> <span class="muted">registered</span></div><button class="btn gold" id="full">Show full screen for Zoom</button></div></div></div>';
@@ -514,38 +763,41 @@
       m.topics.forEach(function (t) {
         var open = topicOpen(t.id);
         var live = t.activities.filter(function (a) { return S.acts[a.id] && S.acts[a.id].status === 'live'; }).length;
-        html += '<div class="topic"><div class="t"><span class="num">' + t.id + '</span><h4>' + esc(t.title) + '</h4></div>' +
-          '<div class="row small">' + (open ? '<span class="tag open">Open to participants</span>' : '<span class="tag">🔒 Locked</span>') + (live ? '<span class="tag live">● ' + live + ' live</span>' : '') +
+        html += '<div class="topic' + (open ? ' is-open' : '') + '"><div class="t"><span class="num">' + t.id + '</span><h4>' + esc(t.title) + '</h4></div>' +
+          '<div class="row small">' + (open ? '<span class="tag open">Open to class</span>' : '<span class="tag">🔒 Closed</span>') + (live ? '<span class="tag live">● ' + live + ' live</span>' : '') +
           '<span class="muted">' + t.activities.length + ' activities</span></div>' +
           '<div class="row"><a class="btn small primary" href="#/present/' + t.id + '">Present</a>' +
-          '<button class="btn small" data-tog="' + t.id + '">' + (open ? 'Lock' : 'Start') + '</button>' +
+          '<button class="btn small" data-tog="' + t.id + '">' + (open ? 'Close' : 'Open to class') + '</button>' +
           '<a class="btn small" href="#/results/' + t.id + '">Results</a></div></div>';
       });
       html += '</div></section>';
     });
     render(html + '</main>');
     document.getElementById('cpj').onclick = function () { copy(joinUrl); };
-    document.getElementById('full').onclick = function () { qrFull(joinUrl, c.join_code, 'Scan to register'); };
+    document.getElementById('full').onclick = function () { qrFull(joinUrl, c.join_code, 'Scan to register'); count(); };
     document.querySelectorAll('[data-tog]').forEach(function (b) { b.onclick = function () { setTopic(b.dataset.tog, !topicOpen(b.dataset.tog)).then(vAdminHome); }; });
     async function count() {
       var r = await sb.from('profiles').select('id', { count: 'exact', head: true }).eq('cohort_id', c.id).eq('role', 'participant');
       var n = document.getElementById('nreg'); if (n) n.textContent = r.count == null ? '?' : r.count;
-      var f = document.getElementById('fullcount'); if (f) f.textContent = r.count;
+      var f = document.getElementById('fullcount'); if (f && r.count != null) f.textContent = r.count;
     }
     count(); every(5000, count);
   }
 
   function qrFull(url, code, title) {
-    $modal.innerHTML = '<div class="qrfull" id="qf"><div style="font-size:clamp(22px,3vw,36px);font-weight:800">' + esc(title) + '</div>' +
+    var known = document.getElementById('nreg');
+    $modal.innerHTML = '<div class="qrfull" id="qf" role="dialog" aria-modal="true" aria-label="' + esc(title) + '"><div style="font-size:clamp(22px,3vw,36px);font-weight:800">' + esc(title) + '</div>' +
       '<div class="qrbox">' + qr(url) + '</div><div class="code">' + esc(code) + '</div><div class="lnk">' + esc(url.replace(/^https?:\/\//, '')) + '</div>' +
-      '<div class="row" style="justify-content:center"><span><b id="fullcount" style="font-size:28px">…</b> registered</span><button class="btn" id="qfc">Copy link</button><button class="btn gold" id="qfx">Close</button></div></div>';
+      '<div class="row" style="justify-content:center"><span><b id="fullcount" style="font-size:28px">' + esc(known ? known.textContent : '…') + '</b> registered</span><button class="btn" id="qfc">Copy link</button><button class="btn gold" id="qfx">Close (Esc)</button></div></div>';
+    var close = function () { $modal.innerHTML = ''; };
+    var off = modalKeys(document.getElementById('qf'), close);
     document.getElementById('qfc').onclick = function () { copy(url); };
-    document.getElementById('qfx').onclick = function () { $modal.innerHTML = ''; };
+    document.getElementById('qfx').onclick = function () { off(); close(); };
   }
 
   async function setTopic(tid, open) {
     var r = await sb.from('topic_state').upsert({ cohort_id: S.profile.cohort_id, topic_id: tid, status: open ? 'open' : 'locked', opened_at: open ? new Date().toISOString() : null });
-    if (r.error) toast(errMsg(r.error)); else { toast(tid + (open ? ' is open to participants' : ' is locked')); await loadState(); }
+    if (r.error) toast(errMsg(r.error)); else { toast(tid + (open ? ' is open to the class' : ' is closed')); await loadState(); }
   }
 
   // ---------- presenter: deck + Go live panel
@@ -557,7 +809,7 @@
       '<select id="pick" aria-label="Go live with an activity"><option value="">Go live with…</option>' + opts + '</select>' +
       '<button class="hide" id="showlive">● Live panel</button>' +
       '<a class="res" href="#/results/' + tid + '" id="resbtn">Results →</a></div>' +
-      '<div class="lockbar' + (topicOpen(tid) ? ' hide' : '') + '" id="lockbar">🔒 This topic is locked for participants.<button id="openit">Start topic</button></div>' +
+      '<div class="lockbar' + (topicOpen(tid) ? ' hide' : '') + '" id="lockbar">🔒 This topic is closed to participants.<button id="openit">Open to class</button></div>' +
       '<div class="pbody"><iframe id="deck" src="course/' + encodeURIComponent(T.deck) + '" title="' + esc(T.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe><aside class="livepanel hide" id="live"></aside></div></div>');
     var $f = document.getElementById('deck'), $go = document.getElementById('golive'), $live = document.getElementById('live');
     document.getElementById('openit').onclick = function () { setTopic(tid, true).then(function () { document.getElementById('lockbar').classList.add('hide'); }); };
@@ -598,10 +850,11 @@
       var a = ACT[liveId].a, url = BASE + '?a=' + liveId, st = S.acts[liveId];
       $live.classList.toggle('hide', panelHidden);
       document.getElementById('showlive').classList.toggle('hide', !panelHidden);
-      $live.innerHTML = '<div class="row" style="justify-content:space-between"><span class="tag live">' + (st.status === 'live' ? '● LIVE' : 'Ended') + '</span><span class="timer" id="ptimer" style="background:var(--bg);margin:0"></span></div>' +
+      $live.innerHTML = '<div class="row" style="justify-content:space-between"><span class="tag live">' + (st.status === 'live' ? '● LIVE' : 'Ended') + '</span><span class="timer" id="ptimer"></span></div>' +
         '<h3>' + esc(a.title) + '</h3><div class="qrbig">' + qr(url) + '</div>' +
         '<div class="short">' + esc(SHORT + '?a=' + liveId) + '</div><button class="btn primary block" id="cpl">Copy link for the chat</button>' +
-        '<div class="counts"><div><b id="c-acc">…</b><span>accessed<br>of <span id="c-reg">…</span> registered</span></div><div><b id="c-fin">…</b><span>finished</span></div><div><b id="c-act">…</b><span>working now</span></div></div>' +
+        '<div class="finbox"><b id="c-fin">…</b> <span>of <span id="c-reg">…</span> finished</span><div class="prog" role="progressbar" aria-label="Finished" id="c-prog"><i id="c-bar"></i></div></div>' +
+        '<div class="counts"><div><b id="c-acc">…</b><span>opened it</span></div><div><b id="c-act">…</b><span>working now</span></div></div>' +
         '<div class="row"><button class="btn small" id="restart">Restart timer</button>' + (st.status === 'live' ? '<button class="btn small danger" id="end">End activity</button>' : '<button class="btn small" id="reopen">Reopen</button>') +
         '<button class="btn small" id="hidep">Hide panel</button></div>';
       document.getElementById('cpl').onclick = function () { copy(url); };
@@ -622,13 +875,16 @@
       if (r.error || !r.data) return;
       var d = r.data, set = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
       set('c-acc', d.accessed); set('c-reg', d.registered); set('c-fin', d.finished); set('c-act', d.active);
+      var bar = document.getElementById('c-bar'); if (bar) bar.style.width = pct(d.finished, d.registered) + '%';
+      var pg = document.getElementById('c-prog'); if (pg) pg.setAttribute('aria-valuenow', pct(d.finished, d.registered));
       var sl = document.getElementById('showlive'); if (sl) sl.textContent = '● Live ' + d.finished + '/' + d.registered + ' finished';
     }
     every(3000, counts);
     every(1000, function () {
       var $t = document.getElementById('ptimer'); if (!$t || !liveId) return;
       var st = S.acts[liveId], end = new Date(st.opened_at).getTime() + (st.duration_min || 0) * 60000, left = (end - Date.now()) / 1000;
-      $t.textContent = st.duration_min ? (left > 0 ? '⏱ ' + clock(left) : '⏱ Time') : '';
+      $t.classList.toggle('over', !!st.duration_min && left <= 0);
+      $t.textContent = st.duration_min ? (left > 0 ? '⏱ ' + clock(left) : '⏱ Time\'s up +' + clock(-left)) : '';
     });
     // reopen the panel if an activity of this topic is already live
     var already = T.activities.find(function (a) { return S.acts[a.id] && S.acts[a.id].status === 'live'; });
@@ -650,10 +906,14 @@
     (r[3].data || []).forEach(function (p) { people[p.id] = p; if (p.role === 'participant') parts.push(p); });
     var atts = (r[2].data || []).filter(function (a) { return people[a.user_id] && people[a.user_id].role === 'participant'; });
     var nreg = parts.length;
-    var html = topbar() + '<main class="wrap" style="padding:20px 16px 0"><p class="muted small" style="margin:0">' + esc(M.n + ' · ' + M.title) + '</p>' +
+    // names stay hidden unless the facilitator asks: this page is often on the shared Zoom screen
+    var names = sessionStorage.getItem('dpeNames') === 'on';
+    var head = topbar() + '<main class="wrap ' + (names ? 'names-on' : 'names-off') + '" id="resmain" style="padding:20px 16px 0"><p class="muted small" style="margin:0">' + esc(M.n + ' · ' + M.title) + '</p>' +
       '<h1 style="margin:4px 0 0;letter-spacing:-.02em">' + tid + ' ' + esc(T.title) + ': results</h1>' +
-      '<div class="row" style="margin-top:10px"><a class="btn small" href="#/present/' + tid + '">← Back to slides</a><button class="btn small" id="refresh">Refresh</button><span class="small muted">' + nreg + ' registered</span></div>';
-    var uploads = [];
+      '<div class="row mt-1"><a class="btn small" href="#/present/' + tid + '">← Back to slides</a><button class="btn small" id="refresh">Refresh</button>' +
+      '<button class="btn small" id="names" aria-pressed="' + names + '">' + (names ? 'Hide names' : '👁 Show names') + '</button><span class="small muted">' + nreg + ' registered</span></div>';
+    var html = '', uploads = [], anon = {}, nAnon = 0;
+    function who(p) { if (!anon[p.id]) anon[p.id] = ++nAnon; return '<span class="nm">' + esc(fullName(p)) + '</span><span class="anon">Participant ' + anon[p.id] + '</span>'; }
     sp.activities.forEach(function (a) {
       var mine = atts.filter(function (x) { return x.activity_id === a.id; });
       var sub = mine.filter(function (x) { return x.status === 'submitted'; });
@@ -667,17 +927,20 @@
         var vals = sub.map(function (x) { return { v: x.answers[b.id], p: people[x.user_id], at: x }; }).filter(function (x) { return x.v != null && x.v !== ''; });
         var kk = k[b.id];
         if (b.type === 'mcq') {
-          html += '<div style="margin-top:14px"><p class="p" style="font-weight:700;margin:0">' + esc(b.prompt) + '</p>' + b.options.map(function (o, i) {
-            var n = vals.filter(function (x) { return x.v.indexOf(i) >= 0; }).length, right = kk && kk.mcq.indexOf(i) >= 0;
-            return '<div class="bar' + (right ? ' right' : '') + '"><span class="lbl">' + LETTERS[i] + '. ' + esc(o) + (right ? ' ✓' : '') + '</span><span class="tr"><i style="width:' + pct(n, vals.length) + '%"></i></span><b>' + n + '</b></div>';
+          var ns = b.options.map(function (o, i) { return vals.filter(function (x) { return x.v.indexOf(i) >= 0; }).length; });
+          var isRight = function (i) { return kk && kk.mcq.indexOf(i) >= 0; };
+          var topWrong = -1; ns.forEach(function (n, i) { if (!isRight(i) && n && (topWrong < 0 || n > ns[topWrong])) topWrong = i; });
+          html += '<div class="mt-2"><p class="p" style="font-weight:700;margin:0">' + esc(b.prompt) + '</p>' + b.options.map(function (o, i) {
+            var n = ns[i], right = isRight(i);
+            return '<div class="bar' + (right ? ' right' : i === topWrong ? ' topwrong' : '') + '"><span class="lbl">' + LETTERS[i] + '. ' + esc(o) + (right ? ' ✓' : '') + '</span><span class="tr"><i style="width:' + pct(n, vals.length) + '%"></i></span><b>' + n + ' <small>' + pct(n, vals.length) + '%</small></b></div>';
           }).join('') + '</div>';
         } else if (b.type === 'number' || b.type === 'short' || b.type === 'sort') {
           var ok = sub.filter(function (x) { var f = x.feedback && x.feedback[b.id]; return f && f.points >= 1; }).length;
           var wrong = {};
           if (b.type !== 'sort') vals.forEach(function (x) { var f = x.at.feedback && x.at.feedback[b.id]; if (!(f && f.points >= 1)) { var s = String(x.v).trim(); wrong[s] = (wrong[s] || 0) + 1; } });
           var top = Object.keys(wrong).sort(function (p, q) { return wrong[q] - wrong[p]; }).slice(0, 4);
-          var ans = kk ? (kk.number != null ? Number(kk.number).toLocaleString('en-PH') : kk.short ? kk.short[0] : '') : '';
-          html += '<div style="margin-top:14px"><p style="font-weight:700;margin:0">' + esc(b.prompt) + '</p><div class="bar right"><span class="lbl">' + (ans ? 'Answer ' + esc(ans) : 'All correct') + '</span><span class="tr"><i style="width:' + pct(ok, sub.length) + '%"></i></span><b>' + pct(ok, sub.length) + '%</b></div>' +
+          var ans = kk ? (kk.number != null ? (kk.tol ? (kk.number - kk.tol) + ' to ' + (kk.number + kk.tol) : Number(kk.number).toLocaleString('en-PH')) : kk.short ? kk.short[0] : '') : '';
+          html += '<div class="mt-2"><p style="font-weight:700;margin:0">' + esc(b.prompt) + '</p><div class="bar right"><span class="lbl">' + (ans ? 'Answer ' + esc(ans) : 'All correct') + '</span><span class="tr"><i style="width:' + pct(ok, sub.length) + '%"></i></span><b>' + pct(ok, sub.length) + '%</b></div>' +
             (top.length ? '<div class="small muted">Common wrong answers: ' + top.map(function (s) { return '<b>' + esc(s) + '</b> (' + wrong[s] + ')'; }).join(', ') + '</div>' : '') + '</div>';
           if (b.type === 'sort' && kk) html += '<div class="small">' + b.items.map(function (it) {
             var n = vals.filter(function (x) { return x.v[it] === kk.sort[it]; }).length;
@@ -685,28 +948,41 @@
           }).join('') + '</div>';
         } else if (b.type === 'steps') {
           var all = sub.filter(function (x) { return (x.answers[b.id] || []).length === b.items.length; }).length;
-          html += '<p class="small" style="margin-top:14px"><b>Steps:</b> ' + all + ' of ' + sub.length + ' ticked every step.</p>';
+          html += '<p class="small mt-2"><b>Steps:</b> ' + all + ' of ' + sub.length + ' ticked every step.</p>';
         } else if (b.type === 'text') {
-          html += '<div style="margin-top:14px"><p style="font-weight:700;margin:0 0 6px">' + esc(b.prompt) + ' <span class="muted small">(' + vals.length + ')</span></p><div class="answers">' +
-            (vals.map(function (x) { return '<div><b>' + esc(fullName(x.p)) + ':</b> ' + esc(x.v) + '</div>'; }).join('') || '<div class="muted">No answers yet.</div>') + '</div></div>';
+          html += '<div class="mt-2"><p style="font-weight:700;margin:0 0 6px">' + esc(b.prompt) + ' <span class="muted small">(' + vals.length + ')</span></p><div class="answers">' +
+            (vals.map(function (x) { return '<div><b>' + who(x.p) + ':</b> ' + esc(x.v) + '</div>'; }).join('') || '<div class="muted">No answers yet.</div>') + '</div></div>';
         } else if (b.type === 'upload') {
           var gid = 'g-' + a.id.replace('.', '-') + '-' + b.id;
-          html += '<div style="margin-top:14px"><p style="font-weight:700;margin:0 0 6px">' + esc(b.prompt) + ' <span class="muted small">(' + vals.length + ')</span></p><div class="gallery" id="' + gid + '">' +
+          html += '<div class="mt-2"><p style="font-weight:700;margin:0 0 6px">' + esc(b.prompt) + ' <span class="muted small">(' + vals.length + ')</span></p><div class="gallery" id="' + gid + '">' +
             (vals.length ? '' : '<span class="muted small">No files yet.</span>') + '</div></div>';
-          vals.forEach(function (x) { uploads.push({ gid: gid, path: x.v.path, name: x.v.name, type: x.v.type, who: fullName(x.p) }); });
+          vals.forEach(function (x) { uploads.push({ gid: gid, path: x.v.path, name: x.v.name, type: x.v.type, who: who(x.p) }); });
         } else if (b.type === 'rubric') {
-          html += rubricTable(a, b, sub, people);
+          html += rubricTable(a, b, sub, people, who);
         }
       });
       var notyet = parts.filter(function (p) { return !sub.some(function (x) { return x.user_id === p.id; }); });
-      if (notyet.length && sub.length) html += '<details style="margin-top:12px"><summary class="small">Not submitted yet (' + notyet.length + ')</summary><p class="small">' + notyet.map(fullName).map(esc).join(', ') + '</p></details>';
+      if (notyet.length && sub.length) html += '<details class="mt-2"><summary class="small">Not submitted yet (' + notyet.length + ')</summary><p class="small nm">' + notyet.map(fullName).map(esc).join(', ') + '</p>' +
+        '<p class="small muted anon">Names are hidden. Use Show names when you aren\'t sharing your screen.</p></details>';
       html += '</section>';
     });
+    // topic summary: who finished every activity, and the average score
+    var allDone = parts.filter(function (p) { return sp.activities.every(function (a) { return atts.some(function (x) { return x.user_id === p.id && x.activity_id === a.id && x.status === 'submitted'; }); }); }).length;
+    var scoredAll = atts.filter(function (x) { return x.status === 'submitted' && x.max_score; });
+    var avgAll = scoredAll.length ? Math.round(100 * scoredAll.reduce(function (s, x) { return s + x.score / x.max_score; }, 0) / scoredAll.length) + '%' : '–';
     var mt = M.topics, i = mt.findIndex(function (t) { return t.id === tid; }), nx = mt[i + 1];
-    html += '<div class="next">' + (nx ? '<a class="btn" href="#/">Home</a><a class="btn primary" href="#/present/' + nx.id + '">Next: ' + nx.id + ' ' + esc(nx.title) + ' →</a>'
-      : '<span class="muted" style="align-self:center">End of ' + esc(M.n) + '.</span><a class="btn primary" href="#/">Back to Home</a>') + '</div></main>';
+    var nextBtn = nx ? '<a class="btn primary" href="#/present/' + nx.id + '">Next: ' + nx.id + ' ' + esc(nx.title) + ' →</a>' : '<a class="btn primary" href="#/">End of ' + esc(M.n) + ' · Home</a>';
+    var summary = '<section class="card summary"><div class="kpis"><div><b>' + allDone + '<small class="muted">/' + nreg + '</small></b><span>finished every activity</span></div>' +
+      '<div><b>' + avgAll + '</b><span>average score</span></div><div><b>' + sp.activities.length + '</b><span>activities</span></div></div>' + nextBtn + '</section>';
+    html = head + summary + html + '<div class="next">' + (nx ? '<a class="btn" href="#/">Home</a>' : '') + nextBtn + '</div></main>';
     render(html);
     document.getElementById('refresh').onclick = function () { vResults(tid); };
+    document.getElementById('names').onclick = function () {
+      var on = !document.getElementById('resmain').classList.contains('names-on');
+      try { sessionStorage.setItem('dpeNames', on ? 'on' : 'off'); } catch (e) {}
+      document.getElementById('resmain').className = 'wrap ' + (on ? 'names-on' : 'names-off');
+      this.textContent = on ? 'Hide names' : '👁 Show names'; this.setAttribute('aria-pressed', on);
+    };
     bindRubrics(tid);
     if (uploads.length) {
       var su = await sb.storage.from('outputs').createSignedUrls(uploads.map(function (u) { return u.path; }), 3600);
@@ -714,18 +990,18 @@
         var u = uploads[k], g = document.getElementById(u.gid); if (!g || !s.signedUrl) return;
         g.insertAdjacentHTML('beforeend', '<a href="' + esc(s.signedUrl) + '" target="_blank" rel="noopener">' +
           (/^image\//.test(u.type) ? '<img src="' + esc(s.signedUrl) + '" alt="">' : '<span style="font-size:28px;padding:20px 8px 0">📄</span>') +
-          '<span><b>' + esc(u.who) + '</b><br>' + esc(u.name) + '</span></a>');
+          '<span><b>' + u.who + '</b><span class="nm"><br>' + esc(u.name) + '</span></span></a>');
       });
     }
   }
 
-  function rubricTable(a, b, sub, people) {
+  function rubricTable(a, b, sub, people, who) {
     var tot = b.criteria.reduce(function (s, c) { return s + c.points; }, 0);
-    return '<div style="margin-top:14px" class="scroll-x"><p style="font-weight:700;margin:0 0 6px">Score the lab (rubric, ' + tot + ' pts)</p><table class="people"><tr><th>Participant</th>' +
+    return '<div class="mt-2 scroll-x"><p style="font-weight:700;margin:0 0 6px">Score the lab (rubric, ' + tot + ' pts)</p><table class="people"><tr><th>Participant</th>' +
       b.criteria.map(function (c) { return '<th title="' + esc(c.name) + '">' + esc(c.name.length > 22 ? c.name.slice(0, 20) + '…' : c.name) + '<br><span class="muted">/' + c.points + '</span></th>'; }).join('') + '<th>Total</th><th></th></tr>' +
       (sub.map(function (x) {
         var rb = x.rubric || {};
-        return '<tr data-att="' + x.id + '" data-act="' + a.id + '"><td>' + esc(fullName(people[x.user_id])) + '</td>' + b.criteria.map(function (c, k) {
+        return '<tr data-att="' + x.id + '" data-act="' + a.id + '"><td>' + who(people[x.user_id]) + '</td>' + b.criteria.map(function (c, k) {
           return '<td><input class="in" style="width:64px;min-height:36px;padding:6px" type="number" min="0" max="' + c.points + '" step="0.5" data-k="' + k + '" value="' + (rb[k] == null ? '' : rb[k]) + '"></td>';
         }).join('') + '<td class="rt"><b>' + Object.values(rb).reduce(function (s, v) { return s + (+v || 0); }, 0) + '</b>/' + tot + '</td><td><button class="btn small" data-save>Save</button></td></tr>';
       }).join('') || '<tr><td colspan="99" class="muted">No submissions yet.</td></tr>') + '</table></div>';
@@ -751,9 +1027,9 @@
     ]);
     var ps = r[0].data || [], at = r[1].data || [];
     var done = {}; at.forEach(function (x) { if (x.status === 'submitted') done[x.user_id] = (done[x.user_id] || 0) + 1; });
-    render(topbar() + '<main class="wrap" style="padding:20px 16px 48px"><div class="row" style="justify-content:space-between"><h1 style="margin:0">People (' + ps.length + ')</h1>' +
+    render(topbar() + '<main class="wrap page"><a class="btn small" href="#/">← Home</a><div class="row mt-2" style="justify-content:space-between"><h1 style="margin:0">People (' + ps.length + ')</h1>' +
       '<div class="row"><button class="btn" id="csv1">Download participants (CSV)</button><button class="btn" id="csv2">Download scores (CSV)</button></div></div>' +
-      '<div class="scroll-x" style="margin-top:14px"><table class="people"><tr><th>Name (certificate)</th><th>Email</th><th>Organization</th><th>Position</th><th>Registered</th><th>Submitted</th></tr>' +
+      '<div class="scroll-x mt-2"><table class="people"><tr><th>Name (certificate)</th><th>Email</th><th>Organization</th><th>Position</th><th>Registered</th><th>Submitted</th></tr>' +
       ps.map(function (p) { return '<tr><td><b>' + esc(fullName(p)) + '</b></td><td>' + esc(p.email) + '</td><td>' + esc(p.organization) + '</td><td>' + esc(p.position) + '</td><td>' + when(p.created_at) + '</td><td>' + (done[p.id] || 0) + '</td></tr>'; }).join('') +
       '</table></div></main>');
     function dl(name, rows) {

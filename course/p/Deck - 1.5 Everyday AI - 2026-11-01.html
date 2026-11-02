@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1.5 Everyday AI · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/animations/animations.css">
+<link rel="stylesheet" href="assets/dpe.css">
+<style>
+/* 1.5 only: learning flow, prompt boxes, folder tree, two-item quiz layout */
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:calc(var(--u)*.6);align-items:stretch}
+.flow .st{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:calc(var(--u)*1.1);box-shadow:var(--shadow);text-align:center}
+.flow .st .e{font-size:calc(var(--u)*2.2);display:block;line-height:1.1}
+.flow .st h4{font-size:calc(var(--u)*1.3);margin:calc(var(--u)*.4) 0 calc(var(--u)*.2)}
+.flow .st p{font-size:calc(var(--u)*1.1);color:var(--text-2);line-height:1.4}
+.flow .ar{align-self:center;font-size:calc(var(--u)*1.8);color:var(--mod);font-weight:800}
+.prompt{font-family:var(--font-mono);font-size:calc(var(--u)*1.15);line-height:1.5;background:#fff;border:1px solid var(--border-strong);border-radius:var(--radius);padding:calc(var(--u)*.9) calc(var(--u)*1.1);color:var(--text-1)}
+.prompt.bad{border-color:var(--coral);background:var(--coral-soft)}
+.prompt.good{border-color:var(--green);background:var(--green-soft)}
+.tree{font-family:var(--font-mono);font-size:calc(var(--u)*1.2);line-height:1.8;color:var(--text-1);margin:0;white-space:pre}
+.tree .d{color:var(--text-3)}
+.quiz{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*2.6);align-items:start}
+.quiz .qn{font-size:calc(var(--u)*.9);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mod)}
+.quiz h4{font-size:calc(var(--u)*1.55);margin:calc(var(--u)*.3) 0 calc(var(--u)*1)}
+.quiz .qc{gap:calc(var(--u)*.6)}
+.quiz .opt{font-size:calc(var(--u)*1.3);padding:calc(var(--u)*.7) calc(var(--u)*1.1)}
+.quiz .opt .l{width:calc(var(--u)*1.9);height:calc(var(--u)*1.9);font-size:calc(var(--u)*.95)}
+.quiz .opt .why{font-size:calc(var(--u)*1.05)}
+.mono{font-family:var(--font-mono);font-size:.9em}
+</style>
+</head>
+<body class="m1" data-brand="Digital Productivity Essentials · <b>Module 1</b> · 1.5 Everyday AI">
+<div class="deck">
+
+  
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 1 · Computers and Internet Essentials</p>
+      <h1 class="h1" data-anim="fade-up">Everyday <span style="color:var(--gold)">AI</span></h1>
+      <p class="lede" data-anim="fade-up">What artificial intelligence really is, where you already use it, where it goes wrong, and how to use it as a safe copilot.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 1.5</span><span class="tag ghost">~15 minutes + quiz</span><span class="tag ghost">Lab 1 · Part C</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m1/1-5-cover.jpg" alt="A woman typing a question into an AI chat on her laptop"><div class="cv-num">1.5</div></div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Warm-up">
+    <div class="split">
+      <div>
+        <p class="kicker">Warm-up · type a number in the chat</p>
+        <h2 class="h2">How many of these did you use this week?</h2>
+        <div class="chips mt-l">
+          <span class="chip">📧 Email spam folder</span><span class="chip">🗺️ Maps traffic or route</span><span class="chip">🙂 Face or fingerprint unlock</span>
+          <span class="chip">▶️ YouTube or Facebook suggestions</span><span class="chip">🌐 Translate app</span><span class="chip">💬 A chatbot</span>
+        </div>
+        <div class="callout gold mt-l"><b>Surprise:</b> every one of them uses AI. Most of us use AI daily without calling it "AI".</div>
+      </div>
+      <div class="media"><img src="images/m1/1-5-maps.jpg" alt="Hands holding a phone showing a map app"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Objectives">
+    <div class="slide-head">
+      <div><p class="kicker">In this topic</p><h2 class="h2">By the end, you can…</h2></div>
+    </div>
+    <div class="obj anim-stagger-list">
+      <div class="card top"><span class="k">Explain</span><h4>What AI is</h4><p>Software that learns patterns from examples, and what it is not.</p></div>
+      <div class="card top"><span class="k">Spot</span><h4>AI in daily life</h4><p>Name common uses, and its weak spots: hallucinations and bias.</p></div>
+      <div class="card top"><span class="k">Use safely</span><h4>AI as a copilot</h4><p>Ask, check and edit, and never paste confidential or taxpayer data.</p></div>
+    </div>
+    <div class="callout tip mt-l"><b>Then:</b> Lab 1 Part C (save an AI response), the Lab 1 checklist, and the 10-item Digital Foundations Quiz.</div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="What AI is">
+    <div class="split" style="grid-template-columns:1.25fr .75fr">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">AI is software that <em class="mod">learns patterns from examples</em>.</h2>
+        <div class="flow mt-l">
+          <div class="st"><span class="e">🥭🥭🥭</span><h4>1 · Many examples</h4><p>Thousands of mango photos labelled "ripe" or "not ripe".</p></div>
+          <span class="ar">→</span>
+          <div class="st"><span class="e">🧠</span><h4>2 · Finds the pattern</h4><p>Color, spots, shape: what "ripe" usually looks like.</p></div>
+          <span class="ar">→</span>
+          <div class="st"><span class="e">✅</span><h4>3 · Guesses on new ones</h4><p>"Ripe, 92% sure." A guess, not a guarantee.</p></div>
+        </div>
+        <div class="callout mt-m"><b>Regular software</b> follows rules people wrote: a calculator always gives the same answer. <b>AI</b> learned its own rules from examples, so it can be wrong.</div>
+      </div>
+      <div class="media"><img src="images/m1/1-5-face-unlock.jpg" alt="Hand holding a smartphone"></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="AI you already use">
+    <div class="slide-head">
+      <div><p class="kicker">Everyday AI</p><h2 class="h2">Six things AI does for you every day</h2></div>
+      <span class="tag">Each one learned from millions of examples</span>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><span class="ic-badge">📧</span><h4>Spam filter</h4><p>Learned what junk and scam emails look like, and moves them out of your inbox.</p></div>
+      <div class="card top"><span class="ic-badge">🗺️</span><h4>Maps and traffic</h4><p>Predicts traffic from phones on the road and suggests a faster route to work.</p></div>
+      <div class="card top"><span class="ic-badge">🙂</span><h4>Face unlock</h4><p>Recognizes your face, even with new glasses or a different haircut.</p></div>
+      <div class="card top"><span class="ic-badge">▶️</span><h4>Recommendations</h4><p>Suggests the next video, song or product based on what you watched or bought.</p></div>
+      <div class="card top"><span class="ic-badge">🌐</span><h4>Translation</h4><p>Turns English into Filipino or Cebuano and back, by learning from translated text.</p></div>
+      <div class="card top"><span class="ic-badge">💬</span><h4>Chatbots and assistants</h4><p>ChatGPT, Copilot, Gemini, Meta AI: they write and answer in plain language.</p></div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="What AI is not">
+    <div class="split rev">
+      <div class="media"><img src="images/m1/1-5-robot.jpg" alt="A humanoid robot head in profile" style="object-position:center 35%"></div>
+      <div>
+        <p class="kicker">Clearing up myths</p>
+        <h2 class="h2">What AI is <em class="mod">not</em></h2>
+        <ul class="ticks x mt-m">
+          <li><b>Not a thinking person.</b> It has no feelings, opinions or common sense, even when it sounds friendly.</li>
+          <li><b>Not always right.</b> It predicts likely words or answers; likely is not the same as true.</li>
+          <li><b>Not an official source.</b> It doesn't replace bir.gov.ph, your office rules or your chief.</li>
+          <li><b>Not a movie robot.</b> Most AI is quiet software inside apps you already use.</li>
+          <li><b>Not your replacement.</b> It's a tool. Judgment, empathy and accountability stay with people.</li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Hallucinations and bias">
+    <div class="slide-head">
+      <div><p class="kicker">Where AI goes wrong</p><h2 class="h2">Two weak spots to watch for</h2></div>
+    </div>
+    <div class="grid g2">
+      <div class="card top">
+        <span class="ic-badge">🌀</span><h4>Hallucination: confident but wrong</h4>
+        <p>AI can invent facts that sound real: a law number that doesn't exist, a fake quote, a wrong deadline, a website that was never made.</p>
+        <div class="callout warn mt-m"><b>Rule:</b> check every name, number, date and law against an official source.</div>
+      </div>
+      <div class="card top">
+        <span class="ic-badge">⚖️</span><h4>Bias: unfair patterns copied from data</h4>
+        <p>AI learns from human examples, including our unfair habits. A translator may turn "siya" (he or she) into "he" for a doctor and "she" for a nurse.</p>
+        <div class="callout gold mt-m"><b>Rule:</b> ask "is this fair to everyone?" It may also know less about local places and Bisaya terms.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Video intro">
+    <div class="split">
+      <div>
+        <p class="kicker">Watch · 4½ minutes</p>
+        <h2 class="h2">AI learns from examples. You stay the pilot.</h2>
+        <p class="lede mt-m">A basket of mangoes, a confident wrong answer and one firm rule: see what <b>AI</b> really is, where it <b>goes wrong</b>, and how to use it as a <b>safe copilot</b> at work and at home.</p>
+        <div class="callout gold mt-l"><b>While watching:</b> listen for why the examples (the data) matter so much, and type one reason in the chat after.</div>
+      </div>
+      <div class="vmeta">
+        <div class="vintro"><img src="videos/1.5/poster.jpg" alt="Video: Everyday AI"><div class="play"></div><span class="vlen">4:37</span></div>
+        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/1.5/index.html" title="Video: Everyday AI" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    
+  </section>
+  
+
+  
+  <section class="slide" data-title="Protect confidential data">
+    <div class="slide-head">
+      <div><p class="kicker">The one rule at work</p><h2 class="h2">Never paste confidential or taxpayer data into public AI tools</h2></div>
+    </div>
+    <div class="grid g2" style="gap:calc(var(--u)*2.4)">
+      <div>
+        <p class="small"><b>Why?</b> What you type into a free AI tool may be stored, reviewed by the company, and used to improve the tool, depending on its settings. Once pasted, you can't take it back.</p>
+        <ul class="ticks x mt-m">
+          <li>Taxpayer names, TINs, addresses, returns or assessments</li>
+          <li>Internal memos, case details, office passwords</li>
+          <li>Your own or your family's IDs, bank and e-wallet details</li>
+        </ul>
+      </div>
+      <div>
+        <p class="kicker" style="color:var(--coral)">Don't</p>
+        <div class="prompt bad mt-s">Summarize this return of Juan Dela Cruz, TIN 123-456-789-000, and draft a letter about his unpaid balance…</div>
+        <p class="kicker mt-m" style="color:var(--green)">Do</p>
+        <div class="prompt good mt-s">Write a short, polite template letter reminding a taxpayer of a missing document. Use [NAME] and [DOCUMENT] as blanks.</div>
+        <p class="tiny mt-s">The name and TIN above are fictional samples.</p>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="AI as a copilot">
+    <div class="slide-head">
+      <div><p class="kicker">AI as a copilot · you are still the pilot</p><h2 class="h2">Good uses, at work and at home</h2></div>
+    </div>
+    <div class="pair anim-stagger-list">
+      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+        <ul>
+          <li>Draft a generic memo or announcement template</li>
+          <li>Make an email clearer or more polite</li>
+          <li>Explain a spreadsheet formula in simple words</li>
+          <li>Brainstorm ideas for an office event or training</li>
+        </ul>
+      </div>
+      <div class="ex home"><div class="ex-label">🏠 At home</div>
+        <ul>
+          <li>A week's meal plan within a ₱2,000 budget</li>
+          <li>Explain your child's fractions lesson, step by step</li>
+          <li>Promo text for a sari-sari store or a fiesta raffle</li>
+          <li>A checklist for a family trip or a church event</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid g4 mt-l">
+      <div class="callout"><b>1 · Ask</b> clearly, with no private data.</div>
+      <div class="callout"><b>2 · Check</b> facts against official sources.</div>
+      <div class="callout"><b>3 · Edit</b> it into your own words.</div>
+      <div class="callout"><b>4 · Own it.</b> Your name, your responsibility.</div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Lab 1 Part C">
+    <div class="slide-head">
+      <div><p class="kicker">Lab 1 · Part C · Everyday AI</p><h2 class="h2">Ask an AI, save the answer</h2></div>
+      <button class="timer" data-min="7">7:00</button>
+    </div>
+    <div class="grid" style="grid-template-columns:1.25fr .75fr;gap:calc(var(--u)*2);align-items:start">
+      <div class="try">
+        <div class="try-head"><span class="try-label">Try it now</span><span class="tiny">Any free AI assistant</span></div>
+        <ol>
+          <li>Open a free AI assistant: <b>Copilot</b>, <b>Gemini</b>, <b>ChatGPT</b> or <b>Meta AI</b>.</li>
+          <li>Type: <span class="prompt" style="display:inline;padding:.1em .4em">List 3 ways AI helps with organizing office files</span></li>
+          <li>Read the answer. Is each idea sensible? Anything to double-check?</li>
+          <li>Copy the answer into <b>Notepad</b> (or Word, Google Docs, LibreOffice Writer).</li>
+          <li>Add one line: <b>My note:</b> the most useful idea, and why.</li>
+          <li>Save it in <b>02 AI Responses</b> as <b>YYYY-MM-DD AI Response - Organizing Files</b>.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="media" style="height:calc(var(--u)*15);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)"><img src="images/m1/1-5-ai-laptop.jpg" alt="Person typing into an AI assistant on a laptop" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="callout gold mt-m"><b>Other topics:</b> a household budget, a sari-sari store, a kids' science project.</div>
+        <div class="callout warn mt-s"><b>Remember:</b> no names, TINs or office data in the prompt.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Lab 1 checklist">
+    <div class="slide-head">
+      <div><p class="kicker">Lab 1 · File Management and Everyday AI</p><h2 class="h2">Check your master folder</h2></div>
+      <span class="tag green">Show your File Explorer</span>
+    </div>
+    <div class="grid g2" style="gap:calc(var(--u)*2.4);align-items:center">
+      <div class="win">
+        <div class="bar"><i></i><i></i><i></i><span>File Explorer · Desktop</span></div>
+<pre class="tree body">📁 DPE Lab 1 - Juan Dela Cruz
+ ├ 📁 01 Screenshots
+ │  ├ 🖼️ 2026-11-03 Screenshot - BIR Website.png
+ │  └ 📄 2026-11-03 Note - Practice.txt
+ └ 📁 02 AI Responses
+    ├ 📄 2026-11-03 AI Response - Organizing Files.txt
+    └ 📄 2026-11-03 Note - Practice.txt
+<span class="d">(dates are samples)</span></pre>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li><b>A master folder</b> with your name, on the Desktop</li>
+          <li><b>At least two clearly named sub-folders</b></li>
+          <li><b>One screenshot or downloaded image</b> inside a sub-folder (Part B)</li>
+          <li><b>One text document</b> with an AI response and your note (Part C)</li>
+          <li>File names follow <b>YYYY-MM-DD Type - Subject</b></li>
+        </ul>
+        <div class="callout tip mt-m"><b>Missing something?</b> Go back to Part A, B or C now. Your facilitator will ask some of you to share your screen.</div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Digital Foundations Quiz">
+    <p class="kicker">Module 1 assessment · 10% of the course</p>
+    <h2 class="h1">Digital Foundations Quiz</h2>
+    <div class="grid g4 mt-l">
+      <div class="card dark"><h4>10 items</h4><p>Computer terms, file management, safe browsing, everyday AI.</p></div>
+      <div class="card dark"><h4>1 point each</h4><p>One best answer, A to D.</p></div>
+      <div class="card dark"><h4>Answer first</h4><p>Write 1 to 10 with your letters, or use the form your facilitator shares.</p></div>
+      <div class="card dark"><h4>Then we reveal</h4><p>Two items per slide; we discuss each answer together.</p></div>
+    </div>
+    <p class="lede mt-l">No pressure: everything on it was covered in Topics 1.1 to 1.5.</p>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Quiz 1 and 2">
+    <div class="slide-head">
+      <div><p class="kicker">Digital Foundations Quiz · items 1 and 2</p><h2 class="h2">Computer terms</h2></div>
+      <span class="tag">Topic 1.1</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 1</p><h4>Which of these is software?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>The office printer</div></div>
+          <div class="opt"><span class="l">B</span><div>A spreadsheet program</div></div>
+          <div class="opt"><span class="l">C</span><div>A flash drive</div></div>
+          <div class="opt"><span class="l">D</span><div>The ICT focal person</div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 2</p><h4>A scanner that turns a signed form into a file is what kind of hardware?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Input</div></div>
+          <div class="opt"><span class="l">B</span><div>Output</div></div>
+          <div class="opt"><span class="l">C</span><div>Processing</div></div>
+          <div class="opt"><span class="l">D</span><div>Storage</div></div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Quiz 3 and 4">
+    <div class="slide-head">
+      <div><p class="kicker">Digital Foundations Quiz · items 3 and 4</p><h2 class="h2">File management</h2></div>
+      <span class="tag">Topic 1.2</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 3</p><h4>Which file name is easiest to find and sort?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div><span class="mono">final na jud.docx</span></div></div>
+          <div class="opt"><span class="l">B</span><div><span class="mono">memo 10/26.docx</span></div></div>
+          <div class="opt"><span class="l">C</span><div><span class="mono">2026-10-26 Memo - Supplies Request.docx</span></div></div>
+          <div class="opt"><span class="l">D</span><div><span class="mono">Document1.docx</span></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 4</p><h4>You pressed Delete on a file on your Desktop by mistake. Where can you get it back?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>The Downloads folder</div></div>
+          <div class="opt"><span class="l">B</span><div>The Recycle Bin</div></div>
+          <div class="opt"><span class="l">C</span><div>The taskbar</div></div>
+          <div class="opt"><span class="l">D</span><div>Nowhere; it's gone forever</div></div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Quiz 5 and 6">
+    <div class="slide-head">
+      <div><p class="kicker">Digital Foundations Quiz · items 5 and 6</p><h2 class="h2">Safe browsing</h2></div>
+      <span class="tag">Topic 1.3</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 5</p><h4>In <span class="mono">https://www.bir.gov.ph/index.php</span>, which part tells you who owns the site?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div><span class="mono">https://</span></div></div>
+          <div class="opt"><span class="l">B</span><div><span class="mono">www.</span></div></div>
+          <div class="opt"><span class="l">C</span><div><span class="mono">bir.gov.ph</span></div></div>
+          <div class="opt"><span class="l">D</span><div><span class="mono">/index.php</span></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 6</p><h4>Which search finds only PDF files from Philippine government websites?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div><span class="mono">tax forms pdf gov</span></div></div>
+          <div class="opt"><span class="l">B</span><div><span class="mono">tax forms site:gov.ph filetype:pdf</span></div></div>
+          <div class="opt"><span class="l">C</span><div><span class="mono">tax forms -pdf -gov</span></div></div>
+          <div class="opt"><span class="l">D</span><div><span class="mono">"tax forms gov.ph pdf"</span></div></div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Quiz 7 and 8">
+    <div class="slide-head">
+      <div><p class="kicker">Digital Foundations Quiz · items 7 and 8</p><h2 class="h2">Safety and privacy</h2></div>
+      <span class="tag">Topic 1.4</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 7</p><h4>A text says your account will be closed unless you send the OTP now. Best response?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Send the OTP quickly</div></div>
+          <div class="opt"><span class="l">B</span><div>Reply and ask who they are</div></div>
+          <div class="opt"><span class="l">C</span><div>Don't reply or click; verify officially and report it</div></div>
+          <div class="opt"><span class="l">D</span><div>Forward it to the office group chat</div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 8</p><h4>Which password is strongest?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div><span class="mono">Juan1985</span></div></div>
+          <div class="opt"><span class="l">B</span><div><span class="mono">Password123!</span></div></div>
+          <div class="opt"><span class="l">C</span><div><span class="mono">Mangga-Ulan-Jeepney-27</span></div></div>
+          <div class="opt"><span class="l">D</span><div><span class="mono">123-456-789-000</span></div></div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Quiz 9 and 10">
+    <div class="slide-head">
+      <div><p class="kicker">Digital Foundations Quiz · items 9 and 10</p><h2 class="h2">Everyday AI</h2></div>
+      <span class="tag">Topic 1.5</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 9</p><h4>Which of these uses AI that learned from examples?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>An email spam filter</div></div>
+          <div class="opt"><span class="l">B</span><div>A basic calculator adding numbers</div></div>
+          <div class="opt"><span class="l">C</span><div>A light switch</div></div>
+          <div class="opt"><span class="l">D</span><div>A printed wall calendar</div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 10</p><h4>What is the safe way to use a public AI chatbot at work?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Paste a taxpayer's return and ask for a summary</div></div>
+          <div class="opt"><span class="l">B</span><div>Ask for a generic template, then check and edit it</div></div>
+          <div class="opt"><span class="l">C</span><div>Copy its answer straight into an official letter</div></div>
+          <div class="opt"><span class="l">D</span><div>Give it your office login so it can read your email</div></div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 1.5 and Module 1</p>
+    <h2 class="h2">AI learns from examples. You stay the pilot.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Understand</h4><p>AI finds patterns in examples and makes guesses. It's in your spam filter, maps and phone.</p></div>
+      <div class="card dark"><h4>Doubt wisely</h4><p>It can hallucinate and copy bias. Check facts against official sources.</p></div>
+      <div class="card dark"><h4>Protect</h4><p>Never paste confidential or taxpayer data. Ask, check, edit, own it.</p></div>
+    </div>
+    <p class="lede mt-l">Next · <b style="color:var(--gold)">Module 2 · Word Processing</b>, starting with 2.1 Application Navigation and File Handling. Keep your Lab 1 folder: we'll save Module 2 files the same way.</p>
+    
+  </section>
+
+</div>
+<script src="assets/runtime.js"></script>
+<script src="assets/dpe.js"></script>
+</body>
+</html>

@@ -39,18 +39,27 @@
           "type": "mcq",
           "id": "tab",
           "prompt": "Which key moves the cursor to the next cell?",
-          "options": ["Enter", "Tab", "Space bar", "Delete"]
+          "options": [
+            "Enter",
+            "Tab",
+            "Space bar",
+            "Delete"
+          ]
         },
         {
           "type": "mcq",
           "id": "lunch",
           "prompt": "In your table, what is in the Venue cell for the Lunch break?",
-          "options": ["Lobby, Ground Floor", "Conference Room", "Pantry"]
+          "options": [
+            "Lobby, Ground Floor",
+            "Conference Room",
+            "Pantry"
+          ]
         },
         {
           "type": "upload",
           "id": "shot",
-          "prompt": "Optional: a screenshot of your schedule table",
+          "prompt": "A screenshot of your schedule table",
           "optional": true
         }
       ],
@@ -84,13 +93,21 @@
           "type": "mcq",
           "id": "handle",
           "prompt": "Which handle do you drag so the logo keeps its shape?",
-          "options": ["A side handle", "A corner handle", "The rotate handle"]
+          "options": [
+            "A side handle",
+            "A corner handle",
+            "The rotate handle"
+          ]
         },
         {
           "type": "mcq",
           "id": "width",
           "prompt": "About how wide should the logo be?",
-          "options": ["2 to 3 cm", "8 to 10 cm", "The full width of the page"]
+          "options": [
+            "2 to 3 cm",
+            "8 to 10 cm",
+            "The full width of the page"
+          ]
         },
         {
           "type": "mcq",
@@ -105,7 +122,7 @@
         {
           "type": "upload",
           "id": "shot",
-          "prompt": "Optional: a screenshot of your letterhead",
+          "prompt": "A screenshot of your letterhead",
           "optional": true
         }
       ],

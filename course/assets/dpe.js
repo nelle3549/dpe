@@ -4,11 +4,22 @@
    - .timer          activity countdown: data-min="3"; click start/pause, double-click reset
    - .video          YouTube card: data-yt="VIDEO_ID" (opens in a new tab; optional data-start="SECONDS")
    - .flip           click to flip a two-sided card
-   Footer brand line and slide numbers are filled in automatically. */
+   Footer brand line and slide numbers are filled in automatically.
+   Inside the LMS (in a frame): html.in-lms; with ?p=1 (participants) html.participant
+   hides answer reveals. Swipe left/right changes slides on touch screens, and the
+   frame tells the LMS which slide is showing ({type:'dpe-slide', n, total}). */
 (function () {
+  var participant = /[?&]p=1/.test(location.search);
+  if (window.parent !== window) document.documentElement.classList.add('in-lms');
+  if (participant) document.documentElement.classList.add('participant');
+
   document.addEventListener('click', function (e) {
     var opt = e.target.closest('.opt');
     if (opt) {
+      if (participant) {   // mark the pick, but the facilitator reveals what's right
+        if (opt.closest('.qc')) opt.closest('.qc').querySelectorAll('.opt').forEach(function (o) { o.classList.toggle('picked', o === opt); });
+        return;
+      }
       var group = opt.closest('.qc');
       opt.classList.add('shown');
       if (opt.hasAttribute('data-correct') && group) group.classList.add('solved');
@@ -93,7 +104,32 @@
     if (d.type === 'dpe-key' && d.key) document.dispatchEvent(new KeyboardEvent('keydown', { key: d.key, bubbles: true }));
   });
 
+  // Swipe: a mostly sideways drag of 50px or more moves one slide.
+  function key(k) { document.dispatchEvent(new KeyboardEvent('keydown', { key: k, bubbles: true })); }
+  var tx = null, ty = 0;
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) { tx = null; return; }
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty; tx = null;
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    key(dx < 0 ? 'ArrowRight' : 'ArrowLeft');
+  }, { passive: true });
+
   document.addEventListener('DOMContentLoaded', function () {
+    // tell the LMS which slide is on screen
+    if (window.parent !== window) {
+      var all = document.querySelectorAll('.deck > .slide'), last = -1;
+      var tell = function () {
+        var n = Array.prototype.findIndex.call(all, function (x) { return x.classList.contains('is-active'); });
+        if (n === last) return; last = n;
+        window.parent.postMessage({ type: 'dpe-slide', n: n + 1, total: all.length }, '*');
+      };
+      all.forEach(function (x) { new MutationObserver(tell).observe(x, { attributes: true, attributeFilter: ['class'] }); });
+      setTimeout(tell, 0);
+    }
     document.querySelectorAll('.deck > .slide.vslide iframe[data-src]').forEach(function (fr) {
       fr.src = fr.getAttribute('data-src') + (isPreview ? '?preview=1' : '');
       if (isPreview) return;
