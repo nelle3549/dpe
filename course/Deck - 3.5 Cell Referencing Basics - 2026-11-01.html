@@ -150,8 +150,8 @@ svg text{font-family:var(--font-sans)}
         <p class="kicker">The big idea</p>
         <h2 class="h2">References work like <em class="mod">cinema seats</em>.</h2>
         <div class="grid g2 mt-l anim-stagger-list">
-          <div class="card top"><span class="ic-badge">👫</span><h4>Relative · <code class="code">C2</code></h4><p>"Sit one seat to the right of your friend." Move the friend, and your seat moves too.</p></div>
-          <div class="card top"><span class="ic-badge">🎟️</span><h4>Absolute · <code class="code">$C$2</code></h4><p>"Row F, Seat 12" printed on the ticket. Whoever holds it, the seat never changes.</p></div>
+          <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg></span><h4>Relative · <code class="code">C2</code></h4><p>"Sit one seat to the right of your friend." Move the friend, and your seat moves too.</p></div>
+          <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" /><path d="M13 5v2" /><path d="M13 17v2" /><path d="M13 11v2" /></svg></span><h4>Absolute · <code class="code">$C$2</code></h4><p>"Row F, Seat 12" printed on the ticket. Whoever holds it, the seat never changes.</p></div>
         </div>
         <div class="callout gold mt-m"><b>The $ sign is a lock,</b> not pesos or dollars. <b>$C</b> locks the column, <b>$2</b> locks the row.</div>
       </div>
@@ -267,14 +267,14 @@ svg text{font-family:var(--font-sans)}
   <section class="slide" data-title="Why it broke">
     <div class="slide-head"><div><p class="kicker">What the spreadsheet did</p><h2 class="h2">Both addresses moved down one row each time</h2></div></div>
     <div class="grid g4 anim-stagger-list">
-      <div class="card top"><h4>G2</h4><p class="big-f" style="font-size:calc(var(--u)*1.9)">=E2*B12</p><p class="mt-s">6,125.00 × 12% = <b>735.00</b> ✓</p></div>
-      <div class="card top" style="border-top-color:var(--coral)"><h4>G3</h4><p class="big-f" style="font-size:calc(var(--u)*1.9)">=E3*<span class="lk">B13</span></p><p class="mt-s">7,950.00 × blank = <b>0.00</b> ✗</p></div>
-      <div class="card top" style="border-top-color:var(--coral)"><h4>G4</h4><p class="big-f" style="font-size:calc(var(--u)*1.9)">=E4*<span class="lk">B14</span></p><p class="mt-s">960.00 × blank = <b>0.00</b> ✗</p></div>
-      <div class="card top" style="border-top-color:var(--coral)"><h4>G9</h4><p class="big-f" style="font-size:calc(var(--u)*1.9)">=E9*<span class="lk">B19</span></p><p class="mt-s">1,230.00 × blank = <b>0.00</b> ✗</p></div>
+      <div class="card top"><h4>G2</h4><p class="big-f" style="font-size:calc(var(--u)*1.9)">=E2*B12</p><p class="mt-s">6,125.00 × 12% = <b>735.00</b> <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></p></div>
+      <div class="card top" style="border-top-color:var(--coral)"><h4>G3</h4><p class="big-f" style="font-size:calc(var(--u)*1.9)">=E3*<span class="lk">B13</span></p><p class="mt-s">7,950.00 × blank = <b>0.00</b> <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></p></div>
+      <div class="card top" style="border-top-color:var(--coral)"><h4>G4</h4><p class="big-f" style="font-size:calc(var(--u)*1.9)">=E4*<span class="lk">B14</span></p><p class="mt-s">960.00 × blank = <b>0.00</b> <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></p></div>
+      <div class="card top" style="border-top-color:var(--coral)"><h4>G9</h4><p class="big-f" style="font-size:calc(var(--u)*1.9)">=E9*<span class="lk">B19</span></p><p class="mt-s">1,230.00 × blank = <b>0.00</b> <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></p></div>
     </div>
     <div class="pair mt-l">
-      <div class="ex office"><div class="ex-label">✓ E should move</div><p>Each row needs <b>its own</b> Total Cost, so E2, E3, E4… is right.</p></div>
-      <div class="ex home"><div class="ex-label">✗ B12 should stay</div><p>There is only <b>one</b> VAT rate. Every row must keep pointing at B12.</p></div>
+      <div class="ex office"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> E should move</div><p>Each row needs <b>its own</b> Total Cost, so E2, E3, E4… is right.</p></div>
+      <div class="ex home"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg> B12 should stay</div><p>There is only <b>one</b> VAT rate. Every row must keep pointing at B12.</p></div>
     </div>
     <div class="notes">
       <p>Walk across the four cards. The spreadsheet isn't wrong; it followed our directions. "Use the cell <b>ten rows below</b> me in column B" was fine for row 2, but in row 3 that lands on B13, which is empty.</p>
@@ -441,14 +441,14 @@ svg text{font-family:var(--font-sans)}
   <section class="slide" data-title="At the office and at home">
     <div class="slide-head"><div><p class="kicker">See it everywhere</p><h2 class="h2">One input cell, many rows that use it</h2></div></div>
     <div class="pair anim-stagger-list">
-      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+      <div class="ex office"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" /><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" /><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" /><path d="M10 6h4" /><path d="M10 10h4" /><path d="M10 14h4" /><path d="M10 18h4" /></svg> At the office</div>
         <ul>
           <li><b>12% VAT</b> on a supplies list: one rate cell, locked with $.</li>
           <li><b>Share of the budget:</b> each item's cost ÷ the grand total, <b>=E2/$E$10</b>. A4 paper is 27.8% of ₱22,039.00.</li>
           <li><b>Training allowance:</b> days attended × one daily rate cell.</li>
         </ul>
       </div>
-      <div class="ex home"><div class="ex-label">🏠 At home</div>
+      <div class="ex home"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg> At home</div>
         <ul>
           <li><b>Sari-sari markup:</b> selling price = cost × (1 + markup). With 15% in E1: <b>=B2*(1+$E$1)</b>. A ₱24 can of sardines sells at ₱27.60.</li>
           <li><b>Savings goal:</b> 10% of each payday, one rate cell for all 24 paydays.</li>

@@ -263,7 +263,7 @@ details.mod>summary::after{margin-left:4px}
 .up label.btn:focus-within,.vh:focus+label{outline:3px solid var(--m1);outline-offset:2px}
 .upthumb{display:block;max-width:min(240px,100%);max-height:180px;margin-top:8px;border-radius:8px;border:1px solid var(--border)}
 .step.on span{color:var(--text-2);text-decoration:none}
-.step.on span::after{content:' ✓';color:var(--good);font-weight:800}
+.step.on span::after{content:"";display:inline-block;width:.9em;height:.9em;margin-left:.35em;vertical-align:-.08em;background:var(--good);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat}
 .olist .tag{font:inherit;font-size:13px;font-weight:700;padding:7px 14px;min-height:36px;display:inline-flex;align-items:center;border:0;cursor:pointer;text-decoration:none}
 .timer.soon{background:var(--warn-bg);color:var(--warn)}
 input.in.bad{border-color:var(--bad)}
@@ -381,3 +381,6 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 .topic .facfoot .rlink{display:inline-flex;align-items:center;min-height:40px;padding:0 10px;border-radius:10px;font-weight:700;font-size:14px;color:var(--navy);text-decoration:none}
 .topic .facfoot .rlink:hover{background:rgba(244,180,0,.18)}
 @media (max-width:520px){.topic .cover{aspect-ratio:2/1}.topic.locked .cover{aspect-ratio:3/1}}
+/* icons (3 Nov): Lucide SVGs (ISC) replace emoji */
+.ico{display:inline-block;vertical-align:-.14em;flex:none}
+.btn .ico{vertical-align:middle}

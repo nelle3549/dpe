@@ -83,7 +83,7 @@
   label.done{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text-3);cursor:pointer;user-select:none}
   label.done input{width:18px;height:18px;accent-color:var(--good);cursor:pointer}
   .deck.is-done{opacity:.72}
-  .deck.is-done .num::after{content:" ✓";color:#7CF0B5}
+  .deck.is-done .num::after{content:"";display:inline-block;width:.9em;height:.9em;margin-right:.3em;vertical-align:-.08em;margin:0 0 0 .3em;background:#7CF0B5;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5' /%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5' /%3E%3C/svg%3E") center/contain no-repeat}
   .deck.is-done label.done{color:var(--good)}
   .hidden{display:none!important}
 
@@ -228,16 +228,16 @@
     <h2 class="sec">Course materials</h2>
     <p class="sub">Everything for the course in one place.</p>
     <div class="mats">
-      <a class="mat" href="../CS_DigitalProductivityEssentials_1.0.pdf" target="_blank"><span class="ic">📄</span><div><b>Course syllabus (PDF)</b><span>DICT ILCDB · Digital Productivity Essentials v1.0</span></div></a>
-      <a class="mat" href="#modules" data-jump="all"><span class="ic">🖥️</span><div><b>26 topic decks</b><span>Slides with activities, quick checks and a narrated video each</span></div></a>
-      <a class="mat" href="#labs"><span class="ic">🧪</span><div><b>Lab briefs &amp; rubrics</b><span>Labs 1 to 4 and the Digital Foundations Quiz</span></div></a>
+      <a class="mat" href="../CS_DigitalProductivityEssentials_1.0.pdf" target="_blank"><span class="ic"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg></span><div><b>Course syllabus (PDF)</b><span>DICT ILCDB · Digital Productivity Essentials v1.0</span></div></a>
+      <a class="mat" href="#modules" data-jump="all"><span class="ic"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" /></svg></span><div><b>26 topic decks</b><span>Slides with activities, quick checks and a narrated video each</span></div></a>
+      <a class="mat" href="#labs"><span class="ic"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2" /><path d="M8.5 2h7" /><path d="M7 16h10" /></svg></span><div><b>Lab briefs &amp; rubrics</b><span>Labs 1 to 4 and the Digital Foundations Quiz</span></div></a>
     </div>
     <h2 class="sec" style="font-size:22px">Presenting the decks</h2>
     <div class="keys" style="margin-top:12px">
       <div><kbd>→</kbd> <kbd>Space</kbd> next · <kbd>←</kbd> back</div>
       <div><kbd>F</kbd> full screen · <kbd>O</kbd> overview</div>
       <div><kbd>S</kbd> presenter view with script and timer</div>
-      <div><kbd>H</kbd> or the ⌂ button: back to this index</div>
+      <div><kbd>H</kbd> or the <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg> button: back to this index</div>
       <div>Click a timer to start, double-click to reset</div>
       <div>Each deck has a narrated video slide: <kbd>Space</kbd> plays or pauses, <kbd>C</kbd> captions. In Zoom or Meet, share the tab with sound</div>
     </div>

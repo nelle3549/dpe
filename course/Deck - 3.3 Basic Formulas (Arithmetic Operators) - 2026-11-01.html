@@ -81,9 +81,9 @@
       <span class="tag gold">1 minute</span>
     </div>
     <div class="grid g3 anim-stagger-list">
-      <div class="card top"><span class="ic-badge">⏱</span><h4>Round 1</h4><p>Type your answer in the chat. First correct answer wins bragging rights.</p></div>
-      <div class="card top"><span class="ic-badge">📦</span><h4>Round 2</h4><p>Now do the same for all <b>8 items</b> in the inventory, without mistakes.</p></div>
-      <div class="card top"><span class="ic-badge">🔁</span><h4>Round 3</h4><p>The supplier raises the A4 price to <b>₱255</b>. Redo everything that depends on it.</p></div>
+      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="10" x2="14" y1="2" y2="2" /><line x1="12" x2="15" y1="14" y2="11" /><circle cx="12" cy="14" r="8" /></svg></span><h4>Round 1</h4><p>Type your answer in the chat. First correct answer wins bragging rights.</p></div>
+      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" /><path d="M12 22V12" /><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" /><path d="m7.5 4.27 9 5.15" /></svg></span><h4>Round 2</h4><p>Now do the same for all <b>8 items</b> in the inventory, without mistakes.</p></div>
+      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m17 2 4 4-4 4" /><path d="M3 11v-1a4 4 0 0 1 4-4h14" /><path d="m7 22-4-4 4-4" /><path d="M21 13v1a4 4 0 0 1-4 4H3" /></svg></span><h4>Round 3</h4><p>The supplier raises the A4 price to <b>₱255</b>. Redo everything that depends on it.</p></div>
     </div>
     <div class="row mt-l"><button class="reveal-btn" data-target="ans-wu">Show the answer</button>
       <div class="answer callout tip" id="ans-wu" style="flex:1"><b>₱6,125.00.</b> At ₱255 it becomes ₱6,375.00. A formula redoes this in a blink, every time.</div></div>
@@ -213,8 +213,8 @@
         <p>Budget B2 = ₱2,500 · Actual C2 = ₱2,650</p>
         <table class="tbl mt-m">
           <tr><th>Formula</th><th>Result</th></tr>
-          <tr><td class="fcode">=B2+C2/2</td><td><b style="color:var(--coral)">3,825</b> ✗ divides only C2</td></tr>
-          <tr><td class="fcode">=(B2+C2)/2</td><td><b style="color:var(--green)">2,575</b> ✓ adds first</td></tr>
+          <tr><td class="fcode">=B2+C2/2</td><td><b style="color:var(--coral)">3,825</b> <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg> divides only C2</td></tr>
+          <tr><td class="fcode">=(B2+C2)/2</td><td><b style="color:var(--green)">2,575</b> <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> adds first</td></tr>
         </table>
         <div class="row mt-m"><button class="reveal-btn" data-target="ans-ooo">Why?</button><span class="answer small" id="ans-ooo">Division beats addition, so without parentheses the sheet does 2,650 ÷ 2 first, then adds 2,500.</span></div>
       </div>
@@ -357,7 +357,7 @@
       <div><p class="kicker">Formulas you'll actually use</p><h2 class="h2">The same four operators, everywhere</h2></div>
     </div>
     <div class="pair anim-stagger-list">
-      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+      <div class="ex office"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" /><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" /><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" /><path d="M10 6h4" /><path d="M10 10h4" /><path d="M10 14h4" /><path d="M10 18h4" /></svg> At the office</div>
         <ul>
           <li><b>Supplies request:</b> Qty × Unit Cost per line, then a grand total</li>
           <li><b>Delivered vs requested:</b> <span class="fcode">=C2-B2</span> shows what's still missing</li>
@@ -365,7 +365,7 @@
           <li><b>Per-piece cost:</b> box price ÷ pieces per box</li>
         </ul>
       </div>
-      <div class="ex home"><div class="ex-label">🏠 At home</div>
+      <div class="ex home"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg> At home</div>
         <ul>
           <li><b>Budget vs Actual:</b> difference and % of budget</li>
           <li><b>Sari-sari profit:</b> selling price − cost per piece</li>

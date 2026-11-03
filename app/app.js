@@ -121,7 +121,28 @@
   function isAdmin() { return S.profile && S.profile.role === 'admin'; }
   // The facilitator sees the participants' pages, with her own controls (.fac) added on top.
   // "Hide my tools" removes them, so a Zoom screen share looks exactly like the participants' screen.
-  function toolsBtn() { return '<button id="tools" class="btn-top tools" aria-pressed="' + !clean() + '">' + (clean() ? '🛠 Show my tools' : '👁 Hide my tools') + '</button>'; }
+  // icons: Lucide SVGs (ISC licence) in place of emoji
+  var ICONS = {
+    'wrench': '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />',
+    'eye': '<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /><circle cx="12" cy="12" r="3" />',
+    'dot': '<circle cx="12" cy="12" r="6" fill="currentColor" stroke="none"/>',
+    'check': '<path d="M20 6 9 17l-5-5" />',
+    'lock': '<rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />',
+    'play': '<path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/>',
+    'house': '<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />',
+    'hourglass': '<path d="M5 22h14" /><path d="M5 2h14" /><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" /><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />',
+    'file-text': '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" />',
+    'timer': '<line x1="10" x2="14" y1="2" y2="2" /><line x1="12" x2="15" y1="14" y2="11" /><circle cx="12" cy="14" r="8" />',
+    'paperclip': '<path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48" />',
+    'x': '<path d="M18 6 6 18" /><path d="m6 6 12 12" />',
+    'thumbs-up': '<path d="M7 10v12" /><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z" />',
+    'volume-x': '<path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" /><line x1="22" x2="16" y1="9" y2="15" /><line x1="16" x2="22" y1="9" y2="15" />',
+    'volume-2': '<path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" /><path d="M16 9a5 5 0 0 1 0 6" /><path d="M19.364 18.364a9 9 0 0 0 0-12.728" />'
+  };
+  function ico(n) { return '<svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS[n] + '</svg>'; }
+  // emoji in activity text (Zoom reactions) shown as icons; s is already escaped
+  function emo(s) { return s.replace(/👍\uFE0F?/g, ico('thumbs-up')).replace(/🔇\uFE0F?/g, ico('volume-x')).replace(/🔊\uFE0F?/g, ico('volume-2')); }
+  function toolsBtn() { return '<button id="tools" class="btn-top tools" aria-pressed="' + !clean() + '">' + (clean() ? ico('wrench') + ' Show my tools' : ico('eye') + ' Hide my tools') + '</button>'; }
   function clean() { try { return localStorage.getItem('dpeClean') === '1'; } catch (e) { return false; } }
   function setClean(on) {
     try { localStorage.setItem('dpeClean', on ? '1' : '0'); } catch (e) {}
@@ -142,7 +163,7 @@
   function bindTop() {
     var so = document.getElementById('signout');
     var tl = document.getElementById('tools');
-    if (tl) tl.onclick = function () { setClean(!clean()); tl.setAttribute('aria-pressed', !clean()); tl.textContent = clean() ? '🛠 Show my tools' : '👁 Hide my tools'; };
+    if (tl) tl.onclick = function () { setClean(!clean()); tl.setAttribute('aria-pressed', !clean()); tl.innerHTML = clean() ? ico('wrench') + ' Show my tools' : ico('eye') + ' Hide my tools'; };
     if (so) so.onclick = function () { clearTimers(); sb.auth.signOut({ scope: 'local' }).then(function () { S.profile = null; S.session = null; location.hash = '#/'; route(); }); };
   }
   function render(html) { $app.innerHTML = html; bindTop(); window.scrollTo(0, 0); }
@@ -417,13 +438,13 @@
     var mine = S.mine[a.id], st = S.acts[a.id];
     if (isAdmin()) {
       var d = nDone(a.id), n = S.parts.length, lv = st && st.status === 'live';
-      return actRow('#/who/' + a.id, a.title, n && d === n ? 'done' : lv ? 'live' : '', (lv ? '● Live · ' : '') + d + ' of ' + n + ' done');
+      return actRow('#/who/' + a.id, a.title, n && d === n ? 'done' : lv ? 'live' : '', (lv ? ico('dot') + ' Live · ' : '') + d + ' of ' + n + ' done');
     }
     var pc = mine && mine.max_score ? Math.round(mine.score / mine.max_score * 100) : null;
     var sub = mine && mine.status === 'submitted';
     return actRow('#/a/' + a.id, a.title,
       sub ? (pc == null || pc >= 75 ? 'done' : '') : st && st.status === 'live' ? 'live' : '',
-      sub ? '✓ Done' + (pc == null ? '' : ' · ' + pc + '%') : st && st.status === 'live' ? '● Live · ' + (mine ? 'Continue' : 'Start now') : mine ? 'Not submitted' : '');
+      sub ? ico('check') + ' Done' + (pc == null ? '' : ' · ' + pc + '%') : st && st.status === 'live' ? ico('dot') + ' Live · ' + (mine ? 'Continue' : 'Start now') : mine ? 'Not submitted' : '');
   }
   // an activity row: the title gets the full width, its status sits on a small line under it
   function actRow(href, title, cls, meta) {
@@ -437,13 +458,13 @@
     var on = topicOpen(t.id), go = on || adm;   // the facilitator can open a closed topic's slides to preview them
     var live = on && t.activities.some(function (a) { return S.acts[a.id] && S.acts[a.id].status === 'live'; });
     var done = !adm && on && t.activities.length && t.activities.every(function (a) { return S.mine[a.id] && S.mine[a.id].status === 'submitted'; });
-    var chip = !on ? '<span class="chip">🔒 ' + (adm ? 'Closed' : 'Opens later') + '</span>' : live ? '<span class="chip live">● Live</span>' : done ? '<span class="chip done">✓ Done</span>' : '';
+    var chip = !on ? '<span class="chip">' + ico('lock') + ' ' + (adm ? 'Closed' : 'Opens later') + '</span>' : live ? '<span class="chip live">' + ico('dot') + ' Live</span>' : done ? '<span class="chip done">' + ico('check') + ' Done</span>' : '';
     return '<div class="topic' + (on ? ' is-open' : ' locked') + (live ? ' has-live' : '') + '">' +
       (go ? '<a class="cover" href="' + deckView + t.id + '" tabindex="-1" aria-hidden="true">' : '<div class="cover">') + thumb(t.id) +
       '<span class="num">' + t.id + '</span>' + chip + (go ? '</a>' : '</div>') +
       '<div class="t"><h4>' + esc(t.title) + '</h4></div>' +
       '<p class="sum">' + esc(t.desc) + '</p><button type="button" class="more" data-more="' + t.id + '">See more</button>' +
-      (go ? '<div class="go"><a class="btn' + (on ? ' primary' : '') + '" href="' + deckView + t.id + '">Open</a>' + (t.video ? '<a class="btn" href="#/video/' + t.id + '">▶ Play video</a>' : '') + '</div>' +
+      (go ? '<div class="go"><a class="btn' + (on ? ' primary' : '') + '" href="' + deckView + t.id + '">Open</a>' + (t.video ? '<a class="btn" href="#/video/' + t.id + '">' + ico('play') + ' Play video</a>' : '') + '</div>' +
         (t.activities.length ? '<div class="acts">' + t.activities.map(actLink).join('') + '</div>' : '') : '') +
       (adm ? '<div class="fac facfoot"><label class="switch"><input type="checkbox" role="switch" data-tog="' + t.id + '"' + (on ? ' checked' : '') + '>' +
         '<span class="sl" aria-hidden="true"></span><span>' + (on ? 'Open to class' : 'Closed') + '</span></label><a class="rlink" href="#/results/' + t.id + '">Results ›</a></div>' : '') +
@@ -473,7 +494,7 @@
       '<span><b id="nreg">…</b> registered</span><span class="row"><button class="btn small gold" id="full">Show join QR</button><button class="btn small" id="cpj">Copy join link</button></span></div>';
     var live = Object.keys(S.acts).filter(function (k) { return S.acts[k].status === 'live' && ACT[k] && !(S.mine[k] && S.mine[k].status === 'submitted'); });
     if (adm) live = Object.keys(S.acts).filter(function (k) { return S.acts[k].status === 'live' && ACT[k]; });
-    if (live.length) html += '<div class="card mt-3" style="border-color:var(--bad)"><h3>● Live now</h3>' +
+    if (live.length) html += '<div class="card mt-3" style="border-color:var(--bad)"><h3>' + ico('dot') + ' Live now</h3>' +
       live.map(function (k) {
         return adm ? '<a class="btn primary mt-1" href="#/who/' + k + '">' + esc(ACT[k].a.title) + ': ' + nDone(k) + ' of ' + S.parts.length + ' done →</a>'
           : '<a class="btn primary mt-1" href="#/a/' + k + '">' + (S.mine[k] ? 'Continue: ' : '') + esc(ACT[k].a.title) + ' →</a>';
@@ -522,9 +543,9 @@
     // participants get course/p/: the same slides with the answers taken out of the page source
     var src = kind === 'deck' ? 'course/' + (isAdmin() ? '' : 'p/') + encodeURIComponent(T.deck) + (isAdmin() ? '' : '?p=1') + (slide ? '#/' + slide : '')
       : 'course/videos/' + tid + '/index.html';
-    render('<div class="present"><div class="pbar vbar">' + (back ? '<a href="' + esc(back) + '">← Activity</a>' : '') + '<a href="#/">⌂ Home</a>' +
+    render('<div class="present"><div class="pbar vbar">' + (back ? '<a href="' + esc(back) + '">← Activity</a>' : '') + '<a href="#/">' + ico('house') + ' Home</a>' +
       '<span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
-      (kind === 'deck' && T.video ? '<a href="#/video/' + tid + '">▶ Video</a>' : kind === 'video' ? '<a href="#/deck/' + tid + '">Slides</a>' : '') +
+      (kind === 'deck' && T.video ? '<a href="#/video/' + tid + '">' + ico('play') + ' Video</a>' : kind === 'video' ? '<a href="#/deck/' + tid + '">Slides</a>' : '') +
       '</div><div class="pbody"><iframe id="view" src="' + src + '" title="' + esc(T.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe></div>' +
       (kind === 'deck' ? '<div class="pnav"><button id="prev" aria-label="Previous slide">‹ Back</button><span id="pcount" aria-live="polite"></span><button id="next" aria-label="Next slide">Next ›</button></div>' : '') +
       '</div>');
@@ -559,7 +580,7 @@
     var r = await sb.rpc('touch_attempt', { p_activity: aid, p_topic: tid, p_answers: null });
     if (r.error) {
       render(topbar() + '<main class="narrow page"><div class="card stack"><p class="kicker muted small">' + tid + ' · ' + esc(T.title) + '</p><h2>' + esc(sp.title) + '</h2>' +
-        '<p>⏳ Waiting for your facilitator to open this activity. This page will open it by itself.</p><a class="btn" href="#/">Back to home</a></div></main>');
+        '<p>' + ico('hourglass') + ' Waiting for your facilitator to open this activity. This page will open it by itself.</p><a class="btn" href="#/">Back to home</a></div></main>');
       every(5000, async function () { var t = await sb.rpc('touch_attempt', { p_activity: aid, p_topic: tid, p_answers: null }); if (!t.error) route(); });
       return;
     }
@@ -574,10 +595,10 @@
     if (done) html += '<div class="card scorebox mt-2"><div class="muted small">Submitted ' + when(at.submitted_at) + '</div>' +
       (at.max_score ? '<div class="big">' + Math.round(at.score / at.max_score * 100) + '%</div><div class="muted">' + scoreLine(sp, at) + 'The right answers are below.' +
         (sp.blocks.some(function (b) { return b.type === 'rubric'; }) ? ' Your facilitator scores the rest.' : '') + '</div>'
-        : '<div class="big">✓</div><div class="muted">Thank you! Your work is in. Your facilitator reviews it.</div>') + '</div>';
-    if (sp.intro) html += '<p class="mt-2">' + esc(sp.intro) + '</p>';
+        : '<div class="big">' + ico('check') + '</div><div class="muted">Thank you! Your work is in. Your facilitator reviews it.</div>') + '</div>';
+    if (sp.intro) html += '<p class="mt-2">' + emo(esc(sp.intro)) + '</p>';
     var aCat = ACT[aid].a;
-    if (aCat.slideNo) html += '<p><a class="btn small" id="toslide" href="#/deck/' + tid + '/' + aCat.slideNo + '">📄 See this on the slides</a></p>';
+    if (aCat.slideNo) html += '<p><a class="btn small" id="toslide" href="#/deck/' + tid + '/' + aCat.slideNo + '">' + ico('file-text') + ' See this on the slides</a></p>';
     if (sp.help && sp.help.length && !done) html += '<details class="help"><summary>Stuck? Hints</summary><ul>' + sp.help.map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '</ul></details>';
     sp.blocks.forEach(function (b, i) { html += '<div class="block' + (b.type === 'email' ? ' show' : '') + '" data-b="' + esc(b.id) + '">' + blockHtml(b, A[b.id], fb[b.id], done, i) + '</div>'; });
     html += '</main>';
@@ -598,7 +619,7 @@
       var warned = (end - Date.now()) / 1000 <= 60, ended = (end - Date.now()) <= 0;
       var tick = function () {
         var left = (end - Date.now()) / 1000; $t.classList.remove('hide'); $t.classList.toggle('over', left <= 0); $t.classList.toggle('soon', left > 0 && left <= 60);
-        $t.textContent = left > 0 ? '⏱ ' + clock(left) + ' left' : '⏱ Time\'s up: finish and submit';
+        $t.innerHTML = left > 0 ? ico('timer') + ' ' + clock(left) + ' left' : ico('timer') + ' Time\'s up: finish and submit';
         if (!warned && left <= 60) { warned = true; toast('1 minute left. Submit when you\'re ready.'); }
         if (!ended && left <= 0) { ended = true; if (onTimeUp) onTimeUp(); }
       };
@@ -656,7 +677,7 @@
       var s = await sb.rpc('touch_attempt', { p_activity: aid, p_topic: tid, p_answers: payload() });
       saving = false;
       var $st = document.getElementById('st'); if (!$st) return;
-      $st.textContent = s.error ? 'Not saved yet (connection?). We\'ll keep trying.' : 'Saved ✓ ' + new Date().toLocaleTimeString('en-PH', { timeZone: 'Asia/Manila', hour: 'numeric', minute: '2-digit' });
+      $st.innerHTML = s.error ? 'Not saved yet (connection?). We\'ll keep trying.' : 'Saved ' + ico('check') + ' ' + new Date().toLocaleTimeString('en-PH', { timeZone: 'Asia/Manila', hour: 'numeric', minute: '2-digit' });
       if (s.error || dirty) later(4000, save);
     }
     every(15000, function () { if (!dirty && !document.hidden) sb.rpc('touch_attempt', { p_activity: aid, p_topic: tid, p_answers: null }); });
@@ -717,14 +738,14 @@
       v = v || [];
       return '<p class="p">Steps · tick each one as you finish it</p>' + b.items.map(function (it, k) {
         var on = v.indexOf(k) >= 0;
-        return '<label class="step' + (on ? ' on' : '') + '"><input type="checkbox" data-k="' + k + '" aria-label="Step ' + (k + 1) + ': ' + esc(it) + '"' + (on ? ' checked' : '') + (done ? ' disabled' : '') + '><span>' + esc(it) + '</span></label>';
+        return '<label class="step' + (on ? ' on' : '') + '"><input type="checkbox" data-k="' + k + '" aria-label="Step ' + (k + 1) + ': ' + esc(it) + '"' + (on ? ' checked' : '') + (done ? ' disabled' : '') + '><span>' + emo(esc(it)) + '</span></label>';
       }).join('');
     }
     if (b.type === 'email') {   // a sample email to read (e.g. the phishing example), not a question
       return '<div class="mailbox"><div class="mbar">' + esc(b.label || 'Sample email') + '</div><dl><dt>From</dt><dd>' + esc(b.from) + '</dd><dt>Subject</dt><dd>' + esc(b.subject) + '</dd></dl>' +
         '<div class="mbody">' + (b.body || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') +
         (b.button ? '<p><span class="mbtn">' + esc(b.button) + '</span>' + (b.link ? ' <span class="small muted">links to ' + esc(b.link) + '</span>' : '') + '</p>' : '') +
-        (b.attachment ? '<p class="matt">📎 ' + esc(b.attachment) + '</p>' : '') + '</div></div>';
+        (b.attachment ? '<p class="matt">' + ico('paperclip') + ' ' + esc(b.attachment) + '</p>' : '') + '</div></div>';
     }
     if (b.type === 'mcq') {
       v = v || [];
@@ -744,7 +765,7 @@
         return '<div class="sortrow"><div class="it">' + esc(it) + '</div><div class="bins" role="radiogroup" aria-label="' + esc(it) + '">' + b.bins.map(function (bn, k) {
           var on = v[it] === k, cls = on ? ' on' : '';
           var mark = '';
-          if (key && key.sort) { cls = key.sort[it] === k ? (on ? ' right' : ' on right') : on ? ' wrong' : ''; mark = key.sort[it] === k ? (on ? '✓ ' : '→ ') : on ? '✗ ' : ''; }
+          if (key && key.sort) { cls = key.sort[it] === k ? (on ? ' right' : ' on right') : on ? ' wrong' : ''; mark = key.sort[it] === k ? (on ? ico('check') + ' ' : '→ ') : on ? ico('x') + ' ' : ''; }
           return '<button type="button" data-it="' + esc(it) + '" data-k="' + k + '" class="' + cls + '" role="radio" aria-checked="' + on + '"' + (done ? ' disabled' : '') + '>' + mark + esc(bn) + '</button>';
         }).join('') + '</div></div>';
       }).join('');
@@ -753,8 +774,8 @@
     } else if (b.type === 'upload') {
       // the native file input is hidden (it is wider than a phone screen); the label is the button
       var fid = 'f-' + b.id;
-      h += '<div class="up"><div class="upst">' + (v && v.name ? '<span class="ok">✓ Uploaded: ' + esc(v.name) + '</span>' : done ? '<span class="muted">No file</span>' : '') + '</div>' +
-        (done ? '' : '<div class="row"><input type="file" id="' + fid + '" class="vh" accept="' + UPLOAD_ACCEPT + '"><label class="btn small" for="' + fid + '">📎 ' + (v && v.name ? 'Replace file' : 'Choose a file') + '</label>' +
+      h += '<div class="up"><div class="upst">' + (v && v.name ? '<span class="ok">' + ico('check') + ' Uploaded: ' + esc(v.name) + '</span>' : done ? '<span class="muted">No file</span>' : '') + '</div>' +
+        (done ? '' : '<div class="row"><input type="file" id="' + fid + '" class="vh" accept="' + UPLOAD_ACCEPT + '"><label class="btn small" for="' + fid + '">' + ico('paperclip') + ' ' + (v && v.name ? 'Replace file' : 'Choose a file') + '</label>' +
           (v && v.name ? '<button type="button" class="btn small" data-rm>Remove</button>' : '') + '</div>' +
           '<div class="hint">Photo, screenshot, PDF or Office file, up to 15 MB.</div><div class="err"></div>') + '</div>';
     } else if (b.type === 'rubric') {
@@ -762,13 +783,13 @@
         '<tr><th>Total</th><th style="text-align:right">' + b.criteria.reduce(function (s, c) { return s + c.points; }, 0) + ' pts</th></tr></table>';
     }
     if (done && !f && (b.type === 'text' || b.type === 'steps') && v != null && v !== '' && !(Array.isArray(v) && !v.length))
-      h += '<div class="fb got"><b>✓ Received.</b> Your facilitator reviews this.</div>';
+      h += '<div class="fb got"><b>' + ico('check') + ' Received.</b> Your facilitator reviews this.</div>';
     if (f) {
       var cls = f.points >= 1 ? 'right' : f.points > 0 ? 'part' : 'wrong';
       var ans = key.number != null ? (key.tol ? (key.number - key.tol).toLocaleString('en-PH') + ' to ' + (key.number + key.tol).toLocaleString('en-PH') : Number(key.number).toLocaleString('en-PH'))
         : key.short ? key.short[0] : key.mcq && b.options ? key.mcq.map(function (k) { return LETTERS[k] + '. ' + b.options[k]; }).join(', ') : '';
       var part = b.type === 'sort' ? Math.round(f.points * b.items.length) + ' of ' + b.items.length + ' right' : Math.round(f.points * 100) + '%';
-      h += '<div class="fb ' + cls + '"><b>' + (f.points >= 1 ? '✓ Correct' : f.points > 0 ? 'Partly right: ' + part : '✗ Not quite') + '</b>' +
+      h += '<div class="fb ' + cls + '"><b>' + (f.points >= 1 ? ico('check') + ' Correct' : f.points > 0 ? 'Partly right: ' + part : ico('x') + ' Not quite') + '</b>' +
         (f.points < 1 && ans ? ' · Answer: <b>' + esc(ans) + '</b>' : '') + (f.why ? '<div>' + esc(f.why) + '</div>' : '') + '</div>';
     }
     return h;
@@ -810,7 +831,7 @@
         var $st = el.querySelector('.upst'), $e = el.querySelector('.err'), $lb = el.querySelector('label[for="' + fi.id + '"]');
         var rm = function () {
           var x = el.querySelector('[data-rm]'); if (!x) return;
-          x.onclick = function () { A[b.id] = null; $st.innerHTML = ''; $lb.textContent = '📎 Choose a file'; x.remove(); changed(); };
+          x.onclick = function () { A[b.id] = null; $st.innerHTML = ''; $lb.innerHTML = ico('paperclip') + ' Choose a file'; x.remove(); changed(); };
         };
         rm();
         fi.onchange = async function () {
@@ -823,9 +844,9 @@
           var r = await sb.storage.from('outputs').upload(path, file, { upsert: true, contentType: MIME[file.name.split('.').pop().toLowerCase()] });
           if (r.error) { $st.innerHTML = ''; $e.textContent = 'Upload failed: ' + errMsg(r.error); return; }
           A[b.id] = { path: path, name: file.name, type: file.type, size: file.size };
-          $st.innerHTML = '<span class="ok">✓ Uploaded: ' + esc(file.name) + '</span>' +
+          $st.innerHTML = '<span class="ok">' + ico('check') + ' Uploaded: ' + esc(file.name) + '</span>' +
             (/^image\//.test(file.type) ? '<img class="upthumb" alt="Preview of ' + esc(file.name) + '" src="' + URL.createObjectURL(file) + '">' : '');
-          $lb.textContent = '📎 Replace file';
+          $lb.innerHTML = ico('paperclip') + ' Replace file';
           if (!el.querySelector('[data-rm]')) { $lb.insertAdjacentHTML('afterend', '<button type="button" class="btn small" data-rm>Remove</button>'); rm(); }
           changed();
         };
@@ -854,13 +875,13 @@
     var T = TOPIC[tid].t, cid = S.profile.cohort_id, current = null, liveId = null, panelHidden = false;
     var opts = T.activities.map(function (a) { return '<option value="' + a.id + '">' + esc(a.title) + '</option>'; }).join('');
     // the same frame as the participants' slide viewer (#/deck), with the facilitator's controls (.fac) added
-    render('<div class="present"><div class="pbar vbar"><a href="#/">⌂ Home</a><span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
-      (T.video ? '<a href="#/video/' + tid + '">▶ Video</a>' : '') +
+    render('<div class="present"><div class="pbar vbar"><a href="#/">' + ico('house') + ' Home</a><span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
+      (T.video ? '<a href="#/video/' + tid + '">' + ico('play') + ' Video</a>' : '') +
       '<span class="fac pfac"><button class="golive hide" id="golive"></button>' +
       '<select id="pick" aria-label="Go live with an activity"><option value="">Go live with…</option>' + opts + '</select>' +
-      '<button class="hide" id="showlive">● Live panel</button>' +
+      '<button class="hide" id="showlive">' + ico('dot') + ' Live panel</button>' +
       '<a class="res" href="#/results/' + tid + '" id="resbtn">Results →</a></span>' + toolsBtn() + '</div>' +
-      '<div class="lockbar fac' + (topicOpen(tid) ? ' hide' : '') + '" id="lockbar">🔒 This topic is closed to participants.<button id="openit">Open to class</button></div>' +
+      '<div class="lockbar fac' + (topicOpen(tid) ? ' hide' : '') + '" id="lockbar">' + ico('lock') + ' This topic is closed to participants.<button id="openit">Open to class</button></div>' +
       '<div class="pbody"><iframe id="deck" src="course/' + encodeURIComponent(T.deck) + (slide ? '#/' + slide : '') + '" title="' + esc(T.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe><aside class="livepanel hide" id="live"></aside></div>' +
       '<div class="pnav"><button id="prev" aria-label="Previous slide">‹ Back</button><span id="pcount" aria-live="polite"></span><button id="next" aria-label="Next slide">Next ›</button></div></div>');
     var sendKey = function (k) { $f.contentWindow.postMessage({ type: 'dpe-key', key: k }, '*'); $f.contentWindow.focus(); };
@@ -883,7 +904,7 @@
       if ((a && a.id) !== current) {
         current = a && a.id;
         $go.classList.toggle('hide', !a);
-        if (a) $go.textContent = (S.acts[a.id] && S.acts[a.id].status === 'live' ? '● Show live: ' : '● Go live: ') + a.title;
+        if (a) $go.innerHTML = (S.acts[a.id] && S.acts[a.id].status === 'live' ? ico('dot') + ' Show live: ' : ico('dot') + ' Go live: ') + esc(a.title);
       }
       document.getElementById('resbtn').style.outline = idx === all.length - 1 ? '3px solid #fff' : '';
     });
@@ -906,7 +927,7 @@
       var a = ACT[liveId].a, url = BASE + '?a=' + liveId + '&join=' + encodeURIComponent(S.cohort.join_code), st = S.acts[liveId];   // the code lets late joiners register
       $live.classList.toggle('hide', panelHidden);
       document.getElementById('showlive').classList.toggle('hide', !panelHidden);
-      $live.innerHTML = '<div class="row" style="justify-content:space-between"><span class="tag live">' + (st.status === 'live' ? '● LIVE' : 'Ended') + '</span><span class="row" style="gap:8px"><span class="timer" id="ptimer"></span><button class="pclose" id="hidep" aria-label="Hide the live panel" title="Hide panel">×</button></span></div>' +
+      $live.innerHTML = '<div class="row" style="justify-content:space-between"><span class="tag live">' + (st.status === 'live' ? ico('dot') + ' LIVE' : 'Ended') + '</span><span class="row" style="gap:8px"><span class="timer" id="ptimer"></span><button class="pclose" id="hidep" aria-label="Hide the live panel" title="Hide panel">×</button></span></div>' +
         '<h3>' + esc(a.title) + '</h3><div class="qrbig">' + qr(url) + '</div>' +
         '<div class="short">' + esc(SHORT) + '<wbr><span style="white-space:nowrap">' + esc('?a=' + liveId) + '</span></div><button class="btn primary block" id="cpl">Copy link for the chat</button>' +
         '<div class="finbox"><b id="c-fin">…</b> <span>of <span id="c-reg">…</span> finished</span><div class="prog" role="progressbar" aria-label="Finished" id="c-prog"><i id="c-bar"></i></div></div>' +
@@ -932,14 +953,14 @@
       set('c-acc', d.accessed); set('c-reg', d.registered); set('c-fin', d.finished); set('c-act', d.active);
       var bar = document.getElementById('c-bar'); if (bar) bar.style.width = pct(d.finished, d.registered) + '%';
       var pg = document.getElementById('c-prog'); if (pg) pg.setAttribute('aria-valuenow', pct(d.finished, d.registered));
-      var sl = document.getElementById('showlive'); if (sl) sl.textContent = '● Live ' + d.finished + '/' + d.registered + ' finished';
+      var sl = document.getElementById('showlive'); if (sl) sl.innerHTML = ico('dot') + ' Live ' + d.finished + '/' + d.registered + ' finished';
     }
     every(3000, counts);
     every(1000, function () {
       var $t = document.getElementById('ptimer'); if (!$t || !liveId) return;
       var st = S.acts[liveId], end = new Date(st.opened_at).getTime() + (st.duration_min || 0) * 60000, left = (end - Date.now()) / 1000;
       $t.classList.toggle('over', !!st.duration_min && left <= 0);
-      $t.textContent = st.duration_min ? (left > 0 ? '⏱ ' + clock(left) : '⏱ Time\'s up +' + clock(-left)) : '';
+      $t.innerHTML = st.duration_min ? (left > 0 ? ico('timer') + ' ' + clock(left) : ico('timer') + ' Time\'s up +' + clock(-left)) : '';
     });
     // reopen the panel if an activity of this topic is already live
     var already = T.activities.find(function (a) { return S.acts[a.id] && S.acts[a.id].status === 'live'; });
@@ -957,7 +978,7 @@
       render(topbar() + '<main class="wrap" style="padding:20px 16px 48px">' +
         '<p class="muted small" style="margin:0">' + tid + ' ' + esc(TOPIC[tid].t.title) + '</p>' +
         '<h1 style="margin:4px 0 0;letter-spacing:-.02em">' + esc(A.title) + '</h1>' +
-        '<div class="row mt-1"><a class="btn small" href="#/">← Home</a>' + (st && st.status === 'live' ? '<span class="tag live">● Live</span>' : '') + '</div>' +
+        '<div class="row mt-1"><a class="btn small" href="#/">← Home</a>' + (st && st.status === 'live' ? '<span class="tag live">' + ico('dot') + ' Live</span>' : '') + '</div>' +
         '<div class="finbox mt-3"><b>' + d + '</b> <span>of ' + n + ' done · ' + (n - d) + ' pending</span><div class="prog" role="progressbar" aria-label="Done" aria-valuenow="' + d + '" aria-valuemax="' + n + '"><i style="width:' + (n ? d / n * 100 : 0) + '%"></i></div></div>' +
         '<div class="card mt-3" style="padding:0;overflow:auto"><table class="who"><thead><tr><th>Name</th><th>Position</th><th>Status</th></tr></thead><tbody>' +
         (S.parts.map(function (p) { return '<tr><td><b>' + esc(fullName(p)) + '</b></td><td>' + esc(p.position || '') + '</td><td>' + (ok(p) ? '<span class="tag done">Done</span>' : '<span class="tag sub">Pending</span>') + '</td></tr>'; }).join('') ||
@@ -986,7 +1007,7 @@
     var head = topbar() + '<main class="wrap ' + (names ? 'names-on' : 'names-off') + '" id="resmain" style="padding:20px 16px 0"><p class="muted small" style="margin:0">' + esc(M.n + ' · ' + M.title) + '</p>' +
       '<h1 style="margin:4px 0 0;letter-spacing:-.02em">' + tid + ' ' + esc(T.title) + ': results</h1>' +
       '<div class="row mt-1"><a class="btn small" href="#/present/' + tid + '">← Back to slides</a><button class="btn small" id="refresh">Refresh</button>' +
-      '<button class="btn small" id="names" aria-pressed="' + names + '">' + (names ? 'Hide names' : '👁 Show names') + '</button><span class="small muted">' + nreg + ' registered</span></div>';
+      '<button class="btn small" id="names" aria-pressed="' + names + '">' + (names ? 'Hide names' : ico('eye') + ' Show names') + '</button><span class="small muted">' + nreg + ' registered</span></div>';
     var html = '', uploads = [], anon = {}, nAnon = 0;
     function who(p) { if (!anon[p.id]) anon[p.id] = ++nAnon; return '<span class="nm">' + esc(fullName(p)) + '</span><span class="anon">Participant ' + anon[p.id] + '</span>'; }
     sp.activities.forEach(function (a) {
@@ -1007,7 +1028,7 @@
           var topWrong = -1; ns.forEach(function (n, i) { if (!isRight(i) && n && (topWrong < 0 || n > ns[topWrong])) topWrong = i; });
           html += '<div class="mt-2"><p class="p" style="font-weight:700;margin:0">' + esc(b.prompt) + '</p>' + b.options.map(function (o, i) {
             var n = ns[i], right = isRight(i);
-            return '<div class="bar' + (right ? ' right' : i === topWrong ? ' topwrong' : '') + '"><span class="lbl">' + LETTERS[i] + '. ' + esc(o) + (right ? ' ✓' : '') + '</span><span class="tr"><i style="width:' + pct(n, vals.length) + '%"></i></span><b>' + n + ' <small>' + pct(n, vals.length) + '%</small></b></div>';
+            return '<div class="bar' + (right ? ' right' : i === topWrong ? ' topwrong' : '') + '"><span class="lbl">' + LETTERS[i] + '. ' + esc(o) + (right ? ' ' + ico('check') : '') + '</span><span class="tr"><i style="width:' + pct(n, vals.length) + '%"></i></span><b>' + n + ' <small>' + pct(n, vals.length) + '%</small></b></div>';
           }).join('') + '</div>';
         } else if (b.type === 'number' || b.type === 'short' || b.type === 'sort') {
           var ok = sub.filter(function (x) { var f = x.feedback && x.feedback[b.id]; return f && f.points >= 1; }).length;
@@ -1056,7 +1077,7 @@
       var on = !document.getElementById('resmain').classList.contains('names-on');
       try { sessionStorage.setItem('dpeNames', on ? 'on' : 'off'); } catch (e) {}
       document.getElementById('resmain').className = 'wrap ' + (on ? 'names-on' : 'names-off');
-      this.textContent = on ? 'Hide names' : '👁 Show names'; this.setAttribute('aria-pressed', on);
+      this.innerHTML = on ? 'Hide names' : ico('eye') + ' Show names'; this.setAttribute('aria-pressed', on);
     };
     bindRubrics(tid);
     if (uploads.length) {
@@ -1064,7 +1085,7 @@
       (su.data || []).forEach(function (s, k) {
         var u = uploads[k], g = document.getElementById(u.gid); if (!g || !s.signedUrl) return;
         g.insertAdjacentHTML('beforeend', '<a href="' + esc(s.signedUrl) + '" target="_blank" rel="noopener">' +
-          (/^image\//.test(u.type) ? '<img src="' + esc(s.signedUrl) + '" alt="">' : '<span style="font-size:28px;padding:20px 8px 0">📄</span>') +
+          (/^image\//.test(u.type) ? '<img src="' + esc(s.signedUrl) + '" alt="">' : '<span style="font-size:28px;padding:20px 8px 0">' + ico('file-text') + '</span>') +
           '<span><b>' + u.who + '</b><span class="nm"><br>' + esc(u.name) + '</span></span></a>');
       });
     }

@@ -360,13 +360,13 @@
       <div><p class="kicker">Watch out</p><h2 class="h2">Three classic mistakes, with the numbers they produce</h2></div>
     </div>
     <div class="grid g3 anim-stagger-list">
-      <div class="card top"><span class="ic-badge">✂️</span><h4>Wrong range</h4>
+      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3" /><path d="M8.12 8.12 12 12" /><path d="M20 4 8.12 15.88" /><circle cx="6" cy="18" r="3" /><path d="M14.8 14.8 20 20" /></svg></span><h4>Wrong range</h4>
         <p><span class="fcode">=SUM(E2:E8)</span> → <b style="color:var(--coral)">₱20,809.00</b></p>
         <p class="mt-s">Stops one row short and misses the envelopes (₱1,230.00). Correct: ₱22,039.00.</p></div>
-      <div class="card top"><span class="ic-badge">➕</span><h4>Counting the total row</h4>
+      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg></span><h4>Counting the total row</h4>
         <p><span class="fcode">=SUM(E2:E10)</span> in E12 → <b style="color:var(--coral)">₱44,078.00</b></p>
         <p class="mt-s">Double the real total. <span class="fcode">=AVERAGE(E2:E10)</span> → ₱4,897.56. Inside E10 itself it causes a <b>circular reference</b> warning.</p></div>
-      <div class="card top"><span class="ic-badge">🔤</span><h4>Text in a number cell</h4>
+      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 15 4-8 4 8" /><path d="M4 13h6" /><circle cx="18" cy="12" r="3" /><path d="M21 9v6" /></svg></span><h4>Text in a number cell</h4>
         <p>C3 = "30 reams" → <span class="fcode">=SUM(C2:C9)</span> gives <b style="color:var(--coral)">68</b>, not 98</p>
         <p class="mt-s"><span class="fcode">=COUNT(C2:C9)</span> gives 7, and E3 shows #VALUE!, which spreads to the E10 total.</p></div>
     </div>
@@ -380,7 +380,7 @@
       <div><p class="kicker">Use them everywhere</p><h2 class="h2">Daily tally at work, monthly budget at home</h2></div>
     </div>
     <div class="pair">
-      <div class="ex office"><div class="ex-label">🏢 At the office · walk-in clients served</div>
+      <div class="ex office"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" /><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" /><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" /><path d="M10 6h4" /><path d="M10 10h4" /><path d="M10 14h4" /><path d="M10 18h4" /></svg> At the office · walk-in clients served</div>
         <div class="xl xs">
           <table>
             <colgroup><col class="rn"><col style="width:46%"><col></colgroup>
@@ -398,7 +398,7 @@
         </div>
         <p class="mt-s">Also: totals for a <b>supplies request</b>, COUNTA of names on an attendance sheet.</p>
       </div>
-      <div class="ex home"><div class="ex-label">🏠 At home · household budget, Actual</div>
+      <div class="ex home"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg> At home · household budget, Actual</div>
         <div class="xl xs">
           <table>
             <colgroup><col class="rn"><col style="width:52%"><col></colgroup>

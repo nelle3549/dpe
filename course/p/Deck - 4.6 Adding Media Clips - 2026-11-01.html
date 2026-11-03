@@ -16,8 +16,8 @@
 .rb .col{display:flex;flex-direction:column;gap:.45em;font-size:calc(var(--u)*1.1);color:var(--text-2)}
 .rb .btn{border:1px solid var(--border-strong);border-radius:5px;padding:.2em .6em;background:#fff;white-space:nowrap}
 .rb .btn.hot{border-color:var(--coral);background:var(--coral-soft);color:var(--coral);font-weight:800}
-.rb .ck::before{content:"☐ ";color:var(--text-3)}
-.rb .ck.on::before{content:"☑ ";color:var(--mod)}
+.rb .ck::before{content:"";display:inline-block;width:.9em;height:.9em;margin-right:.3em;vertical-align:-.08em;background:var(--text-3);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2' /%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2' /%3E%3C/svg%3E") center/contain no-repeat}
+.rb .ck.on::before{background:var(--mod);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2' /%3E%3Cpath d='m9 12 2 2 4-4' /%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2' /%3E%3Cpath d='m9 12 2 2 4-4' /%3E%3C/svg%3E") center/contain no-repeat}
 .menu{background:#fff;border:1px solid var(--border-strong);border-radius:6px;box-shadow:var(--shadow-lg);font-size:calc(var(--u)*1);overflow:hidden}
 .menu div{padding:.5em 1em;color:var(--text-2);border-bottom:1px solid var(--border)}
 .menu div:last-child{border-bottom:0}
@@ -64,10 +64,10 @@
       <span class="tag gold">1 minute</span>
     </div>
     <div class="grid g4 mt-m anim-stagger-list">
-      <div class="card center"><span class="ic">🚫</span><h4>A</h4><p>"This video is unavailable" in the middle of a talk</p></div>
-      <div class="card center"><span class="ic">🔇</span><h4>B</h4><p>The video plays, but nobody online hears it</p></div>
-      <div class="card center"><span class="ic">📦</span><h4>C</h4><p>The file is too big to email or upload</p></div>
-      <div class="card center"><span class="ic">🎵</span><h4>D</h4><p>Loud music that drowned out the speaker</p></div>
+      <div class="card center"><span class="ic"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#C62828"><circle cx="12" cy="12" r="10" /><path d="m4.9 4.9 14.2 14.2" /></svg></span><h4>A</h4><p>"This video is unavailable" in the middle of a talk</p></div>
+      <div class="card center"><span class="ic"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" /><line x1="22" x2="16" y1="9" y2="15" /><line x1="16" x2="22" y1="9" y2="15" /></svg></span><h4>B</h4><p>The video plays, but nobody online hears it</p></div>
+      <div class="card center"><span class="ic"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" /><path d="M12 22V12" /><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" /><path d="m7.5 4.27 9 5.15" /></svg></span><h4>C</h4><p>The file is too big to email or upload</p></div>
+      <div class="card center"><span class="ic"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg></span><h4>D</h4><p>Loud music that drowned out the speaker</p></div>
     </div>
     <div class="callout gold mt-l"><b>Good news:</b> every one of these can be prevented in under five minutes. That's what this topic is for.</div>
     
@@ -111,10 +111,10 @@
       <div><p class="kicker">What you can add</p><h2 class="h2">Four kinds of media clips</h2></div>
     </div>
     <div class="grid g4 anim-stagger-list">
-      <div class="card top"><span class="ic-badge">🎞️</span><h4>Video file</h4><p>A clip saved on your computer, e.g. a 20-second phone video of the new filing room.</p></div>
-      <div class="card top"><span class="ic-badge">▶️</span><h4>Online video</h4><p>A YouTube video played inside the slide. Needs internet while presenting.</p></div>
-      <div class="card top"><span class="ic-badge">🎵</span><h4>Background music</h4><p>Soft music under a photo slideshow. Keep it quiet and short.</p></div>
-      <div class="card top"><span class="ic-badge">🎙️</span><h4>Narration</h4><p>Your own recorded voice explaining a slide, for decks people watch on their own.</p></div>
+      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" /><path d="M7 3v18" /><path d="M3 7.5h4" /><path d="M3 12h18" /><path d="M3 16.5h4" /><path d="M17 3v18" /><path d="M17 7.5h4" /><path d="M17 16.5h4" /></svg></span><h4>Video file</h4><p>A clip saved on your computer, e.g. a 20-second phone video of the new filing room.</p></div>
+      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/></svg></span><h4>Online video</h4><p>A YouTube video played inside the slide. Needs internet while presenting.</p></div>
+      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg></span><h4>Background music</h4><p>Soft music under a photo slideshow. Keep it quiet and short.</p></div>
+      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" x2="12" y1="19" y2="22" /></svg></span><h4>Narration</h4><p>Your own recorded voice explaining a slide, for decks people watch on their own.</p></div>
     </div>
     <div class="callout tip mt-l"><b>Ask first:</b> does this clip say something my words and pictures can't? If not, leave it out.</div>
     
@@ -137,7 +137,7 @@
         <p class="tiny mt-s">PowerPoint for Microsoft 365. Older versions word it slightly differently.</p>
       </div>
       <div class="card top">
-        <h4>📁 From a file (This Device)</h4>
+        <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /></svg> From a file (This Device)</h4>
         <ul class="ticks">
           <li>Plays <b>without internet</b>, even during a brownout on a laptop.</li>
           <li>Makes the file <b>bigger</b>.</li>
@@ -145,7 +145,7 @@
         </ul>
       </div>
       <div class="card top">
-        <h4>🌐 Online (paste a YouTube link)</h4>
+        <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg> Online (paste a YouTube link)</h4>
         <ul class="ticks">
           <li>Keeps the file <b>small</b>.</li>
           <li><b>Needs internet</b> while presenting.</li>
@@ -176,7 +176,7 @@
         </ol>
       </div>
       <div class="card">
-        <h4>🎙️ Narration for one slide</h4>
+        <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" x2="12" y1="19" y2="22" /></svg> Narration for one slide</h4>
         <ol class="steps">
           <li><b>Insert › Audio › Record Audio</b>, then click record.</li>
           <li>Speak 20 to 40 seconds, stop, name the clip, OK.</li>
@@ -208,7 +208,7 @@
       <div class="win trim">
         <div class="bar"><i></i><i></i><i></i><span>Trim Video</span></div>
         <div class="body">
-          <div class="vid">▶ office-scanner-howto.mp4</div>
+          <div class="vid"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/></svg> office-scanner-howto.mp4</div>
           <div class="tlb"><div class="keep"></div><div class="h s"></div><div class="h e"></div><div class="ph"></div></div>
           <div class="times"><span>Start Time <b>00:28.0</b></span><span>Duration <b>00:30.0</b></span><span>End Time <b>00:58.0</b></span></div>
           <div class="row mt-m" style="justify-content:flex-end;gap:.6em"><span class="tag">OK</span><span class="tag coral">Cancel</span></div>
@@ -227,8 +227,8 @@
       <div class="bar"><i></i><i></i><i></i><span>My Digital Skills Journey.pptx · PowerPoint</span></div>
       <div class="tabs"><span>Home</span><span>Insert</span><span>Animations</span><span>Video Format</span><span class="on">Playback</span></div>
       <div class="grp">
-        <div class="col"><span class="btn">✂ Trim Video</span><span class="btn">Fade In 00.50 · Fade Out 00.50</span></div>
-        <div class="col"><span class="btn">🔊 Volume ▾</span><span class="btn hot">Start: When Clicked On ▾</span></div>
+        <div class="col"><span class="btn"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3" /><path d="M8.12 8.12 12 12" /><path d="M20 4 8.12 15.88" /><circle cx="6" cy="18" r="3" /><path d="M14.8 14.8 20 20" /></svg> Trim Video</span><span class="btn">Fade In 00.50 · Fade Out 00.50</span></div>
+        <div class="col"><span class="btn"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" /><path d="M16 9a5 5 0 0 1 0 6" /><path d="M19.364 18.364a9 9 0 0 0 0-12.728" /></svg> Volume ▾</span><span class="btn hot">Start: When Clicked On ▾</span></div>
         <div class="col"><span class="ck">Play Full Screen</span><span class="ck">Hide While Not Playing</span></div>
         <div class="col"><span class="ck">Loop until Stopped</span><span class="ck">Rewind after Playing</span></div>
       </div>
@@ -251,9 +251,9 @@
     <div class="try">
       <div class="try-head"><span class="try-label">Pick one path</span><span class="tiny">Keep it under 30 seconds</span></div>
       <div class="grid g3">
-        <div class="card soft"><h4>🎞️ A video file</h4><p>Record 10 seconds of your desk or workspace with your phone, copy it to the PC, then <b>Insert › Video › This Device</b>.</p></div>
-        <div class="card soft"><h4>▶️ An online video</h4><p><b>Insert › Video › Online Videos</b> and paste a YouTube link from this course, e.g. a GCFLearnFree tutorial.</p></div>
-        <div class="card soft"><h4>🎙️ Your voice</h4><p><b>Insert › Audio › Record Audio</b>. Say one sentence: "The skill I'll use most at work is…"</p></div>
+        <div class="card soft"><h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" /><path d="M7 3v18" /><path d="M3 7.5h4" /><path d="M3 12h18" /><path d="M3 16.5h4" /><path d="M17 3v18" /><path d="M17 7.5h4" /><path d="M17 16.5h4" /></svg> A video file</h4><p>Record 10 seconds of your desk or workspace with your phone, copy it to the PC, then <b>Insert › Video › This Device</b>.</p></div>
+        <div class="card soft"><h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/></svg> An online video</h4><p><b>Insert › Video › Online Videos</b> and paste a YouTube link from this course, e.g. a GCFLearnFree tutorial.</p></div>
+        <div class="card soft"><h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" x2="12" y1="19" y2="22" /></svg> Your voice</h4><p><b>Insert › Audio › Record Audio</b>. Say one sentence: "The skill I'll use most at work is…"</p></div>
       </div>
       <ol class="mt-m">
         <li>Resize the clip so it doesn't cover your text. Set Start to <b>When Clicked On</b>.</li>
@@ -292,14 +292,14 @@
       <div><p class="kicker">Media with a purpose</p><h2 class="h2">Good uses of media clips</h2></div>
     </div>
     <div class="pair anim-stagger-list">
-      <div class="ex office"><div class="ex-label">🏢 At the office</div>
+      <div class="ex office"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" /><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" /><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" /><path d="M10 6h4" /><path d="M10 10h4" /><path d="M10 14h4" /><path d="M10 18h4" /></svg> At the office</div>
         <ul>
           <li>A 30-second <b>screen recording</b> showing how to save a form as PDF, for a staff briefing.</li>
           <li>A short phone video of the <b>new records room layout</b> for colleagues working remotely.</li>
           <li>A self-running orientation deck with <b>narration</b> for new staff.</li>
         </ul>
       </div>
-      <div class="ex home"><div class="ex-label">🏠 At home</div>
+      <div class="ex home"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg> At home</div>
         <ul>
           <li>Lola's 80th birthday slideshow with soft <b>background music</b>, looping on the TV.</li>
           <li>Your child's science report with a 15-second <b>experiment video</b>.</li>
@@ -341,9 +341,9 @@
       <div class="grid g2">
         <ol>
           <li>Volunteer shares screen <b>without</b> sound and plays their clip.</li>
-          <li>Audience reacts 🔇 if they hear nothing.</li>
+          <li>Audience reacts <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" /><line x1="22" x2="16" y1="9" y2="15" /><line x1="16" x2="22" y1="9" y2="15" /></svg> if they hear nothing.</li>
           <li>Volunteer stops, shares again <b>with</b> "Share sound" ticked.</li>
-          <li>Audience reacts 🔊 when they hear it clearly.</li>
+          <li>Audience reacts <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" /><path d="M16 9a5 5 0 0 1 0 6" /><path d="M19.364 18.364a9 9 0 0 0 0-12.728" /></svg> when they hear it clearly.</li>
         </ol>
         <div class="callout gold"><b>Listen for:</b> Is the volume comfortable? Does the voice sound clear or echoey? Does the clip start when the presenter clicks, not before?</div>
       </div>
@@ -358,7 +358,7 @@
     </div>
     <div class="grid g2">
       <div class="card top">
-        <h4>✅ Safer choices</h4>
+        <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#147A50"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg> Safer choices</h4>
         <ul class="ticks">
           <li><b>Your own</b> recordings, voice and photos.</li>
           <li>Stock media built into your app, e.g. PowerPoint's <b>Stock Videos</b> (Microsoft 365).</li>
@@ -367,7 +367,7 @@
         </ul>
       </div>
       <div class="card top" style="border-top-color:var(--coral)">
-        <h4>❌ Avoid</h4>
+        <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#C62828"><circle cx="12" cy="12" r="10" /><path d="m15 9-6 6" /><path d="m9 9 6 6" /></svg> Avoid</h4>
         <ul class="ticks x">
           <li>Popular songs from Spotify or YouTube as background music.</li>
           <li>Downloading someone's YouTube video to embed it, without permission.</li>

@@ -39,7 +39,7 @@
     '#ui.hide{opacity:0;pointer-events:none}' +
     '#ui .pl-row{display:flex;align-items:center;gap:12px}' +
     '#ui button{flex:none;background:rgba(255,255,255,.14);border:0;color:#fff;font:inherit;height:36px;min-width:36px;padding:0 12px;border-radius:9px;cursor:pointer}' +
-    '#ui button:hover{background:rgba(255,255,255,.28)}#ui button.off{opacity:.5}' +
+    '#ui button .ico{width:18px;height:18px;display:block;margin:auto}#ui button:hover{background:rgba(255,255,255,.28)}#ui button.off{opacity:.5}' +
     '#ui .pl-time{flex:none;font-variant-numeric:tabular-nums;opacity:.9;min-width:96px}' +
     '#ui input{flex:1;accent-color:#F4B400;height:4px;cursor:pointer}' +
     '#big{position:fixed;left:50%;top:50%;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;border:0;z-index:11;cursor:pointer;' +
@@ -75,12 +75,13 @@
 
   if (preview) { render(POSTER_T); return; }
 
-  // ---- controls
+  // ---- controls (Lucide icons, ISC)
+  var IC = { play: '<svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/></svg>', pause: '<svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="4" width="4" height="16" rx="1" /><rect x="6" y="4" width="4" height="16" rx="1" /></svg>', replay: '<svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>', fs: '<svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3" /><path d="M21 8V5a2 2 0 0 0-2-2h-3" /><path d="M3 16v3a2 2 0 0 0 2 2h3" /><path d="M16 21h3a2 2 0 0 0 2-2v-3" /></svg>' };
   var ui = document.createElement('div'); ui.id = 'ui';
-  ui.innerHTML = '<div class="pl-row"><button id="pp" title="Play (Space)" aria-label="Play">▶</button><span class="pl-time"></span>' +
+  ui.innerHTML = '<div class="pl-row"><button id="pp" title="Play (Space)" aria-label="Play">' + IC.play + '</button><span class="pl-time"></span>' +
     '<input type="range" min="0" max="1000" value="0" aria-label="Seek">' +
     '<button id="cc" title="Captions (C)" aria-label="Captions">CC</button><button id="sp" title="Speed" aria-label="Playback speed 1×">1×</button>' +
-    '<button id="fs" title="Fullscreen (F)" aria-label="Fullscreen">⛶</button></div>';
+    '<button id="fs" title="Fullscreen (F)" aria-label="Fullscreen">' + IC.fs + '</button></div>';
   document.body.appendChild(ui);
   var big = document.createElement('button'); big.id = 'big'; big.title = 'Play'; big.setAttribute('aria-label', 'Play video'); document.body.appendChild(big);
   var pp = ui.querySelector('#pp'), time = ui.querySelector('.pl-time'), bar = ui.querySelector('input');
@@ -109,16 +110,16 @@
     if (playing) return;
     if (t >= TOTAL - 0.05 || started === false) { t = 0; }
     started = true; playing = true; last = performance.now();
-    syncAudio(); pp.textContent = '❚❚'; pp.setAttribute('aria-label', 'Pause'); big.classList.add('hide');
+    syncAudio(); pp.innerHTML = IC.pause; pp.setAttribute('aria-label', 'Pause'); big.classList.add('hide');
     raf = requestAnimationFrame(tick); idle();
   }
   function pause() {
     playing = false; cancelAnimationFrame(raf); vo.pause(); bed.pause();
-    pp.textContent = t >= TOTAL ? '↺' : '▶'; pp.setAttribute('aria-label', t >= TOTAL ? 'Replay' : 'Play'); ui.classList.remove('hide');
+    pp.innerHTML = t >= TOTAL ? IC.replay : IC.play; pp.setAttribute('aria-label', t >= TOTAL ? 'Replay' : 'Play'); ui.classList.remove('hide');
     if (t >= TOTAL) big.classList.remove('hide');
   }
   function toggle() { if (playing) pause(); else play(); }
-  function seek(x) { started = true; render(x); syncAudio(); big.classList.add('hide'); if (!playing) { pp.textContent = '▶'; pp.setAttribute('aria-label', 'Play'); } }
+  function seek(x) { started = true; render(x); syncAudio(); big.classList.add('hide'); if (!playing) { pp.innerHTML = IC.play; pp.setAttribute('aria-label', 'Play'); } }
   var started = false;
 
   pp.onclick = function (e) { e.stopPropagation(); toggle(); };
