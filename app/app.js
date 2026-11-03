@@ -605,7 +605,7 @@
       var pc = mine && mine.max_score ? Math.round(mine.score / mine.max_score * 100) : null;
       var pill = sub ? '<span class="pill done">' + ico('check') + ' ' + (vw ? 'Tried' : 'Done') + (pc == null ? '' : ' · ' + pc + '%') + '</span>'
         : '<span class="pill pend">' + ico('hourglass') + ' ' + (vw ? 'Not tried yet' : mine ? 'Pending · not submitted' : 'Pending') + '</span>';
-      return '<div class="pa">' + pill + '<span class="pt">' + esc(a.title) + '</span><a class="btn small' + (sub ? '' : ' primary') + '" href="#/a/' + a.id + '">' +
+      return '<div class="pa ' + (sub ? 'done' : 'pend') + '">' + pill + '<span class="pt"><small>' + (a.kind === 'check' ? 'Quick check' : 'Activity') + ' on this slide</small>' + esc(a.title) + '</span><a class="btn small' + (sub ? '' : ' primary') + '" href="#/a/' + a.id + '">' +
         (sub ? (vw ? 'Try again' : 'View') : mine ? 'Continue' : vw ? 'Try it' : 'Start') + ' ›</a></div>';
     }).join('');
   }

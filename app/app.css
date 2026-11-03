@@ -252,15 +252,18 @@ details.mod>summary::after{margin-left:4px}
 .pnav button{min-height:44px;min-width:104px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
 .pnav button:disabled{opacity:.35;cursor:default}
 .pnav #pcount{color:#fff;font-weight:700;font-variant-numeric:tabular-nums;min-width:64px;text-align:center}
-.pact{background:var(--navy-2);border-top:1px solid rgba(255,255,255,.12);padding:8px 10px}
-.pact .pa{display:flex;align-items:center;gap:10px;max-width:880px;margin:0 auto;color:#fff;flex-wrap:wrap}
+.pact{background:var(--navy);padding:8px 10px 0}
+.pact .pa{display:flex;align-items:center;gap:12px;max-width:880px;margin:0 auto;padding:10px 12px 10px 14px;border-radius:12px;color:var(--text-1);flex-wrap:wrap;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.pact .pa.pend{background:var(--warn-bg);border-left:6px solid var(--gold)}
+.pact .pa.done{background:var(--good-bg);border-left:6px solid var(--good)}
 .pact .pa + .pa{margin-top:6px}
-.pact .pt{flex:1;min-width:140px;font-weight:700;font-size:14px}
-.pact .pill{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:800;white-space:nowrap}
+.pact .pt{flex:1;min-width:140px;font-weight:800;font-size:15px;line-height:1.25}
+.pact .pt small{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:2px}
+.pact .pill{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800;white-space:nowrap}
 .pact .pill.done{background:var(--good);color:#fff}
 .pact .pill.pend{background:var(--gold);color:var(--navy)}
-.pact .btn{min-height:36px}
-.pact .btn.primary{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.pact .btn{min-height:40px}
+.pact .btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}
 
 /* QA round 3 */
 /* toast sits low, above the save bar, so it never covers a page title */
