@@ -370,8 +370,10 @@ html.clean .top button.tools,html.clean .pbar button.tools{background:rgba(255,2
 .review dt{font-size:13px;color:var(--text-2);font-weight:600}
 .review dd{margin:2px 0 0;font-size:17px;font-weight:700;color:var(--navy);word-break:break-word}
 
-.livepanel .pclose{flex:none;width:36px;height:36px;border:0;border-radius:50%;background:var(--bg);color:var(--text-1);font-size:24px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.livepanel .pclose{flex:none;width:36px;height:36px;border:0;border-radius:50%;background:var(--bg);color:var(--text-1);padding:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
 .livepanel .pclose:hover{background:var(--border)}
+.livepanel .pclose .ico{width:20px;height:20px}
+.timer:empty{display:none}   /* no time limit: no empty pill */
 
 /* facilitator: who is done / pending for one activity */
 table.who{width:100%;border-collapse:collapse;font-size:15px}

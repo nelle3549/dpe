@@ -1122,7 +1122,7 @@
       var a = ACT[liveId].a, url = BASE + '?a=' + liveId + '&join=' + encodeURIComponent(S.cohort.join_code), st = S.acts[liveId];   // the code lets late joiners register
       $live.classList.toggle('hide', panelHidden);
       document.getElementById('showlive').classList.toggle('hide', !panelHidden);
-      $live.innerHTML = '<div class="row" style="justify-content:space-between"><span class="tag ans">' + (st.status === 'live' ? ico('hand') + ' Open for answers' : 'Closed') + '</span><span class="row" style="gap:8px"><span class="timer" id="ptimer"></span><button class="pclose" id="hidep" aria-label="Hide the answers panel" title="Hide panel">×</button></span></div>' +
+      $live.innerHTML = '<div class="row" style="justify-content:space-between"><span class="tag ans">' + (st.status === 'live' ? ico('hand') + ' Open for answers' : 'Closed') + '</span><span class="row" style="gap:8px"><span class="timer" id="ptimer"></span><button class="pclose" id="hidep" aria-label="Hide the answers panel" title="Hide panel">' + ico('x') + '</button></span></div>' +
         '<h3>' + esc(a.title) + '</h3><div class="qrbig">' + qr(url) + '</div>' +
         '<div class="short">' + esc(SHORT) + '<wbr><span style="white-space:nowrap">' + esc('?a=' + liveId) + '</span></div><button class="btn primary block" id="cpl">Copy link for the chat</button>' +
         '<div class="finbox"><b id="c-fin">…</b> <span>of <span id="c-reg">…</span> finished</span><div class="prog" role="progressbar" aria-label="Finished" id="c-prog"><i id="c-bar"></i></div></div>' +
