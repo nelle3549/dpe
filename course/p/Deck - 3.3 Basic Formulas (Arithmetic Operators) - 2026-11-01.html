@@ -128,19 +128,22 @@
       <div><p class="kicker">Rule number one</p><h2 class="h2">Every formula starts with an equals sign</h2></div>
       <span class="tag">Same in Excel, Sheets and Calc</span>
     </div>
-    <div class="grid g2">
-      <div class="card"><span class="tag coral">Without =</span>
-        <div class="xl sm mt-m"><div class="fbar"><span class="nb">E2</span><span class="fx">fx</span><span class="fv">C2*D2</span></div>
-          <table><colgroup><col class="rn"><col><col><col></colgroup><tr><th></th><th>C</th><th>D</th><th>E</th></tr><tr><th>2</th><td class="n">25</td><td class="n">₱245.00</td><td class="err">C2*D2</td></tr></table></div>
-        <p class="mt-m">The sheet treats it as <b>text</b> and just shows what you typed.</p>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.4" data-at="60.2,40.8" data-o="40,35"><div class="pic"><img src="images/ui/3.3/01-e2-text-no-equals.webp" alt="Excel cell E2 shows the text C2*D2 on the left; the formula bar also shows C2*D2 without an equals sign"><i class="ring" style="--x:53.8;--y:38.6;--w:12.8;--h:4.4"></i><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.4" data-at="60.2,40.8" data-o="40,35"><div class="pic"><img src="images/ui/3.3/02-e2-formula.webp" alt="Excel cell E2 shows ₱6,125.00 and the formula bar shows =C2*D2"><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7"></i><i class="ring" style="--x:53.8;--y:38.6;--w:12.8;--h:4.4;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Same rule in Excel for Windows, Google Sheets and Calc.</p>
       </div>
-      <div class="card"><span class="tag green">With =</span>
-        <div class="xl sm mt-m"><div class="fbar"><span class="nb">E2</span><span class="fx">fx</span><span class="fv">=C2*D2</span></div>
-          <table><colgroup><col class="rn"><col><col><col></colgroup><tr><th></th><th>C</th><th>D</th><th>E</th></tr><tr><th>2</th><td class="n">25</td><td class="n">₱245.00</td><td class="n sel">₱6,125.00</td></tr></table></div>
-        <p class="mt-m">The <b>=</b> says "calculate this". The cell shows the answer.</p>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1"><b>Without =</b>: <span class="fcode">C2*D2</span> is just <b>text</b>. The cell shows exactly what you typed, on the left.</li>
+          <li data-step="2"><b>With =</b>: <span class="fcode">=C2*D2</span> says "calculate this". The cell shows <b>₱6,125.00</b>; the formula bar keeps the recipe.</li>
+        </ol>
+        <div class="callout tip mt-m"><b>Fast and accurate:</b> type <kbd>=</kbd>, then <b>click</b> C2, type <kbd>*</kbd>, <b>click</b> D2, press <kbd>Enter</kbd>. Clicking avoids typing the wrong address.</div>
       </div>
     </div>
-    <div class="callout tip mt-l"><b>Fast and accurate:</b> type <kbd>=</kbd>, then <b>click</b> C2, type <kbd>*</kbd>, <b>click</b> D2, press <kbd>Enter</kbd>. Clicking avoids typing the wrong address.</div>
     
   </section>
 
@@ -210,19 +213,25 @@
     <div class="slide-head">
       <div><p class="kicker">The most important habit</p><h2 class="h2">Point to cells. Don't type the numbers.</h2></div>
     </div>
-    <div class="grid g2">
-      <div class="card"><span class="tag coral">Typed numbers</span>
-        <div class="xl sm mt-m"><div class="fbar"><span class="nb">E2</span><span class="fx">fx</span><span class="fv">=25*245</span></div>
-          <table><colgroup><col class="rn"><col><col><col></colgroup><tr><th></th><th>C</th><th>D</th><th>E</th></tr><tr><th>2</th><td class="n">25</td><td class="n hi">₱255.00</td><td class="n hi">₱6,125.00</td></tr></table></div>
-        <p class="mt-m">Price changed to ₱255, but E2 still says <b>₱6,125.00</b>. Wrong, and nobody is warned.</p>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-at="60.2,40.8" data-o="35,35"><div class="pic"><img src="images/ui/3.3/02-e2-formula.webp" alt="Excel E2 with =C2*D2 in the formula bar shows ₱6,125.00"><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7"></i><i class="ring" style="--x:53.8;--y:38.6;--w:12.8;--h:4.4;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.4" data-at="49.0,40.8" data-o="45,38"><div class="pic"><img src="images/ui/3.3/03-d2-255.webp" alt="Excel D2 changed to 255: the cell shows ₱255.00 and E2 now shows ₱6,375.00"><i class="ring" style="--x:43.5;--y:38.6;--w:10.9;--h:4.4"></i><i class="ring" style="--x:53.8;--y:38.6;--w:12.8;--h:4.4;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-at="60.2,40.8" data-o="35,35"><div class="pic"><img src="images/ui/3.3/04-e2-updated.webp" alt="Excel E2 selected: still =C2*D2 in the formula bar, now ₱6,375.00"><i class="ring" style="--x:53.8;--y:38.6;--w:12.8;--h:4.4"></i><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-at="60.2,40.8" data-o="35,35"><div class="pic"><img src="images/ui/3.3/05-e2-typed-numbers.webp" alt="Excel E2 holds =25*245: with D2 at ₱255.00 it still shows ₱6,125.00"><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7"></i><i class="ring" style="--x:43.5;--y:38.6;--w:10.9;--h:4.4;--d:0.25s"></i><i class="ring" style="--x:53.8;--y:38.6;--w:12.8;--h:4.4;--d:0.5s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
       </div>
-      <div class="card"><span class="tag green">Cell references</span>
-        <div class="xl sm mt-m"><div class="fbar"><span class="nb">E2</span><span class="fx">fx</span><span class="fv">=C2*D2</span></div>
-          <table><colgroup><col class="rn"><col><col><col></colgroup><tr><th></th><th>C</th><th>D</th><th>E</th></tr><tr><th>2</th><td class="n">25</td><td class="n ok">₱255.00</td><td class="n ok">₱6,375.00</td></tr></table></div>
-        <p class="mt-m">Change D2 and E2 updates <b>by itself</b> to ₱6,375.00.</p>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1"><b>Cell references:</b> E2 holds <span class="fcode">=C2*D2</span> and shows ₱6,125.00.</li>
+          <li data-step="2">The supplier raises the A4 price: D2 becomes <b>255</b>. E2 updates <b>by itself</b> to <b>₱6,375.00</b>.</li>
+          <li data-step="3"><b>Typed numbers:</b> <span class="fcode">=25*245</span> still says <b>₱6,125.00</b>. Wrong, and nobody is warned.</li>
+        </ol>
+        <div class="callout mt-m"><b>Why it matters at work:</b> one price update fixes the row total, the grand total, and later the chart. With typed numbers, you'd fix every one by hand.</div>
       </div>
     </div>
-    <div class="callout mt-l"><b>Why it matters at work:</b> one price update fixes the row total, the grand total, and later the chart. With typed numbers, you'd have to find and fix every one by hand.</div>
     
   </section>
 
@@ -231,30 +240,23 @@
     <div class="slide-head">
       <div><p class="kicker">Build the Total Cost column</p><h2 class="h2">One formula in E2, then fill it down</h2></div>
     </div>
-    <div class="grid" style="grid-template-columns:.85fr 1.15fr;align-items:start">
+    <div class="shots" data-walk>
       <div>
-        <ol class="steps" style="font-size:calc(var(--u)*1.35)">
-          <li>Click <b>E2</b>. Type <kbd>=</kbd>, click <b>C2</b>, type <kbd>*</kbd>, click <b>D2</b>, press <kbd>Enter</kbd>.</li>
-          <li>Click E2 again. <b>Double-click the fill handle</b> (or drag it down to E9).</li>
-          <li>Click <b>E5</b> and read the formula bar: <span class="fcode">=C5*D5</span>. The row number changed by itself.</li>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-at="60.2,40.8" data-o="35,35"><div class="pic"><img src="images/ui/3.3/02-e2-formula.webp" alt="Excel E2 with =C2*D2 shows ₱6,125.00"><i class="ring" style="--x:53.8;--y:38.6;--w:12.8;--h:4.4"></i><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.8" data-at="66.3,43" data-o="66,42"><div class="pic"><img src="images/ui/3.3/02-e2-formula.webp" alt="The fill handle: the small square at the bottom-right corner of E2"><i class="ring" style="--x:65.4;--y:41.9;--w:1.8;--h:2.2"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.2" data-at="60,70" data-o="55,55"><div class="pic"><img src="images/ui/3.3/07-filled-e2-e9.webp" alt="Excel E2:E9 filled: ₱6,125.00 down to ₱1,230.00"><i class="ring" style="--x:53.8;--y:38.6;--w:12.8;--h:31.3"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-at="60.2,52.3" data-o="35,40"><div class="pic"><img src="images/ui/3.3/08-e5-formula.webp" alt="Excel E5 selected: the formula bar shows =C5*D5 and the cell ₱2,080.00"><i class="ring" style="--x:53.8;--y:50.1;--w:12.8;--h:4.4"></i><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
+      </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Click <b>E2</b>. Type <kbd>=</kbd>, click <b>C2</b>, type <kbd>*</kbd>, click <b>D2</b>, press <kbd>Enter</kbd>.</li>
+          <li data-step="2">Click E2 again. <b>Double-click the fill handle</b> (the small square at its corner), or drag it down to E9.</li>
+          <li data-step="3">Click <b>E5</b> and read the formula bar: <span class="fcode">=C5*D5</span>. The row number changed by itself.</li>
         </ol>
         <div class="callout tip mt-m"><b>Why it adjusts:</b> the formula means "this row's Qty × this row's Unit Cost". More on this in 3.5 Cell Referencing.</div>
-      </div>
-      <div class="xl sm bd">
-        <div class="fbar"><span class="nb">E5</span><span class="fx">fx</span><span class="fv">=C5*D5</span></div>
-        <table>
-          <colgroup><col class="rn"><col style="width:29%"><col style="width:8%"><col style="width:16%"><col style="width:19%"><col></colgroup>
-          <tr><th></th><th>A</th><th>C</th><th>D</th><th class="on">E</th><th style="background:#fff;border-color:#fff"></th></tr>
-          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Qty</td><td class="c">Unit Cost</td><td class="c">Total Cost</td><td class="c" style="background:var(--gold-soft);color:#8A6200">Inside E</td></tr>
-          <tr><th>2</th><td>Bond paper, A4</td><td class="n">25</td><td class="n">₱245.00</td><td class="n rng">₱6,125.00</td><td class="f">=C2*D2</td></tr>
-          <tr><th>3</th><td>Bond paper, long</td><td class="n">30</td><td class="n">₱265.00</td><td class="n rng">₱7,950.00</td><td class="f">=C3*D3</td></tr>
-          <tr><th>4</th><td>Ballpen, black</td><td class="n">10</td><td class="n">₱96.00</td><td class="n rng">₱960.00</td><td class="f">=C4*D4</td></tr>
-          <tr><th>5</th><td>Folder, long</td><td class="n">4</td><td class="n">₱520.00</td><td class="n sel">₱2,080.00</td><td class="f">=C5*D5</td></tr>
-          <tr><th>6</th><td>Fastener</td><td class="n">6</td><td class="n">₱85.00</td><td class="n rng">₱510.00</td><td class="f">=C6*D6</td></tr>
-          <tr><th>7</th><td>Staple wire #35</td><td class="n">12</td><td class="n">₱32.00</td><td class="n rng">₱384.00</td><td class="f">=C7*D7</td></tr>
-          <tr><th>8</th><td>Printer ink, black</td><td class="n">8</td><td class="n">₱350.00</td><td class="n rng">₱2,800.00</td><td class="f">=C8*D8</td></tr>
-          <tr><th>9</th><td>Envelope, brown long</td><td class="n">3</td><td class="n">₱410.00</td><td class="n rng">₱1,230.00</td><td class="f">=C9*D9</td></tr>
-        </table>
       </div>
     </div>
     
@@ -293,27 +295,22 @@
     <div class="slide-head">
       <div><p class="kicker">At home · Monthly Household Budget</p><h2 class="h2">Budget vs Actual: difference and percentage</h2></div>
     </div>
-    <div class="grid" style="grid-template-columns:1.3fr .7fr;align-items:start">
-      <div class="xl sm bd">
-        <div class="fbar"><span class="nb">E3</span><span class="fx">fx</span><span class="fv">=C3/B3</span></div>
-        <table>
-          <colgroup><col class="rn"><col style="width:32%"><col><col><col><col></colgroup>
-          <tr><th></th><th>A</th><th>B</th><th>C</th><th class="on">D</th><th class="on">E</th></tr>
-          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Budget</td><td class="c">Actual</td><td class="c">Difference</td><td class="c">% of Budget</td></tr>
-          <tr><th>2</th><td>Rice</td><td class="n">₱2,500.00</td><td class="n">₱2,650.00</td><td class="n">₱150.00</td><td class="n">106.0%</td></tr>
-          <tr><th>3</th><td>CEPALCO electricity</td><td class="n">₱2,800.00</td><td class="n">₱3,120.00</td><td class="n">₱320.00</td><td class="n sel">111.4%</td></tr>
-          <tr><th>4</th><td>Water</td><td class="n">₱450.00</td><td class="n">₱420.00</td><td class="n">-₱30.00</td><td class="n">93.3%</td></tr>
-          <tr><th>5</th><td>Mobile load and internet</td><td class="n">₱1,500.00</td><td class="n">₱1,500.00</td><td class="n">₱0.00</td><td class="n">100.0%</td></tr>
-          <tr><th>6</th><td>Fare and fuel</td><td class="n">₱2,000.00</td><td class="n">₱2,240.00</td><td class="n">₱240.00</td><td class="n">112.0%</td></tr>
-          <tr><th>7</th><td>School allowance</td><td class="n">₱3,000.00</td><td class="n">₱2,800.00</td><td class="n">-₱200.00</td><td class="n">93.3%</td></tr>
-          <tr><th>8</th><td>Groceries</td><td class="n">₱5,000.00</td><td class="n">₱5,480.00</td><td class="n">₱480.00</td><td class="n">109.6%</td></tr>
-          <tr><th>9</th><td>Savings</td><td class="n">₱3,000.00</td><td class="n">₱3,000.00</td><td class="n">₱0.00</td><td class="n">100.0%</td></tr>
-        </table>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-at="54.2,40.8" data-o="45,35"><div class="pic"><img src="images/ui/3.3/14-budget-d2.webp" alt="Excel Household Budget: D2 holds =C2-B2 and shows ₱150.00"><i class="ring" style="--x:48.3;--y:38.6;--w:11.8;--h:4.4"></i><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="1" data-zoom="1.2" data-at="54,70" data-o="50,55"><div class="pic"><img src="images/ui/3.3/15-budget-d-filled.webp" alt="D2:D9 filled down: ₱150.00, ₱320.00, -₱30.00, ₱0.00, ₱240.00, -₱200.00, ₱480.00, ₱0.00"><i class="ring" style="--x:48.3;--y:38.6;--w:11.8;--h:31.3"></i></div></figure>
+          <figure class="f" data-step="1" data-zoom="1.3" data-at="54.2,44.6" data-o="45,40"><div class="pic"><img src="images/ui/3.3/16-budget-d3.webp" alt="D3 selected: =C3-B3 shows ₱320.00 over budget for CEPALCO"><i class="ring" style="--x:48.3;--y:42.4;--w:11.8;--h:4.4"></i><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-at="65.4,44.6" data-o="55,40"><div class="pic"><img src="images/ui/3.3/17-budget-e3-percent.webp" alt="E3 selected: =C3/B3 formatted as Percentage shows 111.4%"><i class="ring" style="--x:59.5;--y:42.4;--w:11.8;--h:4.4"></i><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Household Budget.</p>
       </div>
       <div>
-        <div class="card top"><h4>Difference · D2</h4><p><span class="fcode">=C2-B2</span><br>Positive = over budget. Negative = saved.</p></div>
-        <div class="card top mt-m"><h4>% of Budget · E2</h4><p><span class="fcode">=C2/B2</span>, then format as <b>Percentage</b>. Don't multiply by 100.</p></div>
-        <div class="figure mt-m" style="height:calc(var(--u)*10)"><img src="images/m3/3-3-planner.jpg" alt="Hand writing in a budget planner notebook"></div>
+        <ol class="steps sm">
+          <li data-step="1"><b>Difference · D2:</b> <span class="fcode">=C2-B2</span>, filled down. Positive = over budget (CEPALCO ₱320.00). Negative = saved.</li>
+          <li data-step="2"><b>% of Budget · E2:</b> <span class="fcode">=C2/B2</span>, filled down, then format as <b>Percentage</b>: 111.4% for CEPALCO. Don't multiply by 100.</li>
+        </ol>
+        <div class="callout mt-m">Percentage format: Home › <b>%</b> (Percent Style), or <kbd>Ctrl</kbd>+<kbd>1</kbd> › Percentage › 1 decimal place.</div>
       </div>
     </div>
     
@@ -350,43 +347,50 @@
     <div class="slide-head">
       <div><p class="kicker">Don't panic</p><h2 class="h2">Error messages tell you what went wrong</h2></div>
     </div>
-    <div class="grid g4 anim-stagger-list">
-      <div class="card top"><h4 style="color:var(--coral)">#DIV/0!</h4><p>Dividing by zero or an <b>empty</b> cell.</p><p class="mt-s"><span class="fcode">=C2/B2</span> when B2 is blank.</p><p class="mt-s"><b>Fix:</b> fill in the divisor.</p></div>
-      <div class="card top"><h4 style="color:var(--coral)">#VALUE!</h4><p>Math on <b>text</b>.</p><p class="mt-s"><span class="fcode">=C3*D3</span> when C3 says "30 reams".</p><p class="mt-s"><b>Fix:</b> plain numbers only.</p></div>
-      <div class="card top"><h4 style="color:var(--coral)">#NAME?</h4><p>The sheet doesn't recognise a <b>word</b>.</p><p class="mt-s"><span class="fcode">=C2xD2</span> or a misspelled function like <span class="fcode">=SUMM( )</span>.</p><p class="mt-s"><b>Fix:</b> use <kbd>*</kbd>; check spelling.</p></div>
-      <div class="card top"><h4 style="color:var(--coral)">#####</h4><p>Not an error: the column is <b>too narrow</b>.</p><p class="mt-s">Long peso amounts in a thin column.</p><p class="mt-s"><b>Fix:</b> double-click the column border.</p></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-at="79.9,48.5" data-o="70,40"><div class="pic"><img src="images/ui/3.3/13-err-div0.webp" alt="Excel G4 shows #DIV/0!: the formula bar says =D4/F4 and F4 (Pieces) is empty"><i class="ring" style="--x:74.4;--y:46.3;--w:10.9;--h:4.4"></i><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7;--d:0.25s"></i><i class="ring" style="--x:66.9;--y:46.3;--w:8.1;--h:4.4;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-at="61.1,44.6" data-o="45,40"><div class="pic"><img src="images/ui/3.3/12-err-value.webp" alt="Excel E3 shows #VALUE!: =C3*D3 while C3 says 30 reams"><i class="ring" style="--x:54.7;--y:42.4;--w:12.8;--h:4.4"></i><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7;--d:0.25s"></i><i class="ring" style="--x:36.0;--y:42.4;--w:9.0;--h:4.4;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-at="61.1,40.8" data-o="45,35"><div class="pic"><img src="images/ui/3.3/11-err-name.webp" alt="Excel E2 shows #NAME?: the formula bar says =C2 x D2, the letter x instead of *"><i class="ring" style="--x:54.7;--y:38.6;--w:12.8;--h:4.4"></i><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.3" data-at="46,40.6" data-o="30,40"><div class="pic"><img src="images/ui/3.1/15-hashes-narrow.webp" alt="Unit Cost column too narrow: cells show ##### while the formula bar shows 245"><i class="ring" style="--x:43;--y:38.3;--w:6.4;--h:31.2"></i><i class="ring" style="--x:19.2;--y:24.6;--w:8;--h:4.4;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample sheet with errors made on purpose. The warning icon beside an error cell lists help for it.</p>
+      </div>
+      <div>
+        <ul class="ticks sm">
+          <li data-step="1"><b style="color:var(--coral)">#DIV/0!</b> Divided by zero or an <b>empty</b> cell. <b>Fix:</b> fill in the divisor.</li>
+          <li data-step="2"><b style="color:var(--coral)">#VALUE!</b> Math on <b>text</b>, like "30 reams". <b>Fix:</b> plain numbers only.</li>
+          <li data-step="3"><b style="color:var(--coral)">#NAME?</b> A word the sheet doesn't know: <span class="fcode">=C2xD2</span> or <span class="fcode">=SUMM( )</span>. <b>Fix:</b> use <kbd>*</kbd>; check spelling.</li>
+          <li data-step="4"><b style="color:var(--coral)">#####</b> Not an error: the column is <b>too narrow</b>. <b>Fix:</b> double-click the column border.</li>
+        </ul>
+        <div class="callout tip mt-m"><b>Find the cause:</b> click the error cell and read the formula bar.</div>
+      </div>
     </div>
-    <div class="callout tip mt-l"><b>Find the cause:</b> click the error cell and read the formula bar. The coloured borders show which cells the formula uses.</div>
     
   </section>
 
   
   <section class="slide" data-title="Show formulas">
-    <div class="split">
+    <div class="slide-head">
+      <div><p class="kicker">Check your whole sheet at once</p><h2 class="h2">Show formulas with <kbd>Ctrl</kbd>+<kbd>`</kbd></h2></div>
+    </div>
+    <div class="shots" data-walk>
       <div>
-        <p class="kicker">Check your whole sheet at once</p>
-        <h2 class="h2">Show formulas with <kbd>Ctrl</kbd>+<kbd>`</kbd></h2>
-        <ul class="ticks mt-m">
-          <li><b>Excel:</b> <kbd>Ctrl</kbd>+<kbd>`</kbd> (the key left of 1), or Formulas › <b>Show Formulas</b>.</li>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.2" data-at="73.4,18" data-o="80,30"><div class="pic"><img src="images/ui/3.3/10-show-formulas.webp" alt="Excel Formulas tab with Show Formulas on: column E shows =C2*D2, =C3*D3 and so on"><i class="ring" style="--x:71.1;--y:12.4;--w:4.6;--h:11.2"></i><i class="ring" style="--x:76.4;--y:36.1;--w:18.5;--h:25.9;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.5" data-at="85.6,46.4" data-o="85,45"><div class="pic"><img src="images/ui/3.3/10-show-formulas.webp" alt="In formula view E5 shows a plain 2080, a typed number"><i class="ring" style="--x:76.4;--y:44.6;--w:18.5;--h:3.6"></i><i class="ring" style="--x:19.4;--y:25.1;--w:10;--h:3.7;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac (Formulas tab › Show Formulas; <kbd>Ctrl</kbd>+<kbd>`</kbd> on Windows).</p>
+      </div>
+      <div>
+        <ul class="ticks sm">
+          <li data-step="1"><b>Excel:</b> <kbd>Ctrl</kbd>+<kbd>`</kbd> (the key left of 1), or Formulas › <b>Show Formulas</b>.</li>
+          <li data-step="2"><b>Caught!</b> E5 shows a plain <b>2080</b>: someone typed it by hand.</li>
           <li><b>Google Sheets:</b> <kbd>Ctrl</kbd>+<kbd>`</kbd>, or View › Show › <b>Formulas</b>.</li>
           <li><b>LibreOffice Calc:</b> View › <b>Show Formula</b>.</li>
         </ul>
-        <div class="callout mt-m"><b>Press it again</b> to go back to normal. Great for checking that no total was typed by hand.</div>
-      </div>
-      <div class="xl sm">
-        <table>
-          <colgroup><col class="rn"><col style="width:34%"><col style="width:11%"><col style="width:15%"><col></colgroup>
-          <tr><th></th><th>A</th><th>C</th><th>D</th><th>E</th></tr>
-          <tr class="hd"><th>1</th><td>Item</td><td>Qty</td><td>Unit Cost</td><td>Total Cost</td></tr>
-          <tr><th>2</th><td>Bond paper, A4</td><td class="n">25</td><td class="n">245</td><td class="f">=C2*D2</td></tr>
-          <tr><th>3</th><td>Bond paper, long</td><td class="n">30</td><td class="n">265</td><td class="f">=C3*D3</td></tr>
-          <tr><th>4</th><td>Ballpen, black</td><td class="n">10</td><td class="n">96</td><td class="f">=C4*D4</td></tr>
-          <tr><th>5</th><td>Folder, long</td><td class="n">4</td><td class="n">520</td><td class="n hi">2080</td></tr>
-          <tr><th>6</th><td>Fastener</td><td class="n">6</td><td class="n">85</td><td class="f">=C6*D6</td></tr>
-          <tr><th>…</th><td>…</td><td></td><td></td><td class="f">…</td></tr>
-          <tr><th>10</th><td>TOTAL</td><td></td><td></td><td class="f">=E2+E3+E4+E5+E6+E7+E8+E9</td></tr>
-        </table>
-        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">Formula view: E5 is a typed number. Caught!</p>
+        <div class="callout mt-m"><b>Press it again</b> to go back to normal.</div>
       </div>
     </div>
     
