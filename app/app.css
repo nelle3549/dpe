@@ -38,6 +38,38 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero h1{font-size:clamp(30px,6vw,56px);line-height:1.05;font-weight:800;letter-spacing:-.03em;margin:10px 0 12px}
 .hero h1 span{color:var(--gold)}
 .hero p{color:rgba(255,255,255,.82);margin:0;max-width:60ch}
+/* home hero, as on the course index page (Decks/index.html) */
+.hero .partners{display:inline-flex;flex-wrap:wrap;align-items:stretch;background:#fff;border-radius:16px;padding:10px 6px;margin-bottom:24px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.hero .partners figure{margin:0;display:flex;align-items:center;gap:10px;padding:2px 16px}
+.hero .partners figure+figure{border-left:1px solid var(--border)}
+.hero .partners img{height:42px;width:auto;display:block}
+.hero .partners img.sd{height:24px}
+.hero .partners figcaption{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);line-height:1.25}
+.hero .partners figcaption b{display:block;color:var(--text-1);letter-spacing:0;text-transform:none;font-size:14px}
+.hero p.lede{font-size:clamp(16px,1.5vw,20px);max-width:62ch}
+.hero p.rp{margin-top:18px;font-size:15px;color:rgba(255,255,255,.7)}
+.hero p.rp b{color:#fff}
+.hero .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px;max-width:900px}
+.hero .stats div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:12px 16px}
+.hero .stats b{display:block;font-size:28px;line-height:1.1;font-weight:800}
+.hero .stats span{font-size:13px;color:rgba(255,255,255,.7)}
+/* the strip for you: greeting + progress + next lesson */
+.hero .me{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px 16px;margin-top:22px;max-width:900px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.1);border:1px solid rgba(244,180,0,.45)}
+.hero .me h2{margin:0;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;line-height:1.15}
+.hero .me h2 span{color:var(--gold)}
+.hero .me .mt p{margin:4px 0 0;font-size:14px;color:rgba(255,255,255,.78)}
+.hero .me .btn{white-space:nowrap}
+.hero .me .mbar,.hero .me .ml{grid-column:1/-1}
+.hero .me .mbar{height:10px;background:rgba(255,255,255,.16);border-radius:999px;overflow:hidden}
+.hero .me .mbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#FFD866);border-radius:999px;min-width:0}
+.hero .me .ml{margin:-2px 0 0;font-size:13px;color:rgba(255,255,255,.75)}
+@media (max-width:640px){
+  .hero .partners{display:flex}.hero .partners figure{padding:4px 10px}.hero .partners img{height:32px}.hero .partners img.sd{height:18px}
+  .hero .partners figcaption{font-size:9px}.hero .partners figcaption b{font-size:12px}
+  .hero p.lede,.hero p.rp{display:none}   /* phones: course name, then straight to you */
+  .hero .stats{grid-template-columns:repeat(2,1fr);gap:8px;margin-top:18px}.hero .stats div{padding:8px 12px}.hero .stats b{font-size:22px}
+  .hero .me{grid-template-columns:1fr}.hero .me .btn{justify-self:start}
+}
 .logos{display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:10px 16px;width:max-content;max-width:100%;margin-top:22px;flex-wrap:wrap}
 .logos img{height:40px;width:auto;display:block}
 .logos img.sd{height:30px}

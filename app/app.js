@@ -136,6 +136,7 @@
     'house': '<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />',
     'hourglass': '<path d="M5 22h14" /><path d="M5 2h14" /><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" /><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />',
     'file-text': '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" />',
+    'arrow-right': '<path d="M5 12h14" /><path d="m12 5 7 7-7 7" />',
     'clock': '<circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />',
     'timer': '<line x1="10" x2="14" y1="2" y2="2" /><line x1="12" x2="15" y1="14" y2="11" /><circle cx="12" cy="14" r="8" />',
     'paperclip': '<path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48" />',
@@ -532,13 +533,50 @@
     document.getElementById('ti-x').onclick = close;
     document.getElementById('ti-back').onclick = function (e) { if (e.target === this) close(); };
   }
+  // home hero: the course, as on the course index page, then a strip for you: the greeting, your progress and your next lesson
+  function homeHero() {
+    var p = S.profile, adm = isAdmin(), vw = isViewer(), all = [].concat.apply([], CAT.map(function (m) { return m.topics; }));
+    var hrs = CAT.reduce(function (n, m) { return n + parseFloat(m.hours); }, 0);
+    var labs = all.reduce(function (n, t) { return n + t.activities.filter(function (a) { return a.kind === 'lab'; }).length; }, 0);
+    var sub, n, lbl, go = '';
+    if (adm) {
+      n = all.filter(function (t) { return topicMark(t.id) === 'done'; }).length;
+      sub = 'Facilitator · ' + esc(S.cohort ? S.cohort.name : '');
+      lbl = n + ' of ' + all.length + ' topics discussed with the class';
+    } else {
+      var open = all.filter(function (t) { return topicOpen(t.id); }), next = null, nextLs = null;
+      n = 0;
+      open.forEach(function (t) {
+        var ls = lessonState(t);
+        if (ls.done) n++;
+        else if (!next || (ls.started && !nextLs.started)) { next = t; nextLs = ls; }
+      });
+      sub = vw ? 'Preview access: every topic is open. Try anything; nothing is saved or scored.'
+        : esc(S.cohort ? S.cohort.name : '') + ' · Topics open as we reach them in class.';
+      lbl = n + ' of ' + all.length + ' lessons completed' + (!vw && open.length < all.length ? ' · ' + open.length + ' open so far' : '');
+      if (next) go = '<a class="btn gold" href="#/deck/' + next.id + (nextLs.resume > 1 ? '/' + nextLs.resume : '') + '">' + (nextLs.started ? 'Resume ' : 'Start ') + next.id + ' ' + ico('arrow-right') + '</a>';
+    }
+    return '<section class="hero"><div class="wrap">' +
+      '<div class="partners" aria-label="Partners">' +
+        '<figure><img src="course/images/logos/dict.png" alt="DICT logo"><figcaption>Organizer<b>DICT</b></figcaption></figure>' +
+        '<figure><img src="course/images/logos/bir.png" alt="BIR logo"><figcaption>Participants<b>BIR Misamis Oriental</b></figcaption></figure>' +
+        '<figure><img class="sd" src="course/images/logos/serial-disruptors.png" alt="Serial Disruptors logo"><figcaption>Resource Person\'s<b>organization</b></figcaption></figure></div>' +
+      '<p class="kicker">DICT ILCDB · ICT Academy · Digital Workforce · Beginner</p>' +
+      '<h1>Digital Productivity <span>Essentials</span></h1>' +
+      '<p class="lede">Computers and the internet, word processing, spreadsheets and presentations, with everyday AI used safely and responsibly. Built for the women and men of BIR Misamis Oriental, at the office and at home.</p>' +
+      '<p class="rp">Resource Person: <b>Engr. Ronelle Pabellan</b> · Fully online · Course syllabus v1.0</p>' +
+      '<div class="stats"><div><b>' + hrs + '</b><span>training hours</span></div><div><b>' + CAT.length + '</b><span>modules</span></div>' +
+        '<div><b>' + all.length + '</b><span>topic decks</span></div><div><b>' + labs + '</b><span>hands-on labs</span></div></div>' +
+      '<div class="me"><div class="mt"><h2>Hi, <span>' + esc(p.first_name) + '</span></h2><p>' + sub + '</p></div>' + go +
+        '<div class="mbar" role="progressbar" aria-valuemin="0" aria-valuemax="' + all.length + '" aria-valuenow="' + n + '" aria-label="' + esc(lbl) + '"><i style="width:' + Math.round(n / all.length * 100) + '%"></i></div>' +
+        '<p class="ml">' + lbl + '</p></div>' +
+      '</div></section>';
+  }
   function vHome() {
     clearTimers();   // views that re-render themselves must not stack their refresh timers
     var p = S.profile, adm = isAdmin(), deckView = adm ? '#/present/' : '#/deck/';
     var joinUrl = adm && BASE + '?join=' + encodeURIComponent(S.cohort.join_code);
-    var html = topbar() + '<section class="hero"><div class="wrap"><p class="kicker">' + esc(S.cohort ? S.cohort.name : '') + '</p>' +
-      '<h1>Hi, <span>' + esc(p.first_name) + '</span></h1><p>' + (isViewer() ? 'Preview access: every topic is open, with its slides, video and activities. Try any activity as often as you like; nothing you do is saved or scored.'
-        : 'Topics open here as we reach them in class. Your answers save as you go.') + '</p></div></section><main class="wrap" style="padding-bottom:48px">';
+    var html = topbar() + homeHero() + '<main class="wrap" style="padding-bottom:48px">';
     if (adm) html += '<div class="card facbar fac mt-3"><span class="fk">Only you see this</span><span>Class code <b class="code">' + esc(S.cohort.join_code) + '</b></span>' +
       '<span><b id="nreg">…</b> registered</span><span class="row"><button class="btn small gold" id="full">Show join QR</button><button class="btn small" id="cpj">Copy join link</button></span></div>';
     // Live now: the topic being discussed, and any of its activities that are open for answers
