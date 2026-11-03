@@ -208,3 +208,6 @@ kbd{display:inline-block;font-family:'JetBrains Mono',ui-monospace,monospace;fon
 .scur{position:absolute;width:54px;height:54px;margin:-8px 0 0 -11px;z-index:5;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
 .scur svg{display:block;width:100%;height:100%}
 .slabel{margin-top:14px;font-size:24px;font-weight:600;color:var(--text-3)}
+/* app logos inside text and icon boxes (same sizing as the decks' .logo): without this they show at full image size */
+.logo{display:inline-block;width:1.15em;height:1.15em;object-fit:contain;vertical-align:-.22em;margin-right:.35em;flex:none}
+.ic .logo{width:1em;height:1em;margin:0;vertical-align:middle}
