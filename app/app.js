@@ -663,7 +663,8 @@
       (kind === 'deck' && T.video ? '<a href="#/video/' + tid + '">' + ico('play') + ' Video</a>' : kind === 'video' ? '<a href="#/deck/' + tid + '">Slides</a>' : '') +
       '</div><div class="pbody"><iframe id="view" src="' + src + '" title="' + esc(T.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe></div>' +
       (kind === 'deck' && !isAdmin() ? '<div class="pact" id="pact" hidden></div>' : '') +
-      (kind === 'deck' ? '<div class="pnav"><button id="prev" aria-label="Previous slide">‹ Back</button><span id="pcount" aria-live="polite"></span><button id="next" aria-label="Next slide">Next ›</button></div>' : '') +
+      (kind === 'deck' ? '<div class="pnav"><button id="prev" aria-label="Previous slide">‹ Back</button><span id="pcount" aria-live="polite"></span><button id="next" aria-label="Next slide">Next ›</button>' +
+        '<button id="nextl" class="nl" hidden>Next lesson ›</button></div>' : '') +
       '</div>');
     viewTid = tid;
     var $v = document.getElementById('view');
@@ -673,6 +674,17 @@
     var $nx = document.getElementById('next'); if (back) $nx.dataset.back = back;
     document.getElementById('prev').onclick = function () { send('ArrowLeft'); };
     $nx.onclick = function () { if ($nx.dataset.end) location.hash = back || '#/'; else send('ArrowRight'); };
+    // last slide: a third button to the next lesson (where you left off in it), or "opens later" while the class hasn't reached it
+    var all = [].concat.apply([], CAT.map(function (m) { return m.topics; })), nt = all[all.map(function (t) { return t.id; }).indexOf(tid) + 1];
+    var $nl = document.getElementById('nextl');
+    if (nt && !back) {
+      var ok = isAdmin() || topicOpen(nt.id), ls = isAdmin() ? null : lessonState(nt);
+      $nl.dataset.ok = ok ? '1' : '';
+      $nl.textContent = ok ? 'Next lesson: ' + nt.id + ' ›' : nt.id + ' opens later';
+      $nl.title = nt.id + ' ' + nt.title;
+      $nl.disabled = !ok;
+      $nl.onclick = function () { location.hash = '#/deck/' + nt.id + (ls && ls.resume > 1 ? '/' + ls.resume : ''); };
+    }
   }
   // on an activity slide, participants get the activity's status (Done / Pending) and a button to it, above the slide controls
   var viewTid = null;
@@ -699,6 +711,7 @@
       document.getElementById('prev').disabled = d.n <= 1;
       slideAct(d.n);
       if (viewTid && /^#\/deck\//.test(location.hash) && !isAdmin()) saveSlide(viewTid, d.n, d.total);
+      var nl = document.getElementById('nextl'); if (nl && nl.title) nl.hidden = !end;
       nx.textContent = end ? (nx.dataset.back ? 'Activity ›' : 'Home ›') : 'Next ›'; nx.setAttribute('aria-label', end ? nx.textContent.slice(0, -2) : 'Next slide'); nx.dataset.end = end ? '1' : '';
       // keep the slide in the address, so a reload or the Back button returns to it (without re-rendering)
       var m = location.hash.match(/^#\/(deck|present)\/([\d.]+)/); if (m) history.replaceState(null, '', '#/' + m[1] + '/' + m[2] + '/' + d.n);
