@@ -679,7 +679,7 @@
     var send = function (k) { $v.contentWindow.postMessage({ type: 'dpe-key', key: k }, '*'); $v.contentWindow.focus(); };
     var $nx = document.getElementById('next'); if (back) $nx.dataset.back = back;
     document.getElementById('prev').onclick = function () { send('ArrowLeft'); };
-    $nx.onclick = function () { if ($nx.dataset.end) location.hash = back || '#/'; else send('ArrowRight'); };
+    $nx.onclick = function () { if ($nx.dataset.end && !$nx.dataset.more) location.hash = back || '#/'; else send('ArrowRight'); };
     // last slide: a third button to the next lesson (where you left off in it), or "opens later" while the class hasn't reached it
     var all = [].concat.apply([], CAT.map(function (m) { return m.topics; })), nt = all[all.map(function (t) { return t.id; }).indexOf(tid) + 1];
     var $nl = document.getElementById('nextl');
@@ -712,10 +712,21 @@
     var d = e.data || {};
     if (d.type === 'dpe-home') location.hash = '#/';
     if (d.type === 'dpe-go' && /^#\/a\/[\w.-]+$/.test(d.to || '')) location.hash = d.to;
+    // a screenshot walk-through on the slide: show its step, and Next walks the steps first
+    if (d.type === 'dpe-step') {
+      var sc = document.getElementById('pcount'), sn = document.getElementById('next'); if (!sc || !sn || !sc.dataset.base) return;
+      if (sc.dataset.base.split(' ')[0] !== String(d.slide)) return;   // a late message from a slide already left
+      var more = d.i < d.n;
+      sc.textContent = sc.dataset.base + ' · step ' + d.i + '/' + d.n;
+      sn.dataset.more = more ? '1' : '';
+      sn.textContent = more ? 'Next step ›' : sn.dataset.end ? (sn.dataset.back ? 'Activity ›' : 'Home ›') : 'Next ›';
+      sn.setAttribute('aria-label', more ? 'Next step' : sn.dataset.end ? sn.textContent.slice(0, -2) : 'Next slide');
+    }
     if (d.type === 'dpe-slide') {
       var c = document.getElementById('pcount'); if (!c) return;
-      c.textContent = d.n + ' / ' + d.total;
+      c.textContent = c.dataset.base = d.n + ' / ' + d.total;
       var nx = document.getElementById('next'), end = d.n >= d.total;
+      nx.dataset.more = '';
       document.getElementById('prev').disabled = d.n <= 1;
       slideAct(d.n);
       if (viewTid && /^#\/deck\//.test(location.hash) && !isAdmin()) saveSlide(viewTid, d.n, d.total);
@@ -1075,7 +1086,7 @@
     var sendKey = function (k) { $f.contentWindow.postMessage({ type: 'dpe-key', key: k }, '*'); $f.contentWindow.focus(); };
     document.getElementById('prev').onclick = function () { sendKey('ArrowLeft'); };
     var $nx = document.getElementById('next');
-    $nx.onclick = function () { if ($nx.dataset.end) location.hash = '#/'; else sendKey('ArrowRight'); };
+    $nx.onclick = function () { if ($nx.dataset.end && !$nx.dataset.more) location.hash = '#/'; else sendKey('ArrowRight'); };
     var $f = document.getElementById('deck'), $go = document.getElementById('golive'), $live = document.getElementById('live');
     document.getElementById('openit').onclick = function () { setTopic(tid, true).then(function () { document.getElementById('lockbar').classList.add('hide'); }); };
     document.getElementById('pick').onchange = function () { if (this.value) goLive(this.value); this.value = ''; };

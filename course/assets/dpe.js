@@ -141,6 +141,14 @@
     i = Math.max(0, Math.min(fs.length - 1, i));
     var prev = box._i, f = fs[i], pic = f.querySelector('.pic'), at = shotAt(f);
     box._i = i; clearTimeout(box._t1); clearTimeout(box._t2);
+    // tell the LMS which step is showing, so its counter and Next button say "step 2/5" and "Next step"
+    // (after the slide's own dpe-slide message, which resets them)
+    if (box.hasAttribute('data-walk') && window.parent !== window)
+      setTimeout(function () {
+        var sl = box.closest('.slide'), no = Array.prototype.indexOf.call(document.querySelectorAll('.deck > .slide'), sl) + 1;
+        if (!no || box._i !== i || !sl.classList.contains('is-active')) return;   // a copy of the slide (overview), or the deck moved on
+        window.parent.postMessage({ type: 'dpe-step', i: i + 1, n: fs.length, slide: no }, '*');
+      }, 0);
     fs.forEach(function (x, k) { x.classList.toggle('on', k === i); x.classList.remove('shown', 'zoomed'); });
     var st = f.getAttribute('data-step');
     box.querySelectorAll('[data-step]:not(.f)').forEach(function (li) {
@@ -187,8 +195,9 @@
       var f = box.querySelector('.f[data-step="' + li.getAttribute('data-step') + '"]');
       if (f) shotGo(box, Array.prototype.indexOf.call(box.querySelectorAll('.f'), f));
     } else if (e.target.closest('.stage') && box.hasAttribute('data-walk')) {
-      var n = box.querySelectorAll('.f').length;
-      shotGo(box, ((box._i || 0) + 1) % n);
+      var n = box.querySelectorAll('.f').length, i = box._i || 0;
+      if (i < n - 1) shotGo(box, i + 1);
+      else key('ArrowRight');   // last step: a tap moves on to the next slide (never loops back)
     }
   });
   function shotsInit() {

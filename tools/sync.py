@@ -56,6 +56,24 @@ for f in os.listdir(f'{REPO}/course'):
         assert 'data-correct' not in html and 'class="notes"' not in html and 'class="why"' not in html, f
         open(f'{REPO}/course/p/{f}', 'w', encoding='utf-8').write(html)
 
+# version the decks' and videos' scripts and styles too (?v=<hash>), so phones never mix a new deck with a cached old dpe.js
+import hashlib
+def _ver(path):
+    return hashlib.sha1(open(path, 'rb').read()).hexdigest()[:8]
+def stamp_course(html_path, base):
+    html = open(html_path, encoding='utf-8').read()
+    def rep(m):
+        f = os.path.normpath(os.path.join(base, m[2]))
+        return f'{m[1]}="{m[2]}?v={_ver(f)}"' if os.path.isfile(f) else m[0]
+    open(html_path, 'w', encoding='utf-8').write(re.sub(r'(src|href)="((?:\.\./)?(?:assets/[\w./-]+|[\w.-]+)\.(?:js|css))"', rep, html))
+for f in os.listdir(f'{REPO}/course'):
+    if f.startswith('Deck - ') and f.endswith('.html'):
+        stamp_course(f'{REPO}/course/{f}', f'{REPO}/course')
+        stamp_course(f'{REPO}/course/p/{f}', f'{REPO}/course')   # <base href="../">: same paths as the deck
+for d in os.listdir(f'{REPO}/course/videos'):
+    if os.path.isfile(f'{REPO}/course/videos/{d}/index.html'):
+        stamp_course(f'{REPO}/course/videos/{d}/index.html', f'{REPO}/course/videos/{d}')
+
 def slide_no(slides, a):
     """Which slide (1-based) shows this activity: its data-title first, else its title in the slide text."""
     by_title = [i for i, (attrs, _) in enumerate(slides) if f'data-title="{a["slide"]}"' in attrs]
