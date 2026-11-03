@@ -169,7 +169,7 @@ details.help summary{font-weight:700;cursor:pointer}
 .livepanel h3{margin:0;font-size:18px;line-height:1.25}
 .livepanel .qrbig{align-self:center;background:#fff;padding:6px}
 .livepanel .qrbig img,.livepanel .qrbig svg{width:min(300px,34vw);height:auto;display:block}
-.livepanel .short{font-size:20px;font-weight:800;color:var(--navy);word-break:break-all;text-align:center}
+.livepanel .short{font-size:20px;font-weight:800;color:var(--navy);overflow-wrap:anywhere;text-align:center}
 .livepanel .timer{background:var(--bg);margin:0}
 .livepanel .timer.over{background:var(--bad);color:#fff}
 .finbox{background:var(--good-bg);border-radius:12px;padding:12px 14px}
@@ -330,3 +330,6 @@ html.clean .top button.tools,html.clean .pbar button.tools{background:rgba(255,2
 .review>div{background:var(--bg);border-radius:10px;padding:10px 12px}
 .review dt{font-size:13px;color:var(--text-2);font-weight:600}
 .review dd{margin:2px 0 0;font-size:17px;font-weight:700;color:var(--navy);word-break:break-word}
+
+.livepanel .pclose{flex:none;width:36px;height:36px;border:0;border-radius:50%;background:var(--bg);color:var(--text-1);font-size:24px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.livepanel .pclose:hover{background:var(--border)}
