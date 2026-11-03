@@ -151,31 +151,24 @@ svg text{font-family:var(--font-sans)}
 
   
   <section class="slide" data-title="Relative references">
-    <div class="split" style="grid-template-columns:1.25fr .75fr">
-      <div><div class="win xlwin">
-<div class="bar"><i></i><i></i><i></i><span>Inventory.xlsx · Formulas view</span></div>
-<div class="fbar"><span class="nb">E5</span><span class="fx">fx</span><span class="f">=C5*D5</span></div>
-<table class="xl"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th class="cs">E</th></tr>
-<tr><th>1</th><td class="h">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h">Total Cost (₱)</td></tr>
-<tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="f">=C2*D2</td></tr>
-<tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="f">=C3*D3</td></tr>
-<tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="f">=C4*D4</td></tr>
-<tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="f s">=C5*D5</td></tr>
-<tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="f">=C6*D6</td></tr>
-<tr><th>7</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="f">=C7*D7</td></tr>
-<tr><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="f">=C8*D8</td></tr>
-<tr><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="f">=C9*D9</td></tr>
-<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="f">=SUM(E2:E9)</td></tr>
-</table>
-</div></div>
+    <div class="slide-head">
+      <div><p class="kicker">Relative references · the default</p><h2 class="h2">Fill down, and the row numbers follow you.</h2></div>
+    </div>
+    <div class="shots" data-walk>
       <div>
-        <p class="kicker">Relative references · the default</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">Fill down, and the row numbers follow you.</h2>
-        <ul class="ticks mt-m">
-          <li>Type <b>=C2*D2</b> in E2.</li>
-          <li>Drag the <b>fill handle</b> (the small square at the cell's corner) down to E9, or double-click it.</li>
-          <li>E5 becomes <b>=C5*D5</b>. Each row uses its own Qty and Unit Cost. That's exactly what we want here.</li>
-        </ul>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="30,40"><div class="pic"><img src="images/ui/3.5/01-e2-formula.webp" alt="E2 selected; the formula bar shows =C2*D2; E2 shows 6,125.00 pesos"><i class="ring" style="--x:45.1;--y:36.9;--w:10.2;--h:3.8"></i><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.4" data-o="55,50"><div class="pic"><img src="images/ui/3.5/01-e2-formula.webp" alt="The fill handle at the bottom-right corner of E2; E3 to E9 are filled"><i class="ring" style="--x:54.4;--y:39.2;--w:1.8;--h:2.6"></i><i class="ring" style="--x:45.1;--y:36.9;--w:10.2;--h:25.9;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.2" data-o="60,35"><div class="pic"><img src="images/ui/3.5/02-show-formulas-e5.webp" alt="Formulas tab with Show Formulas on; E5 shows =C5*D5 and Excel outlines C5 and D5"><i class="ring" style="--x:70.8;--y:12.4;--w:5.2;--h:10.8"></i><i class="ring" style="--x:69.8;--y:42.7;--w:16.3;--h:3.1;--d:0.25s"></i><i class="ring" style="--x:46;--y:42.7;--w:23.8;--h:3.1;--d:0.5s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Show formulas: <kbd>Ctrl</kbd>+<kbd>`</kbd> on Windows and Mac, or Formulas › Show Formulas.</p>
+      </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Type <span class="fcode">=C2*D2</span> in E2. The formula bar keeps the formula; the cell shows <b>₱6,125.00</b>.</li>
+          <li data-step="2">Drag the <b>fill handle</b> (the small square at the cell's corner) down to E9, or double-click it.</li>
+          <li data-step="3">Show formulas: E5 became <span class="fcode">=C5*D5</span>. Each row uses its own Qty and Unit Cost. That's exactly what we want here.</li>
+        </ol>
       </div>
     </div>
     
@@ -212,29 +205,21 @@ svg text{font-family:var(--font-sans)}
       <div><p class="kicker">Worked example · 12% VAT for every row</p><h2 class="h2">One rate cell. Fill down. Why all the zeros?</h2></div>
       <span class="tag coral">Broken</span>
     </div>
-    <div class="grid" style="grid-template-columns:1.55fr .45fr;align-items:start">
-      <div class="win xlwin">
-<div class="bar"><i></i><i></i><i></i><span>Inventory.xlsx</span></div>
-<div class="fbar"><span class="nb">G3</span><span class="fx">fx</span><span class="f">=E3*B13</span></div>
-<table class="xl" style="font-size:calc(var(--u)*0.98)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th class="cs">G</th></tr>
-<tr><th>1</th><td class="h">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h">Total Cost (₱)</td><td class="h">Reorder Level</td><td class="h">VAT 12% (₱)</td></tr>
-<tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="n">6,125.00</td><td class="n">10</td><td class="n">735.00</td></tr>
-<tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="n">7,950.00</td><td class="n">10</td><td class="b s n">0.00</td></tr>
-<tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="n">960.00</td><td class="n">5</td><td class="b n">0.00</td></tr>
-<tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="n">2,080.00</td><td class="n">5</td><td class="b n">0.00</td></tr>
-<tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="n">510.00</td><td class="n">6</td><td class="b n">0.00</td></tr>
-<tr><th>7</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="n">384.00</td><td class="n">5</td><td class="b n">0.00</td></tr>
-<tr><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="n">2,800.00</td><td class="n">4</td><td class="b n">0.00</td></tr>
-<tr><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="n">1,230.00</td><td class="n">5</td><td class="b n">0.00</td></tr>
-<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="n k">22,039.00</td><td></td><td class="b n">735.00</td></tr>
-<tr><th>11</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><th>12</th><td class="k">VAT rate</td><td class="o n">12%</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><th>13</th><td></td><td class="b">(blank)</td><td></td><td></td><td></td><td></td><td></td></tr>
-</table>
-</div>
+    <div class="shots" data-walk>
       <div>
-        <div class="callout warn"><b>Only row 2 is right.</b> G2 = 6,125.00 × 12% = 735.00. Every row below shows 0.00.</div>
-        <div class="callout gold mt-m"><b>Look at the formula bar:</b> G3 says <b>=E3*B13</b>. B13 is empty, and empty counts as zero.</div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.2" data-o="40,45"><div class="pic"><img src="images/ui/3.5/03-g2-735.webp" alt="G2 selected; the formula bar shows =E2*B12; G2 shows 735.00 pesos; B12 holds 12%"><i class="ring" style="--x:66.2;--y:36.9;--w:10.3;--h:3.8"></i><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4;--d:0.25s"></i><i class="ring" style="--x:20;--y:68.6;--w:10;--h:3.8;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="70,55"><div class="pic"><img src="images/ui/3.5/04-g3-broken-b13.webp" alt="After filling down, G3 to G9 show 0.00 pesos and G10 shows only 735.00"><i class="ring" style="--x:66.2;--y:40.1;--w:10.3;--h:25.9"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.2" data-o="25,45"><div class="pic"><img src="images/ui/3.5/04-g3-broken-b13.webp" alt="G3 selected; the formula bar shows =E3*B13; B13 is an empty cell"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:20;--y:71.8;--w:10;--h:3.8;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
+      </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Rate <b>12%</b> in B12. In G2, <span class="fcode">=E2*B12</span> → 6,125.00 × 12% = <b>₱735.00</b>. Row 2 is right.</li>
+          <li data-step="2">Fill down to G9: every row below shows <b style="color:var(--coral)">₱0.00</b>, and the VAT total is only ₱735.00.</li>
+          <li data-step="3"><b>Look at the formula bar:</b> G3 says <span class="fcode">=E3*B13</span>. B13 is empty, and empty counts as zero.</li>
+        </ol>
       </div>
     </div>
     
@@ -262,28 +247,21 @@ svg text{font-family:var(--font-sans)}
       <div><p class="kicker">Absolute reference · the fix</p><h2 class="h2">Lock the rate: <span class="mod">=E2*$B$12</span></h2></div>
       <span class="tag green">Fixed</span>
     </div>
-    <div class="grid" style="grid-template-columns:1.55fr .45fr;align-items:start">
-      <div class="win xlwin">
-<div class="bar"><i></i><i></i><i></i><span>Inventory.xlsx</span></div>
-<div class="fbar"><span class="nb">G3</span><span class="fx">fx</span><span class="f">=E3*$B$12</span></div>
-<table class="xl" style="font-size:calc(var(--u)*0.98)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th class="cs">G</th></tr>
-<tr><th>1</th><td class="h">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h">Total Cost (₱)</td><td class="h">Reorder Level</td><td class="h">VAT 12% (₱)</td></tr>
-<tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="n">6,125.00</td><td class="n">10</td><td class="g n">735.00</td></tr>
-<tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="n">7,950.00</td><td class="n">10</td><td class="g s n">954.00</td></tr>
-<tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="n">960.00</td><td class="n">5</td><td class="g n">115.20</td></tr>
-<tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="n">2,080.00</td><td class="n">5</td><td class="g n">249.60</td></tr>
-<tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="n">510.00</td><td class="n">6</td><td class="g n">61.20</td></tr>
-<tr><th>7</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="n">384.00</td><td class="n">5</td><td class="g n">46.08</td></tr>
-<tr><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="n">2,800.00</td><td class="n">4</td><td class="g n">336.00</td></tr>
-<tr><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="n">1,230.00</td><td class="n">5</td><td class="g n">147.60</td></tr>
-<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="n k">22,039.00</td><td></td><td class="g n">2,644.68</td></tr>
-<tr><th>11</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><th>12</th><td class="k">VAT rate</td><td class="o n">12%</td><td></td><td></td><td></td><td></td><td></td></tr>
-</table>
-</div>
+    <div class="shots" data-walk>
       <div>
-        <div class="callout tip"><b>Every row now uses B12.</b> G3 = 7,950.00 × 12% = 954.00.</div>
-        <div class="callout gold mt-m"><b>Check it:</b> ₱22,039.00 × 12% = ₱2,644.68. It matches G10.</div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.2" data-o="35,45"><div class="pic"><img src="images/ui/3.5/05-g3-fixed.webp" alt="G3 selected; the formula bar shows =E3*$B$12; G3 shows 954.00 pesos; B12 holds 12%"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:66.2;--y:40.1;--w:10.3;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:20;--y:68.6;--w:10;--h:3.8;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="70,50"><div class="pic"><img src="images/ui/3.5/05-g3-fixed.webp" alt="G2 to G9 all show VAT amounts"><i class="ring" style="--x:66.2;--y:36.9;--w:10.3;--h:25.9"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.2" data-o="55,55"><div class="pic"><img src="images/ui/3.5/06-g10-total.webp" alt="G10 selected; the formula bar shows =SUM(G2:G9); G10 shows 2,644.68 pesos"><i class="ring" style="--x:66.2;--y:62.3;--w:10.3;--h:3.8"></i><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4;--d:0.25s"></i><i class="ring" style="--x:45.1;--y:62.3;--w:10.2;--h:3.8;--d:0.5s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
+      </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Click G3: <span class="fcode">=E3*$B$12</span>. The E part moved; the locked B12 stayed. G3 = 7,950.00 × 12% = <b>₱954.00</b>.</li>
+          <li data-step="2">Every row now uses B12: 735.00, 954.00, 115.20 … 147.60.</li>
+          <li data-step="3"><b>Check it:</b> ₱22,039.00 (E10) × 12% = <b>₱2,644.68</b>. It matches G10, <span class="fcode">=SUM(G2:G9)</span>.</li>
+        </ol>
       </div>
     </div>
     
@@ -291,26 +269,35 @@ svg text{font-family:var(--font-sans)}
 
   
   <section class="slide" data-title="The F4 key">
-    <div class="slide-head"><div><p class="kicker">Don't type the $ signs</p><h2 class="h2">Press <kbd>F4</kbd> to cycle through the locks</h2></div></div>
-    <div class="grid g2" style="align-items:start">
+    <div class="slide-head">
+      <div><p class="kicker">Don't type the $ signs</p><h2 class="h2">Press <kbd>F4</kbd> to cycle through the locks</h2></div>
+    </div>
+    <div class="shots" data-walk>
       <div>
-        <p class="small">Click inside the address in the formula (or just after it), then press F4 again and again:</p>
-        <ol class="steps mt-s">
-          <li><b class="code">B12</b> · relative, nothing locked</li>
-          <li><b class="code">$B$12</b> · absolute, column and row locked</li>
-          <li><b class="code">B$12</b> · mixed, row locked</li>
-          <li><b class="code">$B12</b> · mixed, column locked, then back to B12</li>
-        </ol>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="2" data-o="20,26"><div class="pic"><img src="images/ui/3.5/03-g2-735.webp" alt="Formula bar of G2: =E2*B12"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="2" data-o="20,26"><div class="pic"><img src="images/ui/3.5/07-f4-absolute.webp" alt="Formula bar of G2: =E2*$B$12"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="2" data-o="20,26"><div class="pic"><img src="images/ui/3.5/08-f4-row-locked.webp" alt="Formula bar of G2: =E2*B$12"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="2" data-o="20,26"><div class="pic"><img src="images/ui/3.5/09-f4-column-locked.webp" alt="Formula bar of G2: =E2*$B12"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. The formula bar after each press, shown after Enter. G2 stays 735.00 in all four.</p>
       </div>
       <div>
-        <table class="tbl compact">
+        <p class="small">Click inside the address in the formula (or just after it), then press F4 again and again:</p>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b class="code">B12</b> · relative, nothing locked</li>
+          <li data-step="2"><b class="code">$B$12</b> · absolute, column and row locked</li>
+          <li data-step="3"><b class="code">B$12</b> · mixed, row locked</li>
+          <li data-step="4"><b class="code">$B12</b> · mixed, column locked, then back to B12</li>
+        </ol>
+        <table class="tbl compact mt-s">
           <tr><th>App</th><th>Toggle key</th></tr>
           <tr><td><b>Microsoft Excel</b> (Windows)</td><td><kbd>F4</kbd> <span class="tiny">(laptops may need <kbd>Fn</kbd> + <kbd>F4</kbd>)</span></td></tr>
           <tr><td><b>Excel for Mac</b></td><td><kbd>Cmd</kbd> + <kbd>T</kbd></td></tr>
           <tr><td><b>Google Sheets</b></td><td><kbd>F4</kbd> while editing a formula</td></tr>
           <tr><td><b>LibreOffice Calc</b></td><td><kbd>Shift</kbd> + <kbd>F4</kbd></td></tr>
         </table>
-        <div class="callout tip mt-m"><b>Typing works too.</b> Writing <b>$B$12</b> by hand gives exactly the same result.</div>
+        <p class="tiny mt-s"><b>Typing works too.</b> Writing $B$12 by hand gives exactly the same result.</p>
       </div>
     </div>
     
@@ -343,28 +330,27 @@ svg text{font-family:var(--font-sans)}
 
   
   <section class="slide" data-title="Mixed references">
-    <div class="split" style="grid-template-columns:1fr 1fr">
+    <div class="slide-head">
+      <div><p class="kicker">Mixed references · in brief</p><h2 class="h2">Lock only the row, or only the column.</h2></div>
+    </div>
+    <div class="shots" data-walk>
       <div>
-        <p class="kicker">Mixed references · in brief</p>
-        <h2 class="h2">Lock only the row, or only the column.</h2>
-        <ul class="ticks mt-m">
-          <li><b>$A3</b>: the column stays A (unit costs), the row can move.</li>
-          <li><b>C$1</b>: the row stays 1 (quantities), the column can move.</li>
-          <li>Type <b>=$A2*B$1</b> once in B2, fill right and down, and the whole price table fills itself.</li>
-        </ul>
-        <div class="callout mt-m"><b>Good to know:</b> beginners rarely need mixed references. Relative and absolute cover most office sheets.</div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="25,40"><div class="pic"><img src="images/ui/3.5/10-price-b2.webp" alt="Price list sheet; B2 selected; the formula bar shows =$A2*B$1; B2 to D4 filled"><i class="ring" style="--x:22.2;--y:38.4;--w:10.4;--h:4.4"></i><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="35,42"><div class="pic"><img src="images/ui/3.5/10-price-b2.webp" alt="The whole price table B2 to D4 is filled from one formula"><i class="ring" style="--x:22.2;--y:38.4;--w:31;--h:12.1"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-o="30,40"><div class="pic"><img src="images/ui/3.5/11-price-c3.webp" alt="C3 selected; the formula bar shows =$A3*C$1; C3 shows 425.00"><i class="ring" style="--x:32.6;--y:42.3;--w:10.3;--h:4.4"></i><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.1" data-o="50,40"><div class="pic"><img src="images/ui/3.5/12-price-formulas-c3.webp" alt="Show Formulas on: C3 reads =$A3*C$1 and Excel outlines A3 and C1"><i class="ring" style="--x:61.6;--y:42.3;--w:20.6;--h:4.4"></i><i class="ring" style="--x:3.5;--y:42.3;--w:37.5;--h:4.4;--d:0.25s"></i><i class="ring" style="--x:61.6;--y:34.6;--w:20.6;--h:4.4;--d:0.5s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample price list.</p>
       </div>
-      <div><div class="win xlwin">
-<div class="bar"><i></i><i></i><i></i><span>Price list.xlsx</span></div>
-<div class="fbar"><span class="nb">C3</span><span class="fx">fx</span><span class="f">=$A3*C$1</span></div>
-<table class="xl" style="font-size:calc(var(--u)*1.2)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
-<tr><th>1</th><td class="h">Unit cost ↓ · Qty →</td><td class="h">1</td><td class="h">5</td><td class="h">10</td></tr>
-<tr><th>2</th><td class="n">32.00</td><td class="n">32.00</td><td class="n">160.00</td><td class="n">320.00</td></tr>
-<tr><th>3</th><td class="n">85.00</td><td class="n">85.00</td><td class="g s n">425.00</td><td class="n">850.00</td></tr>
-<tr><th>4</th><td class="n">96.00</td><td class="n">96.00</td><td class="n">480.00</td><td class="n">960.00</td></tr>
-</table>
-</div>
-        <p class="tiny mt-s">Price for buying 1, 5 or 10 of staple wire (₱32), fastener (₱85) and ballpen (₱96). C3 = 85.00 × 5 = 425.00.</p>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Type <span class="fcode">=$A2*B$1</span> once in B2.</li>
+          <li data-step="2">Fill right and down, and the whole price table fills itself.</li>
+          <li data-step="3">C3 reads <span class="fcode">=$A3*C$1</span>: 85.00 × 5 = <b>425.00</b>.</li>
+          <li data-step="4"><b>$A3</b>: the column stays A (unit costs). <b>C$1</b>: the row stays 1 (quantities).</li>
+        </ol>
+        <div class="callout mt-m"><b>Good to know:</b> beginners rarely need mixed references. Relative and absolute cover most office sheets.</div>
       </div>
     </div>
     
