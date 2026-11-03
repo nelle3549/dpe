@@ -310,7 +310,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 2.4 Mail Merge Basics - 2026-11-01.html",
     "video": "4:44",
-    "slides": 20,
+    "slides": 21,
     "activities": [
      {
       "id": "2.4-a",
@@ -326,7 +326,7 @@ window.CATALOG = [
       "title": "Spot the problem in these merged letters",
       "slide": "Spot the problem",
       "minutes": 2,
-      "slideNo": 17
+      "slideNo": 18
      },
      {
       "id": "2.4-qc",
@@ -334,7 +334,7 @@ window.CATALOG = [
       "title": "Quick check: two extra letters",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 19
+      "slideNo": 20
      }
     ]
    },

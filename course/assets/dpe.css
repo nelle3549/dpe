@@ -136,6 +136,9 @@ b,strong{font-weight:700}
 .steps li::before{content:counter(st);position:absolute;left:0;top:calc(var(--u)*.7);width:calc(var(--u)*2.4);height:calc(var(--u)*2.4);border-radius:50%;
   background:var(--mod);color:#fff;font-weight:800;font-size:calc(var(--u)*1.15);display:flex;align-items:center;justify-content:center}
 .steps li .tiny{display:block;margin-top:.2em}
+.steps.sm li{font-size:calc(var(--u)*1.2);padding:calc(var(--u)*.55) 0 calc(var(--u)*.55) calc(var(--u)*2.8)}
+.steps.sm li::before{top:calc(var(--u)*.5);width:calc(var(--u)*1.9);height:calc(var(--u)*1.9);font-size:calc(var(--u)*1)}
+.card .steps{margin-top:calc(var(--u)*.6)}
 
 /* ---------- office vs home examples ---------- */
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*1.6)}
