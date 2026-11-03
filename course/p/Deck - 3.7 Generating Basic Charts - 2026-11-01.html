@@ -166,32 +166,23 @@ svg text{font-family:var(--font-sans)}
 
   
   <section class="slide" data-title="Select the right data">
-    <div class="split" style="grid-template-columns:1.15fr .85fr">
-      <div><div class="win xlwin">
-<div class="bar"><i></i><i></i><i></i><span>Inventory 2026.xlsx · Jan</span></div>
-<div class="fbar"><span class="nb">A1</span><span class="fx">fx</span><span class="f">Item</span></div>
-<table class="xl" style="font-size:calc(var(--u)*1.12)"><tr><th class="rh"></th><th class="cs">A</th><th>B</th><th>C</th><th>D</th><th class="cs">E</th></tr>
-<tr><th>1</th><td class="h r">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h r">Total Cost (₱)</td></tr>
-<tr><th>2</th><td class="r">Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="r n">6,125.00</td></tr>
-<tr><th>3</th><td class="r">Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="r n">7,950.00</td></tr>
-<tr><th>4</th><td class="r">Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="r n">960.00</td></tr>
-<tr><th>5</th><td class="r">Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="r n">2,080.00</td></tr>
-<tr><th>6</th><td class="r">Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="r n">510.00</td></tr>
-<tr><th>7</th><td class="r">Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="r n">384.00</td></tr>
-<tr><th>8</th><td class="r">Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="r n">2,800.00</td></tr>
-<tr><th>9</th><td class="r">Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="r n">1,230.00</td></tr>
-<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="n k">22,039.00</td></tr>
-</table>
-</div></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="0,50"><div class="pic"><img src="images/ui/3.7/01-select-a1-a9.webp" alt="A1 to A9 selected in Excel: the item names with the Item header"><i class="ring" style="--x:3.2;--y:34.6;--w:21.2;--h:35.2"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.15" data-o="30,50"><div class="pic"><img src="images/ui/3.7/02-select-a-and-e.webp" alt="A1:A9 and E1:E9 both selected; columns B to D are skipped"><i class="ring" style="--x:3.2;--y:34.6;--w:21.2;--h:35.2"></i><i class="ring" style="--x:55;--y:34.6;--w:14;--h:35.2;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-o="0,70"><div class="pic"><img src="images/ui/3.7/02-select-a-and-e.webp" alt="Both selections stop at row 9; row 10 TOTAL is not selected"><i class="ring" style="--x:3.2;--y:69.2;--w:66;--h:4.4"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Mac: hold Cmd instead of Ctrl.</p>
+      </div>
       <div>
         <p class="kicker">Step 1 · select the data</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.7)">Labels + values only. Leave out the TOTAL row.</h2>
-        <ol class="steps mt-m">
-          <li>Drag over <b>A1:A9</b> (the item names, with the header).</li>
-          <li>Hold <kbd>Ctrl</kbd> and drag over <b>E1:E9</b> (the totals). Mac: <kbd>Cmd</kbd>.</li>
-          <li>Check: both selections cover the <b>same rows</b>, 1 to 9.</li>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.5)">Labels + values only. Leave out the TOTAL row.</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Drag over <b>A1:A9</b> (the item names, with the header).</li>
+          <li data-step="2">Hold <kbd>Ctrl</kbd> and drag over <b>E1:E9</b> (the totals). Mac: <kbd>Cmd</kbd>.</li>
+          <li data-step="3">Check: both cover the <b>same rows</b>, 1 to 9. <b>Row 10 stays out:</b> the TOTAL is not an item.</li>
         </ol>
-        <div class="callout warn mt-s"><b>Row 10 stays out.</b> The TOTAL is not an item; including it distorts the chart.</div>
       </div>
     </div>
     
@@ -199,32 +190,52 @@ svg text{font-family:var(--font-sans)}
 
   
   <section class="slide" data-title="Insert a chart">
-    <div class="slide-head"><div><p class="kicker">Step 2 · insert</p><h2 class="h2">Insert the chart in your app</h2></div><span class="tag">Data still selected</span></div>
-    <table class="tbl compact">
-      <tr><th>App</th><th>Where</th><th>Then</th></tr>
-      <tr><td><b>Microsoft Excel</b></td><td>Insert &gt; Charts &gt; <b>Recommended Charts</b>, or pick Column / Bar / Line / Pie</td><td>Chart appears on the sheet; the <b>Chart Design</b> tab opens</td></tr>
-      <tr><td><b>Google Sheets</b></td><td>Insert &gt; <b>Chart</b></td><td>The <b>Chart editor</b> opens on the right: Setup and Customize</td></tr>
-      <tr><td><b>LibreOffice Calc</b></td><td>Insert &gt; <b>Chart…</b></td><td>The <b>Chart Wizard</b> walks you through type, range and titles</td></tr>
-    </table>
-    <div class="grid g2 mt-m">
-      <div class="callout tip"><b>Excel shortcut:</b> <kbd>Alt</kbd> + <kbd>F1</kbd> drops a default chart on the sheet; <kbd>F11</kbd> puts it on its own chart sheet.</div>
-      <div class="callout gold"><b>Wrong type?</b> No problem. You can change the chart type later without starting over.</div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.5" data-o="10,12"><div class="pic"><img src="images/ui/3.7/03-insert-tab-charts.webp" alt="Excel Insert tab with Recommended Charts and the chart buttons; A and E still selected"><i class="ring" style="--x:7.8;--y:7;--w:4.6;--h:3.6"></i><i class="ring" style="--x:17;--y:12.4;--w:9.4;--h:11;--d:0.25s"></i><i class="ring" style="--x:26;--y:12.4;--w:11.6;--h:11;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="2"><div class="pic"><img src="images/ui/3.7/04-column-inserted.webp" alt="A column chart titled Total Cost appears beside the table"><i class="ring" style="--x:51.6;--y:33.8;--w:46;--h:47.4"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.5" data-o="60,10"><div class="pic"><img src="images/ui/3.7/05-chart-design-tab.webp" alt="With the chart selected, the Chart Design tab opens"><i class="ring" style="--x:56.3;--y:7;--w:9.8;--h:3.6"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Excel for Mac has no Alt+F1; use the Insert tab.</p>
+      </div>
+      <div>
+        <p class="kicker">Step 2 · insert</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.5)">Insert the chart in your app</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Data still selected: <b>Insert</b> › <b>Recommended Charts</b>, or pick Column / Bar / Line / Pie.</li>
+          <li data-step="2">The chart appears on the sheet.</li>
+          <li data-step="3">Click it: the <b>Chart Design</b> tab opens.</li>
+        </ol>
+        <p class="tiny mt-s"><b>Google Sheets:</b> Insert › Chart opens the Chart editor (Setup, Customize). <b>LibreOffice Calc:</b> Insert › Chart… starts the Chart Wizard.</p>
+        <div class="callout tip mt-s"><b>Windows shortcut:</b> <kbd>Alt</kbd> + <kbd>F1</kbd> drops a default chart; <kbd>F11</kbd> puts it on its own sheet. <b>Wrong type?</b> Change it later.</div>
+      </div>
     </div>
     
   </section>
 
   
   <section class="slide" data-title="The result">
-    <div class="split" style="grid-template-columns:1.35fr .65fr">
-      <div class="chartbox"><svg viewBox="0 0 800 494" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="January Office Supplies: Total Cost by Item"><text x="400.0" y="34" text-anchor="middle" class="sv-t" font-size="24">January Office Supplies: Total Cost by Item</text><line x1="150.0" y1="58" x2="150.0" y2="432" class="sv-grid"/><text x="150.0" y="454" text-anchor="middle" class="sv-m" font-size="16">0</text><line x1="287.5" y1="58" x2="287.5" y2="432" class="sv-grid"/><text x="287.5" y="454" text-anchor="middle" class="sv-m" font-size="16">2,000</text><line x1="425.0" y1="58" x2="425.0" y2="432" class="sv-grid"/><text x="425.0" y="454" text-anchor="middle" class="sv-m" font-size="16">4,000</text><line x1="562.5" y1="58" x2="562.5" y2="432" class="sv-grid"/><text x="562.5" y="454" text-anchor="middle" class="sv-m" font-size="16">6,000</text><line x1="700.0" y1="58" x2="700.0" y2="432" class="sv-grid"/><text x="700.0" y="454" text-anchor="middle" class="sv-m" font-size="16">8,000</text><text x="138" y="87.0" text-anchor="end" class="sv-l" font-size="19">Long paper</text><rect x="150" y="64" width="546.6" height="34" rx="4" class="k1"/><text x="704.6" y="87.0" class="sv-v" font-size="18">₱7,950</text><text x="138" y="133.0" text-anchor="end" class="sv-l" font-size="19">A4 paper</text><rect x="150" y="110" width="421.1" height="34" rx="4" class="k1"/><text x="579.1" y="133.0" class="sv-v" font-size="18">₱6,125</text><text x="138" y="179.0" text-anchor="end" class="sv-l" font-size="19">Printer ink</text><rect x="150" y="156" width="192.5" height="34" rx="4" class="k1"/><text x="350.5" y="179.0" class="sv-v" font-size="18">₱2,800</text><text x="138" y="225.0" text-anchor="end" class="sv-l" font-size="19">Folder</text><rect x="150" y="202" width="143.0" height="34" rx="4" class="k1"/><text x="301.0" y="225.0" class="sv-v" font-size="18">₱2,080</text><text x="138" y="271.0" text-anchor="end" class="sv-l" font-size="19">Envelope</text><rect x="150" y="248" width="84.6" height="34" rx="4" class="k1"/><text x="242.6" y="271.0" class="sv-v" font-size="18">₱1,230</text><text x="138" y="317.0" text-anchor="end" class="sv-l" font-size="19">Ballpen</text><rect x="150" y="294" width="66.0" height="34" rx="4" class="k1"/><text x="224.0" y="317.0" class="sv-v" font-size="18">₱960</text><text x="138" y="363.0" text-anchor="end" class="sv-l" font-size="19">Fastener</text><rect x="150" y="340" width="35.1" height="34" rx="4" class="k1"/><text x="193.1" y="363.0" class="sv-v" font-size="18">₱510</text><text x="138" y="409.0" text-anchor="end" class="sv-l" font-size="19">Staple wire</text><rect x="150" y="386" width="26.4" height="34" rx="4" class="k1"/><text x="184.4" y="409.0" class="sv-v" font-size="18">₱384</text><line x1="150" y1="58" x2="150" y2="432" class="sv-ax"/><text x="425.0" y="486" text-anchor="middle" class="sv-l" font-size="18" font-weight="700">Total Cost (₱)</text></svg></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.4" data-o="30,20"><div class="pic"><img src="images/ui/3.7/07-sorted-data-tab.webp" alt="Inventory sorted largest to smallest with Data, Sort Largest to Smallest"><i class="ring" style="--x:35.6;--y:17.6;--w:2.8;--h:5.4"></i><i class="ring" style="--x:40;--y:36.2;--w:10.6;--h:23;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.4" data-o="75,36"><div class="pic"><img src="images/ui/3.7/08-bar-lab3-target.webp" alt="Bar chart titled January 2026 Office Supplies Cost by Item"><i class="ring" style="--x:61.2;--y:35;--w:26.8;--h:3.8"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.2" data-o="80,60"><div class="pic"><img src="images/ui/3.7/08-bar-lab3-target.webp" alt="Data labels show each peso amount at the end of its bar"><i class="ring" style="--x:63.2;--y:41.2;--w:33;--h:43.4"></i></div></figure>
+          <figure class="f" data-step="4"><div class="pic"><img src="images/ui/3.7/08-bar-lab3-target.webp" alt="One series, so the chart has no legend"><i class="ring" style="--x:52;--y:40;--w:46;--h:48"></i></div></figure>
+          <figure class="f" data-step="5" data-zoom="1.3" data-o="50,90"><div class="pic"><img src="images/ui/3.7/09-bond-paper-sum.webp" alt="E2:E3 selected; the status bar shows Sum 14,075.00"><i class="ring" style="--x:40;--y:36.2;--w:10.6;--h:5.8"></i><i class="ring" style="--x:56;--y:96.2;--w:10.2;--h:3.4;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
+      </div>
       <div>
         <p class="kicker">What we're aiming for</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">A bar chart the boss reads in five seconds</h2>
-        <ul class="ticks mt-m">
-          <li>A title that says <b>what, where and when</b>.</li>
-          <li>Sorted largest to smallest (sort the data first).</li>
-          <li><b>Data labels</b> show the exact peso amounts.</li>
-          <li>No legend needed: there is only one series.</li>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">A bar chart the boss reads in five seconds</h2>
+        <ul class="ticks sm mt-s">
+          <li data-step="1">Sorted largest to smallest first (Data › Sort, as in 3.6).</li>
+          <li data-step="2">A title that says <b>what, where and when</b>.</li>
+          <li data-step="3"><b>Data labels</b> show the exact peso amounts.</li>
+          <li data-step="4">No legend needed: there is only one series.</li>
+          <li data-step="5">Bond paper together: <b>₱14,075.00</b>, nearly two thirds.</li>
         </ul>
       </div>
     </div>
@@ -233,18 +244,26 @@ svg text{font-family:var(--font-sans)}
 
   
   <section class="slide" data-title="Parts of a chart">
-    <div class="split" style="grid-template-columns:1.4fr .6fr">
-      <div class="chartbox"><svg viewBox="0 0 900 444" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="January Office Supplies: Total Cost by Item"><text x="450.0" y="34" text-anchor="middle" class="sv-t" font-size="23">January Office Supplies: Total Cost by Item</text><line x1="86" y1="374.0" x2="880" y2="374.0" class="sv-grid"/><text x="78" y="380.0" text-anchor="end" class="sv-m" font-size="14">0</text><line x1="86" y1="299.0" x2="880" y2="299.0" class="sv-grid"/><text x="78" y="305.0" text-anchor="end" class="sv-m" font-size="14">2,000</text><line x1="86" y1="224.0" x2="880" y2="224.0" class="sv-grid"/><text x="78" y="230.0" text-anchor="end" class="sv-m" font-size="14">4,000</text><line x1="86" y1="149.0" x2="880" y2="149.0" class="sv-grid"/><text x="78" y="155.0" text-anchor="end" class="sv-m" font-size="14">6,000</text><line x1="86" y1="74.0" x2="880" y2="74.0" class="sv-grid"/><text x="78" y="80.0" text-anchor="end" class="sv-m" font-size="14">8,000</text><rect x="104.9" y="144.3" width="61.5" height="229.7" rx="3" class="k1"/><text x="135.6" y="137.3" text-anchor="middle" class="sv-v" font-size="14">6,125</text><text x="135.6" y="398" text-anchor="middle" class="sv-l" font-size="15">A4 paper</text><rect x="204.1" y="75.9" width="61.5" height="298.1" rx="3" class="k1"/><text x="234.9" y="68.9" text-anchor="middle" class="sv-v" font-size="14">7,950</text><text x="234.9" y="398" text-anchor="middle" class="sv-l" font-size="15">Long paper</text><rect x="303.4" y="338.0" width="61.5" height="36.0" rx="3" class="k1"/><text x="334.1" y="331.0" text-anchor="middle" class="sv-v" font-size="14">960</text><text x="334.1" y="398" text-anchor="middle" class="sv-l" font-size="15">Ballpen</text><rect x="402.6" y="296.0" width="61.5" height="78.0" rx="3" class="k1"/><text x="433.4" y="289.0" text-anchor="middle" class="sv-v" font-size="14">2,080</text><text x="433.4" y="398" text-anchor="middle" class="sv-l" font-size="15">Folder</text><rect x="501.9" y="354.9" width="61.5" height="19.1" rx="3" class="k1"/><text x="532.6" y="347.9" text-anchor="middle" class="sv-v" font-size="14">510</text><text x="532.6" y="398" text-anchor="middle" class="sv-l" font-size="15">Fastener</text><rect x="601.1" y="359.6" width="61.5" height="14.4" rx="3" class="k1"/><text x="631.9" y="352.6" text-anchor="middle" class="sv-v" font-size="14">384</text><text x="631.9" y="398" text-anchor="middle" class="sv-l" font-size="15">Staple wire</text><rect x="700.4" y="269.0" width="61.5" height="105.0" rx="3" class="k1"/><text x="731.1" y="262.0" text-anchor="middle" class="sv-v" font-size="14">2,800</text><text x="731.1" y="398" text-anchor="middle" class="sv-l" font-size="15">Printer ink</text><rect x="799.6" y="327.9" width="61.5" height="46.1" rx="3" class="k1"/><text x="830.4" y="320.9" text-anchor="middle" class="sv-v" font-size="14">1,230</text><text x="830.4" y="398" text-anchor="middle" class="sv-l" font-size="15">Envelope</text><line x1="86" y1="374" x2="880" y2="374" class="sv-ax"/><text transform="translate(20 224.0) rotate(-90)" text-anchor="middle" class="sv-l" font-size="16" font-weight="700">Total Cost (₱)</text><text x="483.0" y="430" text-anchor="middle" class="sv-l" font-size="16" font-weight="700">Item</text></svg></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.4" data-o="75,36"><div class="pic"><img src="images/ui/3.7/06-column-labelled.webp" alt="Chart title January 2026 Office Supplies: Total Cost by Item"><i class="ring" style="--x:59.2;--y:35;--w:30.8;--h:4"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.2" data-o="75,60"><div class="pic"><img src="images/ui/3.7/06-column-labelled.webp" alt="Axis titles Total Cost (₱) and Item"><i class="ring" style="--x:52.8;--y:45;--w:2.6;--h:12.4"></i><i class="ring" style="--x:76.4;--y:76.2;--w:3.6;--h:3.2;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.2" data-o="80,50"><div class="pic"><img src="images/ui/3.7/06-column-labelled.webp" alt="Data labels above each column"><i class="ring" style="--x:59.8;--y:39.4;--w:36.8;--h:22.4"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.6" data-o="0,12"><div class="pic"><img src="images/ui/3.7/06-column-labelled.webp" alt="Chart Design, Add Chart Element adds title, axis titles, labels and legend"><i class="ring" style="--x:1.6;--y:12.4;--w:6.6;--h:11"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Windows: the + button beside the chart does the same.</p>
+      </div>
       <div>
         <p class="kicker">Step 3 · label it</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.5)">The parts of a chart</h2>
-        <ol class="steps mt-s">
-          <li><b>Chart title</b> · required in Lab 3</li>
-          <li><b>Axis titles</b> · what and which unit (₱)</li>
-          <li><b>Data labels</b> · the numbers on the bars</li>
-          <li><b>Legend</b> · only when there are 2+ series</li>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">The parts of a chart</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b>Chart title</b> · required in Lab 3 (not the default text)</li>
+          <li data-step="2"><b>Axis titles</b> · what and which unit (₱)</li>
+          <li data-step="3"><b>Data labels</b> · the numbers on the columns</li>
+          <li data-step="4"><b>Legend</b> · only when there are 2+ series. Add each part: <b>Chart Design › Add Chart Element</b> (Windows also: the <b>+</b> button).</li>
         </ol>
-        <p class="tiny mt-s">Excel: the <b>+</b> button beside the chart. Sheets: Chart editor &gt; Customize. Calc: double-click the chart, then Insert.</p>
+        <p class="tiny mt-s">Sheets: Chart editor › Customize. Calc: double-click the chart, then Insert.</p>
       </div>
     </div>
     
@@ -252,13 +271,28 @@ svg text{font-family:var(--font-sans)}
 
   
   <section class="slide" data-title="Move, resize, change type">
-    <div class="slide-head"><div><p class="kicker">Tidy up</p><h2 class="h2">Move it, resize it, change its type</h2></div></div>
-    <div class="grid g3 anim-stagger-list">
-      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2" /><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2" /><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8" /><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" /></svg></span><h4>Move</h4><p>Drag the chart by its <b>border</b>, not the bars. Place it beside the table, not on top of the data. Excel can also <b>Move Chart</b> to its own sheet.</p></div>
-      <div class="card top"><span class="ic-badge">↘</span><h4>Resize</h4><p>Drag a <b>corner handle</b>. Make it big enough that every label is readable, without overlapping text.</p></div>
-      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></svg></span><h4>Change type</h4><p>Excel: Chart Design &gt; <b>Change Chart Type</b>. Sheets: Chart editor &gt; Setup &gt; Chart type. Calc: right-click the chart in edit mode &gt; Chart Type.</p></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1"><div class="pic"><img src="images/ui/3.7/05-chart-design-tab.webp" alt="The selected chart's border, beside the table"><i class="ring" style="--x:51.6;--y:33.8;--w:46;--h:47.4"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.6" data-o="97,80"><div class="pic"><img src="images/ui/3.7/05-chart-design-tab.webp" alt="Corner handle of the selected chart"><i class="ring" style="--x:96.4;--y:79.8;--w:2.4;--h:3.4"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.6" data-o="84,12"><div class="pic"><img src="images/ui/3.7/05-chart-design-tab.webp" alt="Chart Design, Change Chart Type"><i class="ring" style="--x:80.6;--y:12.4;--w:6.8;--h:11"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.6" data-o="80,12"><div class="pic"><img src="images/ui/3.7/05-chart-design-tab.webp" alt="Chart Design, Switch Row/Column and Move Chart"><i class="ring" style="--x:67.6;--y:12.4;--w:7.4;--h:11"></i><i class="ring" style="--x:88.3;--y:12.4;--w:5.6;--h:11;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
+      </div>
+      <div>
+        <p class="kicker">Tidy up</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Move it, resize it, change its type</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b>Move:</b> drag the chart by its <b>border</b>, not the bars. Place it beside the table.</li>
+          <li data-step="2"><b>Resize:</b> drag a <b>corner handle</b> until every label reads.</li>
+          <li data-step="3"><b>Change type:</b> Chart Design › <b>Change Chart Type</b>. Sheets: Chart editor › Setup › Chart type. Calc: right-click the chart in edit mode › Chart Type.</li>
+          <li data-step="4"><b>Switch Row/Column</b> swaps items and series; <b>Move Chart</b> puts it on its own sheet.</li>
+        </ol>
+        <div class="callout mt-s"><b>Delete the legend</b> when there is only one series: click it, press <kbd>Delete</kbd>.</div>
+      </div>
     </div>
-    <div class="callout mt-l"><b>Delete the legend</b> when there is only one series: click it and press <kbd>Delete</kbd>. Less clutter, same meaning.</div>
     
   </section>
 
@@ -289,17 +323,26 @@ svg text{font-family:var(--font-sans)}
 
   
   <section class="slide" data-title="Pie: parts of one whole">
-    <div class="split" style="grid-template-columns:1.3fr .7fr">
-      <div class="chartbox"><svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Where the ₱20,250 Monthly Budget Goes"><text x="430.0" y="34" text-anchor="middle" class="sv-t" font-size="26">Where the ₱20,250 Monthly Budget Goes</text><path d="M195,235 L195.0,70.0 A165,165 0 0 1 315.0,348.2 Z" class="k1" stroke="#fff" stroke-width="3"/><text x="292.0" y="199.2" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="2">37%</text><path d="M195,235 L315.0,348.2 A165,165 0 0 1 163.2,396.9 Z" class="k2" stroke="#fff" stroke-width="3"/><text x="227.2" y="341.6" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="2">16%</text><path d="M195,235 L163.2,396.9 A165,165 0 0 1 46.1,306.2 Z" class="k3" stroke="#fff" stroke-width="3"/><text x="130.3" y="324.5" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="2">14.8%</text><path d="M195,235 L46.1,306.2 A165,165 0 0 1 49.0,158.1 Z" class="k4" stroke="#fff" stroke-width="3"/><text x="89.4" y="239.0" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="2">14.8%</text><path d="M195,235 L49.0,158.1 A165,165 0 0 1 120.9,87.6 Z" class="k5" stroke="#fff" stroke-width="3"/><text x="121.1" y="165.6" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="2">9.9%</text><path d="M195,235 L120.9,87.6 A165,165 0 0 1 195.0,70.0 Z" class="k6" stroke="#fff" stroke-width="3"/><text x="170.6" y="138.2" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" style="paint-order:stroke" stroke="rgba(0,0,0,.25)" stroke-width="2">7.4%</text><rect x="410" y="137.0" width="20" height="20" rx="4" class="k1"/><text x="440" y="153.0" class="sv-l" font-size="21">Food (rice + groceries) <tspan class="sv-m">· ₱7,500</tspan></text><rect x="410" y="173.0" width="20" height="20" rx="4" class="k2"/><text x="440" y="189.0" class="sv-l" font-size="21">Utilities (CEPALCO + water) <tspan class="sv-m">· ₱3,250</tspan></text><rect x="410" y="209.0" width="20" height="20" rx="4" class="k3"/><text x="440" y="225.0" class="sv-l" font-size="21">School allowance <tspan class="sv-m">· ₱3,000</tspan></text><rect x="410" y="245.0" width="20" height="20" rx="4" class="k4"/><text x="440" y="261.0" class="sv-l" font-size="21">Savings <tspan class="sv-m">· ₱3,000</tspan></text><rect x="410" y="281.0" width="20" height="20" rx="4" class="k5"/><text x="440" y="297.0" class="sv-l" font-size="21">Fare and fuel <tspan class="sv-m">· ₱2,000</tspan></text><rect x="410" y="317.0" width="20" height="20" rx="4" class="k6"/><text x="440" y="333.0" class="sv-l" font-size="21">Load and internet <tspan class="sv-m">· ₱1,500</tspan></text></svg></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.4" data-o="0,45"><div class="pic"><img src="images/ui/3.7/10-pie-budget.webp" alt="Category and Amount, A1:B7, selected for the pie; no total row"><i class="ring" style="--x:2.2;--y:33.4;--w:28;--h:20.2"></i></div></figure>
+          <figure class="f" data-step="2"><div class="pic"><img src="images/ui/3.7/10-pie-budget.webp" alt="Pie chart titled Where the ₱20,250 Monthly Budget Goes"><i class="ring" style="--x:36.6;--y:35.4;--w:36.4;--h:4.2"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.4" data-o="58,58"><div class="pic"><img src="images/ui/3.7/10-pie-budget.webp" alt="Percent data labels; Food is 37%"><i class="ring" style="--x:55.4;--y:56.2;--w:3.4;--h:3.2"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.4" data-o="72,64"><div class="pic"><img src="images/ui/3.7/10-pie-budget.webp" alt="The legend names the six slices"><i class="ring" style="--x:63.4;--y:54.6;--w:14.8;--h:20"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample household budget. Excel rounds the labels to whole percent.</p>
+      </div>
       <div>
         <p class="kicker">Pie chart · at home</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">Share of one monthly budget</h2>
-        <ul class="ticks mt-m">
-          <li>The 8 budget lines were <b>grouped into 6</b> so every slice is readable.</li>
-          <li>The slices add up to <b>100%</b> of one ₱20,250 budget.</li>
-          <li>Show percentages as data labels; keep the legend.</li>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Share of one monthly budget</h2>
+        <ul class="ticks sm mt-s">
+          <li data-step="1">The 8 budget lines were <b>grouped into 6</b>; select A1:B7, no total.</li>
+          <li data-step="2">The slices add up to <b>100%</b> of one ₱20,250 budget.</li>
+          <li data-step="3">Show <b>percentages</b> as data labels: Food is 37%.</li>
+          <li data-step="4">Keep the legend: it names the slices.</li>
         </ul>
-        <div class="callout gold mt-s"><b>About 6 slices max.</b> More than that? Group the small ones, or use a bar chart.</div>
+        <div class="callout gold mt-s"><b>About 6 slices max.</b> More? Group the small ones, or use a bar chart.</div>
       </div>
     </div>
     
@@ -307,15 +350,22 @@ svg text{font-family:var(--font-sans)}
 
   
   <section class="slide" data-title="Two series need a legend">
-    <div class="split" style="grid-template-columns:1.4fr .6fr">
-      <div class="chartbox"><svg viewBox="0 0 900 474" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Household Budget vs Actual (₱)"><text x="450.0" y="34" text-anchor="middle" class="sv-t" font-size="23">Household Budget vs Actual (₱)</text><line x1="86" y1="364.0" x2="880" y2="364.0" class="sv-grid"/><text x="78" y="370.0" text-anchor="end" class="sv-m" font-size="14">0</text><line x1="86" y1="315.7" x2="880" y2="315.7" class="sv-grid"/><text x="78" y="321.7" text-anchor="end" class="sv-m" font-size="14">1,000</text><line x1="86" y1="267.3" x2="880" y2="267.3" class="sv-grid"/><text x="78" y="273.3" text-anchor="end" class="sv-m" font-size="14">2,000</text><line x1="86" y1="219.0" x2="880" y2="219.0" class="sv-grid"/><text x="78" y="225.0" text-anchor="end" class="sv-m" font-size="14">3,000</text><line x1="86" y1="170.7" x2="880" y2="170.7" class="sv-grid"/><text x="78" y="176.7" text-anchor="end" class="sv-m" font-size="14">4,000</text><line x1="86" y1="122.3" x2="880" y2="122.3" class="sv-grid"/><text x="78" y="128.3" text-anchor="end" class="sv-m" font-size="14">5,000</text><line x1="86" y1="74.0" x2="880" y2="74.0" class="sv-grid"/><text x="78" y="80.0" text-anchor="end" class="sv-m" font-size="14">6,000</text><rect x="99.9" y="243.2" width="32.7" height="120.8" rx="3" class="k1"/><rect x="135.6" y="235.9" width="32.7" height="128.1" rx="3" class="k2"/><text x="135.6" y="388" text-anchor="middle" class="sv-l" font-size="15">Rice</text><rect x="199.1" y="228.7" width="32.7" height="135.3" rx="3" class="k1"/><rect x="234.9" y="213.2" width="32.7" height="150.8" rx="3" class="k2"/><text x="234.9" y="388" text-anchor="middle" class="sv-l" font-size="15">CEPALCO</text><rect x="298.4" y="342.2" width="32.7" height="21.8" rx="3" class="k1"/><rect x="334.1" y="343.7" width="32.7" height="20.3" rx="3" class="k2"/><text x="334.1" y="388" text-anchor="middle" class="sv-l" font-size="15">Water</text><rect x="397.6" y="291.5" width="32.7" height="72.5" rx="3" class="k1"/><rect x="433.4" y="291.5" width="32.7" height="72.5" rx="3" class="k2"/><text x="433.4" y="388" text-anchor="middle" class="sv-l" font-size="15">Load</text><rect x="496.9" y="267.3" width="32.7" height="96.7" rx="3" class="k1"/><rect x="532.6" y="255.7" width="32.7" height="108.3" rx="3" class="k2"/><text x="532.6" y="388" text-anchor="middle" class="sv-l" font-size="15">Fare</text><rect x="596.1" y="219.0" width="32.7" height="145.0" rx="3" class="k1"/><rect x="631.9" y="228.7" width="32.7" height="135.3" rx="3" class="k2"/><text x="631.9" y="388" text-anchor="middle" class="sv-l" font-size="15">School</text><rect x="695.4" y="122.3" width="32.7" height="241.7" rx="3" class="k1"/><rect x="731.1" y="99.1" width="32.7" height="264.9" rx="3" class="k2"/><text x="731.1" y="388" text-anchor="middle" class="sv-l" font-size="15">Groceries</text><rect x="794.6" y="219.0" width="32.7" height="145.0" rx="3" class="k1"/><rect x="830.4" y="219.0" width="32.7" height="145.0" rx="3" class="k2"/><text x="830.4" y="388" text-anchor="middle" class="sv-l" font-size="15">Savings</text><line x1="86" y1="364" x2="880" y2="364" class="sv-ax"/><text transform="translate(20 219.0) rotate(-90)" text-anchor="middle" class="sv-l" font-size="16" font-weight="700">Amount (₱)</text><rect x="340.0" y="444" width="18" height="18" rx="3" class="k1"/><text x="366.0" y="459" class="sv-l" font-size="16">Budget</text><rect x="470.0" y="444" width="18" height="18" rx="3" class="k2"/><text x="496.0" y="459" class="sv-l" font-size="16">Actual</text></svg></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.4" data-o="0,45"><div class="pic"><img src="images/ui/3.7/11-budget-vs-actual.webp" alt="Item, Budget and Actual columns A1:C9"><i class="ring" style="--x:2.2;--y:33;--w:19;--h:22.8"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="66,60"><div class="pic"><img src="images/ui/3.7/11-budget-vs-actual.webp" alt="Clustered columns: Groceries budget 5,000 beside actual 5,480"><i class="ring" style="--x:64;--y:42.8;--w:4.6;--h:33"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.6" data-o="49,80"><div class="pic"><img src="images/ui/3.7/11-budget-vs-actual.webp" alt="Legend: Budget in blue, Actual in red"><i class="ring" style="--x:44.4;--y:79.4;--w:9.4;--h:3.2"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample household budget.</p>
+      </div>
       <div>
         <p class="kicker">Budget vs Actual</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.5)">Two series? Now you need the legend.</h2>
-        <ul class="ticks mt-m">
-          <li>Select <b>three columns</b>: Item, Budget, Actual.</li>
-          <li>A <b>clustered column</b> puts each pair side by side.</li>
-          <li>The legend tells green (Budget) from gold (Actual).</li>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Two series? Now you need the legend.</h2>
+        <ul class="ticks sm mt-s">
+          <li data-step="1">Select <b>three columns</b>: Item, Budget, Actual.</li>
+          <li data-step="2">A <b>clustered column</b> puts each pair side by side.</li>
+          <li data-step="3">The legend tells Budget (blue) from Actual (red), Excel's default colours.</li>
         </ul>
         <p class="small mt-s">Groceries went ₱480 over, CEPALCO ₱320, fare ₱240, rice ₱150. Total: ₱21,210 against a ₱20,250 budget, ₱960 over.</p>
       </div>
@@ -325,15 +375,22 @@ svg text{font-family:var(--font-sans)}
 
   
   <section class="slide" data-title="Line: trend over time">
-    <div class="split" style="grid-template-columns:1.4fr .6fr">
-      <div class="chartbox"><svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Household Electricity Bill, January to June"><text x="430.0" y="34" text-anchor="middle" class="sv-t" font-size="25">Household Electricity Bill, January to June</text><line x1="90" y1="350.0" x2="830" y2="350.0" class="sv-grid"/><text x="82" y="356.0" text-anchor="end" class="sv-m" font-size="16">0</text><line x1="90" y1="277.5" x2="830" y2="277.5" class="sv-grid"/><text x="82" y="283.5" text-anchor="end" class="sv-m" font-size="16">1,000</text><line x1="90" y1="205.0" x2="830" y2="205.0" class="sv-grid"/><text x="82" y="211.0" text-anchor="end" class="sv-m" font-size="16">2,000</text><line x1="90" y1="132.5" x2="830" y2="132.5" class="sv-grid"/><text x="82" y="138.5" text-anchor="end" class="sv-m" font-size="16">3,000</text><line x1="90" y1="60.0" x2="830" y2="60.0" class="sv-grid"/><text x="82" y="66.0" text-anchor="end" class="sv-m" font-size="16">4,000</text><text x="151.7" y="374" text-anchor="middle" class="sv-l" font-size="17">Jan</text><text x="275.0" y="374" text-anchor="middle" class="sv-l" font-size="17">Feb</text><text x="398.3" y="374" text-anchor="middle" class="sv-l" font-size="17">Mar</text><text x="521.7" y="374" text-anchor="middle" class="sv-l" font-size="17">Apr</text><text x="645.0" y="374" text-anchor="middle" class="sv-l" font-size="17">May</text><text x="768.3" y="374" text-anchor="middle" class="sv-l" font-size="17">Jun</text><polyline fill="none" stroke="var(--mod)" stroke-width="4" stroke-linejoin="round" points="151.7,157.9 275.0,162.9 398.3,139.8 521.7,107.1 645.0,89.0 768.3,121.6"/><circle cx="151.7" cy="157.9" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="151.7" y="143.9" text-anchor="middle" class="sv-v" font-size="16">₱2,650</text><circle cx="275.0" cy="162.9" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="275.0" y="148.9" text-anchor="middle" class="sv-v" font-size="16">₱2,580</text><circle cx="398.3" cy="139.8" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="398.3" y="125.8" text-anchor="middle" class="sv-v" font-size="16">₱2,900</text><circle cx="521.7" cy="107.1" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="521.7" y="93.1" text-anchor="middle" class="sv-v" font-size="16">₱3,350</text><circle cx="645.0" cy="89.0" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="645.0" y="75.0" text-anchor="middle" class="sv-v" font-size="16">₱3,600</text><circle cx="768.3" cy="121.6" r="6.5" fill="#fff" stroke="var(--mod)" stroke-width="3.5"/><text x="768.3" y="107.6" text-anchor="middle" class="sv-v" font-size="16">₱3,150</text><line x1="90" y1="350" x2="830" y2="350" class="sv-ax"/><text transform="translate(20 205.0) rotate(-90)" text-anchor="middle" class="sv-l" font-size="18" font-weight="700">Bill (₱)</text><text x="460.0" y="406" text-anchor="middle" class="sv-l" font-size="18" font-weight="700">Month (2026)</text></svg></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.4" data-o="0,45"><div class="pic"><img src="images/ui/3.7/12-line-electricity.webp" alt="Month and Bill columns, January to June in order"><i class="ring" style="--x:2.2;--y:33;--w:13.6;--h:21.2"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="45,80"><div class="pic"><img src="images/ui/3.7/12-line-electricity.webp" alt="Months on the horizontal axis, left to right"><i class="ring" style="--x:26;--y:76.2;--w:38.8;--h:3.4"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.4" data-o="58,45"><div class="pic"><img src="images/ui/3.7/12-line-electricity.webp" alt="The line peaks in May at 3,600, then drops to 3,150 in June"><i class="ring" style="--x:54.8;--y:42.2;--w:6;--h:4.6"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample household budget.</p>
+      </div>
       <div>
         <p class="kicker">Line chart · trend</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.5)">Months in order, one line</h2>
-        <ul class="ticks mt-m">
-          <li>Time goes on the <b>horizontal axis</b>, left to right.</li>
-          <li>The line shows the <b>summer peak</b> in April and May, then a drop in June.</li>
-          <li>Axis titles say <b>what</b> and <b>which unit</b>.</li>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Months in order, one line</h2>
+        <ul class="ticks sm mt-s">
+          <li data-step="1">Months <b>in order</b> in the table: a line follows the row order.</li>
+          <li data-step="2">Time goes on the <b>horizontal axis</b>, left to right.</li>
+          <li data-step="3">The line shows the <b>summer peak</b> in April and May, then a drop in June. Axis titles say what and which unit.</li>
         </ul>
       </div>
     </div>
