@@ -119,6 +119,8 @@
   function fullName(p) { return (p.first_name + ' ' + p.last_name).trim(); }
   function errMsg(e) { return (e && (e.message || e.error_description)) || String(e); }
   function isAdmin() { return S.profile && S.profile.role === 'admin'; }
+  // DICT preview accounts: every topic open, full decks, activities checked but never stored (S.tries lives only in this tab)
+  function isViewer() { return S.profile && S.profile.role === 'viewer'; }
   // The facilitator sees the participants' pages, with her own controls (.fac) added on top.
   // "Hide my tools" removes them, so a Zoom screen share looks exactly like the participants' screen.
   // icons: Lucide SVGs (ISC licence) in place of emoji
@@ -156,7 +158,7 @@
   function topbar() {
     var p = S.profile;
     return '<header class="top"><div class="wrap"><a class="brand" href="#/"><span>DPE</span><span class="full"> · Digital Productivity Essentials</span></a>' +
-      (p ? '<span class="who">' + esc(p.first_name) + (isAdmin() ? '<span class="fac"> · facilitator</span>' : '') + '</span>' +
+      (p ? '<span class="who">' + esc(p.first_name) + (isAdmin() ? '<span class="fac"> · facilitator</span>' : isViewer() ? ' · preview' : '') + '</span>' +
         (isAdmin() ? '<a class="btn-top fac" href="#/people">People</a>' + toolsBtn() : '') +
         '<button id="signout">Sign out</button>' : '<a class="btn-top" href="#/login">Sign in</a>') +
       '</div></header>';
@@ -188,6 +190,7 @@
     S.topics = {}; (r[0].data || []).forEach(function (x) { S.topics[x.topic_id] = x; });
     S.acts = {}; (r[1].data || []).forEach(function (x) { S.acts[x.activity_id] = x; });
     S.mine = {}; (r[2].data || []).forEach(function (x) { S.mine[x.activity_id] = x; });
+    if (isViewer()) S.mine = S.tries = S.tries || {};
     if (isAdmin()) await loadClass();
   }
   // facilitator only: who in the class has opened / submitted each activity (admins' own tries don't count)
@@ -202,7 +205,7 @@
     (r[1].data || []).forEach(function (x) { if (ids[x.user_id]) (S.prog[x.activity_id] = S.prog[x.activity_id] || {})[x.user_id] = x; });
   }
   function nDone(aid) { var m = S.prog[aid] || {}; return Object.keys(m).filter(function (u) { return m[u].status === 'submitted'; }).length; }
-  function topicOpen(tid) { return S.topics[tid] && S.topics[tid].status === 'open'; }
+  function topicOpen(tid) { return isViewer() || (S.topics[tid] && S.topics[tid].status === 'open'); }
 
   // ---------- router
   async function route() {
@@ -443,6 +446,7 @@
     }
     var pc = mine && mine.max_score ? Math.round(mine.score / mine.max_score * 100) : null;
     var sub = mine && mine.status === 'submitted';
+    if (isViewer()) return actRow('#/a/' + a.id, a.title, sub ? 'done' : '', sub ? ico('check') + ' Tried' + (pc == null ? '' : ' · ' + pc + '%') : 'Try it');
     return actRow('#/a/' + a.id, a.title,
       sub ? (pc == null || pc >= 75 ? 'done' : '') : answering(a.id) ? 'ans' : '',
       sub ? ico('check') + ' Done' + (pc == null ? '' : ' · ' + pc + '%') : answering(a.id) ? ico('hand') + ' Open for answers · ' + (mine ? 'Continue' : 'Start now') : mine ? 'Not submitted' : '');
@@ -489,7 +493,8 @@
     var p = S.profile, adm = isAdmin(), deckView = adm ? '#/present/' : '#/deck/';
     var joinUrl = adm && BASE + '?join=' + encodeURIComponent(S.cohort.join_code);
     var html = topbar() + '<section class="hero"><div class="wrap"><p class="kicker">' + esc(S.cohort ? S.cohort.name : '') + '</p>' +
-      '<h1>Hi, <span>' + esc(p.first_name) + '</span></h1><p>Topics open here as we reach them in class. Your answers save as you go.</p></div></section><main class="wrap" style="padding-bottom:48px">';
+      '<h1>Hi, <span>' + esc(p.first_name) + '</span></h1><p>' + (isViewer() ? 'Preview access: every topic is open, with its slides, video and activities. Try any activity as often as you like; nothing you do is saved or scored.'
+        : 'Topics open here as we reach them in class. Your answers save as you go.') + '</p></div></section><main class="wrap" style="padding-bottom:48px">';
     if (adm) html += '<div class="card facbar fac mt-3"><span class="fk">Only you see this</span><span>Class code <b class="code">' + esc(S.cohort.join_code) + '</b></span>' +
       '<span><b id="nreg">…</b> registered</span><span class="row"><button class="btn small gold" id="full">Show join QR</button><button class="btn small" id="cpj">Copy join link</button></span></div>';
     // Live now: the topic being discussed, and any of its activities that are open for answers
@@ -516,7 +521,7 @@
         '<h2>' + esc(m.title) + '</h2><span class="small muted">' + m.topics.length + ' topics · ' + (nOpen ? nOpen + ' open' : 'opens later') + '</span></div>' +
         '<div class="topics">' + m.topics.map(function (t) { return topicCard(t, adm, deckView); }).join('') + '</div></section>';
     });
-    render(html + '<p class="small muted mt-4">Signed in as ' + esc(p.email) + ' · Certificate name: <b>' + esc(fullName(p)) + '</b> (spelling wrong? Ask the facilitator.)</p></main>');
+    render(html + '<p class="small muted mt-4">Signed in as ' + esc(p.email) + (isViewer() ? ' · preview account' : ' · Certificate name: <b>' + esc(fullName(p)) + '</b> (spelling wrong? Ask the facilitator.)') + '</p></main>');
     document.querySelectorAll('[data-more]').forEach(function (b) { b.onclick = function () { topicInfo(b.dataset.more, b); }; });
     if (adm) {
       document.querySelectorAll('[data-tog]').forEach(function (b) {
@@ -551,8 +556,9 @@
     var T = TOPIC[tid].t;
     if (!isAdmin() && !topicOpen(tid)) { toast('Topic ' + tid + ' opens later, when the class reaches it.'); location.hash = '#/'; return; }
     var back = sessionStorage.getItem('dpeBack'); sessionStorage.removeItem('dpeBack');
-    // participants get course/p/: the same slides with the answers taken out of the page source
-    var src = kind === 'deck' ? 'course/' + (isAdmin() ? '' : 'p/') + encodeURIComponent(T.deck) + (isAdmin() ? '' : '?p=1') + (slide ? '#/' + slide : '')
+    // participants get course/p/: the same slides with the answers taken out of the page source; DICT viewers see the full decks
+    var full = isAdmin() || isViewer();
+    var src = kind === 'deck' ? 'course/' + (full ? '' : 'p/') + encodeURIComponent(T.deck) + (full ? '' : '?p=1') + (slide ? '#/' + slide : '')
       : 'course/videos/' + tid + '/index.html';
     render('<div class="present"><div class="pbar vbar">' + (back ? '<a href="' + esc(back) + '">← Activity</a>' : '') + '<a href="#/">' + ico('house') + ' Home</a>' +
       '<span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
@@ -588,7 +594,8 @@
     var tid = ACT[aid].topic, T = TOPIC[tid].t;
     render(topbar() + '<div class="boot">Opening the activity…</div>');
     var sp = (await spec(tid)).activities.find(function (x) { return x.id === aid; });
-    var r = await sb.rpc('touch_attempt', { p_activity: aid, p_topic: tid, p_answers: null });
+    var vw = isViewer();
+    var r = vw ? { data: S.tries[aid] || { status: 'opened', answers: {} } } : await sb.rpc('touch_attempt', { p_activity: aid, p_topic: tid, p_answers: null });
     if (r.error) {
       render(topbar() + '<main class="narrow page"><div class="card stack"><p class="kicker muted small">' + tid + ' · ' + esc(T.title) + '</p><h2>' + esc(sp.title) + '</h2>' +
         '<p>' + ico('hourglass') + ' Waiting for your facilitator to open this activity. This page will open it by itself.</p><a class="btn" href="#/">Back to home</a></div></main>');
@@ -598,15 +605,16 @@
     var at = r.data, done = at.status === 'submitted';
     var key = 'dpe-a-' + S.profile.id + '-' + aid;
     var A = at.answers || {};
-    if (!done) { try { var loc = JSON.parse(localStorage.getItem(key) || 'null'); if (loc && Object.keys(loc).length > Object.keys(A).length) A = loc; } catch (e) {} }
+    if (!done && !vw) { try { var loc = JSON.parse(localStorage.getItem(key) || 'null'); if (loc && Object.keys(loc).length > Object.keys(A).length) A = loc; } catch (e) {} }
     var fb = at.feedback || {};
     var kindLbl = { task: 'Hands-on', check: 'Quick check', quiz: 'Quiz', lab: 'Lab' }[sp.kind];
     var html = topbar() + '<div class="act-head"><div class="narrow"><div class="kicker">' + tid + ' · ' + esc(kindLbl) + '</div><h1>' + esc(sp.title) + '</h1>' +
       '<div class="timer hide" id="timer"></div></div></div><main class="narrow" style="padding-bottom:24px">';
-    if (done) html += '<div class="card scorebox mt-2"><div class="muted small">Submitted ' + when(at.submitted_at) + '</div>' +
+    if (vw) html += '<div class="card facbar mt-2"><span class="fk">Preview</span><span>Nothing here is saved or scored. ' + (done ? 'Try again to start over.' : 'Check your answers to see the right ones.') + '</span></div>';
+    if (done) html += '<div class="card scorebox mt-2"><div class="muted small">' + (vw ? 'Checked ' : 'Submitted ') + when(at.submitted_at) + '</div>' +
       (at.max_score ? '<div class="big">' + Math.round(at.score / at.max_score * 100) + '%</div><div class="muted">' + scoreLine(sp, at) + 'The right answers are below.' +
         (sp.blocks.some(function (b) { return b.type === 'rubric'; }) ? ' Your facilitator scores the rest.' : '') + '</div>'
-        : '<div class="big">' + ico('check') + '</div><div class="muted">Thank you! Your work is in. Your facilitator reviews it.</div>') + '</div>';
+        : '<div class="big">' + ico('check') + '</div><div class="muted">' + (vw ? 'No automatic score here: in class, the facilitator reviews this work.' : 'Thank you! Your work is in. Your facilitator reviews it.') + '</div>') + '</div>';
     if (sp.intro) html += '<p class="mt-2">' + emo(esc(sp.intro)) + '</p>';
     var aCat = ACT[aid].a;
     if (aCat.slideNo) html += '<p><a class="btn small" id="toslide" href="#/deck/' + tid + '/' + aCat.slideNo + '">' + ico('file-text') + ' See this on the slides</a></p>';
@@ -615,11 +623,12 @@
     html += '</main>';
     // after submitting: the next activity of this topic that isn't done yet
     var nxt = T.activities.filter(function (x) { return x.id !== aid && !(S.mine[x.id] && S.mine[x.id].status === 'submitted'); })[0];
-    html += done ? '<div class="savebar done"><div class="narrow"><span class="st">Your answers are saved.</span>' +
+    html += done ? '<div class="savebar done"><div class="narrow"><span class="st">' + (vw ? 'Preview: not saved.' : 'Your answers are saved.') + '</span>' + (vw ? '<button class="btn" id="again">Try again</button>' : '') +
         (nxt ? '<a class="btn" href="#/">Home</a><a class="btn primary" href="#/a/' + nxt.id + '">Next: ' + esc(nxt.title) + ' →</a>' : '<a class="btn primary" href="#/">Back to home</a>') + '</div></div>'
-      : '<div class="savebar"><div class="narrow"><span class="st"><b id="prog"></b><br><span id="st">Your answers save automatically.</span></span><button class="btn good" id="submit">Submit</button></div></div>';
+      : '<div class="savebar"><div class="narrow"><span class="st"><b id="prog"></b><br><span id="st">' + (vw ? 'Preview: answers aren\'t saved.' : 'Your answers save automatically.') + '</span></span><button class="btn good" id="submit">' + (vw ? 'Check answers' : 'Submit') + '</button></div></div>';
     render('<div class="actpage">' + html + '</div>');
     var $ts = document.getElementById('toslide'); if ($ts) $ts.onclick = function () { sessionStorage.setItem('dpeBack', '#/a/' + aid); };
+    var $ag = document.getElementById('again'); if ($ag) $ag.onclick = function () { delete S.tries[aid]; vActivity(aid); };
 
     // timer from the facilitator's Open for answers
     // 1 minute left: a reminder. At 0:00 quick checks and quizzes submit what's there; tasks and labs
@@ -673,12 +682,13 @@
         if (b.type === 'steps') el.querySelectorAll('.step').forEach(function (r, k) { r.classList.toggle('missing', (A[b.id] || []).indexOf(k) < 0); });
       });
       var $s = document.getElementById('submit');
-      if (!miss.length && $s && $s.classList.contains('armed')) { $s.classList.remove('armed'); $s.textContent = 'Submit'; }
+      if (!miss.length && $s && $s.classList.contains('armed')) { $s.classList.remove('armed'); $s.textContent = vw ? 'Check answers' : 'Submit'; }
       return miss;
     }
     progress();
     function changed() {
       progress();
+      if (vw) return;   // preview: answers stay on this page only
       dirty = true; try { localStorage.setItem(key, JSON.stringify(A)); } catch (e) {}
       document.getElementById('st').textContent = 'Saving…';
       clearTimeout(changed.t); changed.t = setTimeout(save, 1200);
@@ -691,7 +701,7 @@
       $st.innerHTML = s.error ? 'Not saved yet (connection?). We\'ll keep trying.' : 'Saved ' + ico('check') + ' ' + new Date().toLocaleTimeString('en-PH', { timeZone: 'Asia/Manila', hour: 'numeric', minute: '2-digit' });
       if (s.error || dirty) later(4000, save);
     }
-    every(15000, function () { if (!dirty && !document.hidden) sb.rpc('touch_attempt', { p_activity: aid, p_topic: tid, p_answers: null }); });
+    if (!vw) every(15000, function () { if (!dirty && !document.hidden) sb.rpc('touch_attempt', { p_activity: aid, p_topic: tid, p_answers: null }); });
     bindBlocks(sp, A, changed);
 
     var $sub = document.getElementById('submit');
@@ -706,19 +716,24 @@
       if (!sp.blocks.some(function (b) { return b.type !== 'email' && b.type !== 'rubric' && !blank(b); })) {
         var f0 = needed[0] && document.querySelector('.block[data-b="' + CSS.escape(needed[0].id) + '"]');
         if (f0) f0.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        document.getElementById('prog').textContent = 'Nothing answered yet'; toast('Answer at least one question before you submit.'); return;
+        document.getElementById('prog').textContent = 'Nothing answered yet'; toast('Answer at least one question first.'); return;
       }
       if (missing && !$sub.classList.contains('armed')) {
         var first = document.querySelector('.block[data-b="' + CSS.escape(miss[0].id) + '"]');
         (first.querySelector('.sortrow.missing,.step.missing') || first).scrollIntoView({ behavior: 'smooth', block: 'center' });
-        $sub.classList.add('armed'); $sub.textContent = 'Submit anyway?';   // stays armed: a second tap submits
+        $sub.classList.add('armed'); $sub.textContent = vw ? 'Check anyway?' : 'Submit anyway?';   // stays armed: a second tap submits
         document.getElementById('prog').textContent = missing + ' not done yet'; return;
       }
       send();
     };
     async function send() {
       if ($sub.disabled) return;
-      $sub.disabled = true; $sub.textContent = 'Submitting…';
+      $sub.disabled = true; $sub.textContent = vw ? 'Checking…' : 'Submitting…';
+      if (vw) {
+        var c = await sb.rpc('check_attempt', { p_activity: aid, p_answers: payload() });
+        if (c.error) { $sub.disabled = false; $sub.textContent = 'Check answers'; toast('Couldn\'t check. Check your connection and try again.'); return; }
+        S.tries[aid] = Object.assign({}, c.data, { answers: payload() }); vActivity(aid); return;
+      }
       var s = await sb.rpc('submit_attempt', { p_activity: aid, p_topic: tid, p_answers: payload() });
       if (s.error) { $sub.disabled = false; $sub.textContent = 'Submit'; toast(/ended/.test(s.error.message) ? 'This activity has ended.' : 'Couldn\'t submit. Check your connection and try again.'); return; }
       try { localStorage.removeItem(key); } catch (e) {}
@@ -849,7 +864,13 @@
           var file = fi.files[0]; fi.value = ''; if (!file) return;
           if (!UPLOAD_OK.test(file.name)) { $e.textContent = 'Please choose a photo, screenshot, PDF or Office file.'; return; }
           if (file.size > 15 * 1024 * 1024) { $e.textContent = 'That file is over 15 MB.'; return; }
-          $e.textContent = ''; $st.innerHTML = '<span class="muted">Uploading ' + esc(file.name) + '…</span>';
+          $e.textContent = '';
+          if (isViewer()) {   // preview: the file stays on this computer
+            A[b.id] = { name: file.name, type: file.type, size: file.size, preview: true };
+            $st.innerHTML = '<span class="ok">' + ico('check') + ' Chosen: ' + esc(file.name) + '</span> <span class="muted small">(preview: not uploaded)</span>';
+            $lb.innerHTML = ico('paperclip') + ' Replace file'; changed(); return;
+          }
+          $st.innerHTML = '<span class="muted">Uploading ' + esc(file.name) + '…</span>';
           var path = S.profile.id + '/' + sp.id + '/' + b.id + '-' + Date.now() + '-' + file.name.replace(/[^\w.\-]+/g, '_').slice(-80);
           // the storage bucket only takes images, PDFs and Office files; the type comes from the extension
           var r = await sb.storage.from('outputs').upload(path, file, { upsert: true, contentType: MIME[file.name.split('.').pop().toLowerCase()] });
