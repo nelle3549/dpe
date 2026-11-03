@@ -385,6 +385,8 @@
       : mine ? '<span class="tag sub">Not submitted</span>' : '';
     return '<a href="#/a/' + a.id + '"><span>' + esc(a.title) + '</span>' + tag + '<span class="chev" aria-hidden="true">›</span></a>';
   }
+  // topic picture, same as the course page cards (course/images/thumbs/1-1.jpg)
+  function thumb(id) { return '<img src="course/images/thumbs/' + id.replace('.', '-') + '.jpg" alt="" loading="lazy">'; }
   var openMods = {};   // which outline modules the participant expanded (kept across the 15 s refresh)
   function vHome() {
     clearTimers();   // views that re-render themselves must not stack their refresh timers
@@ -402,7 +404,8 @@
     CAT.forEach(function (m, mi) { m.topics.forEach(function (t) { if (topicOpen(t.id)) open.push({ t: t, mi: mi }); }); });
     html += '<h2 class="sec">Open now</h2>' + (open.length ? '<div class="topics">' + open.map(function (o) {
       var t = o.t;
-      return '<div class="topic is-open" style="--c:var(--m' + (o.mi + 1) + ')"><div class="t"><span class="num">' + t.id + '</span><h4>' + esc(t.title) + '</h4></div>' +
+      return '<div class="topic is-open" style="--c:var(--m' + (o.mi + 1) + ')"><a class="cover" href="' + deckView + t.id + '" tabindex="-1" aria-hidden="true">' + thumb(t.id) + '<span class="num">' + t.id + '</span></a>' +
+        '<div class="t"><h4>' + esc(t.title) + '</h4></div>' +
         '<div class="row"><a class="btn" href="' + deckView + t.id + '">Slides</a>' + (t.video ? '<a class="btn" href="#/video/' + t.id + '">▶ Video ' + t.video + '</a>' : '') + '</div>' +
         '<div class="acts">' + t.activities.map(actLink).join('') + '</div>' +
         (adm ? '<div class="row fac facrow"><a class="btn small" href="#/results/' + t.id + '">Results</a><button class="btn small" data-tog="' + t.id + '">Close</button></div>' : '') + '</div>';
@@ -414,7 +417,7 @@
         '<span class="small muted meta">' + m.topics.length + ' topics · ' + (nOpen ? nOpen + ' open' : 'opens later') + '</span></summary><ul class="olist">' +
         m.topics.map(function (t) {
           var on = topicOpen(t.id);
-          return '<li' + (on ? '' : ' class="locked"') + '><span class="num">' + t.id + '</span><span class="ttl">' + esc(t.title) + '</span>' +
+          return '<li' + (on ? '' : ' class="locked"') + '><span class="oth">' + thumb(t.id) + '<span class="num">' + t.id + '</span></span><span class="ttl">' + esc(t.title) + '</span>' +
             (on ? '<a class="tag open" href="' + deckView + t.id + '">Open</a>' : '<button type="button" class="tag" data-locked="' + t.id + '">🔒 Later</button>') +
             (adm ? '<button type="button" class="tag factag fac" data-tog="' + t.id + '">' + (on ? 'Close' : 'Open to class') + '</button>' : '') + '</li>';
         }).join('') + '</ul></details>';
