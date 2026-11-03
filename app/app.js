@@ -582,8 +582,10 @@
       '<span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
       (kind === 'deck' && T.video ? '<a href="#/video/' + tid + '">' + ico('play') + ' Video</a>' : kind === 'video' ? '<a href="#/deck/' + tid + '">Slides</a>' : '') +
       '</div><div class="pbody"><iframe id="view" src="' + src + '" title="' + esc(T.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe></div>' +
+      (kind === 'deck' && !isAdmin() ? '<div class="pact" id="pact" hidden></div>' : '') +
       (kind === 'deck' ? '<div class="pnav"><button id="prev" aria-label="Previous slide">‹ Back</button><span id="pcount" aria-live="polite"></span><button id="next" aria-label="Next slide">Next ›</button></div>' : '') +
       '</div>');
+    viewTid = tid;
     var $v = document.getElementById('view');
     $v.onload = function () { try { $v.contentWindow.focus(); } catch (e) {} };
     if (kind !== 'deck') return;
@@ -591,6 +593,21 @@
     var $nx = document.getElementById('next'); if (back) $nx.dataset.back = back;
     document.getElementById('prev').onclick = function () { send('ArrowLeft'); };
     $nx.onclick = function () { if ($nx.dataset.end) location.hash = back || '#/'; else send('ArrowRight'); };
+  }
+  // on an activity slide, participants get the activity's status (Done / Pending) and a button to it, above the slide controls
+  var viewTid = null;
+  function slideAct(n) {
+    var $a = document.getElementById('pact'); if (!$a) return;
+    var acts = TOPIC[viewTid].t.activities.filter(function (a) { return a.slideNo === n; });
+    $a.hidden = !acts.length;
+    $a.innerHTML = acts.map(function (a) {
+      var mine = S.mine[a.id], sub = mine && mine.status === 'submitted', vw = isViewer();
+      var pc = mine && mine.max_score ? Math.round(mine.score / mine.max_score * 100) : null;
+      var pill = sub ? '<span class="pill done">' + ico('check') + ' ' + (vw ? 'Tried' : 'Done') + (pc == null ? '' : ' · ' + pc + '%') + '</span>'
+        : '<span class="pill pend">' + ico('hourglass') + ' ' + (vw ? 'Not tried yet' : mine ? 'Pending · not submitted' : 'Pending') + '</span>';
+      return '<div class="pa">' + pill + '<span class="pt">' + esc(a.title) + '</span><a class="btn small' + (sub ? '' : ' primary') + '" href="#/a/' + a.id + '">' +
+        (sub ? (vw ? 'Try again' : 'View') : mine ? 'Continue' : vw ? 'Try it' : 'Start') + ' ›</a></div>';
+    }).join('');
   }
   window.addEventListener('message', function (e) {
     var d = e.data || {};
@@ -600,6 +617,7 @@
       c.textContent = d.n + ' / ' + d.total;
       var nx = document.getElementById('next'), end = d.n >= d.total;
       document.getElementById('prev').disabled = d.n <= 1;
+      slideAct(d.n);
       nx.textContent = end ? (nx.dataset.back ? 'Activity ›' : 'Home ›') : 'Next ›'; nx.setAttribute('aria-label', end ? nx.textContent.slice(0, -2) : 'Next slide'); nx.dataset.end = end ? '1' : '';
       // keep the slide in the address, so a reload or the Back button returns to it (without re-rendering)
       var m = location.hash.match(/^#\/(deck|present)\/([\d.]+)/); if (m) history.replaceState(null, '', '#/' + m[1] + '/' + m[2] + '/' + d.n);
