@@ -178,33 +178,26 @@
     <div class="slide-head">
       <div><p class="kicker">The trap</p><h2 class="h2">"Numbers stored as text" break your formulas</h2></div>
     </div>
-    <div class="grid" style="grid-template-columns:1.05fr .95fr;align-items:start">
-      <div class="xl">
-        <div class="fbar"><span class="nb">C10</span><span class="fx">fx</span><span class="fv">=SUM(C2:C5)</span></div>
-        <table>
-          <colgroup><col class="rn"><col style="width:44%"><col><col></colgroup>
-          <tr><th></th><th>A</th><th>C</th><th>D</th></tr>
-          <tr class="hd"><th>1</th><td>Item</td><td>Qty</td><td>Unit Cost</td></tr>
-          <tr><th>2</th><td>Bond paper, A4</td><td class="n">25</td><td class="n">245</td></tr>
-          <tr><th>3</th><td>Bond paper, long</td><td class="tri bad">30 reams</td><td class="n">265</td></tr>
-          <tr><th>4</th><td>Ballpen, black</td><td class="tri bad">10</td><td class="n">96</td></tr>
-          <tr><th>5</th><td>Folder, long</td><td class="n">4</td><td class="bad">₱ 520</td></tr>
-          <tr class="tot"><th>10</th><td>Total Qty</td><td class="n err">29</td><td></td></tr>
-        </table>
-        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">The real total is 69. The sheet skipped the two text cells.</p>
-      </div>
+    <div class="shots" data-walk>
       <div>
-        <ul class="ticks x">
-          <li><b>Units typed in:</b> <span class="fcode">30 reams</span> is text. Units go in the Unit column.</li>
-          <li><b>Left-aligned with a green triangle:</b> the number was imported or typed as text.</li>
-          <li><b>Symbols typed in:</b> <span class="fcode">₱ 520</span> can become text. Type 520, then format.</li>
-        </ul>
-        <div class="callout tip mt-m"><b>Fix:</b> retype the plain number, or click the <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#B26A00"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg> icon › <i>Convert to Number</i> (Excel).</div>
+          <div class="stage">
+            <figure class="f" data-step="1" data-zoom="1.4" data-at="41,47" data-o="40,50"><div class="pic"><img src="images/ui/3.2/01-trap-text-cells.webp" alt="Excel Text trap sheet: C3 holds 30 reams and C4 a 10 stored as text with a green triangle, both on the left; D5 holds the text ₱ 520; status bar Count: 2"><i class="ring" style="--x:36;--y:42.6;--w:10.4;--h:7.8"></i><i class="ring" style="--x:46.4;--y:50.6;--w:11.1;--h:3.7;--d:0.25s"></i><i class="ring" style="--x:60.3;--y:96.4;--w:6.2;--h:3.2;--d:0.5s"></i></div></figure>
+            <figure class="f" data-step="2" data-zoom="1.3" data-at="41,56" data-o="30,40"><div class="pic"><img src="images/ui/3.2/02-trap-sum-29.webp" alt="Excel cell C6 selected: formula bar =SUM(C2:C5), the cell shows 29"><i class="ring" style="--x:36;--y:54.2;--w:10.4;--h:3.9"></i><i class="ring" style="--x:19.6;--y:25.1;--w:12.4;--h:3.7;--d:0.25s"></i></div></figure>
+            <figure class="f" data-step="3" data-zoom="1.3" data-at="41,56" data-o="40,50"><div class="pic"><img src="images/ui/3.2/03-trap-fixed-69.webp" alt="Excel after retyping 30 and 10 as plain numbers: they sit on the right and C6 shows 69"><i class="ring" style="--x:36;--y:42.6;--w:10.4;--h:7.8"></i><i class="ring" style="--x:36;--y:54.2;--w:10.4;--h:3.9;--d:0.25s"></i></div></figure>
+          </div>
+          <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory (Text trap sheet). Same green triangle in Excel for Windows.</p>
+        </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1"><b>On the left = text.</b> <span class="fcode">30 reams</span> has the unit typed in; the <b>10</b> was copied in as text (green triangle). <span class="fcode">₱ 520</span> is text too. The status bar only counts them.</li>
+          <li data-step="2"><span class="fcode">=SUM(C2:C5)</span> shows <b>29</b>. The real total is 69: SUM skipped the text cells.</li>
+          <li data-step="3"><b>Fix:</b> retype <b>30</b> and <b>10</b> as plain numbers, or the warning icon › <i>Convert to Number</i>. They jump right; the total is <b>69</b>.</li>
+        </ol>
         <div class="callout gold mt-m"><b>When text is right:</b> mobile numbers like 09171234567 (keeps the 0) and a TIN like 123-456-789-000. You never add those.</div>
       </div>
     </div>
     <div class="notes">
-      <p>This is the <b>number one reason</b> totals come out wrong in office files. SUM quietly skips text. Here it shows 29 when the real total is 25 + 30 + 10 + 4 = <b>69</b>, and nobody notices until the report is signed.</p>
+      <p>This is the <b>number one reason</b> totals come out wrong in office files. SUM quietly skips text. In the sample, C6 shows 29 when the real total is 25 + 30 + 10 + 4 = <b>69</b>, and nobody notices until the report is signed.</p>
       <p>Explain the green triangle: Excel's warning that a number is stored as text, common when data is copied from a system export or a PDF. Then the exception: phone numbers and TINs are identifiers, not quantities. Store them as text so the leading zero stays.</p>
     </div>
   </section>
@@ -215,34 +208,24 @@
       <div><p class="kicker">Format the money columns</p><h2 class="h2">Unit Cost and Total Cost as Currency (₱)</h2></div>
       <span class="tag gold">Lab 3 requirement</span>
     </div>
-    <div class="grid" style="grid-template-columns:1fr 1fr;align-items:start">
+    <div class="shots" data-walk>
       <div>
-        <ol class="steps">
-          <li>Select <b>D2:E9</b> (Unit Cost and the empty Total Cost cells).</li>
-          <li>Excel: press <kbd>Ctrl</kbd>+<kbd>1</kbd> › <b>Number</b> tab › <b>Currency</b>.</li>
-          <li>Set <b>Symbol: ₱</b> (Philippines) and <b>2 decimal places</b>. Click OK.</li>
-        </ol>
-        <div class="grid g2 mt-m" style="gap:calc(var(--u)*.8)">
-          <div class="callout"><b>Google Sheets:</b> Format › Number › Custom currency › search "Philippine peso".</div>
-          <div class="callout"><b>LibreOffice Calc:</b> Format Cells › Numbers › Currency › choose ₱ (Philippines).</div>
+          <div class="stage">
+            <figure class="f" data-step="1" data-at="50,40"><div class="pic"><img src="images/ui/3.2/04-select-d2-e9.webp" alt="Excel with D2:E9 selected: Unit Cost and the empty Total Cost cells shaded, Name Box D2"><i class="ring" style="--x:43.6;--y:38.6;--w:21.2;--h:31.4"></i><i class="ring" style="--x:0.2;--y:24.6;--w:9.4;--h:4.4;--d:0.25s"></i></div></figure>
+            <figure class="f" data-step="2" data-zoom="1.3" data-o="30,25"><div class="pic"><img src="images/ui/3.2/05-format-cells-currency-dialog.webp" alt="Excel Format Cells window, Number tab, Category Currency selected"><i class="ring" style="--x:24;--y:24;--w:12.3;--h:3.2"></i></div></figure>
+            <figure class="f" data-step="3" data-at="60,32.6"><div class="pic"><img src="images/ui/3.2/05-format-cells-currency-dialog.webp" alt="Format Cells: Decimal places 2, Symbol ₱ English (Philippines), sample ₱245.00"><i class="ring" style="--x:47.9;--y:25.8;--w:5.4;--h:3.8"></i><i class="ring" style="--x:44.5;--y:30.9;--w:31.1;--h:3.5;--d:0.25s"></i><i class="ring" style="--x:71.6;--y:90.1;--w:6.5;--h:3.7;--d:0.5s"></i></div></figure>
+            <figure class="f" data-step="4" data-zoom="1.3" data-at="49,40.6" data-o="30,35"><div class="pic"><img src="images/ui/3.2/06-currency-d2-245.webp" alt="Excel after OK: D2 to D9 show ₱245.00 and so on; with D2 active the formula bar still says 245"><i class="ring" style="--x:43.6;--y:38.6;--w:10.6;--h:4"></i><i class="ring" style="--x:19.6;--y:25.1;--w:8;--h:3.7;--d:0.25s"></i></div></figure>
+          </div>
+          <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. On Windows, <kbd>Ctrl</kbd>+<kbd>1</kbd> opens the same Format Cells window (Number tab).</p>
         </div>
-      </div>
-      <div class="xl">
-        <div class="tools"><b>Paste</b><b><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8" /></svg></b><b class="on">₱ Currency ▾</b><b>%</b><b>.00</b></div>
-        <div class="fbar"><span class="nb">D2</span><span class="fx">fx</span><span class="fv">245</span></div>
-        <table>
-          <colgroup><col class="rn"><col style="width:38%"><col style="width:12%"><col><col></colgroup>
-          <tr><th></th><th>A</th><th>C</th><th class="on">D</th><th class="on">E</th></tr>
-          <tr class="hd"><th>1</th><td>Item</td><td>Qty</td><td>Unit Cost</td><td>Total Cost</td></tr>
-          <tr><th>2</th><td>Bond paper, A4</td><td class="n">25</td><td class="n sel">₱245.00</td><td class="rng"></td></tr>
-          <tr><th>3</th><td>Bond paper, long</td><td class="n">30</td><td class="n rng">₱265.00</td><td class="rng"></td></tr>
-          <tr><th>4</th><td>Ballpen, black</td><td class="n">10</td><td class="n rng">₱96.00</td><td class="rng"></td></tr>
-          <tr><th>5</th><td>Folder, long</td><td class="n">4</td><td class="n rng">₱520.00</td><td class="rng"></td></tr>
-          <tr><th>6</th><td>Fastener</td><td class="n">6</td><td class="n rng">₱85.00</td><td class="rng"></td></tr>
-          <tr><th>7</th><td>Staple wire #35</td><td class="n">12</td><td class="n rng">₱32.00</td><td class="rng"></td></tr>
-          <tr><th>8</th><td>Printer ink, black</td><td class="n">8</td><td class="n rng">₱350.00</td><td class="rng"></td></tr>
-          <tr><th>9</th><td>Envelope, brown long</td><td class="n">3</td><td class="n rng">₱410.00</td><td class="rng"></td></tr>
-        </table>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Select <b>D2:E9</b> (Unit Cost and the empty Total Cost cells).</li>
+          <li data-step="2">Press <kbd>Ctrl</kbd>+<kbd>1</kbd> (Mac: <kbd>Cmd</kbd>+<kbd>1</kbd>) › <b>Number</b> tab › <b>Currency</b>.</li>
+          <li data-step="3"><b>2 decimal places</b>, <b>Symbol: ₱</b> (Philippines). Click <b>OK</b>.</li>
+          <li data-step="4">Click D2: the cell shows <b>₱245.00</b>, the formula bar still says <b>245</b>.</li>
+        </ol>
+        <div class="callout mt-m"><b>Google Sheets:</b> Format › Number › Custom currency › "Philippine peso". <b>Calc:</b> Format Cells › Numbers › Currency › ₱.</div>
       </div>
     </div>
     <div class="notes">
@@ -278,24 +261,20 @@
     <div class="slide-head">
       <div><p class="kicker">Make the header row stand out</p><h2 class="h2">Bold, alignment and wrap text</h2></div>
     </div>
-    <div class="grid" style="grid-template-columns:1.1fr .9fr;align-items:center">
-      <div class="xl">
-        <div class="tools"><b class="on"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8" /></svg> Bold</b><b><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 12H3" /> <path d="M17 18H3" /> <path d="M21 6H3" /></svg> Left</b><b class="on"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 12H7" /> <path d="M19 18H5" /> <path d="M21 6H3" /></svg> Center</b><b><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12H9" /> <path d="M21 18H7" /> <path d="M21 6H3" /></svg> Right</b><b class="on"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" x2="21" y1="6" y2="6" /> <path d="M3 12h15a3 3 0 1 1 0 6h-4" /> <polyline points="16 16 14 18 16 20" /> <line x1="3" x2="10" y1="18" y2="18" /></svg> Wrap Text</b></div>
-        <div class="fbar"><span class="nb">F1</span><span class="fx">fx</span><span class="fv">Reorder Level</span></div>
-        <table>
-          <colgroup><col class="rn"><col style="width:30%"><col style="width:20%"><col><col><col style="width:13%"></colgroup>
-          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>F</th></tr>
-          <tr class="hd"><th>1</th><td>Item</td><td class="c">Unit</td><td class="c">Qty</td><td class="c">Unit Cost</td><td class="c wrap sel">Reorder Level</td></tr>
-          <tr><th>2</th><td>Bond paper, A4</td><td class="c">ream</td><td class="n">25</td><td class="n">₱245.00</td><td class="n">10</td></tr>
-          <tr><th>3</th><td>Bond paper, long</td><td class="c">ream</td><td class="n">30</td><td class="n">₱265.00</td><td class="n">10</td></tr>
-          <tr><th>4</th><td>Ballpen, black</td><td class="c">box of 12</td><td class="n">10</td><td class="n">₱96.00</td><td class="n">5</td></tr>
-        </table>
-      </div>
+    <div class="shots" data-walk>
+      <div>
+          <div class="stage">
+            <figure class="f" data-step="1" data-at="14,20.3"><div class="pic"><img src="images/ui/3.2/07-header-bold-wrap.webp" alt="Excel header row 1 in bold and centred; Bold button on the Home tab is on"><i class="ring" style="--x:3.2;--y:34.8;--w:70.6;--h:8.2"></i><i class="ring" style="--x:12.6;--y:18.4;--w:2.6;--h:3.8;--d:0.25s"></i></div></figure>
+            <figure class="f" data-step="2" data-at="30,58"><div class="pic"><img src="images/ui/3.2/07-header-bold-wrap.webp" alt="Units in column B centred, numbers in C, D and F right-aligned"><i class="ring" style="--x:24.1;--y:43;--w:12.2;--h:30.8"></i><i class="ring" style="--x:36.3;--y:43;--w:7.5;--h:30.8;--d:0.25s"></i><i class="ring" style="--x:43.8;--y:43;--w:10.3;--h:30.8;--d:0.5s"></i></div></figure>
+            <figure class="f" data-step="3" data-zoom="1.4" data-at="44,17" data-o="60,30"><div class="pic"><img src="images/ui/3.2/07-header-bold-wrap.webp" alt="F1 Reorder Level wrapped onto two lines; the Home tab Alignment group holds Wrap Text"><i class="ring" style="--x:64.3;--y:34.8;--w:9.6;--h:8.2"></i><i class="ring" style="--x:40.3;--y:12.6;--w:7.2;--h:9.6;--d:0.25s"></i></div></figure>
+          </div>
+          <p class="cap">Microsoft Excel for Mac at a narrow window: Center and Wrap Text sit under <b>Alignment</b>. A wider window shows them as buttons, as in Excel for Windows.</p>
+        </div>
       <div>
         <ul class="ticks">
-          <li><b>Bold headers:</b> select row 1, press <kbd>Ctrl</kbd>+<kbd>B</kbd>.</li>
-          <li><b>Center</b> short headers and units. Leave numbers <b>right</b>-aligned so the digits line up.</li>
-          <li><b>Wrap Text</b> lets a long header use two lines instead of a very wide column.</li>
+          <li data-step="1"><b>Bold headers:</b> select row 1, press <kbd>Ctrl</kbd>+<kbd>B</kbd>, then <b>Center</b>.</li>
+          <li data-step="2"><b>Center</b> short text like units. Leave numbers <b>right</b>-aligned so the digits line up.</li>
+          <li data-step="3"><b>Wrap Text</b> on F1: <i>Reorder Level</i> uses two lines instead of a very wide column.</li>
         </ul>
         <div class="callout tip mt-m"><b>Where:</b> Excel Home tab · Sheets toolbar and Format › Wrapping · Calc Format Cells › Alignment.</div>
       </div>
@@ -311,26 +290,22 @@
     <div class="slide-head">
       <div><p class="kicker">Lines and colour</p><h2 class="h2">Borders and fill colour, with restraint</h2></div>
     </div>
-    <div class="grid" style="grid-template-columns:.9fr 1.1fr;align-items:center">
+    <div class="shots" data-walk>
       <div>
-        <ol class="steps">
-          <li>Select <b>A1:F9</b>. Borders ▾ › <b>All Borders</b>, so the table prints with lines.</li>
-          <li>Select <b>A1:F1</b>. Fill colour › a <b>dark</b> shade, then font colour <b>white</b>.</li>
-          <li>Keep data rows <b>white</b> or a very light tint. One or two colours is enough.</li>
+          <div class="stage">
+            <figure class="f" data-step="1" data-at="25.5,20.3"><div class="pic"><img src="images/ui/3.2/08-borders-fill.webp" alt="Excel inventory A1:F9 with thin black borders on every cell; Borders button on the Home tab"><i class="ring" style="--x:3.2;--y:34.7;--w:70.6;--h:39.2"></i><i class="ring" style="--x:23.6;--y:18.4;--w:4;--h:3.8;--d:0.25s"></i></div></figure>
+            <figure class="f" data-step="2" data-at="31.2,20.3"><div class="pic"><img src="images/ui/3.2/08-borders-fill.webp" alt="Header row A1:F1 with a dark blue fill and white bold text; Fill Color and Font Color buttons"><i class="ring" style="--x:3.2;--y:34.7;--w:70.6;--h:8.2"></i><i class="ring" style="--x:29.6;--y:18.4;--w:3.4;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:33.6;--y:18.4;--w:3.4;--h:3.8;--d:0.5s"></i></div></figure>
+            <figure class="f" data-step="3" data-at="40,60"><div class="pic"><img src="images/ui/3.2/08-borders-fill.webp" alt="Data rows 2 to 9 left white"><i class="ring" style="--x:3.2;--y:42.9;--w:70.6;--h:30.9"></i></div></figure>
+          </div>
+          <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Same Borders, Fill Color and Font Color buttons on the Windows Home tab.</p>
+        </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Select <b>A1:F9</b>. Borders ▾ › <b>All Borders</b>, so the table prints with lines.</li>
+          <li data-step="2">Select <b>A1:F1</b>. Fill Color › a <b>dark</b> shade, then Font Color <b>white</b>.</li>
+          <li data-step="3">Keep data rows <b>white</b> or a very light tint. One or two colours is enough.</li>
         </ol>
         <div class="callout warn mt-m"><b>Print check:</b> gridlines you see on screen usually do <b>not</b> print. Borders do. Use Print Preview before you print a report.</div>
-      </div>
-      <div class="xl bd">
-        <table>
-          <colgroup><col class="rn"><col style="width:27%"><col style="width:17%"><col style="width:8%"><col style="width:15%"><col style="width:15%"><col></colgroup>
-          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
-          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Unit</td><td class="c">Qty</td><td class="c">Unit Cost</td><td class="c">Total Cost</td><td class="c wrap">Reorder Level</td></tr>
-          <tr><th>2</th><td>Bond paper, A4</td><td class="c">ream</td><td class="n">25</td><td class="n">₱245.00</td><td></td><td class="n">10</td></tr>
-          <tr><th>3</th><td>Bond paper, long</td><td class="c">ream</td><td class="n">30</td><td class="n">₱265.00</td><td></td><td class="n">10</td></tr>
-          <tr><th>4</th><td>Ballpen, black</td><td class="c">box of 12</td><td class="n">10</td><td class="n">₱96.00</td><td></td><td class="n">5</td></tr>
-          <tr><th>5</th><td>Folder, long</td><td class="c">pack of 100</td><td class="n">4</td><td class="n">₱520.00</td><td></td><td class="n">5</td></tr>
-          <tr><th>6</th><td>Fastener</td><td class="c">box of 50</td><td class="n">6</td><td class="n">₱85.00</td><td></td><td class="n">6</td></tr>
-        </table>
       </div>
     </div>
     <div class="notes">
@@ -379,25 +354,20 @@
         <p class="kicker">Long lists</p>
         <h2 class="h2">Freeze the top row so the headers never scroll away</h2>
         <ul class="ticks mt-m">
-          <li><b>Excel:</b> View › Freeze Panes › <b>Freeze Top Row</b></li>
+          <li><b>Excel:</b> View › Freeze Panes › <b>Freeze Top Row</b> (narrow Mac window: View › Window › Freeze Panes)</li>
           <li><b>Google Sheets:</b> View › Freeze › <b>1 row</b></li>
           <li><b>LibreOffice Calc:</b> View › Freeze Cells › <b>Freeze First Row</b></li>
         </ul>
         <div class="callout mt-m"><b>Undo it</b> with the same menu: <i>Unfreeze Panes</i> (Excel) or <i>No rows</i> (Sheets).</div>
       </div>
-      <div class="xl sm bd">
-        <div class="fbar"><span class="nb">B152</span><span class="fx">fx</span><span class="fv">Dela Cruz, Juan</span></div>
-        <table>
-          <colgroup><col style="width:calc(var(--u)*3.4)"><col style="width:10%"><col style="width:34%"><col><col></colgroup>
-          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
-          <tr class="fmt frz"><th>1</th><td>No.</td><td>Name</td><td>Section</td><td>Time In</td></tr>
-          <tr><th>150</th><td class="n">149</td><td>Santos, Maria</td><td>Admin</td><td class="n">7:52 AM</td></tr>
-          <tr><th>151</th><td class="n">150</td><td>Reyes, Ana</td><td>Records</td><td class="n">7:55 AM</td></tr>
-          <tr><th>152</th><td class="n">151</td><td class="sel">Dela Cruz, Juan</td><td>Collection</td><td class="n">7:58 AM</td></tr>
-          <tr><th>153</th><td class="n">152</td><td>Garcia, Jose</td><td>Admin</td><td class="n">8:01 AM</td></tr>
-          <tr><th>154</th><td class="n">153</td><td>Bautista, Liza</td><td>Records</td><td class="n">8:03 AM</td></tr>
-        </table>
-        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">Sample attendance sheet: scrolled to row 150, row 1 still visible.</p>
+      <div class="shots solo" data-walk>
+        <div>
+          <div class="stage">
+            <figure class="f" data-step="1" data-at="54,16"><div class="pic"><img src="images/ui/3.2/15-freeze-top-row-view.webp" alt="Excel View tab; on a narrow window Freeze Panes is inside the Window group"><i class="ring" style="--x:51;--y:7.2;--w:4;--h:3"></i><i class="ring" style="--x:51.5;--y:11.8;--w:5.8;--h:10;--d:0.25s"></i></div></figure>
+            <figure class="f" data-step="2" data-zoom="1.3" data-at="20,48" data-o="10,40"><div class="pic"><img src="images/ui/3.2/15-freeze-top-row-view.webp" alt="Sample attendance sheet scrolled to row 150: row 1 headers No., Name, Section, Time In still on top; B152 Dela Cruz, Juan selected"><i class="ring" style="--x:3.4;--y:35;--w:54;--h:3.9"></i><i class="ring" style="--x:0.2;--y:35;--w:3.4;--h:7.7;--d:0.25s"></i><i class="ring" style="--x:11.7;--y:46.4;--w:21.4;--h:3.9;--d:0.5s"></i></div></figure>
+          </div>
+          <p class="cap">Microsoft Excel for Mac, sample attendance sheet (sample names). Row numbers jump from 1 to 150: row 1 is frozen.</p>
+        </div>
       </div>
     </div>
     <div class="notes">
@@ -412,30 +382,24 @@
       <div><p class="kicker">Let the sheet warn you</p><h2 class="h2">Highlight items at or below the Reorder Level</h2></div>
       <span class="tag">Rule: Qty ≤ Reorder Level</span>
     </div>
-    <div class="grid" style="grid-template-columns:.95fr 1.05fr;align-items:start">
+    <div class="shots" data-walk>
       <div>
-        <ol class="steps" style="font-size:calc(var(--u)*1.35)">
-          <li>Select <b>C2:C9</b> (the Qty cells).</li>
-          <li>Excel: Home › <b>Conditional Formatting</b> › New Rule › <i>Use a formula to determine which cells to format</i>.</li>
-          <li>Type <span class="fcode">=C2&lt;=F2</span>, click Format › <b>Fill</b> light red › OK.</li>
+          <div class="stage">
+            <figure class="f" data-step="1" data-at="40,50"><div class="pic"><img src="images/ui/3.2/09-cf-select-c2-c9.webp" alt="Excel with the Qty cells C2:C9 selected, Name Box C2"><i class="ring" style="--x:36.2;--y:42.9;--w:7.8;--h:30.7"></i><i class="ring" style="--x:0.2;--y:24.6;--w:9.4;--h:4.4;--d:0.25s"></i></div></figure>
+            <figure class="f" data-step="2" data-at="40,47"><div class="pic"><img src="images/ui/3.2/10b-cf-edit-rule-formula.webp" alt="Excel formatting rule window: Use a formula to determine which cells to format"><i class="ring" style="--x:7.3;--y:43.5;--w:71.6;--h:6.9"></i></div></figure>
+            <figure class="f" data-step="3" data-at="20,56"><div class="pic"><img src="images/ui/3.2/10b-cf-edit-rule-formula.webp" alt="The formula =C2<=F2 and a light red sample under Format with"><i class="ring" style="--x:7.2;--y:52.1;--w:85.9;--h:7.8"></i><i class="ring" style="--x:63.7;--y:62.6;--w:29;--h:6.8;--d:0.25s"></i></div></figure>
+            <figure class="f" data-step="4" data-zoom="1.3" data-at="40,58" data-o="40,60"><div class="pic"><img src="images/ui/3.2/12-cf-red-final.webp" alt="Folder 4, Fastener 6 and Envelope 3 in Qty now have a light red fill"><i class="ring" style="--x:36.2;--y:54.4;--w:7.8;--h:7.7"></i><i class="ring" style="--x:36.2;--y:69.8;--w:7.8;--h:3.9;--d:0.25s"></i></div></figure>
+          </div>
+          <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. New Rule opens this window titled <i>New Formatting Rule</i> (shown here when editing the rule).</p>
+        </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Select <b>C2:C9</b> (the Qty cells).</li>
+          <li data-step="2">Home › <b>Conditional Formatting</b> › New Rule › <i>Use a formula to determine which cells to format</i>.</li>
+          <li data-step="3">Type <span class="fcode">=C2&lt;=F2</span>, click Format › <b>Fill</b> light red › OK.</li>
+          <li data-step="4">3 items to reorder: Folder (4 ≤ 5), Fastener (6 ≤ 6), Envelope (3 ≤ 5).</li>
         </ol>
-        <div class="callout mt-m" style="font-size:calc(var(--u)*1.25)"><b>Sheets:</b> Format › Conditional formatting › <i>Custom formula is</i> <span class="fcode">=C2&lt;=F2</span>. <b>Calc:</b> Format › Conditional › Condition › <i>Formula is</i>.</div>
-      </div>
-      <div class="xl bd">
-        <table>
-          <colgroup><col class="rn"><col style="width:40%"><col><col><col></colgroup>
-          <tr><th></th><th>A</th><th>B</th><th class="on">C</th><th>F</th></tr>
-          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Unit</td><td class="c">Qty</td><td class="c">Reorder Lvl</td></tr>
-          <tr><th>2</th><td>Bond paper, A4</td><td class="c">ream</td><td class="n">25</td><td class="n">10</td></tr>
-          <tr><th>3</th><td>Bond paper, long</td><td class="c">ream</td><td class="n">30</td><td class="n">10</td></tr>
-          <tr><th>4</th><td>Ballpen, black</td><td class="c">box of 12</td><td class="n">10</td><td class="n">5</td></tr>
-          <tr><th>5</th><td>Folder, long</td><td class="c">pack of 100</td><td class="n hi">4</td><td class="n">5</td></tr>
-          <tr><th>6</th><td>Fastener</td><td class="c">box of 50</td><td class="n hi">6</td><td class="n">6</td></tr>
-          <tr><th>7</th><td>Staple wire #35</td><td class="c">box</td><td class="n">12</td><td class="n">5</td></tr>
-          <tr><th>8</th><td>Printer ink, black</td><td class="c">bottle</td><td class="n">8</td><td class="n">4</td></tr>
-          <tr><th>9</th><td>Envelope, brown long</td><td class="c">pack of 100</td><td class="n hi">3</td><td class="n">5</td></tr>
-        </table>
-        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">3 items to reorder: Folder (4 ≤ 5), Fastener (6 ≤ 6), Envelope (3 ≤ 5).</p>
+        <div class="callout mt-m" style="font-size:calc(var(--u)*1.1)"><b>Sheets:</b> Format › Conditional formatting › <i>Custom formula is</i>. <b>Calc:</b> Format › Conditional › Condition › <i>Formula is</i>.</div>
       </div>
     </div>
     <div class="notes">
@@ -550,21 +514,14 @@
         </ul>
         <div class="media mt-m" style="height:calc(var(--u)*13)"><img src="images/m3/3-2-budget.jpg" alt="Bills, a pink calculator and printed charts on a table"></div>
       </div>
-      <div class="xl bd">
-        <table>
-          <colgroup><col class="rn"><col style="width:44%"><col><col></colgroup>
-          <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
-          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Budget</td><td class="c">Actual</td></tr>
-          <tr><th>2</th><td>Rice</td><td class="n">₱2,500.00</td><td class="n hi">₱2,650.00</td></tr>
-          <tr><th>3</th><td>CEPALCO electricity</td><td class="n">₱2,800.00</td><td class="n hi">₱3,120.00</td></tr>
-          <tr><th>4</th><td>Water</td><td class="n">₱450.00</td><td class="n">₱420.00</td></tr>
-          <tr><th>5</th><td>Mobile load and internet</td><td class="n">₱1,500.00</td><td class="n">₱1,500.00</td></tr>
-          <tr><th>6</th><td>Fare and fuel</td><td class="n">₱2,000.00</td><td class="n hi">₱2,240.00</td></tr>
-          <tr><th>7</th><td>School allowance</td><td class="n">₱3,000.00</td><td class="n">₱2,800.00</td></tr>
-          <tr><th>8</th><td>Groceries</td><td class="n">₱5,000.00</td><td class="n hi">₱5,480.00</td></tr>
-          <tr><th>9</th><td>Savings</td><td class="n">₱3,000.00</td><td class="n">₱3,000.00</td></tr>
-        </table>
-        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">Sample figures. Red = Actual is more than Budget.</p>
+      <div class="shots solo" data-walk>
+        <div>
+          <div class="stage">
+            <figure class="f" data-step="1" data-at="46,50"><div class="pic"><img src="images/ui/3.2/13-budget-currency-select.webp" alt="Excel sample household budget: Budget and Actual in pesos, Actual cells C2:C9 selected"><i class="ring" style="--x:26.9;--y:38.9;--w:25.8;--h:30.6"></i><i class="ring" style="--x:0.2;--y:24.6;--w:9.4;--h:4.4;--d:0.25s"></i></div></figure>
+            <figure class="f" data-step="2" data-zoom="1.3" data-at="46,42" data-o="30,50"><div class="pic"><img src="images/ui/3.2/14-budget-overspend-red.webp" alt="After the rule =C2>B2: Rice, CEPALCO electricity, Fare and fuel and Groceries Actual cells are light red"><i class="ring" style="--x:39.7;--y:38.9;--w:13.2;--h:7.7"></i><i class="ring" style="--x:39.7;--y:54.2;--w:13.2;--h:3.9;--d:0.25s"></i><i class="ring" style="--x:39.7;--y:61.9;--w:13.2;--h:3.9;--d:0.5s"></i></div></figure>
+          </div>
+          <p class="cap">Microsoft Excel for Mac. Sample figures. Red = Actual is more than Budget.</p>
+        </div>
       </div>
     </div>
     <div class="notes">
