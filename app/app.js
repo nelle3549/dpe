@@ -201,21 +201,27 @@
   }
 
   // ---------- landing, privacy, registration, sign in
+  // the activity a signed-out participant was heading to (from an activity QR or link), if any
+  function pendingAct() { var go = sessionStorage.getItem('dpeGo') || ''; var k = go.slice(4); return go.indexOf('#/a/') === 0 && ACT[k] ? ACT[k].a : null; }
   async function vLanding() {
     var code = sessionStorage.getItem('dpeJoin') || '';
     var cname = code ? (await sb.rpc('check_join_code', { p_code: code })).data : null;
+    var act = pendingAct();   // scanned an activity QR while signed out: most are registered already, so sign in comes first
     render(topbar() +
       '<section class="hero"><div class="narrow"><p class="kicker">DICT · ILCDB training for BIR Misamis Oriental</p>' +
       '<h1>Digital Productivity <span>Essentials</span></h1>' +
       '<p>Welcome! This is your course home for the next two days: slides, videos and the activities you\'ll do with us live.</p>' +
       logos() + '</div></section>' +
-      '<main class="narrow" style="margin-top:-18px;padding-bottom:40px"><div class="card stack" data-form>' +
-      (cname ? '<h2>Join ' + esc(cname) + '</h2><p class="muted">Class code <b>' + esc(code.toUpperCase()) + '</b>. It takes about a minute.</p>' +
-        '<div class="err" id="err"></div><button class="btn primary block" id="start">Get started</button>'
-        : '<h2>Join the class</h2><p class="muted">Scan the QR code on the facilitator\'s screen, or type the class code.</p>' +
+      '<main class="narrow" style="margin-top:-18px;padding-bottom:40px">' +
+      (act ? '<div class="card stack" style="margin-bottom:16px"><h2>Open the activity</h2><p style="margin:0;font-weight:700">' + esc(act.title) + '</p><p class="muted" style="margin:0">Sign in with the email and password you registered with, and it opens right away.</p>' +
+        '<a class="btn primary block" href="#/login">Sign in</a></div>' : '') +
+      '<div class="card stack" data-form>' +
+      (cname ? '<h2>' + (act ? 'New here? ' : '') + 'Join ' + esc(cname) + '</h2><p class="muted">Class code <b>' + esc(code.toUpperCase()) + '</b>. It takes about a minute.</p>' +
+        '<div class="err" id="err"></div><button class="btn ' + (act ? '' : 'primary ') + 'block" id="start">' + (act ? 'Register' : 'Get started') + '</button>'
+        : '<h2>' + (act ? 'New here? Join the class' : 'Join the class') + '</h2><p class="muted">Scan the QR code on the facilitator\'s screen, or type the class code.</p>' +
         '<div class="field"><label class="f" for="code">Class code</label><input id="code" autocomplete="off" autocapitalize="characters" value="' + esc(code) + '"></div>' +
-        '<div class="err" id="err"></div><button class="btn primary block" id="start">Continue</button>') +
-      '<p class="small muted center">Already registered? <a href="#/login">Sign in</a></p></div></main>');
+        '<div class="err" id="err"></div><button class="btn ' + (act ? '' : 'primary ') + 'block" id="start">Continue</button>') +
+      (act ? '' : '<p class="small muted center">Already registered? <a href="#/login">Sign in</a></p>') + '</div></main>');
     document.getElementById('start').onclick = async function () {
       var inp = document.getElementById('code');
       if (inp) {
@@ -326,7 +332,9 @@
   }
 
   function vLogin() {
+    var act = pendingAct();
     render(topbar() + '<main class="narrow page"><div class="card" data-form><h2>Sign in</h2>' +
+      (act ? '<p class="muted">After you sign in, this opens: <b>' + esc(act.title) + '</b></p>' : '') +
       '<div class="field"><label class="f" for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email"></div>' +
       pwField('pwl', 'Password') + '<div class="err" id="err"></div>' +
       '<button class="btn primary block mt-3" id="go">Sign in</button>' +
@@ -839,7 +847,7 @@
 
     function showPanel() {
       if (!liveId) return;
-      var a = ACT[liveId].a, url = BASE + '?a=' + liveId, st = S.acts[liveId];
+      var a = ACT[liveId].a, url = BASE + '?a=' + liveId + '&join=' + encodeURIComponent(S.cohort.join_code), st = S.acts[liveId];   // the code lets late joiners register
       $live.classList.toggle('hide', panelHidden);
       document.getElementById('showlive').classList.toggle('hide', !panelHidden);
       $live.innerHTML = '<div class="row" style="justify-content:space-between"><span class="tag live">' + (st.status === 'live' ? '● LIVE' : 'Ended') + '</span><span class="timer" id="ptimer"></span></div>' +
