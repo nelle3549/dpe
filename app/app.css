@@ -49,12 +49,12 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero p.lede{font-size:clamp(16px,1.5vw,20px);max-width:62ch}
 .hero p.rp{margin-top:18px;font-size:15px;color:rgba(255,255,255,.7)}
 .hero p.rp b{color:#fff}
-.hero .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px;max-width:900px}
+.hero .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
 .hero .stats div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:12px 16px}
 .hero .stats b{display:block;font-size:28px;line-height:1.1;font-weight:800}
 .hero .stats span{font-size:13px;color:rgba(255,255,255,.7)}
 /* the strip for you: greeting + progress + next lesson */
-.hero .me{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px 16px;margin-top:22px;max-width:900px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.1);border:1px solid rgba(244,180,0,.45)}
+.hero .me{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px 16px;margin-top:22px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.1);border:1px solid rgba(244,180,0,.45)}
 .hero .me h2{margin:0;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;line-height:1.15}
 .hero .me h2 span{color:var(--gold)}
 .hero .me .mt p{margin:4px 0 0;font-size:14px;color:rgba(255,255,255,.78)}
