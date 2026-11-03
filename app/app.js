@@ -119,19 +119,30 @@
   function fullName(p) { return (p.first_name + ' ' + p.last_name).trim(); }
   function errMsg(e) { return (e && (e.message || e.error_description)) || String(e); }
   function isAdmin() { return S.profile && S.profile.role === 'admin'; }
+  // The facilitator sees the participants' pages, with her own controls (.fac) added on top.
+  // "Hide my tools" removes them, so a Zoom screen share looks exactly like the participants' screen.
+  function toolsBtn() { return '<button id="tools" class="btn-top tools" aria-pressed="' + !clean() + '">' + (clean() ? '🛠 Show my tools' : '👁 Hide my tools') + '</button>'; }
+  function clean() { try { return localStorage.getItem('dpeClean') === '1'; } catch (e) { return false; } }
+  function setClean(on) {
+    try { localStorage.setItem('dpeClean', on ? '1' : '0'); } catch (e) {}
+    document.documentElement.classList.toggle('clean', on);
+  }
+  document.documentElement.classList.toggle('clean', clean());
   function logos() {
     return '<div class="logos"><img src="course/images/logos/dict.png" alt="DICT"><img src="course/images/logos/bir.png" alt="Bureau of Internal Revenue"><img class="sd" src="course/images/logos/serial-disruptors.png" alt="Serial Disruptors"></div>';
   }
   function topbar() {
     var p = S.profile;
     return '<header class="top"><div class="wrap"><a class="brand" href="#/"><span>DPE</span><span class="full"> · Digital Productivity Essentials</span></a>' +
-      (p ? '<span class="who">' + esc(p.first_name) + (isAdmin() ? ' · admin' : '') + '</span>' +
-        (isAdmin() ? '<a class="btn-top" href="#/people">People</a>' : '') +
+      (p ? '<span class="who">' + esc(p.first_name) + (isAdmin() ? '<span class="fac"> · facilitator</span>' : '') + '</span>' +
+        (isAdmin() ? '<a class="btn-top fac" href="#/people">People</a>' + toolsBtn() : '') +
         '<button id="signout">Sign out</button>' : '<a class="btn-top" href="#/login">Sign in</a>') +
       '</div></header>';
   }
   function bindTop() {
     var so = document.getElementById('signout');
+    var tl = document.getElementById('tools');
+    if (tl) tl.onclick = function () { setClean(!clean()); tl.setAttribute('aria-pressed', !clean()); tl.textContent = clean() ? '🛠 Show my tools' : '👁 Hide my tools'; };
     if (so) so.onclick = function () { clearTimers(); sb.auth.signOut().then(function () { S.profile = null; S.session = null; location.hash = '#/'; route(); }); };
   }
   function render(html) { $app.innerHTML = html; bindTop(); window.scrollTo(0, 0); }
@@ -182,11 +193,11 @@
     var sub = arg.split('/');
     if ((view === 'deck' || view === 'video') && TOPIC[sub[0]]) return vViewer(view, sub[0], +sub[1] || 0);
     if (isAdmin()) {
-      if (view === 'present' && TOPIC[arg]) return vPresent(arg);
+      if (view === 'present' && TOPIC[sub[0]]) return vPresent(sub[0], +sub[1] || 0);
       if (view === 'results' && TOPIC[arg]) return vResults(arg);
       if (view === 'people') return vPeople();
     }
-    return isAdmin() ? vAdminHome() : vHome();
+    return vHome();
   }
 
   // ---------- landing, privacy, registration, sign in
@@ -364,7 +375,7 @@
     render(topbar() + '<main class="narrow page"><div class="card"><h2>Almost there</h2><p>Your account has no class yet. Scan the class QR code again, or ask the facilitator.</p></div></main>');
   }
 
-  // ---------- participant home
+  // ---------- home (participants; the facilitator gets the same page plus her .fac controls)
   function actLink(a) {
     var mine = S.mine[a.id], st = S.acts[a.id];
     var pc = mine && mine.max_score ? Math.round(mine.score / mine.max_score * 100) : null;
@@ -377,9 +388,12 @@
   var openMods = {};   // which outline modules the participant expanded (kept across the 15 s refresh)
   function vHome() {
     clearTimers();   // views that re-render themselves must not stack their refresh timers
-    var p = S.profile;
+    var p = S.profile, adm = isAdmin(), deckView = adm ? '#/present/' : '#/deck/';
+    var joinUrl = adm && BASE + '?join=' + encodeURIComponent(S.cohort.join_code);
     var html = topbar() + '<section class="hero"><div class="wrap"><p class="kicker">' + esc(S.cohort ? S.cohort.name : '') + '</p>' +
       '<h1>Hi, <span>' + esc(p.first_name) + '</span></h1><p>Topics open here as we reach them in class. Your answers save as you go.</p></div></section><main class="wrap" style="padding-bottom:48px">';
+    if (adm) html += '<div class="card facbar fac mt-3"><span class="fk">Only you see this</span><span>Class code <b class="code">' + esc(S.cohort.join_code) + '</b></span>' +
+      '<span><b id="nreg">…</b> registered</span><span class="row"><button class="btn small gold" id="full">Show join QR</button><button class="btn small" id="cpj">Copy join link</button></span></div>';
     var live = Object.keys(S.acts).filter(function (k) { return S.acts[k].status === 'live' && ACT[k] && !(S.mine[k] && S.mine[k].status === 'submitted'); });
     if (live.length) html += '<div class="card mt-3" style="border-color:var(--bad)"><h3>● Live now</h3>' +
       live.map(function (k) { return '<a class="btn primary mt-1" href="#/a/' + k + '">' + (S.mine[k] ? 'Continue: ' : '') + esc(ACT[k].a.title) + ' →</a>'; }).join(' ') + '</div>';
@@ -389,8 +403,9 @@
     html += '<h2 class="sec">Open now</h2>' + (open.length ? '<div class="topics">' + open.map(function (o) {
       var t = o.t;
       return '<div class="topic is-open" style="--c:var(--m' + (o.mi + 1) + ')"><div class="t"><span class="num">' + t.id + '</span><h4>' + esc(t.title) + '</h4></div>' +
-        '<div class="row"><a class="btn" href="#/deck/' + t.id + '">Slides</a>' + (t.video ? '<a class="btn" href="#/video/' + t.id + '">▶ Video ' + t.video + '</a>' : '') + '</div>' +
-        '<div class="acts">' + t.activities.map(actLink).join('') + '</div></div>';
+        '<div class="row"><a class="btn" href="' + deckView + t.id + '">Slides</a>' + (t.video ? '<a class="btn" href="#/video/' + t.id + '">▶ Video ' + t.video + '</a>' : '') + '</div>' +
+        '<div class="acts">' + t.activities.map(actLink).join('') + '</div>' +
+        (adm ? '<div class="row fac facrow"><a class="btn small" href="#/results/' + t.id + '">Results</a><button class="btn small" data-tog="' + t.id + '">Close</button></div>' : '') + '</div>';
     }).join('') + '</div>' : '<div class="card"><p class="muted" style="margin:0">Nothing is open yet. Your facilitator opens each topic as the class reaches it.</p></div>');
     html += '<h2 class="sec">Course outline</h2>';
     CAT.forEach(function (m, mi) {
@@ -400,12 +415,24 @@
         m.topics.map(function (t) {
           var on = topicOpen(t.id);
           return '<li' + (on ? '' : ' class="locked"') + '><span class="num">' + t.id + '</span><span class="ttl">' + esc(t.title) + '</span>' +
-            (on ? '<a class="tag open" href="#/deck/' + t.id + '">Open</a>' : '<button type="button" class="tag" data-locked="' + t.id + '">🔒 Later</button>') + '</li>';
+            (on ? '<a class="tag open" href="' + deckView + t.id + '">Open</a>' : '<button type="button" class="tag" data-locked="' + t.id + '">🔒 Later</button>') +
+            (adm ? '<button type="button" class="tag factag fac" data-tog="' + t.id + '">' + (on ? 'Close' : 'Open to class') + '</button>' : '') + '</li>';
         }).join('') + '</ul></details>';
     });
     render(html + '<p class="small muted mt-4">Signed in as ' + esc(p.email) + ' · Certificate name: <b>' + esc(fullName(p)) + '</b> (spelling wrong? Ask the facilitator.)</p></main>');
     document.querySelectorAll('details.mod').forEach(function (d) { d.ontoggle = function () { openMods[d.dataset.mod] = d.open; }; });
     document.querySelectorAll('[data-locked]').forEach(function (b) { b.onclick = function () { toast('Topic ' + b.dataset.locked + ' opens later, when the class reaches it.'); }; });
+    if (adm) {
+      document.querySelectorAll('[data-tog]').forEach(function (b) { b.onclick = function () { var y = scrollY; setTopic(b.dataset.tog, !topicOpen(b.dataset.tog)).then(function () { vHome(); scrollTo(0, y); }); }; });
+      document.getElementById('cpj').onclick = function () { copy(joinUrl); };
+      document.getElementById('full').onclick = function () { qrFull(joinUrl, S.cohort.join_code, 'Scan to register'); count(); };
+      var count = async function () {
+        var r = await sb.from('profiles').select('id', { count: 'exact', head: true }).eq('cohort_id', S.cohort.id).eq('role', 'participant');
+        var n = document.getElementById('nreg'); if (n) n.textContent = r.count == null ? '?' : r.count;
+        var f = document.getElementById('fullcount'); if (f && r.count != null) f.textContent = r.count;
+      };
+      count(); every(5000, function () { if (!document.hidden) count(); });
+    }
     // every 15 s (only while the tab is visible): redraw only when something changed, keeping scroll and focus
     var sig = function () { return JSON.stringify([S.topics, S.acts, S.mine]); }, was = sig();
     every(15000, async function () {
@@ -452,7 +479,7 @@
       document.getElementById('prev').disabled = d.n <= 1;
       nx.textContent = end ? (nx.dataset.back ? 'Activity ›' : 'Home ›') : 'Next ›'; nx.setAttribute('aria-label', end ? nx.textContent.slice(0, -2) : 'Next slide'); nx.dataset.end = end ? '1' : '';
       // keep the slide in the address, so a reload or the Back button returns to it (without re-rendering)
-      var m = location.hash.match(/^#\/deck\/([\d.]+)/); if (m) history.replaceState(null, '', '#/deck/' + m[1] + '/' + d.n);
+      var m = location.hash.match(/^#\/(deck|present)\/([\d.]+)/); if (m) history.replaceState(null, '', '#/' + m[1] + '/' + m[2] + '/' + d.n);
     }
   });
 
@@ -739,51 +766,6 @@
     });
   }
 
-  // ---------- admin home
-  async function vAdminHome() {
-    clearTimers();   // views that re-render themselves must not stack their refresh timers
-    var c = S.cohort, joinUrl = BASE + '?join=' + encodeURIComponent(c.join_code);
-    var html = topbar() + '<main class="wrap page">';
-    // what the class can see right now, above everything else
-    var running = [];
-    CAT.forEach(function (m) { m.topics.forEach(function (t) { if (topicOpen(t.id)) running.push(t); }); });
-    if (running.length) html += '<div class="card now"><h3>Now running</h3>' + running.map(function (t) {
-      var lv = t.activities.filter(function (a) { return S.acts[a.id] && S.acts[a.id].status === 'live'; });
-      return '<div class="nrow"><span class="num">' + t.id + '</span><h4>' + esc(t.title) + '</h4>' +
-        lv.map(function (a) { return '<span class="tag live">● ' + esc(a.title) + '</span>'; }).join('') +
-        '<span class="row" style="margin-left:auto"><a class="btn small primary" href="#/present/' + t.id + '">Present</a><a class="btn small" href="#/results/' + t.id + '">Results</a>' +
-        '<button class="btn small" data-tog="' + t.id + '">Close</button></span></div>';
-    }).join('') + '</div>';
-    html += '<div class="card reg"><div class="qr" id="regqr">' + qr(joinUrl) + '</div><div class="stack">' +
-      '<div class="muted small">' + esc(c.name) + ' · registration</div><div>Class code <span class="code">' + esc(c.join_code) + '</span></div>' +
-      '<div class="linkbox"><span>' + esc(joinUrl.replace(/^https?:\/\//, '')) + '</span><button class="btn small" id="cpj">Copy</button></div>' +
-      '<div class="row"><div><span class="big" id="nreg">…</span> <span class="muted">registered</span></div><button class="btn gold" id="full">Show full screen for Zoom</button></div></div></div>';
-    CAT.forEach(function (m, mi) {
-      html += '<section class="module" style="--c:var(--m' + (mi + 1) + ')"><span class="k">' + esc(m.n + ' · ' + m.day) + '</span><h3>' + esc(m.title) + '</h3><div class="topics">';
-      m.topics.forEach(function (t) {
-        var open = topicOpen(t.id);
-        var live = t.activities.filter(function (a) { return S.acts[a.id] && S.acts[a.id].status === 'live'; }).length;
-        html += '<div class="topic' + (open ? ' is-open' : '') + '"><div class="t"><span class="num">' + t.id + '</span><h4>' + esc(t.title) + '</h4></div>' +
-          '<div class="row small">' + (open ? '<span class="tag open">Open to class</span>' : '<span class="tag">🔒 Closed</span>') + (live ? '<span class="tag live">● ' + live + ' live</span>' : '') +
-          '<span class="muted">' + t.activities.length + ' activities</span></div>' +
-          '<div class="row"><a class="btn small primary" href="#/present/' + t.id + '">Present</a>' +
-          '<button class="btn small" data-tog="' + t.id + '">' + (open ? 'Close' : 'Open to class') + '</button>' +
-          '<a class="btn small" href="#/results/' + t.id + '">Results</a></div></div>';
-      });
-      html += '</div></section>';
-    });
-    render(html + '</main>');
-    document.getElementById('cpj').onclick = function () { copy(joinUrl); };
-    document.getElementById('full').onclick = function () { qrFull(joinUrl, c.join_code, 'Scan to register'); count(); };
-    document.querySelectorAll('[data-tog]').forEach(function (b) { b.onclick = function () { setTopic(b.dataset.tog, !topicOpen(b.dataset.tog)).then(vAdminHome); }; });
-    async function count() {
-      var r = await sb.from('profiles').select('id', { count: 'exact', head: true }).eq('cohort_id', c.id).eq('role', 'participant');
-      var n = document.getElementById('nreg'); if (n) n.textContent = r.count == null ? '?' : r.count;
-      var f = document.getElementById('fullcount'); if (f && r.count != null) f.textContent = r.count;
-    }
-    count(); every(5000, count);
-  }
-
   function qrFull(url, code, title) {
     var known = document.getElementById('nreg');
     $modal.innerHTML = '<div class="qrfull" id="qf" role="dialog" aria-modal="true" aria-label="' + esc(title) + '"><div style="font-size:clamp(22px,3vw,36px);font-weight:800">' + esc(title) + '</div>' +
@@ -801,16 +783,23 @@
   }
 
   // ---------- presenter: deck + Go live panel
-  function vPresent(tid) {
+  function vPresent(tid, slide) {
     var T = TOPIC[tid].t, cid = S.profile.cohort_id, current = null, liveId = null, panelHidden = false;
     var opts = T.activities.map(function (a) { return '<option value="' + a.id + '">' + esc(a.title) + '</option>'; }).join('');
-    render('<div class="present"><div class="pbar"><a href="#/">⌂ Home</a><span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
-      '<button class="golive hide" id="golive"></button>' +
+    // the same frame as the participants' slide viewer (#/deck), with the facilitator's controls (.fac) added
+    render('<div class="present"><div class="pbar vbar"><a href="#/">⌂ Home</a><span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
+      (T.video ? '<a href="#/video/' + tid + '">▶ Video</a>' : '') +
+      '<span class="fac pfac"><button class="golive hide" id="golive"></button>' +
       '<select id="pick" aria-label="Go live with an activity"><option value="">Go live with…</option>' + opts + '</select>' +
       '<button class="hide" id="showlive">● Live panel</button>' +
-      '<a class="res" href="#/results/' + tid + '" id="resbtn">Results →</a></div>' +
-      '<div class="lockbar' + (topicOpen(tid) ? ' hide' : '') + '" id="lockbar">🔒 This topic is closed to participants.<button id="openit">Open to class</button></div>' +
-      '<div class="pbody"><iframe id="deck" src="course/' + encodeURIComponent(T.deck) + '" title="' + esc(T.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe><aside class="livepanel hide" id="live"></aside></div></div>');
+      '<a class="res" href="#/results/' + tid + '" id="resbtn">Results →</a></span>' + toolsBtn() + '</div>' +
+      '<div class="lockbar fac' + (topicOpen(tid) ? ' hide' : '') + '" id="lockbar">🔒 This topic is closed to participants.<button id="openit">Open to class</button></div>' +
+      '<div class="pbody"><iframe id="deck" src="course/' + encodeURIComponent(T.deck) + (slide ? '#/' + slide : '') + '" title="' + esc(T.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe><aside class="livepanel hide" id="live"></aside></div>' +
+      '<div class="pnav"><button id="prev" aria-label="Previous slide">‹ Back</button><span id="pcount" aria-live="polite"></span><button id="next" aria-label="Next slide">Next ›</button></div></div>');
+    var sendKey = function (k) { $f.contentWindow.postMessage({ type: 'dpe-key', key: k }, '*'); $f.contentWindow.focus(); };
+    document.getElementById('prev').onclick = function () { sendKey('ArrowLeft'); };
+    var $nx = document.getElementById('next');
+    $nx.onclick = function () { if ($nx.dataset.end) location.hash = '#/'; else sendKey('ArrowRight'); };
     var $f = document.getElementById('deck'), $go = document.getElementById('golive'), $live = document.getElementById('live');
     document.getElementById('openit').onclick = function () { setTopic(tid, true).then(function () { document.getElementById('lockbar').classList.add('hide'); }); };
     document.getElementById('pick').onchange = function () { if (this.value) goLive(this.value); this.value = ''; };
