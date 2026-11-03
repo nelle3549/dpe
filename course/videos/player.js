@@ -41,7 +41,8 @@
     '#ui button{flex:none;background:rgba(255,255,255,.14);border:0;color:#fff;font:inherit;height:36px;min-width:36px;padding:0 12px;border-radius:9px;cursor:pointer}' +
     '#ui button .ico{width:18px;height:18px;display:block;margin:auto}#ui button:hover{background:rgba(255,255,255,.28)}#ui button.off{opacity:.5}' +
     '#ui .pl-time{flex:none;font-variant-numeric:tabular-nums;opacity:.9;min-width:96px}' +
-    '#ui input{flex:1;accent-color:#F4B400;height:4px;cursor:pointer}' +
+    '#ui input{flex:1;accent-color:#F4B400;height:24px;margin:0;cursor:pointer}' +   // tall hit area, the track still draws thin
+    '#ui{-webkit-user-select:none;user-select:none}' +
     '#big{position:fixed;left:50%;top:50%;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;border:0;z-index:11;cursor:pointer;' +
       'background:rgba(244,180,0,.72);box-shadow:0 10px 40px rgba(0,0,0,.25);transition:background .15s}' +
     '#big:hover{background:rgba(244,180,0,.92)}' +
