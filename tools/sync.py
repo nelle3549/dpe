@@ -75,8 +75,9 @@ mods = []
 for m in re.finditer(r"\{id:'(m\d)', c:'[^']*', n:'([^']*)', h:'([^']*)', day:'([^']*)', title:'([^']*)',\s*desc:'([^']*)'", idx):
     mods.append(dict(id=m[1], n=m[2], hours=m[3], day=m[4], title=m[5], desc=m[6], topics=[]))
 vlen = json.loads(re.search(r'const VLEN = (\{.*?\});', idx)[1])
-for m in re.finditer(r"D\('(\d\.\d)','((?:[^'\\]|\\.)*)','([^']*)','((?:[^'\\]|\\.)*)'", idx):
+for m in re.finditer(r"D\('(\d\.\d)','((?:[^'\\]|\\.)*)','([^']*)','((?:[^'\\]|\\.)*)',\[(.*?)\]", idx):
     tid, title, dur, desc = m[1], m[2].replace("\\'", "'"), m[3], m[4].replace("\\'", "'")
+    parts = [x.replace("\\'", "'") for x in re.findall(r"'((?:[^'\\]|\\.)*)'", m[5])]   # the topic's highlights
     deck = f'Deck - {tid} {title} - 2026-11-01.html'
     assert os.path.exists(f'{REPO}/course/{deck}'), deck
     spec = json.load(open(f'{REPO}/activities/{tid}.json'))
@@ -88,7 +89,7 @@ for m in re.finditer(r"D\('(\d\.\d)','((?:[^'\\]|\\.)*)','([^']*)','((?:[^'\\]|\
         t = a['slideNo'] and re.search(r'data-min="([\d.]+)"', slides[a['slideNo'] - 1][1])
         if t and float(t[1]) >= 1 and float(t[1]) != a['minutes']:   # sub-minute ones are reading tests
             print(f'warning: {a["id"]} slide timer {t[1]} min, portal {a["minutes"]} min')
-    mods[int(tid[0]) - 1]['topics'].append(dict(id=tid, title=title, dur=dur, desc=desc, deck=deck,
+    mods[int(tid[0]) - 1]['topics'].append(dict(id=tid, title=title, dur=dur, desc=desc, parts=parts, deck=deck,
                                                video=vlen.get(tid), activities=acts))
 n = sum(len(m['topics']) for m in mods)
 assert len(mods) == 4 and n == 26, (len(mods), n)

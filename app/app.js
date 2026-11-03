@@ -172,7 +172,7 @@
   async function loadClass() {
     var cid = S.profile.cohort_id;
     var r = await Promise.all([
-      sb.from('profiles').select('id,first_name,last_name').eq('cohort_id', cid).eq('role', 'participant').order('last_name'),
+      sb.from('profiles').select('id,first_name,last_name,position').eq('cohort_id', cid).eq('role', 'participant').order('last_name'),
       sb.from('attempts').select('user_id,activity_id,status,score,max_score,submitted_at').eq('cohort_id', cid)
     ]);
     var ids = {}; S.parts = r[0].data || []; S.parts.forEach(function (p) { ids[p.id] = 1; });
@@ -429,7 +429,34 @@
   }
   // topic picture, same as the course page cards (course/images/thumbs/1-1.jpg)
   function thumb(id) { return '<img src="course/images/thumbs/' + id.replace('.', '-') + '.jpg" alt="" loading="lazy">'; }
-  var openMods = {};   // which outline modules the participant expanded (kept across the 15 s refresh)
+  // a topic card: picture, summary (2 lines + See more), Open / Play video and the activities once the topic is open
+  function topicCard(t, adm, deckView) {
+    var on = topicOpen(t.id), go = on || adm;   // the facilitator can open a closed topic's slides to preview them
+    return '<div class="topic' + (on ? ' is-open' : ' locked') + '">' +
+      (go ? '<a class="cover" href="' + deckView + t.id + '" tabindex="-1" aria-hidden="true">' : '<div class="cover">') + thumb(t.id) +
+      '<span class="num">' + t.id + '</span>' + (on ? '' : '<span class="lockt">🔒 Opens later</span>') + (go ? '</a>' : '</div>') +
+      '<div class="t"><h4>' + esc(t.title) + '</h4></div>' +
+      '<p class="sum">' + esc(t.desc) + '</p><button type="button" class="more" data-more="' + t.id + '">See more</button>' +
+      (go ? '<div class="row"><a class="btn" href="' + deckView + t.id + '">Open</a>' + (t.video ? '<a class="btn" href="#/video/' + t.id + '">▶ Play video</a>' : '') + '</div>' +
+        '<div class="acts">' + t.activities.map(actLink).join('') + '</div>' : '') +
+      (adm ? '<div class="row fac facrow"><label class="switch"><input type="checkbox" role="switch" data-tog="' + t.id + '"' + (on ? ' checked' : '') + '>' +
+        '<span class="sl" aria-hidden="true"></span><span>' + (on ? 'Open to class' : 'Closed') + '</span></label><a class="btn small" href="#/results/' + t.id + '">Results</a></div>' : '') +
+      '</div>';
+  }
+  // See more: the topic's synopsis and parts
+  function topicInfo(tid, from) {
+    var t = TOPIC[tid].t, m = TOPIC[tid].m;
+    $modal.innerHTML = '<div class="modal-back" id="ti-back"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="ti-t">' +
+      '<p class="kicker">' + esc(m.n + ' · Topic ' + t.id + ' · ' + t.dur + (t.video ? ' · video ' + t.video : '')) + '</p><h2 id="ti-t">' + esc(t.title) + '</h2>' +
+      '<h3 class="mh">Synopsis</h3><p>' + esc(t.desc) + '</p>' +
+      (t.parts && t.parts.length ? '<h3 class="mh">Parts</h3><ul>' + t.parts.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '') +
+      (t.activities.length ? '<h3 class="mh">Activities</h3><ul>' + t.activities.map(function (a) { return '<li>' + esc(a.title) + '</li>'; }).join('') + '</ul>' : '') +
+      '<div class="row mt-3" style="justify-content:flex-end"><button class="btn primary" id="ti-x">Close</button></div></div></div>';
+    var close = function () { off(); $modal.innerHTML = ''; if (from && from.isConnected) from.focus(); };
+    var off = modalKeys($modal.querySelector('.modal'), function () { $modal.innerHTML = ''; if (from && from.isConnected) from.focus(); });
+    document.getElementById('ti-x').onclick = close;
+    document.getElementById('ti-back').onclick = function (e) { if (e.target === this) close(); };
+  }
   function vHome() {
     clearTimers();   // views that re-render themselves must not stack their refresh timers
     var p = S.profile, adm = isAdmin(), deckView = adm ? '#/present/' : '#/deck/';
@@ -445,34 +472,19 @@
         return adm ? '<a class="btn primary mt-1" href="#/who/' + k + '">' + esc(ACT[k].a.title) + ': ' + nDone(k) + ' of ' + S.parts.length + ' done →</a>'
           : '<a class="btn primary mt-1" href="#/a/' + k + '">' + (S.mine[k] ? 'Continue: ' : '') + esc(ACT[k].a.title) + ' →</a>';
       }).join(' ') + '</div>';
-    // open topics first, so nobody scrolls past locked ones to find them
-    var open = [];
-    CAT.forEach(function (m, mi) { m.topics.forEach(function (t) { if (topicOpen(t.id)) open.push({ t: t, mi: mi }); }); });
-    html += '<h2 class="sec">Open now</h2>' + (open.length ? '<div class="topics">' + open.map(function (o) {
-      var t = o.t;
-      return '<div class="topic is-open" style="--c:var(--m' + (o.mi + 1) + ')"><a class="cover" href="' + deckView + t.id + '" tabindex="-1" aria-hidden="true">' + thumb(t.id) + '<span class="num">' + t.id + '</span></a>' +
-        '<div class="t"><h4>' + esc(t.title) + '</h4></div>' +
-        '<div class="row"><a class="btn" href="' + deckView + t.id + '">Slides</a>' + (t.video ? '<a class="btn" href="#/video/' + t.id + '">▶ Video ' + t.video + '</a>' : '') + '</div>' +
-        '<div class="acts">' + t.activities.map(actLink).join('') + '</div>' +
-        (adm ? '<div class="row fac facrow"><a class="btn small" href="#/results/' + t.id + '">Results</a><button class="btn small" data-tog="' + t.id + '">Close</button></div>' : '') + '</div>';
-    }).join('') + '</div>' : '<div class="card"><p class="muted" style="margin:0">Nothing is open yet. Your facilitator opens each topic as the class reaches it.</p></div>');
-    html += '<h2 class="sec">Course outline</h2>';
+    // every topic as a card, grouped by module; closed ones are greyed out but their summary stays readable
     CAT.forEach(function (m, mi) {
       var nOpen = m.topics.filter(function (t) { return topicOpen(t.id); }).length;
-      html += '<details class="mod" data-mod="' + mi + '" style="--c:var(--m' + (mi + 1) + ')"' + (openMods[mi] ? ' open' : '') + '><summary><span><span class="k">' + esc(m.n + ' · ' + m.day) + '</span><br><b>' + esc(m.title) + '</b></span>' +
-        '<span class="small muted meta">' + m.topics.length + ' topics · ' + (nOpen ? nOpen + ' open' : 'opens later') + '</span></summary><ul class="olist">' +
-        m.topics.map(function (t) {
-          var on = topicOpen(t.id);
-          return '<li' + (on ? '' : ' class="locked"') + '><span class="oth">' + thumb(t.id) + '<span class="num">' + t.id + '</span></span><span class="ttl">' + esc(t.title) + '</span>' +
-            (on ? '<a class="tag open" href="' + deckView + t.id + '">Open</a>' : '<button type="button" class="tag" data-locked="' + t.id + '">🔒 Later</button>') +
-            (adm ? '<button type="button" class="tag factag fac" data-tog="' + t.id + '">' + (on ? 'Close' : 'Open to class') + '</button>' : '') + '</li>';
-        }).join('') + '</ul></details>';
+      html += '<section class="modsec" style="--c:var(--m' + (mi + 1) + ')"><div class="modhead"><span class="k">' + esc(m.n + ' · ' + m.day) + '</span>' +
+        '<h2>' + esc(m.title) + '</h2><span class="small muted">' + m.topics.length + ' topics · ' + (nOpen ? nOpen + ' open' : 'opens later') + '</span></div>' +
+        '<div class="topics">' + m.topics.map(function (t) { return topicCard(t, adm, deckView); }).join('') + '</div></section>';
     });
     render(html + '<p class="small muted mt-4">Signed in as ' + esc(p.email) + ' · Certificate name: <b>' + esc(fullName(p)) + '</b> (spelling wrong? Ask the facilitator.)</p></main>');
-    document.querySelectorAll('details.mod').forEach(function (d) { d.ontoggle = function () { openMods[d.dataset.mod] = d.open; }; });
-    document.querySelectorAll('[data-locked]').forEach(function (b) { b.onclick = function () { toast('Topic ' + b.dataset.locked + ' opens later, when the class reaches it.'); }; });
+    document.querySelectorAll('[data-more]').forEach(function (b) { b.onclick = function () { topicInfo(b.dataset.more, b); }; });
     if (adm) {
-      document.querySelectorAll('[data-tog]').forEach(function (b) { b.onclick = function () { var y = scrollY; setTopic(b.dataset.tog, !topicOpen(b.dataset.tog)).then(function () { vHome(); scrollTo(0, y); }); }; });
+      document.querySelectorAll('[data-tog]').forEach(function (b) {
+        b.onchange = function () { var y = scrollY, id = b.dataset.tog; b.disabled = true; setTopic(id, b.checked).then(function () { vHome(); scrollTo(0, y); var c = document.querySelector('[data-tog="' + id + '"]'); if (c) c.focus({ preventScroll: true }); }); };
+      });
       document.getElementById('cpj').onclick = function () { copy(joinUrl); };
       document.getElementById('full').onclick = function () { qrFull(joinUrl, S.cohort.join_code, 'Scan to register'); count(); };
       var count = async function () {
@@ -488,9 +500,9 @@
       if (document.hidden || !S.profile) return;
       await loadState();
       if (!S.profile || !(location.hash === '' || location.hash === '#/') || sig() === was) return;
-      var y = scrollY, f = document.activeElement, fk = f && (f.getAttribute('href') || f.dataset.locked || (f.closest('details.mod') && 'mod' + f.closest('details.mod').dataset.mod));
+      var y = scrollY, f = document.activeElement, fk = f && (f.getAttribute('href') ? '[href="' + f.getAttribute('href') + '"]' : f.dataset.more ? '[data-more="' + f.dataset.more + '"]' : f.dataset.tog ? '[data-tog="' + f.dataset.tog + '"]' : null);
       vHome(); scrollTo(0, y);
-      if (fk) { var g = document.querySelector('[href="' + fk + '"],[data-locked="' + fk + '"]') || (/^mod/.test(fk) && document.querySelector('details.mod[data-mod="' + fk.slice(3) + '"] summary')); if (g) g.focus({ preventScroll: true }); }
+      if (fk) { var g = document.querySelector(fk); if (g) g.focus({ preventScroll: true }); }
     });
   }
 
@@ -932,29 +944,21 @@
   // one activity: who is done and who is still pending (facilitator)
   function vWho(aid) {
     var A = ACT[aid].a, tid = ACT[aid].topic;
-    var names = sessionStorage.getItem('dpeNames') === 'on';   // hidden by default, like Results: this page may be on the shared screen
     function draw() {
-      var m = S.prog[aid] || {}, done = [], pend = [], n = S.parts.length, st = S.acts[aid];
-      S.parts.forEach(function (p, i) { (m[p.id] && m[p.id].status === 'submitted' ? done : pend).push({ p: p, x: m[p.id], k: i + 1 }); });
-      done.sort(function (a, b) { return (a.x.submitted_at || '') < (b.x.submitted_at || '') ? -1 : 1; });
-      var nm = function (o) { return '<span class="nm">' + esc(fullName(o.p)) + '</span><span class="anon">Participant ' + o.k + '</span>'; };
-      var pc = function (x) { return x.max_score ? Math.round(x.score / x.max_score * 100) + '%' : '✓'; };
-      render(topbar() + '<main class="wrap ' + (names ? 'names-on' : 'names-off') + '" style="padding:20px 16px 48px">' +
+      var m = S.prog[aid] || {}, n = S.parts.length, st = S.acts[aid];
+      var ok = function (p) { return m[p.id] && m[p.id].status === 'submitted'; };
+      var d = S.parts.filter(ok).length;
+      render(topbar() + '<main class="wrap" style="padding:20px 16px 48px">' +
         '<p class="muted small" style="margin:0">' + tid + ' ' + esc(TOPIC[tid].t.title) + '</p>' +
         '<h1 style="margin:4px 0 0;letter-spacing:-.02em">' + esc(A.title) + '</h1>' +
-        '<div class="row mt-1"><a class="btn small" href="#/">← Home</a><a class="btn small" href="#/results/' + tid + '">Full results →</a>' +
-        '<button class="btn small" id="names" aria-pressed="' + names + '">' + (names ? 'Hide names' : '👁 Show names') + '</button>' +
-        (st && st.status === 'live' ? '<span class="tag live">● Live</span>' : '') + '</div>' +
-        '<div class="finbox mt-3"><b>' + done.length + '</b> <span>of ' + n + ' done · ' + pend.length + ' pending</span><div class="prog" role="progressbar" aria-label="Done" aria-valuenow="' + done.length + '" aria-valuemax="' + n + '"><i style="width:' + (n ? done.length / n * 100 : 0) + '%"></i></div></div>' +
-        '<div class="whocols mt-3"><section class="card"><h3>Pending (' + pend.length + ')</h3>' +
-        (pend.length ? '<ul class="wholist">' + pend.map(function (o) { return '<li>' + nm(o) + (o.x ? '<span class="tag sub">' + (o.x.status === 'working' ? 'Working' : 'Opened it') + '</span>' : '<span class="small muted">Not opened</span>') + '</li>'; }).join('') + '</ul>' : '<p class="muted">Everyone is done.</p>') +
-        '</section><section class="card"><h3>Done (' + done.length + ')</h3>' +
-        (done.length ? '<ul class="wholist">' + done.map(function (o) { return '<li>' + nm(o) + '<span class="tag done">' + pc(o.x) + '</span></li>'; }).join('') + '</ul>' : '<p class="muted">No one yet.</p>') +
-        '</section></div></main>');
-      document.getElementById('names').onclick = function () { names = !names; sessionStorage.setItem('dpeNames', names ? 'on' : 'off'); draw(); };
+        '<div class="row mt-1"><a class="btn small" href="#/">← Home</a>' + (st && st.status === 'live' ? '<span class="tag live">● Live</span>' : '') + '</div>' +
+        '<div class="finbox mt-3"><b>' + d + '</b> <span>of ' + n + ' done · ' + (n - d) + ' pending</span><div class="prog" role="progressbar" aria-label="Done" aria-valuenow="' + d + '" aria-valuemax="' + n + '"><i style="width:' + (n ? d / n * 100 : 0) + '%"></i></div></div>' +
+        '<div class="card mt-3" style="padding:0;overflow:auto"><table class="who"><thead><tr><th>Name</th><th>Position</th><th>Status</th></tr></thead><tbody>' +
+        (S.parts.map(function (p) { return '<tr><td><b>' + esc(fullName(p)) + '</b></td><td>' + esc(p.position || '') + '</td><td>' + (ok(p) ? '<span class="tag done">Done</span>' : '<span class="tag sub">Pending</span>') + '</td></tr>'; }).join('') ||
+          '<tr><td colspan="3" class="muted">No one has registered yet.</td></tr>') + '</tbody></table></div></main>');
     }
     draw();
-    every(5000, async function () { if (document.hidden) return; var was = JSON.stringify([S.prog[aid], S.acts[aid]]); await loadState(); if (JSON.stringify([S.prog[aid], S.acts[aid]]) !== was) { var y = scrollY; draw(); scrollTo(0, y); } });
+    every(5000, async function () { if (document.hidden) return; var was = JSON.stringify([S.prog[aid], S.acts[aid], S.parts.length]); await loadState(); if (JSON.stringify([S.prog[aid], S.acts[aid], S.parts.length]) !== was) { var y = scrollY; draw(); scrollTo(0, y); } });
   }
 
   async function vResults(tid) {

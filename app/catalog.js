@@ -13,6 +13,11 @@ window.CATALOG = [
     "title": "Hardware, Software and Peopleware",
     "dur": "12 min",
     "desc": "The three parts of every computer system, from the PC on your desk to the phone in your pocket.",
+    "parts": [
+     "The jeepney analogy",
+     "Input · Process · Output · Storage",
+     "Five habits that survive brownouts"
+    ],
     "deck": "Deck - 1.1 Hardware, Software and Peopleware - 2026-11-01.html",
     "video": "5:33",
     "activities": [
@@ -39,6 +44,11 @@ window.CATALOG = [
     "title": "Desktop and File Management",
     "dur": "15 min",
     "desc": "Find any file in seconds: the desktop, File Explorer, folders, smart file names and time-saving shortcuts.",
+    "parts": [
+     "Folders vs files, file extensions",
+     "Naming rule: date, type, subject",
+     "Build your Lab 1 master folder"
+    ],
     "deck": "Deck - 1.2 Desktop and File Management - 2026-11-01.html",
     "video": "4:54",
     "activities": [
@@ -65,6 +75,11 @@ window.CATALOG = [
     "title": "Web Browsing and Search Engines",
     "dur": "12 min",
     "desc": "Get to the right website, search like a pro, and know which sources to trust.",
+    "parts": [
+     "Read a web address, spot fake domains",
+     "Search tricks: quotes, site:gov.ph",
+     "Capture and save a screenshot"
+    ],
     "deck": "Deck - 1.3 Web Browsing and Search Engines - 2026-11-01.html",
     "video": "4:56",
     "activities": [
@@ -91,6 +106,11 @@ window.CATALOG = [
     "title": "Internet Safety, Netiquette and Data Privacy",
     "dur": "15 min",
     "desc": "Spot scams before they spot you, protect your accounts, communicate politely, and keep taxpayer data safe.",
+    "parts": [
+     "Phishing, smishing and vishing red flags",
+     "Passphrases and multi-factor login",
+     "Data Privacy Act (RA 10173), CICC 1326"
+    ],
     "deck": "Deck - 1.4 Internet Safety, Netiquette and Data Privacy - 2026-11-01.html",
     "video": "5:16",
     "activities": [
@@ -117,6 +137,11 @@ window.CATALOG = [
     "title": "Everyday AI",
     "dur": "15 min + quiz",
     "desc": "What AI really is, where you already use it, where it goes wrong, and how to use it as a safe copilot.",
+    "parts": [
+     "How AI learns from examples",
+     "Hallucinations, bias and privacy",
+     "Lab 1 Part C and the 10-item quiz"
+    ],
     "deck": "Deck - 1.5 Everyday AI - 2026-11-01.html",
     "video": "4:37",
     "activities": [
@@ -161,6 +186,11 @@ window.CATALOG = [
     "title": "Application Navigation and File Handling",
     "dur": "40 min",
     "desc": "Find your way around a word processor, then save every document so you, and your office, can find it again.",
+    "parts": [
+     "Parts of the window in Word, Docs and Writer",
+     "Save vs Save As, export to PDF",
+     "Start the workshop invitation letter"
+    ],
     "deck": "Deck - 2.1 Application Navigation and File Handling - 2026-11-01.html",
     "video": "4:59",
     "activities": [
@@ -195,6 +225,11 @@ window.CATALOG = [
     "title": "Text Formatting and Editing Tools",
     "dur": "50 min",
     "desc": "Turn plain text into a clean, official-looking letter, and fix mistakes in seconds.",
+    "parts": [
+     "Fonts, alignment, spacing, lists",
+     "Format Painter and styles",
+     "Find and Replace, spelling check"
+    ],
     "deck": "Deck - 2.2 Text Formatting and Editing Tools - 2026-11-01.html",
     "video": "4:58",
     "activities": [
@@ -221,6 +256,11 @@ window.CATALOG = [
     "title": "Working with Tables and Graphical Elements",
     "dur": "50 min",
     "desc": "Neat rows and columns, plus pictures, shapes and a letterhead that look professional, not stretched.",
+    "parts": [
+     "A workshop schedule table",
+     "Pictures and text wrapping",
+     "A simple letterhead"
+    ],
     "deck": "Deck - 2.3 Working with Tables and Graphical Elements - 2026-11-01.html",
     "video": "4:52",
     "activities": [
@@ -255,6 +295,11 @@ window.CATALOG = [
     "title": "Mail Merge Basics",
     "dur": "45 min",
     "desc": "Write one letter, keep one list, and let the computer make a personalised copy for every name.",
+    "parts": [
+     "Main document + data source + fields",
+     "Step by step in Word and Writer",
+     "Spot the merge mistakes"
+    ],
     "deck": "Deck - 2.4 Mail Merge Basics - 2026-11-01.html",
     "video": "4:44",
     "activities": [
@@ -289,6 +334,11 @@ window.CATALOG = [
     "title": "Page Layout and Printing Setup",
     "dur": "40 min",
     "desc": "Margins, paper sizes, headers, breaks and print settings, so paper looks exactly like the screen.",
+    "parts": [
+     "1-inch margins; A4, Letter and long bond",
+     "Headers, page numbers, breaks",
+     "Checklist before printing for signature"
+    ],
     "deck": "Deck - 2.5 Page Layout and Printing Setup - 2026-11-01.html",
     "video": "4:46",
     "activities": [
@@ -315,6 +365,11 @@ window.CATALOG = [
     "title": "Responsible AI Drafting",
     "dur": "40 min + Lab 2",
     "desc": "Let AI write the first draft. You check the facts, protect the data, and sign off on the final.",
+    "parts": [
+     "A simple prompt formula",
+     "Find the 5 mistakes in an AI draft",
+     "Lab 2 brief, checklist and rubric"
+    ],
     "deck": "Deck - 2.6 Responsible AI Drafting - 2026-11-01.html",
     "video": "5:07",
     "activities": [
@@ -359,6 +414,11 @@ window.CATALOG = [
     "title": "Application Navigation and Cell Manipulation",
     "dur": "45 min",
     "desc": "Find your way around a spreadsheet, put data in the right cells, and reshape the sheet without fear.",
+    "parts": [
+     "Cells, rows, columns, Name Box",
+     "Move and select quickly",
+     "Type the inventory, AutoFill"
+    ],
     "deck": "Deck - 3.1 Application Navigation and Cell Manipulation - 2026-11-01.html",
     "video": "4:54",
     "activities": [
@@ -385,6 +445,11 @@ window.CATALOG = [
     "title": "Formatting Worksheets and Data Types",
     "dur": "50 min",
     "desc": "Make every value the right type, then make the whole table easy to read, print and check.",
+    "parts": [
+     "Text, number, ₱ currency, date",
+     "Borders, fill, freeze top row",
+     "Highlight items at reorder level"
+    ],
     "deck": "Deck - 3.2 Formatting Worksheets and Data Types - 2026-11-01.html",
     "video": "4:55",
     "activities": [
@@ -411,6 +476,11 @@ window.CATALOG = [
     "title": "Basic Formulas (Arithmetic Operators)",
     "dur": "50 min",
     "desc": "Teach the sheet to add, subtract, multiply and divide, so totals update themselves.",
+    "parts": [
+     "The = sign and six operators",
+     "Order of operations",
+     "Error messages decoded"
+    ],
     "deck": "Deck - 3.3 Basic Formulas (Arithmetic Operators) - 2026-11-01.html",
     "video": "5:31",
     "activities": [
@@ -437,6 +507,11 @@ window.CATALOG = [
     "title": "Core Functions (SUM, AVERAGE, COUNT, MIN, MAX)",
     "dur": "50 min",
     "desc": "Five short words that total, average, count and find the highest and lowest values in any list.",
+    "parts": [
+     "SUM, AVERAGE, COUNT, MIN, MAX",
+     "AutoSum shortcut",
+     "Common range mistakes"
+    ],
     "deck": "Deck - 3.4 Core Functions (SUM, AVERAGE, COUNT, MIN, MAX) - 2026-11-01.html",
     "video": "4:55",
     "activities": [
@@ -463,6 +538,11 @@ window.CATALOG = [
     "title": "Cell Referencing Basics",
     "dur": "35 min",
     "desc": "Why some formulas break when you copy them, and how one $ sign keeps them pointing at the right cell.",
+    "parts": [
+     "Relative vs absolute references",
+     "The F4 toggle",
+     "12% VAT on the inventory"
+    ],
     "deck": "Deck - 3.5 Cell Referencing Basics - 2026-11-01.html",
     "video": "5:00",
     "activities": [
@@ -497,6 +577,11 @@ window.CATALOG = [
     "title": "Worksheet Management",
     "dur": "40 min",
     "desc": "One workbook, many tabs: organise months on their own sheets, find and sort, and print on one clean page.",
+    "parts": [
+     "Monthly tabs and a Summary sheet",
+     "Sort, filter, freeze panes",
+     "Print on one page"
+    ],
     "deck": "Deck - 3.6 Worksheet Management - 2026-11-01.html",
     "video": "5:06",
     "activities": [
@@ -539,6 +624,11 @@ window.CATALOG = [
     "title": "Generating Basic Charts",
     "dur": "40 min",
     "desc": "Pick the right chart, select the right data, and label it so anyone understands it in five seconds.",
+    "parts": [
+     "Column, bar, line or pie?",
+     "Titles, labels, legends",
+     "Chart mistakes to avoid"
+    ],
     "deck": "Deck - 3.7 Generating Basic Charts - 2026-11-01.html",
     "video": "4:59",
     "activities": [
@@ -573,6 +663,11 @@ window.CATALOG = [
     "title": "AI-Assisted Data Analysis",
     "dur": "35 min + Lab 3",
     "desc": "Let AI suggest and explain formulas and spot trends, then verify every answer yourself.",
+    "parts": [
+     "Ask AI for a formula",
+     "Verify: check two rows by hand",
+     "Lab 3 brief, checklist and rubric"
+    ],
     "deck": "Deck - 3.8 AI-Assisted Data Analysis - 2026-11-01.html",
     "video": "5:13",
     "activities": [
@@ -633,6 +728,11 @@ window.CATALOG = [
     "title": "Presentation Planning and Design Principles",
     "dur": "40 min",
     "desc": "Plan the message on paper first, then design slides people can actually read.",
+    "parts": [
+     "Audience, purpose, one key message",
+     "Contrast, alignment, repetition, proximity",
+     "Fix-the-bad-slide makeover"
+    ],
     "deck": "Deck - 4.1 Presentation Planning and Design Principles - 2026-11-01.html",
     "video": "4:57",
     "activities": [
@@ -683,6 +783,11 @@ window.CATALOG = [
     "title": "Application Navigation and Slide Management",
     "dur": "45 min",
     "desc": "Find your way around PowerPoint, Google Slides and Impress, then add, arrange and present with confidence.",
+    "parts": [
+     "Themes and slide layouts",
+     "Add, duplicate, reorder, sections",
+     "Slide Show and Presenter View"
+    ],
     "deck": "Deck - 4.2 Application Navigation and Slide Management - 2026-11-01.html",
     "video": "4:38",
     "activities": [
@@ -717,6 +822,11 @@ window.CATALOG = [
     "title": "Working with Text and Lists in Slides",
     "dur": "40 min",
     "desc": "Fewer words, bigger letters, clear lists. The rest goes in your speaker notes.",
+    "parts": [
+     "Bullet levels with Tab",
+     "Readable font sizes",
+     "Text-heavy slide makeover"
+    ],
     "deck": "Deck - 4.3 Working with Text and Lists in Slides - 2026-11-01.html",
     "video": "4:59",
     "activities": [
@@ -751,6 +861,11 @@ window.CATALOG = [
     "title": "Inserting and Manipulating Graphical Elements",
     "dur": "50 min",
     "desc": "Pictures, shapes, icons, diagrams and your Lab 3 chart: placed neatly, used legally, described for everyone.",
+    "parts": [
+     "Crop and resize without stretching",
+     "Align, distribute, group",
+     "Copyright and alt text"
+    ],
     "deck": "Deck - 4.4 Inserting and Manipulating Graphical Elements - 2026-11-01.html",
     "video": "5:05",
     "activities": [
@@ -785,6 +900,11 @@ window.CATALOG = [
     "title": "Applying Animations and Slide Transitions",
     "dur": "30 min",
     "desc": "Motion that helps your audience follow you, not motion that makes them dizzy.",
+    "parts": [
+     "Transitions vs animations",
+     "Apply one transition to all",
+     "Live demos on the slides"
+    ],
     "deck": "Deck - 4.5 Applying Animations and Slide Transitions - 2026-11-01.html",
     "video": "4:50",
     "activities": [
@@ -819,6 +939,11 @@ window.CATALOG = [
     "title": "Adding Media Clips",
     "dur": "30 min",
     "desc": "Video, music and your own voice in a slide, and making sure they actually play on the day.",
+    "parts": [
+     "Insert video and audio",
+     "Trim and playback options",
+     "Sound check on Zoom and Meet"
+    ],
     "deck": "Deck - 4.6 Adding Media Clips - 2026-11-01.html",
     "video": "4:53",
     "activities": [
@@ -853,6 +978,11 @@ window.CATALOG = [
     "title": "AI in Presentation Design",
     "dur": "35 min + Lab 4",
     "desc": "Let AI suggest layouts and outlines. You stay in charge of the facts. Then Lab 4 and the course closing.",
+    "parts": [
+     "AI design helpers",
+     "Visual ethics and privacy",
+     "Lab 4 brief, rubric and closing"
+    ],
     "deck": "Deck - 4.7 AI in Presentation Design - 2026-11-01.html",
     "video": "5:01",
     "activities": [
