@@ -867,7 +867,7 @@
       document.getElementById('showlive').classList.toggle('hide', !panelHidden);
       $live.innerHTML = '<div class="row" style="justify-content:space-between"><span class="tag live">' + (st.status === 'live' ? '● LIVE' : 'Ended') + '</span><span class="row" style="gap:8px"><span class="timer" id="ptimer"></span><button class="pclose" id="hidep" aria-label="Hide the live panel" title="Hide panel">×</button></span></div>' +
         '<h3>' + esc(a.title) + '</h3><div class="qrbig">' + qr(url) + '</div>' +
-        '<div class="short">' + esc(SHORT) + '<wbr>' + esc('?a=' + liveId) + '</div><button class="btn primary block" id="cpl">Copy link for the chat</button>' +
+        '<div class="short">' + esc(SHORT) + '<wbr><span style="white-space:nowrap">' + esc('?a=' + liveId) + '</span></div><button class="btn primary block" id="cpl">Copy link for the chat</button>' +
         '<div class="finbox"><b id="c-fin">…</b> <span>of <span id="c-reg">…</span> finished</span><div class="prog" role="progressbar" aria-label="Finished" id="c-prog"><i id="c-bar"></i></div></div>' +
         '<div class="counts"><div><b id="c-acc">…</b><span>opened it</span></div><div><b id="c-act">…</b><span>working now</span></div></div>' +
         '<div class="row"><button class="btn small" id="restart">Restart timer</button>' + (st.status === 'live' ? '<button class="btn small danger" id="end">End activity</button>' : '<button class="btn small" id="reopen">Reopen</button>') + '</div>';
