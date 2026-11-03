@@ -116,7 +116,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 1.4 Internet Safety, Netiquette and Data Privacy - 2026-11-01.html",
     "video": "5:16",
-    "slides": 15,
+    "slides": 16,
     "activities": [
      {
       "id": "1.4-a",
@@ -132,7 +132,7 @@ window.CATALOG = [
       "title": "Quick check: the BIR caller",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 14
+      "slideNo": 15
      }
     ]
    },
