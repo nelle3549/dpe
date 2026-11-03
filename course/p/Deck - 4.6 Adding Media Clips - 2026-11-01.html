@@ -22,6 +22,8 @@
 .menu div{padding:.5em 1em;color:var(--text-2);border-bottom:1px solid var(--border)}
 .menu div:last-child{border-bottom:0}
 .menu .sel{background:var(--mod-soft);color:var(--mod);font-weight:700}
+.shots tr[data-step].on td{background:var(--gold-soft)}
+.shots tr[data-step].done{opacity:.6}
 /* trim dialog */
 .trim .vid{position:relative;aspect-ratio:16/8;background:linear-gradient(135deg,#1d2b44,#3b4f74);border-radius:6px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.85);font-weight:700;font-size:calc(var(--u)*1.2)}
 .trim .tlb{position:relative;height:calc(var(--u)*2.4);margin-top:calc(var(--u)*1);background:repeating-linear-gradient(90deg,#d9dee8 0 6px,#e9edf3 6px 12px);border-radius:5px}
@@ -126,37 +128,32 @@
       <div><p class="kicker">Inserting video</p><h2 class="h2">From a file, or from online?</h2></div>
       <span class="tag">PowerPoint: Insert › Video</span>
     </div>
-    <div class="grid g3" style="grid-template-columns:.8fr 1.1fr 1.1fr;align-items:start">
+    <div class="shots" data-walk>
       <div>
-        <div class="menu">
-          <div style="font-weight:800;color:var(--text-1)">Insert › Video ▾</div>
-          <div class="sel">This Device…</div>
-          <div>Stock Videos…</div>
-          <div class="sel">Online Videos…</div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="27,70.2"><div class="pic"><img src="images/ui/4.6/05-gslides-insert-video-audio.webp" alt="Google Slides Insert menu open, with Video and Audio near the bottom"><i class="ring" style="--x:20.8;--y:5.4;--w:5.6;--h:4.4"></i><i class="ring" style="--x:20.6;--y:67.6;--w:35;--h:5.2;--d:.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-at="55,11.7"><div class="pic"><img src="images/ui/4.6/06-gslides-insert-video-youtube.webp" alt="Insert video window on the YouTube tab, search box empty"><i class="ring" style="--x:6;--y:17.8;--w:21.4;--h:8.2"></i><i class="ring" style="--x:33;--y:7;--w:51.8;--h:9.4;--d:.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-at="17,40" data-zoom="1.3" data-o="30,40"><div class="pic"><img src="images/ui/4.6/07-gslides-drive-clip-selected.webp" alt="Google Drive tab: the sample clip DPE sample - Scanner how-to clip selected, Insert button at the bottom right"><i class="ring" style="--x:7.2;--y:22.6;--w:20.2;--h:36.4"></i><i class="ring" style="--x:82.8;--y:84.6;--w:10.4;--h:8.2;--d:.25s"></i></div></figure>
+          <figure class="f" data-step="4" data-at="38.6,55.5"><div class="pic"><img src="images/ui/4.6/08-gslides-video-inserted-playback.webp" alt="The video sits on the slide, selected, with the Format options panel open at Video playback"><i class="ring" style="--x:29.2;--y:46.8;--w:19;--h:17.4"></i><i class="ring" style="--x:55.4;--y:22;--w:32.8;--h:10.2;--d:.25s"></i></div></figure>
         </div>
-        <p class="tiny mt-s">PowerPoint for Microsoft 365. Older versions word it slightly differently.</p>
+        <p class="cap">Google Slides: <b>Insert › Video</b> has a YouTube tab and a Google Drive tab. PowerPoint: <b>Insert › Video › This Device</b> or <b>Online Videos</b>. Sample clip.</p>
       </div>
-      <div class="card top">
-        <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /></svg> From a file (This Device)</h4>
-        <ul class="ticks">
-          <li>Plays <b>without internet</b>, even during a brownout on a laptop.</li>
-          <li>Makes the file <b>bigger</b>.</li>
-          <li>Best for clips you made yourself.</li>
-        </ul>
-      </div>
-      <div class="card top">
-        <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg> Online (paste a YouTube link)</h4>
-        <ul class="ticks">
-          <li>Keeps the file <b>small</b>.</li>
-          <li><b>Needs internet</b> while presenting.</li>
-          <li>Breaks if the owner removes or privates it.</li>
-        </ul>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Open <b>Insert › Video</b> (PowerPoint: the <b>Video</b> button on the Insert tab).</li>
+          <li data-step="2"><b>Online:</b> search YouTube or paste a link (PowerPoint: <b>Online Videos</b>).</li>
+          <li data-step="3"><b>From a file:</b> pick your clip, then <b>Insert</b> (PowerPoint: <b>This Device</b>; Google: from Drive).</li>
+          <li data-step="4">The clip lands on the slide, with its playback settings beside it.</li>
+        </ol>
+        <div class="grid g2 mt-s" style="gap:calc(var(--u)*.6)">
+          <div class="card top"><h4 class="small"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /></svg> A file</h4>
+            <p class="tiny">Plays <b>without internet</b>, even in a brownout. Makes the file <b>bigger</b>.</p></div>
+          <div class="card top"><h4 class="small"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg> Online</h4>
+            <p class="tiny">Keeps the file <b>small</b>. <b>Needs internet</b>; breaks if the owner removes it.</p></div>
+        </div>
+        <p class="tiny mt-s"><img class="logo" src="assets/logos/libreoffice-impress.svg" alt="">LibreOffice Impress: <b>Insert › Audio or Video</b>, files only.</p>
       </div>
     </div>
-    <table class="tbl mt-l">
-      <tr><th style="width:24%"><img class="logo" src="assets/logos/google-slides.svg" alt="">Google Slides</th><td><b>Insert › Video</b>: search YouTube, paste a URL, or pick a file from <b>Google Drive</b>.</td></tr>
-      <tr><th><img class="logo" src="assets/logos/libreoffice-impress.svg" alt="">LibreOffice Impress</th><td><b>Insert › Audio or Video</b>: files on your computer only.</td></tr>
-    </table>
     
   </section>
 
@@ -166,53 +163,52 @@
       <div><p class="kicker">Inserting audio</p><h2 class="h2">Background music or narration</h2></div>
       <span class="tag">PowerPoint: Insert › Audio</span>
     </div>
-    <div class="grid g2">
-      <div class="card">
-        <h4><span class="eq"><i></i><i></i><i></i><i></i></span>Background music</h4>
-        <ol class="steps">
-          <li>Go to the first slide → <b>Insert › Audio › Audio on My PC</b>.</li>
-          <li>Playback tab → <b>Play in Background</b>.</li>
-          <li>Set <b>Volume: Low</b>. Music plays across slides and loops.</li>
-        </ol>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="59,79"><div class="pic"><img src="images/ui/4.6/01-lola-audio-icon.webp" alt="PowerPoint for Mac: the Happy 80th, Lola! slide with a speaker icon for the inserted music"><i class="ring" style="--x:5.6;--y:4.8;--w:4.4;--h:3.8"></i><i class="ring" style="--x:56.2;--y:75.4;--w:5.8;--h:7.2;--d:.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-at="66.5,6.6"><div class="pic"><img src="images/ui/4.6/02-lola-audio-selected.webp" alt="The speaker icon selected: Audio Format and Playback tabs appear and a play bar shows under the icon"><i class="ring" style="--x:55.6;--y:4.6;--w:14.8;--h:4.2"></i><i class="ring" style="--x:43.8;--y:82.8;--w:30.4;--h:6;--d:.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft PowerPoint for Mac. Sample slide and music. Windows has the same tabs.</p>
       </div>
-      <div class="card">
-        <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" x2="12" y1="19" y2="22" /></svg> Narration for one slide</h4>
-        <ol class="steps">
-          <li><b>Insert › Audio › Record Audio</b>, then click record.</li>
-          <li>Speak 20 to 40 seconds, stop, name the clip, OK.</li>
-          <li>Playback: Start <b>In Click Sequence</b> or <b>Automatically</b>.</li>
-        </ol>
+      <div>
+        <div class="card">
+          <h4><span class="eq"><i></i><i></i><i></i><i></i></span>Background music</h4>
+          <ol class="steps sm">
+            <li data-step="1">Go to the first slide → <b>Insert › Audio › Audio on My PC</b> (Mac: Audio from File). A speaker icon appears.</li>
+            <li data-step="2">Click the icon → <b>Playback</b> tab → <b>Play in Background</b>. Set <b>Volume: Low</b>. Music plays across slides and loops.</li>
+          </ol>
+        </div>
+        <div class="card mt-s">
+          <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" x2="12" y1="19" y2="22" /></svg> Narration for one slide</h4>
+          <p class="small"><b>Insert › Audio › Record Audio</b>, speak 20 to 40 seconds, stop, OK. Playback: Start <b>In Click Sequence</b> or <b>Automatically</b>.</p>
+        </div>
+        <div class="callout mt-s small"><b>Google Slides:</b> Insert › Audio, from <b>Google Drive</b> (MP3 or WAV). Untick "Stop on slide change" to keep it playing. <b>Impress:</b> Insert › Audio or Video.</div>
       </div>
-    </div>
-    <div class="grid g2 mt-m">
-      <div class="callout"><b>Google Slides:</b> Insert › Audio, from <b>Google Drive</b> (MP3 or WAV). Untick "Stop on slide change" to keep it playing.</div>
-      <div class="callout"><b>LibreOffice Impress:</b> Insert › Audio or Video. Test playback in Slide Show.</div>
     </div>
     
   </section>
 
   
   <section class="slide" data-title="Trimming">
-    <div class="split">
+    <div class="slide-head">
+      <div><p class="kicker">Rehearse it · keep only what you need</p><h2 class="h2">Trim a 3-minute video to the 30 seconds that matter</h2></div>
+    </div>
+    <div class="shots" data-walk>
       <div>
-        <p class="kicker">Rehearse it · keep only what you need</p>
-        <h2 class="h2">Trim a 3-minute video to the 30 seconds that matter.</h2>
-        <ol class="steps mt-m">
-          <li>Click the video → <b>Playback</b> tab → <b>Trim Video</b>.</li>
-          <li>Drag the <b style="color:var(--green)">green</b> start marker and the <b style="color:var(--coral)">red</b> end marker.</li>
-          <li>Press play to check, then <b>OK</b>.</li>
-          <li>Add a short <b>Fade In / Fade Out</b> (0.5 s) so it doesn't start abruptly.</li>
-        </ol>
-        <p class="small mt-m">Google Slides: Format options › Video playback › <b>Start at / End at</b>. Impress has no trim: cut the file first, e.g. in Clipchamp on Windows 11.</p>
-      </div>
-      <div class="win trim">
-        <div class="bar"><i></i><i></i><i></i><span>Trim Video</span></div>
-        <div class="body">
-          <div class="vid"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/></svg> office-scanner-howto.mp4</div>
-          <div class="tlb"><div class="keep"></div><div class="h s"></div><div class="h e"></div><div class="ph"></div></div>
-          <div class="times"><span>Start Time <b>00:28.0</b></span><span>Duration <b>00:30.0</b></span><span>End Time <b>00:58.0</b></span></div>
-          <div class="row mt-m" style="justify-content:flex-end;gap:.6em"><span class="tag">OK</span><span class="tag coral">Cancel</span></div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="38.6,55.5"><div class="pic"><img src="images/ui/4.6/08-gslides-video-inserted-playback.webp" alt="Video selected on the slide; Format options shows Video playback with Start at 00:00 and End at 03:01"><i class="ring" style="--x:29.2;--y:46.8;--w:19;--h:17.4"></i><i class="ring" style="--x:57;--y:86.6;--w:29.4;--h:7.4;--d:.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-at="64,53" data-zoom="1.5" data-o="72,52"><div class="pic"><img src="images/ui/4.6/09-gslides-trim-start-end.webp" alt="Start at set to 00:28 and End at set to 00:58"><i class="ring" style="--x:56.8;--y:49.4;--w:14.8;--h:7.8"></i><i class="ring" style="--x:72;--y:49.4;--w:14.6;--h:7.8;--d:.25s"></i></div></figure>
         </div>
+        <p class="cap">Google Slides: Format options › Video playback › <b>Start at / End at</b>. PowerPoint: <b>Playback › Trim Video</b> with green and red markers. Sample clip.</p>
+      </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Click the video → <b>Playback</b> tab → <b>Trim Video</b> (Google: the Format options panel opens at <b>Video playback</b>).</li>
+          <li data-step="2">Drag the <b style="color:var(--green)">green</b> start marker and the <b style="color:var(--coral)">red</b> end marker (Google: type <b>Start at 00:28</b>, <b>End at 00:58</b>). Press play to check, then <b>OK</b>.</li>
+        </ol>
+        <div class="callout mt-s small">PowerPoint only: add a short <b>Fade In / Fade Out</b> (0.5 s) on the Playback tab so it doesn't start abruptly.</div>
+        <p class="small mt-s">Trimming doesn't cut the original file, so you can widen it later. Impress has no trim: cut the file first, e.g. in Clipchamp on Windows 11.</p>
       </div>
     </div>
     
@@ -223,22 +219,24 @@
     <div class="slide-head">
       <div><p class="kicker">Playback options</p><h2 class="h2">Decide how and when the clip plays</h2></div>
     </div>
-    <div class="win rb">
-      <div class="bar"><i></i><i></i><i></i><span><img class="logo" src="assets/logos/microsoft-powerpoint.svg" alt="">My Digital Skills Journey.pptx · PowerPoint</span></div>
-      <div class="tabs"><span>Home</span><span>Insert</span><span>Animations</span><span>Video Format</span><span class="on">Playback</span></div>
-      <div class="grp">
-        <div class="col"><span class="btn"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3" /><path d="M8.12 8.12 12 12" /><path d="M20 4 8.12 15.88" /><circle cx="6" cy="18" r="3" /><path d="M14.8 14.8 20 20" /></svg> Trim Video</span><span class="btn">Fade In 00.50 · Fade Out 00.50</span></div>
-        <div class="col"><span class="btn"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" /><path d="M16 9a5 5 0 0 1 0 6" /><path d="M19.364 18.364a9 9 0 0 0 0-12.728" /></svg> Volume ▾</span><span class="btn hot">Start: When Clicked On ▾</span></div>
-        <div class="col"><span class="ck">Play Full Screen</span><span class="ck">Hide While Not Playing</span></div>
-        <div class="col"><span class="ck">Loop until Stopped</span><span class="ck">Rewind after Playing</span></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="70,75.5"><div class="pic"><img src="images/ui/4.6/08-gslides-video-inserted-playback.webp" alt="Format options, Video playback: the Play list shows Play (on click)"><i class="ring" style="--x:57;--y:72;--w:29.4;--h:8.2"></i></div></figure>
+          <figure class="f" data-step="2" data-at="67,46.5" data-zoom="1.4" data-o="70,50"><div class="pic"><img src="images/ui/4.6/10-gslides-play-options.webp" alt="The Play list open: Play (on click), Play (automatically), Play (manual)"><i class="ring" style="--x:56.8;--y:43.2;--w:21.6;--h:20.6"></i></div></figure>
+        </div>
+        <p class="cap">Google Slides: Format options › Video playback. PowerPoint: click the video, then the <b>Playback</b> tab (names in the table). Sample clip.</p>
+      </div>
+      <div>
+        <table class="tbl small">
+          <tr><th style="width:44%">Setting</th><th>Use it when…</th></tr>
+          <tr data-step="1"><td><b>Start: In Click Sequence / When Clicked On</b> (Google: Play (on click))</td><td>You present live and want to choose the moment. Safest choice.</td></tr>
+          <tr data-step="2"><td><b>Start: Automatically</b> (Google: Play (automatically))</td><td>The clip should begin as soon as the slide appears, e.g. a kiosk loop.</td></tr>
+          <tr><td><b>Play Full Screen · Loop · Rewind</b> (PowerPoint)</td><td>Fill the screen for a short demo · repeat for a lobby display · reset to the start after playing.</td></tr>
+        </table>
+        <p class="tiny mt-s">Google's third choice, <b>Play (manual)</b>, waits for you to click the video itself.</p>
       </div>
     </div>
-    <table class="tbl mt-l">
-      <tr><th style="width:30%">Setting</th><th>Use it when…</th></tr>
-      <tr><td><b>Start: In Click Sequence / When Clicked On</b></td><td>You present live and want to choose the moment. Safest choice.</td></tr>
-      <tr><td><b>Start: Automatically</b></td><td>The clip should begin as soon as the slide appears, e.g. a kiosk loop.</td></tr>
-      <tr><td><b>Play Full Screen · Loop · Rewind</b></td><td>Fill the screen for a short demo · repeat for a lobby display · reset to the start after playing.</td></tr>
-    </table>
     
   </section>
 
