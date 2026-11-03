@@ -346,3 +346,25 @@ html.participant .opt.picked{border-color:var(--mod);background:var(--mod-soft)}
 .ic .logo{width:1em;height:1em;margin:0;vertical-align:middle}
 .dsk .di .logo{display:block;width:1em;height:1em;margin:0 auto}
 .dsk .tb .logo{margin:0;vertical-align:middle}
+
+/* ---------- LMS activity card (participants): status + button under the slide content ---------- */
+.lms-act{display:flex;flex-direction:column;gap:calc(var(--u)*.8);margin-top:calc(var(--u)*1.8)}
+.lms-act .pa{display:flex;align-items:center;gap:calc(var(--u)*1.2);padding:calc(var(--u)*.8) calc(var(--u)*.9) calc(var(--u)*.8) calc(var(--u)*1.2);
+  border-radius:var(--radius-lg);border:1px solid var(--border);border-left:calc(var(--u)*.5) solid var(--gold);background:var(--gold-soft);box-shadow:var(--shadow)}
+.lms-act .pa.done{background:var(--green-soft);border-left-color:var(--green)}
+.lms-act .pill{display:inline-flex;align-items:center;gap:calc(var(--u)*.4);border-radius:999px;padding:calc(var(--u)*.35) calc(var(--u)*.9);
+  font-size:calc(var(--u)*1);font-weight:800;white-space:nowrap;background:var(--gold);color:var(--navy)}
+.lms-act .pill.done{background:var(--green);color:#fff}
+.lms-act .pt{flex:1;min-width:0;font-weight:800;font-size:calc(var(--u)*1.3);line-height:1.25;color:var(--text-1)}
+.lms-act .pt small{display:block;font-size:calc(var(--u)*.8);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:calc(var(--u)*.15)}
+.lms-act .go{font:inherit;font-weight:800;font-size:calc(var(--u)*1.15);padding:calc(var(--u)*.55) calc(var(--u)*1.4);border-radius:calc(var(--u)*.8);
+  border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer;white-space:nowrap}
+.lms-act .go:hover{background:var(--navy-2)}
+.lms-act .pa.done .go{background:#fff;color:var(--navy);border-color:var(--border-strong)}
+@media (max-width:700px) and (orientation:portrait){
+  .lms-act .pa{flex-wrap:wrap;gap:10px;padding:10px 12px}
+  .lms-act .pill{font-size:13px;padding:4px 10px}
+  .lms-act .pt{font-size:15px;flex-basis:100%;order:3}
+  .lms-act .pt small{font-size:11px}
+  .lms-act .go{font-size:15px;min-height:42px;padding:0 16px;margin-left:auto}
+}

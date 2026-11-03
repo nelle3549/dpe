@@ -102,6 +102,23 @@
   window.addEventListener('message', function (e) {
     var d = e.data || {};
     if (d.type === 'dpe-key' && d.key) document.dispatchEvent(new KeyboardEvent('keydown', { key: d.key, bubbles: true }));
+    if (d.type === 'dpe-act' && e.source === window.parent) showAct(d.n, d.html);
+  });
+
+  // The LMS's activity card (status + button), placed under the slide's own content.
+  // Its button asks the LMS to open the activity ({type:'dpe-go', to:'#/a/<id>'}).
+  function showAct(n, html) {
+    document.querySelectorAll('.lms-act').forEach(function (x) { x.remove(); });
+    var sl = document.querySelectorAll('.deck > .slide')[n - 1];
+    if (!sl || !html) return;
+    var box = document.createElement('div');
+    box.className = 'lms-act';
+    box.innerHTML = html;
+    sl.insertBefore(box, sl.querySelector('.deck-footer'));
+  }
+  document.addEventListener('click', function (e) {
+    var go = e.target.closest('.lms-act [data-go]');
+    if (go) window.parent.postMessage({ type: 'dpe-go', to: go.getAttribute('data-go') }, '*');
   });
 
   // Swipe: a mostly sideways drag of 50px or more moves one slide.

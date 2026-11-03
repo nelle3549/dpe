@@ -662,7 +662,6 @@
       '<span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
       (kind === 'deck' && T.video ? '<a href="#/video/' + tid + '">' + ico('play') + ' Video</a>' : kind === 'video' ? '<a href="#/deck/' + tid + '">Slides</a>' : '') +
       '</div><div class="pbody"><iframe id="view" src="' + src + '" title="' + esc(T.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe></div>' +
-      (kind === 'deck' && !isAdmin() ? '<div class="pact" id="pact" hidden></div>' : '') +
       (kind === 'deck' ? '<div class="pnav"><button id="prev" aria-label="Previous slide">‹ Back</button><span id="pcount" aria-live="polite"></span><button id="next" aria-label="Next slide">Next ›</button>' +
         '<button id="nextl" class="nl" hidden>Next lesson ›</button></div>' : '') +
       '</div>');
@@ -686,24 +685,26 @@
       $nl.onclick = function () { location.hash = '#/deck/' + nt.id + (ls && ls.resume > 1 ? '/' + ls.resume : ''); };
     }
   }
-  // on an activity slide, participants get the activity's status (Done / Pending) and a button to it, above the slide controls
+  // on an activity slide, participants get the activity's status (Done / Pending) and a button to it,
+  // drawn by the deck under the slide's own content (dpe.js showAct)
   var viewTid = null;
   function slideAct(n) {
-    var $a = document.getElementById('pact'); if (!$a) return;
+    var $v = document.getElementById('view'); if (!$v || isAdmin()) return;
     var acts = TOPIC[viewTid].t.activities.filter(function (a) { return a.slideNo === n; });
-    $a.hidden = !acts.length;
-    $a.innerHTML = acts.map(function (a) {
+    var html = acts.map(function (a) {
       var mine = S.mine[a.id], sub = mine && mine.status === 'submitted', vw = isViewer();
       var pc = mine && mine.max_score ? Math.round(mine.score / mine.max_score * 100) : null;
       var pill = sub ? '<span class="pill done">' + ico('check') + ' ' + (vw ? 'Tried' : 'Done') + (pc == null ? '' : ' · ' + pc + '%') + '</span>'
         : '<span class="pill pend">' + ico('hourglass') + ' ' + (vw ? 'Not tried yet' : mine ? 'Pending · not submitted' : 'Pending') + '</span>';
-      return '<div class="pa ' + (sub ? 'done' : 'pend') + '">' + pill + '<span class="pt"><small>' + (a.kind === 'check' ? 'Quick check' : 'Activity') + ' on this slide</small>' + esc(a.title) + '</span><a class="btn small' + (sub ? '' : ' primary') + '" href="#/a/' + a.id + '">' +
-        (sub ? (vw ? 'Try again' : 'View') : mine ? 'Continue' : vw ? 'Try it' : 'Start') + ' ›</a></div>';
+      return '<div class="pa ' + (sub ? 'done' : 'pend') + '">' + pill + '<span class="pt"><small>' + (a.kind === 'check' ? 'Quick check' : 'Activity') + ' on this slide</small>' + esc(a.title) + '</span>' +
+        '<button type="button" class="go" data-go="#/a/' + esc(a.id) + '">' + (sub ? (vw ? 'Try again' : 'View') : mine ? 'Continue' : vw ? 'Try it' : 'Start') + ' ›</button></div>';
     }).join('');
+    $v.contentWindow.postMessage({ type: 'dpe-act', n: n, html: html }, '*');
   }
   window.addEventListener('message', function (e) {
     var d = e.data || {};
     if (d.type === 'dpe-home') location.hash = '#/';
+    if (d.type === 'dpe-go' && /^#\/a\/[\w.-]+$/.test(d.to || '')) location.hash = d.to;
     if (d.type === 'dpe-slide') {
       var c = document.getElementById('pcount'); if (!c) return;
       c.textContent = d.n + ' / ' + d.total;
