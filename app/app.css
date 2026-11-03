@@ -349,6 +349,18 @@ html.clean .fac{display:none!important}
 .olist .tag.factag{background:#fffaf0;box-shadow:inset 0 0 0 1.5px var(--gold);color:#7a5500}
 .top button.tools,.pbar button.tools{background:var(--gold);border-color:var(--gold);color:var(--navy)}
 .pbar button.tools{margin-left:auto}
+/* presenting: one row; the title gives way first, Results is outlined, Hide my tools is the eye icon alone */
+.pbar.vbar{flex-wrap:nowrap}
+.pbar.vbar .t{min-width:0}
+.pbar.vbar>a,.pbar.vbar>button,.pbar.vbar .pfac>*{flex:none}
+.pbar .res{background:transparent;border-color:rgba(255,255,255,.4);color:#fff}
+.pbar .res:hover{background:rgba(255,255,255,.12)}
+.pbar button.tools{background:transparent;border-color:rgba(255,255,255,.22);color:#fff;width:34px;height:32px;padding:0;display:inline-flex;align-items:center;justify-content:center}
+.pbar button.tools .lbl{display:none}
+.pbar button.tools .ico{width:17px;height:17px}
+.pbar button.tools:hover{background:rgba(255,255,255,.12)}
+@media (max-width:900px){.pbar.vbar:has(.pfac){flex-wrap:wrap}.pbar.vbar:has(.pfac) .t{min-width:120px}}   /* tablets: the facilitator's tools take a second row */
+@media (pointer:coarse){.pbar.vbar button,.pbar.vbar a,.pbar.vbar select{min-height:42px}.pbar button.tools{width:42px;height:42px}}
 html.clean .top button.tools,html.clean .pbar button.tools{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff}
 .pbar .pfac{display:flex;gap:8px;align-items:center;margin-left:6px;padding-left:10px;border-left:2px dashed var(--gold)}
 @media (max-width:520px){.top .who .fac{display:none}}

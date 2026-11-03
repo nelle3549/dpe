@@ -149,7 +149,8 @@
   function ico(n) { return '<svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS[n] + '</svg>'; }
   // emoji in activity text (Zoom reactions) shown as icons; s is already escaped
   function emo(s) { return s.replace(/👍\uFE0F?/g, ico('thumbs-up')).replace(/🔇\uFE0F?/g, ico('volume-x')).replace(/🔊\uFE0F?/g, ico('volume-2')); }
-  function toolsBtn() { return '<button id="tools" class="btn-top tools" aria-pressed="' + !clean() + '">' + (clean() ? ico('wrench') + ' Show my tools' : ico('eye') + ' Hide my tools') + '</button>'; }
+  function toolsIn() { var l = clean() ? 'Show my tools' : 'Hide my tools'; return (clean() ? ico('wrench') : ico('eye')) + '<span class="lbl"> ' + l + '</span>'; }
+  function toolsBtn() { var l = clean() ? 'Show my tools' : 'Hide my tools'; return '<button id="tools" class="btn-top tools" aria-pressed="' + !clean() + '" title="' + l + '" aria-label="' + l + '">' + toolsIn() + '</button>'; }
   function clean() { try { return localStorage.getItem('dpeClean') === '1'; } catch (e) { return false; } }
   function setClean(on) {
     try { localStorage.setItem('dpeClean', on ? '1' : '0'); } catch (e) {}
@@ -170,7 +171,7 @@
   function bindTop() {
     var so = document.getElementById('signout');
     var tl = document.getElementById('tools');
-    if (tl) tl.onclick = function () { setClean(!clean()); tl.setAttribute('aria-pressed', !clean()); tl.innerHTML = clean() ? ico('wrench') + ' Show my tools' : ico('eye') + ' Hide my tools'; };
+    if (tl) tl.onclick = function () { setClean(!clean()); tl.setAttribute('aria-pressed', !clean()); tl.innerHTML = toolsIn(); tl.title = clean() ? 'Show my tools' : 'Hide my tools'; tl.setAttribute('aria-label', tl.title); };
     if (so) so.onclick = function () { clearTimers(); sb.auth.signOut({ scope: 'local' }).then(function () { S.profile = null; S.session = null; location.hash = '#/'; route(); }); };
   }
   function render(html) { $app.innerHTML = html; bindTop(); window.scrollTo(0, 0); }
@@ -1055,7 +1056,7 @@
     var T = TOPIC[tid].t, cid = S.profile.cohort_id, current = null, liveId = null, panelHidden = false;
     var opts = T.activities.map(function (a) { return '<option value="' + a.id + '">' + esc(a.title) + '</option>'; }).join('');
     // the same frame as the participants' slide viewer (#/deck), with the facilitator's controls (.fac) added
-    render('<div class="present"><div class="pbar vbar"><a href="#/">' + ico('house') + ' Home</a><span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
+    render('<div class="present"><div class="pbar vbar"><a href="#/">' + ico('house') + ' Home</a><span class="t" title="' + tid + ' ' + esc(T.title) + '">' + tid + ' ' + esc(T.title) + '</span>' +
       (T.video ? '<a href="#/video/' + tid + '">' + ico('play') + ' Video</a>' : '') +
       '<span class="fac pfac"><button class="tlive" id="tlive"></button><button class="golive hide" id="golive"></button>' +
       '<select id="pick" aria-label="Open an activity for answers"><option value="">Open for answers…</option>' + opts + '</select>' +
@@ -1099,7 +1100,8 @@
       if ((a && a.id) !== current) {
         current = a && a.id;
         $go.classList.toggle('hide', !a);
-        if (a) $go.innerHTML = ico('hand') + (answering(a.id) ? ' Show answers: ' : ' Open for answers: ') + esc(a.title);
+        if (a) { $go.innerHTML = ico('hand') + (answering(a.id) ? ' Show answers' : ' Open for answers'); $go.title = a.title; $go.setAttribute('aria-label', $go.textContent.trim() + ': ' + a.title); }
+        document.getElementById('pick').options[0].textContent = a ? 'Other activity…' : 'Open for answers…';
       }
       $end.classList.toggle('hide', idx !== all.length - 1);
     });
