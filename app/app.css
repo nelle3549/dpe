@@ -446,6 +446,10 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 .btn .ico{vertical-align:middle}
 /* Live = the topic being discussed now (red); activities taking answers = "Open for answers" (amber) (3 Nov) */
 .topic .acts .am.ans{color:var(--warn)}
+/* one layout for every card, so title, time, summary, buttons and activity rows line up across a row */
+.topic h4{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em}   /* always 2 lines */
+.topic .sum{min-height:2.9em}                                                                                         /* always 2 lines */
+.topic .acts .at>span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}                         /* always 1 line */
 .tag.ans{background:#FFF4D6;color:#7A5500}
 .livenow{display:flex;align-items:stretch;padding:0;overflow:hidden;border:2px solid var(--bad);box-shadow:0 0 0 4px rgba(198,40,40,.1)}
 .livenow .lnimg{flex:0 0 240px;display:block}

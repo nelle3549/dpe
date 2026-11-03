@@ -486,7 +486,7 @@
   }
   // an activity row: the title gets the full width, its status sits on a small line under it
   function actRow(href, title, cls, meta) {
-    return '<a href="' + href + '"><span class="at"><span>' + esc(title) + '</span>' + (meta ? '<span class="am ' + cls + '">' + meta + '</span>' : '') +
+    return '<a href="' + href + '" title="' + esc(title) + '"><span class="at"><span>' + esc(title) + '</span>' + (meta ? '<span class="am ' + cls + '">' + meta + '</span>' : '') +
       '</span><span class="chev" aria-hidden="true">›</span></a>';
   }
   // topic picture, same as the course page cards (course/images/thumbs/1-1.jpg)
@@ -499,7 +499,7 @@
     return '<div class="topic' + (on ? ' is-open' : ' locked') + (live ? ' has-live' : '') + '">' +
       (go ? '<a class="cover" href="' + deckView + t.id + '" tabindex="-1" aria-hidden="true">' : '<div class="cover">') + thumb(t.id) +
       '<span class="num">' + t.id + '</span>' + chip + (go ? '</a>' : '</div>') +
-      '<div class="t"><h4>' + esc(t.title) + '</h4></div>' +
+      '<div class="t"><h4 title="' + esc(t.title) + '">' + esc(t.title) + '</h4></div>' +
       '<p class="dur">' + ico('clock') + ' ' + esc(t.dur) + (t.video ? '<span class="muted"> · video ' + t.video + '</span>' : '') + '</p>' +
       '<p class="sum">' + esc(t.desc) + '</p><button type="button" class="more" data-more="' + t.id + '">See more</button>' +
       (on && !adm ? progLine(lessonState(t)) : '') +
