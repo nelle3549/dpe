@@ -154,32 +154,24 @@
       <div><p class="kicker">The fastest way</p><h2 class="h2">AutoSum: <kbd>Alt</kbd>+<kbd>=</kbd> then <kbd>Enter</kbd></h2></div>
       <span class="tag">Excel</span>
     </div>
-    <div class="grid" style="grid-template-columns:.95fr 1.05fr;align-items:start">
+    <div class="shots" data-walk>
       <div>
-        <ol class="steps">
-          <li>Click <b>E10</b>, the empty cell under the column. (Delete the long + formula first.)</li>
-          <li>Press <kbd>Alt</kbd>+<kbd>=</kbd>. Excel writes <span class="fcode">=SUM(E2:E9)</span> and shows the range with a dashed border.</li>
-          <li><b>Check the range</b>, then press <kbd>Enter</kbd>.</li>
-        </ol>
-        <div class="callout mt-m" style="font-size:calc(var(--u)*1.25)"><b>Same button, more functions:</b> Excel Home › <b>Σ AutoSum ▾</b> also offers Average, Count Numbers, Max, Min. Sheets: the <b>Σ</b> Functions toolbar button. Calc: the <b>Σ</b> button beside the formula bar.</div>
+        <div class="stage">
+          <figure class="f" data-step="1"><div class="pic"><img src="images/ui/3.4/01-formulas-autosum-e10.webp" alt="Excel inventory with the empty cell E10 selected under the Total Cost column"><i class="ring" style="--x:53.8;--y:69.1;--w:12.8;--h:4.4"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.5" data-o="5,12"><div class="pic"><img src="images/ui/3.4/01-formulas-autosum-e10.webp" alt="The AutoSum button on Excel's Formulas tab"><i class="ring" style="--x:6.8;--y:12;--w:9.8;--h:4"></i></div></figure>
+          <figure class="f" data-step="3"><div class="pic"><img src="images/ui/3.4/02-e10-sum.webp" alt="Formula bar shows =SUM(E2:E9) for cell E10; the range E2 to E9 holds the eight Total Cost values"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:53.8;--y:38.6;--w:12.8;--h:31;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.4" data-o="60,70"><div class="pic"><img src="images/ui/3.4/02-e10-sum.webp" alt="Cell E10 shows the total 22,039.00 pesos"><i class="ring" style="--x:53.8;--y:69.1;--w:12.8;--h:4.4"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Windows: <kbd>Alt</kbd>+<kbd>=</kbd>. Mac: <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd> or Formulas › AutoSum.</p>
       </div>
-      <div class="xl sm bd">
-        <div class="tools"><b class="on">Σ AutoSum ▾</b><b>Sum</b><b>Average</b><b>Count Numbers</b><b>Max</b><b>Min</b></div>
-        <div class="fbar"><span class="nb">E10</span><span class="fx">fx</span><span class="fv">=SUM(E2:E9)</span></div>
-        <table>
-          <colgroup><col class="rn"><col style="width:46%"><col></colgroup>
-          <tr><th></th><th>A</th><th class="on">E</th></tr>
-          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Total Cost</td></tr>
-          <tr><th>2</th><td>Bond paper, A4</td><td class="n rng">₱6,125.00</td></tr>
-          <tr><th>3</th><td>Bond paper, long</td><td class="n rng">₱7,950.00</td></tr>
-          <tr><th>4</th><td>Ballpen, black</td><td class="n rng">₱960.00</td></tr>
-          <tr><th>5</th><td>Folder, long</td><td class="n rng">₱2,080.00</td></tr>
-          <tr><th>6</th><td>Fastener</td><td class="n rng">₱510.00</td></tr>
-          <tr><th>7</th><td>Staple wire #35</td><td class="n rng">₱384.00</td></tr>
-          <tr><th>8</th><td>Printer ink, black</td><td class="n rng">₱2,800.00</td></tr>
-          <tr><th>9</th><td>Envelope, brown long</td><td class="n rng ants">₱1,230.00</td></tr>
-          <tr class="tot"><th>10</th><td>TOTAL</td><td class="f sel">=SUM(E2:E9)</td></tr>
-        </table>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Click <b>E10</b>, the empty cell under the column. (Delete the long + formula first.)</li>
+          <li data-step="2">Press <kbd>Alt</kbd>+<kbd>=</kbd>, or click <b>Σ AutoSum</b> (Formulas tab, or Home in Windows).</li>
+          <li data-step="3">Excel writes <span class="fcode">=SUM(E2:E9)</span> and shows the range with a dashed border. <b>Check the range</b>: exactly the data rows, E2 to E9.</li>
+          <li data-step="4">Press <kbd>Enter</kbd>: <b>₱22,039.00</b>. Click E10 again and the formula bar keeps <span class="fcode">=SUM(E2:E9)</span>.</li>
+        </ol>
+        <div class="callout mt-m"><b>Same button, more functions:</b> the <b>Σ AutoSum ▾</b> arrow also offers Average, Count Numbers, Max, Min. Sheets: the <b>Σ</b> Functions toolbar button. Calc: the <b>Σ</b> button beside the formula bar.</div>
       </div>
     </div>
     
@@ -190,27 +182,20 @@
     <div class="slide-head">
       <div><p class="kicker">SUM on the inventory</p><h2 class="h2">Total quantity and total stock value</h2></div>
     </div>
-    <div class="grid" style="grid-template-columns:1.25fr .75fr;align-items:center">
-      <div class="xl sm bd">
-        <div class="fbar"><span class="nb">C10</span><span class="fx">fx</span><span class="fv">=SUM(C2:C9)</span></div>
-        <table>
-          <colgroup><col class="rn"><col style="width:36%"><col style="width:10%"><col><col></colgroup>
-          <tr><th></th><th>A</th><th class="on">C</th><th>D</th><th class="on">E</th></tr>
-          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Qty</td><td class="c">Unit Cost</td><td class="c">Total Cost</td></tr>
-          <tr><th>2</th><td>Bond paper, A4</td><td class="n">25</td><td class="n">₱245.00</td><td class="n">₱6,125.00</td></tr>
-          <tr><th>3</th><td>Bond paper, long</td><td class="n">30</td><td class="n">₱265.00</td><td class="n">₱7,950.00</td></tr>
-          <tr><th>4</th><td>Ballpen, black</td><td class="n">10</td><td class="n">₱96.00</td><td class="n">₱960.00</td></tr>
-          <tr><th>5</th><td>Folder, long</td><td class="n">4</td><td class="n">₱520.00</td><td class="n">₱2,080.00</td></tr>
-          <tr><th>6</th><td>Fastener</td><td class="n">6</td><td class="n">₱85.00</td><td class="n">₱510.00</td></tr>
-          <tr><th>7</th><td>Staple wire #35</td><td class="n">12</td><td class="n">₱32.00</td><td class="n">₱384.00</td></tr>
-          <tr><th>8</th><td>Printer ink, black</td><td class="n">8</td><td class="n">₱350.00</td><td class="n">₱2,800.00</td></tr>
-          <tr><th>9</th><td>Envelope, brown long</td><td class="n">3</td><td class="n">₱410.00</td><td class="n">₱1,230.00</td></tr>
-          <tr class="tot"><th>10</th><td>TOTAL</td><td class="n sel">98</td><td></td><td class="n ok">₱22,039.00</td></tr>
-        </table>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="40,60"><div class="pic"><img src="images/ui/3.4/02-e10-sum.webp" alt="E10 selected; formula bar shows =SUM(E2:E9); E10 shows 22,039.00 pesos"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:53.8;--y:69.1;--w:12.8;--h:4.4;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="30,60"><div class="pic"><img src="images/ui/3.4/03-c10-sum-98.webp" alt="C10 selected; formula bar shows =SUM(C2:C9); C10 shows 98"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:36;--y:69.1;--w:8.2;--h:4.4;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
       </div>
       <div>
-        <div class="card top"><h4>C10 · total units</h4><p><span class="fcode">=SUM(C2:C9)</span></p><p class="stat mt-s"><span class="n" style="font-size:calc(var(--u)*3)">98</span></p></div>
-        <div class="card top mt-m"><h4>E10 · total stock value</h4><p><span class="fcode">=SUM(E2:E9)</span></p><p class="stat mt-s"><span class="n" style="font-size:calc(var(--u)*3)">₱22,039.00</span></p></div>
+        <ol class="steps sm">
+          <li data-step="1"><b>E10 · total stock value</b>: <span class="fcode">=SUM(E2:E9)</span> → <b>₱22,039.00</b>, the same number as the long + formula.</li>
+          <li data-step="2"><b>C10 · total units</b>: <span class="fcode">=SUM(C2:C9)</span> → <b>98</b>.</li>
+        </ol>
+        <div class="callout tip mt-m"><b>Read it back:</b> click the result cell. The formula bar shows the function and its range.</div>
       </div>
     </div>
     
@@ -218,19 +203,24 @@
 
   
   <section class="slide" data-title="AVERAGE">
-    <div class="split">
+    <div class="slide-head">
+      <div><p class="kicker">AVERAGE</p><h2 class="h2">The typical value: total ÷ how many</h2></div>
+    </div>
+    <div class="shots" data-walk>
       <div>
-        <p class="kicker">AVERAGE</p>
-        <h2 class="h2">The typical value: total ÷ how many</h2>
-        <table class="tbl mt-m">
-          <tr><th>Formula</th><th>Means</th><th>Result</th></tr>
-          <tr><td class="fcode">=AVERAGE(E2:E9)</td><td>average total cost per item</td><td><b>₱2,754.88</b></td></tr>
-          <tr><td class="fcode">=AVERAGE(D2:D9)</td><td>average unit cost</td><td><b>₱250.38</b></td></tr>
-        </table>
-        <p class="small mt-m">Check: ₱22,039.00 ÷ 8 = 2,754.875, shown as ₱2,754.88 because of the 2-decimal format.</p>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="30,70"><div class="pic"><img src="images/ui/3.4/04-e14-average-total.webp" alt="E14 selected; formula bar shows =AVERAGE(E2:E9); E14 shows 2,754.88 pesos"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:45;--y:75.0;--w:10.6;--h:3.8;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.2" data-o="30,55"><div class="pic"><img src="images/ui/3.4/05-e13-average-unit.webp" alt="E13 selected; formula bar shows =AVERAGE(D2:D9); E13 shows 250.38 pesos"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:45;--y:71.8;--w:10.6;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:36.3;--y:36.9;--w:9.1;--h:25.9;--d:0.5s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. The summary block from the Try-it slide, rows 12 to 18.</p>
+      </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1"><span class="fcode">=AVERAGE(E2:E9)</span> → <b>₱2,754.88</b>, the average total cost per item. Check: ₱22,039.00 ÷ 8 = 2,754.875, shown with 2 decimals.</li>
+          <li data-step="2"><span class="fcode">=AVERAGE(D2:D9)</span> → <b>₱250.38</b>, the average unit cost.</li>
+        </ol>
         <div class="callout warn mt-m"><b>Blank vs zero:</b> AVERAGE skips blank and text cells, but a <b>0</b> counts and pulls the average down.</div>
       </div>
-      <div class="media"><img src="images/m3/3-4-grocery.jpg" alt="Hand holding a long store receipt"></div>
     </div>
     
   </section>
@@ -240,31 +230,23 @@
     <div class="slide-head">
       <div><p class="kicker">Counting</p><h2 class="h2">COUNT counts numbers. COUNTA counts anything.</h2></div>
     </div>
-    <div class="grid" style="grid-template-columns:1fr 1fr;align-items:start">
-      <div class="xl sm">
-        <table>
-          <colgroup><col class="rn"><col style="width:52%"><col></colgroup>
-          <tr><th></th><th class="on">A</th><th class="on">C</th></tr>
-          <tr class="hd"><th>1</th><td>Item</td><td>Qty</td></tr>
-          <tr><th>2</th><td class="rng">Bond paper, A4</td><td class="n rng">25</td></tr>
-          <tr><th>3</th><td class="rng">Bond paper, long</td><td class="n rng">30</td></tr>
-          <tr><th>4</th><td class="rng">Ballpen, black</td><td class="n rng">10</td></tr>
-          <tr><th>5</th><td class="rng">Folder, long</td><td class="n rng">4</td></tr>
-          <tr><th>6</th><td class="rng">Fastener</td><td class="n rng">6</td></tr>
-          <tr><th>7</th><td class="rng">Staple wire #35</td><td class="n rng">12</td></tr>
-          <tr><th>8</th><td class="rng">Printer ink, black</td><td class="n rng">8</td></tr>
-          <tr><th>9</th><td class="rng">Envelope, brown long</td><td class="n rng">3</td></tr>
-        </table>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.2" data-o="30,55"><div class="pic"><img src="images/ui/3.4/06-e12-count-qty.webp" alt="E12 selected; formula bar shows =COUNT(C2:C9); E12 shows 8"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:45;--y:68.6;--w:10.6;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:30.1;--y:36.9;--w:6.6;--h:25.9;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.2" data-o="20,55"><div class="pic"><img src="images/ui/3.4/07-e12-count-names-0.webp" alt="E12 selected; formula bar shows =COUNT(A2:A9); E12 shows 0"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:45;--y:68.6;--w:10.6;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:2.7;--y:36.9;--w:17.5;--h:25.9;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.2" data-o="20,55"><div class="pic"><img src="images/ui/3.4/08-e12-counta-names-8.webp" alt="E12 selected; formula bar shows =COUNTA(A2:A9); E12 shows 8"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:45;--y:68.6;--w:10.6;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:2.7;--y:36.9;--w:17.5;--h:25.9;--d:0.5s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
       </div>
       <div>
-        <table class="tbl">
-          <tr><th>Formula</th><th>Result</th></tr>
-          <tr><td class="fcode">=COUNT(C2:C9)</td><td><b>8</b> numbers</td></tr>
-          <tr><td class="fcode">=COUNT(A2:A9)</td><td><b style="color:var(--coral)">0</b> (item names are text)</td></tr>
-          <tr><td class="fcode">=COUNTA(A2:A9)</td><td><b>8</b> filled cells</td></tr>
-        </table>
+        <ol class="steps sm">
+          <li data-step="1"><span class="fcode">=COUNT(C2:C9)</span> → <b>8</b> numbers.</li>
+          <li data-step="2"><span class="fcode">=COUNT(A2:A9)</span> → <b style="color:var(--coral)">0</b>. Item names are text.</li>
+          <li data-step="3"><span class="fcode">=COUNTA(A2:A9)</span> → <b>8</b> filled cells.</li>
+        </ol>
         <div class="callout tip mt-m"><b>Rule of thumb:</b> count a <b>number</b> column with COUNT; count names or any filled cells with <b>COUNTA</b>.</div>
-        <div class="callout gold mt-m"><b>Office use:</b> COUNTA on a Name column tells you how many people signed the attendance sheet.</div>
+        <div class="callout gold mt-s"><b>Office use:</b> COUNTA on a Name column tells you how many people signed the attendance sheet.</div>
       </div>
     </div>
     
@@ -275,30 +257,25 @@
     <div class="slide-head">
       <div><p class="kicker">Lowest and highest</p><h2 class="h2">MIN and MAX find the extremes</h2></div>
     </div>
-    <div class="grid" style="grid-template-columns:1.15fr .85fr;align-items:center">
-      <div class="xl sm bd">
-        <table>
-          <colgroup><col class="rn"><col style="width:40%"><col><col></colgroup>
-          <tr><th></th><th>A</th><th class="on">D</th><th class="on">E</th></tr>
-          <tr class="fmt"><th>1</th><td>Item</td><td class="c">Unit Cost</td><td class="c">Total Cost</td></tr>
-          <tr><th>2</th><td>Bond paper, A4</td><td class="n">₱245.00</td><td class="n">₱6,125.00</td></tr>
-          <tr><th>3</th><td>Bond paper, long</td><td class="n">₱265.00</td><td class="n ok"><b>₱7,950.00</b></td></tr>
-          <tr><th>4</th><td>Ballpen, black</td><td class="n">₱96.00</td><td class="n">₱960.00</td></tr>
-          <tr><th>5</th><td>Folder, long</td><td class="n ok"><b>₱520.00</b></td><td class="n">₱2,080.00</td></tr>
-          <tr><th>6</th><td>Fastener</td><td class="n">₱85.00</td><td class="n">₱510.00</td></tr>
-          <tr><th>7</th><td>Staple wire #35</td><td class="n hi"><b>₱32.00</b></td><td class="n hi"><b>₱384.00</b></td></tr>
-          <tr><th>8</th><td>Printer ink, black</td><td class="n">₱350.00</td><td class="n">₱2,800.00</td></tr>
-          <tr><th>9</th><td>Envelope, brown long</td><td class="n">₱410.00</td><td class="n">₱1,230.00</td></tr>
-        </table>
-        <p class="cap" style="padding:0 calc(var(--u)*.8) calc(var(--u)*.6)">Green = highest · red = lowest</p>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.2" data-o="30,60"><div class="pic"><img src="images/ui/3.4/09-e15-min-unit.webp" alt="E15 selected; formula bar shows =MIN(D2:D9); E15 shows 32.00 pesos, the staple wire in D7"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:45;--y:78.1;--w:10.6;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:36.3;--y:52.8;--w:9.1;--h:3.8;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.2" data-o="30,60"><div class="pic"><img src="images/ui/3.4/10-e16-max-unit.webp" alt="E16 selected; formula bar shows =MAX(D2:D9); E16 shows 520.00 pesos, the folder in D5"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:45;--y:81.3;--w:10.6;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:36.3;--y:46.5;--w:9.1;--h:3.8;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.2" data-o="30,60"><div class="pic"><img src="images/ui/3.4/11-e17-max-total.webp" alt="E17 selected; formula bar shows =MAX(E2:E9); E17 shows 7,950.00 pesos, long bond paper in E3"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:45;--y:84.5;--w:10.6;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:45;--y:40.1;--w:10.6;--h:3.8;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.2" data-o="30,60"><div class="pic"><img src="images/ui/3.4/12-e18-min-total.webp" alt="E18 selected; formula bar shows =MIN(E2:E9); E18 shows 384.00 pesos, the staple wire in E7"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:45;--y:87.6;--w:10.6;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:45;--y:52.8;--w:10.6;--h:3.8;--d:0.5s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
       </div>
-      <table class="tbl">
-        <tr><th>Formula</th><th>Result</th></tr>
-        <tr><td class="fcode">=MIN(D2:D9)</td><td><b>₱32.00</b> staple wire</td></tr>
-        <tr><td class="fcode">=MAX(D2:D9)</td><td><b>₱520.00</b> folder</td></tr>
-        <tr><td class="fcode">=MAX(E2:E9)</td><td><b>₱7,950.00</b> bond paper, long</td></tr>
-        <tr><td class="fcode">=MIN(E2:E9)</td><td><b>₱384.00</b> staple wire</td></tr>
-      </table>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1"><span class="fcode">=MIN(D2:D9)</span> → <b>₱32.00</b>, staple wire</li>
+          <li data-step="2"><span class="fcode">=MAX(D2:D9)</span> → <b>₱520.00</b>, folder</li>
+          <li data-step="3"><span class="fcode">=MAX(E2:E9)</span> → <b>₱7,950.00</b>, bond paper, long</li>
+          <li data-step="4"><span class="fcode">=MIN(E2:E9)</span> → <b>₱384.00</b>, staple wire</li>
+        </ol>
+        <div class="callout mt-m">They return the <b>value</b>, not the item name: read the table to see which item it is.</div>
+      </div>
     </div>
     
   </section>
@@ -359,18 +336,24 @@
     <div class="slide-head">
       <div><p class="kicker">Watch out</p><h2 class="h2">Three classic mistakes, with the numbers they produce</h2></div>
     </div>
-    <div class="grid g3 anim-stagger-list">
-      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3" /><path d="M8.12 8.12 12 12" /><path d="M20 4 8.12 15.88" /><circle cx="6" cy="18" r="3" /><path d="M14.8 14.8 20 20" /></svg></span><h4>Wrong range</h4>
-        <p><span class="fcode">=SUM(E2:E8)</span> → <b style="color:var(--coral)">₱20,809.00</b></p>
-        <p class="mt-s">Stops one row short and misses the envelopes (₱1,230.00). Correct: ₱22,039.00.</p></div>
-      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg></span><h4>Counting the total row</h4>
-        <p><span class="fcode">=SUM(E2:E10)</span> in E12 → <b style="color:var(--coral)">₱44,078.00</b></p>
-        <p class="mt-s">Double the real total. <span class="fcode">=AVERAGE(E2:E10)</span> → ₱4,897.56. Inside E10 itself it causes a <b>circular reference</b> warning.</p></div>
-      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 15 4-8 4 8" /><path d="M4 13h6" /><circle cx="18" cy="12" r="3" /><path d="M21 9v6" /></svg></span><h4>Text in a number cell</h4>
-        <p>C3 = "30 reams" → <span class="fcode">=SUM(C2:C9)</span> gives <b style="color:var(--coral)">68</b>, not 98</p>
-        <p class="mt-s"><span class="fcode">=COUNT(C2:C9)</span> gives 7, and E3 shows #VALUE!, which spreads to the E10 total.</p></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.2" data-o="30,55"><div class="pic"><img src="images/ui/3.4/14-mistake-e10-sum-e2-e8.webp" alt="E10 selected; formula bar shows =SUM(E2:E8); E10 shows 20,809.00 pesos; row 9 is left out"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:45;--y:62.3;--w:10.6;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:45;--y:59.1;--w:10.6;--h:3.8;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.2" data-o="30,60"><div class="pic"><img src="images/ui/3.4/13-mistake-e12-sum-e2-e10.webp" alt="E12 selected; formula bar shows =SUM(E2:E10); E12 shows 44,078.00 pesos, double the total"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:45;--y:68.6;--w:10.6;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:45;--y:36.9;--w:10.6;--h:29.1;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.2" data-o="30,50"><div class="pic"><img src="images/ui/3.4/15-mistake-text-30-reams-68.webp" alt="C3 holds the text 30 reams; C10 with =SUM(C2:C9) shows 68; E3 and E10 show #VALUE!"><i class="ring" style="--x:30.1;--y:40.1;--w:6.6;--h:3.8"></i><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4;--d:0.25s"></i><i class="ring" style="--x:30.1;--y:62.3;--w:6.6;--h:3.8;--d:0.5s"></i><i class="ring" style="--x:45;--y:40.1;--w:10.6;--h:3.8;--d:0.75s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Mistakes made on purpose.</p>
+      </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1"><b>Wrong range:</b> <span class="fcode">=SUM(E2:E8)</span> → <b style="color:var(--coral)">₱20,809.00</b>. Stops one row short and misses the envelopes (₱1,230.00).</li>
+          <li data-step="2"><b>Counting the total row:</b> <span class="fcode">=SUM(E2:E10)</span> in E12 → <b style="color:var(--coral)">₱44,078.00</b>, double. Inside E10 itself it causes a <b>circular reference</b> warning.</li>
+          <li data-step="3"><b>Text in a number cell:</b> C3 = "30 reams" → <span class="fcode">=SUM(C2:C9)</span> gives <b style="color:var(--coral)">68</b>, not 98. COUNT gives 7, and E3 shows #VALUE!, which spreads to E10.</li>
+        </ol>
+        <div class="callout mt-m"><b>Habit that catches all three:</b> click the result, read the range in the formula bar: does it cover <b>exactly</b> your data rows?</div>
+      </div>
     </div>
-    <div class="callout mt-l"><b>Habit that catches all three:</b> click the result, read the range in the formula bar, and ask "does this cover exactly my data rows?"</div>
     
   </section>
 
