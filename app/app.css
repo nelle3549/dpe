@@ -477,3 +477,16 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 .endbar button{background:#fff;color:var(--good);border:0;border-radius:999px;padding:6px 14px;font-weight:800;cursor:pointer}
 .endbar button:disabled{opacity:.6}
 .livenow .btn.fac{border:1.5px dashed var(--gold);background:#fffaf0;color:#7a5500}
+
+/* home: curriculum design document at the bottom */
+.docs{margin-top:40px;padding-top:20px;border-top:1px solid var(--border)}
+.docs .kicker{margin:0 0 10px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}
+.docl{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:var(--r);background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);color:var(--text-1);text-decoration:none}
+.docl:hover{border-color:var(--m1)}
+.docl .di{flex:none;width:44px;height:44px;border-radius:12px;background:var(--info-bg);color:var(--m1);display:grid;place-items:center}
+.docl .di .ico{width:22px;height:22px}
+.docl .dt{flex:1;min-width:0}
+.docl .dt b{display:block;font-size:16px;line-height:1.3}
+.docl .dt small{display:block;color:var(--text-3);font-size:13px;line-height:1.4;margin-top:2px}
+.docl .dx{flex:none;display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:14px;color:var(--m1);white-space:nowrap}
+@media (max-width:520px){.docl{flex-wrap:wrap}.docl .dx{margin-left:58px}}

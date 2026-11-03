@@ -135,6 +135,7 @@
     'play': '<path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/>',
     'house': '<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />',
     'hourglass': '<path d="M5 22h14" /><path d="M5 2h14" /><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" /><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />',
+    'external-link': '<path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />',
     'file-text': '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" />',
     'arrow-right': '<path d="M5 12h14" /><path d="m12 5 7 7-7 7" />',
     'clock': '<circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />',
@@ -619,6 +620,11 @@
         '<div class="topics">' + s.topics.map(function (t) { return topicCard(t, adm, deckView); }).join('') + '</div></section>';
     });
     var hy = +sessionStorage.getItem('dpeHomeY') || 0;
+    // bottom of home: the curriculum design DICT provided (Drive Decks/docs/ → course/docs/)
+    html += '<section class="docs" aria-label="Curriculum design"><p class="kicker">Curriculum design</p>' +
+      '<a class="docl" href="course/docs/CS_DigitalProductivityEssentials_1.0.pdf" target="_blank" rel="noopener"><span class="di">' + ico('file-text') + '</span>' +
+      '<span class="dt"><b>Course Syllabus: Digital Productivity Essentials</b><small>DICT ICT Literacy and Competency Development Bureau · Version 1.0 · PDF, 7 pages</small></span>' +
+      '<span class="dx">Open ' + ico('external-link') + '</span></a></section>';
     render(html + '<p class="small muted mt-4">Signed in as ' + esc(p.email) + (isViewer() ? ' · preview account' : ' · Certificate name: <b>' + esc(fullName(p)) + '</b> (spelling wrong? Ask the facilitator.)') + '</p></main>');
     if (hy) scrollTo(0, hy);   // back from a lesson or activity: where you were on the list
     document.querySelectorAll('[data-more]').forEach(function (b) { b.onclick = function () { topicInfo(b.dataset.more, b); }; });

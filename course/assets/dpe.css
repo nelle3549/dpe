@@ -280,7 +280,8 @@ kbd,.kbd{display:inline-block;font-family:var(--font-mono);font-size:.82em;font-
 /* topic video: intro slide card + the full-screen video slide */
 .vintro{position:relative;border-radius:calc(var(--u)*1.4);overflow:hidden;box-shadow:0 calc(var(--u)*.6) calc(var(--u)*2.4) rgba(11,37,69,.22);aspect-ratio:16/9;background:#000}
 .vintro img{width:100%;height:100%;object-fit:cover;display:block}
-.vintro .play{position:absolute;left:50%;top:50%;width:calc(var(--u)*6.5);height:calc(var(--u)*6.5);margin:calc(var(--u)*-3.25) 0 0 calc(var(--u)*-3.25);border-radius:50%;background:rgba(244,180,0,.95);box-shadow:0 calc(var(--u)*.4) calc(var(--u)*1.6) rgba(0,0,0,.35)}
+.vintro .play{position:absolute;left:50%;top:50%;width:calc(var(--u)*6.5);height:calc(var(--u)*6.5);margin:calc(var(--u)*-3.25) 0 0 calc(var(--u)*-3.25);border-radius:50%;background:rgba(244,180,0,.72);box-shadow:0 calc(var(--u)*.4) calc(var(--u)*1.6) rgba(0,0,0,.25);transition:background .15s}
+.vintro:hover .play{background:rgba(244,180,0,.92)}   /* see-through at rest, solid on hover */
 .vintro .play::after{content:"";position:absolute;left:54%;top:50%;transform:translate(-50%,-50%);border-style:solid;border-width:calc(var(--u)*1.3) 0 calc(var(--u)*1.3) calc(var(--u)*2.1);border-color:transparent transparent transparent var(--navy)}
 .vintro .vlen{position:absolute;right:calc(var(--u)*1);bottom:calc(var(--u)*1);background:rgba(9,22,44,.85);color:#fff;font-weight:700;font-size:calc(var(--u)*1.05);padding:calc(var(--u)*.3) calc(var(--u)*.7);border-radius:calc(var(--u)*.4)}
 .vfacts{display:flex;flex-wrap:wrap;gap:calc(var(--u)*.6);margin-top:calc(var(--u)*1.1)}

@@ -43,7 +43,8 @@
     '#ui .pl-time{flex:none;font-variant-numeric:tabular-nums;opacity:.9;min-width:96px}' +
     '#ui input{flex:1;accent-color:#F4B400;height:4px;cursor:pointer}' +
     '#big{position:fixed;left:50%;top:50%;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;border:0;z-index:11;cursor:pointer;' +
-      'background:rgba(244,180,0,.96);box-shadow:0 10px 40px rgba(0,0,0,.4)}' +
+      'background:rgba(244,180,0,.72);box-shadow:0 10px 40px rgba(0,0,0,.25);transition:background .15s}' +
+    '#big:hover{background:rgba(244,180,0,.92)}' +
     '#big::after{content:"";position:absolute;left:56%;top:50%;transform:translate(-50%,-50%);border-style:solid;border-width:22px 0 22px 36px;border-color:transparent transparent transparent #0B2545}' +
     '#big.hide{display:none}' +
     // narrow phones: keep CC and speed on screen
