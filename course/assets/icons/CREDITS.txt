@@ -1,0 +1,10 @@
+Icons drawn inline in the decks and videos where Lucide has no match (3 Nov 2026).
+These files are the originals; the decks carry recoloured inline copies.
+
+mango.svg          SVG Repo 416309 "Mango Summer Fruit"   CC0   https://www.svgrepo.com/svg/416309/mango-summer-fruit
+owl.svg            SVG Repo 481823 "Owl 3"                CC0   https://www.svgrepo.com/svg/481823/owl-3
+pig.svg            SVG Repo 488030 "Pig"                  CC0   https://www.svgrepo.com/svg/488030/pig
+sleeping-face.svg  SVG Repo 510203 "Sleeping Face"        CC0   https://www.svgrepo.com/svg/510203/sleeping-face
+typhoon.svg        SVG Repo 432019 "Typhoon"              CC0   https://www.svgrepo.com/svg/432019/typhoon
+jeepney.png        "Jeepney" by Jaime M. Laurel from Noun Project, CC BY 3.0
+                   https://thenounproject.com/icon/61802/  (credit required wherever it is shown)
