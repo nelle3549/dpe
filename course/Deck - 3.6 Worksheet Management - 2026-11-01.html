@@ -145,30 +145,24 @@ svg text{font-family:var(--font-sans)}
       <div><p class="kicker">Where the tabs live</p><h2 class="h2">Right-click a sheet tab to manage it</h2></div>
       <span class="tag">Bottom-left of the window</span>
     </div>
-    <div class="grid" style="grid-template-columns:1.45fr .55fr;align-items:end">
-      <div class="win xlwin">
-<div class="bar"><i></i><i></i><i></i><span>Inventory 2026.xlsx</span></div>
-<div class="fbar"><span class="nb">E10</span><span class="fx">fx</span><span class="f">=SUM(E2:E9)</span></div>
-<table class="xl" style="font-size:calc(var(--u)*0.98)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
-<tr><th>1</th><td class="h">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h">Total Cost (₱)</td></tr>
-<tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="n">6,125.00</td></tr>
-<tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="n">7,950.00</td></tr>
-<tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="n">960.00</td></tr>
-<tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="n">2,080.00</td></tr>
-<tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="n">510.00</td></tr>
-<tr><th>7</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="n">384.00</td></tr>
-<tr><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="n">2,800.00</td></tr>
-<tr><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="n">1,230.00</td></tr>
-<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="n k">22,039.00</td></tr>
-</table>
-<div class="stabs"><span class="on t1">Jan</span><span class="t2">Feb</span><span class="t3">Mar</span><span class="t4">Summary</span><span class="plus">+</span></div>
-</div>
-      <div class="menu">
-        <div>Insert…</div><div>Delete</div><div class="on">Rename</div><div>Move or Copy…</div><hr>
-        <div>Tab Color ▸</div><div>Protect Sheet…</div><hr><div>Hide</div><div>Unhide…</div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.6" data-o="0,96"><div class="pic"><img src="images/ui/3.6/05-tabs-jan-feb-mar-summary.webp" alt="Sheet tabs Jan, Feb, Mar and Summary at the bottom-left of the Excel window"><i class="ring" style="--x:6.2;--y:91.8;--w:33.9;--h:4.4"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.6" data-o="0,96"><div class="pic"><img src="images/ui/3.6/05-tabs-jan-feb-mar-summary.webp" alt="The plus button right of the Summary tab adds a new sheet"><i class="ring" style="--x:40.2;--y:91.8;--w:3.6;--h:4.4"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.6" data-o="0,96"><div class="pic"><img src="images/ui/3.6/05-tabs-jan-feb-mar-summary.webp" alt="The active Jan tab; right-click it for the sheet menu"><i class="ring" style="--x:6.2;--y:91.8;--w:8.6;--h:4.4"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Mac: Control-click a tab for the same menu.</p>
+      </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1"><b>Jan, Feb, Mar, Summary</b>: one tab per sheet. The active tab is the light one.</li>
+          <li data-step="2"><b>+</b> adds a new sheet (<kbd>Shift</kbd> + <kbd>F11</kbd>).</li>
+          <li data-step="3"><b>Right-click a tab</b> for its menu: Insert, Delete, Rename, Move or Copy, Tab Color, Protect Sheet, Hide, Unhide. Double-click a tab to rename it.</li>
+        </ol>
+        <p class="small mt-s">Google Sheets and LibreOffice Calc have the same ideas with slightly different names.</p>
       </div>
     </div>
-    <p class="small mt-m">Excel's right-click menu shown. Google Sheets and LibreOffice Calc have the same ideas with slightly different names.</p>
     <div class="notes">
       <p>Point at the tabs under the grid: <b>Jan, Feb, Mar, Summary</b>, then the <b>+</b> button that adds a new sheet. The active tab is the one with the white background.</p>
       <p>Demo: right-click the Jan tab to show this menu. Almost everything in this topic starts here. Mention the shortcut <kbd>Ctrl</kbd> + <kbd>Page Down</kbd> / <kbd>Page Up</kbd> to jump between sheets in Excel and LibreOffice (in Google Sheets add <kbd>Shift</kbd>); it saves a lot of mouse travel.</p>
@@ -200,17 +194,26 @@ svg text{font-family:var(--font-sans)}
       <div><p class="kicker">Try it now · your own app</p><h2 class="h2">Turn your inventory into a 4-tab workbook</h2></div>
       <button class="timer" data-min="4">4:00</button>
     </div>
-    <div class="grid g2" style="grid-template-columns:1.2fr .8fr;align-items:start">
-      <div class="try">
+    <div class="shots" data-walk style="grid-template-columns:.95fr 1.05fr;align-items:start">
+      <div class="try" style="order:-1">
         <div class="try-head"><span class="try-label">Steps</span><span class="tiny">Use your Lab 3 inventory</span></div>
         <ol>
-          <li>Rename <b>Sheet1</b> to <b>Jan</b>. Give it a colour.</li>
-          <li>Copy the Jan sheet twice (Move or Copy, tick <b>Create a copy</b>; in Sheets use <b>Duplicate</b>). Rename the copies <b>Feb</b> and <b>Mar</b>.</li>
-          <li>Insert a new sheet named <b>Summary</b>. Drag it to the far left.</li>
+          <li data-step="1">Rename <b>Sheet1</b> to <b>Jan</b>. Give it a colour.</li>
+          <li data-step="2">Copy the Jan sheet twice (Move or Copy, tick <b>Create a copy</b>; in Sheets use <b>Duplicate</b>). Rename the copies <b>Feb</b> and <b>Mar</b>.</li>
+          <li data-step="3">Insert a new sheet named <b>Summary</b>. Drag it to the far left.</li>
           <li>Screenshot your tabs and upload it in the portal.</li>
         </ol>
       </div>
-      <div class="media" style="max-height:calc(var(--u)*26);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg)"><img src="images/m3/3-6-divider.jpg" alt="Hand opening a folder with tabbed dividers" style="width:100%;height:calc(var(--u)*26);object-fit:cover"></div>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.8" data-o="0,96"><div class="pic"><img src="images/ui/3.6/01-sheet1-start.webp" alt="A new workbook with one tab named Sheet1"><i class="ring" style="--x:6.2;--y:91.8;--w:8.6;--h:4.4"></i></div></figure>
+          <figure class="f" data-step="1" data-zoom="1.8" data-o="0,96"><div class="pic"><img src="images/ui/3.6/02-jan-renamed-colour.webp" alt="The tab now reads Jan, with a blue tab colour"><i class="ring" style="--x:6.2;--y:91.8;--w:8.6;--h:4.4"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.8" data-o="0,96"><div class="pic"><img src="images/ui/3.6/03-jan-copies.webp" alt="Two copies appear as Jan (2) and Jan (3)"><i class="ring" style="--x:14.5;--y:91.8;--w:16.6;--h:4.4"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.8" data-o="0,96"><div class="pic"><img src="images/ui/3.6/04-feb-mar-renamed.webp" alt="The copies renamed Feb and Mar, in green and orange"><i class="ring" style="--x:14.5;--y:91.8;--w:16.6;--h:4.4"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.8" data-o="0,96"><div class="pic"><img src="images/ui/3.6/06-summary-b2-jan-e10.webp" alt="Tabs Summary, Jan, Feb, Mar: Summary is now first"><i class="ring" style="--x:6.2;--y:91.8;--w:9.3;--h:4.4"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac. Copies first appear as Jan (2) and Jan (3); rename them.</p>
+      </div>
     </div>
     <div class="notes">
       <p>Start the <b>4-minute</b> timer. Copying the sheet is the key move: Feb and Mar get the same headers and formulas as Jan, so the layout is identical.</p>
@@ -235,28 +238,25 @@ svg text{font-family:var(--font-sans)}
 
   <!-- 9 · Summary sheet -->
   <section class="slide" data-title="A Summary sheet">
-    <div class="split" style="grid-template-columns:1.1fr .9fr">
-      <div><div class="win xlwin">
-<div class="bar"><i></i><i></i><i></i><span>Inventory 2026.xlsx</span></div>
-<div class="fbar"><span class="nb">B2</span><span class="fx">fx</span><span class="f">=Jan!E10</span></div>
-<table class="xl" style="font-size:calc(var(--u)*1.2)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th></tr>
-<tr><th>1</th><td class="h">Month</td><td class="h">Total Cost (₱)</td><td class="h">Formula in column B</td></tr>
-<tr><th>2</th><td>Jan</td><td class="s n">22,039.00</td><td class="f">=Jan!E10</td></tr>
-<tr><th>3</th><td>Feb</td><td class="n">17,518.00</td><td class="f">=Feb!E10</td></tr>
-<tr><th>4</th><td>Mar</td><td class="n">24,652.00</td><td class="f">=Mar!E10</td></tr>
-<tr class="tot"><th>5</th><td class="k">Q1 total</td><td class="g k n">64,209.00</td><td class="f">=SUM(B2:B4)</td></tr>
-<tr><th>6</th><td class="k">Monthly average</td><td class="k n">21,403.00</td><td class="f">=AVERAGE(B2:B4)</td></tr>
-</table>
-<div class="stabs"><span class="t1">Jan</span><span class="t2">Feb</span><span class="t3">Mar</span><span class="on t4">Summary</span><span class="plus">+</span></div>
-</div></div>
+    <div class="slide-head">
+      <div><p class="kicker">Referencing other sheets</p><h2 class="h2">Sheet name, then <span class="mod">!</span>, then the cell.</h2></div>
+    </div>
+    <div class="shots" data-walk>
       <div>
-        <p class="kicker">Referencing other sheets</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.7)">Sheet name, then <span class="mod">!</span>, then the cell.</h2>
-        <ul class="ticks mt-m">
-          <li><b>=Jan!E10</b> means "cell E10 on the Jan sheet".</li>
-          <li>Easiest way: type <b>=</b>, click the Jan tab, click E10, press <kbd>Enter</kbd>.</li>
-          <li>Names with spaces need quotes: <b>='Jan 2026'!E10</b>.</li>
-          <li>LibreOffice writes it as <b>=$Jan.E10</b>. Clicking writes it for you.</li>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="20,30"><div class="pic"><img src="images/ui/3.6/06-summary-b2-jan-e10.webp" alt="Summary sheet, B2 selected; the formula bar shows =Jan!E10 and B2 shows 22,039.00 pesos"><i class="ring" style="--x:21.2;--y:38.4;--w:14.9;--h:4.4"></i><i class="ring" style="--x:0.4;--y:24.6;--w:40;--h:4.4;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="20,30"><div class="pic"><img src="images/ui/3.6/07-summary-b4-mar-e10.webp" alt="B2 to B4 filled; B4 selected shows =Mar!E10 in the formula bar"><i class="ring" style="--x:21.2;--y:38.4;--w:14.9;--h:12.1"></i><i class="ring" style="--x:0.4;--y:24.6;--w:40;--h:4.4;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-o="20,35"><div class="pic"><img src="images/ui/3.6/08-summary-b5-sum.webp" alt="B5 selected; the formula bar shows =SUM(B2:B4); B5 shows 64,209.00 and B6 21,403.00 pesos"><i class="ring" style="--x:21.2;--y:49.9;--w:14.9;--h:8.3"></i><i class="ring" style="--x:0.4;--y:24.6;--w:40;--h:4.4;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.3" data-o="40,40"><div class="pic"><img src="images/ui/3.6/09-summary-show-formulas.webp" alt="Show Formulas: B2 to B6 list =Jan!E10, =Feb!E10, =Mar!E10, =SUM(B2:B4), =AVERAGE(B2:B4)"><i class="ring" style="--x:38.6;--y:38.4;--w:30.1;--h:19.8"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Feb and Mar use the sample quantities. Show formulas: <kbd>Ctrl</kbd>+<kbd>`</kbd>.</p>
+      </div>
+      <div>
+        <ul class="ticks">
+          <li data-step="1"><b>=Jan!E10</b> means "cell E10 on the Jan sheet": B2 shows <b>₱22,039.00</b>. Easiest way: type <b>=</b>, click the Jan tab, click E10, press <kbd>Enter</kbd>.</li>
+          <li data-step="2">Same for Feb and Mar: B3 <b>=Feb!E10</b>, B4 <b>=Mar!E10</b>.</li>
+          <li data-step="3">B5 <b>=SUM(B2:B4)</b> = ₱64,209.00 for the quarter; B6 <b>=AVERAGE(B2:B4)</b> = ₱21,403.00.</li>
+          <li data-step="4">Names with spaces need quotes: <b>='Jan 2026'!E10</b>. LibreOffice writes <b>=$Jan.E10</b>. Clicking writes it for you.</li>
         </ul>
       </div>
     </div>
@@ -323,31 +323,26 @@ svg text{font-family:var(--font-sans)}
 
   <!-- 12 · Freeze panes & zoom -->
   <section class="slide" data-title="Freeze panes and zoom">
-    <div class="split" style="grid-template-columns:1.1fr .9fr">
-      <div><div class="win xlwin">
-<div class="bar"><i></i><i></i><i></i><span>Attendance · November.xlsx</span></div>
-<table class="xl" style="font-size:calc(var(--u)*1.15)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
-<tr class="frz"><th>1</th><td class="h">No.</td><td class="h">Name</td><td class="h">Section</td><td class="h">Date</td><td class="h">Time in</td></tr>
-<tr><th>88</th><td class="n">87</td><td>Dela Cruz, Juan</td><td>Admin</td><td class="n">03-Nov-2026</td><td class="n">7:52 AM</td></tr>
-<tr><th>89</th><td class="n">88</td><td>Santos, Maria</td><td>Records</td><td class="n">03-Nov-2026</td><td class="n">7:58 AM</td></tr>
-<tr><th>90</th><td class="n">89</td><td>Reyes, Ana</td><td>Collection</td><td class="n">03-Nov-2026</td><td class="n">8:01 AM</td></tr>
-<tr><th>91</th><td class="n">90</td><td>Garcia, Jose</td><td>Admin</td><td class="n">03-Nov-2026</td><td class="n">7:45 AM</td></tr>
-<tr><th>92</th><td class="n">91</td><td>Bautista, Liza</td><td>Records</td><td class="n">03-Nov-2026</td><td class="n">7:56 AM</td></tr>
-<tr><th>93</th><td class="n">92</td><td>Ramos, Carlo</td><td>Collection</td><td class="n">03-Nov-2026</td><td class="n">8:00 AM</td></tr>
-</table>
-</div>
-        <p class="tiny mt-s">Scrolled down to row 88, yet the header row stays on top. Names are samples.</p>
+    <div class="slide-head">
+      <div><p class="kicker">Navigate long lists</p><h2 class="h2">Freeze the header row so it never scrolls away.</h2></div>
+    </div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.4" data-o="55,15"><div class="pic"><img src="images/ui/3.2/15-freeze-top-row-view.webp" alt="Excel View tab; Freeze Panes sits under the Window button"><i class="ring" style="--x:51;--y:6.8;--w:4.4;--h:4"></i><i class="ring" style="--x:51.2;--y:12.4;--w:6.2;--h:10.8;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="0,40"><div class="pic"><img src="images/ui/3.2/15-freeze-top-row-view.webp" alt="Scrolled to row 150, the header row 1 stays on top"><i class="ring" style="--x:0.3;--y:34.6;--w:57.8;--h:4.4"></i><i class="ring" style="--x:0.3;--y:38.6;--w:3.4;--h:4.4;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample attendance list (sample names). In a narrow window Freeze Panes sits inside View › Window.</p>
       </div>
       <div>
-        <p class="kicker">Navigate long lists</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.7)">Freeze the header row so it never scrolls away.</h2>
-        <table class="tbl compact mt-m">
+        <table class="tbl compact">
           <tr><th>App</th><th>Freeze the top row</th></tr>
-          <tr><td><b>Excel</b></td><td>View &gt; Freeze Panes &gt; Freeze Top Row</td></tr>
+          <tr data-step="1"><td><b>Excel</b></td><td>View &gt; Freeze Panes &gt; Freeze Top Row</td></tr>
           <tr><td><b>Sheets</b></td><td>View &gt; Freeze &gt; 1 row</td></tr>
           <tr><td><b>Calc</b></td><td>View &gt; Freeze Cells &gt; Freeze First Row</td></tr>
         </table>
-        <div class="callout tip mt-m"><b>Zoom:</b> the slider at the bottom-right (Excel, Calc) or the zoom box in the Sheets toolbar. <kbd>Ctrl</kbd> + mouse wheel works in Excel and Calc.</div>
+        <p class="small mt-s" data-step="2">Scrolled down to row 150, yet the header row stays on top.</p>
+        <div class="callout tip mt-s"><b>Zoom:</b> the slider at the bottom-right (Excel, Calc) or the zoom box in the Sheets toolbar. <kbd>Ctrl</kbd> + mouse wheel works in Excel and Calc.</div>
       </div>
     </div>
     <div class="notes">
@@ -358,17 +353,28 @@ svg text{font-family:var(--font-sans)}
 
   <!-- 13 · Find & replace -->
   <section class="slide" data-title="Find and replace">
-    <div class="split rev">
-      <div class="media"><img src="images/m3/3-6-binders.jpg" alt="Shelves of colourful office binders"></div>
+    <div class="slide-head">
+      <div><p class="kicker">Find it in seconds</p><h2 class="h2">Find and Replace</h2></div>
+    </div>
+    <div class="shots" data-walk>
       <div>
-        <p class="kicker">Find it in seconds</p>
-        <h2 class="h2">Find and Replace</h2>
-        <div class="keys mt-l">
-          <span><kbd>Ctrl</kbd> + <kbd>F</kbd></span><span><b>Find</b> a word or number anywhere on the sheet, like "Envelope".</span>
-          <span><kbd>Ctrl</kbd> + <kbd>H</kbd></span><span><b>Replace</b> one spelling with another, for example "Ballpen" with "Ball pen".</span>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="50,20"><div class="pic"><img src="images/ui/3.6/17-find-all-long.webp" alt="Find and Replace dialog, Replace tab: Find what long, Replace with legal"><i class="ring" style="--x:20.1;--y:16.6;--w:72.6;--h:12.7"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="50,85"><div class="pic"><img src="images/ui/3.6/17-find-all-long.webp" alt="Find All lists three cells on Jan: A2, A5 and A6, 3 cells found"><i class="ring" style="--x:3.6;--y:74.5;--w:92.4;--h:13"></i><i class="ring" style="--x:3.6;--y:95.4;--w:12.6;--h:4;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-o="30,50"><div class="pic"><img src="images/ui/3.6/17-find-all-long.webp" alt="The Find entire cells only box and the Replace All button"><i class="ring" style="--x:38.8;--y:36.6;--w:21.4;--h:4.7"></i><i class="ring" style="--x:19.1;--y:60.8;--w:13.2;--h:5.7;--d:0.25s"></i></div></figure>
         </div>
-        <p class="small mt-m">Same keys in Excel, Google Sheets and LibreOffice Calc. Mac Excel: <kbd>Cmd</kbd> + <kbd>F</kbd>.</p>
-        <div class="callout warn mt-m"><b>Careful with Replace All.</b> Replacing "long" with "legal" changes all three items that contain it: bond paper, folder and envelope. Use Find first, or tick <b>Match entire cell contents</b>.</div>
+        <p class="cap">Microsoft Excel for Mac, sample Jan sheet (sorted). Mac labels the box Find entire cells only; Windows says Match entire cell contents.</p>
+      </div>
+      <div>
+        <div class="keys">
+          <span><kbd>Ctrl</kbd> + <kbd>F</kbd></span><span><b>Find</b> a word or number anywhere on the sheet, like "Envelope". Mac Excel: <kbd>Cmd</kbd> + <kbd>F</kbd>.</span>
+          <span><kbd>Ctrl</kbd> + <kbd>H</kbd></span><span><b>Replace</b> one spelling with another, for example "Ballpen" with "Ball pen". Same key on a Mac.</span>
+        </div>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Type what to find and what to put instead.</li>
+          <li data-step="2"><b>Find All first:</b> "long" is in <b>3 cells</b> (bond paper, folder, envelope), not one.</li>
+          <li data-step="3">Tick <b>Match entire cell contents</b>, or replace one at a time, before you press <b>Replace All</b>.</li>
+        </ol>
       </div>
     </div>
     <div class="notes">
@@ -379,30 +385,25 @@ svg text{font-family:var(--font-sans)}
 
   <!-- 14 · Sort -->
   <section class="slide" data-title="Sorting a list">
-    <div class="split" style="grid-template-columns:1.15fr .85fr">
-      <div><div class="win xlwin">
-<div class="bar"><i></i><i></i><i></i><span>Inventory 2026.xlsx · Jan</span></div>
-<table class="xl" style="font-size:calc(var(--u)*1.15)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th class="cs">E</th></tr>
-<tr><th>1</th><td class="h">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h">Total Cost (₱)</td></tr>
-<tr><th>2</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="g n">7,950.00</td></tr>
-<tr><th>3</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="g n">6,125.00</td></tr>
-<tr><th>4</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="g n">2,800.00</td></tr>
-<tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="g n">2,080.00</td></tr>
-<tr><th>6</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="g n">1,230.00</td></tr>
-<tr><th>7</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="g n">960.00</td></tr>
-<tr><th>8</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="g n">510.00</td></tr>
-<tr><th>9</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="g n">384.00</td></tr>
-</table>
-</div></div>
+    <div class="slide-head">
+      <div><p class="kicker">Sort · Data &gt; Sort</p><h2 class="h2">Largest Total Cost first</h2></div>
+    </div>
+    <div class="shots" data-walk>
       <div>
-        <p class="kicker">Sort · Data &gt; Sort</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.7)">Largest Total Cost first</h2>
-        <ol class="steps mt-m">
-          <li>Click <b>one cell</b> inside the table (not the whole column).</li>
-          <li><b>Excel / Calc:</b> Data &gt; Sort. <b>Sheets:</b> Data &gt; Sort range &gt; Advanced, tick "Data has header row".</li>
-          <li>Sort by <b>Total Cost</b>, <b>largest to smallest</b>.</li>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="40,25"><div class="pic"><img src="images/ui/3.6/14-sort-one-cell.webp" alt="Jan sheet with E3 selected and the Data tab open; the Sort button"><i class="ring" style="--x:55;--y:42.3;--w:13.2;--h:4.4"></i><i class="ring" style="--x:38.2;--y:12.4;--w:4.4;--h:10.6;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.2" data-o="40,35"><div class="pic"><img src="images/ui/3.6/15-sort-dialog-total-cost.webp" alt="Sort window: Sort by Total Cost, Values, Largest to Smallest; My list has headers ticked"><i class="ring" style="--x:3;--y:36.2;--w:92.6;--h:6"></i><i class="ring" style="--x:76.8;--y:22.2;--w:20.8;--h:4.6;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.2" data-o="0,50"><div class="pic"><img src="images/ui/3.6/16-sorted-largest-first.webp" alt="Sorted: Bond paper, long 7,950.00 first; staple wire 384.00 last; TOTAL still in row 10"><i class="ring" style="--x:3.4;--y:38.4;--w:65;--h:4.4"></i><i class="ring" style="--x:3.4;--y:69.1;--w:65;--h:4.4;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
+      </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Click <b>one cell</b> inside the table (not the whole column), then <b>Data &gt; Sort</b>. <b>Sheets:</b> Data &gt; Sort range &gt; Advanced, tick "Data has header row".</li>
+          <li data-step="2">Sort by <b>Total Cost</b>, <b>Largest to Smallest</b>. Keep <b>My list has headers</b> ticked.</li>
+          <li data-step="3">Long bond paper comes first at <b>₱7,950.00</b>. The TOTAL row stays out of the sort.</li>
         </ol>
-        <div class="callout warn mt-s"><b>Never sort one column alone.</b> The rows get mixed up: ink could end up with the price of paper.</div>
+        <div class="callout warn mt-s"><b>Never sort one column alone.</b> The rows get mixed up: ink could end up with the price of paper. Keep a blank row above TOTAL, or select A1:E9 only.</div>
       </div>
     </div>
     <div class="notes">
@@ -413,28 +414,26 @@ svg text{font-family:var(--font-sans)}
 
   <!-- 15 · Filter -->
   <section class="slide" data-title="Filtering a list">
-    <div class="split" style="grid-template-columns:1.15fr .85fr">
-      <div><div class="win xlwin">
-<div class="bar"><i></i><i></i><i></i><span>Inventory 2026.xlsx · Jan</span></div>
-<table class="xl" style="font-size:calc(var(--u)*1.15)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
-<tr><th>1</th><td class="h">Item ▾</td><td class="h">Unit ▾</td><td class="h">Qty ▾</td><td class="h">Unit Cost (₱) ▼</td><td class="h">Total Cost (₱) ▾</td></tr>
-<tr class="flt"><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="o n">520.00</td><td class="n">2,080.00</td></tr>
-<tr class="flt"><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="o n">350.00</td><td class="n">2,800.00</td></tr>
-<tr class="flt"><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="o n">410.00</td><td class="n">1,230.00</td></tr>
-<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="n k">22,039.00</td></tr>
-</table>
-</div>
-        <p class="tiny mt-s">Filter: Unit Cost greater than 300. Rows 2 to 4 and 6 to 7 are hidden, not deleted.</p>
+    <div class="slide-head">
+      <div><p class="kicker">Filter · show only what you need</p><h2 class="h2">Show only items over ₱300 each</h2></div>
+    </div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="40,25"><div class="pic"><img src="images/ui/3.6/10-data-filter-on.webp" alt="Data tab with Filter on; filter arrows on every header in row 1"><i class="ring" style="--x:42.2;--y:12.4;--w:4.6;--h:10.6"></i><i class="ring" style="--x:3.4;--y:34.6;--w:65;--h:4.4;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.2" data-o="30,45"><div class="pic"><img src="images/ui/3.6/11-filter-over-300.webp" alt="Unit Cost filtered: rows 5, 8 and 9 show with blue row numbers; 3 of 9 records found"><i class="ring" style="--x:52.8;--y:35;--w:2.4;--h:3.6"></i><i class="ring" style="--x:0.2;--y:38.2;--w:68.2;--h:12.2;--d:0.25s"></i><i class="ring" style="--x:7.6;--y:96;--w:13.4;--h:3.6;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.2" data-o="60,70"><div class="pic"><img src="images/ui/3.6/12-filter-visible-sum-6110.webp" alt="E5 to E9 visible cells selected; the status bar shows Sum 6,110.00 pesos"><i class="ring" style="--x:54.9;--y:38.2;--w:13.4;--h:12.2"></i><i class="ring" style="--x:55.8;--y:96;--w:10.8;--h:3.6;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.3" data-o="20,30"><div class="pic"><img src="images/ui/3.6/13-summary-still-22039.webp" alt="The Summary sheet still reads 22,039.00 pesos from Jan!E10"><i class="ring" style="--x:21.2;--y:38.4;--w:14.9;--h:4.4"></i><i class="ring" style="--x:0.4;--y:24.6;--w:40;--h:4.4;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
       </div>
       <div>
-        <p class="kicker">Filter · show only what you need</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.7)">Show only items over ₱300 each</h2>
-        <ul class="ticks mt-m">
-          <li><b>Excel:</b> Data &gt; Filter (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>). <b>Sheets:</b> Data &gt; Create a filter. <b>Calc:</b> Data &gt; AutoFilter.</li>
-          <li>Click the arrow on <b>Unit Cost</b> &gt; Number Filters &gt; Greater Than &gt; 300.</li>
-          <li>In Excel, blue row numbers tell you a filter is on. Clear it when done.</li>
+        <ul class="ticks">
+          <li data-step="1"><b>Excel:</b> Data &gt; Filter (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd>; Mac <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd>). <b>Sheets:</b> Data &gt; Create a filter. <b>Calc:</b> Data &gt; AutoFilter.</li>
+          <li data-step="2">Arrow on <b>Unit Cost</b> &gt; Number Filters &gt; Greater Than &gt; 300. <b>3 of 9</b> items stay; blue row numbers say a filter is on. The TOTAL row right under the list hides too: keep a blank row above it.</li>
+          <li data-step="3">Select the visible totals: the status bar says <b>₱6,110.00</b>.</li>
+          <li data-step="4"><b>Watch out:</b> =SUM still adds hidden rows. E10 stays <b>₱22,039.00</b>, and so does the Summary. Clear the filter when done.</li>
         </ul>
-        <div class="callout gold mt-s"><b>Watch out:</b> =SUM still adds hidden rows. E10 stays 22,039.00; the 3 visible rows total 6,110.00.</div>
       </div>
     </div>
     <div class="notes">
