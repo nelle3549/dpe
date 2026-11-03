@@ -313,7 +313,7 @@ MODULES.forEach(m => {
   DECKS[m.id].forEach(d => {
     const href = encodeURI(FILE(d));
     const badges = d.b.map(x => { const [k, v] = x.split(':');
-      return k === 'vid' ? `<span class="badge b-vid">▶ Video${VLEN[d.n] ? ' · ' + VLEN[d.n] : ''}</span>` : `<span class="badge b-${k}">${esc(v)}</span>`; }).join('');
+      return k === 'vid' ? `<span class="badge b-vid"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3" /></svg> Video${VLEN[d.n] ? ' · ' + VLEN[d.n] : ''}</span>` : `<span class="badge b-${k}">${esc(v)}</span>`; }).join('');
     const el = document.createElement('article');
     el.className = 'deck'; el.dataset.n = d.n;
     el.innerHTML = `<a class="thumb" href="${href}"><img src="images/thumbs/${d.n.replace('.', '-')}.jpg" alt="" loading="lazy"><span class="num">${d.n}</span><span class="dur">${d.dur}</span></a>

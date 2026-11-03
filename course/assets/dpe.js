@@ -68,7 +68,7 @@
     }, 1000);
   }
 
-  // Back to the course index: the ⌂ button (top right) or the H key.
+  // Back to the course index: the house button (top right) or the H key.
   // Hidden in presenter-view previews (?preview=N).
   var isPreview = /[?&]preview=/.test(location.search);
   document.addEventListener('keydown', function (e) {
@@ -142,7 +142,9 @@
       var home = document.createElement('a');
       home.className = 'home-btn'; home.href = 'index.html';
       home.addEventListener('click', function (ev) { if (inLms) { ev.preventDefault(); goHome(); } });
-      home.title = 'Course index (H)'; home.textContent = '⌂';
+      home.title = 'Course index (H)'; home.setAttribute('aria-label', 'Course index');
+      home.innerHTML = '<svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>';   // Lucide "house"
       document.body.appendChild(home);
     }
     document.querySelectorAll('.timer').forEach(initTimer);
