@@ -346,7 +346,7 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 .modhead h2{margin:2px 0;font-size:22px;letter-spacing:-.01em}
 .topic{overflow:hidden}
 .topic.locked{background:#fff;border-style:solid}
-.topic.locked .cover img{filter:grayscale(1);opacity:.7}
+.topic.locked .cover{background:#6b7280}.topic.locked .cover img{filter:grayscale(1)}
 .topic .cover .lockt{position:absolute;right:10px;bottom:10px;z-index:1;background:rgba(0,0,0,.55);color:#fff;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
 .topic .sum{margin:0;color:var(--text-2);font-size:14px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .topic .more{align-self:flex-start;margin-top:-4px;font:inherit;font-size:13px;font-weight:700;color:var(--blue,#1366D6);background:none;border:0;padding:4px 0;cursor:pointer;text-decoration:underline}

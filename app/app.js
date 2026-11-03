@@ -143,7 +143,7 @@
     var so = document.getElementById('signout');
     var tl = document.getElementById('tools');
     if (tl) tl.onclick = function () { setClean(!clean()); tl.setAttribute('aria-pressed', !clean()); tl.textContent = clean() ? '🛠 Show my tools' : '👁 Hide my tools'; };
-    if (so) so.onclick = function () { clearTimers(); sb.auth.signOut().then(function () { S.profile = null; S.session = null; location.hash = '#/'; route(); }); };
+    if (so) so.onclick = function () { clearTimers(); sb.auth.signOut({ scope: 'local' }).then(function () { S.profile = null; S.session = null; location.hash = '#/'; route(); }); };
   }
   function render(html) { $app.innerHTML = html; bindTop(); window.scrollTo(0, 0); }
 
