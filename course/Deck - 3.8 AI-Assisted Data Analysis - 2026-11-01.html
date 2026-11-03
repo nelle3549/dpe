@@ -173,22 +173,28 @@ svg text{font-family:var(--font-sans)}
 
   <!-- 7 · Demo 1: suggest -->
   <section class="slide" data-title="1 · Suggest a formula">
-    <div class="split" style="grid-template-columns:1.25fr .75fr">
-      <div class="win"><div class="bar"><i></i><i></i><i></i><span>AI assistant · sample conversation</span></div>
-        <div class="body chat">
-          <div class="bub me">Same headers as before. I also want the grand total in E10, and how many items have a Total Cost above ₱1,000.</div>
-          <div class="who">AI</div>
-          <div class="bub ai">In <b>E2</b>: <code>=C2*D2</code>, then drag the fill handle down to E9.<br>In <b>E10</b>: <code>=SUM(E2:E9)</code><br>Items above ₱1,000: <code>=COUNTIF(E2:E9,"&gt;1000")</code></div>
+    <div class="shots" data-walk style="grid-template-columns:1.45fr 1fr">
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="60,50"><div class="pic"><img src="images/ui/3.8/01-e10-sum.webp" alt="E10 holds =SUM(E2:E9) and shows 22,039.00"><i class="ring" style="--x:19.4;--y:25.2;--w:15;--h:3.6"></i><i class="ring" style="--x:54.8;--y:69.32;--w:14.4;--h:4.2;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="60,60"><div class="pic"><img src="images/ui/3.8/04-e12-countif.webp" alt="E12 holds the COUNTIF formula and shows 5"><i class="ring" style="--x:19.4;--y:25.2;--w:22;--h:3.6"></i><i class="ring" style="--x:54.8;--y:77.0;--w:14.4;--h:4.2;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-o="70,55"><div class="pic"><img src="images/ui/3.8/04-e12-countif.webp" alt="The five totals above 1,000: rows 2, 3, 5, 8 and 9"><i class="ring" style="--x:54.8;--y:38.6;--w:14.4;--h:8.1"></i><i class="ring" style="--x:54.8;--y:50.120000000000005;--w:14.4;--h:4.2;--d:0.25s"></i><i class="ring" style="--x:54.8;--y:61.64;--w:14.4;--h:8.1;--d:0.5s"></i></div></figure>
         </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. The AI answer is a sample; yours may be worded differently.</p>
       </div>
       <div>
         <p class="kicker">Job 1 · suggest a formula</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">Paste it in, then check it</h2>
-        <ul class="ticks mt-m">
-          <li>E10 should show <b>₱22,039.00</b>.</li>
-          <li>The COUNTIF gives <b>5</b>. Count by eye: A4, long, folder, ink, envelope. <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></li>
-          <li>New function? Ask the AI to explain each part before you trust it.</li>
-        </ul>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.3)">Paste it in, then check it</h2>
+        <div class="chat mt-s" style="font-size:calc(var(--u)*1.05);gap:calc(var(--u)*.5)">
+          <div class="bub me">Same headers as before. I also want the grand total in E10, and how many items have a Total Cost above ₱1,000.</div>
+          <div class="bub ai">In <b>E2</b>: <code>=C2*D2</code>, then fill down to E9.<br>In <b>E10</b>: <code>=SUM(E2:E9)</code><br>Items above ₱1,000: <code>=COUNTIF(E2:E9,"&gt;1000")</code></div>
+        </div>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Paste the SUM into <b>E10</b>: it shows <b>₱22,039.00</b>.</li>
+          <li data-step="2">Paste the COUNTIF into an empty cell (here E12): it gives <b>5</b>.</li>
+          <li data-step="3">Count by eye: A4, long, folder, ink, envelope. The ballpen (960) is not. <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></li>
+        </ol>
+        <p class="tiny mt-s">New function? Ask the AI to explain each part before you trust it.</p>
       </div>
     </div>
     <div class="notes">
@@ -199,22 +205,28 @@ svg text{font-family:var(--font-sans)}
 
   <!-- 8 · Demo 2: explain -->
   <section class="slide" data-title="2 · Explain a formula">
-    <div class="split" style="grid-template-columns:1.25fr .75fr">
-      <div class="win"><div class="bar"><i></i><i></i><i></i><span>AI assistant · sample conversation</span></div>
-        <div class="body chat">
-          <div class="bub me">A co-worker's file has <code>=SUMIF(B2:B9,"ream",E2:E9)</code>. Explain it in simple words.</div>
-          <div class="who">AI</div>
-          <div class="bub ai">It looks down the <b>Unit</b> column (B2:B9) for cells that say "ream". For each match, it adds the <b>Total Cost</b> from the same row (E2:E9). So it gives the total spent on items bought by the ream.</div>
+    <div class="shots" data-walk style="grid-template-columns:1.45fr 1fr">
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="60,60"><div class="pic"><img src="images/ui/3.8/06-e13-sumif.webp" alt="E13 holds =SUMIF(B2:B9,&quot;ream&quot;,E2:E9) and shows 14,075.00"><i class="ring" style="--x:19.4;--y:25.2;--w:22;--h:3.6"></i><i class="ring" style="--x:54.8;--y:80.84;--w:14.4;--h:4.2;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="30,45"><div class="pic"><img src="images/ui/3.8/05-ream-rows-sum.webp" alt="Rows 2 and 3 say ream in the Unit column"><i class="ring" style="--x:24;--y:38.6;--w:12.4;--h:8.1"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.2" data-o="60,80"><div class="pic"><img src="images/ui/3.8/05-ream-rows-sum.webp" alt="E2:E3 selected; the status bar shows Sum: 14,075.00"><i class="ring" style="--x:54.8;--y:38.6;--w:14.4;--h:8.1"></i><i class="ring" style="--x:56;--y:96.2;--w:10.6;--h:3.4;--d:0.25s"></i></div></figure>
         </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. The status bar adds whatever you select.</p>
       </div>
       <div>
         <p class="kicker">Job 2 · explain a formula</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">Great for inherited files</h2>
-        <ul class="ticks mt-m">
-          <li>Check the claim: the ream rows are A4 (6,125.00) and long (7,950.00).</li>
-          <li>6,125 + 7,950 = <b>₱14,075.00</b>. Does the cell show the same? <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></li>
-          <li>Ask "explain like I'm new" for any formula you didn't write.</li>
-        </ul>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.3)">Great for inherited files</h2>
+        <div class="chat mt-s" style="font-size:calc(var(--u)*1.05);gap:calc(var(--u)*.5)">
+          <div class="bub me">A co-worker's file has <code>=SUMIF(B2:B9,"ream",E2:E9)</code>. Explain it in simple words.</div>
+          <div class="bub ai">It looks down the <b>Unit</b> column (B2:B9) for "ream" and adds the <b>Total Cost</b> from the same rows (E2:E9).</div>
+        </div>
+        <ol class="steps sm mt-s">
+          <li data-step="1">The cell shows <b>14,075.00</b>. Is that right?</li>
+          <li data-step="2">Check the claim: the <b>ream</b> rows are A4 (6,125.00) and long (7,950.00).</li>
+          <li data-step="3">Select <b>E2:E3</b>: the status bar Sum shows <b>14,075.00</b>, the same. <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></li>
+        </ol>
+        <p class="tiny mt-s">Ask "explain like I'm new" for any formula you didn't write.</p>
       </div>
     </div>
     <div class="notes">
@@ -225,22 +237,26 @@ svg text{font-family:var(--font-sans)}
 
   <!-- 9 · Demo 3: trends -->
   <section class="slide" data-title="3 · Spot trends">
-    <div class="split" style="grid-template-columns:1.25fr .75fr">
-      <div class="win"><div class="bar"><i></i><i></i><i></i><span>AI assistant · sample conversation</span></div>
-        <div class="body chat">
-          <div class="bub me">Supplies spending: Jan ₱22,039.00, Feb ₱17,518.00, Mar ₱24,652.00. In January, A4 paper was ₱6,125, long paper ₱7,950. What stands out?</div>
-          <div class="who">AI</div>
-          <div class="bub ai">• Bond paper was <b>63.9%</b> of January spending.<br>• February fell <b>20.5%</b> from January.<br>• March rose <b>40.7%</b> from February: the highest month of the quarter.</div>
+    <div class="shots" data-walk style="grid-template-columns:1.45fr 1fr">
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.4" data-o="25,40"><div class="pic"><img src="images/ui/3.8/09-summary-c3-feb-fall.webp" alt="Summary sheet: C3 holds =(B3-B2)/B2 and shows -20.5%"><i class="ring" style="--x:19.4;--y:25.2;--w:15;--h:3.6"></i><i class="ring" style="--x:26.6;--y:42.5;--w:9.8;--h:4.2;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.4" data-o="25,40"><div class="pic"><img src="images/ui/3.8/08-summary-c4-march-rise.webp" alt="Summary sheet: C4 holds =(B4-B3)/B3 and shows 40.7%"><i class="ring" style="--x:19.4;--y:25.2;--w:15;--h:3.6"></i><i class="ring" style="--x:26.6;--y:46.4;--w:9.8;--h:4.2;--d:0.25s"></i></div></figure>
         </div>
+        <p class="cap">Microsoft Excel for Mac, sample monthly totals (Summary sheet). The AI answer is a sample.</p>
       </div>
       <div>
         <p class="kicker">Job 3 · spot trends</p>
-        <h2 class="h2" style="font-size:calc(var(--u)*2.6)">Good questions, not final answers</h2>
-        <ul class="ticks mt-m">
-          <li>Recompute each figure with a formula, e.g. <b>=(B4-B3)/B3</b> for the March rise.</li>
-          <li>AI sees numbers, not reasons. <b>Why</b> did March rise? Ask the supply officer.</li>
-          <li>Share only totals, never records about people.</li>
-        </ul>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.3)">Good questions, not final answers</h2>
+        <div class="chat mt-s" style="font-size:calc(var(--u)*1.05);gap:calc(var(--u)*.5)">
+          <div class="bub me">Supplies spending: Jan ₱22,039.00, Feb ₱17,518.00, Mar ₱24,652.00. In January, A4 paper was ₱6,125, long paper ₱7,950. What stands out?</div>
+          <div class="bub ai">• Bond paper was <b>63.9%</b> of January spending.<br>• February fell <b>20.5%</b> from January.<br>• March rose <b>40.7%</b> from February.</div>
+        </div>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Recompute with your own formula: <b>=(B3-B2)/B2</b> gives <b>-20.5%</b>. <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></li>
+          <li data-step="2"><b>=(B4-B3)/B3</b> gives <b>40.7%</b> for the March rise. <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></li>
+        </ol>
+        <p class="tiny mt-s">AI sees numbers, not reasons. <b>Why</b> did March rise? Ask the supply officer. Share only totals, never records about people.</p>
       </div>
     </div>
     <div class="notes">
@@ -252,13 +268,26 @@ svg text{font-family:var(--font-sans)}
   <!-- 10 · Human verification -->
   <section class="slide act" data-act="Portal activity" data-title="Three checks">
     <div class="slide-head"><div><p class="kicker">Human verification</p><h2 class="h2">Three checks before you trust any AI answer</h2></div><span class="tag gold">Takes 2 minutes</span></div>
-    <div class="grid" style="grid-template-columns:1fr 1fr 1fr .9fr;align-items:stretch">
-      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2" /><line x1="8" x2="16" y1="6" y2="6" /><line x1="16" x2="16" y1="14" y2="18" /><path d="M16 10h.01" /><path d="M12 10h.01" /><path d="M8 10h.01" /><path d="M12 14h.01" /><path d="M8 14h.01" /><path d="M12 18h.01" /><path d="M8 18h.01" /></svg></span><h4>1 · Check 2 rows by hand</h4><p>Use a calculator on two rows. Row 2: 25 × 245 = 6,125 <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> Row 9: 3 × 410 = 1,230 <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></p></div>
-      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z" /><path d="m14.5 12.5 2-2" /><path d="m11.5 9.5 2-2" /><path d="m8.5 6.5 2-2" /><path d="m17.5 15.5 2-2" /></svg></span><h4>2 · Check the range</h4><p>Click the cell and read the formula bar. Does it cover <b>E2:E9</b>, all 8 items, and not the TOTAL row?</p></div>
-      <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /><path d="M7 21h10" /><path d="M12 3v18" /><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" /></svg></span><h4>3 · Check against the total</h4><p>Parts should add up to the whole. Shares should add up to 100%. VAT total = grand total × 12%.</p></div>
-      <div class="card photo"><img src="images/m3/3-8-checking.jpg" alt="Person checking printed charts with a calculator" style="height:100%;min-height:calc(var(--u)*20)"></div>
+    <div class="shots" data-walk style="grid-template-columns:1.5fr 1fr">
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="40,40"><div class="pic"><img src="images/ui/3.8/02-e2-row2.webp" alt="E2 holds =C2*D2: 25 times 245 shows 6,125.00"><i class="ring" style="--x:19.4;--y:25.2;--w:15;--h:3.6"></i><i class="ring" style="--x:36.2;--y:38.6;--w:33;--h:4.2;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="40,65"><div class="pic"><img src="images/ui/3.8/03-e9-row9.webp" alt="E9 holds =C9*D9: 3 times 410 shows 1,230.00"><i class="ring" style="--x:19.4;--y:25.2;--w:15;--h:3.6"></i><i class="ring" style="--x:36.2;--y:65.48;--w:33;--h:4.2;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.15" data-o="40,50"><div class="pic"><img src="images/ui/3.8/01-e10-sum.webp" alt="E10 selected; the formula bar shows =SUM(E2:E9), all 8 items"><i class="ring" style="--x:19.4;--y:25.2;--w:15;--h:3.6"></i><i class="ring" style="--x:54.8;--y:38.6;--w:14.4;--h:31.1;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.4" data-o="62,70"><div class="pic"><img src="images/ui/3.8/01-e10-sum.webp" alt="E10 shows 22,039.00, the grand total"><i class="ring" style="--x:54.8;--y:69.32;--w:14.4;--h:4.2"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Click a cell to read its formula in the formula bar.</p>
+      </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1"><b>1 · Two rows by hand.</b> Row 2: 25 × 245 = 6,125 <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></li>
+          <li data-step="2">Row 9: 3 × 410 = 1,230 <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> First and last rows, because range errors hit the ends.</li>
+          <li data-step="3"><b>2 · The range.</b> Click the cell and read the formula bar: <b>E2:E9</b>, all 8 items, not the TOTAL row.</li>
+          <li data-step="4"><b>3 · Against the total.</b> Parts add up to the whole: <b>₱22,039.00</b>. Shares add up to 100%. VAT total = grand total × 12%.</li>
+        </ol>
+      </div>
     </div>
-    <div class="callout mt-l"><b>Also ask yourself:</b> does the answer make sense? An average larger than the biggest item, or a share over 100%, is a red flag.</div>
+    <div class="callout mt-s"><b>Also ask yourself:</b> does the answer make sense? An average larger than the biggest item, or a share over 100%, is a red flag.</div>
     <div class="notes">
       <p>These three checks catch almost every AI mistake, and they work on any formula, not just AI ones.</p>
       <p><b>Two rows by hand</b>, the first and the last, because range errors usually hit the ends. <b>The range</b> in the formula bar. <b>Against the total</b>: add the parts another way and compare. Plus a sense check: our average total cost is ₱2,754.88; if AI said ₱27,000 you'd know instantly something is off.</p>
@@ -296,30 +325,21 @@ svg text{font-family:var(--font-sans)}
 
   <!-- 12 · Hallucinated functions -->
   <section class="slide" data-title="Invented functions">
-    <div class="split" style="grid-template-columns:1.1fr .9fr">
-      <div><div class="win xlwin">
-<div class="bar"><i></i><i></i><i></i><span>Inventory 2026.xlsx · Jan</span></div>
-<div class="fbar"><span class="nb">E10</span><span class="fx">fx</span><span class="f">=SUMVALUES(E2:E9)</span></div>
-<table class="xl" style="font-size:calc(var(--u)*1.1)"><tr><th class="rh"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
-<tr><th>1</th><td class="h">Item</td><td class="h">Unit</td><td class="h">Qty</td><td class="h">Unit Cost (₱)</td><td class="h">Total Cost (₱)</td></tr>
-<tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245.00</td><td class="n">6,125.00</td></tr>
-<tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">265.00</td><td class="n">7,950.00</td></tr>
-<tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96.00</td><td class="n">960.00</td></tr>
-<tr><th>5</th><td>Folder, long</td><td>pack of 100</td><td class="n">4</td><td class="n">520.00</td><td class="n">2,080.00</td></tr>
-<tr><th>6</th><td>Fastener</td><td>box of 50</td><td class="n">6</td><td class="n">85.00</td><td class="n">510.00</td></tr>
-<tr><th>7</th><td>Staple wire #35</td><td>box</td><td class="n">12</td><td class="n">32.00</td><td class="n">384.00</td></tr>
-<tr><th>8</th><td>Printer ink, black</td><td>bottle</td><td class="n">8</td><td class="n">350.00</td><td class="n">2,800.00</td></tr>
-<tr><th>9</th><td>Envelope, brown long</td><td>pack of 100</td><td class="n">3</td><td class="n">410.00</td><td class="n">1,230.00</td></tr>
-<tr class="tot"><th>10</th><td class="k">TOTAL</td><td></td><td></td><td></td><td class="b s">#NAME?</td></tr>
-</table>
-</div></div>
+    <div class="shots" data-walk style="grid-template-columns:1.35fr 1fr">
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="55,60"><div class="pic"><img src="images/ui/3.8/07-e10-sumvalues-name.webp" alt="E10 holds =SUMVALUES(E2:E9) and shows #NAME? with a warning sign"><i class="ring" style="--x:19.4;--y:25.2;--w:15;--h:3.6"></i><i class="ring" style="--x:54.8;--y:69.32;--w:14.4;--h:4.2;--d:0.25s"></i><i class="ring" style="--x:51;--y:69.32;--w:3.2;--h:4.2;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="55,60"><div class="pic"><img src="images/ui/3.8/01-e10-sum.webp" alt="Fixed: E10 holds =SUM(E2:E9) and shows 22,039.00"><i class="ring" style="--x:19.4;--y:25.2;--w:15;--h:3.6"></i><i class="ring" style="--x:54.8;--y:69.32;--w:14.4;--h:4.2;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. The function list pops up while you type =SUM.</p>
+      </div>
       <div>
         <p class="kicker">Hallucinated functions</p>
         <h2 class="h2" style="font-size:calc(var(--u)*2.6)">#NAME? means "I don't know that word."</h2>
-        <ul class="ticks mt-m">
-          <li>AI sometimes invents a name that <b>sounds</b> real, like <b>SUMVALUES</b>.</li>
+        <ul class="ticks sm mt-s">
+          <li data-step="1">AI sometimes invents a name that <b>sounds</b> real, like <b>SUMVALUES</b>. Excel shows <b>#NAME?</b> and a warning sign.</li>
           <li>Some real functions exist only in <b>some</b> apps or versions. XLOOKUP, for example, isn't in Excel 2016.</li>
-          <li>Fix: tell the AI your exact app and version, and ask it to use only built-in functions.</li>
+          <li data-step="2">Fix: replace it with <b>=SUM(E2:E9)</b>: 22,039.00 again. Tell the AI your exact app and version, and ask it to use only built-in functions.</li>
         </ul>
         <div class="callout tip mt-s"><b>Check fast:</b> type <b>=SUM</b> and look at the function list that pops up. If the name isn't there, it doesn't exist.</div>
       </div>
