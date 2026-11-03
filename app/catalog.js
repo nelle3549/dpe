@@ -20,6 +20,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 1.1 Hardware, Software and Peopleware - 2026-11-01.html",
     "video": "5:33",
+    "slides": 14,
     "activities": [
      {
       "id": "1.1-a",
@@ -51,6 +52,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 1.2 Desktop and File Management - 2026-11-01.html",
     "video": "4:54",
+    "slides": 15,
     "activities": [
      {
       "id": "1.2-a",
@@ -82,6 +84,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 1.3 Web Browsing and Search Engines - 2026-11-01.html",
     "video": "4:56",
+    "slides": 13,
     "activities": [
      {
       "id": "1.3-a",
@@ -113,6 +116,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 1.4 Internet Safety, Netiquette and Data Privacy - 2026-11-01.html",
     "video": "5:16",
+    "slides": 15,
     "activities": [
      {
       "id": "1.4-a",
@@ -144,6 +148,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 1.5 Everyday AI - 2026-11-01.html",
     "video": "4:37",
+    "slides": 20,
     "activities": [
      {
       "id": "1.5-a",
@@ -193,6 +198,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 2.1 Application Navigation and File Handling - 2026-11-01.html",
     "video": "4:59",
+    "slides": 21,
     "activities": [
      {
       "id": "2.1-a",
@@ -232,6 +238,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 2.2 Text Formatting and Editing Tools - 2026-11-01.html",
     "video": "4:58",
+    "slides": 22,
     "activities": [
      {
       "id": "2.2-a",
@@ -263,6 +270,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 2.3 Working with Tables and Graphical Elements - 2026-11-01.html",
     "video": "4:52",
+    "slides": 22,
     "activities": [
      {
       "id": "2.3-a",
@@ -302,6 +310,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 2.4 Mail Merge Basics - 2026-11-01.html",
     "video": "4:44",
+    "slides": 20,
     "activities": [
      {
       "id": "2.4-a",
@@ -341,6 +350,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 2.5 Page Layout and Printing Setup - 2026-11-01.html",
     "video": "4:46",
+    "slides": 19,
     "activities": [
      {
       "id": "2.5-a",
@@ -372,6 +382,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 2.6 Responsible AI Drafting - 2026-11-01.html",
     "video": "5:07",
+    "slides": 23,
     "activities": [
      {
       "id": "2.6-a",
@@ -421,6 +432,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.1 Application Navigation and Cell Manipulation - 2026-11-01.html",
     "video": "4:54",
+    "slides": 21,
     "activities": [
      {
       "id": "3.1-a",
@@ -452,6 +464,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.2 Formatting Worksheets and Data Types - 2026-11-01.html",
     "video": "4:55",
+    "slides": 21,
     "activities": [
      {
       "id": "3.2-a",
@@ -483,6 +496,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.3 Basic Formulas (Arithmetic Operators) - 2026-11-01.html",
     "video": "5:31",
+    "slides": 19,
     "activities": [
      {
       "id": "3.3-a",
@@ -514,6 +528,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.4 Core Functions (SUM, AVERAGE, COUNT, MIN, MAX) - 2026-11-01.html",
     "video": "4:55",
+    "slides": 18,
     "activities": [
      {
       "id": "3.4-a",
@@ -545,6 +560,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.5 Cell Referencing Basics - 2026-11-01.html",
     "video": "5:00",
+    "slides": 20,
     "activities": [
      {
       "id": "3.5-a",
@@ -584,6 +600,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.6 Worksheet Management - 2026-11-01.html",
     "video": "5:06",
+    "slides": 22,
     "activities": [
      {
       "id": "3.6-a",
@@ -631,6 +648,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.7 Generating Basic Charts - 2026-11-01.html",
     "video": "4:59",
+    "slides": 21,
     "activities": [
      {
       "id": "3.7-a",
@@ -670,6 +688,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.8 AI-Assisted Data Analysis - 2026-11-01.html",
     "video": "5:13",
+    "slides": 23,
     "activities": [
      {
       "id": "3.8-a",
@@ -735,6 +754,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.1 Presentation Planning and Design Principles - 2026-11-01.html",
     "video": "4:57",
+    "slides": 21,
     "activities": [
      {
       "id": "4.1-a",
@@ -790,6 +810,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.2 Application Navigation and Slide Management - 2026-11-01.html",
     "video": "4:38",
+    "slides": 21,
     "activities": [
      {
       "id": "4.2-a",
@@ -829,6 +850,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.3 Working with Text and Lists in Slides - 2026-11-01.html",
     "video": "4:59",
+    "slides": 20,
     "activities": [
      {
       "id": "4.3-a",
@@ -868,6 +890,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.4 Inserting and Manipulating Graphical Elements - 2026-11-01.html",
     "video": "5:05",
+    "slides": 21,
     "activities": [
      {
       "id": "4.4-a",
@@ -907,6 +930,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.5 Applying Animations and Slide Transitions - 2026-11-01.html",
     "video": "4:50",
+    "slides": 21,
     "activities": [
      {
       "id": "4.5-a",
@@ -946,6 +970,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.6 Adding Media Clips - 2026-11-01.html",
     "video": "4:53",
+    "slides": 21,
     "activities": [
      {
       "id": "4.6-a",
@@ -985,6 +1010,7 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.7 AI in Presentation Design - 2026-11-01.html",
     "video": "5:01",
+    "slides": 23,
     "activities": [
      {
       "id": "4.7-a",

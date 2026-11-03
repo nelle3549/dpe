@@ -188,12 +188,19 @@
     var r = await Promise.all([
       sb.from('topic_state').select('*').eq('cohort_id', cid),
       sb.from('activity_state').select('*').eq('cohort_id', cid),
-      sb.from('attempts').select('activity_id,status,score,max_score').eq('user_id', S.profile.id)
+      sb.from('attempts').select('activity_id,status,score,max_score').eq('user_id', S.profile.id),
+      isViewer() ? { data: [] } : sb.from('slide_progress').select('topic_id,last_slide,max_slide,total,updated_at').eq('user_id', S.profile.id)
     ]);
     S.topics = {}; (r[0].data || []).forEach(function (x) { S.topics[x.topic_id] = x; });
     S.acts = {}; (r[1].data || []).forEach(function (x) { S.acts[x.activity_id] = x; });
     S.mine = {}; (r[2].data || []).forEach(function (x) { S.mine[x.activity_id] = x; });
     if (isViewer()) S.mine = S.tries = S.tries || {};
+    // where each lesson is up to: this browser's copy, merged with the saved one (another device may be further along)
+    S.slides = slidesLocal();
+    (r[3].data || []).forEach(function (x) {
+      var l = S.slides[x.topic_id], t = Date.parse(x.updated_at) || 0;
+      S.slides[x.topic_id] = { last: l && l.t > t ? l.last : x.last_slide, max: Math.max(x.max_slide, l ? l.max : 0), total: x.total || (l && l.total), t: Math.max(t, l ? l.t : 0) };
+    });
     if (isAdmin()) await loadClass();
   }
   // facilitator only: who in the class has opened / submitted each activity (admins' own tries don't count)
@@ -209,6 +216,28 @@
   }
   function nDone(aid) { var m = S.prog[aid] || {}; return Object.keys(m).filter(function (u) { return m[u].status === 'submitted'; }).length; }
   function topicOpen(tid) { return isViewer() || (S.topics[tid] && S.topics[tid].status === 'open'); }
+
+  // ---------- each person's own lesson progress (not the facilitator's "Mark complete"): slides seen + activities submitted
+  function slidesKey() { return 'dpe-slides-' + S.profile.id; }
+  function slidesLocal() { try { return JSON.parse(localStorage.getItem(slidesKey()) || '{}') || {}; } catch (e) { return {}; } }
+  function saveSlide(tid, n, total) {
+    var p = S.slides[tid] || { max: 0 };
+    S.slides[tid] = { last: n, max: Math.max(p.max, n), total: total, t: Date.now() };
+    try { localStorage.setItem(slidesKey(), JSON.stringify(S.slides)); } catch (e) {}
+    if (isViewer()) return;   // preview accounts: this browser only, nothing recorded
+    clearTimeout(saveSlide.t[tid]);
+    saveSlide.t[tid] = setTimeout(function () { sb.rpc('save_slide', { p_topic: tid, p_slide: n, p_total: total }); }, 1500);
+  }
+  saveSlide.t = {};
+  function lessonState(t) {
+    var p = S.slides[t.id], total = (p && p.total) || t.slides || 1, seen = p ? Math.min(p.max, total) : 0;
+    var acts = t.activities.filter(function (a) { return a.kind !== 'lab'; });   // labs have their own deadline
+    var left = acts.filter(function (a) { return !(S.mine[a.id] && S.mine[a.id].status === 'submitted') && !(S.acts[a.id] && S.acts[a.id].status === 'ended'); });
+    var pct = Math.round((seen + acts.length - left.length) / (total + acts.length) * 100);
+    var done = !!p && seen >= total && !left.length;
+    return { started: !!p, done: done, pct: done ? 100 : Math.min(pct, 99), left: left, slidesDone: seen >= total,
+      resume: !p || done ? 0 : seen >= total && left.length ? left[0].slideNo || p.last : p.last };
+  }
 
   // ---------- router
   async function route() {
@@ -465,18 +494,29 @@
   function topicCard(t, adm, deckView) {
     var on = topicOpen(t.id), go = on || adm;   // the facilitator can open a closed topic's slides to preview them
     var mk = on ? topicMark(t.id) : '', live = mk === 'live';   // live = the topic being discussed now; done = the facilitator marked it complete
-    var chip = !on ? '<span class="chip">' + ico('lock') + ' ' + (adm ? 'Closed' : 'Opens later') + '</span>' : live ? '<span class="chip live">' + ico('dot') + ' Live</span>' : mk === 'done' ? '<span class="chip done">' + ico('check') + ' Completed</span>' : '';
+    var chip = !on ? '<span class="chip">' + ico('lock') + ' ' + (adm ? 'Closed' : 'Opens later') + '</span>' : live ? '<span class="chip live">' + ico('dot') + ' Live</span>' : mk === 'done' ? '<span class="chip done">' + ico('check') + (adm ? ' Completed' : ' Discussed') + '</span>' : '';
     return '<div class="topic' + (on ? ' is-open' : ' locked') + (live ? ' has-live' : '') + '">' +
       (go ? '<a class="cover" href="' + deckView + t.id + '" tabindex="-1" aria-hidden="true">' : '<div class="cover">') + thumb(t.id) +
       '<span class="num">' + t.id + '</span>' + chip + (go ? '</a>' : '</div>') +
       '<div class="t"><h4>' + esc(t.title) + '</h4></div>' +
       '<p class="dur">' + ico('clock') + ' ' + esc(t.dur) + (t.video ? '<span class="muted"> · video ' + t.video + '</span>' : '') + '</p>' +
       '<p class="sum">' + esc(t.desc) + '</p><button type="button" class="more" data-more="' + t.id + '">See more</button>' +
-      (go ? '<div class="go"><a class="btn' + (on ? ' primary' : '') + '" href="' + deckView + t.id + '">Open</a>' + (t.video ? '<a class="btn" href="#/video/' + t.id + '">' + ico('play') + ' Play video</a>' : '') + '</div>' +
+      (on && !adm ? progLine(lessonState(t)) : '') +
+      (go ? '<div class="go">' + openBtn(t, adm, on, deckView) + (t.video ? '<a class="btn" href="#/video/' + t.id + '">' + ico('play') + ' Play video</a>' : '') + '</div>' +
         (t.activities.length ? '<div class="acts">' + t.activities.map(actLink).join('') + '</div>' : '') : '') +
       (adm ? '<div class="fac facfoot"><label class="switch"><input type="checkbox" role="switch" data-tog="' + t.id + '"' + (on ? ' checked' : '') + '>' +
         '<span class="sl" aria-hidden="true"></span><span>' + (on ? 'Open to class' : 'Closed') + '</span></label><a class="rlink" href="#/results/' + t.id + '">Results ›</a></div>' : '') +
       '</div>';
+  }
+  function progLine(ls) {
+    return '<div class="lprog' + (ls.done ? ' done' : '') + '"><span class="tr"><i style="width:' + ls.pct + '%"></i></span><span class="lbl">' +
+      (ls.done ? ico('check') + ' Completed' : !ls.started ? 'Not started' : ls.pct + '% done' + (ls.slidesDone && ls.left.length ? ' · ' + ls.left.length + ' activit' + (ls.left.length > 1 ? 'ies' : 'y') + ' left' : '')) + '</span></div>';
+  }
+  // Open (never opened) → Resume (back to the slide you left) → Review (from the start, once every slide and activity is done)
+  function openBtn(t, adm, on, deckView) {
+    if (adm || !on) return '<a class="btn' + (on ? ' primary' : '') + '" href="' + deckView + t.id + '">Open</a>';
+    var ls = lessonState(t);
+    return '<a class="btn primary" href="' + deckView + t.id + (ls.resume > 1 ? '/' + ls.resume : '') + '">' + (ls.done ? 'Review' : ls.started ? 'Resume' : 'Open') + '</a>';
   }
   // See more: the topic's synopsis and parts
   function topicInfo(tid, from) {
@@ -539,7 +579,9 @@
         '<h2>' + esc(m.title) + '</h2><span class="small muted">' + s.topics.length + ' topics' + (s.part ? ' (' + s.topics[0].id + ' to ' + s.topics[s.topics.length - 1].id + ')' : '') + ' · ' + (nOpen ? nOpen + ' open' : 'opens later') + '</span></div>' +
         '<div class="topics">' + s.topics.map(function (t) { return topicCard(t, adm, deckView); }).join('') + '</div></section>';
     });
+    var hy = +sessionStorage.getItem('dpeHomeY') || 0;
     render(html + '<p class="small muted mt-4">Signed in as ' + esc(p.email) + (isViewer() ? ' · preview account' : ' · Certificate name: <b>' + esc(fullName(p)) + '</b> (spelling wrong? Ask the facilitator.)') + '</p></main>');
+    if (hy) scrollTo(0, hy);   // back from a lesson or activity: where you were on the list
     document.querySelectorAll('[data-more]').forEach(function (b) { b.onclick = function () { topicInfo(b.dataset.more, b); }; });
     if (adm) {
       document.querySelectorAll('[data-tog]').forEach(function (b) {
@@ -618,6 +660,7 @@
       var nx = document.getElementById('next'), end = d.n >= d.total;
       document.getElementById('prev').disabled = d.n <= 1;
       slideAct(d.n);
+      if (viewTid && /^#\/deck\//.test(location.hash) && !isAdmin()) saveSlide(viewTid, d.n, d.total);
       nx.textContent = end ? (nx.dataset.back ? 'Activity ›' : 'Home ›') : 'Next ›'; nx.setAttribute('aria-label', end ? nx.textContent.slice(0, -2) : 'Next slide'); nx.dataset.end = end ? '1' : '';
       // keep the slide in the address, so a reload or the Back button returns to it (without re-rendering)
       var m = location.hash.match(/^#\/(deck|present)\/([\d.]+)/); if (m) history.replaceState(null, '', '#/' + m[1] + '/' + m[2] + '/' + d.n);
@@ -1263,6 +1306,10 @@
     });
     var s = await sb.auth.getSession(); S.session = s.data.session;
     window.addEventListener('hashchange', route);
+    // remember where you are on the home list (this tab only), so coming back from a lesson lands there
+    history.scrollRestoration = 'manual';
+    var onHome = function () { return (location.hash === '' || location.hash === '#/') && !!document.querySelector('.modsec'); };
+    window.addEventListener('scroll', function () { if (onHome()) { clearTimeout(onHome.t); onHome.t = setTimeout(function () { if (onHome()) sessionStorage.setItem('dpeHomeY', scrollY); }, 150); } }, { passive: true });
     route();
   })();
 })();

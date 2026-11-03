@@ -361,6 +361,12 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 .modhead .k{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--c)}
 .modhead h2{margin:2px 0;font-size:22px;letter-spacing:-.01em}
 .modhead .hrs{margin-left:10px;font-size:12px;font-weight:800;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);border-radius:999px;padding:2px 9px;white-space:nowrap}
+.lprog{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--text-2)}
+.lprog .tr{flex:1;height:6px;border-radius:999px;background:var(--border);overflow:hidden}
+.lprog .tr i{display:block;height:100%;border-radius:inherit;background:var(--c, var(--navy))}
+.lprog.done{color:var(--good)}
+.lprog.done .tr i{background:var(--good)}
+.lprog .lbl{white-space:nowrap}
 .topic .dur{margin:0;font-size:13px;font-weight:700;color:var(--c)}
 .topic .dur .muted{font-weight:500}
 .topic{overflow:hidden}
