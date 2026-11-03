@@ -166,7 +166,20 @@
     S.topics = {}; (r[0].data || []).forEach(function (x) { S.topics[x.topic_id] = x; });
     S.acts = {}; (r[1].data || []).forEach(function (x) { S.acts[x.activity_id] = x; });
     S.mine = {}; (r[2].data || []).forEach(function (x) { S.mine[x.activity_id] = x; });
+    if (isAdmin()) await loadClass();
   }
+  // facilitator only: who in the class has opened / submitted each activity (admins' own tries don't count)
+  async function loadClass() {
+    var cid = S.profile.cohort_id;
+    var r = await Promise.all([
+      sb.from('profiles').select('id,first_name,last_name').eq('cohort_id', cid).eq('role', 'participant').order('last_name'),
+      sb.from('attempts').select('user_id,activity_id,status,score,max_score,submitted_at').eq('cohort_id', cid)
+    ]);
+    var ids = {}; S.parts = r[0].data || []; S.parts.forEach(function (p) { ids[p.id] = 1; });
+    S.prog = {};   // activity id -> { user id -> attempt }
+    (r[1].data || []).forEach(function (x) { if (ids[x.user_id]) (S.prog[x.activity_id] = S.prog[x.activity_id] || {})[x.user_id] = x; });
+  }
+  function nDone(aid) { var m = S.prog[aid] || {}; return Object.keys(m).filter(function (u) { return m[u].status === 'submitted'; }).length; }
   function topicOpen(tid) { return S.topics[tid] && S.topics[tid].status === 'open'; }
 
   // ---------- router
@@ -196,6 +209,7 @@
       if (view === 'present' && TOPIC[sub[0]]) return vPresent(sub[0], +sub[1] || 0);
       if (view === 'results' && TOPIC[arg]) return vResults(arg);
       if (view === 'people') return vPeople();
+      if (view === 'who' && ACT[arg]) return vWho(arg);
     }
     return vHome();
   }
@@ -401,6 +415,11 @@
   // ---------- home (participants; the facilitator gets the same page plus her .fac controls)
   function actLink(a) {
     var mine = S.mine[a.id], st = S.acts[a.id];
+    if (isAdmin()) {
+      var d = nDone(a.id), n = S.parts.length, lv = st && st.status === 'live';
+      return '<a href="#/who/' + a.id + '"><span>' + esc(a.title) + '</span><span class="tag ' + (n && d === n ? 'done' : lv ? 'live' : 'sub') + '">' +
+        (lv ? '● Live · ' : '') + d + ' of ' + n + ' done</span><span class="chev" aria-hidden="true">›</span></a>';
+    }
     var pc = mine && mine.max_score ? Math.round(mine.score / mine.max_score * 100) : null;
     var tag = mine && mine.status === 'submitted'
       ? (pc == null ? '<span class="tag done">✓ Done</span>' : '<span class="tag ' + (pc >= 75 ? 'done' : 'sub') + '">Done · ' + pc + '%</span>')
@@ -420,8 +439,12 @@
     if (adm) html += '<div class="card facbar fac mt-3"><span class="fk">Only you see this</span><span>Class code <b class="code">' + esc(S.cohort.join_code) + '</b></span>' +
       '<span><b id="nreg">…</b> registered</span><span class="row"><button class="btn small gold" id="full">Show join QR</button><button class="btn small" id="cpj">Copy join link</button></span></div>';
     var live = Object.keys(S.acts).filter(function (k) { return S.acts[k].status === 'live' && ACT[k] && !(S.mine[k] && S.mine[k].status === 'submitted'); });
+    if (adm) live = Object.keys(S.acts).filter(function (k) { return S.acts[k].status === 'live' && ACT[k]; });
     if (live.length) html += '<div class="card mt-3" style="border-color:var(--bad)"><h3>● Live now</h3>' +
-      live.map(function (k) { return '<a class="btn primary mt-1" href="#/a/' + k + '">' + (S.mine[k] ? 'Continue: ' : '') + esc(ACT[k].a.title) + ' →</a>'; }).join(' ') + '</div>';
+      live.map(function (k) {
+        return adm ? '<a class="btn primary mt-1" href="#/who/' + k + '">' + esc(ACT[k].a.title) + ': ' + nDone(k) + ' of ' + S.parts.length + ' done →</a>'
+          : '<a class="btn primary mt-1" href="#/a/' + k + '">' + (S.mine[k] ? 'Continue: ' : '') + esc(ACT[k].a.title) + ' →</a>';
+      }).join(' ') + '</div>';
     // open topics first, so nobody scrolls past locked ones to find them
     var open = [];
     CAT.forEach(function (m, mi) { m.topics.forEach(function (t) { if (topicOpen(t.id)) open.push({ t: t, mi: mi }); }); });
@@ -460,7 +483,7 @@
       count(); every(5000, function () { if (!document.hidden) count(); });
     }
     // every 15 s (only while the tab is visible): redraw only when something changed, keeping scroll and focus
-    var sig = function () { return JSON.stringify([S.topics, S.acts, S.mine]); }, was = sig();
+    var sig = function () { return JSON.stringify([S.topics, S.acts, S.mine, S.prog]); }, was = sig();
     every(15000, async function () {
       if (document.hidden || !S.profile) return;
       await loadState();
@@ -906,6 +929,34 @@
   }
 
   // ---------- results dashboard
+  // one activity: who is done and who is still pending (facilitator)
+  function vWho(aid) {
+    var A = ACT[aid].a, tid = ACT[aid].topic;
+    var names = sessionStorage.getItem('dpeNames') === 'on';   // hidden by default, like Results: this page may be on the shared screen
+    function draw() {
+      var m = S.prog[aid] || {}, done = [], pend = [], n = S.parts.length, st = S.acts[aid];
+      S.parts.forEach(function (p, i) { (m[p.id] && m[p.id].status === 'submitted' ? done : pend).push({ p: p, x: m[p.id], k: i + 1 }); });
+      done.sort(function (a, b) { return (a.x.submitted_at || '') < (b.x.submitted_at || '') ? -1 : 1; });
+      var nm = function (o) { return '<span class="nm">' + esc(fullName(o.p)) + '</span><span class="anon">Participant ' + o.k + '</span>'; };
+      var pc = function (x) { return x.max_score ? Math.round(x.score / x.max_score * 100) + '%' : '✓'; };
+      render(topbar() + '<main class="wrap ' + (names ? 'names-on' : 'names-off') + '" style="padding:20px 16px 48px">' +
+        '<p class="muted small" style="margin:0">' + tid + ' ' + esc(TOPIC[tid].t.title) + '</p>' +
+        '<h1 style="margin:4px 0 0;letter-spacing:-.02em">' + esc(A.title) + '</h1>' +
+        '<div class="row mt-1"><a class="btn small" href="#/">← Home</a><a class="btn small" href="#/results/' + tid + '">Full results →</a>' +
+        '<button class="btn small" id="names" aria-pressed="' + names + '">' + (names ? 'Hide names' : '👁 Show names') + '</button>' +
+        (st && st.status === 'live' ? '<span class="tag live">● Live</span>' : '') + '</div>' +
+        '<div class="finbox mt-3"><b>' + done.length + '</b> <span>of ' + n + ' done · ' + pend.length + ' pending</span><div class="prog" role="progressbar" aria-label="Done" aria-valuenow="' + done.length + '" aria-valuemax="' + n + '"><i style="width:' + (n ? done.length / n * 100 : 0) + '%"></i></div></div>' +
+        '<div class="whocols mt-3"><section class="card"><h3>Pending (' + pend.length + ')</h3>' +
+        (pend.length ? '<ul class="wholist">' + pend.map(function (o) { return '<li>' + nm(o) + (o.x ? '<span class="tag sub">' + (o.x.status === 'working' ? 'Working' : 'Opened it') + '</span>' : '<span class="small muted">Not opened</span>') + '</li>'; }).join('') + '</ul>' : '<p class="muted">Everyone is done.</p>') +
+        '</section><section class="card"><h3>Done (' + done.length + ')</h3>' +
+        (done.length ? '<ul class="wholist">' + done.map(function (o) { return '<li>' + nm(o) + '<span class="tag done">' + pc(o.x) + '</span></li>'; }).join('') + '</ul>' : '<p class="muted">No one yet.</p>') +
+        '</section></div></main>');
+      document.getElementById('names').onclick = function () { names = !names; sessionStorage.setItem('dpeNames', names ? 'on' : 'off'); draw(); };
+    }
+    draw();
+    every(5000, async function () { if (document.hidden) return; var was = JSON.stringify([S.prog[aid], S.acts[aid]]); await loadState(); if (JSON.stringify([S.prog[aid], S.acts[aid]]) !== was) { var y = scrollY; draw(); scrollTo(0, y); } });
+  }
+
   async function vResults(tid) {
     var T = TOPIC[tid].t, M = TOPIC[tid].m, cid = S.profile.cohort_id;
     render(topbar() + '<div class="boot">Loading results…</div>');
