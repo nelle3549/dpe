@@ -157,16 +157,24 @@
   <section class="slide" data-title="Worked example: the AI draft">
     <div class="slide-head">
       <div><p class="kicker">Worked example · step 1</p><h2 class="h2">Our prompt, and what came back</h2></div>
-      <span class="tag">Sample AI output</span>
+      <span class="tag">Real answer · Google Gemini</span>
     </div>
-    <div class="grid g2" style="align-items:start">
-      <div class="bub me"><span class="who">You</span><b>You are</b> an administrative assistant in a government office. <b>Write</b> a formal invitation letter to colleagues for a Digital Skills Workshop on Thursday, 19 November 2026, 1:00 to 4:00 PM, at the Conference Room, organised by the Administrative Section. Topics: word processing, spreadsheets, presentations. Ask them to confirm by Friday, 13 November. <b>Format:</b> three short paragraphs, under 200 words. <b>Tone:</b> polite, clear, simple English.</div>
-      <div class="bub ai"><span class="who">AI assistant</span>
-        <p>Dear [Insert Name],</p>
-        <p>We are thrilled to invite you to an exciting Digital Skills Workshop on Friday, 19 November 2026, from 1:00 to 4:00 PM at the Conference Room!</p>
-        <p>As mandated under Memorandum Order No. 2026-117, this workshop covers word processing, spreadsheets and presentations. Participants will earn 8 CPD units.</p>
-        <p>Kindly confirm your attendance by [Date].</p>
-        <p>Warm regards,<br>[Your Name]</p>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage" style="background:#000">
+          <figure class="f" data-step="1" data-zoom="1.25" data-at="50,70" data-o="50,72"><div class="pic"><img src="images/ui/2.6/01-gemini-prompt-typed.webp" alt="Google Gemini with the five-part workshop invitation prompt typed in the Ask Gemini box"><i class="ring" style="--x:12;--y:48.4;--w:76;--h:47.8"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.35" data-o="10,40"><div class="pic"><img src="images/ui/2.6/02-gemini-answer-top.webp" alt="Gemini's answer begins: MEMORANDUM, TO: All Staff, FROM: Administrative Section, DATE: November 4, 2026, SUBJECT: Invitation to Digital Skills Workshop"><i class="ring" style="--x:8.4;--y:24.4;--w:22.4;--h:15.2"></i><i class="ring" style="--x:8.4;--y:49.8;--w:23;--h:6.2;--d:.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.1" data-o="50,40"><div class="pic"><img src="images/ui/2.6/03-gemini-answer-end.webp" alt="The end of Gemini's answer: Thursday, 19 November 2026, the Conference Room, confirm by Friday, 13 November 2026, and no closing or signatory"><i class="ring" style="--x:41.2;--y:18.6;--w:49.2;--h:6.2"></i><i class="ring" style="--x:8.4;--y:51.2;--w:81.4;--h:11.2;--d:.25s"></i></div></figure>
+        </div>
+        <p class="cap">Google Gemini (free, in a browser), 4 Nov 2026. Copilot and ChatGPT work the same way. Answers change every time you ask.</p>
+      </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Type all five parts: <b>role</b>, <b>task</b>, <b>context</b> (real date, time, venue, deadline), <b>format</b>, <b>tone</b>. Sample facts only.</li>
+          <li data-step="2">Seconds later, a polished draft. But we asked for a <b>letter to colleagues</b> and got a <b>memo "TO: All Staff"</b>, with a <b>date we never gave</b>.</li>
+          <li data-step="3">The day and deadline are right this time. It ends with <b>no closing and no signatory</b>. Read it like a supervisor.</li>
+        </ol>
+        <p class="tiny mt-s">Every answer needs a human check. The next slide uses a sample draft with the five most common problems.</p>
       </div>
     </div>
     
@@ -193,21 +201,28 @@
       <div><p class="kicker">Worked example · step 2</p><h2 class="h2">The human edit: fix, cut, personalise</h2></div>
       <span class="tag green">Ready for mail merge</span>
     </div>
-    <div class="split" style="grid-template-columns:1.15fr .85fr">
-      <div class="page">
-        <p>Dear <span class="mf">«Name»</span>:</p>
-        <p style="text-align:justify">The Administrative Section invites you to the <b>Digital Skills Workshop</b> on <b>Thursday</b>, 19 November 2026, 1:00 to 4:00 PM, at the Conference Room.</p>
-        <p style="text-align:justify">As a member of the <span class="mf">«Section»</span>, you will practise word processing, spreadsheets and presentations you can use at your desk right away. <span class="del">As mandated under Memorandum Order No. 2026-117…</span> <span class="del">8 CPD units.</span></p>
-        <p style="text-align:justify">Kindly confirm your attendance by Friday, 13 November 2026.</p>
-        <p>Respectfully,<br><b>Administrative Officer</b></p>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.4" data-o="50,10"><div class="pic"><img src="images/ui/2.6/05-review-track-changes-on.webp" alt="The sample AI draft pasted into Word, Review tab open, Tracking group"><i class="ring" style="--x:50.4;--y:6.4;--w:6.8;--h:5.4"></i><i class="ring" style="--x:48.2;--y:13;--w:5.4;--h:10.8;--d:.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="20,62"><div class="pic"><img src="images/ui/2.6/06-tracked-edits.webp" alt="Tracked changes: [Insert Name] struck out and replaced by «Name», [Date] replaced by Friday, 13 November 2026, «Section» added"><i class="ring" style="--x:21.2;--y:46.2;--w:15.2;--h:5.4"></i><i class="ring" style="--x:21.2;--y:69.2;--w:8;--h:5;--d:.2s"></i><i class="ring" style="--x:44.2;--y:79.2;--w:22.6;--h:5.2;--d:.4s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.5" data-o="42,58"><div class="pic"><img src="images/ui/2.6/06-tracked-edits.webp" alt="Tracked change: Friday struck out, Thursday inserted"><i class="ring" style="--x:34.4;--y:56;--w:16.4;--h:5.2"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.3" data-o="20,70"><div class="pic"><img src="images/ui/2.6/06-tracked-edits.webp" alt="Tracked deletions: the memorandum order number and the 8 CPD units sentence struck out"><i class="ring" style="--x:21.2;--y:65.4;--w:40.6;--h:5.2"></i><i class="ring" style="--x:31;--y:73;--w:23.8;--h:5;--d:.25s"></i></div></figure>
+          <figure class="f" data-step="5" data-zoom="1.3" data-o="20,55"><div class="pic"><img src="images/ui/2.6/06-tracked-edits.webp" alt="Tracked changes: We are thrilled to invite replaced, an exciting deleted, Room! changed to Room."><i class="ring" style="--x:21.2;--y:52;--w:39;--h:5"></i><i class="ring" style="--x:29.8;--y:59.8;--w:9.8;--h:5;--d:.25s"></i></div></figure>
+          <figure class="f" data-step="6" data-zoom="1.3" data-o="20,92"><div class="pic"><img src="images/ui/2.6/06-tracked-edits.webp" alt="Tracked changes: Warm regards replaced by Respectfully, [Your Name] replaced by Administrative Officer"><i class="ring" style="--x:21.2;--y:85.1;--w:20.2;--h:5"></i><i class="ring" style="--x:21.2;--y:91;--w:24.2;--h:5;--d:.25s"></i></div></figure>
+          <figure class="f" data-step="7" data-zoom="1.2" data-o="50,65"><div class="pic"><img src="images/ui/2.6/07-no-markup-final.webp" alt="The edited letter with markup hidden: Dear «Name», Thursday, no memo number, Respectfully, Administrative Officer"><i class="ring" style="--x:21;--y:45.8;--w:59.4;--h:42.8"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Word for Mac, Review tab, Track Changes on. Sample draft. «Name» and «Section» mark the merge fields (Mailings › Insert Merge Field, Topic 2.4). Google Docs: the pencil menu › Suggesting does the same job.</p>
       </div>
       <div>
         <ul class="ticks">
-          <li><b>Placeholders</b> replaced with merge fields and the real date.</li>
-          <li><b>Day fixed:</b> Thursday, checked on a calendar.</li>
-          <li><b>Invented facts deleted:</b> memo number, CPD units.</li>
-          <li><b>Tone</b> made formal: no "thrilled", no "!".</li>
-          <li><b>Office style</b> applied: our usual closing and signatory.</li>
+          <li data-step="1"><b>Track your edits:</b> paste the draft into Word, then <b>Review</b> › <b>Track Changes</b> on.</li>
+          <li data-step="2"><b>Placeholders</b> replaced with merge fields and the real date.</li>
+          <li data-step="3"><b>Day fixed:</b> Thursday, checked on a calendar.</li>
+          <li data-step="4"><b>Invented facts deleted:</b> memo number, CPD units.</li>
+          <li data-step="5"><b>Tone</b> made formal: no "thrilled", no "!".</li>
+          <li data-step="6"><b>Office style</b> applied: our usual closing and signatory.</li>
+          <li data-step="7"><b>Read the clean copy</b> (markup hidden), then <b>Accept All</b> changes.</li>
         </ul>
       </div>
     </div>
