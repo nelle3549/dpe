@@ -248,7 +248,7 @@
       '</div></div>';
     var dlg = $modal.querySelector('.modal');
     var off = modalKeys(dlg, function () { $modal.innerHTML = ''; if (onDecline) onDecline(); });
-    dlg.setAttribute('tabindex', '-1'); dlg.focus();   // start at the top of the text, not on "I agree"
+    dlg.setAttribute('tabindex', '-1'); dlg.focus(); dlg.scrollTop = 0;   // start at the top of the text, not on "I agree"
     document.getElementById('pv-no').onclick = function () { off(); $modal.innerHTML = ''; if (onDecline) onDecline(); };
     document.getElementById('pv-yes').onclick = function () { off(); $modal.innerHTML = ''; onAgree(); };
   }

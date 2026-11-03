@@ -45,7 +45,9 @@
     '#big{position:fixed;left:50%;top:50%;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;border:0;z-index:11;cursor:pointer;' +
       'background:rgba(244,180,0,.96);box-shadow:0 10px 40px rgba(0,0,0,.4)}' +
     '#big::after{content:"";position:absolute;left:56%;top:50%;transform:translate(-50%,-50%);border-style:solid;border-width:22px 0 22px 36px;border-color:transparent transparent transparent #0B2545}' +
-    '#big.hide{display:none}';
+    '#big.hide{display:none}' +
+    // narrow phones: keep CC and speed on screen
+    '@media(max-width:480px){#ui{padding:24px 10px 12px}#ui .pl-row{gap:8px}#ui .pl-time{min-width:0;font-size:13px}#ui button{padding:0 9px}}';
   document.head.appendChild(css);
   var stage = document.createElement('div'); stage.id = 'stage';
   root.parentNode.insertBefore(stage, root); stage.appendChild(root);
