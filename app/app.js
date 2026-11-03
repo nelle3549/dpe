@@ -4,7 +4,7 @@
    #/topic/2.4       topic page (slides, video, activities)
    #/deck/2.4        slides viewer        #/video/2.4   video viewer
    #/a/2.4-a         activity page (participants open it from the QR / short link ?a=2.4-a)
-   #/present/2.4     admin: deck + Go live panel (QR, short link, live counts)
+   #/present/2.4     admin: deck + live topic / mark complete + answers panel (QR, short link, counts)
    #/results/2.4     admin: topic results, then Next topic / Home
    #/people          admin: participant list + CSV */
 (function () {
@@ -137,7 +137,8 @@
     'x': '<path d="M18 6 6 18" /><path d="m6 6 12 12" />',
     'thumbs-up': '<path d="M7 10v12" /><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z" />',
     'volume-x': '<path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" /><line x1="22" x2="16" y1="9" y2="15" /><line x1="16" x2="22" y1="9" y2="15" />',
-    'volume-2': '<path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" /><path d="M16 9a5 5 0 0 1 0 6" /><path d="M19.364 18.364a9 9 0 0 0 0-12.728" />'
+    'volume-2': '<path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" /><path d="M16 9a5 5 0 0 1 0 6" /><path d="M19.364 18.364a9 9 0 0 0 0-12.728" />',
+    'hand': '<path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2" /><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2" /><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8" /><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />'
   };
   function ico(n) { return '<svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS[n] + '</svg>'; }
   // emoji in activity text (Zoom reactions) shown as icons; s is already escaped
@@ -437,14 +438,14 @@
   function actLink(a) {
     var mine = S.mine[a.id], st = S.acts[a.id];
     if (isAdmin()) {
-      var d = nDone(a.id), n = S.parts.length, lv = st && st.status === 'live';
-      return actRow('#/who/' + a.id, a.title, n && d === n ? 'done' : lv ? 'live' : '', (lv ? ico('dot') + ' Live · ' : '') + d + ' of ' + n + ' done');
+      var d = nDone(a.id), n = S.parts.length, lv = answering(a.id);
+      return actRow('#/who/' + a.id, a.title, n && d === n ? 'done' : lv ? 'ans' : '', (lv ? ico('hand') + ' Open for answers · ' : '') + d + ' of ' + n + ' done');
     }
     var pc = mine && mine.max_score ? Math.round(mine.score / mine.max_score * 100) : null;
     var sub = mine && mine.status === 'submitted';
     return actRow('#/a/' + a.id, a.title,
-      sub ? (pc == null || pc >= 75 ? 'done' : '') : st && st.status === 'live' ? 'live' : '',
-      sub ? ico('check') + ' Done' + (pc == null ? '' : ' · ' + pc + '%') : st && st.status === 'live' ? ico('dot') + ' Live · ' + (mine ? 'Continue' : 'Start now') : mine ? 'Not submitted' : '');
+      sub ? (pc == null || pc >= 75 ? 'done' : '') : answering(a.id) ? 'ans' : '',
+      sub ? ico('check') + ' Done' + (pc == null ? '' : ' · ' + pc + '%') : answering(a.id) ? ico('hand') + ' Open for answers · ' + (mine ? 'Continue' : 'Start now') : mine ? 'Not submitted' : '');
   }
   // an activity row: the title gets the full width, its status sits on a small line under it
   function actRow(href, title, cls, meta) {
@@ -456,9 +457,8 @@
   // a topic card: picture, summary (2 lines + See more), Open / Play video and the activities once the topic is open
   function topicCard(t, adm, deckView) {
     var on = topicOpen(t.id), go = on || adm;   // the facilitator can open a closed topic's slides to preview them
-    var live = on && t.activities.some(function (a) { return S.acts[a.id] && S.acts[a.id].status === 'live'; });
-    var done = !adm && on && t.activities.length && t.activities.every(function (a) { return S.mine[a.id] && S.mine[a.id].status === 'submitted'; });
-    var chip = !on ? '<span class="chip">' + ico('lock') + ' ' + (adm ? 'Closed' : 'Opens later') + '</span>' : live ? '<span class="chip live">' + ico('dot') + ' Live</span>' : done ? '<span class="chip done">' + ico('check') + ' Done</span>' : '';
+    var mk = on ? topicMark(t.id) : '', live = mk === 'live';   // live = the topic being discussed now; done = the facilitator marked it complete
+    var chip = !on ? '<span class="chip">' + ico('lock') + ' ' + (adm ? 'Closed' : 'Opens later') + '</span>' : live ? '<span class="chip live">' + ico('dot') + ' Live</span>' : mk === 'done' ? '<span class="chip done">' + ico('check') + ' Completed</span>' : '';
     return '<div class="topic' + (on ? ' is-open' : ' locked') + (live ? ' has-live' : '') + '">' +
       (go ? '<a class="cover" href="' + deckView + t.id + '" tabindex="-1" aria-hidden="true">' : '<div class="cover">') + thumb(t.id) +
       '<span class="num">' + t.id + '</span>' + chip + (go ? '</a>' : '</div>') +
@@ -492,13 +492,23 @@
       '<h1>Hi, <span>' + esc(p.first_name) + '</span></h1><p>Topics open here as we reach them in class. Your answers save as you go.</p></div></section><main class="wrap" style="padding-bottom:48px">';
     if (adm) html += '<div class="card facbar fac mt-3"><span class="fk">Only you see this</span><span>Class code <b class="code">' + esc(S.cohort.join_code) + '</b></span>' +
       '<span><b id="nreg">…</b> registered</span><span class="row"><button class="btn small gold" id="full">Show join QR</button><button class="btn small" id="cpj">Copy join link</button></span></div>';
-    var live = Object.keys(S.acts).filter(function (k) { return S.acts[k].status === 'live' && ACT[k] && !(S.mine[k] && S.mine[k].status === 'submitted'); });
-    if (adm) live = Object.keys(S.acts).filter(function (k) { return S.acts[k].status === 'live' && ACT[k]; });
-    if (live.length) html += '<div class="card mt-3" style="border-color:var(--bad)"><h3>' + ico('dot') + ' Live now</h3>' +
-      live.map(function (k) {
-        return adm ? '<a class="btn primary mt-1" href="#/who/' + k + '">' + esc(ACT[k].a.title) + ': ' + nDone(k) + ' of ' + S.parts.length + ' done →</a>'
-          : '<a class="btn primary mt-1" href="#/a/' + k + '">' + (S.mine[k] ? 'Continue: ' : '') + esc(ACT[k].a.title) + ' →</a>';
-      }).join(' ') + '</div>';
+    // Live now: the topic being discussed, and any of its activities that are open for answers
+    var lt = liveTopic(), ans = Object.keys(S.acts).filter(function (k) { return answering(k) && (adm || !(S.mine[k] && S.mine[k].status === 'submitted')); });
+    var ansHtml = ans.map(function (k) {
+      return adm ? '<a href="#/who/' + k + '">' + ico('hand') + '<span>Open for answers: <b>' + esc(ACT[k].a.title) + '</b></span><span class="am">' + nDone(k) + ' of ' + S.parts.length + ' done</span><span class="chev" aria-hidden="true">›</span></a>'
+        : '<a href="#/a/' + k + '">' + ico('hand') + '<span>' + (S.mine[k] ? 'Continue' : 'Answer now') + ': <b>' + esc(ACT[k].a.title) + '</b></span><span class="chev" aria-hidden="true">›</span></a>';
+    }).join('');
+    if (lt && TOPIC[lt]) {
+      var LT = TOPIC[lt].t;
+      html += '<div class="card livenow mt-3"><a class="lnimg" href="' + deckView + lt + '" tabindex="-1" aria-hidden="true">' + thumb(lt) + '</a><div class="lnb">' +
+        '<p class="lk">' + ico('dot') + ' Live now</p><h3>' + lt + ' ' + esc(LT.title) + '</h3>' +
+        '<div class="row"><a class="btn primary" href="' + deckView + lt + '">' + (adm ? 'Present' : 'Open slides') + '</a>' + (LT.video ? '<a class="btn" href="#/video/' + lt + '">' + ico('play') + ' Play video</a>' : '') +
+        (adm ? '<button class="btn fac" id="ln-done">' + ico('check') + ' Mark complete</button>' : '') + '</div>' +
+        (ansHtml ? '<div class="anslist">' + ansHtml + '</div>' : '') + '</div></div>';
+    } else {
+      if (ansHtml) html += '<div class="card livenow mt-3"><div class="lnb"><p class="lk ans">' + ico('hand') + ' Open for answers</p><div class="anslist">' + ansHtml + '</div></div></div>';
+      if (adm) html += '<div class="card facbar fac mt-3"><span class="fk">Live now</span><span>No live topic. Open a topic\'s slides and press <b>Start as live topic</b>.</span></div>';
+    }
     // every topic as a card, grouped by module; closed ones are greyed out but their summary stays readable
     CAT.forEach(function (m, mi) {
       var nOpen = m.topics.filter(function (t) { return topicOpen(t.id); }).length;
@@ -513,6 +523,7 @@
         b.onchange = function () { var y = scrollY, id = b.dataset.tog; b.disabled = true; setTopic(id, b.checked).then(function () { vHome(); scrollTo(0, y); var c = document.querySelector('[data-tog="' + id + '"]'); if (c) c.focus({ preventScroll: true }); }); };
       });
       document.getElementById('cpj').onclick = function () { copy(joinUrl); };
+      var lnd = document.getElementById('ln-done'); if (lnd) armed(lnd, 'Tap again to mark ' + lt + ' complete', function () { markTopic(lt, 'ended').then(function () { vHome(); }); });
       document.getElementById('full').onclick = function () { qrFull(joinUrl, S.cohort.join_code, 'Scan to register'); count(); };
       var count = async function () {
         var r = await sb.from('profiles').select('id', { count: 'exact', head: true }).eq('cohort_id', S.cohort.id).eq('role', 'participant');
@@ -610,7 +621,7 @@
     render('<div class="actpage">' + html + '</div>');
     var $ts = document.getElementById('toslide'); if ($ts) $ts.onclick = function () { sessionStorage.setItem('dpeBack', '#/a/' + aid); };
 
-    // timer from the facilitator's Go live
+    // timer from the facilitator's Open for answers
     // 1 minute left: a reminder. At 0:00 quick checks and quizzes submit what's there; tasks and labs
     // keep going until the facilitator ends them (they often give extra time).
     var st = S.acts[aid], onTimeUp = null;
@@ -865,23 +876,41 @@
     document.getElementById('qfx').onclick = function () { off(); close(); };
   }
 
+  // topic progress: a marker row 'topic:<id>' in activity_state (live = the topic being discussed now, ended = completed)
+  function topicMark(tid) { var r = S.acts['topic:' + tid]; return r ? (r.status === 'live' ? 'live' : 'done') : ''; }
+  function liveTopic() { var k = Object.keys(S.acts).filter(function (k) { return k.indexOf('topic:') === 0 && S.acts[k].status === 'live'; })[0]; return k ? k.slice(6) : null; }
+  // an activity the facilitator has opened for answers (activity_state status 'live')
+  function answering(aid) { return !!(ACT[aid] && S.acts[aid] && S.acts[aid].status === 'live'); }
+  function nextTopic(tid) { var all = []; CAT.forEach(function (m) { all = all.concat(m.topics); }); var i = all.findIndex(function (t) { return t.id === tid; }); return all[i + 1] || null; }
+  async function markTopic(tid, status) {   // 'live' (only one at a time; opens the topic to the class) or 'ended' (completed)
+    var cid = S.profile.cohort_id, cur = liveTopic();
+    if (status === 'live') {
+      if (!topicOpen(tid)) await setTopic(tid, true);
+      if (cur && cur !== tid) await sb.from('activity_state').delete().eq('cohort_id', cid).eq('activity_id', 'topic:' + cur);
+    }
+    var r = await sb.from('activity_state').upsert({ cohort_id: cid, activity_id: 'topic:' + tid, topic_id: tid, status: status, opened_at: new Date().toISOString() });
+    if (r.error) { toast(errMsg(r.error)); return false; }
+    toast(status === 'live' ? tid + ' is now the live topic' : tid + ' is marked complete');
+    await loadState(); return true;
+  }
   async function setTopic(tid, open) {
     var r = await sb.from('topic_state').upsert({ cohort_id: S.profile.cohort_id, topic_id: tid, status: open ? 'open' : 'locked', opened_at: open ? new Date().toISOString() : null });
     if (r.error) toast(errMsg(r.error)); else { toast(tid + (open ? ' is open to the class' : ' is closed')); await loadState(); }
   }
 
-  // ---------- presenter: deck + Go live panel
+  // ---------- presenter: deck + live topic, Mark complete and the answers panel
   function vPresent(tid, slide) {
     var T = TOPIC[tid].t, cid = S.profile.cohort_id, current = null, liveId = null, panelHidden = false;
     var opts = T.activities.map(function (a) { return '<option value="' + a.id + '">' + esc(a.title) + '</option>'; }).join('');
     // the same frame as the participants' slide viewer (#/deck), with the facilitator's controls (.fac) added
     render('<div class="present"><div class="pbar vbar"><a href="#/">' + ico('house') + ' Home</a><span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
       (T.video ? '<a href="#/video/' + tid + '">' + ico('play') + ' Video</a>' : '') +
-      '<span class="fac pfac"><button class="golive hide" id="golive"></button>' +
-      '<select id="pick" aria-label="Go live with an activity"><option value="">Go live with…</option>' + opts + '</select>' +
-      '<button class="hide" id="showlive">' + ico('dot') + ' Live panel</button>' +
+      '<span class="fac pfac"><button class="tlive" id="tlive"></button><button class="golive hide" id="golive"></button>' +
+      '<select id="pick" aria-label="Open an activity for answers"><option value="">Open for answers…</option>' + opts + '</select>' +
+      '<button class="hide" id="showlive">' + ico('hand') + ' Answers panel</button>' +
       '<a class="res" href="#/results/' + tid + '" id="resbtn">Results →</a></span>' + toolsBtn() + '</div>' +
       '<div class="lockbar fac' + (topicOpen(tid) ? ' hide' : '') + '" id="lockbar">' + ico('lock') + ' This topic is closed to participants.<button id="openit">Open to class</button></div>' +
+      '<div class="endbar fac hide" id="endbar"></div>' +
       '<div class="pbody"><iframe id="deck" src="course/' + encodeURIComponent(T.deck) + (slide ? '#/' + slide : '') + '" title="' + esc(T.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe><aside class="livepanel hide" id="live"></aside></div>' +
       '<div class="pnav"><button id="prev" aria-label="Previous slide">‹ Back</button><span id="pcount" aria-live="polite"></span><button id="next" aria-label="Next slide">Next ›</button></div></div>');
     var sendKey = function (k) { $f.contentWindow.postMessage({ type: 'dpe-key', key: k }, '*'); $f.contentWindow.focus(); };
@@ -893,6 +922,20 @@
     document.getElementById('pick').onchange = function () { if (this.value) goLive(this.value); this.value = ''; };
     document.getElementById('showlive').onclick = function () { panelHidden = false; showPanel(); };
     $f.onload = function () { try { $f.contentWindow.focus(); } catch (e) {} };
+    // live topic (bar button) and Mark complete (on the last slide)
+    var $tl = document.getElementById('tlive'), $end = document.getElementById('endbar');
+    function drawMark() {
+      var mk = topicMark(tid), nx = nextTopic(tid);
+      $tl.classList.toggle('on', mk === 'live'); $tl.disabled = mk === 'live';
+      $tl.innerHTML = ico('dot') + (mk === 'live' ? ' Live topic' : ' Start as live topic');
+      $end.innerHTML = mk === 'done'
+        ? '<span>' + ico('check') + ' ' + tid + ' is complete.</span>' + (nx ? '<button id="nextt">Start ' + nx.id + ': ' + esc(nx.title) + ' ›</button>' : '<span>That was the last topic.</span>')
+        : '<span>End of ' + tid + '.</span><button id="markdone">' + ico('check') + ' Mark ' + tid + ' complete</button>';
+      var md = document.getElementById('markdone'); if (md) md.onclick = function () { md.disabled = true; markTopic(tid, 'ended').then(drawMark); };
+      var nt = document.getElementById('nextt'); if (nt) nt.onclick = function () { nt.disabled = true; markTopic(nx.id, 'live').then(function (ok) { if (ok) location.hash = '#/present/' + nx.id; }); };
+    }
+    $tl.onclick = function () { $tl.disabled = true; markTopic(tid, 'live').then(function () { document.getElementById('lockbar').classList.toggle('hide', topicOpen(tid)); drawMark(); }); };
+    drawMark();
 
     // follow the deck: which slide is on screen?
     every(400, function () {
@@ -904,9 +947,9 @@
       if ((a && a.id) !== current) {
         current = a && a.id;
         $go.classList.toggle('hide', !a);
-        if (a) $go.innerHTML = (S.acts[a.id] && S.acts[a.id].status === 'live' ? ico('dot') + ' Show live: ' : ico('dot') + ' Go live: ') + esc(a.title);
+        if (a) $go.innerHTML = ico('hand') + (answering(a.id) ? ' Show answers: ' : ' Open for answers: ') + esc(a.title);
       }
-      document.getElementById('resbtn').style.outline = idx === all.length - 1 ? '3px solid #fff' : '';
+      $end.classList.toggle('hide', idx !== all.length - 1);
     });
     $go.onclick = function () { if (current) goLive(current); };
 
@@ -927,16 +970,16 @@
       var a = ACT[liveId].a, url = BASE + '?a=' + liveId + '&join=' + encodeURIComponent(S.cohort.join_code), st = S.acts[liveId];   // the code lets late joiners register
       $live.classList.toggle('hide', panelHidden);
       document.getElementById('showlive').classList.toggle('hide', !panelHidden);
-      $live.innerHTML = '<div class="row" style="justify-content:space-between"><span class="tag live">' + (st.status === 'live' ? ico('dot') + ' LIVE' : 'Ended') + '</span><span class="row" style="gap:8px"><span class="timer" id="ptimer"></span><button class="pclose" id="hidep" aria-label="Hide the live panel" title="Hide panel">×</button></span></div>' +
+      $live.innerHTML = '<div class="row" style="justify-content:space-between"><span class="tag ans">' + (st.status === 'live' ? ico('hand') + ' Open for answers' : 'Closed') + '</span><span class="row" style="gap:8px"><span class="timer" id="ptimer"></span><button class="pclose" id="hidep" aria-label="Hide the answers panel" title="Hide panel">×</button></span></div>' +
         '<h3>' + esc(a.title) + '</h3><div class="qrbig">' + qr(url) + '</div>' +
         '<div class="short">' + esc(SHORT) + '<wbr><span style="white-space:nowrap">' + esc('?a=' + liveId) + '</span></div><button class="btn primary block" id="cpl">Copy link for the chat</button>' +
         '<div class="finbox"><b id="c-fin">…</b> <span>of <span id="c-reg">…</span> finished</span><div class="prog" role="progressbar" aria-label="Finished" id="c-prog"><i id="c-bar"></i></div></div>' +
         '<div class="counts"><div><b id="c-acc">…</b><span>opened it</span></div><div><b id="c-act">…</b><span>working now</span></div></div>' +
-        '<div class="row"><button class="btn small" id="restart">Restart timer</button>' + (st.status === 'live' ? '<button class="btn small danger" id="end">End activity</button>' : '<button class="btn small" id="reopen">Reopen</button>') + '</div>';
+        '<div class="row"><button class="btn small" id="restart">Restart timer</button>' + (st.status === 'live' ? '<button class="btn small danger" id="end">Close answers</button>' : '<button class="btn small" id="reopen">Reopen</button>') + '</div>';
       document.getElementById('cpl').onclick = function () { copy(url); };
       document.getElementById('hidep').onclick = function () { panelHidden = true; showPanel(); };
       document.getElementById('restart').onclick = function () { setAct({ status: 'live', opened_at: new Date().toISOString() }); };
-      var e = document.getElementById('end'); if (e) armed(e, 'Tap again to end', function () { setAct({ status: 'ended' }); });
+      var e = document.getElementById('end'); if (e) armed(e, 'Tap again to close', function () { setAct({ status: 'ended' }); });
       var ro = document.getElementById('reopen'); if (ro) ro.onclick = function () { setAct({ status: 'live' }); };
       counts();
     }
@@ -953,7 +996,7 @@
       set('c-acc', d.accessed); set('c-reg', d.registered); set('c-fin', d.finished); set('c-act', d.active);
       var bar = document.getElementById('c-bar'); if (bar) bar.style.width = pct(d.finished, d.registered) + '%';
       var pg = document.getElementById('c-prog'); if (pg) pg.setAttribute('aria-valuenow', pct(d.finished, d.registered));
-      var sl = document.getElementById('showlive'); if (sl) sl.innerHTML = ico('dot') + ' Live ' + d.finished + '/' + d.registered + ' finished';
+      var sl = document.getElementById('showlive'); if (sl) sl.innerHTML = ico('hand') + ' Answers ' + d.finished + '/' + d.registered + ' finished';
     }
     every(3000, counts);
     every(1000, function () {
@@ -978,7 +1021,7 @@
       render(topbar() + '<main class="wrap" style="padding:20px 16px 48px">' +
         '<p class="muted small" style="margin:0">' + tid + ' ' + esc(TOPIC[tid].t.title) + '</p>' +
         '<h1 style="margin:4px 0 0;letter-spacing:-.02em">' + esc(A.title) + '</h1>' +
-        '<div class="row mt-1"><a class="btn small" href="#/">← Home</a>' + (st && st.status === 'live' ? '<span class="tag live">' + ico('dot') + ' Live</span>' : '') + '</div>' +
+        '<div class="row mt-1"><a class="btn small" href="#/">← Home</a>' + (answering(aid) ? '<span class="tag ans">' + ico('hand') + ' Open for answers</span>' : '') + '</div>' +
         '<div class="finbox mt-3"><b>' + d + '</b> <span>of ' + n + ' done · ' + (n - d) + ' pending</span><div class="prog" role="progressbar" aria-label="Done" aria-valuenow="' + d + '" aria-valuemax="' + n + '"><i style="width:' + (n ? d / n * 100 : 0) + '%"></i></div></div>' +
         '<div class="card mt-3" style="padding:0;overflow:auto"><table class="who"><thead><tr><th>Name</th><th>Position</th><th>Status</th></tr></thead><tbody>' +
         (S.parts.map(function (p) { return '<tr><td><b>' + esc(fullName(p)) + '</b></td><td>' + esc(p.position || '') + '</td><td>' + (ok(p) ? '<span class="tag done">Done</span>' : '<span class="tag sub">Pending</span>') + '</td></tr>'; }).join('') ||

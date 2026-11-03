@@ -384,3 +384,26 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 /* icons (3 Nov): Lucide SVGs (ISC) replace emoji */
 .ico{display:inline-block;vertical-align:-.14em;flex:none}
 .btn .ico{vertical-align:middle}
+/* Live = the topic being discussed now (red); activities taking answers = "Open for answers" (amber) (3 Nov) */
+.topic .acts .am.ans{color:var(--warn)}
+.tag.ans{background:#FFF4D6;color:#7A5500}
+.livenow{display:flex;align-items:stretch;padding:0;overflow:hidden;border:2px solid var(--bad);box-shadow:0 0 0 4px rgba(198,40,40,.1)}
+.livenow .lnimg{flex:0 0 240px;display:block}
+.livenow .lnimg img{width:100%;height:100%;object-fit:cover;display:block}
+.livenow .lnb{flex:1;min-width:0;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.livenow .lk{margin:0;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--bad)}
+.livenow .lk.ans{color:var(--warn)}
+.livenow h3{margin:0;font-size:20px;line-height:1.25}
+.livenow .anslist{display:flex;flex-direction:column;gap:6px}
+.livenow .anslist a{display:flex;align-items:center;gap:10px;padding:10px 12px;min-height:44px;border-radius:10px;background:#FFF8E6;border:1px solid #F3DFA8;color:var(--text-1);text-decoration:none;font-size:14px}
+.livenow .anslist a>span:nth-of-type(1){flex:1;min-width:0}
+.livenow .anslist .ico{color:var(--warn);flex:none}
+.livenow .anslist .am{font-size:12px;font-weight:700;color:var(--text-2);white-space:nowrap}
+.livenow .anslist .chev{font-size:20px;line-height:1;color:var(--text-3)}
+@media (max-width:620px){.livenow{flex-direction:column}.livenow .lnimg{flex:none;aspect-ratio:2/1}}
+.pbar .golive{background:var(--warn);border-color:var(--warn)}
+.pbar .tlive.on{background:var(--bad);border-color:var(--bad);opacity:1;cursor:default}
+.endbar{background:var(--good);color:#fff;padding:8px 12px;font-size:15px;font-weight:700;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.endbar button{background:#fff;color:var(--good);border:0;border-radius:999px;padding:6px 14px;font-weight:800;cursor:pointer}
+.endbar button:disabled{opacity:.6}
+.livenow .btn.fac{border:1.5px dashed var(--gold);background:#fffaf0;color:#7a5500}
