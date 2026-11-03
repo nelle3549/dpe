@@ -39,11 +39,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero h1 span{color:var(--gold)}
 .hero p{color:rgba(255,255,255,.82);margin:0;max-width:60ch}
 /* home hero, as on the course index page (Decks/index.html) */
-.hero .partners{display:inline-flex;flex-wrap:wrap;align-items:stretch;background:#fff;border-radius:16px;padding:10px 6px;margin-bottom:24px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.hero .partners{display:inline-flex;flex-wrap:wrap;align-items:stretch;background:#fff;border-radius:16px;padding:10px 6px;margin-bottom:24px;box-shadow:0 4px 12px rgba(0,0,0,.12)}
 .hero .partners figure{margin:0;display:flex;align-items:center;gap:10px;padding:2px 16px}
 .hero .partners figure+figure{border-left:1px solid var(--border)}
 .hero .partners img{height:42px;width:auto;display:block}
-.hero .partners img.sd{height:24px}
+.hero .partners img.dict{height:46px;margin:-2px 0}   /* pale line-art seal: a little bigger so it weighs the same */
 .hero .partners figcaption{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);line-height:1.25}
 .hero .partners figcaption b{display:block;color:var(--text-1);letter-spacing:0;text-transform:none;font-size:14px}
 .hero p.lede{font-size:clamp(16px,1.5vw,20px);max-width:62ch}
@@ -64,8 +64,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero .me .mbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#FFD866);border-radius:999px;min-width:0}
 .hero .me .ml{margin:-2px 0 0;font-size:13px;color:rgba(255,255,255,.75)}
 @media (max-width:640px){
-  .hero .partners{display:flex}.hero .partners figure{padding:4px 10px}.hero .partners img{height:32px}.hero .partners img.sd{height:18px}
-  .hero .partners figcaption{font-size:9px}.hero .partners figcaption b{font-size:12px}
+  /* phones: one row of three marks, role labels only */
+  .hero .partners{display:flex;flex-wrap:nowrap;justify-content:space-around;padding:10px 4px}
+  .hero .partners figure{flex:1;flex-direction:column;gap:5px;padding:0 6px;text-align:center}
+  .hero .partners img{height:34px}.hero .partners img.dict{height:37px;margin:-1.5px 0}
+  .hero .partners figcaption{font-size:11px;letter-spacing:.08em}.hero .partners figcaption b{display:none}
   .hero p.lede,.hero p.rp{display:none}   /* phones: course name, then straight to you */
   .hero .stats{grid-template-columns:repeat(2,1fr);gap:8px;margin-top:18px}.hero .stats div{padding:8px 12px}.hero .stats b{font-size:22px}
   .hero .me{grid-template-columns:1fr}.hero .me .btn{justify-self:start}

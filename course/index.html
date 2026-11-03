@@ -121,17 +121,19 @@
   .keys div{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--text-2);font-size:14px}
   kbd{font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700;background:#fff;border:1px solid rgba(11,37,69,.25);border-bottom-width:3px;border-radius:5px;padding:1px 6px;color:var(--text-1)}
   /* partner logos */
-  .partners{display:inline-flex;flex-wrap:wrap;align-items:stretch;gap:0;background:#fff;border-radius:16px;padding:10px 6px;margin-bottom:26px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+  .partners{display:inline-flex;flex-wrap:wrap;align-items:stretch;gap:0;background:#fff;border-radius:16px;padding:10px 6px;margin-bottom:26px;box-shadow:0 4px 12px rgba(0,0,0,.12)}
   .partners figure{margin:0;display:flex;align-items:center;gap:10px;padding:2px 16px}
   .partners figure+figure{border-left:1px solid var(--border)}
   .partners img{height:46px;width:auto;display:block}
-  .partners img.sd{height:26px}
+  .partners img.dict{height:50px;margin:-2px 0}
   .partners figcaption{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);line-height:1.25}
   .partners figcaption b{display:block;color:var(--text-1);letter-spacing:0;text-transform:none;font-size:14px}
   .foot-logos{display:flex;align-items:center;gap:14px;margin-bottom:12px}
   .foot-logos img{height:34px;width:auto}
   .foot-logos img.sd{height:20px}
-  @media (max-width:560px){.partners{display:flex}.partners figure{padding:6px 12px}.partners figure+figure{border-left:0}.partners img{height:38px}.partners img.sd{height:22px}}
+  @media (max-width:560px){   /* phones: one row of three marks, role labels only */
+    .partners{display:flex;flex-wrap:nowrap;justify-content:space-around;padding:10px 4px}.partners figure{flex:1;flex-direction:column;gap:5px;padding:0 6px;text-align:center}
+    .partners img{height:34px}.partners img.dict{height:37px;margin:-1.5px 0}.partners figcaption{font-size:11px;letter-spacing:.08em}.partners figcaption b{display:none}}
   footer{color:var(--text-3);font-size:13px;padding:36px 0 48px}
   @media (max-width:560px){.wrap{padding:0 16px}.decks{grid-template-columns:1fr}.hero{padding:40px 0 32px}}
 </style>
@@ -141,9 +143,9 @@
 <header class="hero">
   <div class="wrap">
     <div class="partners" aria-label="Partners">
-      <figure><img src="images/logos/dict.png" alt="DICT logo"><figcaption>Organizer<b>DICT</b></figcaption></figure>
+      <figure><img class="dict" src="images/logos/dict.png" alt="DICT logo"><figcaption>Organizer<b>DICT</b></figcaption></figure>
       <figure><img src="images/logos/bir.png" alt="BIR logo"><figcaption>Participants<b>BIR Misamis Oriental</b></figcaption></figure>
-      <figure><img class="sd" src="images/logos/serial-disruptors.png" alt="Serial Disruptors logo"><figcaption>Partner<b>organization</b></figcaption></figure>
+      <figure><img src="images/logos/sd-mark.png" alt="Serial Disruptors logo"><figcaption>Partner<b>Serial Disruptors</b></figcaption></figure>
     </div>
     <p class="kicker">DICT ILCDB · ICT Academy · Digital Workforce · Beginner</p>
     <h1>Digital Productivity <span>Essentials</span></h1>
