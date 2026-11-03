@@ -337,3 +337,12 @@ html.participant .opt.picked{border-color:var(--mod);background:var(--mod-soft)}
 /* icons (3 Nov): Lucide SVGs (ISC) replace emoji */
 .ico{display:inline-block;vertical-align:-.14em;flex:none}
 .ic .ico,.ic-badge .ico,.i .ico{color:var(--mod)}
+/* product logos (assets/logos, sources in logos.json) */
+.logo{display:inline-block;width:1.15em;height:1.15em;object-fit:contain;vertical-align:-.22em;margin-right:.35em;flex:none}
+.logo.sq{border-radius:22%}
+.logo.mono{background:#fff;border-radius:.2em;padding:.06em}
+.ic-badge .logo{width:64%;height:64%;margin:0;vertical-align:middle}
+.card .ic-badge:has(.logo){background:#fff;border:1px solid var(--border)}
+.ic .logo{width:1em;height:1em;margin:0;vertical-align:middle}
+.dsk .di .logo{display:block;width:1em;height:1em;margin:0 auto}
+.dsk .tb .logo{margin:0;vertical-align:middle}

@@ -1,0 +1,362 @@
+[
+ {
+  "product": "Microsoft Word",
+  "file": "microsoft-word.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Microsoft_Office_Word_(2025%E2%80%93present).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Microsoft_Office_Word_%282025%E2%80%93present%29.svg",
+  "notes": "2025 Microsoft 365 icon (Wikimedia Commons)."
+ },
+ {
+  "product": "Microsoft Excel",
+  "file": "microsoft-excel.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Microsoft_Office_Excel_(2025%E2%80%93present).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Microsoft_Office_Excel_%282025%E2%80%93present%29.svg",
+  "notes": "2025 Microsoft 365 icon (Wikimedia Commons)."
+ },
+ {
+  "product": "Microsoft PowerPoint",
+  "file": "microsoft-powerpoint.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Microsoft_Office_PowerPoint_(2025%E2%80%93present).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Microsoft_Office_PowerPoint_%282025%E2%80%93present%29.svg",
+  "notes": "2025 Microsoft 365 icon (Wikimedia Commons)."
+ },
+ {
+  "product": "Microsoft Outlook",
+  "file": "microsoft-outlook.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Microsoft_Outlook_Icon_(2025%E2%80%93present).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Microsoft_Outlook_Icon_%282025%E2%80%93present%29.svg",
+  "notes": "2025 Microsoft 365 icon (Wikimedia Commons)."
+ },
+ {
+  "product": "Microsoft OneDrive",
+  "file": "microsoft-onedrive.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Microsoft_OneDrive_Icon_(2025_-_present).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Microsoft_OneDrive_Icon_%282025_-_present%29.svg",
+  "notes": "2025 icon (Wikimedia Commons)."
+ },
+ {
+  "product": "Microsoft 365 (Microsoft 365 Copilot app)",
+  "file": "microsoft-365.png",
+  "format": "PNG",
+  "source_page": "https://apps.microsoft.com/detail/9wzdncrd29v9",
+  "file_url": "https://store-images.s-microsoft.com/image/apps.21661.9007199267161390.afb6b8cd-d194-4a99-b633-03cd80118a21.e9a094be-ee73-4e19-8cdf-49a27b0974ed?w=512&h=512",
+  "notes": "Official Microsoft Store icon, 512 px transparent PNG. Current app icon is the Copilot symbol with an 'M365' badge, so it looks close to the Copilot icon."
+ },
+ {
+  "product": "Microsoft Copilot",
+  "file": "microsoft-copilot.png",
+  "format": "PNG",
+  "source_page": "https://apps.microsoft.com/detail/9nht9rb2f4hd",
+  "file_url": "https://store-images.s-microsoft.com/image/apps.44413.13623743226081137.44717f35-32c5-4d9e-ab80-390d1fdf3f60.6275dbfa-3261-417d-b5f0-7da8763cfb61?w=512&h=512",
+  "notes": "Official Microsoft Store icon (Microsoft Copilot on Windows), 512 px transparent PNG. No SVG of the colour icon on an official or Commons page."
+ },
+ {
+  "product": "Windows 11",
+  "file": "windows-11.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Windows_logo_-_2021.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Windows_logo_-_2021.svg",
+  "notes": "Windows 11 logo symbol (four blue panes), no wordmark. Wordmark version: Commons 'Windows 11 logo.svg' if ever needed."
+ },
+ {
+  "product": "File Explorer",
+  "file": "file-explorer.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Windows_Explorer.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Windows_Explorer.svg",
+  "notes": "Windows 11 File Explorer icon (folder with blue bar), Wikimedia Commons. Community-drawn SVG of the Microsoft icon; no official download exists."
+ },
+ {
+  "product": "Microsoft Edge",
+  "file": "microsoft-edge.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Microsoft_Edge_logo_(2019).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg",
+  "notes": "Current Edge logo (2019 design, still in use)."
+ },
+ {
+  "product": "Recycle Bin",
+  "file": "recycle-bin.png",
+  "format": "PNG",
+  "source_page": "Supplied by Nelle in chat, 3 Nov 2026",
+  "file_url": "",
+  "notes": "Windows 11 Recycle Bin (full), 256 px, transparent. Supplied by Nelle."
+ },
+ {
+  "product": "Notepad",
+  "file": "notepad.png",
+  "format": "PNG",
+  "source_page": "https://apps.microsoft.com/detail/9msmlrh6lzf3",
+  "file_url": "https://store-images.s-microsoft.com/image/apps.10047.13825011251621706.e8a531ea-e643-41b9-8969-8a0182f70030.a3e757b8-b4d7-449c-9001-20798f9f0481?w=512&h=512",
+  "notes": "Official Microsoft Store icon (Windows Notepad), 512 px transparent PNG."
+ },
+ {
+  "product": "Snipping Tool",
+  "file": "snipping-tool.png",
+  "format": "PNG",
+  "source_page": "https://apps.microsoft.com/detail/9mz95kl8mr0l",
+  "file_url": "https://store-images.s-microsoft.com/image/apps.39793.13878650002538161.3f27413b-237a-452f-a9d4-28acfb7ff8a3.bbcbcce7-586d-4cfa-ab27-e9edccb8df41?w=512&h=512",
+  "notes": "Official Microsoft Store icon, 512 px transparent PNG."
+ },
+ {
+  "product": "Paint",
+  "file": "paint.png",
+  "format": "PNG",
+  "source_page": "https://apps.microsoft.com/detail/9pcfs5b6t72h",
+  "file_url": "https://store-images.s-microsoft.com/image/apps.46922.14170710832825752.0337f199-11f5-4ef1-848d-cfb7a32bb128.f77fb30d-e433-46f1-9886-d8b1225ec60b?w=512&h=512",
+  "notes": "Official Microsoft Store icon, 512 px transparent PNG."
+ },
+ {
+  "product": "Photos",
+  "file": "photos.png",
+  "format": "PNG",
+  "source_page": "https://apps.microsoft.com/detail/9wzdncrfjbh4",
+  "file_url": "https://store-images.s-microsoft.com/image/apps.7491.9007199266252409.5e6670e4-cbc0-416b-95df-eff1d13a0dd0.faa68c47-0bb1-41e2-ad66-a7f4318d42c8?w=512&h=512",
+  "notes": "Official Microsoft Store icon (Microsoft Photos), 512 px transparent PNG."
+ },
+ {
+  "product": "Clipchamp",
+  "file": "clipchamp.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Microsoft_Clipchamp_(2025%E2%80%93present).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Microsoft_Clipchamp_%282025%E2%80%93present%29.svg",
+  "notes": "2025 icon (Wikimedia Commons)."
+ },
+ {
+  "product": "LibreOffice",
+  "file": "libreoffice.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:LibreOffice_7.5_Main_Icon.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/48/LibreOffice_7.5_Main_Icon.svg",
+  "notes": "LibreOffice main app icon (Commons, MPL 2), revised 2025. Commons still labels the set '7.5', but the set matches the icons in current releases. Wordmark: Commons 'LibreOffice logo.svg'."
+ },
+ {
+  "product": "LibreOffice Writer",
+  "file": "libreoffice-writer.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:LibreOffice_7.5_Writer_Icon.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/LibreOffice_7.5_Writer_Icon.svg",
+  "notes": "Current app icon set (Commons, MPL 2)."
+ },
+ {
+  "product": "LibreOffice Calc",
+  "file": "libreoffice-calc.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:LibreOffice_7.5_Calc_Icon.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/LibreOffice_7.5_Calc_Icon.svg",
+  "notes": "Current app icon set (Commons, MPL 2)."
+ },
+ {
+  "product": "LibreOffice Impress",
+  "file": "libreoffice-impress.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:LibreOffice_7.5_Impress_Icon.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/LibreOffice_7.5_Impress_Icon.svg",
+  "notes": "Current app icon set (Commons, MPL 2)."
+ },
+ {
+  "product": "Google Docs",
+  "file": "google-docs.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Google_Docs_icon_(2026).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Google_Docs_icon_%282026%29.svg",
+  "notes": "2026 Google Workspace icon (as used on Wikipedia). Earlier 2020 version also on Commons."
+ },
+ {
+  "product": "Google Sheets",
+  "file": "google-sheets.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Google_Sheets_icon_(August_2026).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Google_Sheets_icon_%28August_2026%29.svg",
+  "notes": "August 2026 revision of the 2026 icon (Wikipedia uses this one)."
+ },
+ {
+  "product": "Google Slides",
+  "file": "google-slides.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Google_Slides_icon_(2026).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Google_Slides_icon_%282026%29.svg",
+  "notes": "2026 Google Workspace icon."
+ },
+ {
+  "product": "Google Drive",
+  "file": "google-drive.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Google_Drive_icon_(2026).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Google_Drive_icon_%282026%29.svg",
+  "notes": "2026 Google Workspace icon."
+ },
+ {
+  "product": "Gmail",
+  "file": "gmail.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Gmail_icon_(2026).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Gmail_icon_%282026%29.svg",
+  "notes": "2026 Google Workspace icon."
+ },
+ {
+  "product": "Google Meet",
+  "file": "google-meet.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Google_Meet_icon_(2026).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Google_Meet_icon_%282026%29.svg",
+  "notes": "2026 Google Workspace icon."
+ },
+ {
+  "product": "Google Chrome",
+  "file": "google-chrome.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Google_Chrome_icon_(February_2022).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Google_Chrome_icon_%28February_2022%29.svg",
+  "notes": "Current Chrome icon (2022 design)."
+ },
+ {
+  "product": "Google Search",
+  "file": "google-search.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Google_Favicon_2025.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg",
+  "notes": "2025 gradient 'G'. The older flat 4-colour G is Commons 'Google \"G\" logo.svg'."
+ },
+ {
+  "product": "Google Gemini",
+  "file": "google-gemini.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Google_Gemini_icon_2025.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Google_Gemini_icon_2025.svg",
+  "notes": "2025 gradient Gemini sparkle."
+ },
+ {
+  "product": "ChatGPT (OpenAI)",
+  "file": "chatgpt.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:OpenAI_logo_2025_(symbol).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/66/OpenAI_logo_2025_%28symbol%29.svg",
+  "notes": "OpenAI 2025 'blossom' symbol, the icon ChatGPT uses (black, so it needs a light background or a white version on dark tiles)."
+ },
+ {
+  "product": "Meta AI",
+  "file": "meta-ai.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Meta_AI_Logo_(2026).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Meta_AI_Logo_%282026%29.svg",
+  "notes": "Meta AI ring logo (2026 version on Commons)."
+ },
+ {
+  "product": "Microsoft Bing",
+  "file": "microsoft-bing.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Bing_Fluent_Logo.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Bing_Fluent_Logo.svg",
+  "notes": "Current Bing Fluent 'b' symbol."
+ },
+ {
+  "product": "Firefox",
+  "file": "firefox.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Firefox_logo,_2019.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg",
+  "notes": "Current Firefox logo (2019 design, Commons, MPL 2)."
+ },
+ {
+  "product": "Safari",
+  "file": "safari.png",
+  "format": "PNG",
+  "source_page": "https://developer.apple.com/safari/",
+  "file_url": "https://developer.apple.com/assets/elements/icons/safari/safari-128x128_2x.png",
+  "notes": "Official Apple Developer icon, 256 px transparent PNG (exactly the minimum). macOS 26 'Liquid Glass' Safari icon looks a bit different; no larger official version found."
+ },
+ {
+  "product": "Zoom",
+  "file": "zoom.png",
+  "format": "PNG",
+  "source_page": "https://apps.apple.com/ph/app/zoom-workplace/id546505307",
+  "file_url": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/fc/d0/96/fcd09664-56c3-f856-4311-da9dcbae1fd2/AppIcon-0-0-1x_U007epad-0-1-0-0-85-220.png/512x512bb.png",
+  "notes": "Official app icon (Zoom Workplace) from Apple App Store listing, 512 px. Full-bleed square, NO transparency (round the corners in CSS). Zoom has no public icon download; Commons only has the wordmark."
+ },
+ {
+  "product": "Facebook",
+  "file": "facebook.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:2023_Facebook_icon.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg",
+  "notes": "Current 2023 'f' icon."
+ },
+ {
+  "product": "Messenger",
+  "file": "messenger.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Facebook_Messenger_logo_2020.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Facebook_Messenger_logo_2020.svg",
+  "notes": "Messenger gradient bubble (2020 design, still current)."
+ },
+ {
+  "product": "Viber",
+  "file": "viber.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Viber_icon.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Viber_icon.svg",
+  "notes": "Viber icon (Commons, updated Aug 2026)."
+ },
+ {
+  "product": "YouTube",
+  "file": "youtube.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:YouTube_full-color_icon_(2017).svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg",
+  "notes": "Current YouTube play-button icon."
+ },
+ {
+  "product": "Canva",
+  "file": "canva.png",
+  "format": "PNG",
+  "source_page": "https://apps.apple.com/ph/app/canva-ai-video-photo-editor/id897446215",
+  "file_url": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3f/a0/78/3fa078f4-ab6d-c5b7-ac83-873fc19a4685/AppIcon-0-0-1x_U007epad-0-11-0-85-220.png/512x512bb.png",
+  "notes": "Official current app icon from Apple App Store listing, 512 px. Full-bleed square, NO transparency. canva.com only offers 192 px icons (the old round 'C')."
+ },
+ {
+  "product": "GCash",
+  "file": "gcash.png",
+  "format": "PNG",
+  "source_page": "https://www.gcash.com/",
+  "file_url": "https://cdn.prod.website-files.com/6385b55675a0bd614777a5c1/64265cd252f7516ad684940c_Webclip.png",
+  "notes": "Official gcash.com web-clip icon, 256 px PNG (blue square with G). App Store version (512 px, opaque) also available if a bigger one is needed."
+ },
+ {
+  "product": "GCFGlobal (GCFLearnFree)",
+  "file": "gcfglobal.png",
+  "format": "PNG",
+  "source_page": "https://www.learnfree.org/",
+  "file_url": "https://www.learnfree.org/LearnFree/favicon/android-icon-192x192.png",
+  "notes": "UNCERTAIN: GCFGlobal has rebranded as 'LearnFree' (edu.gcfglobal.org now redirects to learnfree.org). This is the official site icon, only 192 px (under 256) with a white square background. No larger official logo found."
+ },
+ {
+  "product": "Pixabay",
+  "file": "pixabay.svg",
+  "format": "SVG",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Pixabay-logo-new.svg",
+  "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Pixabay-logo-new.svg",
+  "notes": "Current Pixabay icon (black square with white 'px', Wikimedia Commons). Pixabay no longer uses its old green logo."
+ },
+ {
+  "product": "Unsplash",
+  "file": "unsplash.svg",
+  "format": "SVG",
+  "source_page": "https://unsplash.com/press",
+  "file_url": "https://unsplash.com/safari-pinned-tab.svg",
+  "notes": "Official Unsplash symbol from unsplash.com (Safari pinned-tab mask icon, black). Black-only, so it disappears on dark tiles. A 512 px PNG (symbol on a white circle) is at https://unsplash.com/android-chrome-512x512.png."
+ },
+ {
+  "product": "Pexels",
+  "file": "pexels.svg",
+  "format": "SVG",
+  "source_page": "https://www.pexels.com/",
+  "file_url": "https://static.pexels.com/1/images/meta/safari-pinned-tab.svg",
+  "notes": "Official Pexels icon from pexels.com (Safari pinned-tab mask icon): black rounded square with a white 'P'. Pexels now uses black (no longer green). Low contrast on dark tiles."
+ }
+]

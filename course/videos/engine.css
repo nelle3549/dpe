@@ -199,3 +199,8 @@ kbd{display:inline-block;font-family:'JetBrains Mono',ui-monospace,monospace;fon
 /* icons (3 Nov): Lucide SVGs (ISC) replace emoji */
 .ico{display:inline-block;vertical-align:-.14em;flex:none}
 .ic .ico{vertical-align:middle;color:var(--mod)}
+/* product logos (../assets/logos, sources in logos.json) */
+.logo{display:inline-block;width:1.1em;height:1.1em;object-fit:contain;vertical-align:-.2em;margin-right:.3em;flex:none}
+.logo.sq{border-radius:22%}
+.logo.mono{background:#fff;border-radius:.2em;padding:.06em}
+.ic .logo{width:1em;height:1em;margin:0;vertical-align:middle}
