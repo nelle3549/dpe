@@ -114,24 +114,26 @@
 
   <!-- 5 · Placeholders vs text boxes -->
   <section class="slide" data-title="Placeholders and text boxes">
-    <div class="slide-head">
-      <div><p class="kicker">Where text goes</p><h2 class="h2">Placeholders first, text boxes for extras</h2></div>
-    </div>
-    <div class="grid g2" style="gap:calc(var(--u)*2.6);align-items:center">
-      <div class="mini" style="gap:calc(var(--u)*.7)">
-        <div class="ph" style="font-size:calc(var(--u)*1.4);font-weight:700">Click to add title</div>
-        <div class="ph" style="flex:1">• Click to add text</div>
-        <div class="tb" style="right:6%;bottom:9%">Source: Lab 3 inventory</div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1"><div class="pic"><img src="images/ui/4.3/01-placeholders-empty.webp" alt="PowerPoint slide with an empty title placeholder and text placeholder"><i class="ring" style="--x:26.6;--y:24.0;--w:66.8;--h:14.2"></i><i class="ring" style="--x:26.6;--y:38.4;--w:66.8;--h:44.8;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="30,40"><div class="pic"><img src="images/ui/4.3/02-placeholders-typed.webp" alt="The slide titled What I learned with three bullets: Word processing, Spreadsheets, Presentations"><i class="ring" style="--x:27.0;--y:27.4;--w:22.4;--h:6.8"></i><i class="ring" style="--x:27.0;--y:38.6;--w:18.6;--h:15.6;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3"><div class="pic"><img src="images/ui/4.3/03-text-box-source.webp" alt="The Text Box button on the Home tab and a small text box reading Source: Lab 3 inventory"><i class="ring" style="--x:72.6;--y:13.6;--w:6.0;--h:3.2"></i><i class="ring" style="--x:72.2;--y:80.0;--w:15.4;--h:4.4;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft PowerPoint for Mac (dark mode), sample Lab 4 file. Windows: <b>Insert › Text Box</b>; Google Slides and Impress: <b>Insert › Text box</b>.</p>
       </div>
-      <table class="tbl">
-        <tr><th></th><th>Placeholder</th><th>Text box</th></tr>
-        <tr><td><b>Looks like</b></td><td>Dashed box: "Click to add…"</td><td>A box you draw anywhere</td></tr>
-        <tr><td><b>Comes from</b></td><td>The slide layout</td><td>Insert › Text Box</td></tr>
-        <tr><td><b>Follows theme</b></td><td>Yes, fonts and position</td><td>Only partly</td></tr>
-        <tr><td><b>Use for</b></td><td>Titles and main text</td><td>Small labels, sources</td></tr>
-      </table>
+      <div>
+        <p class="kicker">Where text goes</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Placeholders first, text boxes for extras</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b>Placeholders</b> come with the slide layout: the dashed boxes "Click to add title" and "Click to add text".</li>
+          <li data-step="2">Click inside and type: the <b>title</b> on top, the <b>bullets</b> below. They follow the theme's fonts and positions.</li>
+          <li data-step="3">For a small extra, like a source line, use <b>Text Box</b> and draw a box anywhere. It only partly follows the theme.</li>
+        </ol>
+        <div class="callout tip mt-s"><b>Why it matters:</b> titles in the title placeholder show up in the outline, help screen readers, and change together when you switch themes.</div>
+      </div>
     </div>
-    <div class="callout tip mt-l"><b>Why it matters:</b> titles typed in the <b>title placeholder</b> show up in the outline, help screen readers, and change together when you switch themes.</div>
     <div class="notes">
       <p>Demo: click inside a placeholder and type. Then <b>Insert, Text Box</b>, draw a small box and type a source line. In Google Slides it's <b>Insert, Text box</b>; in Impress, <b>Insert, Text Box</b> too.</p>
       <p>A common beginner habit is deleting the placeholders and drawing text boxes everywhere. It looks fine at first, but the title is then invisible to accessibility tools and nothing lines up across slides. Ask: "Which one should hold your slide title?" The placeholder.</p>
@@ -140,29 +142,26 @@
 
   <!-- 6 · Bullet levels -->
   <section class="slide" data-title="Bullet levels">
-    <div class="slide-head">
-      <div><p class="kicker">Bulleted lists</p><h2 class="h2">Move bullets in and out with <kbd>Tab</kbd></h2></div>
-      <span class="tag">Same keys in all three apps</span>
-    </div>
-    <div class="grid g2" style="gap:calc(var(--u)*3);align-items:center">
-      <div class="card">
-        <ul class="lv">
-          <li class="l1">Word processing</li>
-          <li class="l2">Formal letter, justified text</li>
-          <li class="l2">Mail merge to 3 colleagues</li>
-          <li class="l1">Spreadsheets</li>
-          <li class="l2">SUM and AVERAGE formulas</li>
-          <li class="l3">Level 3: usually too deep</li>
-        </ul>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="30,45"><div class="pic"><img src="images/ui/4.3/04-bullets-flat.webp" alt="The slide What I learned with five bullets all at the same level"><i class="ring" style="--x:27.0;--y:38.6;--w:30;--h:24.6"></i></div></figure>
+          <figure class="f" data-step="2"><div class="pic"><img src="images/ui/4.3/05-bullets-levels.webp" alt="The same slide with three bullets moved one level in under Word processing and Spreadsheets, and the Increase List Level button on the Home tab"><i class="ring" style="--x:55.2;--y:9.8;--w:3.6;--h:2.8"></i><i class="ring" style="--x:30.0;--y:43.4;--w:23.8;--h:8.2;--d:0.25s"></i><i class="ring" style="--x:30.0;--y:56.2;--w:25.2;--h:4.2;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft PowerPoint for Mac (dark mode), sample Lab 4 file. The keys are the same in PowerPoint on Windows, Google Slides and Impress.</p>
       </div>
       <div>
-        <div class="keys">
-          <span><kbd>Enter</kbd></span><span>New bullet at the same level</span>
-          <span><kbd>Tab</kbd></span><span><b>Demote</b>: move the bullet one level in (put the cursor at the start of the line)</span>
+        <p class="kicker">Bulleted lists</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Move bullets in and out with <kbd>Tab</kbd></h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><kbd>Enter</kbd> starts a new bullet at the same level.</li>
+          <li data-step="2">Cursor at the start of the line, press <kbd>Tab</kbd> to <b>demote</b> it one level in. The buttons: Home › <b>Decrease / Increase List Level</b>.</li>
+        </ol>
+        <div class="keys mt-s">
           <span><kbd>Shift</kbd> + <kbd>Tab</kbd></span><span><b>Promote</b>: move it back out</span>
           <span><kbd>Shift</kbd> + <kbd>Enter</kbd></span><span>New line <b>without</b> a new bullet</span>
         </div>
-        <div class="callout gold mt-l"><b>Rule of thumb:</b> two levels at most. If you need a third, the idea deserves its own slide.</div>
+        <div class="callout gold mt-s"><b>Rule of thumb:</b> two levels at most. A third level deserves its own slide.</div>
       </div>
     </div>
     <div class="notes">
@@ -173,33 +172,28 @@
 
   <!-- 7 · Numbered lists -->
   <section class="slide" data-title="Numbered lists">
-    <div class="slide-head">
-      <div><p class="kicker">Numbered lists</p><h2 class="h2">Numbers when order matters, bullets when it doesn't</h2></div>
-    </div>
-    <div class="grid g2">
-      <div class="card top">
-        <h4>1, 2, 3 · Steps and rankings</h4>
-        <ol class="steps mt-s">
-          <li>Open the Lab 3 file</li>
-          <li>Click the chart, press <kbd>Ctrl</kbd>+<kbd>C</kbd></li>
-          <li>Go to slide 4, press <kbd>Ctrl</kbd>+<kbd>V</kbd></li>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.3" data-o="30,45"><div class="pic"><img src="images/ui/4.3/06-steps-bullets.webp" alt="The slide Paste the Lab 3 chart with three steps as plain bullets"><i class="ring" style="--x:27.0;--y:38.4;--w:25;--h:15.2"></i></div></figure>
+          <figure class="f" data-step="2"><div class="pic"><img src="images/ui/4.3/07-steps-numbered.webp" alt="The same three steps as a numbered list 1, 2, 3, and the Numbering button on the Home tab"><i class="ring" style="--x:50.8;--y:9.6;--w:2.9;--h:3.0"></i><i class="ring" style="--x:27.0;--y:38.4;--w:25;--h:15.2;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft PowerPoint for Mac (dark mode), sample Lab 4 file. Windows: Home › Paragraph › <b>Numbering</b>.</p>
+      </div>
+      <div>
+        <p class="kicker">Numbered lists</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Numbers when order matters, bullets when it doesn't</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Steps to paste a chart: does the order change the meaning? <b>Yes</b>, so these bullets should be numbers.</li>
+          <li data-step="2">Select the list and click Home › <b>Numbering</b>, next to Bullets. Its arrow gives 1. 2. 3. or a. b. c.</li>
         </ol>
-      </div>
-      <div class="card top">
-        <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="6" fill="currentColor" stroke="none"/></svg> · Items with no order</h4>
-        <ul class="ticks mt-s">
-          <li>Bond paper</li>
-          <li>Ballpens</li>
-          <li>Printer ink</li>
-        </ul>
+        <table class="tbl mt-s">
+          <tr><td><b>Google Slides</b></td><td>Toolbar <b>Numbered list</b>, or Format › Bullets &amp; numbering</td></tr>
+          <tr><td><b>Impress</b></td><td>Format › Bullets and Numbering</td></tr>
+        </table>
+        <p class="small mt-s">A list of supplies (bond paper, ballpens, printer ink) has no order: keep the bullets.</p>
       </div>
     </div>
-    <table class="tbl mt-l">
-      <tr><th>App</th><th>Turn a list into a numbered list</th></tr>
-      <tr><td><b>PowerPoint</b></td><td>Home › <b>Numbering</b> (next to Bullets); the arrow gives 1. 2. 3. or a. b. c.</td></tr>
-      <tr><td><b>Google Slides</b></td><td>Toolbar <b>Numbered list</b> button, or Format › Bullets &amp; numbering</td></tr>
-      <tr><td><b>Impress</b></td><td>Format › Bullets and Numbering, or the ordered-list button</td></tr>
-    </table>
     <div class="notes">
       <p>A simple test: <b>would changing the order change the meaning?</b> Steps to paste a chart: yes, so number them. A list of supplies: no, so bullets.</p>
       <p>Demo: select a bulleted list and click <b>Numbering</b> on the Home tab. Show the arrow menu with other styles. Ask: "Your list of 'first-week tasks for new staff', bullets or numbers?" Numbers, because day 1 comes before day 2.</p>
@@ -229,29 +223,28 @@
 
   <!-- 9 · Spacing -->
   <section class="slide" data-title="Line spacing and white space">
-    <div class="slide-head">
-      <div><p class="kicker">Spacing</p><h2 class="h2">Give your text room to breathe</h2></div>
-    </div>
-    <div class="grid g2">
+    <div class="shots" data-walk>
       <div>
-        <p class="mcap bad"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg> Cramped</p>
-        <div class="mini" style="padding:calc(var(--u)*1) calc(var(--u)*1.2)">
-          <div class="t" style="font-size:calc(var(--u)*1.4)">Shared drive rules</div>
-          <ul style="margin:.2em 0 0;padding-left:1.1em;line-height:1.1;font-size:calc(var(--u)*1.45)"><li>Follow the folder structure</li><li>Name files: Section_Type_Date</li><li>No personal photos or videos</li><li>Ask before moving files</li><li>Backup every Friday</li><li>Report missing files</li><li>Close files before leaving</li></ul>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.2" data-o="30,55"><div class="pic"><img src="images/ui/4.3/08-rules-cramped.webp" alt="The slide Shared drive rules with seven bullets"><i class="ring" style="--x:27.0;--y:38.4;--w:31.6;--h:35.6"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="30,45"><div class="pic"><img src="images/ui/4.3/09-rules-three.webp" alt="The slide Shared drive: 3 rules with three bullets"><i class="ring" style="--x:27.0;--y:38.4;--w:30.6;--h:15.4"></i></div></figure>
+          <figure class="f" data-step="3"><div class="pic"><img src="images/ui/4.3/10-rules-spacing-15.webp" alt="The three bullets with line spacing 1.5, and the Line Spacing button on the Home tab"><i class="ring" style="--x:60.3;--y:9.8;--w:2.9;--h:2.8"></i><i class="ring" style="--x:27.0;--y:40.4;--w:30.6;--h:21;--d:0.25s"></i></div></figure>
         </div>
+        <p class="cap">Microsoft PowerPoint for Mac (dark mode), sample Lab 4 file. Windows: Home › Paragraph › <b>Line Spacing</b>.</p>
       </div>
       <div>
-        <p class="mcap good"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> Comfortable</p>
-        <div class="mini">
-          <div class="t">Shared drive: 3 rules</div><div class="bar"></div>
-          <ul style="margin:0;padding-left:1.1em;line-height:1.6;font-size:calc(var(--u)*1.45)"><li>Name files: Section_Type_Date</li><li>Official files only</li><li>Ask before moving files</li></ul>
-        </div>
+        <p class="kicker">Spacing</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Give your text room to breathe</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b>Seven rules</b> fill the slide: too many lines to scan.</li>
+          <li data-step="2"><b>Cut</b> to three. The other four go in the notes or a printed reminder.</li>
+          <li data-step="3">Select the bullets, Home › <b>Line Spacing</b> › <b>1.5</b>. Empty space shows where one idea ends.</li>
+        </ol>
+        <table class="tbl mt-s">
+          <tr><td><b>Google Slides</b></td><td>Format › Line &amp; paragraph spacing</td></tr>
+          <tr><td><b>Impress</b></td><td>Format › Spacing, or Sidebar › Paragraph</td></tr>
+        </table>
       </div>
-    </div>
-    <div class="grid g3 mt-l">
-      <div class="callout"><b>PowerPoint:</b> Home › Line Spacing (1.0, 1.5…) or Paragraph › Spacing Before/After.</div>
-      <div class="callout"><b>Google Slides:</b> Format › Line &amp; paragraph spacing.</div>
-      <div class="callout"><b>Impress:</b> Format › Spacing, or Sidebar › Paragraph.</div>
     </div>
     <div class="notes">
       <p>Line spacing between about 1.0 and 1.5, plus a little space between bullets, makes a big difference. Empty space is not wasted space; it tells the eye where one idea ends.</p>
@@ -278,29 +271,25 @@
 
   <!-- 11 · Makeover -->
   <section class="slide" data-title="Text makeover">
-    <div class="slide-head">
-      <div><p class="kicker">Text-heavy slide makeover · Lab 4 slide</p><h2 class="h2">From a paragraph to a slide people read</h2></div>
-    </div>
-    <div class="grid g2" style="align-items:start">
+    <div class="shots" data-walk>
       <div>
-        <p class="mcap bad"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg> Before: 80 words</p>
-        <div class="mini">
-          <div class="t" style="font-size:calc(var(--u)*1.4)">Module 3</div>
-          <p class="para mt-s" style="font-size:calc(var(--u)*1.2)">In Module 3 we learned how to use spreadsheets. We made an Office Supplies Inventory with eight items and typed formulas for the Total Cost by multiplying the quantity by the unit cost. We also used SUM to get the grand total and AVERAGE, and we formatted the costs as currency. Finally we made a chart which showed that bond paper is our biggest cost.</p>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.2" data-o="60,50"><div class="pic"><img src="images/ui/4.3/11-makeover-before.webp" alt="The slide Module 3 holding one long paragraph of about 80 words"><i class="ring" style="--x:27.6;--y:38.4;--w:70;--h:24.6"></i></div></figure>
+          <figure class="f" data-step="2"><div class="pic"><img src="images/ui/4.3/12-makeover-after.webp" alt="The slide Formulas now do my math with three bullets and the big number 22,039 pesos, grand total, 8 items"><i class="ring" style="--x:27.6;--y:27.6;--w:38.4;--h:6.2"></i><i class="ring" style="--x:27.6;--y:38.4;--w:26.6;--h:15.4;--d:0.25s"></i><i class="ring" style="--x:75.2;--y:46.8;--w:15.2;--h:12;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-o="50,85"><div class="pic"><img src="images/ui/4.3/13-makeover-notes.webp" alt="The same slide with the Notes pane open below it holding the full paragraph"><i class="ring" style="--x:20.0;--y:72.8;--w:79.8;--h:13.4"></i></div></figure>
         </div>
+        <p class="cap">Microsoft PowerPoint for Mac (dark mode), sample Lab 4 file.</p>
       </div>
       <div>
-        <p class="mcap good"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> After: 20 words + one number</p>
-        <div class="mini">
-          <div class="t">Formulas now do my math</div><div class="bar"></div>
-          <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:calc(var(--u)*1);align-items:center;flex:1">
-            <ul class="ticks" style="margin:0"><li style="font-size:calc(var(--u)*1.2);margin:.3em 0">Total = Qty × Unit Cost</li><li style="font-size:calc(var(--u)*1.2);margin:.3em 0">SUM and AVERAGE</li><li style="font-size:calc(var(--u)*1.2);margin:.3em 0">Bond paper costs the most</li></ul>
-            <div style="text-align:center"><div class="bigstat">₱22,039</div><p class="tiny" style="margin-top:.4em">grand total, 8 items</p></div>
-          </div>
-        </div>
+        <p class="kicker">Text-heavy slide makeover · Lab 4 slide</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">From a paragraph to a slide people read</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b>Before:</b> an 80-word paragraph about Module 3, the kind we honestly write for Lab 4.</li>
+          <li data-step="2"><b>After:</b> the title became a message, the paragraph became 3 bullets, and one number got the spotlight: <b>₱22,039</b>.</li>
+          <li data-step="3">The full story moved to the <b>speaker notes</b>. Nothing is lost.</li>
+        </ol>
       </div>
     </div>
-    <div class="callout mt-l"><b>What changed:</b> the title became a message, the paragraph became 3 bullets, one number got the spotlight, and the full story moved to the notes.</div>
     <div class="notes">
       <p>The "before" slide is a paragraph we might honestly write for Lab 4. The "after" keeps every fact but changes the job: the slide shows <b>key words and one big number</b>, and I say the rest.</p>
       <p>The number is real from Lab 3: the grand total of the inventory is <b>₱22,039.00</b>. Bond paper, A4 and long together, is ₱14,075, the biggest cost. Ask: "Where did the sentence 'we formatted the costs as currency' go?" Into the speaker notes.</p>
@@ -338,17 +327,22 @@
 
   <!-- 13 · Speaker notes -->
   <section class="slide" data-title="Speaker notes">
-    <div class="split rev">
-      <div class="media"><img src="images/m4/4-3-speaker.jpg" alt="Speakers at a lectern facing an audience in an auditorium"></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.4" data-o="60,98"><div class="pic"><img src="images/ui/4.3/14-notes-cue.webp" alt="The Notes button on the PowerPoint status bar"><i class="ring" style="--x:56.5;--y:97.0;--w:4.8;--h:2.8"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.4" data-o="20,78"><div class="pic"><img src="images/ui/4.3/14-notes-cue.webp" alt="The Notes pane below the slide holding two short cues: the bond paper figure and a question to ask"><i class="ring" style="--x:19.8;--y:74.8;--w:30.6;--h:5.6"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft PowerPoint for Mac (dark mode), sample Lab 4 file. Windows: the same <b>Notes</b> button on the status bar, or View › Notes.</p>
+      </div>
       <div>
         <p class="kicker">The speaker notes pane</p>
-        <h2 class="h2">The words you cut go here</h2>
-        <div class="np mt-m"><span class="lbl">Notes · slide 4</span>Bond paper, A4 and long, is ₱14,075 of our ₱22,039 total. Pause. Ask: should we buy in bulk next quarter?</div>
-        <ul class="ticks mt-m">
-          <li><b>Open it:</b> PowerPoint status bar › <b>Notes</b>, or View › Notes. Google Slides: under the slide. Impress: View › Notes.</li>
-          <li><b>Write cues</b>, not an essay: numbers, names, questions to ask.</li>
-          <li><b>Print</b> as Notes Pages, or read them in Presenter View.</li>
-        </ul>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">The words you cut go here</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b>Open it:</b> status bar › <b>Notes</b>, or View › Notes. Google Slides: under the slide. Impress: View › Notes.</li>
+          <li data-step="2"><b>Write cues</b>, not an essay: numbers, names, questions to ask. "Bond paper is ₱14,075 of ₱22,039. Ask: buy in bulk?"</li>
+        </ol>
+        <p class="small mt-s"><b>Print</b> them as Notes Pages, or read them in Presenter View. Only you see them.</p>
       </div>
     </div>
     <div class="notes">
