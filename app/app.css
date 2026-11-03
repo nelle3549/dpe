@@ -360,3 +360,24 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 .switch input:checked+.sl{background:var(--good)}
 .switch input:checked+.sl::after{transform:translateX(18px)}
 .switch input:focus-visible+.sl{outline:3px solid var(--m1);outline-offset:2px}
+/* cards v3 (3 Nov): one primary action, status chip on the picture, activity status under its title, facilitator strip pinned to the bottom */
+.topic.is-open{border-color:var(--border);box-shadow:none}
+.topic{transition:box-shadow .15s}
+.topic:hover{box-shadow:0 6px 18px rgba(11,37,69,.08)}
+.topic.has-live{border-color:var(--bad);box-shadow:0 0 0 3px rgba(198,40,40,.14)}
+.topic .cover .chip{position:absolute;right:10px;top:10px;z-index:1;background:rgba(0,0,0,.6);color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px}
+.topic .cover .chip.live{background:var(--bad)}
+.topic .cover .chip.done{background:var(--good)}
+.topic .more{text-decoration:none;margin-top:-6px;min-height:28px}
+.topic .more:hover{text-decoration:underline}
+.topic .go{display:flex;gap:8px;margin-top:4px}
+.topic .go .btn{flex:1 1 0;padding:10px 12px;white-space:nowrap}
+.topic .acts a{padding:8px 12px}
+.topic .acts .at{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;line-height:1.35}
+.topic .acts .am{font-size:12px;font-weight:700;color:var(--text-2)}
+.topic .acts .am.live{color:var(--bad)}
+.topic .acts .am.done{color:var(--good)}
+.topic .facfoot{display:flex;align-items:center;gap:8px;margin:auto -16px -14px;padding:8px 10px 8px 16px;background:#fffaf0;border-top:2px dashed var(--gold)}
+.topic .facfoot .rlink{display:inline-flex;align-items:center;min-height:40px;padding:0 10px;border-radius:10px;font-weight:700;font-size:14px;color:var(--navy);text-decoration:none}
+.topic .facfoot .rlink:hover{background:rgba(244,180,0,.18)}
+@media (max-width:520px){.topic .cover{aspect-ratio:2/1}.topic.locked .cover{aspect-ratio:3/1}}

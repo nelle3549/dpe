@@ -417,30 +417,36 @@
     var mine = S.mine[a.id], st = S.acts[a.id];
     if (isAdmin()) {
       var d = nDone(a.id), n = S.parts.length, lv = st && st.status === 'live';
-      return '<a href="#/who/' + a.id + '"><span>' + esc(a.title) + '</span><span class="tag ' + (n && d === n ? 'done' : lv ? 'live' : 'sub') + '">' +
-        (lv ? '● Live · ' : '') + d + ' of ' + n + ' done</span><span class="chev" aria-hidden="true">›</span></a>';
+      return actRow('#/who/' + a.id, a.title, n && d === n ? 'done' : lv ? 'live' : '', (lv ? '● Live · ' : '') + d + ' of ' + n + ' done');
     }
     var pc = mine && mine.max_score ? Math.round(mine.score / mine.max_score * 100) : null;
-    var tag = mine && mine.status === 'submitted'
-      ? (pc == null ? '<span class="tag done">✓ Done</span>' : '<span class="tag ' + (pc >= 75 ? 'done' : 'sub') + '">Done · ' + pc + '%</span>')
-      : st && st.status === 'live' ? '<span class="tag live">● Live · ' + (mine ? 'Continue' : 'Start') + '</span>'
-      : mine ? '<span class="tag sub">Not submitted</span>' : '';
-    return '<a href="#/a/' + a.id + '"><span>' + esc(a.title) + '</span>' + tag + '<span class="chev" aria-hidden="true">›</span></a>';
+    var sub = mine && mine.status === 'submitted';
+    return actRow('#/a/' + a.id, a.title,
+      sub ? (pc == null || pc >= 75 ? 'done' : '') : st && st.status === 'live' ? 'live' : '',
+      sub ? '✓ Done' + (pc == null ? '' : ' · ' + pc + '%') : st && st.status === 'live' ? '● Live · ' + (mine ? 'Continue' : 'Start now') : mine ? 'Not submitted' : '');
+  }
+  // an activity row: the title gets the full width, its status sits on a small line under it
+  function actRow(href, title, cls, meta) {
+    return '<a href="' + href + '"><span class="at"><span>' + esc(title) + '</span>' + (meta ? '<span class="am ' + cls + '">' + meta + '</span>' : '') +
+      '</span><span class="chev" aria-hidden="true">›</span></a>';
   }
   // topic picture, same as the course page cards (course/images/thumbs/1-1.jpg)
   function thumb(id) { return '<img src="course/images/thumbs/' + id.replace('.', '-') + '.jpg" alt="" loading="lazy">'; }
   // a topic card: picture, summary (2 lines + See more), Open / Play video and the activities once the topic is open
   function topicCard(t, adm, deckView) {
     var on = topicOpen(t.id), go = on || adm;   // the facilitator can open a closed topic's slides to preview them
-    return '<div class="topic' + (on ? ' is-open' : ' locked') + '">' +
+    var live = on && t.activities.some(function (a) { return S.acts[a.id] && S.acts[a.id].status === 'live'; });
+    var done = !adm && on && t.activities.length && t.activities.every(function (a) { return S.mine[a.id] && S.mine[a.id].status === 'submitted'; });
+    var chip = !on ? '<span class="chip">🔒 ' + (adm ? 'Closed' : 'Opens later') + '</span>' : live ? '<span class="chip live">● Live</span>' : done ? '<span class="chip done">✓ Done</span>' : '';
+    return '<div class="topic' + (on ? ' is-open' : ' locked') + (live ? ' has-live' : '') + '">' +
       (go ? '<a class="cover" href="' + deckView + t.id + '" tabindex="-1" aria-hidden="true">' : '<div class="cover">') + thumb(t.id) +
-      '<span class="num">' + t.id + '</span>' + (on ? '' : '<span class="lockt">🔒 Opens later</span>') + (go ? '</a>' : '</div>') +
+      '<span class="num">' + t.id + '</span>' + chip + (go ? '</a>' : '</div>') +
       '<div class="t"><h4>' + esc(t.title) + '</h4></div>' +
       '<p class="sum">' + esc(t.desc) + '</p><button type="button" class="more" data-more="' + t.id + '">See more</button>' +
-      (go ? '<div class="row"><a class="btn" href="' + deckView + t.id + '">Open</a>' + (t.video ? '<a class="btn" href="#/video/' + t.id + '">▶ Play video</a>' : '') + '</div>' +
-        '<div class="acts">' + t.activities.map(actLink).join('') + '</div>' : '') +
-      (adm ? '<div class="row fac facrow"><label class="switch"><input type="checkbox" role="switch" data-tog="' + t.id + '"' + (on ? ' checked' : '') + '>' +
-        '<span class="sl" aria-hidden="true"></span><span>' + (on ? 'Open to class' : 'Closed') + '</span></label><a class="btn small" href="#/results/' + t.id + '">Results</a></div>' : '') +
+      (go ? '<div class="go"><a class="btn' + (on ? ' primary' : '') + '" href="' + deckView + t.id + '">Open</a>' + (t.video ? '<a class="btn" href="#/video/' + t.id + '">▶ Play video</a>' : '') + '</div>' +
+        (t.activities.length ? '<div class="acts">' + t.activities.map(actLink).join('') + '</div>' : '') : '') +
+      (adm ? '<div class="fac facfoot"><label class="switch"><input type="checkbox" role="switch" data-tog="' + t.id + '"' + (on ? ' checked' : '') + '>' +
+        '<span class="sl" aria-hidden="true"></span><span>' + (on ? 'Open to class' : 'Closed') + '</span></label><a class="rlink" href="#/results/' + t.id + '">Results ›</a></div>' : '') +
       '</div>';
   }
   // See more: the topic's synopsis and parts
