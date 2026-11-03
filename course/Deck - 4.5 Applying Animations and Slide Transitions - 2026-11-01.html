@@ -18,6 +18,7 @@
 .stage ul{margin:0;padding-left:1.1em;font-size:calc(var(--u)*1.15);line-height:1.55}
 .cap{display:flex;justify-content:space-between;align-items:center;gap:1em;margin-top:calc(var(--u)*.7);font-size:calc(var(--u)*1.15);color:var(--text-2)}
 .cap b{color:var(--text-1)}
+.shots .cap{display:block;font-size:calc(var(--u)*.85);color:var(--text-3)}
 /* transitions */
 .fx-fade .sl.b{opacity:0}
 .slide.is-active .fx-fade .sl.b{animation:x-fade 5s infinite}
@@ -314,68 +315,67 @@
       <div><p class="kicker">Try it now · your Lab 4 file</p><h2 class="h2">Apply one transition to every slide</h2></div>
       <button class="timer" data-min="4">4:00</button>
     </div>
-    <div class="grid g2" style="align-items:start">
-      <div class="try">
-        <div class="try-head"><span class="try-label">PowerPoint steps</span><span class="tiny">Google Slides and Impress: see last slide's table</span></div>
-        <ol class="steps">
-          <li>Click any slide, then open the <b>Transitions</b> tab.</li>
-          <li>Pick <b>Fade</b> or <b>Push</b> from the gallery.</li>
-          <li>Set <b>Duration</b> to about <b>0.5 to 1 second</b>. Sound: <b>[No Sound]</b>.</li>
-          <li>Click <b>Apply To All</b>, then press <kbd>F5</kbd> to test.</li>
-        </ol>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="36,63.5"><div class="pic"><img src="images/ui/4.5/01-gslides-slide-menu-transition.webp" alt="Google Slides Slide menu open with Transition near the bottom"><i class="ring" style="--x:34.2;--y:5.8;--w:4.2;--h:3.6"></i><i class="ring" style="--x:34.0;--y:61.5;--w:36.6;--h:5.5;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="70,60"><div class="pic"><img src="images/ui/4.5/03-gslides-transition-list.webp" alt="Motion panel: the Slide Transition list open with None, Dissolve, Fade, Slide from right, Flip, Cube, Gallery"><i class="ring" style="--x:57.5;--y:62.6;--w:17.1;--h:5.9"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-o="75,55"><div class="pic"><img src="images/ui/4.5/04-gslides-fade-speed.webp" alt="Fade chosen, with a Slow to Fast speed slider set near Fast and the Apply to all slides button below"><i class="ring" style="--x:57.7;--y:56;--w:28.2;--h:5.3"></i></div></figure>
+          <figure class="f" data-step="4" data-at="66,56.7"><div class="pic"><img src="images/ui/4.5/05-gslides-applied-all.webp" alt="Apply to all slides clicked: every thumbnail in the filmstrip now shows a small transition icon"><i class="ring" style="--x:57.2;--y:53.4;--w:19.3;--h:6.7"></i><i class="ring" style="--x:1.3;--y:34.8;--w:2.8;--h:41.9;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Google Slides: <b>Slide › Transition</b> opens the Motion panel (speed slider, 0.8 s here). PowerPoint: <b>Transitions</b> tab, <b>Duration</b> box in seconds, <b>Apply To All</b>. Sample file.</p>
       </div>
       <div>
-        <div class="win rb">
-          <div class="bar"><i></i><i></i><i></i><span><img class="logo" src="assets/logos/microsoft-powerpoint.svg" alt="">My Digital Skills Journey.pptx · PowerPoint</span></div>
-          <div class="tabs"><span>Home</span><span>Insert</span><span>Design</span><span class="on">Transitions</span><span>Animations</span><span>Slide Show</span></div>
-          <div class="grp">
-            <div class="fx"><i></i>None</div><div class="fx"><i></i>Morph</div><div class="fx sel"><i></i>Fade</div><div class="fx"><i></i>Push</div><div class="fx"><i></i>Wipe</div>
-            <div class="opts"><span class="btn">Sound: [No Sound]</span><span class="btn">Duration: 01.00</span><span class="btn hot"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /> <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg> Apply To All</span></div>
-          </div>
+        <div class="try">
+          <div class="try-head"><span class="try-label">Steps</span><span class="tiny">PowerPoint wording first, Google Slides in brackets</span></div>
+          <ol class="steps sm">
+            <li data-step="1">Click any slide, then open the <b>Transitions</b> tab (Google: <b>Slide › Transition</b>).</li>
+            <li data-step="2">Pick <b>Fade</b> or <b>Push</b> from the gallery (Google: the list in the Motion panel).</li>
+            <li data-step="3">Set <b>Duration</b> to about <b>0.5 to 1 second</b>, Sound: <b>[No Sound]</b> (Google: the speed slider).</li>
+            <li data-step="4">Click <b>Apply To All</b> (Google: <b>Apply to all slides</b>). Every thumbnail gets a mark. Press <kbd>F5</kbd> to test.</li>
+          </ol>
         </div>
-        <p class="tiny mt-s">Drawn for clarity; your ribbon shows more effects and an Effect Options button.</p>
-        <div class="callout gold mt-m"><b>Done?</b> Enter the transition you chose in the portal.</div>
+        <div class="callout gold mt-s"><b>Done?</b> Enter the transition you chose in the portal.</div>
       </div>
     </div>
     <div class="notes">
-      <p>Share your screen and do it with them, step by step. Click the timer: <b>4 minutes</b>.</p>
-      <p>The step people miss is <b>Apply To All</b>. Without it, only the current slide gets the transition, and Lab 4 asks for uniform transitions. Check by looking at the slide thumbnails: in PowerPoint a small star icon appears beside every slide that has a transition or animation.</p>
-      <p>In Google Slides, the button in the Motion panel says <b>Apply to all slides</b>. In Impress, <b>Apply Transition to All Slides</b>.</p>
+      <p>Share your screen and do it with them, step by step. Click the timer: <b>4 minutes</b>. Press Next to walk the four screens (Google Slides, sample file).</p>
+      <p>The step people miss is <b>Apply To All</b>. Without it, only the current slide gets the transition, and Lab 4 asks for uniform transitions. Check the thumbnails: Google Slides shows a small transition icon beside each slide; in PowerPoint a small star appears beside every slide that has a transition or animation.</p>
+      <p>Google Slides sets speed with a slider (it shows the seconds when you move it); PowerPoint has a <b>Duration</b> box on the Transitions tab. In Impress, <b>Apply Transition to All Slides</b>.</p>
     </div>
   </section>
 
   <!-- 10 · Bullets one at a time (click demo) -->
   <section class="slide" data-title="Bullets one at a time">
     <div class="slide-head">
-      <div><p class="kicker">Animate a list · click to try</p><h2 class="h2">One bullet per click</h2></div>
+      <div><p class="kicker">Animate a list</p><h2 class="h2">One bullet per click</h2></div>
     </div>
-    <div class="grid g2" style="align-items:center">
-      <form class="clk">
-        <input type="checkbox" id="k1" class="kx"><input type="checkbox" id="k2" class="kx"><input type="checkbox" id="k3" class="kx">
-        <div class="stage">
-          <div class="sl a"><div class="t">What I learned</div>
-            <ul class="bl"><li>Word: a formal letter + mail merge</li><li>Spreadsheet: inventory, SUM, a chart</li><li>Presentation: this deck</li></ul>
-          </div>
-        </div>
-        <div class="ctrl">
-          <label for="k1" class="nx n1">Click <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg> bullet 1</label><label for="k2" class="nx n2">Click <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg> bullet 2</label><label for="k3" class="nx n3">Click <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg> bullet 3</label>
-          <button type="reset" class="nx rs"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg> Replay</button>
-        </div>
-      </form>
+    <div class="shots" data-walk>
       <div>
-        <ol class="steps">
-          <li>Click the <b>border</b> of the text box (select the whole box).</li>
-          <li><b>Animations</b> tab → <b>Appear</b> or <b>Fade</b>.</li>
-          <li><b>Effect Options</b> → Sequence: <b>By Paragraph</b>.</li>
-          <li><b>Start: On Click</b>. Small numbers 1, 2, 3 appear beside the bullets.</li>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="41,47.2"><div class="pic"><img src="images/ui/4.5/06-gslides-box-selected.webp" alt="The bullet text box selected by its border, with handles all round; the Motion panel shows Add animation"><i class="ring" style="--x:29.4;--y:46.9;--w:23.8;--h:16.4"></i></div></figure>
+          <figure class="f" data-step="2" data-at="70,60"><div class="pic"><img src="images/ui/4.5/07-gslides-appear-added.webp" alt="Add animation clicked: the list shows the new effect, Appear (On click)"><i class="ring" style="--x:56.4;--y:55.2;--w:31.6;--h:9.7"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-o="70,30"><div class="pic"><img src="images/ui/4.5/08-gslides-effect-list.webp" alt="The effect list open: Appear, Disappear, Fade in highlighted, Fade out, Fly in"><i class="ring" style="--x:57.5;--y:27;--w:19.3;--h:5.8"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.3" data-o="70,55"><div class="pic"><img src="images/ui/4.5/09-gslides-fadein-by-paragraph.webp" alt="Fade in, On click, and the By paragraph box ticked"><i class="ring" style="--x:56.7;--y:53.2;--w:14.4;--h:6.5"></i></div></figure>
+          <figure class="f" data-step="5" data-zoom="1.3" data-o="70,55"><div class="pic"><img src="images/ui/4.5/10-gslides-start-list.webp" alt="The start list open: On click, After previous, With previous"><i class="ring" style="--x:57.2;--y:50.6;--w:16.8;--h:19.4"></i></div></figure>
+        </div>
+        <p class="cap">Google Slides Motion panel (Insert › Animation), sample file. PowerPoint: <b>Animations</b> tab, <b>Effect Options › By Paragraph</b>, <b>Start</b> box.</p>
+      </div>
+      <div>
+        <ol class="steps sm">
+          <li data-step="1">Click the <b>border</b> of the text box, so the whole box is selected.</li>
+          <li data-step="2"><b>Animations</b> tab (Google: <b>Insert › Animation</b> or <b>Add animation</b>).</li>
+          <li data-step="3">Choose <b>Appear</b> or <b>Fade</b> (Google: <b>Fade in</b>).</li>
+          <li data-step="4"><b>Effect Options › By Paragraph</b> (Google: tick <b>By paragraph</b>).</li>
+          <li data-step="5"><b>Start: On Click</b>. PowerPoint puts small numbers 1, 2, 3 beside the bullets.</li>
         </ol>
-        <div class="callout tip mt-m"><b>Why:</b> people listen to the point you're on, instead of reading ahead.</div>
+        <div class="callout tip mt-s"><b>Why:</b> people listen to the point you're on, instead of reading ahead.</div>
       </div>
     </div>
     <div class="notes">
-      <p>Click the blue button on the slide to show what the audience sees: <b>one bullet per click</b>. Click Replay to reset it.</p>
+      <p>Press Next to walk the five screens (Google Slides, sample file). Slide 5 already showed what the audience sees: one bullet per click.</p>
       <p>Then demo in PowerPoint. The trick is to select the <b>whole text box</b> by clicking its border, not the text inside. With <b>By Paragraph</b>, each bullet gets its own click.</p>
-      <p>In Google Slides, select the box, Insert › Animation, and tick <b>By paragraph</b>. In Impress, the Animation panel has the same idea under its effect options.</p>
+      <p>Google Slides calls it Fade in and has a <b>By paragraph</b> box; PowerPoint has Appear and Fade under the Animations tab and Sequence: By Paragraph under Effect Options. In Impress, the Animation panel has the same idea under its effect options.</p>
     </div>
   </section>
 
@@ -419,41 +419,30 @@
 
   <!-- 12 · Animation Pane -->
   <section class="slide" data-title="The Animation Pane">
-    <div class="split rev">
-      <div class="win">
-        <div class="bar"><i></i><i></i><i></i><span>Animations › Animation Pane</span></div>
-        <div class="pane">
-          <div class="sl2">
-            <div class="t">What I learned</div>
-            <p><span class="nb">1</span>Word: a formal letter + mail merge</p>
-            <p><span class="nb">2</span>Spreadsheet: inventory, SUM, a chart</p>
-            <p><span class="nb">3</span>Presentation: this deck</p>
-          </div>
-          <div class="list">
-            <div class="hd"><span>Animation Pane</span><span class="tag" style="font-size:calc(var(--u)*.75)"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/></svg> Play From</span></div>
-            <div class="it"><span>1</span><span class="st"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="#F4B400" stroke="#F4B400"/></svg></span>Word: a formal letter…</div>
-            <div class="it sel"><span>2</span><span class="st"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="#F4B400" stroke="#F4B400"/></svg></span>Spreadsheet: inventory…</div>
-            <div class="it"><span>3</span><span class="st"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="#F4B400" stroke="#F4B400"/></svg></span>Presentation: this deck</div>
-            <div class="arrows"><span><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg></span><span><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></span><span>Re-order</span></div>
-          </div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="70,57.8"><div class="pic"><img src="images/ui/4.5/12-gslides-order-before.webp" alt="Motion panel, Object Animations: Fade in (On click) for the bullets, then Appear (On click) for the title, each with a drag handle"><i class="ring" style="--x:56.3;--y:52.2;--w:31.9;--h:22.5"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.4" data-o="85,63"><div class="pic"><img src="images/ui/4.5/12-gslides-order-before.webp" alt="The drag handles at the right of each animation in the list"><i class="ring" style="--x:84.7;--y:55.8;--w:2.1;--h:15.7"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.4" data-o="85,60"><div class="pic"><img src="images/ui/4.5/11-gslides-two-animations.webp" alt="The title animation opened, with a bin icon to delete it"><i class="ring" style="--x:84.4;--y:58;--w:2.6;--h:4.8"></i></div></figure>
         </div>
+        <p class="cap">Google Slides Motion panel, sample file. In PowerPoint the same list is the <b>Animation Pane</b>: numbered items, <b>Play From</b>, up and down arrows.</p>
       </div>
       <div>
         <p class="kicker">Your control room</p>
-        <h2 class="h2">The Animation Pane shows every effect, in order.</h2>
-        <ul class="ticks mt-l">
-          <li><b>Open it:</b> Animations tab → <b>Animation Pane</b>.</li>
-          <li><b>Re-order:</b> drag an item, or use the <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6" /></svg><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg> arrows.</li>
-          <li><b>Fix or remove:</b> click the item's arrow for timing, or press <kbd>Delete</kbd>.</li>
-          <li><b>Check:</b> the numbers on the slide match the pane.</li>
-        </ul>
-        <p class="small mt-m">Google Slides: the Motion panel lists animations; drag to re-order. Impress: the Animation sidebar list.</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">The Animation Pane shows every effect, in order.</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b>Open it:</b> Animations tab › <b>Animation Pane</b> (Google: the Motion panel's Object Animations list).</li>
+          <li data-step="2"><b>Re-order:</b> drag an item, or use the up and down arrows (Google: drag the handle).</li>
+          <li data-step="3"><b>Remove:</b> select it and press <kbd>Delete</kbd> (Google: the bin icon).</li>
+        </ol>
+        <p class="small mt-s"><b>Check:</b> the numbers on the slide match the pane. Impress: the Animation sidebar list.</p>
       </div>
     </div>
     <div class="notes">
-      <p>When a slide has more than two animations, open the <b>Animation Pane</b>. It's a list of every effect on the slide, in the order they'll play.</p>
-      <p>Demo: open it on the "What I learned" slide, select item 2, and move it up with the arrow. Point out that the little numbers beside the bullets change to match.</p>
-      <p>If an effect plays at the wrong time, this is where you fix it. If you added one by accident, select it here and press <kbd>Delete</kbd>.</p>
+      <p>When a slide has more than two animations, open the <b>Animation Pane</b>. It's a list of every effect on the slide, in the order they'll play. Press Next to walk the three screens (Google Slides, sample file).</p>
+      <p>Here the title animation sits after the bullets, so it plays last: drag it to the top. In PowerPoint, select it in the pane and use the up arrow; the little numbers beside the bullets change to match.</p>
+      <p>If an effect plays at the wrong time, this is where you fix it. If you added one by accident, select it and press <kbd>Delete</kbd> (Google Slides: the bin icon).</p>
     </div>
   </section>
 
@@ -465,16 +454,22 @@
     </div>
     <div class="try">
       <div class="try-head"><span class="try-label">Five steps, five minutes</span><span class="tiny">No Lab 4 file yet? Use any slide with 3 bullets.</span></div>
-      <div class="grid g2">
+      <div class="grid g2" style="align-items:center">
         <ol>
           <li>Select the bullet text box by its <b>border</b>.</li>
           <li>Add <b>Appear</b> or <b>Fade</b>, Sequence <b>By Paragraph</b>.</li>
           <li>Set <b>Start: On Click</b>, Duration <b>0.5</b>.</li>
-        </ol>
-        <ol start="4">
           <li>Open the <b>Animation Pane</b> and check the order is 1, 2, 3.</li>
           <li>Press <kbd>Shift</kbd> + <kbd>F5</kbd> and click through. One bullet per click?</li>
         </ol>
+        <div class="shots solo">
+          <div>
+            <div class="stage">
+              <figure class="f" data-step="1"><div class="pic"><img src="images/ui/4.5/13-ppt-result-stars.webp" alt="PowerPoint for Mac, What I learned slide: a small star beside every slide thumbnail"><i class="ring" style="--x:0.4;--y:21.6;--w:1.6;--h:51.5"></i></div></figure>
+            </div>
+            <p class="cap">Microsoft PowerPoint for Mac: a star beside a thumbnail = that slide has a transition or animation. Sample file.</p>
+          </div>
+        </div>
       </div>
       <div class="row mt-m"><button class="reveal-btn" data-target="ans-anim">Common problems</button></div>
       <div class="answer mt-s" id="ans-anim">
