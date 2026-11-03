@@ -10,6 +10,8 @@
 (function () {
   'use strict';
   var C = window.DPE_CONFIG, CAT = window.CATALOG;
+  // Module 3 runs across both days (two-day schedule in Decks/index.html): Part 1 on Day 1, Part 2 from topic 3.5 on Day 2
+  var DAY_SPLIT = { m3: { at: '3.5', hours: ['3 hours', '3 hours'] } };
   var sb = supabase.createClient(C.supabaseUrl, C.supabaseAnonKey, { auth: { persistSession: true, detectSessionInUrl: true } });
   var $app = document.getElementById('app'), $modal = document.getElementById('modal-root');
   var BASE = location.origin + location.pathname;
@@ -516,12 +518,26 @@
       if (ansHtml) html += '<div class="card livenow mt-3"><div class="lnb"><p class="lk ans">' + ico('hand') + ' Open for answers</p><div class="anslist">' + ansHtml + '</div></div></div>';
       if (adm) html += '<div class="card facbar fac mt-3"><span class="fk">Live now</span><span>No live topic. Open a topic\'s slides and press <b>Start as live topic</b>.</span></div>';
     }
-    // every topic as a card, grouped by module; closed ones are greyed out but their summary stays readable
+    // every topic as a card, grouped by day, then module; closed ones are greyed out but their summary stays readable
+    var secs = [];
     CAT.forEach(function (m, mi) {
-      var nOpen = m.topics.filter(function (t) { return topicOpen(t.id); }).length;
-      html += '<section class="modsec" style="--c:var(--m' + (mi + 1) + ')"><div class="modhead"><span class="k">' + esc(m.n + ' · ' + m.day) + '</span><span class="hrs">' + ico('clock') + ' ' + esc(m.hours) + '</span>' +
-        '<h2>' + esc(m.title) + '</h2><span class="small muted">' + m.topics.length + ' topics · ' + (nOpen ? nOpen + ' open' : 'opens later') + '</span></div>' +
-        '<div class="topics">' + m.topics.map(function (t) { return topicCard(t, adm, deckView); }).join('') + '</div></section>';
+      var sp = DAY_SPLIT[m.id], cut = sp ? m.topics.findIndex(function (t) { return t.id === sp.at; }) : -1;
+      if (cut > 0) {
+        secs.push({ m: m, mi: mi, day: 'Day 1', part: 'Part 1', hours: sp.hours[0], topics: m.topics.slice(0, cut) });
+        secs.push({ m: m, mi: mi, day: 'Day 2', part: 'Part 2', hours: sp.hours[1], topics: m.topics.slice(cut) });
+      } else secs.push({ m: m, mi: mi, day: m.day, hours: m.hours, topics: m.topics });
+    });
+    secs.forEach(function (s, i) {
+      if (!i || secs[i - 1].day !== s.day) {
+        var day = secs.filter(function (x) { return x.day === s.day; }), ts = [].concat.apply([], day.map(function (x) { return x.topics; }));
+        var h = day.reduce(function (n, x) { return n + parseFloat(x.hours); }, 0);
+        html += '<div class="dayhead"><h2>' + esc(s.day) + '</h2><span>' + ico('clock') + ' ' + h + ' hours · topics ' + ts[0].id + ' to ' + ts[ts.length - 1].id +
+          ' · the day ends after <b>' + ts[ts.length - 1].id + '</b></span></div>';
+      }
+      var m = s.m, nOpen = s.topics.filter(function (t) { return topicOpen(t.id); }).length;
+      html += '<section class="modsec" style="--c:var(--m' + (s.mi + 1) + ')"><div class="modhead"><span class="k">' + esc(m.n + (s.part ? ' · ' + s.part : '') + ' · ' + s.day) + '</span><span class="hrs">' + ico('clock') + ' ' + esc(s.hours) + '</span>' +
+        '<h2>' + esc(m.title) + '</h2><span class="small muted">' + s.topics.length + ' topics' + (s.part ? ' (' + s.topics[0].id + ' to ' + s.topics[s.topics.length - 1].id + ')' : '') + ' · ' + (nOpen ? nOpen + ' open' : 'opens later') + '</span></div>' +
+        '<div class="topics">' + s.topics.map(function (t) { return topicCard(t, adm, deckView); }).join('') + '</div></section>';
     });
     render(html + '<p class="small muted mt-4">Signed in as ' + esc(p.email) + (isViewer() ? ' · preview account' : ' · Certificate name: <b>' + esc(fullName(p)) + '</b> (spelling wrong? Ask the facilitator.)') + '</p></main>');
     document.querySelectorAll('[data-more]').forEach(function (b) { b.onclick = function () { topicInfo(b.dataset.more, b); }; });
