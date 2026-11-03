@@ -38,6 +38,7 @@
       'background:linear-gradient(0deg,rgba(0,0,0,.72),rgba(0,0,0,0));padding:28px 18px 14px;transition:opacity .3s}' +
     '#ui.hide{opacity:0;pointer-events:none}' +
     '#ui .pl-row{display:flex;align-items:center;gap:12px}' +
+    '#ui .pl-row input[type=range]{min-width:0}' +
     '#ui button{flex:none;background:rgba(255,255,255,.14);border:0;color:#fff;font:inherit;height:36px;min-width:36px;padding:0 12px;border-radius:9px;cursor:pointer}' +
     '#ui button .ico{width:18px;height:18px;display:block;margin:auto}#ui button:hover{background:rgba(255,255,255,.28)}#ui button.off{opacity:.5}' +
     '#ui .pl-time{flex:none;font-variant-numeric:tabular-nums;opacity:.9;min-width:96px}' +

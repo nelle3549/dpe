@@ -10,7 +10,7 @@
    hides answer reveals. Swipe left/right changes slides on touch screens, and the
    frame tells the LMS which slide is showing ({type:'dpe-slide', n, total}). */
 (function () {
-  var participant = /[?&]p=1/.test(location.search);
+  var participant = /[?&]p=1/.test(location.search) || /\/course\/p\//.test(location.pathname);   // the participant copy (no answers in it) is always participant mode
   if (window.parent !== window) document.documentElement.classList.add('in-lms');
   if (participant) document.documentElement.classList.add('participant');
 

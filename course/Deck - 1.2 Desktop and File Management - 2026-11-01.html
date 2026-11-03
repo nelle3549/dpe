@@ -5,7 +5,7 @@
 <title>1.2 Desktop and File Management · Digital Productivity Essentials</title>
 <link rel="stylesheet" href="assets/base.css?v=7ec0fa28">
 <link rel="stylesheet" href="assets/animations/animations.css?v=cd8ec112">
-<link rel="stylesheet" href="assets/dpe.css?v=23975333">
+<link rel="stylesheet" href="assets/dpe.css?v=a52b00f1">
 <style>
 /* 1.2 only: drawn desktop, File Explorer and folder tree */
 .dsk{position:relative;height:calc(var(--u)*31);border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(135deg,#4F8EDC 0%,#1B4F9C 55%,#0B2545 100%);box-shadow:var(--shadow-lg)}
@@ -40,6 +40,7 @@
 .tree{font-family:var(--font-mono);font-size:calc(var(--u)*1.15);line-height:1.75;color:var(--text-1);margin:0;white-space:pre}
 .tree .d{color:var(--text-3)}
 .namegood{font-family:var(--font-mono);font-size:calc(var(--u)*1.25)}
+@media (max-width:700px) and (orientation:portrait){.fx{grid-template-columns:minmax(0,1fr)}.fx .nav{display:none}.dsk .win-mini{left:auto;right:4%;max-width:58%}}
 </style>
 </head>
 <body class="m1" data-brand="Digital Productivity Essentials · <b>Module 1</b> · 1.2 Desktop and File Management">
@@ -86,7 +87,7 @@
     <div class="obj anim-stagger-list">
       <div class="card top"><span class="k">Navigate</span><h4>Find your way around</h4><p>Desktop, taskbar, Start menu, windows and File Explorer, including drives like C: and a flash drive.</p></div>
       <div class="card top"><span class="k">Organize</span><h4>Name and arrange files</h4><p>Create, rename, move, copy and delete files and folders using a clear naming habit.</p></div>
-      <div class="card top"><span class="k">Find</span><h4>Get it back fast</h4><p>Use search, sorting and the Recycle Bin, plus five shortcuts worth memorizing.</p></div>
+      <div class="card top"><span class="k">Find</span><h4>Get it back fast</h4><p>Use sorting and the Recycle Bin, plus five shortcuts worth memorizing.</p></div>
     </div>
     <div class="callout tip mt-l"><b>Hands-on today:</b> Lab 1 Part A, the File Management Exercise. You'll build a master folder that we keep using in 1.3 and 1.5.</div>
     <div class="notes">
@@ -270,7 +271,8 @@
         <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#C62828"><circle cx="12" cy="12" r="10" /><path d="m15 9-6 6" /><path d="m9 9 6 6" /></svg> Names we've all seen</h4>
         <ul class="ticks x">
           <li><span class="namegood">final na jud (2) FINAL.docx</span></li>
-          <li><span class="namegood">Document1.docx</span>, <span class="namegood">New folder (7)</span></li>
+          <li><span class="namegood">Document1.docx</span></li>
+          <li><span class="namegood">New folder (7)</span></li>
           <li><span class="namegood">memo 10/26.docx</span> won't even save. Windows doesn't allow any of these in a name: <span class="namegood">\ / : * ? " &lt; &gt; |</span></li>
         </ul>
       </div>
@@ -378,7 +380,7 @@
       <div class="try">
         <div class="try-head"><span class="try-label">Try it now · on your Desktop</span><span class="tiny">Use your real name</span></div>
         <ol>
-          <li>Right-click the Desktop › <b>New › Folder</b>. Name it <b>DPE Lab 1 - Juan Dela Cruz</b>.</li>
+          <li>Right-click the Desktop › <b>New › Folder</b>. Name it <b>DPE Lab 1 - Your Name</b> (for example, DPE Lab 1 - Juan Dela Cruz).</li>
           <li>Open it. Create two sub-folders: <b>01 Screenshots</b> and <b>02 AI Responses</b>.</li>
           <li>Inside the master folder, right-click › <b>New › Text Document</b>. Name it <b>Practice Note</b>.</li>
           <li>Press <kbd>F2</kbd> and rename it with today's date: <b>YYYY-MM-DD Note - Practice</b>.</li>
@@ -427,7 +429,7 @@
     <div class="recap mt-l">
       <div class="card dark"><h4>Navigate</h4><p>Desktop is a work table; File Explorer (<kbd>Win</kbd>+<kbd>E</kbd>) shows every drive and folder.</p></div>
       <div class="card dark"><h4>Organize</h4><p>Folders by year and type; names like 2026-10-26 Memo - Subject.</p></div>
-      <div class="card dark"><h4>Recover</h4><p><kbd>Ctrl</kbd>+<kbd>Z</kbd> and the Recycle Bin undo most mistakes. Search finds the rest.</p></div>
+      <div class="card dark"><h4>Recover</h4><p><kbd>Ctrl</kbd>+<kbd>Z</kbd> and the Recycle Bin undo most mistakes.</p></div>
     </div>
     <p class="lede mt-l">Next · <b style="color:var(--gold)">1.3 Web Browsing and Search Engines</b>: finding the right information online, and saving it into your 01 Screenshots folder.</p>
     <div class="notes">
@@ -437,7 +439,7 @@
   </section>
 
 </div>
-<script src="assets/runtime.js?v=dfda2082"></script>
-<script src="assets/dpe.js?v=66d859ad"></script>
+<script src="assets/runtime.js?v=31e08e36"></script>
+<script src="assets/dpe.js?v=3340109d"></script>
 </body>
 </html>

@@ -40,9 +40,10 @@ def drop(html, start):
 
 
 def participant_copy(html):
-    """The deck without speaker notes, answer reveals, option explanations or right-answer markers."""
+    """The deck without speaker notes, answer reveals, option explanations or right-answer markers.
+    Help blocks marked class="answer keep" (hints, quick fixes, task data) stay in."""
     html = re.sub(r'<!--.*?-->', '', html, flags=re.S)
-    for start in (r'<div class="notes"', r'<aside class="notes"', r'<(div|span) class="answer[ "]', r'<div class="why"'):
+    for start in (r'<div class="notes"', r'<aside class="notes"', r'<(div|span) class="answer(?! keep)[ "]', r'<div class="why"'):
         html = drop(html, start)
     html = re.sub(r'\sdata-correct\b', '', html)
     return html.replace('<head>', '<head>\n<base href="../">', 1)

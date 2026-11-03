@@ -5,7 +5,7 @@
 <title>2.6 Responsible AI Drafting · Digital Productivity Essentials</title>
 <link rel="stylesheet" href="assets/base.css?v=7ec0fa28">
 <link rel="stylesheet" href="assets/animations/animations.css?v=cd8ec112">
-<link rel="stylesheet" href="assets/dpe.css?v=23975333">
+<link rel="stylesheet" href="assets/dpe.css?v=a52b00f1">
 <style>
 /* deck-local helpers, built on the shared tokens */
 .bub{border-radius:var(--radius-lg);padding:calc(var(--u)*1) calc(var(--u)*1.3);font-size:calc(var(--u)*1.32);line-height:1.5}
@@ -22,7 +22,7 @@
 .page p+p{margin-top:.55em}
 .mf{font-family:var(--font-mono);font-size:.88em;background:var(--mod-soft);color:var(--mod);padding:0 .3em;border-radius:.25em;font-weight:600}
 .del{background:var(--coral-soft);color:var(--coral);text-decoration:line-through}
-.chk{list-style:none;padding:0;margin:0;columns:2;column-gap:calc(var(--u)*2.4)}
+.chk{list-style:none;padding:0;margin:calc(var(--u)*2.4) 0 0;columns:2;column-gap:calc(var(--u)*2.4)}
 .chk li{break-inside:avoid;position:relative;padding-left:calc(var(--u)*2.4);margin:0 0 calc(var(--u)*.85);font-size:calc(var(--u)*1.38);line-height:1.4}
 .chk li::before{content:"";position:absolute;left:0;top:.15em;width:calc(var(--u)*1.3);height:calc(var(--u)*1.3);border:2px solid var(--mod);border-radius:calc(var(--u)*.3);background:#fff}
 .flip .fr h4,.flip .bk h4{margin-bottom:calc(var(--u)*.4)}
@@ -124,7 +124,7 @@
   <section class="slide" data-title="What AI can and can't do">
     <div class="slide-head">
       <div><p class="kicker">AI writing assistants</p><h2 class="h2">Good at words. Not a source of truth.</h2></div>
-      <div class="chips" style="flex-wrap:nowrap;flex:none"><span class="chip"><img class="logo" src="assets/logos/microsoft-copilot.png" alt="">Microsoft Copilot</span><span class="chip"><img class="logo" src="assets/logos/google-gemini.svg" alt="">Google Gemini</span><span class="chip"><img class="logo mono" src="assets/logos/chatgpt.svg" alt="">ChatGPT</span></div>
+      <div class="chips" style="flex:none"><span class="chip"><img class="logo" src="assets/logos/microsoft-copilot.png" alt="">Microsoft Copilot</span><span class="chip"><img class="logo" src="assets/logos/google-gemini.svg" alt="">Google Gemini</span><span class="chip"><img class="logo mono" src="assets/logos/chatgpt.svg" alt="">ChatGPT</span></div>
     </div>
     <div class="grid g2">
       <div class="card top"><h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#147A50"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg> Helpful for</h4>
@@ -263,8 +263,8 @@
       </div>
     </div>
     <div class="notes">
-      <p>This is the version we merged in Topic 2.4. Press <b>→</b> to walk through each change in real Word.</p>
-      <p>First, <b>Track Changes</b> (Review tab): every deletion shows struck out in red and every insertion underlined, so a supervisor can see exactly what the human changed. On Windows the button sits in the Tracking group; on the Mac it is under <b>Tracking</b>.</p>
+      <p>This is a shorter version of the letter we merged in Topic 2.4. Press <b>→</b> to walk through each change in real Word.</p>
+      <p>First, <b>Track Changes</b> (Review tab): every deletion shows struck out in red and every insertion underlined, so a supervisor can see exactly what the human changed. The Track Changes button is in the <b>Tracking</b> group on both Windows and Mac.</p>
       <p>Notice the placeholders became <b>merge fields</b>, «Name» and «Section». Here they are typed as markers; in Lab 2 insert them with Mailings › Insert Merge Field. That's how AI drafting and mail merge connect.</p>
       <p>The last frame hides the markup so you read the letter as the reader will. Then Review › Accept All. The AI took about 5 seconds; the human edit took about 5 minutes. That's still much faster than writing from scratch, and the result is correct.</p>
     </div>
@@ -370,7 +370,7 @@
     <div class="notes">
       <p>A letter that goes out with "Dear [Insert Name]" tells the reader nobody checked it. Make <kbd>Ctrl</kbd>+<kbd>F</kbd> for the square bracket a habit before saving.</p>
       <p>Show the other leftovers: chat phrases like "Sure! Here's your letter" and markdown symbols like double asterisks.</p>
-      <p>Demo <b>Keep Text Only</b> when pasting into Word, so the AI's formatting doesn't fight your letter's styles. In Google Docs and LibreOffice, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> pastes plain text.</p>
+      <p>Demo <b>Keep Text Only</b> when pasting into Word, so the AI's formatting doesn't fight your letter's styles. In Google Docs, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> pastes plain text; in LibreOffice it is <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>.</p>
     </div>
   </section>
 
@@ -386,7 +386,7 @@
           <li><b>Credit your sources:</b> if a fact or quote comes from a report or website, name it.</li>
           <li><b>Disclose AI help</b> when your office, school or this lab asks for it.</li>
         </ul>
-        <div class="callout gold mt-m"><b>Sample disclosure:</b> "First draft prepared with an AI assistant; reviewed, fact-checked and edited by Maria Santos."</div>
+        <div class="callout gold mt-m"><b>Sample disclosure:</b> "First draft prepared with an AI assistant; reviewed, fact-checked and edited by Ana Reyes."</div>
       </div>
     </div>
     <div class="notes">
@@ -413,7 +413,7 @@
       </div>
       <div class="card top" style="border-top-color:var(--green)"><h4>Do this instead</h4>
         <ul class="ticks">
-          <li>Use <b>sample data</b>: "Juan Dela Cruz, TIN 123-456-789-000"</li>
+          <li>Use <b>sample data</b>: "Juan Dela Cruz, <span style="white-space:nowrap">TIN 123-456-789-000</span>"</li>
           <li>Describe the <b>type</b> of letter, not the real case</li>
           <li>Add the real names <b>yourself</b>, offline, or by mail merge</li>
           <li>Use only <b>office-approved</b> tools; ask if unsure</li>
@@ -615,7 +615,7 @@
   </section>
 
 </div>
-<script src="assets/runtime.js?v=dfda2082"></script>
-<script src="assets/dpe.js?v=66d859ad"></script>
+<script src="assets/runtime.js?v=31e08e36"></script>
+<script src="assets/dpe.js?v=3340109d"></script>
 </body>
 </html>

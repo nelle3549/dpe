@@ -6,7 +6,7 @@
 <title>2.3 Working with Tables and Graphical Elements · Digital Productivity Essentials</title>
 <link rel="stylesheet" href="assets/base.css?v=7ec0fa28">
 <link rel="stylesheet" href="assets/animations/animations.css?v=cd8ec112">
-<link rel="stylesheet" href="assets/dpe.css?v=23975333">
+<link rel="stylesheet" href="assets/dpe.css?v=a52b00f1">
 <style>
 /* Deck-local: drawn tables, pages and picture demos (Module 2) */
 .page{background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.18);border:1px solid var(--border);padding:calc(var(--u)*1.4) calc(var(--u)*2.2);font-family:Arial,Helvetica,sans-serif;font-size:calc(var(--u)*.85);line-height:1.4;color:#222}
@@ -38,6 +38,7 @@
 .card .steps li::before{width:calc(var(--u)*2);height:calc(var(--u)*2);font-size:calc(var(--u)*1);top:calc(var(--u)*.45)}
 .card .ticks li{font-size:calc(var(--u)*1.3);margin:calc(var(--u)*.55) 0}
 .cap{font-family:Arial,Helvetica,sans-serif;font-size:calc(var(--u)*1);color:#2B579A;font-style:italic;margin:calc(var(--u)*.4) 0}
+#ans-tbl td,#ans-tbl th{padding-block:calc(var(--u)*.25)}
 </style>
 </head>
 <body class="m2" data-brand="Digital Productivity Essentials · <b>Module 2</b> · 2.3 Working with Tables and Graphical Elements">
@@ -76,7 +77,7 @@
   
   <section class="slide" data-title="Objectives">
     <div class="slide-head">
-      <div><p class="kicker">By the end of this topic</p><h2 class="h2">Two kinds of "non-paragraph" content</h2></div>
+      <div><p class="kicker">By the end of this topic</p><h2 class="h2">What you'll learn</h2></div>
     </div>
     <div class="obj anim-stagger-list">
       <div class="card top"><span class="k">Tables</span><h4>Build and edit a table</h4><p>Insert, type with Tab, add or delete rows and columns, merge, resize, align.</p></div>
@@ -298,7 +299,7 @@
           <li>After the first body paragraph, type <b>Here is the schedule:</b> and press <kbd>Enter</kbd>.</li>
           <li>Insert a table: <b>3 columns x 6 rows</b>.</li>
           <li>Type the header: <b>Time</b> <kbd>Tab</kbd> <b>Activity</b> <kbd>Tab</kbd> <b>Venue</b>.</li>
-          <li>Fill in the 5 time slots from the previous slide, using <kbd>Tab</kbd>.</li>
+          <li>Fill in the 5 time slots (click <b>Show the schedule table</b>), using <kbd>Tab</kbd>.</li>
         </ol>
         <ol start="5">
           <li>Header row: <b>bold</b> and <b>centered</b>.</li>
@@ -306,8 +307,17 @@
           <li>Double-click column borders to fit, then <kbd>Ctrl</kbd>+<kbd>S</kbd>.</li>
         </ol>
       </div>
-      <div class="row mt-m"><button class="reveal-btn" data-target="ans-tbl">Show the schedule table</button></div>
-      
+      <div class="row mt-m"><button class="reveal-btn keep" data-target="ans-tbl">Show the schedule table</button></div>
+      <div class="answer keep mt-s" id="ans-tbl">
+        <table class="tbl compact" style="font-size:calc(var(--u)*.95)">
+          <tr><th>Time</th><th>Activity</th><th>Venue</th></tr>
+          <tr><td>8:30 to 9:00 AM</td><td>Registration</td><td>Lobby, Ground Floor</td></tr>
+          <tr><td>9:00 AM to 12:00 NN</td><td>Word processing</td><td>Conference Room</td></tr>
+          <tr><td>12:00 NN to 1:00 PM</td><td>Lunch break</td><td>Pantry</td></tr>
+          <tr><td>1:00 to 2:30 PM</td><td>Spreadsheets</td><td>Conference Room</td></tr>
+          <tr><td>2:30 to 4:30 PM</td><td>Presentations and closing</td><td>Conference Room</td></tr>
+        </table>
+      </div>
     </div>
     
   </section>
@@ -321,8 +331,8 @@
       <div>
         <div class="stage">
           <figure class="f" data-step="1" data-zoom="1.25" data-o="35,60"><div class="pic"><img src="images/ui/2.3/12-picture-inline.webp" alt="A photo inserted in Word, selected with eight handles, Picture Format tab open"><i class="ring" style="--x:26.4;--y:55.4;--w:13.2;--h:30.6"></i></div></figure>
-          <figure class="f" data-step="2" data-zoom="1.35" data-o="40,55"><div class="pic"><img src="images/ui/2.3/13-picture-squashed.webp" alt="The same photo squashed after a side handle was dragged"><i class="ring" style="--x:31.8;--y:72.6;--w:2.6;--h:3"></i><i class="ring" style="--x:26.4;--y:55.4;--w:13.2;--h:19;--d:0.25s"></i><i class="ring" style="--x:80.6;--y:15.6;--w:2.8;--h:3.6;--d:0.5s"></i></div></figure>
-          <figure class="f" data-step="3" data-zoom="1.35" data-o="40,55"><div class="pic"><img src="images/ui/2.3/14-picture-corner.webp" alt="The photo resized from a corner, same shape, smaller"><i class="ring" style="--x:33.4;--y:72.4;--w:2.4;--h:3.4"></i><i class="ring" style="--x:26.4;--y:55.4;--w:8.2;--h:19;--d:0.25s"></i><i class="ring" style="--x:80.2;--y:15.6;--w:2.8;--h:3.6;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.35" data-o="60,40"><div class="pic"><img src="images/ui/2.3/13-picture-squashed.webp" alt="The same photo squashed after a side handle was dragged"><i class="ring" style="--x:31.8;--y:72.6;--w:2.6;--h:3"></i><i class="ring" style="--x:26.4;--y:55.4;--w:13.2;--h:19;--d:0.25s"></i><i class="ring" style="--x:80.6;--y:15.6;--w:2.8;--h:3.6;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.35" data-o="60,40"><div class="pic"><img src="images/ui/2.3/14-picture-corner.webp" alt="The photo resized from a corner, same shape, smaller"><i class="ring" style="--x:33.4;--y:72.4;--w:2.4;--h:3.4"></i><i class="ring" style="--x:26.4;--y:55.4;--w:8.2;--h:19;--d:0.25s"></i><i class="ring" style="--x:80.2;--y:15.6;--w:2.8;--h:3.6;--d:0.5s"></i></div></figure>
           <figure class="f" data-step="4" data-zoom="1.5" data-o="85,12"><div class="pic"><img src="images/ui/2.3/12-picture-inline.webp" alt=""><i class="ring" style="--x:69.8;--y:12.2;--w:10.6;--h:8.8"></i><i class="ring" style="--x:80.2;--y:13.4;--w:2.8;--h:6;--d:0.25s"></i></div></figure>
         </div>
         <p class="cap">Microsoft Word for Mac, sample stock photo. Windows: Insert › Pictures › This Device.</p>
@@ -332,7 +342,7 @@
           <li data-step="1"><b>Insert › Pictures</b> (Mac: Picture from File; Windows: This Device). Click the photo: eight handles appear.</li>
           <li data-step="2"><b>Side handle:</b> only one direction changes. Faces stretch. Undo!</li>
           <li data-step="3"><b>Corner handle:</b> same shape, just smaller.</li>
-          <li data-step="4">Exact size: Picture Format › Height and Width, with the lock (<b>Lock aspect ratio</b>) ticked.</li>
+          <li data-step="4">Exact size: Picture Format › Height and Width. On Windows, <b>Lock aspect ratio</b> is under the small arrow in the Size group; on a Mac, click the lock.</li>
         </ol>
         <p class="small mt-s"><b>Docs:</b> Insert › Image › Upload from computer. <b>Writer:</b> Insert › Image.</p>
         <div class="callout warn mt-s"><b>Never drag a side handle</b> on a photo of people or a logo. Drag a <b>corner</b>, or hold <kbd>Shift</kbd> while dragging.</div>
@@ -421,7 +431,7 @@
         <div class="stage">
           <figure class="f" data-step="1" data-zoom="1.3" data-o="50,40"><div class="pic"><img src="images/ui/2.3/16-letterhead-header.webp" alt="Word header open with a borderless two-column table: logo left, office name right"><i class="ring" style="--x:24.4;--y:34;--w:53.4;--h:14.4"></i></div></figure>
           <figure class="f" data-step="2" data-zoom="1.5" data-o="30,42"><div class="pic"><img src="images/ui/2.3/16-letterhead-header.webp" alt=""><i class="ring" style="--x:25;--y:35.2;--w:7.4;--h:11.4"></i></div></figure>
-          <figure class="f" data-step="3" data-zoom="1.3" data-o="60,30"><div class="pic"><img src="images/ui/2.3/16-letterhead-header.webp" alt=""><i class="ring" style="--x:24.4;--y:46.6;--w:53.4;--h:2"></i><i class="ring" style="--x:84;--y:11.2;--w:7.6;--h:10.6;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-o="75,15"><div class="pic"><img src="images/ui/2.3/16-letterhead-header.webp" alt=""><i class="ring" style="--x:24.4;--y:46.6;--w:53.4;--h:2"></i><i class="ring" style="--x:84;--y:11.2;--w:7.6;--h:10.6;--d:0.25s"></i></div></figure>
           <figure class="f" data-step="4" data-zoom="1.3" data-o="50,40"><div class="pic"><img src="images/ui/2.3/17-letter-final.webp" alt="The closed header shown dimmed above the letter"><i class="ring" style="--x:29;--y:33;--w:44;--h:11"></i></div></figure>
         </div>
         <p class="cap">Microsoft Word for Mac, sample logo and office. Windows has the same Header &amp; Footer tab.</p>
@@ -459,7 +469,7 @@
           <div style="font-family:Arial,Helvetica,sans-serif"><p style="font-weight:800;font-size:calc(var(--u)*1.5);color:#A87900">You're invited!</p><p style="font-size:calc(var(--u)*1.1)">Ana turns <b>7</b></p><p class="small">Saturday, 5 December 2026 · 3:00 PM<br>Our house, Barangay Sample</p></div>
         </div>
         <ul class="mt-s">
-          <li><b>Weekly meal plan</b> (Day · Ulam · Who cooks) or a <b>chore chart</b> for the ref</li>
+          <li><b>Weekly meal plan</b> (Day · Ulam · Who cooks) or a <b>chore chart</b> for the fridge</li>
           <li><b>Birthday invitation:</b> one photo, Square wrap, resized from a corner</li>
         </ul>
       </div>
@@ -538,7 +548,7 @@
   </section>
 
 </div>
-<script src="assets/runtime.js?v=dfda2082"></script>
-<script src="assets/dpe.js?v=66d859ad"></script>
+<script src="assets/runtime.js?v=31e08e36"></script>
+<script src="assets/dpe.js?v=3340109d"></script>
 </body>
 </html>

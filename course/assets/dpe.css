@@ -414,3 +414,31 @@ html.participant .opt.picked{border-color:var(--mod);background:var(--mod-soft)}
   .shots,.shots.rev{grid-template-columns:1fr}.shots.rev .stage{order:0}
 }
 .shots:not([data-walk]) .cur{display:none}
+
+/* ---------- phones, round 2 (Day 1 review, 4 Nov): grids that kept 2+ columns, boxes that shrank or ran off ---------- */
+@media (max-width:700px) and (orientation:portrait){
+  .slide>*{flex-shrink:0}
+  .slide-head .tag{white-space:normal;display:block;max-width:100%}
+  .slide-head>*{max-width:100%}
+  .slide-head>.chips{flex:0 1 auto!important}
+  .shots .stage{max-width:100%}
+  .shots,.shots.rev,.flips,.quiz,.flow{grid-template-columns:minmax(0,1fr)!important}
+  .flips .flip,.flip{min-height:190px}
+  .flow .ar,.flow .arr{transform:rotate(90deg);justify-self:center;justify-content:center}
+  .url{flex-wrap:wrap;justify-content:flex-start}
+  .win{max-width:100%;overflow-x:auto}
+  .tree{font-size:13px}
+  .tbl{flex:none}
+}
+
+/* drawn app windows: Windows title-bar controls (minimize, maximize, close) on the right, not Mac dots (participants use Windows) */
+.win .bar i,.win .bar i:nth-child(2),.win .bar i:nth-child(3){order:9;width:calc(var(--u)*.75);height:calc(var(--u)*.75);border-radius:0;background:none;margin-left:calc(var(--u)*.7);flex:none}
+.win .bar i:first-child{margin-left:auto;height:calc(var(--u)*.4);border-bottom:2px solid var(--text-3);align-self:center;margin-bottom:calc(var(--u)*.35)}
+.win .bar i:nth-child(2){border:2px solid var(--text-3)}
+.win .bar i:nth-child(3){background:linear-gradient(45deg,transparent 43%,var(--text-3) 43%,var(--text-3) 57%,transparent 57%),linear-gradient(-45deg,transparent 43%,var(--text-3) 43%,var(--text-3) 57%,transparent 57%)}
+/* never scroll the deck sideways when something inside gets focus */
+.deck{overflow:clip}
+
+/* help that participants may open themselves (hints, quick fixes, task data): kept in the participant copy */
+html.participant .reveal-btn.keep{display:inline-block!important}
+html.participant .answer.keep{display:none!important}html.participant .answer.keep.shown{display:block!important}

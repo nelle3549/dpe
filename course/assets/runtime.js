@@ -236,7 +236,7 @@
       // hash
       const hashTarget = '#/'+(n+1);
       if (location.hash !== hashTarget && !isPresenterWindow) {
-        history.replaceState(null,'', hashTarget);
+        history.replaceState(null,'', location.pathname + location.search + hashTarget);   // full path: participant copies have <base href="../">
       }
 
       // re-trigger entry animations

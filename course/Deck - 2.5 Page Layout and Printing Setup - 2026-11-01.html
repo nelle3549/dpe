@@ -5,7 +5,7 @@
 <title>2.5 Page Layout and Printing Setup · Digital Productivity Essentials</title>
 <link rel="stylesheet" href="assets/base.css?v=7ec0fa28">
 <link rel="stylesheet" href="assets/animations/animations.css?v=cd8ec112">
-<link rel="stylesheet" href="assets/dpe.css?v=23975333">
+<link rel="stylesheet" href="assets/dpe.css?v=a52b00f1">
 <style>
 /* deck-local helpers, built on the shared tokens */
 .rib-tabs{display:flex;gap:calc(var(--u)*1.5);padding:calc(var(--u)*.45) calc(var(--u)*1);font-size:calc(var(--u)*.9);color:var(--text-2);background:#F7F8FA;border-bottom:1px solid var(--border)}
@@ -32,7 +32,7 @@
 .dlg .lab{color:var(--text-3);font-weight:600;font-size:.9em}
 .dlg .fld{border:1px solid var(--border-strong);border-radius:calc(var(--u)*.4);padding:.3em .7em;background:#fff;color:var(--text-1)}
 .dlg .fld.hot{outline:2px solid var(--gold);background:var(--gold-soft)}
-.chk{list-style:none;padding:0;margin:0;columns:2;column-gap:calc(var(--u)*2.4)}
+.chk{list-style:none;padding:0;margin:calc(var(--u)*2.4) 0 0;columns:2;column-gap:calc(var(--u)*2.4)}
 .chk li{break-inside:avoid;position:relative;padding-left:calc(var(--u)*2.4);margin:0 0 calc(var(--u)*.9);font-size:calc(var(--u)*1.4);line-height:1.4}
 .chk li::before{content:"";position:absolute;left:0;top:.15em;width:calc(var(--u)*1.3);height:calc(var(--u)*1.3);border:2px solid var(--mod);border-radius:calc(var(--u)*.3);background:#fff}
 .ex .ex-img{width:100%;height:calc(var(--u)*8.5);object-fit:cover;border-radius:calc(var(--u)*.8);margin-bottom:calc(var(--u)*.9)}
@@ -62,7 +62,7 @@
   <!-- 2 · Warm-up -->
   <section class="slide" data-title="Warm-up">
     <div class="slide-head">
-      <div><p class="kicker">Warm-up · react or type in the chat</p><h2 class="h2">Which printing "disgrace" has happened to you?</h2></div>
+      <div><p class="kicker">Warm-up · react or type in the chat</p><h2 class="h2">Which printing "disaster" has happened to you?</h2></div>
       <span class="tag gold">1 minute</span>
     </div>
     <div class="grid g4 mt-m anim-stagger-list">
@@ -172,7 +172,7 @@
         <ul class="ticks">
           <li><b>A4</b> 210 × 297 mm · <b>Letter</b> 8.5 × 11 in "short" · <b>Long</b> 8.5 × 13 in "long bond".</li>
           <li data-step="1"><b>Size:</b> <b>Layout › Size</b>. Pick <b>Folio</b> if your list shows it at 8.5 × 13 in. If not, <b>More Paper Sizes</b> (Mac: Page Setup › Paper Size › Manage Custom Sizes) and type 8.5 × 13 in.</li>
-          <li data-step="2"><b>Long = Folio, not Legal.</b> Legal is 8.5 × <b>14</b> in. <b>F4</b> (210 × 330 mm) is a little narrower, so check the numbers.</li>
+          <li data-step="2"><b>Paper Size</b> list (here still US Letter): pick <b>Folio</b> 8.5 × 13 in, not Legal (8.5 × <b>14</b> in). <b>F4</b> (210 × 330 mm) is a little narrower, so check the numbers.</li>
           <li data-step="3"><b>Portrait</b> for letters and memos. <b>Landscape</b> for wide tables, like an inventory list.</li>
           <li>Follow your <b>office's practice</b> for official letters, and change the printer's paper setting too.</li>
         </ul>
@@ -195,7 +195,7 @@
       <div>
         <div class="stage">
           <figure class="f" data-step="1" data-zoom="1.4" data-o="0,15"><div class="pic"><img src="images/ui/2.5/06-footer-page-x-of-y.webp" alt="Word Header and Footer tab, editing the footer of page 1"><i class="ring" style="--x:1.0;--y:11.2;--w:9.4;--h:7.2"></i><i class="ring" style="--x:19.6;--y:38.4;--w:8.2;--h:3.6;--d:0.25s"></i></div></figure>
-          <figure class="f" data-step="2" data-zoom="1.4" data-o="40,40"><div class="pic"><img src="images/ui/2.5/06-footer-page-x-of-y.webp" alt="Footer reads Page 1 of 2, made with page number fields"><i class="ring" style="--x:1.0;--y:18.4;--w:11.6;--h:3.6"></i><i class="ring" style="--x:46.6;--y:44.4;--w:8.8;--h:5.2;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.4" data-o="0,40"><div class="pic"><img src="images/ui/2.5/06-footer-page-x-of-y.webp" alt="Footer reads Page 1 of 2, made with page number fields"><i class="ring" style="--x:1.0;--y:18.4;--w:11.6;--h:3.6"></i><i class="ring" style="--x:46.6;--y:44.4;--w:8.8;--h:5.2;--d:0.25s"></i></div></figure>
           <figure class="f" data-step="3" data-zoom="1.5" data-o="60,14"><div class="pic"><img src="images/ui/2.5/06-footer-page-x-of-y.webp" alt="Different First Page checkbox on the Header and Footer tab"><i class="ring" style="--x:52.2;--y:11.4;--w:13.2;--h:3.4"></i></div></figure>
           <figure class="f" data-step="4" data-zoom="1.5" data-o="98,15"><div class="pic"><img src="images/ui/2.5/06-footer-page-x-of-y.webp" alt="Close Header and Footer button"><i class="ring" style="--x:83.4;--y:11.2;--w:8.8;--h:10.6"></i></div></figure>
         </div>
@@ -333,10 +333,10 @@
           <li>Open <b>print preview</b> (<kbd>Ctrl</kbd> + <kbd>P</kbd>) and check: 2 pages, numbers correct, no lonely signature.</li>
         </ol>
       </div>
-      <div class="row mt-m"><button class="reveal-btn" data-target="ans-try">Stuck? Show quick fixes</button></div>
-      <div class="answer mt-s" id="ans-try">
+      <div class="row mt-m"><button class="reveal-btn keep" data-target="ans-try">Stuck? Show quick fixes</button></div>
+      <div class="answer keep mt-s" id="ans-try">
         <div class="grid g3">
-          <div class="callout"><b>No 8.5 × 13:</b> Size › More Paper Sizes › type width 8.5", height 13".</div>
+          <div class="callout"><b>No 8.5 × 13:</b> Layout › Size › More Paper Sizes › type width 8.5", height 13".</div>
           <div class="callout"><b>Number on page 1 only:</b> it's in the body, not the footer. Delete it and use Insert › Page Number.</div>
           <div class="callout"><b>Annex starts mid-page:</b> you pressed Enter, not <kbd>Ctrl</kbd> + <kbd>Enter</kbd>.</div>
         </div>
@@ -345,7 +345,7 @@
     <div class="notes">
       <p>Start the <b>8-minute</b> timer. Everyone works on their own invitation letter.</p>
       <p>The annex page is practice for the page break, and it will be useful in Lab 2 if they want to add a schedule table on its own page.</p>
-      <p>Ask two or three people to share a screenshot of their print preview in the chat. Praise a clean one on screen. Reveal the quick fixes if several people are stuck.</p>
+      <p>Ask them to upload the screenshot of their print preview in the portal; two or three volunteers also paste it in the chat. Praise a clean one on screen. Reveal the quick fixes if several people are stuck.</p>
     </div>
   </section>
 
@@ -382,7 +382,7 @@
             <span class="lab">Printer</span><span class="fld">Section printer · or Microsoft Print to PDF</span>
             <span class="lab">Pages</span><span class="fld hot">1-3, 5</span>
             <span class="lab">Sides</span><span class="fld">Print on Both Sides ▾</span>
-            <span class="lab">Collate</span><span class="fld">Collated · 1,2,3 1,2,3 1,2,3</span>
+            <span class="lab">Collate</span><span class="fld">Collated · 1,2,3 · 1,2,3 · 1,2,3</span>
             <span class="lab">Paper</span><span class="fld">A4 or 8.5" × 13"</span>
             <span class="lab">Scale</span><span class="fld">1 Page Per Sheet › Scale to Paper Size</span>
           </div>
@@ -416,7 +416,7 @@
     <div class="grid g4 anim-stagger-list">
       <div class="card top"><span class="ic-badge"><img class="logo" src="assets/logos/microsoft-word.svg" alt=""></span><h4>Word</h4><p><b>File › Save As › PDF</b>, or File › Export › Create PDF/XPS.</p></div>
       <div class="card top"><span class="ic-badge"><img class="logo" src="assets/logos/google-docs.svg" alt=""></span><h4>Google Docs</h4><p><b>File › Download › PDF Document (.pdf)</b>.</p></div>
-      <div class="card top"><span class="ic-badge"><img class="logo" src="assets/logos/libreoffice.svg" alt=""></span><h4>LibreOffice</h4><p><b>File › Export as PDF</b>, or the PDF button on the toolbar.</p></div>
+      <div class="card top"><span class="ic-badge"><img class="logo" src="assets/logos/libreoffice.svg" alt=""></span><h4>LibreOffice</h4><p><b>File › Export As › Export as PDF</b>, or the PDF button on the toolbar.</p></div>
       <div class="card top"><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6" /><rect x="6" y="14" width="12" height="8" rx="1" /></svg></span><h4>Any app on Windows</h4><p>Choose <b>Microsoft Print to PDF</b> as the printer in the print window.</p></div>
     </div>
     <div class="callout tip mt-l"><b>Why PDF?</b> Fonts, margins and page breaks stay exactly as you set them, and nobody can accidentally edit the letter. Keep the .docx as your editable master copy.</div>
@@ -520,7 +520,7 @@
   </section>
 
 </div>
-<script src="assets/runtime.js?v=dfda2082"></script>
-<script src="assets/dpe.js?v=66d859ad"></script>
+<script src="assets/runtime.js?v=31e08e36"></script>
+<script src="assets/dpe.js?v=3340109d"></script>
 </body>
 </html>
