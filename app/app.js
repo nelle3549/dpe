@@ -134,6 +134,7 @@
     'house': '<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />',
     'hourglass': '<path d="M5 22h14" /><path d="M5 2h14" /><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" /><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />',
     'file-text': '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" />',
+    'clock': '<circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />',
     'timer': '<line x1="10" x2="14" y1="2" y2="2" /><line x1="12" x2="15" y1="14" y2="11" /><circle cx="12" cy="14" r="8" />',
     'paperclip': '<path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48" />',
     'x': '<path d="M18 6 6 18" /><path d="m6 6 12 12" />',
@@ -467,6 +468,7 @@
       (go ? '<a class="cover" href="' + deckView + t.id + '" tabindex="-1" aria-hidden="true">' : '<div class="cover">') + thumb(t.id) +
       '<span class="num">' + t.id + '</span>' + chip + (go ? '</a>' : '</div>') +
       '<div class="t"><h4>' + esc(t.title) + '</h4></div>' +
+      '<p class="dur">' + ico('clock') + ' ' + esc(t.dur) + (t.video ? '<span class="muted"> · video ' + t.video + '</span>' : '') + '</p>' +
       '<p class="sum">' + esc(t.desc) + '</p><button type="button" class="more" data-more="' + t.id + '">See more</button>' +
       (go ? '<div class="go"><a class="btn' + (on ? ' primary' : '') + '" href="' + deckView + t.id + '">Open</a>' + (t.video ? '<a class="btn" href="#/video/' + t.id + '">' + ico('play') + ' Play video</a>' : '') + '</div>' +
         (t.activities.length ? '<div class="acts">' + t.activities.map(actLink).join('') + '</div>' : '') : '') +
@@ -517,7 +519,7 @@
     // every topic as a card, grouped by module; closed ones are greyed out but their summary stays readable
     CAT.forEach(function (m, mi) {
       var nOpen = m.topics.filter(function (t) { return topicOpen(t.id); }).length;
-      html += '<section class="modsec" style="--c:var(--m' + (mi + 1) + ')"><div class="modhead"><span class="k">' + esc(m.n + ' · ' + m.day) + '</span>' +
+      html += '<section class="modsec" style="--c:var(--m' + (mi + 1) + ')"><div class="modhead"><span class="k">' + esc(m.n + ' · ' + m.day) + '</span><span class="hrs">' + ico('clock') + ' ' + esc(m.hours) + '</span>' +
         '<h2>' + esc(m.title) + '</h2><span class="small muted">' + m.topics.length + ' topics · ' + (nOpen ? nOpen + ' open' : 'opens later') + '</span></div>' +
         '<div class="topics">' + m.topics.map(function (t) { return topicCard(t, adm, deckView); }).join('') + '</div></section>';
     });

@@ -344,6 +344,9 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 .modhead{border-left:5px solid var(--c);padding:2px 0 2px 12px;margin-bottom:12px}
 .modhead .k{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--c)}
 .modhead h2{margin:2px 0;font-size:22px;letter-spacing:-.01em}
+.modhead .hrs{margin-left:10px;font-size:12px;font-weight:800;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);border-radius:999px;padding:2px 9px;white-space:nowrap}
+.topic .dur{margin:0;font-size:13px;font-weight:700;color:var(--c)}
+.topic .dur .muted{font-weight:500}
 .topic{overflow:hidden}
 .topic.locked{background:#fff;border-style:solid}
 .topic.locked .cover{background:#6b7280}.topic.locked .cover img{filter:grayscale(1)}
