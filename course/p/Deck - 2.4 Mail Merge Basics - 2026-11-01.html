@@ -126,44 +126,35 @@
       <div><p class="kicker">Step 0 · The data source</p><h2 class="h2">Build the list in a spreadsheet first</h2></div>
       <span class="tag"><img class="logo" src="assets/logos/microsoft-excel.svg" alt="">Excel · <img class="logo" src="assets/logos/google-sheets.svg" alt="">Google Sheets · <img class="logo" src="assets/logos/libreoffice-calc.svg" alt="">LibreOffice Calc</span>
     </div>
-    <div class="split" style="grid-template-columns:1.4fr .6fr;gap:calc(var(--u)*2.4)">
-      <div class="win">
-        <div class="bar"><i></i><i></i><i></i><span>Workshop Invitees.xlsx · Sheet1</span></div>
-        <table class="xl">
-          <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
-          <tbody>
-            <tr class="hdr"><td class="rn">1</td><td>Name</td><td>Position</td><td>Section</td><td>Email</td></tr>
-            <tr><td class="rn">2</td><td>Juan Dela Cruz</td><td>Revenue Officer</td><td>Assessment Section</td><td>juan.delacruz@example.com</td></tr>
-            <tr><td class="rn">3</td><td>Ana Reyes</td><td>Administrative Assistant</td><td>Administrative Section</td><td>ana.reyes@example.com</td></tr>
-            <tr><td class="rn">4</td><td>Pedro Reyes</td><td>Records Officer</td><td>Records Section</td><td>pedro.reyes@example.com</td></tr>
-            <tr><td class="rn">5</td><td>Ana Villanueva</td><td>Data Encoder</td><td>Collection Section</td><td>ana.villanueva@example.com</td></tr>
-          </tbody>
-        </table>
-        <p class="tiny" style="padding:calc(var(--u)*.6) calc(var(--u)*.9)">Sample names and addresses only.</p>
-      </div>
+    <div class="shots" data-walk>
       <div>
-        <ul class="ticks">
-          <li><b>One header row</b> in row 1. These become your field names.</li>
-          <li><b>One person per row</b>, no blank rows in between.</li>
-          <li><b>One detail per column</b>: no merged cells, no titles above the headers.</li>
-          <li><b>Save and close</b> the file before you connect it.</li>
-        </ul>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.25" data-o="0,33"><div class="pic"><img src="images/ui/2.4/00-excel-list.webp" alt="Excel window with the Workshop Invitees list: headers Name, Position, Section, Email in row 1 and four people below"><i class="ring" style="--x:3.2;--y:31.2;--w:72;--h:4.4"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.25" data-at="40,43" data-o="0,43"><div class="pic"><img src="images/ui/2.4/00-excel-list.webp" alt=""><i class="ring" style="--x:3.2;--y:35.4;--w:72;--h:15.6"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.25" data-at="43,40"><div class="pic"><img src="images/ui/2.4/00-excel-list.webp" alt=""><i class="ring" style="--x:34.4;--y:27.4;--w:17.6;--h:23.8"></i></div></figure>
+          <figure class="f" data-step="4"><div class="pic"><img src="images/ui/2.4/00-excel-list.webp" alt=""><i class="ring" style="--x:11.4;--y:1;--w:3;--h:4.2"></i><i class="ring" style="--x:5.4;--y:92.4;--w:13.6;--h:4.2;--d:.25s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel. Sample names and addresses only.</p>
       </div>
+      <ul class="ticks">
+        <li data-step="1"><b>One header row</b> in row 1. These become your field names.</li>
+        <li data-step="2"><b>One person per row</b>, no blank rows in between.</li>
+        <li data-step="3"><b>One detail per column</b>: no merged cells, no titles above the headers.</li>
+        <li data-step="4"><b>Save and close</b> the file before you connect it. Note the sheet name at the bottom.</li>
+      </ul>
     </div>
     
   </section>
 
   
   <section class="slide" data-title="The main document">
-    <div class="split" style="grid-template-columns:1.1fr .9fr">
-      <div class="page" style="max-height:calc(var(--u)*40);overflow:hidden">
-        <p style="text-align:center"><b>SAMPLE REVENUE DISTRICT OFFICE</b><br>Administrative Section</p>
-        <p>3 November 2026</p>
-        <p><span class="mf">«Name»</span><br><span class="mf">«Position»</span>, <span class="mf">«Section»</span></p>
-        <p>Dear <span class="mf">«Name»</span>:</p>
-        <p style="text-align:justify">The Administrative Section invites you to the <b>Digital Skills Workshop</b> on Thursday, 19 November 2026, 1:00 to 4:00 PM, at the Conference Room.</p>
-        <p style="text-align:justify">As a member of the <span class="mf">«Section»</span>, you will practise word processing, spreadsheets and presentations you can use at your desk right away.</p>
-        <p>Respectfully,<br><br><b>Administrative Officer</b></p>
+    <div class="shots">
+      <div>
+        <div class="stage">
+          <figure class="f" data-zoom="1.35" data-at="40,70"><div class="pic"><img src="images/ui/2.4/06-letter-with-fields.webp" alt="The invitation letter in Word with merge fields «Name», «Position» and «Section» where the details change">
+            <i class="ring" style="--x:23.5;--y:58.6;--w:5.8;--h:3.6"></i><i class="ring" style="--x:23.5;--y:61.8;--w:12.8;--h:3.6;--d:.2s"></i><i class="ring" style="--x:26.5;--y:68.3;--w:5.8;--h:3.6;--d:.4s"></i><i class="ring" style="--x:34.8;--y:83.4;--w:6.6;--h:3.6;--d:.6s"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Word for Mac, Mailings tab.</p>
       </div>
       <div>
         <p class="kicker">Step 1 · The main document</p>
@@ -184,22 +175,24 @@
       <div><p class="kicker"><img class="logo" src="assets/logos/microsoft-word.svg" alt="">Microsoft Word · Mailings tab</p><h2 class="h2">Connect the letter to the list</h2></div>
       <span class="tag gold">Steps 1 to 3</span>
     </div>
-    <div class="win">
-      <div class="bar"><i></i><i></i><i></i><span><img class="logo" src="assets/logos/microsoft-word.svg" alt="">Invitation Letter.docx · Word</span></div>
-      <div class="rib-tabs"><span>File</span><span>Home</span><span>Insert</span><span>Layout</span><span>References</span><span class="on">Mailings</span><span>Review</span><span>View</span></div>
-      <div class="rib">
-        <div class="grp"><div class="btns"><span class="b"><span class="i"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg></span>Envelopes</span><span class="b"><span class="i"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" /><circle cx="7.5" cy="7.5" r=".5" fill="currentColor" /></svg></span>Labels</span></div><span class="gl">Create</span></div>
-        <div class="grp"><div class="btns"><span class="b hot"><span class="i"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg></span>Start Mail<br>Merge ▾</span><span class="b hot"><span class="i"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg></span>Select<br>Recipients ▾</span><span class="b"><span class="i"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" /><path d="M2 6h4" /><path d="M2 10h4" /><path d="M2 14h4" /><path d="M2 18h4" /><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" /></svg></span>Edit<br>Recipient List</span></div><span class="gl">Start Mail Merge</span></div>
-        <div class="grp"><div class="btns"><span class="b"><span class="i"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 11-6 6v3h9l3-3" /><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4" /></svg></span>Highlight<br>Merge Fields</span><span class="b"><span class="i"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" /><circle cx="7.5" cy="7.5" r=".5" fill="currentColor" /></svg></span>Insert<br>Merge Field ▾</span></div><span class="gl">Write &amp; Insert Fields</span></div>
-        <div class="grp"><div class="btns"><span class="b"><span class="i"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /><circle cx="12" cy="12" r="3" /></svg></span>Preview<br>Results</span><span class="b"><span class="i"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 4.5v15L4 12z" fill="currentColor" stroke="none"/></svg> <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/></svg></span>1 of 4</span></div><span class="gl">Preview Results</span></div>
-        <div class="grp" style="border-right:0"><div class="btns"><span class="b"><span class="i"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#147A50"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg></span>Finish &amp;<br>Merge ▾</span></div><span class="gl">Finish</span></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1"><div class="pic"><img src="images/ui/2.4/01-mailings-tab.webp" alt="Word with the invitation letter open; the Mailings tab is selected"><i class="ring" style="--x:37.8;--y:5;--w:6.8;--h:4"></i></div></figure>
+          <figure class="f" data-step="1" data-zoom="1.5"><div class="pic"><img src="images/ui/2.4/01-mailings-tab.webp" alt=""><i class="ring" style="--x:11.4;--y:9.6;--w:5.6;--h:10"></i></div></figure>
+          <figure class="f" data-step="1" data-zoom="1.7"><div class="pic"><img src="images/ui/2.4/02-start-mail-merge-menu.webp" alt="The Start Mail Merge menu is open with Letters highlighted"><i class="ring" style="--x:11.6;--y:15.4;--w:20.4;--h:4.2"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.5"><div class="pic"><img src="images/ui/2.4/03-select-recipients-menu.webp" alt="The Select Recipients menu is open with Use an Existing List highlighted"><i class="ring" style="--x:16.9;--y:19.1;--w:25.9;--h:4.2"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.6"><div class="pic"><img src="images/ui/2.4/04-open-workbook.webp" alt="The Open Workbook box with the Workshop Invitees sheet chosen and Cell Range set to Entire Worksheet"><i class="ring" style="--x:54.9;--y:12.3;--w:22.5;--h:4.2"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.6" data-at="66,22"><div class="pic"><img src="images/ui/2.4/04-open-workbook.webp" alt=""><i class="ring" style="--x:70.3;--y:26.9;--w:7.1;--h:4.3"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Word for Mac. Word for Windows has the same buttons on its Mailings tab.</p>
       </div>
+      <ol class="steps sm">
+        <li data-step="1">Open your letter, then <b>Mailings › Start Mail Merge › Letters</b>.</li>
+        <li data-step="2"><b>Select Recipients › Use an Existing List…</b> and open <i>Workshop Invitees.xlsx</i>.</li>
+        <li data-step="3">Pick the sheet with the list and click <b>OK</b>.<span class="tiny">Mac: <b>Open Workbook</b>, Cell Range <i>Entire Worksheet</i>. Windows: <b>Select Table</b>, keep "First row of data contains column headers" ticked.</span></li>
+      </ol>
     </div>
-    <ol class="steps mt-m">
-      <li>Open your letter, then <b>Mailings › Start Mail Merge › Letters</b>.</li>
-      <li><b>Select Recipients › Use an Existing List…</b> and open <i>Workshop Invitees.xlsx</i>.</li>
-      <li>In <b>Select Table</b>, pick the right sheet and keep <b>"First row of data contains column headers"</b> ticked. Click OK.</li>
-    </ol>
     
   </section>
 
@@ -209,10 +202,23 @@
       <div><p class="kicker"><img class="logo" src="assets/logos/microsoft-word.svg" alt="">Microsoft Word · Mailings tab</p><h2 class="h2">Insert fields, preview, finish</h2></div>
       <span class="tag gold">Steps 4 to 6</span>
     </div>
-    <div class="grid g3 anim-stagger-list">
-      <div class="card top"><span class="num">4</span><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" /><circle cx="7.5" cy="7.5" r=".5" fill="currentColor" /></svg></span><h4>Insert Merge Field</h4><p>Click where the name goes, then <b>Insert Merge Field › Name</b>. Repeat for Position and Section. Add spaces and punctuation yourself.</p></div>
-      <div class="card top"><span class="num">5</span><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /><circle cx="12" cy="12" r="3" /></svg></span><h4>Preview Results</h4><p>Click <b>Preview Results</b> and use the arrows <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 4.5v15L4 12z" fill="currentColor" stroke="none"/></svg> <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/></svg> to see each person's letter. Click it again to see the fields.</p></div>
-      <div class="card top"><span class="num">6</span><span class="ic-badge"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#147A50"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg></span><h4>Finish &amp; Merge</h4><p><b>Edit Individual Documents › All › OK</b>. Word opens a new file (e.g. <i>Letters1</i>) with one letter per person. Save it.</p></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="4" data-zoom="1.5"><div class="pic"><img src="images/ui/2.4/05-insert-merge-field-menu.webp" alt="The Insert Merge Field menu listing Name, Position, Section and Email"><i class="ring" style="--x:36;--y:9.4;--w:6.2;--h:10"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.6"><div class="pic"><img src="images/ui/2.4/05-insert-merge-field-menu.webp" alt=""><i class="ring" style="--x:36.4;--y:15.4;--w:9.2;--h:4.2"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.35" data-at="40,70"><div class="pic"><img src="images/ui/2.4/06-letter-with-fields.webp" alt="The letter now shows the merge fields «Name», «Position» and «Section»"><i class="ring" style="--x:23.5;--y:58.6;--w:5.8;--h:3.6"></i><i class="ring" style="--x:23.5;--y:61.8;--w:12.8;--h:3.6;--d:.2s"></i><i class="ring" style="--x:26.5;--y:68.3;--w:5.8;--h:3.6;--d:.4s"></i></div></figure>
+          <figure class="f" data-step="5" data-zoom="1.4" data-at="49.5,15"><div class="pic"><img src="images/ui/2.4/07-preview-results.webp" alt="Preview Results is on and the letter shows Ana Reyes, record 2"><i class="ring" style="--x:47.2;--y:9.4;--w:4.8;--h:10"></i><i class="ring" style="--x:23.5;--y:58.6;--w:7;--h:3.6;--d:.3s"></i><i class="ring" style="--x:26.5;--y:68.3;--w:7.6;--h:3.6;--d:.45s"></i></div></figure>
+          <figure class="f" data-step="5" data-zoom="1.6"><div class="pic"><img src="images/ui/2.4/07-preview-results.webp" alt=""><i class="ring" style="--x:51.6;--y:9.8;--w:15.8;--h:4.6"></i></div></figure>
+          <figure class="f" data-step="6" data-zoom="1.5" data-at="80.6,13" data-o="98,16"><div class="pic"><img src="images/ui/2.4/08-finish-merge-menu-wide.webp" alt="The Finish and Merge menu with Edit Individual Documents highlighted"><i class="ring" style="--x:78.4;--y:15.2;--w:20.4;--h:4.4"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Word for Mac, Mailings tab.</p>
+      </div>
+      <ol class="steps sm" style="counter-reset:st 3">
+        <li data-step="4">Select the name you typed (or click where a detail goes), then <b>Insert Merge Field › Name</b>. Repeat for Position and Section. Type the spaces and punctuation yourself.</li>
+        <li data-step="5">Click <b>Preview Results</b> and use the arrows to see each person's letter. Click it again to see the fields.</li>
+        <li data-step="6"><b>Finish &amp; Merge › Edit Individual Documents…</b> Word opens a new file (e.g. <i>Letters1</i>) with one letter per person. Save it.<span class="tiny">Windows asks which records: choose <b>All</b>, then OK.</span></li>
+      </ol>
     </div>
     <div class="callout warn mt-l"><b>Save both files:</b> the main document (with fields) and the merged file (with names). The merged file is the one you submit for Lab 2.</div>
     
@@ -222,15 +228,15 @@
   <section class="slide" data-title="The merged result">
     <div class="slide-head">
       <div><p class="kicker">What you get</p><h2 class="h2">One file, one letter per row</h2></div>
-      <span class="tag green">Letters1.docx · 4 pages</span>
+      <span class="tag green">New Word file · 4 pages</span>
     </div>
-    <div class="grid g4 anim-stagger-list">
-      <div class="page sm"><p><b>Juan Dela Cruz</b><br>Revenue Officer, Assessment Section</p><p>Dear <span class="fill-in">Juan Dela Cruz</span>:</p><p>The Administrative Section invites you to the Digital Skills Workshop on Thursday, 19 November 2026…</p><p class="tiny">Page 1</p></div>
-      <div class="page sm"><p><b>Ana Reyes</b><br>Administrative Assistant, Administrative Section</p><p>Dear <span class="fill-in">Ana Reyes</span>:</p><p>The Administrative Section invites you to the Digital Skills Workshop on Thursday, 19 November 2026…</p><p class="tiny">Page 2</p></div>
-      <div class="page sm"><p><b>Pedro Reyes</b><br>Records Officer, Records Section</p><p>Dear <span class="fill-in">Pedro Reyes</span>:</p><p>The Administrative Section invites you to the Digital Skills Workshop on Thursday, 19 November 2026…</p><p class="tiny">Page 3</p></div>
-      <div class="page sm"><p><b>Ana Villanueva</b><br>Data Encoder, Collection Section</p><p>Dear <span class="fill-in">Ana Villanueva</span>:</p><p>The Administrative Section invites you to the Digital Skills Workshop on Thursday, 19 November 2026…</p><p class="tiny">Page 4</p></div>
+    <div class="shots solo">
+      <div class="stage" style="width:calc(var(--u)*56);margin:0 auto">
+        <figure class="f"><div class="pic"><img src="images/ui/2.4/09-merged-letters.webp" alt="Word showing the new merged file: four pages, one letter each for Juan Dela Cruz, Ana Reyes, Pedro Reyes and Ana Villanueva">
+          <i class="ring" style="--x:12.4;--y:24.2;--w:25.6;--h:52.8"></i><i class="ring" style="--x:38.1;--y:24.2;--w:25.6;--h:52.8;--d:.25s"></i><i class="ring" style="--x:63.8;--y:24.2;--w:25.6;--h:52.8;--d:.5s"></i><i class="ring" style="--x:38.1;--y:77.2;--w:25.6;--h:19.4;--d:.75s"></i><i class="ring" style="--x:1.6;--y:96.4;--w:7.6;--h:3.2;--d:1s"></i></div></figure>
+      </div>
     </div>
-    <div class="callout tip mt-l"><b>Each letter starts on a new page</b> (Word adds a section break between them), so you can print the whole file at once.</div>
+    <div class="callout tip mt-m"><b>Each letter starts on a new page</b> (Word adds a section break between them), so you can print the whole file at once.</div>
     
   </section>
 

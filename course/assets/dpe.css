@@ -373,3 +373,44 @@ html.participant .opt.picked{border-color:var(--mod);background:var(--mod-soft)}
   .lms-act .pt small{font-size:11px}
   .lms-act .go{font-size:15px;min-height:42px;padding:0 16px;margin-left:auto}
 }
+
+/* Real-app screenshot walk-through (.shots, driven by dpe.js): stage + step list */
+.shots{display:grid;grid-template-columns:1.6fr 1fr;gap:calc(var(--u)*2.2);align-items:center}
+.shots.solo{grid-template-columns:1fr}
+.shots.rev{grid-template-columns:1fr 1.6fr}.shots.rev .stage{order:2}
+.shots .stage{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:calc(var(--u)*.8);background:#E4E8EE;
+  box-shadow:var(--shadow-lg);border:1px solid var(--border-strong)}
+.shots[data-walk] .stage{cursor:pointer}
+.shots .f{position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s ease}
+.shots .f.on{opacity:1;z-index:1}
+.shots .pic{position:relative;width:100%;transition:transform .9s cubic-bezier(.3,.1,.2,1)}
+.shots .f.zoomed .pic{transform:scale(var(--z,1))}
+.shots .pic img{display:block;width:100%;height:auto}
+.shots .ring{position:absolute;left:calc(var(--x)*1%);top:calc(var(--y)*1%);width:calc(var(--w)*1%);height:calc(var(--h)*1%);
+  border:calc(var(--u)*.24) solid var(--gold);border-radius:calc(var(--u)*.5);box-shadow:0 0 0 calc(var(--u)*.35) rgba(244,180,0,.28);
+  opacity:0;transform:scale(1.35);transition:opacity .3s ease var(--d,0s),transform .35s cubic-bezier(.3,1.6,.5,1) var(--d,0s);pointer-events:none}
+.shots .f.shown .ring{opacity:1;transform:none;animation:ringPulse 1.8s ease-out calc(var(--d,0s) + .5s) infinite}
+@keyframes ringPulse{0%{box-shadow:0 0 0 calc(var(--u)*.35) rgba(244,180,0,.4)}70%{box-shadow:0 0 0 calc(var(--u)*1.2) rgba(244,180,0,0)}100%{box-shadow:0 0 0 calc(var(--u)*.35) rgba(244,180,0,0)}}
+.shots .cur{position:absolute;width:calc(var(--u)*2.1);height:calc(var(--u)*2.1);margin:calc(var(--u)*-.35) 0 0 calc(var(--u)*-.45);z-index:3;pointer-events:none;
+  transition:left .7s cubic-bezier(.45,0,.2,1),top .7s cubic-bezier(.45,0,.2,1);filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+.shots .cur svg{display:block;width:100%;height:100%}
+.shots .cur::after{content:"";position:absolute;left:calc(var(--u)*.45);top:calc(var(--u)*.35);width:calc(var(--u)*2.6);height:calc(var(--u)*2.6);
+  margin:calc(var(--u)*-1.3) 0 0 calc(var(--u)*-1.3);border-radius:50%;background:rgba(244,180,0,.55);transform:scale(0);opacity:0;z-index:-1}
+.shots .cur.click::after{animation:clickRipple .55s ease-out}
+.shots .cur.click svg{animation:clickPress .25s ease-out}
+@keyframes clickRipple{0%{transform:scale(.2);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+@keyframes clickPress{50%{transform:scale(.82)}}
+.shots .cap{font-size:calc(var(--u)*.85);color:var(--text-3);margin-top:calc(var(--u)*.6)}
+.shots [data-step]:not(.f){cursor:pointer;transition:background .25s,opacity .25s;border-radius:calc(var(--u)*.6)}
+.shots .steps li[data-step]{padding-right:calc(var(--u)*.8)}
+.shots li[data-step].on{background:var(--gold-soft);box-shadow:inset calc(var(--u)*.35) 0 0 var(--gold)}
+.shots li[data-step].done{opacity:.6}
+.shots .ticks li[data-step]{padding-top:calc(var(--u)*.35);padding-bottom:calc(var(--u)*.35)}
+@media (prefers-reduced-motion:reduce){
+  .shots .f,.shots .pic,.shots .ring,.shots .cur{transition:none}
+  .shots .f.shown .ring,.shots .cur.click::after,.shots .cur.click svg{animation:none}
+}
+@media (max-width:700px) and (orientation:portrait){
+  .shots,.shots.rev{grid-template-columns:1fr}.shots.rev .stage{order:0}
+}
+.shots:not([data-walk]) .cur{display:none}

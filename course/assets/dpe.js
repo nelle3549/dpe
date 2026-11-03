@@ -4,6 +4,7 @@
    - .timer          activity countdown: data-min="3"; click start/pause, double-click reset
    - .video          YouTube card: data-yt="VIDEO_ID" (opens in a new tab; optional data-start="SECONDS")
    - .flip           click to flip a two-sided card
+   - .shots          real-app screenshot walk-through: pointer, click, gold rings, zoom (see below)
    Footer brand line and slide numbers are filled in automatically.
    Inside the LMS (in a frame): html.in-lms; with ?p=1 (participants) html.participant
    hides answer reveals. Swipe left/right changes slides on touch screens, and the
@@ -121,6 +122,90 @@
     if (go) window.parent.postMessage({ type: 'dpe-go', to: go.getAttribute('data-go') }, '*');
   });
 
+  // Screenshot walk-through (.shots): real app screenshots, one <figure class="f"> per click.
+  // The pointer glides to the target, clicks, the gold rings (.ring, --x/--y/--w/--h in % of
+  // the image) light up, then the picture zooms (data-zoom="1.6" around data-at="x,y", or data-o="x,y").
+  // Next/Back keys walk the frames before leaving the slide; click the picture or a step
+  // (li[data-step], matching the frames' data-step) to jump. Back into a slide = its last frame.
+  var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var CUR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z" fill="#111" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>';   // Lucide "mouse-pointer-2"
+  function shotAt(f) {
+    var a = (f.getAttribute('data-at') || '').split(','), r = f.querySelector('.ring');
+    if (a.length === 2) return [+a[0], +a[1]];
+    if (!r) return null;
+    var g = function (k) { return parseFloat(r.style.getPropertyValue('--' + k)) || 0; };
+    return [g('x') + g('w') / 2, g('y') + g('h') / 2];
+  }
+  function shotGo(box, i) {
+    var fs = box.querySelectorAll('.f'); if (!fs.length) return;
+    i = Math.max(0, Math.min(fs.length - 1, i));
+    var prev = box._i, f = fs[i], pic = f.querySelector('.pic'), at = shotAt(f);
+    box._i = i; clearTimeout(box._t1); clearTimeout(box._t2);
+    fs.forEach(function (x, k) { x.classList.toggle('on', k === i); x.classList.remove('shown', 'zoomed'); });
+    var st = f.getAttribute('data-step');
+    box.querySelectorAll('[data-step]:not(.f)').forEach(function (li) {
+      var s = li.getAttribute('data-step');
+      li.classList.toggle('on', s === st);
+      li.classList.toggle('done', st != null && +s < +st);
+    });
+    var z = parseFloat(f.getAttribute('data-zoom')) || 1;
+    var o = (f.getAttribute('data-o') || '').split(',');   // zoom anchor, when the pointer's spot sits too close to an edge
+    if (o.length === 2) pic.style.transformOrigin = o[0] + '% ' + o[1] + '%';
+    else if (at) pic.style.transformOrigin = at[0] + '% ' + at[1] + '%';
+    pic.style.setProperty('--z', z);
+    var cur = box._cur;
+    if (!cur) { cur = box._cur = document.createElement('i'); cur.className = 'cur'; cur.innerHTML = CUR; box._pos = [50, 70]; }
+    if (cur.parentNode !== pic) pic.appendChild(cur);
+    cur.classList.remove('click'); cur.style.display = at ? '' : 'none';
+    var done = function () { f.classList.add('shown'); if (z > 1) f.classList.add('zoomed'); };
+    if (still || !at) { if (at) { cur.style.left = at[0] + '%'; cur.style.top = at[1] + '%'; box._pos = at; } done(); return; }
+    cur.style.transition = 'none';
+    cur.style.left = box._pos[0] + '%'; cur.style.top = box._pos[1] + '%';
+    void cur.offsetWidth; cur.style.transition = '';
+    cur.style.left = at[0] + '%'; cur.style.top = at[1] + '%'; box._pos = at;
+    box._t1 = setTimeout(function () { cur.classList.add('click'); f.classList.add('shown'); }, prev === undefined ? 500 : 750);
+    if (z > 1) box._t2 = setTimeout(function () { f.classList.add('zoomed'); }, prev === undefined ? 1100 : 1350);
+  }
+  var shotDir = 1;
+  window.addEventListener('keydown', function (e) {
+    if (isPreview || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+    var fwd = /^(ArrowRight|ArrowDown|PageDown| )$/.test(e.key), back = /^(ArrowLeft|ArrowUp|PageUp)$/.test(e.key);
+    if (!fwd && !back) return;
+    shotDir = fwd ? 1 : -1;
+    var box = document.querySelector('.deck > .slide.is-active .shots[data-walk]');
+    if (!box) return;
+    var n = box.querySelectorAll('.f').length, i = box._i || 0;
+    if (fwd ? i >= n - 1 : i <= 0) return;   // past the ends: the deck moves on
+    e.preventDefault(); e.stopImmediatePropagation();
+    shotGo(box, i + shotDir);
+  }, true);
+  document.addEventListener('click', function (e) {
+    var li = e.target.closest('.shots [data-step]:not(.f)'), box = e.target.closest('.shots');
+    if (!box) return;
+    if (li) {
+      var f = box.querySelector('.f[data-step="' + li.getAttribute('data-step') + '"]');
+      if (f) shotGo(box, Array.prototype.indexOf.call(box.querySelectorAll('.f'), f));
+    } else if (e.target.closest('.stage') && box.hasAttribute('data-walk')) {
+      var n = box.querySelectorAll('.f').length;
+      shotGo(box, ((box._i || 0) + 1) % n);
+    }
+  });
+  function shotsInit() {
+    document.querySelectorAll('.shots').forEach(function (box) {
+      var sl = box.closest('.slide'), n = box.querySelectorAll('.f').length;
+      var enter = function () {
+        if (!sl.classList.contains('is-active')) { box._on = false; return; }
+        if (box._on) return; box._on = true;
+        box._i = undefined; box._pos = [50, 70];
+        shotGo(box, isPreview ? n - 1 : (shotDir < 0 ? n - 1 : 0));
+      };
+      new MutationObserver(enter).observe(sl, { attributes: true, attributeFilter: ['class'] });
+      enter();
+      if (!sl.classList.contains('is-active')) shotGo(box, 0);   // first frame for thumbnails / overview
+    });
+  }
+
   // Swipe: a mostly sideways drag of 50px or more moves one slide.
   function key(k) { document.dispatchEvent(new KeyboardEvent('keydown', { key: k, bubbles: true })); }
   var tx = null, ty = 0;
@@ -165,6 +250,7 @@
       document.body.appendChild(home);
     }
     document.querySelectorAll('.timer').forEach(initTimer);
+    shotsInit();
     // Partner logos: DICT (organizer), BIR (participants), Serial Disruptors (resource person's organization).
     var LOGOS = '<img src="images/logos/dict.png" alt="DICT">' +
                 '<img src="images/logos/bir.png" alt="Bureau of Internal Revenue">' +
