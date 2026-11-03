@@ -292,27 +292,32 @@
       <div><p class="kicker">Lab 1 · Part C · Everyday AI</p><h2 class="h2">Ask an AI, save the answer</h2></div>
       <button class="timer" data-min="7">7:00</button>
     </div>
-    <div class="grid" style="grid-template-columns:1.25fr .75fr;gap:calc(var(--u)*2);align-items:start">
-      <div class="try">
-        <div class="try-head"><span class="try-label">Try it now</span><span class="tiny">Any free AI assistant</span></div>
-        <ol>
-          <li>Open a free AI assistant: <b>Copilot</b>, <b>Gemini</b>, <b>ChatGPT</b> or <b>Meta AI</b>.</li>
-          <li>Type: <span class="prompt" style="display:inline;padding:.1em .4em">List 3 ways AI helps with organizing office files</span></li>
-          <li>Read the answer. Is each idea sensible? Anything to double-check?</li>
-          <li>Copy the answer into <b>Notepad</b> (or Word, Google Docs, LibreOffice Writer).</li>
-          <li>Add one line: <b>My note:</b> the most useful idea, and why.</li>
-          <li>Save it in <b>02 AI Responses</b> as <b>YYYY-MM-DD AI Response - Organizing Files</b>.</li>
-        </ol>
+    <div class="shots" data-walk style="grid-template-columns:1.35fr 1fr;gap:calc(var(--u)*1.8);align-items:start">
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="83.7,90"><div class="pic"><img src="images/ui/1.5/01-gemini-lab-prompt-typed.webp" alt="Gemini web app, new chat, with the lab prompt List 3 ways AI helps with organizing office files typed in the box"><i class="ring" style="--x:11.6;--y:83;--w:66;--h:13.6"></i><i class="ring" style="--x:81.2;--y:85.4;--w:4.8;--h:8.4;--d:.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-at="30,49"><div class="pic"><img src="images/ui/1.5/02-gemini-lab-answer-top.webp" alt="Gemini's answer begins: 1. Intelligent Content-Based Categorization, with a source chip aiofficetoolkit.com"><i class="ring" style="--x:13.4;--y:47;--w:38.6;--h:6"></i><i class="ring" style="--x:8.8;--y:40.4;--w:15.4;--h:5;--d:.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-at="50,94.6"><div class="pic"><img src="images/ui/1.5/03-gemini-lab-answer-end.webp" alt="End of the answer: 3. Natural Language Search and Retrieval, and the line Gemini is AI and can make mistakes"><i class="ring" style="--x:36.6;--y:92;--w:27.2;--h:5.4"></i><i class="ring" style="--x:18.6;--y:31;--w:14.8;--h:4.8;--d:.25s"></i><i class="ring" style="--x:54.6;--y:61.4;--w:6.6;--h:5;--d:.4s"></i></div></figure>
+          <figure class="f" data-step="4" data-at="32.8,71.2"><div class="pic"><img src="images/ui/1.5/03-gemini-lab-answer-end.webp" alt="The copy button under the answer"><i class="ring" style="--x:30.4;--y:67.6;--w:4.8;--h:6.8"></i></div></figure>
+        </div>
+        <p class="cap"><img class="logo" src="assets/logos/google-gemini.svg" alt="">Google Gemini web app, free account. <b>Sample answer; yours will differ.</b> Copilot, ChatGPT and Meta AI work the same way.</p>
       </div>
       <div>
-        <div class="media" style="height:calc(var(--u)*15);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)"><img src="images/m1/1-5-ai-laptop.jpg" alt="Person typing into an AI assistant on a laptop" style="width:100%;height:100%;object-fit:cover"></div>
-        <div class="callout gold mt-m"><b>Other topics:</b> a household budget, a sari-sari store, a kids' science project.</div>
-        <div class="callout warn mt-s"><b>Remember:</b> no names, TINs or office data in the prompt.</div>
+        <p class="kicker">Try it now · any free AI assistant</p>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Open a free AI assistant (<b>Copilot</b>, <b>Gemini</b>, <b>ChatGPT</b> or <b>Meta AI</b>) and type: <span class="prompt" style="display:inline;padding:.1em .4em">List 3 ways AI helps with organizing office files</span></li>
+          <li data-step="2">Read the answer. Three ideas? Is each one sensible?</li>
+          <li data-step="3">Anything to double-check? Most tools warn they <b>can make mistakes</b>, and name sources you can open.</li>
+          <li data-step="4">Copy it into <b>Notepad</b> (or Word, Google Docs). Add <b>My note:</b> the most useful idea, and why.</li>
+          <li>Save in <b>02 AI Responses</b> as <b>YYYY-MM-DD AI Response - Organizing Files</b>.</li>
+        </ol>
+        <div class="callout warn mt-s"><b>Remember:</b> no names, TINs or office data in the prompt. <b>Other topics:</b> a household budget, a sari-sari store, a kids' science project.</div>
       </div>
     </div>
     <div class="notes">
       <p>Click the timer for <b>7 minutes</b>. Demo once: open Copilot or Gemini, type the prompt, copy the answer, paste into Notepad, add "My note:", then <kbd>Ctrl</kbd>+<kbd>S</kbd> into <b>02 AI Responses</b>.</p>
       <p>Some tools ask you to sign in; that's fine with a personal account, or try another tool. The "My note" line is the copilot habit: you read and judged it. If someone gets an error or a refusal, they can use one of the other topics. Ask for "Done C" in the chat.</p>
+      <p>The screens are a real Gemini answer to this prompt (free account): three ideas (sorting files by what is inside them, renaming files, searching in plain language), with small source chips (aiofficetoolkit.com, Sortio) and the line "Gemini is AI and can make mistakes." Answers differ every time. Point at the sources: a tool vendor's website is not an official source, so the "double-check" habit still applies.</p>
     </div>
   </section>
 
