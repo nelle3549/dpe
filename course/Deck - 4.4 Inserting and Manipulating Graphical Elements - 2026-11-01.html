@@ -31,6 +31,7 @@
 .board .gl{position:absolute;border-top:1px dashed var(--coral);left:4%;right:4%}
 .stack{position:relative;height:calc(var(--u)*14)}
 .stack div{position:absolute;width:55%;height:60%;border-radius:calc(var(--u)*.6);display:flex;align-items:flex-start;padding:calc(var(--u)*.6);font-weight:700;font-size:calc(var(--u)*1);box-shadow:var(--shadow-lg)}
+.shots .pic{overflow:visible;border-radius:0;background:none}
 .alt{background:#fff;border:1px solid var(--border-strong);border-radius:calc(var(--u)*.5);padding:calc(var(--u)*.7) calc(var(--u)*1);font-family:var(--font-mono);font-size:calc(var(--u)*1.05);color:var(--text-1)}
 </style>
 </head>
@@ -111,22 +112,28 @@
 
   <!-- 4 · Pictures -->
   <section class="slide" data-title="Insert pictures">
-    <div class="split">
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="23.6,7.6"><div class="pic"><img src="images/ui/4.4/01-insert-image-menu.webp" alt="Google Slides Insert menu open with Image highlighted and its submenu: Upload from computer, Stock and web, Drive and Photos, Camera, By URL"><i class="ring" style="--x:21.2;--y:5.9;--w:4.8;--h:3.4"></i><i class="ring" style="--x:20.7;--y:11.2;--w:34.8;--h:5.8;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="60,20"><div class="pic"><img src="images/ui/4.4/01-insert-image-menu.webp" alt="The Image submenu with Upload from computer highlighted"><i class="ring" style="--x:55.7;--y:12.5;--w:29.8;--h:5.8"></i></div></figure>
+          <figure class="f" data-step="3"><div class="pic"><img src="images/ui/4.4/02-picture-inserted.webp" alt="A filing drawer photo placed on the slide Where I started, selected with round handles"><i class="ring" style="--x:34.5;--y:26.8;--w:47.1;--h:50"></i></div></figure>
+        </div>
+        <p class="cap">Google Slides, sample Lab 4 file with a course stock photo. PowerPoint: <b>Insert › Pictures › This Device</b> (also Stock Images in Microsoft 365). Impress: <b>Insert › Image</b>.</p>
+      </div>
       <div>
         <p class="kicker">Pictures</p>
-        <h2 class="h2">Insert a picture in three clicks</h2>
-        <table class="tbl mt-m">
-          <tr><th>App</th><th>Where</th></tr>
-          <tr><td><b>PowerPoint</b></td><td>Insert › Pictures › This Device (also Stock Images in Microsoft 365)</td></tr>
-          <tr><td><b>Google Slides</b></td><td>Insert › Image › Upload from computer (or Drive)</td></tr>
-          <tr><td><b>Impress</b></td><td>Insert › Image</td></tr>
-        </table>
-        <ul class="ticks mt-m">
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Insert a picture in three clicks</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Go to your slide, click <b>Insert › Image</b>. PowerPoint: <b>Insert › Pictures</b>.</li>
+          <li data-step="2"><b>Upload from computer</b> (PowerPoint: <b>This Device</b>) and pick your <b>Lab 1 image</b>.</li>
+          <li data-step="3">The picture lands selected, with round handles. Next, size it from a corner.</li>
+        </ol>
+        <ul class="ticks mt-s">
           <li>Or <b>drag</b> the file from File Explorer onto the slide.</li>
-          <li>Or copy a screenshot and <kbd>Ctrl</kbd> + <kbd>V</kbd>, like your <b>Lab 1 image</b>.</li>
+          <li>Screenshot: <kbd>Win</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>, then <kbd>Ctrl</kbd> + <kbd>V</kbd>.</li>
         </ul>
       </div>
-      <div class="media"><img src="images/m4/4-4-camera.jpg" alt="A DSLR camera on a wooden table"></div>
     </div>
     <div class="notes">
       <p>Demo all three ways in PowerPoint: the Insert tab, dragging from File Explorer, and pasting a screenshot. Pasting is fastest for screenshots: <b>Windows + Shift + S</b> to capture a part of the screen, then Ctrl+V on the slide.</p>
@@ -136,17 +143,25 @@
 
   <!-- 5 · Resize without stretching -->
   <section class="slide" data-title="Resize without stretching">
-    <div class="slide-head">
-      <div><p class="kicker">Resize</p><h2 class="h2">Drag the corners, never the sides</h2></div>
-    </div>
-    <div class="grid g3" style="gap:calc(var(--u)*2);align-items:end">
-      <div><p class="mcap good"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> Original</p><div class="pic" style="aspect-ratio:3/2"><img src="images/m4/4-4-camera.jpg" alt="Camera photo at its normal proportions" style="object-fit:cover"></div></div>
-      <div><p class="mcap bad"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg> Side handle: stretched</p><div class="pic" style="height:calc(var(--u)*8.2)"><img src="images/m4/4-4-camera.jpg" alt="The same photo stretched too wide" style="object-fit:fill"></div></div>
-      <div><p class="mcap good"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> Corner handle: same shape</p><div class="pic" style="aspect-ratio:3/2;width:72%"><img src="images/m4/4-4-camera.jpg" alt="The same photo resized smaller with its proportions kept" style="object-fit:cover"><div class="handles"><i style="left:-1%;top:-2%"></i><i style="right:-1%;top:-2%"></i><i style="left:-1%;bottom:-2%"></i><i style="right:-1%;bottom:-2%"></i></div></div></div>
-    </div>
-    <div class="grid g2 mt-l">
-      <div class="callout tip"><b>Do:</b> drag a <b>corner</b> handle. Hold <kbd>Shift</kbd> to be extra safe. To fill a space, <b>crop</b> instead of stretching.</div>
-      <div class="callout warn"><b>Already stretched?</b> PowerPoint: Picture Format › Reset Picture › <b>Reset Picture &amp; Size</b>. Or press <kbd>Ctrl</kbd> + <kbd>Z</kbd>.</div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="34.8,27.2"><div class="pic"><img src="images/ui/4.4/02-picture-inserted.webp" alt="The selected picture with handles on its corners and sides"><i class="ring" style="--x:33.6;--y:25.3;--w:2.4;--h:3.8"></i><i class="ring" style="--x:80.4;--y:75.0;--w:2.4;--h:3.8;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="30,62"><div class="pic"><img src="images/ui/4.4/04-side-stretched.webp" alt="The picture dragged wider from its left side handle: the drawer looks stretched and covers the text"><i class="ring" style="--x:31.6;--y:57.5;--w:1.6;--h:9"></i></div></figure>
+          <figure class="f" data-step="3"><div class="pic"><img src="images/ui/4.4/03-corner-resized.webp" alt="The picture made smaller from its corner handle, same proportions, beside the bullets"><i class="ring" style="--x:53;--y:47;--w:28.6;--h:30"></i><i class="ring" style="--x:52.1;--y:45.3;--w:2.0;--h:3.5;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Google Slides, sample Lab 4 file with a course stock photo. PowerPoint and Impress use the same corner and side handles.</p>
+      </div>
+      <div>
+        <p class="kicker">Resize</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Drag the corners, never the sides</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Click the picture: <b>corner</b> handles and <b>side</b> handles appear.</li>
+          <li data-step="2">A <b>side</b> handle stretches it: faces look wide, the office seal looks wrong. Undo with <kbd>Ctrl</kbd> + <kbd>Z</kbd>.</li>
+          <li data-step="3">A <b>corner</b> handle keeps the shape. Hold <kbd>Shift</kbd> to be extra safe.</li>
+        </ol>
+        <div class="callout warn mt-s"><b>Already stretched?</b> PowerPoint: Picture Format › Reset Picture › <b>Reset Picture &amp; Size</b>. To fill a space, <b>crop</b> instead.</div>
+      </div>
     </div>
     <div class="notes">
       <p>Stretched photos are the number one sign of an amateur deck. Faces become wide, logos become squashed, and the official seal looks wrong.</p>
@@ -156,28 +171,25 @@
 
   <!-- 6 · Crop and compress -->
   <section class="slide" data-title="Crop and compress">
-    <div class="slide-head">
-      <div><p class="kicker">Crop and compress</p><h2 class="h2">Cut out what doesn't help, shrink the file</h2></div>
-    </div>
-    <div class="grid g2" style="gap:calc(var(--u)*2.6)">
-      <div class="card top">
-        <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3" /><path d="M8.12 8.12 12 12" /><path d="M20 4 8.12 15.88" /><circle cx="6" cy="18" r="3" /><path d="M14.8 14.8 20 20" /></svg> Crop</h4>
-        <ol class="steps mt-s">
-          <li>Click the picture › Picture Format › <b>Crop</b>.</li>
-          <li>Drag the black crop handles inward; drag the photo to reposition.</li>
-          <li>Click outside the picture to finish.</li>
-        </ol>
-        <p class="small mt-s">Extras: <b>Crop to Shape</b> (circle for a profile photo) and <b>Aspect Ratio</b> (1:1, 16:9). Google Slides: double-click the image. Impress: right-click › Crop.</p>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="66,62"><div class="pic"><img src="images/ui/4.4/05-crop-handles.webp" alt="Crop mode: black crop handles on the corners and sides of the picture"><i class="ring" style="--x:53;--y:47;--w:28.6;--h:30"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.4" data-o="78,62"><div class="pic"><img src="images/ui/4.4/06-crop-dragged.webp" alt="The right crop handle dragged inward; the part to be cut is greyed out"><i class="ring" style="--x:73.8;--y:57;--w:2;--h:10"></i><i class="ring" style="--x:75.2;--y:47;--w:6.4;--h:30;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3"><div class="pic"><img src="images/ui/4.4/07-cropped.webp" alt="The cropped picture: only the open drawer remains"><i class="ring" style="--x:53;--y:46.8;--w:22;--h:30.2"></i></div></figure>
+        </div>
+        <p class="cap">Google Slides, sample Lab 4 file with a course stock photo. (double-click the picture to crop). PowerPoint: <b>Picture Format › Crop</b>. Impress: right-click › Crop.</p>
       </div>
-      <div class="card top">
-        <h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12v-1" /><path d="M10 18v-2" /><path d="M10 7V6" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M15.5 22H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v16a2 2 0 0 0 .274 1.01" /><circle cx="10" cy="20" r="2" /></svg> Compress</h4>
-        <p>Phone photos can be several MB each. Ten of them make a deck too big to email.</p>
-        <ol class="steps mt-s">
-          <li>Picture Format › <b>Compress Pictures</b>.</li>
-          <li>Untick "Apply only to this picture" to do all photos.</li>
-          <li>Tick "Delete cropped areas", choose <b>Web (150 ppi)</b> or <b>E-mail (96 ppi)</b>.</li>
+      <div>
+        <p class="kicker">Crop and compress</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Cut out what doesn't help</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Click the picture › Picture Format › <b>Crop</b>. Black crop handles appear.</li>
+          <li data-step="2">Drag a black handle inward; the greyed part will be cut.</li>
+          <li data-step="3">Click outside the picture (or press <kbd>Enter</kbd>) to finish.</li>
         </ol>
-        <p class="small mt-s">Impress: right-click › Compress. Google Slides handles sizes for you in Drive.</p>
+        <p class="small mt-s">Extras: <b>Crop to Shape</b> (a circle for a profile photo) and <b>Aspect Ratio</b> (1:1, 16:9).</p>
+        <div class="callout tip mt-s"><b>Compress:</b> Picture Format › <b>Compress Pictures</b>, tick "Delete cropped areas", choose <b>Web (150 ppi)</b> or <b>E-mail (96 ppi)</b>. Keep the original photos in a folder.</div>
       </div>
     </div>
     <div class="notes">
@@ -188,18 +200,25 @@
 
   <!-- 7 · Shapes and icons -->
   <section class="slide" data-title="Shapes and icons">
-    <div class="split rev">
-      <div class="media"><img src="images/m4/4-4-icons.jpg" alt="A sheet of simple line icons"></div>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="28.4,28.6"><div class="pic"><img src="images/ui/4.4/10-shapes-gallery.webp" alt="Insert, Shape, Shapes gallery open with the rounded rectangle highlighted"><i class="ring" style="--x:55.7;--y:24.2;--w:29.8;--h:5.8"></i><i class="ring" style="--x:27;--y:26.4;--w:3;--h:4.5;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="35,50"><div class="pic"><img src="images/ui/4.4/11-shape-typed.webp" alt="A rounded rectangle labelled Request, being typed in, with two more boxes: Approve and Release"><i class="ring" style="--x:32.0;--y:42.5;--w:15.9;--h:13.5"></i></div></figure>
+        </div>
+        <p class="cap">Google Slides, sample Lab 4 file with a course stock photo. PowerPoint: <b>Insert › Shapes</b>; Impress: <b>Insert › Shape</b>.</p>
+      </div>
       <div>
         <p class="kicker">Shapes and icons</p>
-        <h2 class="h2">Simple graphics that point, group and explain</h2>
-        <ul class="ticks mt-m">
-          <li><b>Shapes:</b> Insert › Shapes. Arrows, boxes, circles and callouts. Hold <kbd>Shift</kbd> while drawing for a perfect circle or square.</li>
-          <li><b>Type inside</b> a shape: click it and start typing.</li>
-          <li><b>Icons:</b> Insert › Icons in Microsoft 365: search "printer", recolour with Graphics Fill.</li>
-          <li><b>Google Slides and Impress:</b> Insert › Shape; icons come from free sites or add-ons.</li>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Simple graphics that point and explain</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b>Insert › Shapes</b>, pick one, then drag on the slide. Hold <kbd>Shift</kbd> for a perfect circle or square.</li>
+          <li data-step="2"><b>Type inside</b>: click the shape and start typing.</li>
+        </ol>
+        <ul class="ticks mt-s">
+          <li><b>Icons:</b> Insert › Icons in Microsoft 365: search "printer", recolour with Graphics Fill. Google Slides and Impress: icons from free sites.</li>
         </ul>
-        <div class="callout gold mt-m"><b>Keep one style:</b> all line icons or all filled icons, in your theme colours. Mixed styles look messy.</div>
+        <div class="callout gold mt-s"><b>Keep one style:</b> all line icons or all filled icons, in your theme colours.</div>
       </div>
     </div>
     <div class="notes">
@@ -210,25 +229,26 @@
 
   <!-- 8 · SmartArt / diagrams -->
   <section class="slide" data-title="SmartArt and diagrams">
-    <div class="slide-head">
-      <div><p class="kicker">SmartArt and diagrams</p><h2 class="h2">Turn a bulleted list into a diagram</h2></div>
-    </div>
-    <div class="grid" style="grid-template-columns:1fr 2fr;gap:calc(var(--u)*2.4);align-items:center">
-      <div class="card soft">
-        <p class="mcap" style="color:var(--text-3)">Before: bullets</p>
-        <ul style="margin:0;padding-left:1.1em;font-size:calc(var(--u)*1.35);line-height:1.6;color:var(--text-2)"><li>Computers and internet</li><li>Word processing</li><li>Spreadsheets</li><li>Presentations</li></ul>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="24,37.6"><div class="pic"><img src="images/ui/4.4/16-insert-diagram-menu.webp" alt="Insert, Diagram submenu: Grid, Hierarchy, Timeline, Process, Relationship, Cycle"><i class="ring" style="--x:20.6;--y:34.8;--w:36.7;--h:5.9"></i><i class="ring" style="--x:55.5;--y:53.8;--w:30.1;--h:5.9;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2"><div class="pic"><img src="images/ui/4.4/17-diagram-process-panel.webp" alt="The Process panel with Steps set to 4 and a chevron design"><i class="ring" style="--x:55;--y:26.2;--w:11.5;--h:7"></i><i class="ring" style="--x:55;--y:51;--w:33;--h:29;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-o="55,42"><div class="pic"><img src="images/ui/4.4/18-diagram-process.webp" alt="A four-step chevron diagram: Computers and internet, Word processing, Spreadsheets, Presentations"><i class="ring" style="--x:29;--y:38.8;--w:57.8;--h:7.6"></i></div></figure>
+        </div>
+        <p class="cap">Google Slides, sample Lab 4 file. PowerPoint: select the bullets › <b>Home › Convert to SmartArt</b> (or Insert › SmartArt). Impress: shapes plus connectors, then group.</p>
       </div>
       <div>
-        <p class="mcap" style="color:var(--mod)">After: a process diagram</p>
-        <div class="chev"><div>1 · Computers &amp; internet</div><div>2 · Word processing</div><div>3 · Spread&shy;sheets</div><div>4 · Presen&shy;tations</div></div>
+        <p class="kicker">SmartArt and diagrams</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Turn a list into a diagram</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b>Insert › Diagram › Process</b>. PowerPoint: select your four bullets › <b>Home › Convert to SmartArt</b>.</li>
+          <li data-step="2">Set the number of <b>steps</b> (4 modules) and pick a design.</li>
+          <li data-step="3">Type the four modules into the shapes.</li>
+        </ol>
+        <p class="small mt-s">Match the meaning: <b>Process</b> for steps in order, <b>Cycle</b> for a monthly report, <b>Hierarchy</b> for an org chart.</p>
       </div>
     </div>
-    <table class="tbl mt-l">
-      <tr><th>App</th><th>How</th></tr>
-      <tr><td><b>PowerPoint</b></td><td>Select the bullets › Home › <b>Convert to SmartArt</b>, or Insert › SmartArt. Pick Process, Cycle or Hierarchy.</td></tr>
-      <tr><td><b>Google Slides</b></td><td>Insert › <b>Diagram</b> (Grid, Hierarchy, Timeline, Process, Relationship, Cycle)</td></tr>
-      <tr><td><b>Impress</b></td><td>No SmartArt: build it with Insert › Shape plus connectors, then group</td></tr>
-    </table>
     <div class="notes">
       <p>Demo the magic button: type four bullets, select them, <b>Home, Convert to SmartArt</b>, and hover over the options. A list becomes a process in one click.</p>
       <p>Choose the diagram that matches the meaning: <b>process</b> for steps in order, <b>cycle</b> for something that repeats like a monthly report, <b>hierarchy</b> for an org chart of the section. Ask: "Which diagram fits 'how a taxpayer document moves from receiving to records'?" A process.</p>
@@ -237,30 +257,24 @@
 
   <!-- 9 · Insert the Lab 3 chart -->
   <section class="slide act" data-act="Portal activity" data-title="Insert the Lab 3 chart">
-    <div class="slide-head">
-      <div><p class="kicker">Charts · Lab 3 into Lab 4</p><h2 class="h2">Bring your Lab 3 chart into the slide</h2></div>
-    </div>
-    <div class="grid" style="grid-template-columns:1.15fr 1fr;gap:calc(var(--u)*2.6);align-items:center">
-      <div class="hb">
-        <div class="ct">Bond paper is 64% of our supplies cost</div>
-        <div class="r">Bond paper, long<div style="width:78%"><span>7,950</span></div></div>
-        <div class="r">Bond paper, A4<div style="width:60%"><span>6,125</span></div></div>
-        <div class="r">Printer ink<div class="lo" style="width:27.5%"><span>2,800</span></div></div>
-        <div class="r">Folder, long<div class="lo" style="width:20.4%"><span>2,080</span></div></div>
-        <div class="r">Envelope<div class="lo" style="width:12.1%"><span>1,230</span></div></div>
-        <div class="r">Ballpen<div class="lo" style="width:9.4%"><span>960</span></div></div>
-        <div class="r">Fastener<div class="lo" style="width:5%"><span>510</span></div></div>
-        <div class="r">Staple wire<div class="lo" style="width:3.8%"><span>384</span></div></div>
-        <p class="tiny mt-s">Total ₱22,039.00 · Source: Lab 3 Office Supplies Inventory</p>
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="52.2,40"><div class="pic"><img src="images/ui/4.4/19-excel-chart-selected.webp" alt="Excel: the Lab 3 bar chart selected, with its frame and handles"><i class="ring" style="--x:51.8;--y:33.8;--w:46;--h:57.9"></i></div></figure>
+          <figure class="f" data-step="2" data-at="3.2,12.6"><div class="pic"><img src="images/ui/4.4/20-ppt-chart-pasted.webp" alt="PowerPoint: the chart pasted on the chart slide; Paste button on the Home tab"><i class="ring" style="--x:1.5;--y:9.3;--w:3.5;--h:7.5"></i><i class="ring" style="--x:37;--y:36.8;--w:46;--h:50.4;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.3" data-o="50,30"><div class="pic"><img src="images/ui/4.4/20-ppt-chart-pasted.webp" alt="The slide title reads Bond paper is 64% of our supplies cost"><i class="ring" style="--x:27.5;--y:27.2;--w:54.5;--h:6.7"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Excel, then PowerPoint for Mac (dark mode), sample Lab 3 data. On a Mac use <kbd>Cmd</kbd> instead of <kbd>Ctrl</kbd>.</p>
       </div>
       <div>
-        <ol class="steps">
-          <li>In Excel, click the chart's edge and press <kbd>Ctrl</kbd> + <kbd>C</kbd>.</li>
-          <li>In PowerPoint, go to your chart slide and press <kbd>Ctrl</kbd> + <kbd>V</kbd>.</li>
-          <li>Click the <b>Paste Options</b> icon: keep it <b>embedded</b> (editable) or paste as a <b>Picture</b> (fixed).</li>
-          <li>Rewrite the chart title as a <b>message</b>.</li>
+        <p class="kicker">Charts · Lab 3 into Lab 4</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Bring your Lab 3 chart into the slide</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1">In Excel, click the chart's <b>edge</b> and press <kbd>Ctrl</kbd> + <kbd>C</kbd>.</li>
+          <li data-step="2">In PowerPoint, go to your chart slide and press <kbd>Ctrl</kbd> + <kbd>V</kbd>. <b>Paste Options</b>: keep it <b>embedded</b> (editable) or paste as a <b>Picture</b>.</li>
+          <li data-step="3">Rewrite the title as a <b>message</b>: bond paper is 64% of the ₱22,039 total.</li>
         </ol>
-        <p class="small mt-m"><b>Google Slides:</b> Insert › Chart › From Sheets (stays linked; click <b>Update</b> when the data changes). <b>Impress:</b> copy from Calc and paste.</p>
+        <p class="small mt-s"><b>Google Slides:</b> Insert › Chart › From Sheets (click <b>Update</b> when data changes). <b>Impress:</b> copy from Calc and paste.</p>
       </div>
     </div>
     <div class="notes">
@@ -326,21 +340,27 @@
 
   <!-- 12 · Align and distribute -->
   <section class="slide" data-title="Align and distribute">
-    <div class="split">
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="40,49"><div class="pic"><img src="images/ui/4.4/12-shapes-uneven.webp" alt="Three boxes placed by eye: Request, Approve and Release at different heights"><i class="ring" style="--x:32.0;--y:42.5;--w:15.8;--h:13.2"></i><i class="ring" style="--x:52.0;--y:57.0;--w:15.8;--h:13.2;--d:0.25s"></i><i class="ring" style="--x:70.4;--y:42.5;--w:15.9;--h:13.2;--d:0.5s"></i></div></figure>
+          <figure class="f" data-step="2" data-at="16,47.8"><div class="pic"><img src="images/ui/4.4/13-align-middle-menu.webp" alt="Arrange, Align submenu with Middle highlighted"><i class="ring" style="--x:39.3;--y:17;--w:36.7;--h:5.9"></i><i class="ring" style="--x:9.3;--y:45;--w:29.8;--h:5.8;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3"><div class="pic"><img src="images/ui/4.4/14-aligned-middle.webp" alt="The three boxes now in one straight row"><i class="ring" style="--x:31.8;--y:49.5;--w:54.5;--h:13.5"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.3" data-o="58,56"><div class="pic"><img src="images/ui/4.4/15-distributed.webp" alt="After Distribute horizontally: equal gaps between the boxes"><i class="ring" style="--x:47.6;--y:50;--w:3.9;--h:12.5"></i><i class="ring" style="--x:66.8;--y:50;--w:3.9;--h:12.5;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Google Slides (<b>Arrange › Align / Distribute</b>), sample Lab 4 file. PowerPoint: Shape or Picture Format › <b>Align</b>. Impress: Shape › Align Objects.</p>
+      </div>
       <div>
         <p class="kicker">Align and distribute</p>
-        <h2 class="h2">Hang your objects like picture frames</h2>
-        <div class="grid g2 mt-m" style="gap:calc(var(--u)*1)">
-          <div><p class="mcap bad"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg> By eye</p><div class="board"><div class="o" style="left:8%;top:22%"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6" /><rect x="6" y="14" width="12" height="8" rx="1" /></svg></div><div class="o" style="left:38%;top:44%"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg></div><div class="o" style="left:70%;top:14%"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg></div></div></div>
-          <div><p class="mcap good"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> Aligned + distributed</p><div class="board"><div class="gl" style="top:50%"></div><div class="o" style="left:8%;top:33%"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6" /><rect x="6" y="14" width="12" height="8" rx="1" /></svg></div><div class="o" style="left:39%;top:33%"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg></div><div class="o" style="left:70%;top:33%"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg></div></div></div>
-        </div>
-        <ul class="ticks mt-m">
-          <li>Select objects (<kbd>Shift</kbd> + click) › Shape or Picture Format › <b>Align</b> › Align Middle.</li>
-          <li>Then <b>Distribute Horizontally</b> for equal gaps.</li>
-          <li>Google Slides: Arrange › Align / Distribute. Impress: Shape › Align Objects.</li>
-        </ul>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Hang your objects like picture frames</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Placed by eye, nothing lines up. Select all three with <kbd>Shift</kbd> + click.</li>
+          <li data-step="2"><b>Align › Middle</b>: the level for your frames.</li>
+          <li data-step="3">Now they sit on one line.</li>
+          <li data-step="4"><b>Distribute › Horizontally</b>: equal gaps, like a tape measure.</li>
+        </ol>
+        <p class="small mt-s">PowerPoint also shows <b>Smart Guides</b>, red dashed lines, while you drag.</p>
       </div>
-      <div class="media"><img src="images/m4/4-4-frames.jpg" alt="Picture frames hung evenly on a wall"></div>
     </div>
     <div class="notes">
       <p>When we hang family photos on the wall at home, we use a level and a measuring tape. The <b>Align</b> and <b>Distribute</b> commands are that level and tape.</p>
@@ -417,25 +437,24 @@
 
   <!-- 16 · Alt text -->
   <section class="slide" data-title="Alt text">
-    <div class="slide-head">
-      <div><p class="kicker">Accessibility</p><h2 class="h2">Alt text describes the picture for people who can't see it</h2></div>
-    </div>
-    <div class="grid g2" style="gap:calc(var(--u)*3)">
+    <div class="shots" data-walk>
       <div>
-        <p class="mcap bad"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg> Useless alt text</p>
-        <div class="alt">Chart1.png</div>
-        <p class="mcap good mt-l"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> Helpful alt text</p>
-        <div class="alt">Bar chart of 8 office supplies by total cost. Bond paper, long (₱7,950) and A4 (₱6,125) are the largest, about 64% of ₱22,039.</div>
-        <p class="small mt-m">Say what it shows <b>and</b> what it means, in one or two sentences.</p>
+        <div class="stage">
+          <figure class="f" data-step="1" data-at="70,50.7"><div class="pic"><img src="images/ui/4.4/08-rightclick-alt-text.webp" alt="Right-click menu on the picture with Alt text highlighted"><i class="ring" style="--x:63.3;--y:47.8;--w:34.7;--h:5.8"></i></div></figure>
+          <figure class="f" data-step="2" data-zoom="1.3" data-o="72,70"><div class="pic"><img src="images/ui/4.4/09-alt-text.webp" alt="Alt Text section with the description: Open filing drawer full of labelled folders, files kept in order"><i class="ring" style="--x:57.3;--y:71;--w:29;--h:10.4"></i></div></figure>
+        </div>
+        <p class="cap">Google Slides, sample Lab 4 file. PowerPoint: right-click › <b>View Alt Text</b>; Impress: right-click › <b>Description</b>.</p>
       </div>
       <div>
-        <table class="tbl">
-          <tr><th>App</th><th>Add alt text</th></tr>
-          <tr><td><b>PowerPoint</b></td><td>Right-click › <b>View Alt Text</b> (or Edit Alt Text)</td></tr>
-          <tr><td><b>Google Slides</b></td><td>Right-click › <b>Alt text</b></td></tr>
-          <tr><td><b>Impress</b></td><td>Right-click › <b>Description</b> (or the Alt text option)</td></tr>
-        </table>
-        <div class="callout tip mt-m"><b>Decorative only?</b> In PowerPoint tick <b>Mark as decorative</b> so screen readers skip it.</div>
+        <p class="kicker">Accessibility</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Alt text describes the picture</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Right-click the picture › <b>Alt text</b> (PowerPoint: <b>View Alt Text</b>).</li>
+          <li data-step="2">Type what it shows <b>and</b> what it means, in one or two sentences.</li>
+        </ol>
+        <p class="mcap bad mt-s" style="margin-bottom:calc(var(--u)*.3)">Useless</p><div class="alt">Chart1.png</div>
+        <p class="mcap good mt-s" style="margin-bottom:calc(var(--u)*.3)">Helpful</p><div class="alt">Bar chart of 8 office supplies by total cost. Bond paper, long (₱7,950) and A4 (₱6,125) are about 64% of ₱22,039.</div>
+        <div class="callout tip mt-s"><b>Decorative only?</b> In PowerPoint tick <b>Mark as decorative</b>.</div>
       </div>
     </div>
     <div class="notes">
