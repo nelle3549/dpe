@@ -261,7 +261,7 @@
 
   function pwField(id, label, hint) {
     return '<div class="field"><label class="f" for="' + id + '">' + label + '</label><div class="pw"><input id="' + id + '" type="password" autocomplete="' +
-      (id === 'pw' || id === 'np' ? 'new-password' : 'current-password') + '"' + (hint ? ' aria-describedby="' + id + '-hint"' : '') + '><button type="button" data-show="' + id + '" aria-label="Show password">Show</button></div>' +
+      (id === 'pw' || id === 'pw2' || id === 'np' ? 'new-password' : 'current-password') + '"' + (hint ? ' aria-describedby="' + id + '-hint"' : '') + '><button type="button" data-show="' + id + '" aria-label="Show password">Show</button></div>' +
       (hint ? '<div class="hint" id="' + id + '-hint">' + hint + '</div>' : '') + '</div>';
   }
   // too easy to guess: under 8 characters, one repeated character, or only digits/letters in a row
@@ -286,10 +286,10 @@
       '<div class="field"><label class="f" for="ln">Last name</label><input id="ln" autocomplete="family-name"></div></div>' +
       '<div class="hint" id="cert">Certificate name: <b>…</b></div><div class="hint">Check the spelling: only the facilitator can change it later.</div>' +
       '<div class="field"><label class="f" for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email"><div class="hint">Used to recover your password, so use one you can open.</div></div>' +
-      '<div class="field"><label class="f" for="em2">Type your email again</label><input id="em2" type="email" autocomplete="off" inputmode="email"></div>' +
       '<div class="field"><label class="f" for="org">Organization</label><input id="org" value="' + esc(C.defaultOrganization) + '"></div>' +
       '<div class="field"><label class="f" for="pos">Position</label><input id="pos" autocomplete="organization-title"></div>' +
       pwField('pw', 'Create a password', 'At least 8 characters. A few words with a number is easy to remember.') +
+      pwField('pw2', 'Type the password again') +
       '<div class="err" id="err"></div>' +
       '<button class="btn primary block mt-3" id="go">Create my account</button>' +
       '<p class="small muted center">Already registered? <a href="#/login">Sign in</a></p></div></main>');
@@ -305,22 +305,37 @@
       };
     });
     $('go').onclick = async function () {
-      var v = { fn: $('fn').value.trim(), ln: $('ln').value.trim(), em: $('em').value.trim().toLowerCase(), em2: $('em2').value.trim().toLowerCase(),
-        org: $('org').value.trim(), pos: $('pos').value.trim(), pw: $('pw').value };
+      var v = { fn: $('fn').value.trim(), ln: $('ln').value.trim(), em: $('em').value.trim().toLowerCase(),
+        org: $('org').value.trim(), pos: $('pos').value.trim(), pw: $('pw').value, pw2: $('pw2').value };
       var bad = [];
       if (!v.fn) bad.push({ id: 'fn', msg: 'Please type your first name.' });
       if (!v.ln) bad.push({ id: 'ln', msg: 'Please type your last name.' });
       if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.em)) bad.push({ id: 'em', msg: 'Please type a valid email.' });
-      else if (v.em !== v.em2) bad.push({ id: 'em2', msg: 'The two emails don\'t match.' });
       if (!v.org) bad.push({ id: 'org', msg: 'Please type your organization.' });
       if (!v.pos) bad.push({ id: 'pos', msg: 'Please type your position.' });
       if (weakPw(v.pw)) bad.push({ id: 'pw', msg: weakPw(v.pw) });
+      else if (v.pw !== v.pw2) bad.push({ id: 'pw2', msg: 'The two passwords don\'t match.' });
       $('err').textContent = ''; if (fieldErrors(bad)) return;
-      this.disabled = true; this.textContent = 'Creating your account…';
+      review(v, function () { create(v); });
+    };
+    // one last look before the account is made: the name goes on the certificate, the email is how they sign in
+    function review(v, onOk) {
+      var row = function (k, x) { return '<div><dt>' + k + '</dt><dd>' + esc(x) + '</dd></div>'; };
+      $modal.innerHTML = '<div class="modal-back"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="rv-t">' +
+        '<h2 id="rv-t">Check your details</h2><p class="muted">Please check each one again. Only the facilitator can change them once your account is made.</p>' +
+        '<dl class="review">' + row('Name on your certificate', v.fn + ' ' + v.ln) + row('Email (you sign in with this)', v.em) + row('Organization', v.org) + row('Position', v.pos) + '</dl>' +
+        '<div class="row mt-3" style="justify-content:flex-end"><button class="btn" id="rv-edit">Edit</button><button class="btn primary" id="rv-ok">Continue</button></div></div></div>';
+      var close = function () { off(); $modal.innerHTML = ''; };
+      var off = modalKeys($modal.querySelector('.modal'), function () { $modal.innerHTML = ''; $('fn').focus(); });
+      document.getElementById('rv-edit').onclick = function () { close(); $('fn').focus(); };
+      document.getElementById('rv-ok').onclick = function () { close(); onOk(); };
+    }
+    async function create(v) {
+      var btn = $('go'); btn.disabled = true; btn.textContent = 'Creating your account…';
       var r = await sb.auth.signUp({ email: v.em, password: v.pw, options: { emailRedirectTo: BASE, data: {
         first_name: v.fn, last_name: v.ln, organization: v.org, position: v.pos, join_code: code, privacy_version: C.privacyVersion } } });
       if (r.error) {
-        this.disabled = false; this.textContent = 'Create my account';
+        btn.disabled = false; btn.textContent = 'Create my account';
         if (/already registered/i.test(r.error.message)) { fieldErrors([{ id: 'em', html: 'This email already has an account. <a href="#/login">Sign in instead</a>.' }]); return; }
         $('err').textContent = /database error/i.test(r.error.message) ? 'We couldn\'t register you with this class code. Check the code and try again.' : errMsg(r.error);
         return;
@@ -328,7 +343,7 @@
       if (!r.data.session) { render(topbar() + '<main class="narrow page"><div class="card"><h2>Check your email</h2><p>Open the link we sent to <b>' + esc(v.em) + '</b>, then sign in.</p></div></main>'); return; }
       S.session = r.data.session; sessionStorage.removeItem('dpeJoin');
       toast('Welcome, ' + v.fn + '!'); location.hash = sessionStorage.getItem('dpeGo') || '#/'; route();
-    };
+    }
   }
 
   function vLogin() {
