@@ -207,6 +207,7 @@ kbd,.kbd{display:inline-block;font-family:var(--font-mono);font-size:.82em;font-
 .tbl th{background:var(--mod-deep);color:#fff;text-align:left;font-weight:700;padding:calc(var(--u)*.8) calc(var(--u)*1.1)}
 .tbl td{padding:calc(var(--u)*.7) calc(var(--u)*1.1);border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top}
 .tbl tr:last-child td{border-bottom:0}
+.tbl.compact th,.tbl.compact td{padding-top:calc(var(--u)*.4);padding-bottom:calc(var(--u)*.4)}
 .tbl td b{color:var(--text-1)}
 .tbl.num td:not(:first-child){text-align:right;font-family:var(--font-mono)}
 
