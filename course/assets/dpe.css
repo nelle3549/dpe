@@ -325,3 +325,11 @@ html.participant .opt.picked{border-color:var(--mod);background:var(--mod-soft)}
   .flip{min-height:150px}
   .keys{grid-template-columns:auto minmax(0,1fr)}
 }
+
+/* ---------- portal activity slides: easy to spot while presenting ---------- */
+.slide.act{box-shadow:inset 0 calc(var(--u)*.6) 0 var(--gold)}
+.slide.act:not(.statement){background:linear-gradient(180deg,var(--gold-soft),var(--bg) 70%)}
+.slide.act::before{content:"✋ " attr(data-act);align-self:flex-start;flex:none;margin-bottom:calc(var(--u)*1.1);
+  background:var(--gold);color:var(--ink);font-weight:800;font-size:calc(var(--u)*1.1);letter-spacing:.08em;text-transform:uppercase;
+  padding:calc(var(--u)*.45) calc(var(--u)*1.1);border-radius:999px;box-shadow:0 4px 14px rgba(244,180,0,.35)}
+@media (max-width:760px){.slide.act::before{font-size:12px;padding:5px 12px;margin-bottom:12px}}
