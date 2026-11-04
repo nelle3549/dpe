@@ -491,3 +491,12 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 .docl .dt small{display:block;color:var(--text-3);font-size:13px;line-height:1.4;margin-top:2px}
 .docl .dx{flex:none;display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:14px;color:var(--m1);white-space:nowrap}
 @media (max-width:520px){.docl{flex-wrap:wrap}.docl .dx{margin-left:58px}}
+
+/* practice files list (topic "See more", Files buttons) */
+.files{list-style:none;padding:0!important;margin:8px 0 0;display:flex;flex-direction:column;gap:8px}
+.files li{margin:0!important}
+.files a{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;color:var(--text-1);text-decoration:none;min-height:44px}
+.files a:hover{background:var(--surface-2,#F4F7FB)}
+.files a .ico{flex:none;margin-top:2px;color:var(--navy,#0B2545)}
+.files b{display:block}
+.files small{display:block;color:var(--text-2,#3E4C63);font-size:13px;margin-top:2px}

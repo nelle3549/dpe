@@ -1,0 +1,17 @@
+[
+  {
+    "file": "Practice - 3.7 Charts Data - 2026-11-04.xlsx",
+    "title": "Chart data (start)",
+    "desc": "The January inventory (unsorted, no chart yet) and the household budget data for the pie, Budget vs Actual and electricity line charts: select the right range and build each chart.",
+    "slides": [
+      "Select the right data",
+      "Insert a chart",
+      "The result",
+      "Parts of a chart",
+      "Move, resize, change type",
+      "Pie: parts of one whole",
+      "Two series need a legend",
+      "Line: trend over time"
+    ]
+  }
+]

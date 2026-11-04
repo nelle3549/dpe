@@ -127,6 +127,7 @@
   // "Hide my tools" removes them, so a Zoom screen share looks exactly like the participants' screen.
   // icons: Lucide SVGs (ISC licence) in place of emoji
   var ICONS = {
+    'download': '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" x2="12" y1="15" y2="3" />',
     'wrench': '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />',
     'eye': '<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /><circle cx="12" cy="12" r="3" />',
     'dot': '<circle cx="12" cy="12" r="6" fill="currentColor" stroke="none"/>',
@@ -505,7 +506,8 @@
       '<p class="dur">' + ico('clock') + ' ' + esc(t.dur) + (t.video ? '<span class="muted"> · video ' + t.video + '</span>' : '') + '</p>' +
       '<p class="sum">' + esc(t.desc) + '</p><button type="button" class="more" data-more="' + t.id + '">See more</button>' +
       (on && !adm ? progLine(lessonState(t)) : '') +
-      (go ? '<div class="go">' + openBtn(t, adm, on, deckView) + (t.video ? '<a class="btn" href="#/video/' + t.id + '">' + ico('play') + ' Play video</a>' : '') + '</div>' +
+      (go ? '<div class="go">' + openBtn(t, adm, on, deckView) + (t.video ? '<a class="btn" href="#/video/' + t.id + '">' + ico('play') + ' Play video</a>' : '') +
+        (t.files && t.files.length ? '<button type="button" class="btn" data-files="' + t.id + '">' + ico('download') + ' Files</button>' : '') + '</div>' +
         (t.activities.length ? '<div class="acts">' + t.activities.map(actLink).join('') + '</div>' : '') : '') +
       (adm ? '<div class="fac facfoot"><label class="switch"><input type="checkbox" role="switch" data-tog="' + t.id + '"' + (on ? ' checked' : '') + '>' +
         '<span class="sl" aria-hidden="true"></span><span>' + (on ? 'Open to class' : 'Closed') + '</span></label><a class="rlink" href="#/results/' + t.id + '">Results ›</a></div>' : '') +
@@ -522,6 +524,26 @@
     return '<a class="btn primary" href="' + deckView + t.id + (ls.resume > 1 ? '/' + ls.resume : '') + '">' + (ls.done ? 'Review' : ls.started ? 'Resume' : 'Open') + '</a>';
   }
   // See more: the topic's synopsis and parts
+  // practice files (course/files/<topic>/): the starter files for the topic's examples, listed in the catalog by tools/sync.py
+  function fileList(t) {
+    var kb = function (n) { return n >= 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; };
+    return '<ul class="files">' + t.files.map(function (x) {
+      var ext = (x.file.split('.').pop() || '').toUpperCase();
+      return '<li><a href="course/files/' + t.id + '/' + encodeURIComponent(x.file) + '" download="' + esc(x.file) + '">' + ico('download') +
+        '<span><b>' + esc(x.title) + '</b><small>' + esc(x.desc) + ' · ' + ext + ', ' + kb(x.size) + '</small></span></a></li>';
+    }).join('') + '</ul>';
+  }
+  function filesModal(tid, from) {
+    var t = TOPIC[tid].t;
+    $modal.innerHTML = '<div class="modal-back" id="fm-back"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="fm-t">' +
+      '<p class="kicker">Topic ' + t.id + ' · practice files</p><h2 id="fm-t">' + esc(t.title) + '</h2>' +
+      '<p class="muted">Download a file and open it in Excel, Word, PowerPoint, Google or LibreOffice to follow along with the slides.</p>' + fileList(t) +
+      '<div class="row mt-3" style="justify-content:flex-end"><button class="btn primary" id="fm-x">Close</button></div></div></div>';
+    var close = function () { off(); $modal.innerHTML = ''; if (from && from.isConnected) from.focus(); };
+    var off = modalKeys($modal.querySelector('.modal'), function () { $modal.innerHTML = ''; if (from && from.isConnected) from.focus(); });
+    document.getElementById('fm-x').onclick = close;
+    document.getElementById('fm-back').onclick = function (e) { if (e.target === this) close(); };
+  }
   function topicInfo(tid, from) {
     var t = TOPIC[tid].t, m = TOPIC[tid].m;
     $modal.innerHTML = '<div class="modal-back" id="ti-back"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="ti-t">' +
@@ -529,6 +551,7 @@
       '<h3 class="mh">Synopsis</h3><p>' + esc(t.desc) + '</p>' +
       (t.parts && t.parts.length ? '<h3 class="mh">Parts</h3><ul>' + t.parts.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '') +
       (t.activities.length ? '<h3 class="mh">Activities</h3><ul>' + t.activities.map(function (a) { return '<li>' + esc(a.title) + '</li>'; }).join('') + '</ul>' : '') +
+      (t.files && t.files.length ? '<h3 class="mh">Practice files</h3>' + fileList(t) : '') +
       '<div class="row mt-3" style="justify-content:flex-end"><button class="btn primary" id="ti-x">Close</button></div></div></div>';
     var close = function () { off(); $modal.innerHTML = ''; if (from && from.isConnected) from.focus(); };
     var off = modalKeys($modal.querySelector('.modal'), function () { $modal.innerHTML = ''; if (from && from.isConnected) from.focus(); });
@@ -633,6 +656,7 @@
     render(html + '<p class="small muted mt-4">Signed in as ' + esc(p.email) + (isViewer() ? ' · preview account' : ' · Certificate name: <b>' + esc(fullName(p)) + '</b> (spelling wrong? Ask the facilitator.)') + '</p></main>');
     if (hy) scrollTo(0, hy);   // back from a lesson or activity: where you were on the list
     document.querySelectorAll('[data-more]').forEach(function (b) { b.onclick = function () { topicInfo(b.dataset.more, b); }; });
+    document.querySelectorAll('[data-files]').forEach(function (b) { b.onclick = function () { filesModal(b.dataset.files, b); }; });
     ['ans-more', 'ans-less'].forEach(function (id) { var b = document.getElementById(id); if (b) b.onclick = function () { var y = scrollY; S.ansAll = id === 'ans-more'; vHome(); scrollTo(0, y); }; });
     if (adm) {
       document.querySelectorAll('[data-tog]').forEach(function (b) {
@@ -674,11 +698,13 @@
     render('<div class="present"><div class="pbar vbar">' + (back ? '<a href="' + esc(back) + '">← Activity</a>' : '') + '<a href="#/">' + ico('house') + ' Home</a>' +
       '<span class="t">' + tid + ' ' + esc(T.title) + '</span>' +
       (kind === 'deck' && T.video ? '<a href="#/video/' + tid + '">' + ico('play') + ' Video</a>' : kind === 'video' ? '<a href="#/deck/' + tid + '">Slides</a>' : '') +
+      (T.files && T.files.length ? '<button id="pfiles">' + ico('download') + ' Files</button>' : '') +
       '</div><div class="pbody"><iframe id="view" src="' + src + '" title="' + esc(T.title) + '" allow="autoplay; fullscreen" allowfullscreen></iframe></div>' +
       (kind === 'deck' ? '<div class="pnav"><button id="prev" aria-label="Previous slide">‹ Back</button><span id="pcount" aria-live="polite"></span><button id="next" aria-label="Next slide">Next ›</button>' +
         '<button id="nextl" class="nl" hidden>Next lesson ›</button></div>' : '') +
       '</div>');
     viewTid = tid;
+    var $pf = document.getElementById('pfiles'); if ($pf) $pf.onclick = function () { filesModal(tid, $pf); };
     var $v = document.getElementById('view');
     $v.onload = function () { try { $v.contentWindow.focus(); } catch (e) {} };
     if (kind !== 'deck') return;
@@ -1083,6 +1109,7 @@
     // the same frame as the participants' slide viewer (#/deck), with the facilitator's controls (.fac) added
     render('<div class="present"><div class="pbar vbar"><a href="#/">' + ico('house') + ' Home</a><span class="t" title="' + tid + ' ' + esc(T.title) + '">' + tid + ' ' + esc(T.title) + '</span>' +
       (T.video ? '<a href="#/video/' + tid + '">' + ico('play') + ' Video</a>' : '') +
+      (T.files && T.files.length ? '<button id="pfiles">' + ico('download') + ' Files</button>' : '') +
       '<span class="fac pfac"><button class="tlive" id="tlive"></button><button class="golive hide" id="golive"></button>' +
       '<select id="pick" aria-label="Open an activity for answers"><option value="">Open for answers…</option>' + opts + '</select>' +
       '<button class="hide" id="showlive">' + ico('hand') + ' Answers panel</button>' +
@@ -1097,6 +1124,7 @@
     var $nx = document.getElementById('next'), ntp = nextTopic(tid); if (ntp) $nx.dataset.nt = ntp.id;
     $nx.onclick = function () { if ($nx.dataset.end && !$nx.dataset.more) location.hash = ntp ? '#/present/' + ntp.id : '#/'; else sendKey('ArrowRight'); };
     var $f = document.getElementById('deck'), $go = document.getElementById('golive'), $live = document.getElementById('live');
+    var $pf = document.getElementById('pfiles'); if ($pf) $pf.onclick = function () { filesModal(tid, $pf); };
     document.getElementById('openit').onclick = function () { setTopic(tid, true).then(function () { document.getElementById('lockbar').classList.add('hide'); }); };
     document.getElementById('pick').onchange = function () { if (this.value) goLive(this.value); this.value = ''; };
     document.getElementById('showlive').onclick = function () { panelHidden = false; showPanel(); };

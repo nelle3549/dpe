@@ -1,0 +1,17 @@
+[
+  {
+    "file": "Practice - 3.3 Office Supplies Inventory - 2026-11-04.xlsx",
+    "title": "Office Supplies Inventory (start)",
+    "desc": "The formatted inventory with Total Cost still empty, the Household Budget (Budget vs Actual) and an Errors sheet: write =C2*D2, fill it down, add the total, and make each error on purpose.",
+    "slides": [
+      "Every formula starts with =",
+      "Arithmetic operators",
+      "Order of operations",
+      "Cell references",
+      "Total Cost, filled down",
+      "Budget vs Actual",
+      "Common errors",
+      "Show formulas"
+    ]
+  }
+]

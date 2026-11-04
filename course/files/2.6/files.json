@@ -1,0 +1,20 @@
+[
+  {
+    "file": "Practice - 2.6 AI Draft to Edit - 2026-11-04.docx",
+    "title": "AI draft with 5 problems (start)",
+    "desc": "The sample AI draft of the invitation, pasted into Word. Find the five problems, then fix them with Track Changes on.",
+    "slides": [
+      "Try it now: spot the problems",
+      "Worked example: human edit",
+      "Remove placeholders"
+    ]
+  },
+  {
+    "file": "Practice - 2.6 Lab 2 Data Source - 2026-11-04.xlsx",
+    "title": "Lab 2 data source (start)",
+    "desc": "An empty list with the four headers Name, Position, Section and Email. Add at least 3 sample rows for your Lab 2 mail merge.",
+    "slides": [
+      "Lab 2 step plan"
+    ]
+  }
+]

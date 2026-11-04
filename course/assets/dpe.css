@@ -451,3 +451,14 @@ html.participant .opt.picked{border-color:var(--mod);background:var(--mod-soft)}
 /* help that participants may open themselves (hints, quick fixes, task data): kept in the participant copy */
 html.participant .reveal-btn.keep{display:inline-block!important}
 html.participant .answer.keep{display:none!important}html.participant .answer.keep.shown{display:block!important}
+
+/* practice-file download chips, added by the LMS sync on the slides that use a starter file */
+.dlchip{display:inline-flex;align-items:center;gap:.4em;padding:.28em .85em;border-radius:999px;background:var(--surface);color:var(--mod-ink,var(--mod));
+  border:1.5px solid var(--mod);font-weight:700;font-size:calc(var(--u)*.85);line-height:1.2;text-decoration:none;white-space:nowrap;vertical-align:middle;cursor:pointer}
+.dlchip:hover{background:var(--mod-soft)}
+.dlchip .ico{flex:none}
+.cap .dlchip{margin:.3em 0 0 .5em}
+.dlchips{display:inline-flex;flex-wrap:wrap;gap:calc(var(--u)*.5);align-items:center}
+.slide-head .dlchips{align-self:center;margin-left:calc(var(--u)*.6)}
+.dlchips.abs{position:absolute;top:calc(var(--u)*1.5);right:calc(var(--u)*5.2);z-index:3}
+@media print{.dlchip{display:none}}

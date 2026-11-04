@@ -1,0 +1,17 @@
+[
+  {
+    "file": "Practice - 3.6 Office Supplies Inventory 2026 - 2026-11-04.xlsx",
+    "title": "Office Supplies Inventory 2026 (start)",
+    "desc": "Jan, Feb and Mar tabs with the deck's quantities and totals, an empty Summary sheet and a long Attendance list: link the Summary with =Jan!E10, then freeze, find, sort, filter, protect and set up printing.",
+    "slides": [
+      "Sheet tabs",
+      "A Summary sheet",
+      "Freeze panes and zoom",
+      "Find and replace",
+      "Sorting a list",
+      "Filtering a list",
+      "Sheet protection basics",
+      "Preparing to print"
+    ]
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "file": "Practice - 2.2 Workshop Invitation Letter - 2026-11-04.docx",
+    "title": "Workshop invitation letter, plain (start)",
+    "desc": "The letter as saved in 2.1: plain text in the default font, with the typo and the word apps still in it. Format, edit and proofread it.",
+    "slides": [
+      "Font and character formatting",
+      "Alignment",
+      "Line and paragraph spacing",
+      "Styles and headings",
+      "Format Painter and Clear Formatting",
+      "Undo and Find and Replace",
+      "Spelling, grammar, word count",
+      "Before and after",
+      "Try it: format the letter"
+    ]
+  },
+  {
+    "file": "Practice - 2.2 Dela Cruz Family Reunion - 2026-11-04.docx",
+    "title": "Dela Cruz Family Reunion notice (start)",
+    "desc": "The home example as plain lines. Center and bold the title and turn the three items into a bullet list.",
+    "slides": [
+      "At the office and at home"
+    ]
+  }
+]

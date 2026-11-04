@@ -1,0 +1,14 @@
+[
+  {
+    "file": "Practice - 3.8 AI Check - 2026-11-04.xlsx",
+    "title": "Inventory for AI checks (start)",
+    "desc": "The January inventory with its formulas, a co-worker's SUMIF in E13 and a Summary of monthly spending: paste the AI's formulas, check them by hand and recompute the trends.",
+    "slides": [
+      "1 · Suggest a formula",
+      "2 · Explain a formula",
+      "3 · Spot trends",
+      "Three checks",
+      "Invented functions"
+    ]
+  }
+]

@@ -190,7 +190,7 @@
   }, true);
   document.addEventListener('click', function (e) {
     var li = e.target.closest('.shots [data-step]:not(.f)'), box = e.target.closest('.shots');
-    if (!box) return;
+    if (!box || e.target.closest('.dlchip')) return;   // a practice-file download, not a step
     if (li) {
       var f = box.querySelector('.f[data-step="' + li.getAttribute('data-step') + '"]');
       if (f) shotGo(box, Array.prototype.indexOf.call(box.querySelectorAll('.f'), f));

@@ -1,0 +1,46 @@
+[
+  {
+    "file": "Practice - 4.4 Demo Deck Graphics - 2026-11-04.pptx",
+    "title": "Demo deck: graphics (start)",
+    "desc": "Six slides ready for a photo, three boxes to align, four modules to turn into a diagram, a chart slide and a table slide.",
+    "slides": [
+      "Insert pictures",
+      "Resize without stretching",
+      "Crop and compress",
+      "Shapes and icons",
+      "SmartArt and diagrams",
+      "Insert a chart",
+      "Tables",
+      "Align and distribute",
+      "Group and arrange",
+      "Alt text"
+    ]
+  },
+  {
+    "file": "Practice - 4.4 Filing drawer photo - 2026-11-04.jpg",
+    "title": "Filing drawer photo",
+    "desc": "The course stock photo (Unsplash) to insert on the \"Where I started\" slide, then resize and crop.",
+    "slides": [
+      "Insert pictures",
+      "Resize without stretching",
+      "Crop and compress"
+    ]
+  },
+  {
+    "file": "Practice - 4.4 Office Supplies Inventory - 2026-11-04.xlsx",
+    "title": "Office Supplies Inventory with chart",
+    "desc": "The Module 3 inventory (8 items, total ₱22,039.00) with its bar chart: copy the chart into the deck.",
+    "slides": [
+      "Insert a chart"
+    ]
+  },
+  {
+    "file": "Practice - 4.4 Supplies chart picture - 2026-11-04.png",
+    "title": "Supplies chart as a picture",
+    "desc": "The same chart as a PNG picture, for pasting as a picture or when you have no spreadsheet app.",
+    "slides": [
+      "Insert a chart",
+      "Alt text"
+    ]
+  }
+]

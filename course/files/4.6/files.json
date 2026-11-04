@@ -1,0 +1,33 @@
+[
+  {
+    "file": "Practice - 4.6 Demo Deck Media - 2026-11-04.pptx",
+    "title": "Demo deck: media (start)",
+    "desc": "Two slides with no media yet: add the music to \"Happy 80th, Lola!\" and the scanner clip to \"Using the office scanner\".",
+    "slides": [
+      "Inserting video",
+      "Inserting audio",
+      "Trimming",
+      "Playback options",
+      "File size: embed or link"
+    ]
+  },
+  {
+    "file": "Practice - 4.6 Scanner how-to clip - 2026-11-04.mp4",
+    "title": "Scanner how-to clip (3:00)",
+    "desc": "A 3-minute sample video (title card and timer, made for this course) to insert, trim to 00:28 to 00:58 and set to play on click.",
+    "slides": [
+      "Inserting video",
+      "Trimming",
+      "Playback options",
+      "File size: embed or link"
+    ]
+  },
+  {
+    "file": "Practice - 4.6 Soft background music - 2026-11-04.mp3",
+    "title": "Soft background music (1:00)",
+    "desc": "A 60-second soft chord made for this course, free to use: insert it on the Lola slide and play it in the background.",
+    "slides": [
+      "Inserting audio"
+    ]
+  }
+]

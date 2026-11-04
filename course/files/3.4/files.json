@@ -1,0 +1,16 @@
+[
+  {
+    "file": "Practice - 3.4 Office Supplies Inventory - 2026-11-04.xlsx",
+    "title": "Office Supplies Inventory (start)",
+    "desc": "The inventory as 3.3 left it, with Total Cost formulas, the long + total in E10 and empty summary rows 12 to 18: replace E10 with SUM, then add AVERAGE, COUNT, COUNTA, MIN and MAX.",
+    "slides": [
+      "AutoSum",
+      "SUM",
+      "AVERAGE",
+      "COUNT and COUNTA",
+      "MIN and MAX",
+      "Functions vs manual addition",
+      "Typical mistakes"
+    ]
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "file": "Practice - 3.2 Office Supplies Inventory - 2026-11-04.xlsx",
+    "title": "Office Supplies Inventory (start)",
+    "desc": "The unformatted inventory plus practice sheets (Formats, Text trap, Budget, Attendance, Raw data): apply peso currency, bold, borders, freeze panes and the reorder rule, fix text numbers and clean raw data.",
+    "slides": [
+      "Format changes the look",
+      "Numbers stored as text",
+      "Currency format",
+      "Dates",
+      "Alignment, wrap, bold",
+      "Borders and fill",
+      "Merge and Center",
+      "Freeze the top row",
+      "Conditional formatting",
+      "Cleaning a raw dataset"
+    ]
+  }
+]

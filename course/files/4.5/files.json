@@ -1,0 +1,13 @@
+[
+  {
+    "file": "Practice - 4.5 Demo Deck Motion - 2026-11-04.pptx",
+    "title": "Demo deck: motion (start)",
+    "desc": "Four slides with no transitions or animations yet: apply one transition to all, then animate the bullets on \"What I learned\".",
+    "slides": [
+      "Where to find them",
+      "Bullets one at a time",
+      "Timing and duration",
+      "The Animation Pane"
+    ]
+  }
+]

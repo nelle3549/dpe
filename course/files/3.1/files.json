@@ -1,0 +1,18 @@
+[
+  {
+    "file": "Practice - 3.1 Office Supplies Inventory - 2026-11-04.xlsx",
+    "title": "Office Supplies Inventory (start)",
+    "desc": "The 8-item inventory typed in plain cells, plus an empty Household Budget 2026 sheet: move around, select, edit, copy B5 into the empty B9, insert rows and AutoFill.",
+    "slides": [
+      "The spreadsheet window",
+      "Cell addresses",
+      "Name Box and formula bar",
+      "Moving around",
+      "Selecting ranges",
+      "Enter, edit, clear",
+      "AutoFill",
+      "Copy, cut, paste",
+      "Insert, delete, resize"
+    ]
+  }
+]

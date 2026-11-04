@@ -1,0 +1,17 @@
+[
+  {
+    "file": "Practice - 4.2 Demo Deck Skeleton - 2026-11-04.pptx",
+    "title": "My Digital Skills Journey skeleton (start)",
+    "desc": "Six titled slides in the default theme and one layout: apply a theme and layouts, then add, reorder, hide, present and export to PDF.",
+    "slides": [
+      "The interface",
+      "Themes",
+      "Slide layouts",
+      "Add, duplicate, delete, reorder",
+      "Slide Sorter, sections, hide",
+      "Views",
+      "Keys during a show",
+      "Save and export to PDF"
+    ]
+  }
+]

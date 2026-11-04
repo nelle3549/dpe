@@ -38,7 +38,8 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 12
      }
-    ]
+    ],
+    "files": []
    },
    {
     "id": "1.2",
@@ -69,6 +70,14 @@ window.CATALOG = [
       "slide": "Quick check",
       "minutes": 1,
       "slideNo": 14
+     }
+    ],
+    "files": [
+     {
+      "file": "Practice - 1.2 File Management - 2026-11-04.zip",
+      "title": "File management practice folder (start)",
+      "desc": "A sample Admin Section memo folder to explore and sort, plus a messy desktop with badly named files to rename, copy, move, delete and restore.",
+      "size": 140956
      }
     ]
    },
@@ -102,7 +111,8 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 12
      }
-    ]
+    ],
+    "files": []
    },
    {
     "id": "1.4",
@@ -134,7 +144,8 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 15
      }
-    ]
+    ],
+    "files": []
    },
    {
     "id": "1.5",
@@ -174,7 +185,8 @@ window.CATALOG = [
       "minutes": 10,
       "slideNo": 14
      }
-    ]
+    ],
+    "files": []
    }
   ]
  },
@@ -224,6 +236,14 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 20
      }
+    ],
+    "files": [
+     {
+      "file": "Practice - 2.1 Workshop Invitation Raw Text - 2026-11-04.txt",
+      "title": "Workshop invitation raw text (start)",
+      "desc": "The plain, unformatted text of the invitation letter, typo included. Paste it into a new blank document and save it the right way.",
+      "size": 576
+     }
     ]
    },
    {
@@ -255,6 +275,20 @@ window.CATALOG = [
       "slide": "Quick check",
       "minutes": 1,
       "slideNo": 21
+     }
+    ],
+    "files": [
+     {
+      "file": "Practice - 2.2 Workshop Invitation Letter - 2026-11-04.docx",
+      "title": "Workshop invitation letter, plain (start)",
+      "desc": "The letter as saved in 2.1: plain text in the default font, with the typo and the word apps still in it. Format, edit and proofread it.",
+      "size": 36980
+     },
+     {
+      "file": "Practice - 2.2 Dela Cruz Family Reunion - 2026-11-04.docx",
+      "title": "Dela Cruz Family Reunion notice (start)",
+      "desc": "The home example as plain lines. Center and bold the title and turn the three items into a bullet list.",
+      "size": 36764
      }
     ]
    },
@@ -296,6 +330,32 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 21
      }
+    ],
+    "files": [
+     {
+      "file": "Practice - 2.3 Workshop Invitation Letter - 2026-11-04.docx",
+      "title": "Workshop invitation letter, formatted (start)",
+      "desc": "The letter as 2.2 leaves it: Arial 12, centered office name, bold subject, justified body. Add the schedule table here.",
+      "size": 37065
+     },
+     {
+      "file": "Practice - 2.3 Sample Office Logo - 2026-11-04.png",
+      "title": "Sample office logo",
+      "desc": "A round sample logo to insert in the letterhead and resize from a corner.",
+      "size": 18559
+     },
+     {
+      "file": "Practice - 2.3 Birthday Invitation - 2026-11-04.docx",
+      "title": "Birthday invitation (start)",
+      "desc": "The home example text with no picture yet. Insert the birthday photo, resize it from a corner and try the wrapping options.",
+      "size": 36964
+     },
+     {
+      "file": "Practice - 2.3 Birthday Photo - 2026-11-04.jpg",
+      "title": "Birthday photo",
+      "desc": "The sample photo of three smiling children to insert into the birthday invitation.",
+      "size": 394329
+     }
     ]
    },
    {
@@ -336,6 +396,32 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 21
      }
+    ],
+    "files": [
+     {
+      "file": "Practice - 2.4 Workshop Invitees - 2026-11-04.xlsx",
+      "title": "Workshop Invitees list",
+      "desc": "The data source: one sheet named Workshop Invitees with Name, Position, Section and Email for the four sample colleagues. Connect it to the letter.",
+      "size": 5207
+     },
+     {
+      "file": "Practice - 2.4 Invitation Letter - 2026-11-04.docx",
+      "title": "Invitation letter, main document (start)",
+      "desc": "The demo letter with Juan Dela Cruz typed in and no merge fields yet. Start the mail merge and replace the typed details with fields.",
+      "size": 37014
+     },
+     {
+      "file": "Practice - 2.4 Letter with Schedule - 2026-11-04.docx",
+      "title": "Workshop invitation letter from 2.3",
+      "desc": "The letter as 2.3 leaves it, with the letterhead and schedule table, for the hands-on if you do not have your own copy.",
+      "size": 57328
+     },
+     {
+      "file": "Practice - 2.4 Spot the Merge Mistakes - 2026-11-04.docx",
+      "title": "Spot the merge mistakes",
+      "desc": "Three merged letters, one per page, each with a common mail merge mistake to find.",
+      "size": 36863
+     }
     ]
    },
    {
@@ -367,6 +453,14 @@ window.CATALOG = [
       "slide": "Quick check",
       "minutes": 1,
       "slideNo": 17
+     }
+    ],
+    "files": [
+     {
+      "file": "Practice - 2.5 Workshop Invitation Letter - 2026-11-04.docx",
+      "title": "Workshop invitation letter (start)",
+      "desc": "The letter with letterhead and schedule table, still on US Letter paper with no footer. Set the margins, paper size, page numbers and an annex page.",
+      "size": 57328
      }
     ]
    },
@@ -408,6 +502,20 @@ window.CATALOG = [
       "minutes": 210,
       "slideNo": 22
      }
+    ],
+    "files": [
+     {
+      "file": "Practice - 2.6 AI Draft to Edit - 2026-11-04.docx",
+      "title": "AI draft with 5 problems (start)",
+      "desc": "The sample AI draft of the invitation, pasted into Word. Find the five problems, then fix them with Track Changes on.",
+      "size": 36897
+     },
+     {
+      "file": "Practice - 2.6 Lab 2 Data Source - 2026-11-04.xlsx",
+      "title": "Lab 2 data source (start)",
+      "desc": "An empty list with the four headers Name, Position, Section and Email. Add at least 3 sample rows for your Lab 2 mail merge.",
+      "size": 5005
+     }
     ]
    }
   ]
@@ -442,6 +550,14 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 15
      }
+    ],
+    "files": [
+     {
+      "file": "Practice - 3.1 Office Supplies Inventory - 2026-11-04.xlsx",
+      "title": "Office Supplies Inventory (start)",
+      "desc": "The 8-item inventory typed in plain cells, plus an empty Household Budget 2026 sheet: move around, select, edit, copy B5 into the empty B9, insert rows and AutoFill.",
+      "size": 6785
+     }
     ]
    },
    {
@@ -465,6 +581,14 @@ window.CATALOG = [
       "slide": "Quick check",
       "minutes": 1,
       "slideNo": 15
+     }
+    ],
+    "files": [
+     {
+      "file": "Practice - 3.2 Office Supplies Inventory - 2026-11-04.xlsx",
+      "title": "Office Supplies Inventory (start)",
+      "desc": "The unformatted inventory plus practice sheets (Formats, Text trap, Budget, Attendance, Raw data): apply peso currency, bold, borders, freeze panes and the reorder rule, fix text numbers and clean raw data.",
+      "size": 13957
      }
     ]
    },
@@ -490,6 +614,14 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 14
      }
+    ],
+    "files": [
+     {
+      "file": "Practice - 3.3 Office Supplies Inventory - 2026-11-04.xlsx",
+      "title": "Office Supplies Inventory (start)",
+      "desc": "The formatted inventory with Total Cost still empty, the Household Budget (Budget vs Actual) and an Errors sheet: write =C2*D2, fill it down, add the total, and make each error on purpose.",
+      "size": 7907
+     }
     ]
    },
    {
@@ -513,6 +645,14 @@ window.CATALOG = [
       "slide": "Quick check",
       "minutes": 1,
       "slideNo": 13
+     }
+    ],
+    "files": [
+     {
+      "file": "Practice - 3.4 Office Supplies Inventory - 2026-11-04.xlsx",
+      "title": "Office Supplies Inventory (start)",
+      "desc": "The inventory as 3.3 left it, with Total Cost formulas, the long + total in E10 and empty summary rows 12 to 18: replace E10 with SUM, then add AVERAGE, COUNT, COUNTA, MIN and MAX.",
+      "size": 5616
      }
     ]
    },
@@ -538,6 +678,14 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 13
      }
+    ],
+    "files": [
+     {
+      "file": "Practice - 3.5 Office Supplies Inventory - 2026-11-04.xlsx",
+      "title": "Office Supplies Inventory (start)",
+      "desc": "The inventory with Total Cost formulas, the SUM in E10 and the 12% VAT rate in B12, plus a Price list sheet: fill the VAT column, break it, fix it with $B$12 and build the price table.",
+      "size": 7163
+     }
     ]
    },
    {
@@ -562,6 +710,14 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 14
      }
+    ],
+    "files": [
+     {
+      "file": "Practice - 3.6 Office Supplies Inventory 2026 - 2026-11-04.xlsx",
+      "title": "Office Supplies Inventory 2026 (start)",
+      "desc": "Jan, Feb and Mar tabs with the deck's quantities and totals, an empty Summary sheet and a long Attendance list: link the Summary with =Jan!E10, then freeze, find, sort, filter, protect and set up printing.",
+      "size": 12549
+     }
     ]
    },
    {
@@ -585,6 +741,14 @@ window.CATALOG = [
       "slide": "Quick check",
       "minutes": 1,
       "slideNo": 15
+     }
+    ],
+    "files": [
+     {
+      "file": "Practice - 3.7 Charts Data - 2026-11-04.xlsx",
+      "title": "Chart data (start)",
+      "desc": "The January inventory (unsorted, no chart yet) and the household budget data for the pie, Budget vs Actual and electricity line charts: select the right range and build each chart.",
+      "size": 7485
      }
     ]
    },
@@ -617,6 +781,14 @@ window.CATALOG = [
       "slide": "Module 3 Quiz",
       "minutes": 10,
       "slideNo": 14
+     }
+    ],
+    "files": [
+     {
+      "file": "Practice - 3.8 AI Check - 2026-11-04.xlsx",
+      "title": "Inventory for AI checks (start)",
+      "desc": "The January inventory with its formulas, a co-worker's SUMIF in E13 and a Summary of monthly spending: paste the AI's formulas, check them by hand and recompute the trends.",
+      "size": 6126
      }
     ]
    }
@@ -652,6 +824,14 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 13
      }
+    ],
+    "files": [
+     {
+      "file": "Practice - 4.1 Slide Makeover - 2026-11-04.pptx",
+      "title": "Draft deck: crowded slide and makeover (start)",
+      "desc": "Slide 1 is the crowded \"Module 2, 3 and 4\" slide to split into one idea per slide; slide 2 is the \"before\" slide to make over.",
+      "size": 36881
+     }
     ]
    },
    {
@@ -675,6 +855,14 @@ window.CATALOG = [
       "slide": "Quick check",
       "minutes": 1,
       "slideNo": 15
+     }
+    ],
+    "files": [
+     {
+      "file": "Practice - 4.2 Demo Deck Skeleton - 2026-11-04.pptx",
+      "title": "My Digital Skills Journey skeleton (start)",
+      "desc": "Six titled slides in the default theme and one layout: apply a theme and layouts, then add, reorder, hide, present and export to PDF.",
+      "size": 41491
      }
     ]
    },
@@ -700,6 +888,14 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 14
      }
+    ],
+    "files": [
+     {
+      "file": "Practice - 4.3 Demo Deck Text - 2026-11-04.pptx",
+      "title": "Demo deck: text (start)",
+      "desc": "Empty placeholders on slide 2, steps to number, seven rules to cut, the Module 3 paragraph to make over, and flat bullets to indent.",
+      "size": 39704
+     }
     ]
    },
    {
@@ -723,6 +919,32 @@ window.CATALOG = [
       "slide": "Quick check",
       "minutes": 1,
       "slideNo": 15
+     }
+    ],
+    "files": [
+     {
+      "file": "Practice - 4.4 Demo Deck Graphics - 2026-11-04.pptx",
+      "title": "Demo deck: graphics (start)",
+      "desc": "Six slides ready for a photo, three boxes to align, four modules to turn into a diagram, a chart slide and a table slide.",
+      "size": 41883
+     },
+     {
+      "file": "Practice - 4.4 Filing drawer photo - 2026-11-04.jpg",
+      "title": "Filing drawer photo",
+      "desc": "The course stock photo (Unsplash) to insert on the \"Where I started\" slide, then resize and crop.",
+      "size": 178138
+     },
+     {
+      "file": "Practice - 4.4 Office Supplies Inventory - 2026-11-04.xlsx",
+      "title": "Office Supplies Inventory with chart",
+      "desc": "The Module 3 inventory (8 items, total ₱22,039.00) with its bar chart: copy the chart into the deck.",
+      "size": 7155
+     },
+     {
+      "file": "Practice - 4.4 Supplies chart picture - 2026-11-04.png",
+      "title": "Supplies chart as a picture",
+      "desc": "The same chart as a PNG picture, for pasting as a picture or when you have no spreadsheet app.",
+      "size": 49854
      }
     ]
    },
@@ -748,6 +970,14 @@ window.CATALOG = [
       "minutes": 1,
       "slideNo": 13
      }
+    ],
+    "files": [
+     {
+      "file": "Practice - 4.5 Demo Deck Motion - 2026-11-04.pptx",
+      "title": "Demo deck: motion (start)",
+      "desc": "Four slides with no transitions or animations yet: apply one transition to all, then animate the bullets on \"What I learned\".",
+      "size": 37792
+     }
     ]
    },
    {
@@ -771,6 +1001,26 @@ window.CATALOG = [
       "slide": "Quick check",
       "minutes": 1,
       "slideNo": 13
+     }
+    ],
+    "files": [
+     {
+      "file": "Practice - 4.6 Demo Deck Media - 2026-11-04.pptx",
+      "title": "Demo deck: media (start)",
+      "desc": "Two slides with no media yet: add the music to \"Happy 80th, Lola!\" and the scanner clip to \"Using the office scanner\".",
+      "size": 35833
+     },
+     {
+      "file": "Practice - 4.6 Scanner how-to clip - 2026-11-04.mp4",
+      "title": "Scanner how-to clip (3:00)",
+      "desc": "A 3-minute sample video (title card and timer, made for this course) to insert, trim to 00:28 to 00:58 and set to play on click.",
+      "size": 1088633
+     },
+     {
+      "file": "Practice - 4.6 Soft background music - 2026-11-04.mp3",
+      "title": "Soft background music (1:00)",
+      "desc": "A 60-second soft chord made for this course, free to use: insert it on the Lola slide and play it in the background.",
+      "size": 720809
      }
     ]
    },
@@ -803,6 +1053,20 @@ window.CATALOG = [
       "slide": "Module 4 Quiz",
       "minutes": 10,
       "slideNo": 12
+     }
+    ],
+    "files": [
+     {
+      "file": "Practice - 4.7 Designer Chart Slide - 2026-11-04.pptx",
+      "title": "Chart slide for Designer (start)",
+      "desc": "A title slide and a plain \"Office Supplies Inventory\" chart slide: open Designer, try a few designs, check the words stay the same.",
+      "size": 79300
+     },
+     {
+      "file": "Practice - 4.7 AI Draft Outline - 2026-11-04.pptx",
+      "title": "Sample AI outline (start)",
+      "desc": "The six-slide AI draft from the worked example, with its four mistakes and the [Insert Name] placeholder, ready for your human edits.",
+      "size": 40520
      }
     ]
    }

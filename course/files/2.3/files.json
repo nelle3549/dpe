@@ -1,0 +1,47 @@
+[
+  {
+    "file": "Practice - 2.3 Workshop Invitation Letter - 2026-11-04.docx",
+    "title": "Workshop invitation letter, formatted (start)",
+    "desc": "The letter as 2.2 leaves it: Arial 12, centered office name, bold subject, justified body. Add the schedule table here.",
+    "slides": [
+      "Insert a table",
+      "Typing in a table",
+      "Rows, columns, merging",
+      "Width and alignment",
+      "Borders, shading, styles",
+      "Try it: add the schedule",
+      "Captions",
+      "A simple letterhead",
+      "Try it: add a logo"
+    ]
+  },
+  {
+    "file": "Practice - 2.3 Sample Office Logo - 2026-11-04.png",
+    "title": "Sample office logo",
+    "desc": "A round sample logo to insert in the letterhead and resize from a corner.",
+    "slides": [
+      "A simple letterhead",
+      "Try it: add a logo"
+    ]
+  },
+  {
+    "file": "Practice - 2.3 Birthday Invitation - 2026-11-04.docx",
+    "title": "Birthday invitation (start)",
+    "desc": "The home example text with no picture yet. Insert the birthday photo, resize it from a corner and try the wrapping options.",
+    "slides": [
+      "Pictures and resizing",
+      "Text wrapping",
+      "At the office and at home"
+    ]
+  },
+  {
+    "file": "Practice - 2.3 Birthday Photo - 2026-11-04.jpg",
+    "title": "Birthday photo",
+    "desc": "The sample photo of three smiling children to insert into the birthday invitation.",
+    "slides": [
+      "Pictures and resizing",
+      "Text wrapping",
+      "At the office and at home"
+    ]
+  }
+]

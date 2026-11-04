@@ -1,0 +1,19 @@
+[
+  {
+    "file": "Practice - 4.7 Designer Chart Slide - 2026-11-04.pptx",
+    "title": "Chart slide for Designer (start)",
+    "desc": "A title slide and a plain \"Office Supplies Inventory\" chart slide: open Designer, try a few designs, check the words stay the same.",
+    "slides": [
+      "How Designer works"
+    ]
+  },
+  {
+    "file": "Practice - 4.7 AI Draft Outline - 2026-11-04.pptx",
+    "title": "Sample AI outline (start)",
+    "desc": "The six-slide AI draft from the worked example, with its four mistakes and the [Insert Name] placeholder, ready for your human edits.",
+    "slides": [
+      "Worked example: AI outline",
+      "Worked example: human edits"
+    ]
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "file": "Practice - 3.5 Office Supplies Inventory - 2026-11-04.xlsx",
+    "title": "Office Supplies Inventory (start)",
+    "desc": "The inventory with Total Cost formulas, the SUM in E10 and the 12% VAT rate in B12, plus a Price list sheet: fill the VAT column, break it, fix it with $B$12 and build the price table.",
+    "slides": [
+      "Every cell has an address",
+      "Relative references",
+      "When relative goes wrong",
+      "The fix: $B$12",
+      "The F4 key",
+      "Mixed references",
+      "Pointing anywhere on the sheet"
+    ]
+  }
+]

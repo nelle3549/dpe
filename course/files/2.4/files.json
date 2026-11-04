@@ -1,0 +1,41 @@
+[
+  {
+    "file": "Practice - 2.4 Workshop Invitees - 2026-11-04.xlsx",
+    "title": "Workshop Invitees list",
+    "desc": "The data source: one sheet named Workshop Invitees with Name, Position, Section and Email for the four sample colleagues. Connect it to the letter.",
+    "slides": [
+      "Build the data source",
+      "Word steps 1 to 3",
+      "Try it now",
+      "Google Docs steps",
+      "Gmail mail merge"
+    ]
+  },
+  {
+    "file": "Practice - 2.4 Invitation Letter - 2026-11-04.docx",
+    "title": "Invitation letter, main document (start)",
+    "desc": "The demo letter with Juan Dela Cruz typed in and no merge fields yet. Start the mail merge and replace the typed details with fields.",
+    "slides": [
+      "The main document",
+      "Word steps 1 to 3",
+      "Word steps 4 to 6",
+      "Google Docs steps"
+    ]
+  },
+  {
+    "file": "Practice - 2.4 Letter with Schedule - 2026-11-04.docx",
+    "title": "Workshop invitation letter from 2.3",
+    "desc": "The letter as 2.3 leaves it, with the letterhead and schedule table, for the hands-on if you do not have your own copy.",
+    "slides": [
+      "Try it now"
+    ]
+  },
+  {
+    "file": "Practice - 2.4 Spot the Merge Mistakes - 2026-11-04.docx",
+    "title": "Spot the merge mistakes",
+    "desc": "Three merged letters, one per page, each with a common mail merge mistake to find.",
+    "slides": [
+      "Spot the problem"
+    ]
+  }
+]
