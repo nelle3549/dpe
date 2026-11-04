@@ -413,6 +413,8 @@ html.participant .opt.picked{border-color:var(--mod);background:var(--mod-soft)}
 .shots li[data-step].on{background:var(--gold-soft);box-shadow:inset calc(var(--u)*.35) 0 0 var(--gold)}
 .shots li[data-step].done{opacity:.6}
 .shots .ticks li[data-step]{padding-top:calc(var(--u)*.35);padding-bottom:calc(var(--u)*.35)}
+.shots .ticks li[data-step]{padding-left:calc(var(--u)*3.1);padding-right:calc(var(--u)*.8)}
+.shots .ticks li[data-step]::before{left:calc(var(--u)*.75);top:calc(var(--u)*.35 + .3em)}
 @media (prefers-reduced-motion:reduce){
   .shots .f,.shots .pic,.shots .ring,.shots .cur{transition:none}
   .shots .f.shown .ring,.shots .cur.click::after,.shots .cur.click svg{animation:none}
