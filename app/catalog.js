@@ -28,7 +28,8 @@ window.CATALOG = [
       "title": "Hardware, software or peopleware?",
       "slide": "Activity: sort it out",
       "minutes": 2,
-      "slideNo": 11
+      "slideNo": 11,
+      "files": []
      },
      {
       "id": "1.1-qc",
@@ -36,7 +37,8 @@ window.CATALOG = [
       "title": "Quick check: the Windows update",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 12
+      "slideNo": 12,
+      "files": []
      }
     ],
     "files": []
@@ -61,7 +63,10 @@ window.CATALOG = [
       "title": "Lab 1 Part A: build your master folder",
       "slide": "Lab 1 Part A",
       "minutes": 8,
-      "slideNo": 13
+      "slideNo": 13,
+      "files": [
+       "Practice - 1.2 File Management - 2026-11-04.zip"
+      ]
      },
      {
       "id": "1.2-qc",
@@ -69,7 +74,8 @@ window.CATALOG = [
       "title": "Quick check: the best file name",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 14
+      "slideNo": 14,
+      "files": []
      }
     ],
     "files": [
@@ -101,7 +107,8 @@ window.CATALOG = [
       "title": "Lab 1 Part B: find it, snip it, file it",
       "slide": "Lab 1 Part B",
       "minutes": 7,
-      "slideNo": 11
+      "slideNo": 11,
+      "files": []
      },
      {
       "id": "1.3-qc",
@@ -109,7 +116,8 @@ window.CATALOG = [
       "title": "Quick check: the right search",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 12
+      "slideNo": 12,
+      "files": []
      }
     ],
     "files": []
@@ -134,7 +142,8 @@ window.CATALOG = [
       "title": "How many red flags can you spot?",
       "slide": "Spot the red flags",
       "minutes": 2,
-      "slideNo": 5
+      "slideNo": 5,
+      "files": []
      },
      {
       "id": "1.4-qc",
@@ -142,7 +151,8 @@ window.CATALOG = [
       "title": "Quick check: the GSIS caller",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 15
+      "slideNo": 15,
+      "files": []
      }
     ],
     "files": []
@@ -167,7 +177,8 @@ window.CATALOG = [
       "title": "Lab 1 Part C: ask an AI, save the answer",
       "slide": "Lab 1 Part C",
       "minutes": 7,
-      "slideNo": 12
+      "slideNo": 12,
+      "files": []
      },
      {
       "id": "lab1",
@@ -175,7 +186,8 @@ window.CATALOG = [
       "title": "Lab 1: File Management and Everyday AI",
       "slide": "Lab 1 checklist",
       "minutes": 5,
-      "slideNo": 13
+      "slideNo": 13,
+      "files": []
      },
      {
       "id": "1.5-quiz",
@@ -183,7 +195,8 @@ window.CATALOG = [
       "title": "Digital Foundations Quiz",
       "slide": "Digital Foundations Quiz",
       "minutes": 10,
-      "slideNo": 14
+      "slideNo": 14,
+      "files": []
      }
     ],
     "files": []
@@ -218,7 +231,10 @@ window.CATALOG = [
       "title": "Scavenger hunt on your screen",
       "slide": "Try it: find the parts",
       "minutes": 3,
-      "slideNo": 9
+      "slideNo": 9,
+      "files": [
+       "Practice - 2.1 Workshop Invitation Raw Text - 2026-11-04.txt"
+      ]
      },
      {
       "id": "2.1-b",
@@ -226,7 +242,10 @@ window.CATALOG = [
       "title": "Start the letter and save it the right way",
       "slide": "Try it: save the letter",
       "minutes": 6,
-      "slideNo": 19
+      "slideNo": 19,
+      "files": [
+       "Practice - 2.1 Workshop Invitation Raw Text - 2026-11-04.txt"
+      ]
      },
      {
       "id": "2.1-qc",
@@ -234,7 +253,8 @@ window.CATALOG = [
       "title": "Quick check: Save or Save As?",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 20
+      "slideNo": 20,
+      "files": []
      }
     ],
     "files": [
@@ -266,7 +286,10 @@ window.CATALOG = [
       "title": "Turn your plain text into a formal letter",
       "slide": "Try it: format the letter",
       "minutes": 10,
-      "slideNo": 20
+      "slideNo": 20,
+      "files": [
+       "Practice - 2.2 Workshop Invitation Letter - 2026-11-04.docx"
+      ]
      },
      {
       "id": "2.2-qc",
@@ -274,7 +297,8 @@ window.CATALOG = [
       "title": "Quick check: fix a messy paste",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 21
+      "slideNo": 21,
+      "files": []
      }
     ],
     "files": [
@@ -312,7 +336,10 @@ window.CATALOG = [
       "title": "Add the workshop schedule to your letter",
       "slide": "Try it: add the schedule",
       "minutes": 8,
-      "slideNo": 11
+      "slideNo": 11,
+      "files": [
+       "Practice - 2.3 Workshop Invitation Letter - 2026-11-04.docx"
+      ]
      },
      {
       "id": "2.3-b",
@@ -320,7 +347,11 @@ window.CATALOG = [
       "title": "Add a letterhead with a logo or graphic",
       "slide": "Try it: add a logo",
       "minutes": 6,
-      "slideNo": 18
+      "slideNo": 18,
+      "files": [
+       "Practice - 2.3 Workshop Invitation Letter - 2026-11-04.docx",
+       "Practice - 2.3 Sample Office Logo - 2026-11-04.png"
+      ]
      },
      {
       "id": "2.3-qc",
@@ -328,7 +359,8 @@ window.CATALOG = [
       "title": "Quick check: the squashed logo",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 21
+      "slideNo": 21,
+      "files": []
      }
     ],
     "files": [
@@ -378,7 +410,11 @@ window.CATALOG = [
       "title": "Merge your invitation to 3 people",
       "slide": "Try it now",
       "minutes": 12,
-      "slideNo": 13
+      "slideNo": 13,
+      "files": [
+       "Practice - 2.4 Workshop Invitees - 2026-11-04.xlsx",
+       "Practice - 2.4 Letter with Schedule - 2026-11-04.docx"
+      ]
      },
      {
       "id": "2.4-b",
@@ -386,7 +422,10 @@ window.CATALOG = [
       "title": "Spot the problem in these merged letters",
       "slide": "Spot the problem",
       "minutes": 2,
-      "slideNo": 19
+      "slideNo": 19,
+      "files": [
+       "Practice - 2.4 Spot the Merge Mistakes - 2026-11-04.docx"
+      ]
      },
      {
       "id": "2.4-qc",
@@ -394,7 +433,8 @@ window.CATALOG = [
       "title": "Quick check: two extra letters",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 21
+      "slideNo": 21,
+      "files": []
      }
     ],
     "files": [
@@ -444,7 +484,10 @@ window.CATALOG = [
       "title": "Set up the page like a pro",
       "slide": "Try it now",
       "minutes": 8,
-      "slideNo": 12
+      "slideNo": 12,
+      "files": [
+       "Practice - 2.5 Workshop Invitation Letter - 2026-11-04.docx"
+      ]
      },
      {
       "id": "2.5-qc",
@@ -452,7 +495,8 @@ window.CATALOG = [
       "title": "Quick check: print three sets",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 17
+      "slideNo": 17,
+      "files": []
      }
     ],
     "files": [
@@ -484,7 +528,10 @@ window.CATALOG = [
       "title": "Find 5 problems in the AI draft",
       "slide": "Try it now: spot the problems",
       "minutes": 3,
-      "slideNo": 8
+      "slideNo": 8,
+      "files": [
+       "Practice - 2.6 AI Draft to Edit - 2026-11-04.docx"
+      ]
      },
      {
       "id": "2.6-qc",
@@ -492,7 +539,8 @@ window.CATALOG = [
       "title": "Quick check: a memo you've never seen",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 19
+      "slideNo": 19,
+      "files": []
      },
      {
       "id": "lab2",
@@ -500,7 +548,11 @@ window.CATALOG = [
       "title": "Lab 2: AI-Assisted Word Processing and Mail Merge",
       "slide": "Lab 2 checklist and rubric",
       "minutes": 210,
-      "slideNo": 22
+      "slideNo": 22,
+      "files": [
+       "Practice - 2.6 AI Draft to Edit - 2026-11-04.docx",
+       "Practice - 2.6 Lab 2 Data Source - 2026-11-04.xlsx"
+      ]
      }
     ],
     "files": [
@@ -548,7 +600,8 @@ window.CATALOG = [
       "title": "Quick check: back to A1",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 15
+      "slideNo": 15,
+      "files": []
      }
     ],
     "files": [
@@ -580,7 +633,8 @@ window.CATALOG = [
       "title": "Quick check: the total is too small",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 15
+      "slideNo": 15,
+      "files": []
      }
     ],
     "files": [
@@ -612,7 +666,8 @@ window.CATALOG = [
       "title": "Quick check: Total Cost of folders",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 14
+      "slideNo": 14,
+      "files": []
      }
     ],
     "files": [
@@ -644,7 +699,8 @@ window.CATALOG = [
       "title": "Quick check: AVERAGE on the inventory",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 13
+      "slideNo": 13,
+      "files": []
      }
     ],
     "files": [
@@ -676,7 +732,8 @@ window.CATALOG = [
       "title": "Quick check: fill down to G5",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 13
+      "slideNo": 13,
+      "files": []
      }
     ],
     "files": [
@@ -708,7 +765,8 @@ window.CATALOG = [
       "title": "Quick check: renaming a linked sheet",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 14
+      "slideNo": 14,
+      "files": []
      }
     ],
     "files": [
@@ -740,7 +798,8 @@ window.CATALOG = [
       "title": "Quick check: the half-pie slice",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 15
+      "slideNo": 15,
+      "files": []
      }
     ],
     "files": [
@@ -772,7 +831,8 @@ window.CATALOG = [
       "title": "Quick check: #NAME? from an AI formula",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 13
+      "slideNo": 13,
+      "files": []
      },
      {
       "id": "3.8-quiz",
@@ -780,7 +840,8 @@ window.CATALOG = [
       "title": "Module 3 Quiz: Spreadsheets",
       "slide": "Module 3 Quiz",
       "minutes": 10,
-      "slideNo": 14
+      "slideNo": 14,
+      "files": []
      }
     ],
     "files": [
@@ -822,7 +883,8 @@ window.CATALOG = [
       "title": "Quick check: what to decide first",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 13
+      "slideNo": 13,
+      "files": []
      }
     ],
     "files": [
@@ -854,7 +916,8 @@ window.CATALOG = [
       "title": "Quick check: all eyes on you",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 15
+      "slideNo": 15,
+      "files": []
      }
     ],
     "files": [
@@ -886,7 +949,8 @@ window.CATALOG = [
       "title": "Quick check: 9 bullets at 14 pt",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 14
+      "slideNo": 14,
+      "files": []
      }
     ],
     "files": [
@@ -918,7 +982,8 @@ window.CATALOG = [
       "title": "Quick check: the wide group photo",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 15
+      "slideNo": 15,
+      "files": []
      }
     ],
     "files": [
@@ -968,7 +1033,8 @@ window.CATALOG = [
       "title": "Quick check: one bullet per click",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 13
+      "slideNo": 13,
+      "files": []
      }
     ],
     "files": [
@@ -1000,7 +1066,8 @@ window.CATALOG = [
       "title": "Quick check: no sound on Zoom",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 13
+      "slideNo": 13,
+      "files": []
      }
     ],
     "files": [
@@ -1044,7 +1111,8 @@ window.CATALOG = [
       "title": "Quick check: Designer shortened your title",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 11
+      "slideNo": 11,
+      "files": []
      },
      {
       "id": "4.7-quiz",
@@ -1052,7 +1120,8 @@ window.CATALOG = [
       "title": "Module 4 Quiz: Presentations",
       "slide": "Module 4 Quiz",
       "minutes": 10,
-      "slideNo": 12
+      "slideNo": 12,
+      "files": []
      }
     ],
     "files": [

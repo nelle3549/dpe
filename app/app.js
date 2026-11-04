@@ -525,9 +525,9 @@
   }
   // See more: the topic's synopsis and parts
   // practice files (course/files/<topic>/): the starter files for the topic's examples, listed in the catalog by tools/sync.py
-  function fileList(t) {
+  function fileList(t, only) {
     var kb = function (n) { return n >= 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; };
-    return '<ul class="files">' + t.files.map(function (x) {
+    return '<ul class="files">' + t.files.filter(function (x) { return !only || only.indexOf(x.file) >= 0; }).map(function (x) {
       var ext = (x.file.split('.').pop() || '').toUpperCase();
       return '<li><a href="course/files/' + t.id + '/' + encodeURIComponent(x.file) + '" download="' + esc(x.file) + '">' + ico('download') +
         '<span><b>' + esc(x.title) + '</b><small>' + esc(x.desc) + ' · ' + ext + ', ' + kb(x.size) + '</small></span></a></li>';
@@ -799,6 +799,7 @@
     if (sp.intro) html += '<p class="mt-2">' + emo(esc(sp.intro)) + '</p>';
     var aCat = ACT[aid].a;
     if (aCat.slideNo) html += '<p><a class="btn small" id="toslide" href="#/deck/' + tid + '/' + aCat.slideNo + '">' + ico('file-text') + ' See this on the slides</a></p>';
+    if (aCat.files && aCat.files.length) html += '<div class="card mt-2 actfiles"><p class="p">' + ico('download') + ' Start with ' + (aCat.files.length > 1 ? 'these files' : 'this file') + '</p>' + fileList(T, aCat.files) + '</div>';
     if (sp.help && sp.help.length && !done) html += '<details class="help"><summary>Stuck? Hints</summary><ul>' + sp.help.map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '</ul></details>';
     sp.blocks.forEach(function (b, i) { html += '<div class="block' + (b.type === 'email' ? ' show' : '') + '" data-b="' + esc(b.id) + '">' + blockHtml(b, A[b.id], fb[b.id], done, i) + '</div>'; });
     html += '</main>';

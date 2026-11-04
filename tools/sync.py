@@ -155,6 +155,10 @@ for m in re.finditer(r"D\('(\d\.\d)','((?:[^'\\]|\\.)*)','([^']*)','((?:[^'\\]|\
     slides = re.findall(r'<section class="slide[^"]*"([^>]*)>(.*?)</section>', re.sub(r'<!--.*?-->', '', open(f'{REPO}/course/{deck}').read(), flags=re.S), re.S)
     acts = [dict(id=a['id'], kind=a['kind'], title=a['title'], slide=a['slide'], minutes=a['minutes'],
                  slideNo=slide_no(slides, a)) for a in spec['activities']]
+    # practice files for the activity page: the ones its slide uses; a hands-on task or lab with none gets all the topic's files
+    for a, sa in zip(acts, spec['activities']):
+        fs = [x['file'] for x in FILES.get(tid, []) if sa['slide'] in x['slides']]
+        a['files'] = fs or ([x['file'] for x in FILES.get(tid, [])] if a['kind'] in ('task', 'lab') else [])
     # the slide's countdown should match the portal timer the facilitator starts with Go live
     for a in acts:
         t = a['slideNo'] and re.search(r'data-min="([\d.]+)"', slides[a['slideNo'] - 1][1])

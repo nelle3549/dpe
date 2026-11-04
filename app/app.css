@@ -500,3 +500,5 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 .files a .ico{flex:none;margin-top:2px;color:var(--navy,#0B2545)}
 .files b{display:block}
 .files small{display:block;color:var(--text-2,#3E4C63);font-size:13px;margin-top:2px}
+.actfiles{padding:14px 16px}
+.actfiles .p{display:flex;align-items:center;gap:8px;font-weight:700;margin:0}
