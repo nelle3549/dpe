@@ -28,6 +28,17 @@
 .facts li:last-child{border-bottom:0}
 .facts li::before{content:"";position:absolute;left:0;top:calc(var(--u)*.8);width:calc(var(--u)*1.3);height:calc(var(--u)*1.3);border-radius:50%;background:var(--gold)}
 .facts li.bad::before{background:var(--coral)}
+/* course closing + module quiz (moved from 4.7) */
+.mods .card h4{font-size:calc(var(--u)*1.45)}
+.mods .card .tag{margin-bottom:.6em}
+/* module quiz: two items side by side (same as 1.5) */
+.quiz{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*2.6);align-items:start}
+.quiz .qn{font-size:calc(var(--u)*.9);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mod)}
+.quiz h4{font-size:calc(var(--u)*1.55);margin:calc(var(--u)*.3) 0 calc(var(--u)*1)}
+.quiz .qc{gap:calc(var(--u)*.6)}
+.quiz .opt{font-size:calc(var(--u)*1.3);padding:calc(var(--u)*.7) calc(var(--u)*1.1)}
+.quiz .opt .l{width:calc(var(--u)*1.9);height:calc(var(--u)*1.9);font-size:calc(var(--u)*.95)}
+.quiz .opt .why{font-size:calc(var(--u)*1.05)}
 .url{font-family:var(--font-mono);background:var(--surface-2);padding:.05em .4em;border-radius:4px}
 </style>
 </head>
@@ -37,11 +48,11 @@
   
   <section class="slide cover" data-title="Cover">
     <div class="cv-text">
-      <p class="kicker">Module 4 · Bonus topic</p>
+      <p class="kicker">Module 4 · Last topic</p>
       <h1 class="h1" data-anim="fade-up">Gemini Notebook: <span style="color:var(--gold)">a report in, a deck and a video out</span></h1>
       <p class="lede" data-anim="fade-up">Give it your own document. It answers with citations, then makes a slide deck and a narrated video from it. You check every claim.</p>
       <div class="cv-meta">
-        <span class="tag ghost">Topic 4.8</span><span class="tag ghost">~25 minutes</span><span class="tag ghost">Formerly NotebookLM</span>
+        <span class="tag ghost">Topic 4.8</span><span class="tag ghost">~25 minutes + module quiz</span><span class="tag ghost">Last topic</span>
       </div>
     </div>
     <div class="cv-img"><img src="images/ui/4.8/17-deck-viewer.webp" alt="Gemini Notebook showing a slide deck it made: Administrative Section Year-End Report 2026"><div class="cv-num">4.8</div></div>
@@ -59,7 +70,7 @@
       <div class="card top"><span class="k">Step 3 · ~10 min</span><h4>Slide Deck and Video</h4><p>The Studio panel makes both. We look at the real outputs.</p></div>
       <div class="card top"><span class="k">Step 4 · ~5 min</span><h4>Fact-check and share</h4><p>Find what the AI added, fix it with Revise, then download.</p></div>
     </div>
-    <div class="callout mt-l"><b>Practice file:</b> <i>Admin Section Year-End Report</i> (Word). Upload it to your own Google Drive first, then follow along.</div>
+    <div class="callout mt-l"><b>Practice file:</b> <i>Admin Section Year-End Report</i> (Word). Upload it to your own Google Drive first, then follow along. <b>After 4.8:</b> the Module 4 quiz in the portal, then our course closing.</div>
     
   </section>
 
@@ -334,14 +345,206 @@
   </section>
 
   
+  <section class="slide statement act" data-act="Portal activity" data-title="Module 4 Quiz">
+    <p class="kicker">Module 4 assessment · 10 items</p>
+    <h2 class="h1">Module 4 Quiz</h2>
+    <div class="grid g4 mt-l">
+      <div class="card dark"><h4>10 items</h4><p>Planning, design, text, slide shows, pictures, motion, media, visual ethics.</p></div>
+      <div class="card dark"><h4>1 point each</h4><p>One best answer, A to D.</p></div>
+      <div class="card dark"><h4>Answer first</h4><p>Open the quiz in the portal and submit your answers.</p></div>
+      <div class="card dark"><h4>Then we reveal</h4><p>Two items per slide; we discuss each answer together.</p></div>
+    </div>
+    <p class="lede mt-l">No pressure: everything on it was covered in Module 4.</p>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Quiz 1 and 2">
+    <div class="slide-head">
+      <div><p class="kicker">Module 4 Quiz · items 1 and 2</p><h2 class="h2">Planning and design</h2></div>
+      <span class="tag">Topic 4.1</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 1</p><h4>Before you open the app, which three questions do you answer first?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Theme, font and colours</div></div>
+          <div class="opt"><span class="l">B</span><div>How many slides, pictures and minutes</div></div>
+          <div class="opt"><span class="l">C</span><div>Audience, purpose and key message</div></div>
+          <div class="opt"><span class="l">D</span><div>Which app, template and animation</div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 2</p><h4>"Use the same colours, fonts and title position on every slide." Which design principle is this?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Repetition</div></div>
+          <div class="opt"><span class="l">B</span><div>Contrast</div></div>
+          <div class="opt"><span class="l">C</span><div>Alignment</div></div>
+          <div class="opt"><span class="l">D</span><div>Proximity</div></div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Quiz 3 and 4">
+    <div class="slide-head">
+      <div><p class="kicker">Module 4 Quiz · items 3 and 4</p><h2 class="h2">Text and slide shows</h2></div>
+      <span class="tag">Topics 4.2 and 4.3</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 3</p><h4>About how big should body text and bullets be?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>12 pt</div></div>
+          <div class="opt"><span class="l">B</span><div>18 pt</div></div>
+          <div class="opt"><span class="l">C</span><div>24 to 32 pt</div></div>
+          <div class="opt"><span class="l">D</span><div>60 pt</div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 4</p><h4>In PowerPoint, which key starts the slide show from the slide you are on?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>F5</div></div>
+          <div class="opt"><span class="l">B</span><div>Esc</div></div>
+          <div class="opt"><span class="l">C</span><div>B</div></div>
+          <div class="opt"><span class="l">D</span><div>Shift + F5</div></div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Quiz 5 and 6">
+    <div class="slide-head">
+      <div><p class="kicker">Module 4 Quiz · items 5 and 6</p><h2 class="h2">Pictures</h2></div>
+      <span class="tag">Topics 4.2 and 4.4</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 5</p><h4>You share your deck as a PDF. What stops working?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>The text</div></div>
+          <div class="opt"><span class="l">B</span><div>Transitions, animations and videos</div></div>
+          <div class="opt"><span class="l">C</span><div>The pictures</div></div>
+          <div class="opt"><span class="l">D</span><div>The slide order</div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 6</p><h4>Which alt text is most helpful for a chart?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Chart1.png</div></div>
+          <div class="opt"><span class="l">B</span><div>Picture</div></div>
+          <div class="opt"><span class="l">C</span><div>Leave it empty</div></div>
+          <div class="opt"><span class="l">D</span><div>Bar chart of 8 office supplies by total cost. Bond paper is the biggest cost.</div></div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Quiz 7 and 8">
+    <div class="slide-head">
+      <div><p class="kicker">Module 4 Quiz · items 7 and 8</p><h2 class="h2">Motion and media</h2></div>
+      <span class="tag">Topics 4.4 and 4.5</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 7</p><h4>Which picture is safest to use in an office deck?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>A photo you took yourself, with permission from the people in it</div></div>
+          <div class="opt"><span class="l">B</span><div>Any photo from Google Images</div></div>
+          <div class="opt"><span class="l">C</span><div>A scene from a movie poster</div></div>
+          <div class="opt"><span class="l">D</span><div>A logo copied from another office's page</div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 8</p><h4>Which motion is the best choice for an office report?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>A different transition on every slide</div></div>
+          <div class="opt"><span class="l">B</span><div>Vortex with an applause sound</div></div>
+          <div class="opt"><span class="l">C</span><div>One subtle transition, like Fade, on every slide</div></div>
+          <div class="opt"><span class="l">D</span><div>Animate every title, photo and line</div></div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
+  <section class="slide" data-title="Quiz 9 and 10">
+    <div class="slide-head">
+      <div><p class="kicker">Module 4 Quiz · items 9 and 10</p><h2 class="h2">Visual ethics</h2></div>
+      <span class="tag">Topics 4.6 and 4.7</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 9</p><h4>Your deck with an embedded video is too big to email (Gmail stops at 25 MB). What do you do?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Send it in three emails</div></div>
+          <div class="opt"><span class="l">B</span><div>Compress the media, or share a Drive link</div></div>
+          <div class="opt"><span class="l">C</span><div>Delete the video slide</div></div>
+          <div class="opt"><span class="l">D</span><div>Rename the file</div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 10</p><h4>A bar chart's axis starts at 6,000 instead of 0. What is wrong with it?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>It makes a small difference look huge</div></div>
+          <div class="opt"><span class="l">B</span><div>Nothing. It saves space</div></div>
+          <div class="opt"><span class="l">C</span><div>The bars must be blue</div></div>
+          <div class="opt"><span class="l">D</span><div>The axis must start at 100</div></div>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  
   <section class="slide statement" data-title="Recap">
-    <p class="kicker">Recap · Topic 4.8</p>
+    <p class="kicker">Recap · Topic 4.8 and Module 4</p>
     <h2 class="h2">Your report in. A deck and a video out. Your check before anyone sees it.</h2>
     <div class="recap mt-l">
       <div class="card dark"><h4>Find it</h4><p><span class="url" style="background:rgba(255,255,255,.12)">notebook.google.com</span>, a search for NotebookLM, or the Google apps menu.</p></div>
       <div class="card dark"><h4>Make it</h4><p>New notebook, add your source, ask a question, then Studio: Slide Deck or Video Overview.</p></div>
       <div class="card dark"><h4>Check it</h4><p>Click the citations, hunt for extra claims, fix with Revise, then download.</p></div>
     </div>
+    <p class="lede mt-l">Module 4 in one line · <b style="color:var(--gold)">plan the message, build clear slides, add motion and media with care, and let AI help while you check every word.</b></p>
+    
+  </section>
+
+
+  
+  <section class="slide" data-title="Our two-day journey">
+    <div class="slide-head">
+      <div><p class="kicker">Course closing</p><h2 class="h2">Our two-day journey</h2></div>
+      <span class="tag">Digital Productivity Essentials · DICT ILCDB</span>
+    </div>
+    <div class="grid g4 mods anim-stagger-list">
+      <div class="card top"><span class="tag">Day 1 · Module 1</span><h4>Computers &amp; Internet</h4><p>Folders that make sense, safe browsing, everyday AI. Lab 1.</p></div>
+      <div class="card top"><span class="tag">Day 1 · Module 2</span><h4>Word Processing</h4><p>A formal letter, a table, and a mail merge to 3 colleagues. Lab 2.</p></div>
+      <div class="card top"><span class="tag">Day 2 · Module 3</span><h4>Spreadsheets</h4><p>The office supplies inventory: formulas, ₱22,039 total, a chart. A 10-item module quiz.</p></div>
+      <div class="card top"><span class="tag">Day 2 · Module 4</span><h4>Presentations</h4><p>"My Digital Skills Journey": designed, animated, checked. A 10-item module quiz.</p></div>
+    </div>
+    <h4 class="mt-l">How we checked your learning</h4>
+    <div class="row mt-s small"><span class="tag">Quick check after every topic</span><span class="tag">Digital Foundations Quiz · Module 1</span><span class="tag">Labs 1 and 2 · Day 1</span><span class="tag">Module 3 and 4 quizzes · Day 2</span></div>
+    
+  </section>
+
+  
+  <section class="slide cover" data-title="Thank you">
+    <div class="cv-text">
+      <p class="kicker">Digital Productivity Essentials · Thank you</p>
+      <h1 class="h1">Daghang salamat, <span style="color:var(--gold)">Provincial Government of Misamis Oriental!</span></h1>
+      <p class="lede">You came as users of computers. You leave as people who make clear letters, honest spreadsheets and confident presentations. Keep practising, and keep helping the colleague beside you.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">2 days · 4 modules</span><span class="tag ghost">Engr. Ronelle Pabellan</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/m4/4-7-celebration.jpg" alt="Office colleagues smiling and cheering together"><div class="cv-num">2d</div></div>
     
   </section>
 

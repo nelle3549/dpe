@@ -1147,16 +1147,16 @@ window.CATALOG = [
    {
     "id": "4.7",
     "title": "AI in Presentation Design",
-    "dur": "25 min + quiz",
-    "desc": "Let AI suggest layouts and outlines. You stay in charge of the facts. Then the Module 4 Quiz and the course closing.",
+    "dur": "25 min",
+    "desc": "Let AI suggest layouts and outlines. You stay in charge of the facts.",
     "parts": [
      "AI design helpers",
-     "Visual ethics and privacy",
-     "The 10-item Module 4 Quiz and closing"
+     "Worked example: AI outline, human edits",
+     "Visual ethics and privacy"
     ],
     "deck": "Deck - 4.7 AI in Presentation Design - 2026-11-01.html",
     "video": "5:01",
-    "slides": 20,
+    "slides": 12,
     "activities": [
      {
       "id": "4.7-qc",
@@ -1165,15 +1165,6 @@ window.CATALOG = [
       "slide": "Quick check",
       "minutes": 1,
       "slideNo": 11,
-      "files": []
-     },
-     {
-      "id": "4.7-quiz",
-      "kind": "quiz",
-      "title": "Module 4 Quiz: Presentations",
-      "slide": "Module 4 Quiz",
-      "minutes": 10,
-      "slideNo": 12,
       "files": []
      }
     ],
@@ -1195,16 +1186,16 @@ window.CATALOG = [
    {
     "id": "4.8",
     "title": "Gemini Notebook Slide Decks and Videos",
-    "dur": "25 min · bonus",
-    "desc": "Find Gemini Notebook (formerly NotebookLM), add your own report, and let it make a slide deck and a narrated video. Then check every claim.",
+    "dur": "25 min + quiz",
+    "desc": "Find Gemini Notebook (formerly NotebookLM), add your own report, and let it make a slide deck and a narrated video. Then check every claim. Then the Module 4 Quiz and the course closing.",
     "parts": [
      "Where to find it and how to sign in",
      "Slide Deck and Video Overview from one report",
-     "Fact-check and fix with Revise"
+     "The 10-item Module 4 Quiz and closing"
     ],
     "deck": "Deck - 4.8 Gemini Notebook Slide Decks and Videos - 2026-11-01.html",
     "video": "4:16",
-    "slides": 16,
+    "slides": 24,
     "activities": [
      {
       "id": "4.8-qc",
@@ -1213,6 +1204,15 @@ window.CATALOG = [
       "slide": "Quick check",
       "minutes": 1,
       "slideNo": 15,
+      "files": []
+     },
+     {
+      "id": "4.8-quiz",
+      "kind": "quiz",
+      "title": "Module 4 Quiz: Presentations",
+      "slide": "Module 4 Quiz",
+      "minutes": 10,
+      "slideNo": 16,
       "files": []
      }
     ],

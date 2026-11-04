@@ -22,6 +22,126 @@
           ]
         }
       ]
+    },
+    {
+      "id": "4.8-quiz",
+      "slide": "Module 4 Quiz",
+      "kind": "quiz",
+      "title": "Module 4 Quiz: Presentations",
+      "minutes": 10,
+      "intro": "10 items, 1 point each. Pick the one best answer for each item. Everything on it was covered in Topics 4.1 to 4.7.",
+      "blocks": [
+        {
+          "type": "mcq",
+          "id": "q1",
+          "prompt": "1. Before you open the app, which three questions do you answer first?",
+          "options": [
+            "Theme, font and colours",
+            "How many slides, pictures and minutes",
+            "Audience, purpose and key message",
+            "Which app, template and animation"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q2",
+          "prompt": "2. \"Use the same colours, fonts and title position on every slide.\" Which design principle is this?",
+          "options": [
+            "Repetition",
+            "Contrast",
+            "Alignment",
+            "Proximity"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q3",
+          "prompt": "3. About how big should body text and bullets be?",
+          "options": [
+            "12 pt",
+            "18 pt",
+            "24 to 32 pt",
+            "60 pt"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q4",
+          "prompt": "4. In PowerPoint, which key starts the slide show from the slide you are on?",
+          "options": [
+            "F5",
+            "Esc",
+            "B",
+            "Shift + F5"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q5",
+          "prompt": "5. You share your deck as a PDF. What stops working?",
+          "options": [
+            "The text",
+            "Transitions, animations and videos",
+            "The pictures",
+            "The slide order"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q6",
+          "prompt": "6. Which alt text is most helpful for a chart?",
+          "options": [
+            "Chart1.png",
+            "Picture",
+            "Leave it empty",
+            "Bar chart of 8 office supplies by total cost. Bond paper is the biggest cost."
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q7",
+          "prompt": "7. Which picture is safest to use in an office deck?",
+          "options": [
+            "A photo you took yourself, with permission from the people in it",
+            "Any photo from Google Images",
+            "A scene from a movie poster",
+            "A logo copied from another office's page"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q8",
+          "prompt": "8. Which motion is the best choice for an office report?",
+          "options": [
+            "A different transition on every slide",
+            "Vortex with an applause sound",
+            "One subtle transition, like Fade, on every slide",
+            "Animate every title, photo and line"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q9",
+          "prompt": "9. Your deck with an embedded video is too big to email (Gmail stops at 25 MB). What do you do?",
+          "options": [
+            "Send it in three emails",
+            "Compress the media, or share a Drive link",
+            "Delete the video slide",
+            "Rename the file"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q10",
+          "prompt": "10. A bar chart's axis starts at 6,000 instead of 0. What is wrong with it?",
+          "options": [
+            "It makes a small difference look huge",
+            "Nothing. It saves space",
+            "The bars must be blue",
+            "The axis must start at 100"
+          ]
+        }
+      ]
     }
   ]
 }
