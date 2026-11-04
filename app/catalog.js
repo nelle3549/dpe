@@ -940,6 +940,12 @@ window.CATALOG = [
       "title": "Draft deck: crowded slide and makeover (start)",
       "desc": "Slide 1 is the crowded \"Module 2, 3 and 4\" slide to split into one idea per slide; slide 2 is the \"before\" slide to make over.",
       "size": 36881
+     },
+     {
+      "file": "Practice - 4.1 Makeover Sample - 2026-11-04.pptx",
+      "title": "Makeover sample (finished)",
+      "desc": "The finished \"after\" slide: a clear title, four equal cards with icons, one font, one accent colour, and the paragraph in the speaker notes. Compare it with yours.",
+      "size": 42092
      }
     ]
    },
