@@ -266,7 +266,7 @@ kbd,.kbd{display:inline-block;font-family:var(--font-mono);font-size:.82em;font-
 .home-btn:hover{opacity:1;transform:scale(1.08);text-decoration:none}
 @media print{.home-btn{display:none}}
 
-/* ---------- partner logos (DICT · BIR · Serial Disruptors) ---------- */
+/* ---------- partner logos (DICT · PGMO · Serial Disruptors) ---------- */
 .cv-logos{display:inline-flex;align-items:center;gap:calc(var(--u)*1.3);align-self:flex-start;margin-top:calc(var(--u)*2.2);
   background:#fff;border-radius:calc(var(--u)*1);padding:calc(var(--u)*.7) calc(var(--u)*1.3);box-shadow:0 calc(var(--u)*.3) calc(var(--u)*1.2) rgba(0,0,0,.22)}
 .cv-logos img{height:calc(var(--u)*3.6);width:auto;display:block}

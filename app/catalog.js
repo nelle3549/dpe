@@ -129,7 +129,7 @@ window.CATALOG = [
      {
       "id": "1.4-qc",
       "kind": "check",
-      "title": "Quick check: the BIR caller",
+      "title": "Quick check: the GSIS caller",
       "slide": "Quick check",
       "minutes": 1,
       "slideNo": 15

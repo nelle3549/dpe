@@ -1,6 +1,6 @@
 # Digital Productivity Essentials · course site and LMS
 
-DICT ILCDB course *Digital Productivity Essentials*, delivered for BIR Misamis Oriental by Serial Disruptors.
+DICT ILCDB course *Digital Productivity Essentials*, delivered for the Provincial Government of Misamis Oriental by Serial Disruptors.
 Static site on GitHub Pages; sign-up, activity answers and scores live in Supabase (Row Level Security on).
 
 | Path | What |

@@ -260,9 +260,9 @@
     }
     document.querySelectorAll('.timer').forEach(initTimer);
     shotsInit();
-    // Partner logos: DICT (organizer), BIR (participants), Serial Disruptors (resource person's organization).
+    // Partner logos: DICT (organizer), Provincial Government of Misamis Oriental (participants), Serial Disruptors (resource person's organization).
     var LOGOS = '<img src="images/logos/dict.png" alt="DICT">' +
-                '<img src="images/logos/bir.png" alt="Bureau of Internal Revenue">' +
+                '<img src="images/logos/pgmo.png" alt="Provincial Government of Misamis Oriental">' +
                 '<img class="sd" src="images/logos/serial-disruptors.png" alt="Serial Disruptors">';
     document.querySelectorAll('.deck > .slide.cover .cv-text').forEach(function (t) {
       if (t.querySelector('.cv-logos')) return;

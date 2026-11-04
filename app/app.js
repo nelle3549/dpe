@@ -159,7 +159,7 @@
   }
   document.documentElement.classList.toggle('clean', clean());
   function logos() {
-    return '<div class="logos"><img src="course/images/logos/dict.png" alt="DICT"><img src="course/images/logos/bir.png" alt="Bureau of Internal Revenue"><img class="sd" src="course/images/logos/serial-disruptors.png" alt="Serial Disruptors"></div>';
+    return '<div class="logos"><img src="course/images/logos/dict.png" alt="DICT"><img src="course/images/logos/pgmo.png" alt="Provincial Government of Misamis Oriental"><img class="sd" src="course/images/logos/serial-disruptors.png" alt="Serial Disruptors"></div>';
   }
   function topbar() {
     var p = S.profile;
@@ -282,7 +282,7 @@
     var cname = code ? (await sb.rpc('check_join_code', { p_code: code })).data : null;
     var act = pendingAct();   // scanned an activity QR while signed out: most are registered already, so sign in comes first
     render(topbar() +
-      '<section class="hero"><div class="narrow"><p class="kicker">DICT · ILCDB training for BIR Misamis Oriental</p>' +
+      '<section class="hero"><div class="narrow"><p class="kicker">DICT · ILCDB training for the Provincial Government of Misamis Oriental</p>' +
       '<h1>Digital Productivity <span>Essentials</span></h1>' +
       '<p>Welcome! This is your course home for the next two days: slides, videos and the activities you\'ll do with us live.</p>' +
       logos() + '</div></section>' +
@@ -561,11 +561,11 @@
     return '<section class="hero"><div class="wrap">' +
       '<div class="partners" aria-label="Partners">' +
         '<figure><img class="dict" src="course/images/logos/dict.png" alt="DICT logo"><figcaption>Organizer<b>DICT</b></figcaption></figure>' +
-        '<figure><img src="course/images/logos/bir.png" alt="BIR logo"><figcaption>Participants<b>BIR Misamis Oriental</b></figcaption></figure>' +
+        '<figure><img src="course/images/logos/pgmo.png" alt="Provincial Government of Misamis Oriental seal"><figcaption>Participants<b>Provincial Government of Misamis Oriental</b></figcaption></figure>' +
         '<figure><img src="course/images/logos/sd-mark.png" alt="Serial Disruptors logo"><figcaption>Partner<b>Serial Disruptors</b></figcaption></figure></div>' +
       '<p class="kicker">DICT ILCDB · ICT Academy · Digital Workforce · Beginner</p>' +
       '<h1>Digital Productivity <span>Essentials</span></h1>' +
-      '<p class="lede">Computers and the internet, word processing, spreadsheets and presentations, with everyday AI used safely and responsibly. Built for the women and men of BIR Misamis Oriental, at the office and at home.</p>' +
+      '<p class="lede">Computers and the internet, word processing, spreadsheets and presentations, with everyday AI used safely and responsibly. Built for the women and men of the Provincial Government of Misamis Oriental, at the office and at home.</p>' +
       '<p class="rp">Resource Person: <b>Engr. Ronelle Pabellan</b> · Fully online · Course syllabus v1.0</p>' +
       '<div class="stats"><div><b>' + hrs + '</b><span>training hours</span></div><div><b>' + CAT.length + '</b><span>modules</span></div>' +
         '<div><b>' + all.length + '</b><span>topic decks</span></div><div><b>' + labs + '</b><span>hands-on labs</span></div></div>' +

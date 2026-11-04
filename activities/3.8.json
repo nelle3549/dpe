@@ -113,7 +113,7 @@
       ],
       "help": [
         "Type numbers as numbers: no ₱ sign or spaces typed in, or they become text.",
-        "Ask the AI with headers only. Never paste taxpayer data or personal records.",
+        "Ask the AI with headers only. Never paste client data or personal records.",
         "Two lines are enough for the note, for example: AI suggested =AVERAGE(E2:E9). Checked rows 2 and 9 by hand; totals match.",
         "Save often with Ctrl + S. A brownout during a 4-hour lab is a real risk."
       ]

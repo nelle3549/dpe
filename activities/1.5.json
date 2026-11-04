@@ -69,7 +69,7 @@
       "kind": "lab",
       "title": "Lab 1: File Management and Everyday AI",
       "minutes": 5,
-      "intro": "Hand in your Lab 1 master folder. It should have your name, two clearly named sub-folders, your BIR website screenshot from Part B and your AI response with your note from Part C. Missing something? Go back to Part A, B or C now.",
+      "intro": "Hand in your Lab 1 master folder. It should have your name, two clearly named sub-folders, your provincial website screenshot from Part B and your AI response with your note from Part C. Missing something? Go back to Part A, B or C now.",
       "blocks": [
         {
           "type": "steps",
@@ -170,11 +170,11 @@
         {
           "type": "mcq",
           "id": "q5",
-          "prompt": "5. In https://www.bir.gov.ph/index.php, which part tells you who owns the site?",
+          "prompt": "5. In https://www.misamisoriental.gov.ph/index.php, which part tells you who owns the site?",
           "options": [
             "https://",
             "www.",
-            "bir.gov.ph",
+            "misamisoriental.gov.ph",
             "/index.php"
           ]
         },
@@ -183,10 +183,10 @@
           "id": "q6",
           "prompt": "6. Which search finds only PDF files from Philippine government websites?",
           "options": [
-            "tax forms pdf gov",
-            "tax forms site:gov.ph filetype:pdf",
-            "tax forms -pdf -gov",
-            "\"tax forms gov.ph pdf\""
+            "leave forms pdf gov",
+            "leave forms site:gov.ph filetype:pdf",
+            "leave forms -pdf -gov",
+            "\"leave forms gov.ph pdf\""
           ]
         },
         {
@@ -227,7 +227,7 @@
           "id": "q10",
           "prompt": "10. What is the safe way to use a public AI chatbot at work?",
           "options": [
-            "Paste a taxpayer's return and ask for a summary",
+            "Paste a colleague's personnel record and ask for a summary",
             "Ask for a generic template, then check and edit it",
             "Copy its answer straight into an official letter",
             "Give it your office login so it can read your email"

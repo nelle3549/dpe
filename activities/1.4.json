@@ -14,14 +14,14 @@
           "type": "email",
           "id": "mail",
           "label": "Inbox · sample phishing email",
-          "from": "BIR Refund Center <refunds@bir-gov-ph.help-desk.site>",
+          "from": "GSIS Refund Center <refunds@gsis-gov-ph.help-desk.site>",
           "subject": "URGENT!!! Your refund will be CANCELLED",
           "body": [
-            "Dear Taxpayer,",
-            "You have an unclaimed refund of P8,450.00. Verify your account within 24 hours or it will be forfieted. Enter your TIN, email password and the OTP we send."
+            "Dear Member,",
+            "You have an unclaimed refund of P8,450.00. Verify your account within 24 hours or it will be forfieted. Enter your GSIS number, email password and the OTP we send."
           ],
           "button": "Claim Refund",
-          "link": "http://bir-gov-ph.help-desk.site/verify",
+          "link": "http://gsis-gov-ph.help-desk.site/verify",
           "attachment": "Refund_Form.pdf.exe"
         },
         {
@@ -39,12 +39,12 @@
         {
           "type": "mcq",
           "id": "sender",
-          "prompt": "The email is from refunds@bir-gov-ph.help-desk.site. Who really owns that address?",
+          "prompt": "The email is from refunds@gsis-gov-ph.help-desk.site. Who really owns that address?",
           "options": [
-            "BIR (bir.gov.ph)",
+            "GSIS (gsis.gov.ph)",
             "help-desk.site",
             "gov.ph",
-            "The taxpayer"
+            "The member"
           ]
         },
         {
@@ -64,18 +64,18 @@
       "id": "1.4-qc",
       "slide": "Quick check",
       "kind": "check",
-      "title": "Quick check: the BIR caller",
+      "title": "Quick check: the GSIS caller",
       "minutes": 1,
       "intro": "One question. Pick the best answer.",
       "blocks": [
         {
           "type": "mcq",
           "id": "q",
-          "prompt": "A caller says: \"This is BIR. You have a pending tax case. Pay ₱5,000 by GCash today to settle it.\" Best move?",
+          "prompt": "A caller says: \"This is GSIS. Your loan is overdue. Pay ₱5,000 by GCash today to avoid a penalty.\" Best move?",
           "options": [
             "Pay quickly to avoid trouble",
-            "Give your TIN so they can check your record",
-            "Hang up, verify through official BIR channels, and report the number",
+            "Give your GSIS number so they can check your record",
+            "Hang up, verify through official GSIS channels, and report the number",
             "Post the number in the family GC and ask what to do"
           ]
         }

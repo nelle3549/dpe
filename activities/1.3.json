@@ -8,17 +8,17 @@
       "kind": "task",
       "title": "Lab 1 Part B: find it, snip it, file it",
       "minutes": 7,
-      "intro": "Use your master folder from Part A. Find a page on the official BIR website, take a screenshot and save it in the right folder.",
+      "intro": "Use your master folder from Part A. Find a page on the official Provincial Government website, take a screenshot and save it in the right folder.",
       "blocks": [
         {
           "type": "steps",
           "id": "steps",
           "items": [
-            "Search \"internet safety tips\". Then try site:bir.gov.ph with a topic you choose.",
-            "Open one useful page on the official BIR website (check the address!).",
+            "Search \"internet safety tips\". Then try site:misamisoriental.gov.ph with a topic you choose.",
+            "Open one useful page on the official Provincial Government website (check the address!).",
             "Press Win + Shift + S and drag around the useful part.",
             "Click the pop-up that appears, then press Ctrl + S to save.",
-            "Save it into 01 Screenshots as YYYY-MM-DD Screenshot - BIR Website."
+            "Save it into 01 Screenshots as YYYY-MM-DD Screenshot - Provincial Website."
           ]
         },
         {
@@ -58,7 +58,7 @@
       ],
       "help": [
         "The pop-up disappeared? Open the Snipping Tool from Start, or paste with Ctrl + V into Paint and save.",
-        "Check the address: your page must be on bir.gov.ph.",
+        "Check the address: your page must be on misamisoriental.gov.ph.",
         "Other ways to capture: PrtSc for the whole screen, Win + PrtSc to save it to Pictures › Screenshots, or right-click an image › Save image as. On a Mac: Cmd + Shift + 4."
       ]
     },
