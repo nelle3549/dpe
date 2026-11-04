@@ -1,0 +1,27 @@
+{
+  "topic": "4.8",
+  "title": "Gemini Notebook Slide Decks and Videos",
+  "activities": [
+    {
+      "id": "4.8-qc",
+      "slide": "Quick check",
+      "kind": "check",
+      "title": "Quick check: a claim that is not in the report",
+      "minutes": 1,
+      "intro": "Pick one answer.",
+      "blocks": [
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "Gemini Notebook made a slide saying the drop in hard-to-find memos was \"driven directly\" by the naming rule. Your report only gives the numbers. What do you do?",
+          "options": [
+            "Keep it. The AI read the whole report",
+            "Revise that slide so it says only what the report says",
+            "Delete the whole deck and type it again by hand",
+            "Present it, and say it was made by AI"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -220,7 +220,7 @@
       </div>
       <div class="day"><h4>Day 2</h4>
         <div class="slot" style="--c:var(--m3)"><span class="h">3.5 h</span><div><b>Module 3 · Electronic Spreadsheet Fundamentals</b><span>Topics 3.1 to 3.8 · Module 3 Quiz</span></div></div>
-        <div class="slot" style="--c:var(--m4)"><span class="h">3.5 h</span><div><b>Module 4 · Multimedia Presentation Fundamentals</b><span>Topics 4.1 to 4.7 · Module 4 Quiz · course closing</span></div></div>
+        <div class="slot" style="--c:var(--m4)"><span class="h">3.5 h</span><div><b>Module 4 · Multimedia Presentation Fundamentals</b><span>Topics 4.1 to 4.7 · Module 4 Quiz · course closing · bonus 4.8 Gemini Notebook</span></div></div>
       </div>
     </div>
   </section>
@@ -293,10 +293,11 @@ const DECKS = {
   D('4.4','Inserting and Manipulating Graphical Elements','30 min','Pictures, shapes, icons, diagrams and your spreadsheet chart: placed neatly, used legally, described for everyone.',['Crop and resize without stretching','Align, distribute, group','Copyright and alt text'],['vid']),
   D('4.5','Applying Animations and Slide Transitions','25 min','Motion that helps your audience follow you, not motion that makes them dizzy.',['Transitions vs animations','Apply one transition to all','Live demos on the slides'],['vid']),
   D('4.6','Adding Media Clips','25 min','Video, music and your own voice in a slide, and making sure they actually play on the day.',['Insert video and audio','Trim and playback options','Sound check on Zoom and Meet'],['vid']),
-  D('4.7','AI in Presentation Design','25 min + quiz','Let AI suggest layouts and outlines. You stay in charge of the facts. Then the Module 4 Quiz and the course closing.',['AI design helpers','Visual ethics and privacy','The 10-item Module 4 Quiz and closing'],['quiz:Module 4 Quiz','lab:Course closing','vid'])]
+  D('4.7','AI in Presentation Design','25 min + quiz','Let AI suggest layouts and outlines. You stay in charge of the facts. Then the Module 4 Quiz and the course closing.',['AI design helpers','Visual ethics and privacy','The 10-item Module 4 Quiz and closing'],['quiz:Module 4 Quiz','lab:Course closing','vid']),
+  D('4.8','Gemini Notebook Slide Decks and Videos','25 min · bonus','Find Gemini Notebook (formerly NotebookLM), add your own report, and let it make a slide deck and a narrated video. Then check every claim.',['Where to find it and how to sign in','Slide Deck and Video Overview from one report','Fact-check and fix with Revise'],['vid'])]
 };
 // topic video lengths, filled in by Videos/engine/index_lengths.py
-const VLEN = {"1.1": "5:33", "1.2": "4:54", "1.3": "4:56", "1.4": "5:16", "1.5": "4:37", "2.1": "4:59", "2.2": "4:58", "2.3": "4:52", "2.4": "4:44", "2.5": "4:46", "2.6": "5:07", "3.1": "4:54", "3.2": "4:55", "3.3": "5:31", "3.4": "4:55", "3.5": "5:00", "3.6": "5:06", "3.7": "4:59", "3.8": "5:13", "4.1": "4:57", "4.2": "4:38", "4.3": "4:59", "4.4": "5:05", "4.5": "4:50", "4.6": "4:53", "4.7": "5:01"};
+const VLEN = {"1.1": "5:33", "1.2": "4:54", "1.3": "4:56", "1.4": "5:16", "1.5": "4:37", "2.1": "4:59", "2.2": "4:58", "2.3": "4:52", "2.4": "4:44", "2.5": "4:46", "2.6": "5:07", "3.1": "4:54", "3.2": "4:55", "3.3": "5:31", "3.4": "4:55", "3.5": "5:00", "3.6": "5:06", "3.7": "4:59", "3.8": "5:13", "4.1": "4:57", "4.2": "4:38", "4.3": "4:59", "4.4": "5:05", "4.5": "4:50", "4.6": "4:53", "4.7": "5:01", "4.8": "4:16"};
 const FILE = d => 'Deck - ' + d.n + ' ' + d.t + ' - 2026-11-01.html';
 const KEY = 'dpe-done-v1';
 let done = {};

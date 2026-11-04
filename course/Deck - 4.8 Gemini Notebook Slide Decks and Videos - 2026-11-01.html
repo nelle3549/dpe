@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4.8 Gemini Notebook Slide Decks and Videos · Digital Productivity Essentials</title>
+<link rel="stylesheet" href="assets/base.css?v=7ec0fa28">
+<link rel="stylesheet" href="assets/animations/animations.css?v=cd8ec112">
+<link rel="stylesheet" href="assets/dpe.css?v=abcc599e">
+<style>
+/* 4.8 output gallery, fact-check pairs, video player */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u)*1.1)}
+.gal figure{margin:0}
+.gal img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:calc(var(--u)*.5);border:1px solid var(--border);box-shadow:var(--shadow);background:#fff}
+.gal figcaption{font-size:calc(var(--u)*.85);color:var(--text-3);margin-top:.35em}
+.fc{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*1.6)}
+.fc .pic{position:relative}
+.fc .pic img{display:block;width:100%;border-radius:calc(var(--u)*.5);border:1px solid var(--border);box-shadow:var(--shadow)}
+.fc .mark{position:absolute;left:calc(var(--x)*1%);top:calc(var(--y)*1%);width:calc(var(--w)*1%);height:calc(var(--h)*1%);border:calc(var(--u)*.22) solid var(--coral);border-radius:calc(var(--u)*.4)}
+.fc h4{font-size:calc(var(--u)*1.35);margin:calc(var(--u)*.9) 0 .3em}
+.fc p{font-size:calc(var(--u)*1.2);line-height:1.45;margin:0}
+.flag{background:var(--coral-soft);color:var(--coral-ink);font-weight:700;padding:0 .3em;border-radius:3px}
+.ok{background:var(--gold-soft);font-weight:700;padding:0 .3em;border-radius:3px}
+.vbox{position:relative;border-radius:calc(var(--u)*.8);overflow:hidden;box-shadow:var(--shadow);background:#000}
+.vbox video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+.facts{list-style:none;margin:0;padding:0}
+.facts li{position:relative;padding:calc(var(--u)*.55) 0 calc(var(--u)*.55) calc(var(--u)*2.4);font-size:calc(var(--u)*1.25);line-height:1.4;border-bottom:1px dashed var(--border-strong)}
+.facts li:last-child{border-bottom:0}
+.facts li::before{content:"";position:absolute;left:0;top:calc(var(--u)*.8);width:calc(var(--u)*1.3);height:calc(var(--u)*1.3);border-radius:50%;background:var(--gold)}
+.facts li.bad::before{background:var(--coral)}
+.url{font-family:var(--font-mono);background:var(--surface-2);padding:.05em .4em;border-radius:4px}
+</style>
+</head>
+<body class="m4" data-brand="Digital Productivity Essentials · <b>Module 4</b> · 4.8 Gemini Notebook Slide Decks and Videos">
+<div class="deck">
+
+  <!-- 1 · Cover -->
+  <section class="slide cover" data-title="Cover">
+    <div class="cv-text">
+      <p class="kicker">Module 4 · Bonus topic</p>
+      <h1 class="h1" data-anim="fade-up">Gemini Notebook: <span style="color:var(--gold)">a report in, a deck and a video out</span></h1>
+      <p class="lede" data-anim="fade-up">Give it your own document. It answers with citations, then makes a slide deck and a narrated video from it. You check every claim.</p>
+      <div class="cv-meta">
+        <span class="tag ghost">Topic 4.8</span><span class="tag ghost">~25 minutes</span><span class="tag ghost">Formerly NotebookLM</span>
+      </div>
+    </div>
+    <div class="cv-img"><img src="images/ui/4.8/17-deck-viewer.webp" alt="Gemini Notebook showing a slide deck it made: Administrative Section Year-End Report 2026"><div class="cv-num">4.8</div></div>
+    <div class="notes">
+      <p><b>One more, everyone. This one is fun.</b> In 4.7 we let AI suggest layouts. Today we go further: we give an AI tool one real document, and it makes a whole slide deck and a short video from it.</p>
+      <p>The tool is <b>Gemini Notebook</b>. Many of you know its old name, <b>NotebookLM</b>. Same tool, new name.</p>
+      <p>Everything you'll see is a real screen, from a sample report: the Administrative Section Year-End Report 2026. You can download the same report and try it yourself.</p>
+    </div>
+  </section>
+
+  <!-- 2 · Agenda -->
+  <section class="slide" data-title="Agenda">
+    <div class="slide-head">
+      <div><p class="kicker">Today</p><h2 class="h2">Four steps, one report</h2></div>
+    <span class="dlchips"><a class="dlchip" href="files/4.8/Practice%20-%204.8%20Admin%20Section%20Year-End%20Report%20-%202026-11-04.docx" download="Practice - 4.8 Admin Section Year-End Report - 2026-11-04.docx" title="Download: A two-page sample report to add as a source in Gemini Notebook, then turn into a slide deck and a video overview."><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Sample source: Admin Section year-end report</a></span></div>
+    <div class="grid g4 anim-stagger-list">
+      <div class="card top"><span class="k">Step 1 · ~5 min</span><h4>Find and open it</h4><p>The web address, Google search, or the Google apps menu. Sign in.</p></div>
+      <div class="card top"><span class="k">Step 2 · ~5 min</span><h4>Add your source, ask</h4><p>Bring in the report from Drive. Ask a question, check the citations.</p></div>
+      <div class="card top"><span class="k">Step 3 · ~10 min</span><h4>Slide Deck and Video</h4><p>The Studio panel makes both. We look at the real outputs.</p></div>
+      <div class="card top"><span class="k">Step 4 · ~5 min</span><h4>Fact-check and share</h4><p>Find what the AI added, fix it with Revise, then download.</p></div>
+    </div>
+    <div class="callout mt-l"><b>Practice file:</b> <i>Admin Section Year-End Report</i> (Word). Upload it to your own Google Drive first, then follow along.</div>
+    <div class="notes">
+      <p>Four steps. We start with something many people skip: <b>where to find the tool and how to open it</b>. Then we add the report, ask a question, and make the two outputs. We end by checking them, because the AI got a few things wrong, and I'll show you exactly where.</p>
+      <p>If you want to follow along, download the practice file now and put it in your Google Drive. You need a Google account; a personal Gmail works.</p>
+    </div>
+  </section>
+
+  <!-- 3 · What it is -->
+  <section class="slide" data-title="What it is">
+    <div class="split">
+      <div>
+        <p class="kicker">The big idea</p>
+        <h2 class="h2">An AI that reads <em class="mod">only your sources</em>.</h2>
+        <ul class="ticks mt-l anim-stagger-list">
+          <li><b>Gemini Notebook</b> is Google's notebook for your own files. Its old name was <b>NotebookLM</b>.</li>
+          <li><b>Sources:</b> Google Docs and Slides, PDFs, Word files, web links, YouTube videos, pasted text.</li>
+          <li><b>Answers cite the source:</b> click a number to see the exact sentence it used.</li>
+          <li><b>Studio</b> turns the sources into a slide deck, a video, an audio talk, a quiz, flashcards and more.</li>
+          <li>Still a <b>copilot</b>: it can add things your source never said.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="images/ui/4.8/07-chat-answer-citations.webp" alt="Gemini Notebook with three panels: Sources on the left, the chat answer with citation numbers in the middle, Studio on the right"></div>
+    </div>
+    <div class="notes">
+      <p>The key difference from a normal chatbot: Gemini Notebook answers <b>from the sources you give it</b>, and it shows where each answer came from. That makes checking much faster.</p>
+      <p>But "from your sources" does not mean "always right". Today's deck and video both added claims our report never made. We'll find them together.</p>
+      <p>If someone asks: yes, NotebookLM and Gemini Notebook are the same product. The old address still works; it now opens the new name.</p>
+    </div>
+  </section>
+
+  <!-- 4 · Where to find it -->
+  <section class="slide" data-title="Where to find it">
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1"><div class="pic"><img src="images/ui/4.8/00a-landing-page.webp" alt="Browser address bar showing notebook.google and the Gemini Notebook landing page with a Try Gemini Notebook button"><i class="ring" style="--x:9.4;--y:1;--w:18;--h:3.8"></i></div></figure>
+          <figure class="f" data-step="2"><div class="pic"><img src="images/ui/4.8/00b-google-search.webp" alt="Google search results for NotebookLM: the first result is Gemini Notebook, and the side panel says formerly known as NotebookLM"><i class="ring" style="--x:6.8;--y:23.5;--w:20;--h:10.5"></i><i class="ring" style="--x:72.6;--y:78.5;--w:26;--h:5;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.5" data-o="92,55"><div class="pic"><img src="images/ui/4.8/00c-google-apps-menu.webp" alt="The Google apps menu open on google.com, with the Notebook icon"><i class="ring" style="--x:88;--y:50;--w:8.6;--h:14.5"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.3" data-o="50,48"><div class="pic"><img src="images/ui/4.8/00a-landing-page.webp" alt="The Try Gemini Notebook button on the landing page"><i class="ring" style="--x:41.1;--y:44.5;--w:17.8;--h:7.4"></i></div></figure>
+        </div>
+        <p class="cap">Microsoft Edge on a Mac, sample Google account. Any browser works: Chrome, Edge, Firefox, Safari.</p>
+      </div>
+      <div>
+        <p class="kicker">Step 1 · Find it</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Three ways in, one sign-in</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b>Type the address:</b> <span class="url">notebook.google.com</span> (the old <span class="url">notebooklm.google.com</span> still works).</li>
+          <li data-step="2"><b>Or search</b> <i>NotebookLM</i> or <i>Gemini Notebook</i>. Click the result from google.com.</li>
+          <li data-step="3"><b>Or open the Google apps menu</b> (the 9 dots, top right of Gmail or Google) and click <b>Notebook</b>.</li>
+          <li data-step="4">Click <b>Try Gemini Notebook</b> and sign in with your Google account.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Walk through all three ways; people remember different ones. <b>The address</b> is fastest: notebook.google.com. If someone types the old notebooklm address, it simply opens the new one.</p>
+      <p><b>Search</b> works too, but warn them: click the result that goes to <b>google.com</b>, not an ad or a look-alike site. The panel on the right confirms "formerly known as NotebookLM".</p>
+      <p><b>The apps menu</b>: the 9 dots at the top right of Gmail, Drive or Google. Scroll down to <b>Notebook</b>. Then sign in. A personal Gmail account works. A work or school account works only if the admin turned it on.</p>
+    </div>
+  </section>
+
+  <!-- 5 · Add a source -->
+  <section class="slide" data-title="Add your source">
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.4" data-o="90,62"><div class="pic"><img src="images/ui/4.8/01-home-new-notebook.webp" alt="Gemini Notebook home page with the New notebook button"><i class="ring" style="--x:83;--y:59.8;--w:14;--h:5.8"></i></div></figure>
+          <figure class="f" data-step="2"><div class="pic"><img src="images/ui/4.8/03-add-sources.webp" alt="Add sources window: upload files, or pick from Google Drive, websites or copied text"><i class="ring" style="--x:12.6;--y:43.6;--w:6.8;--h:4.8"></i><i class="ring" style="--x:33;--y:43.6;--w:4.6;--h:4.8;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3"><div class="pic"><img src="images/ui/4.8/04-drive-picker.webp" alt="The Google Drive picker with a search box"><i class="ring" style="--x:32.5;--y:9.5;--w:53;--h:6.5"></i></div></figure>
+          <figure class="f" data-step="4"><div class="pic"><img src="images/ui/4.8/05-drive-selected.webp" alt="The sample report selected in the Drive picker, with the Insert button"><i class="ring" style="--x:8.7;--y:21;--w:19.5;--h:29"></i><i class="ring" style="--x:83;--y:84.6;--w:8.8;--h:6.8;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Sample report: DPE sample - Admin Section Year-End Report 2026, in the trainer's demo Drive. <a class="dlchip" href="files/4.8/Practice%20-%204.8%20Admin%20Section%20Year-End%20Report%20-%202026-11-04.docx" download="Practice - 4.8 Admin Section Year-End Report - 2026-11-04.docx" title="Download: A two-page sample report to add as a source in Gemini Notebook, then turn into a slide deck and a video overview."><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Sample source: Admin Section year-end report</a></p>
+      </div>
+      <div>
+        <p class="kicker">Step 2 · Your source</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">One notebook per project</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1">On the home page, click <b>New notebook</b>.</li>
+          <li data-step="2"><b>Upload files</b> from your computer, or pick <b>Drive</b>. Links and copied text work too.</li>
+          <li data-step="3">In Drive, <b>search</b> the file name.</li>
+          <li data-step="4">Click the file, then <b>Insert</b>. It appears under Sources in a few seconds.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="notes">
+      <p>One notebook per project: one for the year-end report, another for a training, another for a policy. Each notebook only sees its own sources.</p>
+      <p>We use <b>Drive</b> here because the report is a Google Doc. A Word file or PDF from your computer works the same through <b>Upload files</b>.</p>
+      <p>Before you add anything, ask: <i>"Am I allowed to share this file with an online AI tool?"</i> Our sample report has no personal data. Never upload files with names, addresses, ID numbers or salaries of real people.</p>
+    </div>
+  </section>
+
+  <!-- 6 · Ask and check -->
+  <section class="slide" data-title="Ask and check the citations">
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1"><div class="pic"><img src="images/ui/4.8/07-chat-answer-citations.webp" alt="The answer listing the three main results with small citation numbers"><i class="ring" style="--x:29.6;--y:35.5;--w:41;--h:43"></i></div></figure>
+          <figure class="f" data-step="2"><div class="pic"><img src="images/ui/4.8/08-citation-popup.webp" alt="A citation pop-up showing the exact text from the sample report"><i class="ring" style="--x:40;--y:54.5;--w:34.5;--h:41"></i></div></figure>
+          <figure class="f" data-step="3"><div class="pic"><img src="images/ui/4.8/07-chat-answer-citations.webp" alt="Sources on the left, chat in the middle, Studio on the right"><i class="ring" style="--x:2.4;--y:44.6;--w:22.5;--h:5.4"></i><i class="ring" style="--x:74;--y:6;--w:25;--h:52;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Question typed in the chat box: "What are the three biggest results this year? Give the numbers."</p>
+      </div>
+      <div>
+        <p class="kicker">Ask first</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Every number has a source</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b>Ask</b> a plain question. The answer has small numbers after each fact.</li>
+          <li data-step="2"><b>Click a number:</b> the exact sentence from your report pops up. Compare it.</li>
+          <li data-step="3"><b>Three panels:</b> Sources (left), Chat (middle), <b>Studio</b> (right) for decks and videos.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Ask before you generate. It's the fastest way to see whether the tool understood your source. Here the three results are correct: 3 working days down to 1, 38 reams down to 21, and hard-to-find memos from 1 in 5 to 1 in 50.</p>
+      <p>Click a citation number live. The pop-up shows the actual text from the report. <b>This is the habit</b>: if a number matters, click its citation.</p>
+      <p>Then point to Studio on the right. That's where the slide deck and the video come from.</p>
+    </div>
+  </section>
+
+  <!-- 7 · Slide Deck creator -->
+  <section class="slide" data-title="Make a slide deck">
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1" data-zoom="1.5" data-o="92,24"><div class="pic"><img src="images/ui/4.8/09-studio-slide-deck.webp" alt="The Studio panel with the Slide Deck tile"><i class="ring" style="--x:87;--y:16;--w:12;--h:16"></i></div></figure>
+          <figure class="f" data-step="2"><div class="pic"><img src="images/ui/4.8/10-customize-slide-deck.webp" alt="Customize Slide Deck: Detailed Deck or Presenter Slides, language and length"><i class="ring" style="--x:50;--y:26;--w:37;--h:14"></i><i class="ring" style="--x:37;--y:46;--w:16;--h:5;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3"><div class="pic"><img src="images/ui/4.8/11-slide-deck-options-filled.webp" alt="The description box filled in, and the Generate now button"><i class="ring" style="--x:11;--y:63;--w:76;--h:12"></i><i class="ring" style="--x:78;--y:88;--w:10;--h:5;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.4" data-o="88,60"><div class="pic"><img src="images/ui/4.8/12-generating-slide-deck.webp" alt="Studio shows Generating Slide Deck"><i class="ring" style="--x:76;--y:56;--w:22;--h:8"></i></div></figure>
+        </div>
+        <p class="cap">Studio › Slide Deck › pencil icon (Customize). Clicking the tile itself starts at once with the defaults.</p>
+      </div>
+      <div>
+        <p class="kicker">Step 3 · Studio</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Slide Deck: say who it's for</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1">In <b>Studio</b>, click the <b>pencil</b> on <b>Slide Deck</b> to customize it.</li>
+          <li data-step="2"><b>Detailed Deck</b> (to read) or <b>Presenter Slides</b> (to talk over). Pick a length.</li>
+          <li data-step="3"><b>Describe the deck:</b> audience, number of slides, what to stress. Then <b>Generate now</b>.</li>
+          <li data-step="4">It takes about <b>5 minutes</b>. You can keep chatting meanwhile.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Use the <b>pencil</b>, not just the tile. The customize window is where you tell it who the deck is for. Our description: a short deck for the section chief, results with numbers, one idea per slide. That's the 4.1 rule, now given to AI.</p>
+      <p><b>Detailed Deck</b> has full sentences, good for sending. <b>Presenter Slides</b> has less text, for talking over. The <b>AI Usage</b> bar at the bottom shows how much of your daily allowance it will use.</p>
+      <p>While it works, keep asking questions in the chat. Our deck took about five minutes.</p>
+    </div>
+  </section>
+
+  <!-- 8 · Output: the slide deck -->
+  <section class="slide" data-title="Output: the slide deck">
+    <div class="slide-head">
+      <div><p class="kicker">What we got · 9 slides from one report</p><h2 class="h2">The deck Gemini Notebook made</h2></div>
+      <span class="tag gold">Not edited</span>
+    <span class="dlchips"><a class="dlchip" href="files/4.8/Practice%20-%204.8%20Sample%20Output%20Slide%20Deck%20-%202026-11-04.pptx" download="Practice - 4.8 Sample Output Slide Deck - 2026-11-04.pptx" title="Download: The deck Gemini Notebook made from the sample report, not edited. Each slide is a picture. Find the two claims the report does not support."><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Sample output: the 9-slide deck</a></span></div>
+    <div class="gal anim-stagger-list">
+      <figure><img src="images/ui/4.8/out-slide-1.webp" alt="Slide 1: Administrative Section Year-End Report 2026, Moving from Paper to Digital"><figcaption>1 · Title</figcaption></figure>
+      <figure><img src="images/ui/4.8/out-slide-2.webp" alt="Slide 2: The 2026 Paradigm Shift, the old way versus the new standard"><figcaption>2 · Old way, new standard</figcaption></figure>
+      <figure><img src="images/ui/4.8/out-slide-3.webp" alt="Slide 3: request turnaround, 3 days in 2025, 1 day in 2026"><figcaption>3 · 3 days to 1 day</figcaption></figure>
+      <figure><img src="images/ui/4.8/out-slide-4.webp" alt="Slide 4: paper used per month, 38 reams to 21 reams"><figcaption>4 · 38 to 21 reams</figcaption></figure>
+      <figure><img src="images/ui/4.8/out-slide-5.webp" alt="Slide 5: hard-to-find memos, 1 in 5 in 2025, 1 in 50 in 2026"><figcaption>5 · 1 in 5 to 1 in 50</figcaption></figure>
+      <figure><img src="images/ui/4.8/out-slide-6.webp" alt="Slide 6: staff trained, 2 in 2025, 14 in 2026"><figcaption>6 · 2 to 14 staff</figcaption></figure>
+    </div>
+    <div class="row mt-m small"><span class="tag">Slides 7 to 9: four upgrades, remaining problems, targets for 2027</span><span class="tag">Download: PDF or PowerPoint</span></div>
+    <div class="notes">
+      <p>This is the real output, not edited. Look at the good parts first: <b>one idea per slide</b>, big numbers, clear titles, our blue colour. It even used the 4.1 rule we gave it in the description.</p>
+      <p>Click through the full deck in the downloaded file if there's time: slides 7 to 9 cover the four upgrades, the remaining problems, and the targets for 2027.</p>
+      <p>Ask: <i>"How long would this take you by hand?"</i> An hour, maybe two. Gemini took five minutes. But now comes the part only a human can do.</p>
+    </div>
+  </section>
+
+  <!-- 9 · Fact-check the deck -->
+  <section class="slide" data-title="Fact-check the deck">
+    <div class="slide-head">
+      <div><p class="kicker">Step 4 · Check every claim</p><h2 class="h2">Two slides say more than the report</h2></div>
+    <span class="dlchips"><a class="dlchip" href="files/4.8/Practice%20-%204.8%20Sample%20Output%20Slide%20Deck%20-%202026-11-04.pptx" download="Practice - 4.8 Sample Output Slide Deck - 2026-11-04.pptx" title="Download: The deck Gemini Notebook made from the sample report, not edited. Each slide is a picture. Find the two claims the report does not support."><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Sample output: the 9-slide deck</a></span></div>
+    <div class="fc">
+      <div>
+        <div class="pic"><img src="images/ui/4.8/out-slide-5.webp" alt="Slide 5 with the sentence: This improvement is driven directly by our strict adoption of the new date-first naming rule"><i class="mark" style="--x:2.4;--y:82;--w:95.2;--h:14.5"></i></div>
+        <h4>Slide 5 · a cause it made up</h4>
+        <p>"<span class="flag">driven directly by</span> our strict adoption of the new date-first naming rule". The report gives the numbers, <b>not the cause</b>.</p>
+      </div>
+      <div>
+        <div class="pic"><img src="images/ui/4.8/out-slide-9.webp" alt="Slide 9: Strategic Targets for 2027 with Q1, Q2 and Ongoing labels"><i class="mark" style="--x:16;--y:28;--w:40;--h:9"></i></div>
+        <h4>Slide 9 · dates it made up</h4>
+        <p>"<span class="flag">Q1</span>" and "<span class="flag">Q2</span>" are not in the report. Only the scanning has a date: <span class="ok">June 2027</span>.</p>
+      </div>
+    </div>
+    <div class="callout tip mt-m"><b>Checked and correct:</b> 3 to 1 working days, 38 to 21 reams (a 44% cut), 1 in 5 to 1 in 50, 2 to 14 staff, 1,240 memos, ₱22,039.00 across 8 items.</div>
+    <div class="notes">
+      <p>Read slide 5 aloud. It sounds reasonable, and that's the danger. Our report says the memos were renamed and that fewer are hard to find. It never says one <b>caused</b> the other. If the section chief repeats this in a meeting, it becomes a claim nobody can prove.</p>
+      <p>Slide 9 adds quarter labels. The report only says "replace the two oldest computers" and "a refresher every quarter"; the only date is June 2027.</p>
+      <p>Everything else checked out, including the 44% (38 minus 21 is 17; 17 out of 38 is about 44.7%). So the rule from 4.7 holds: <b>keep the structure, fix what is untrue or unproven</b>.</p>
+    </div>
+  </section>
+
+  <!-- 10 · Revise and download -->
+  <section class="slide" data-title="Revise, download, present">
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1"><div class="pic"><img src="images/ui/4.8/17-deck-viewer.webp" alt="The deck opened in the large viewer with the Revise button and slide thumbnails"><i class="ring" style="--x:61.3;--y:8.5;--w:10.2;--h:6"></i></div></figure>
+          <figure class="f" data-step="2"><div class="pic"><img src="images/ui/4.8/19-revise-slide.webp" alt="Revise mode: slide 5 selected, a change request typed in the Change Slide 5 box, and the Generate revised deck button"><i class="ring" style="--x:7.2;--y:62;--w:65.8;--h:12"></i><i class="ring" style="--x:74.7;--y:83.5;--w:18.4;--h:5;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.4" data-o="85,25"><div class="pic"><img src="images/ui/4.8/16-deck-in-studio.webp" alt="The deck in the Studio panel with its toolbar: revise, present, share, expand and more"><i class="ring" style="--x:63;--y:17;--w:33;--h:6"></i></div></figure>
+          <figure class="f" data-step="4" data-zoom="1.4" data-o="85,32"><div class="pic"><img src="images/ui/4.8/18-deck-download-menu.webp" alt="The more menu: Download PDF Document, Download PowerPoint, Delete"><i class="ring" style="--x:74;--y:25;--w:21;--h:15"></i></div></figure>
+        </div>
+        <p class="cap">Revise works slide by slide. The deck stays as it is until you click Generate revised deck.</p>
+      </div>
+      <div>
+        <p class="kicker">Fix, then share</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Revise one slide, keep the rest</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1">Open the deck large and click <b>Revise</b>.</li>
+          <li data-step="2">Pick the slide, type the change: <i>"Remove the sentence about the cause. Keep only the numbers."</i> Then <b>Generate revised deck</b>.</li>
+          <li data-step="3"><b>Present</b> right here, or <b>share</b> a link.</li>
+          <li data-step="4"><b>⋮ › Download</b> as <b>PDF</b> or <b>PowerPoint</b>.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="callout mt-m"><b>Good to know:</b> in the PowerPoint download, each slide is <b>one picture</b>. For small text fixes, use Revise, or rebuild that one slide yourself.</div>
+    <div class="notes">
+      <p>Revise is the fix. You choose the slide and say what to change, in plain words. Only that slide changes; the other eight stay. Show the typed request on screen: we tell it exactly what the report does not support.</p>
+      <p>Then download. <b>Important</b>: the PowerPoint file has each slide as a single picture, so you can't click into the text and edit it in PowerPoint. Fix it in Revise first, or rebuild the one slide in PowerPoint with the 4.2 template.</p>
+      <p>A shared link only works for people you add, like sharing a Google Doc.</p>
+    </div>
+  </section>
+
+  <!-- 11 · Video Overview creator -->
+  <section class="slide" data-title="Make a video">
+    <div class="shots" data-walk>
+      <div>
+        <div class="stage">
+          <figure class="f" data-step="1"><div class="pic"><img src="images/ui/4.8/13-customize-video-format.webp" alt="Customize Video Overview: Short or Explainer format, language, sources, visual styles"><i class="ring" style="--x:50;--y:21.5;--w:37.5;--h:18.5"></i><i class="ring" style="--x:11.5;--y:63;--w:74;--h:17;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="2"><div class="pic"><img src="images/ui/4.8/14-video-style-and-focus.webp" alt="Whiteboard style selected and a custom topic typed: explain to new staff how the section moved from paper to digital"><i class="ring" style="--x:56.5;--y:18;--w:14;--h:17.5"></i><i class="ring" style="--x:11.5;--y:63;--w:76;--h:18.5;--d:0.25s"></i></div></figure>
+          <figure class="f" data-step="3" data-zoom="1.4" data-o="88,62"><div class="pic"><img src="images/ui/4.8/20-studio-video-ready.webp" alt="Studio list: the video Admin Digital Shift, 8 minutes 23 seconds, Explainer, and the slide deck below it"><i class="ring" style="--x:75.5;--y:58;--w:21.5;--h:8"></i></div></figure>
+          <figure class="f" data-step="4"><div class="pic"><img src="images/ui/4.8/21-video-player.webp" alt="The video playing in Studio, with the download button above it"><i class="ring" style="--x:63.5;--y:45;--w:33.5;--h:30"></i><i class="ring" style="--x:85.6;--y:17.6;--w:3.6;--h:6;--d:0.25s"></i></div></figure>
+        </div>
+        <p class="cap">Studio › Video Overview › pencil icon. Our Explainer video took about 15 to 20 minutes.</p>
+      </div>
+      <div>
+        <p class="kicker">Step 3 · Studio</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.4)">Video Overview: a narrated explainer</h2>
+        <ol class="steps sm mt-s">
+          <li data-step="1"><b>Short</b> (vertical, for phones) or <b>Explainer</b> (full). Pick a <b>visual style</b>.</li>
+          <li data-step="2">We chose <b>Whiteboard</b> and a <b>custom topic</b>: who watches and what to cover.</li>
+          <li data-step="3">When it's ready, it appears in Studio with its length.</li>
+          <li data-step="4">Play it here, or <b>download</b> it as an MP4 video.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Same idea as the deck: click the <b>pencil</b> on Video Overview. <b>Explainer</b> makes a full narrated video; <b>Short</b> makes a quick vertical clip for phones.</p>
+      <p>The custom topic is your brief. Ours: <i>"Explain to new staff how our section moved from paper to digital files this year: what we did, the four results with their numbers, the challenges, and the plans for 2027."</i> That's why the video sounds like an onboarding welcome.</p>
+      <p>Videos take longer than decks; ours took about 15 to 20 minutes and came out at 8 minutes 23 seconds. Start it, and do something else meanwhile.</p>
+    </div>
+  </section>
+
+  <!-- 12 · Output: the video -->
+  <section class="slide" data-title="Output: the video"><span class="dlchips abs"><a class="dlchip" href="files/4.8/Practice%20-%204.8%20Sample%20Output%20Video%20-%202026-11-04.mp4" download="Practice - 4.8 Sample Output Video - 2026-11-04.mp4" title="Download: The Explainer video overview (Whiteboard style) made from the same report, not edited. Listen for words the report never said."><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Sample output: the 8-minute video</a></span>
+    <div class="split">
+      <div>
+        <div class="vbox"><video src="images/ui/4.8/nb-video-clip.mp4" poster="images/ui/4.8/nb-video-clip-poster.webp" controls preload="none" playsinline></video></div>
+        <p class="tiny mt-s">Clip, 56 seconds, from the 8:23 video <i>Admin Digital Shift</i> (Explainer, Whiteboard style). Not edited.</p>
+      </div>
+      <div>
+        <p class="kicker">What we got · then we checked it</p>
+        <h2 class="h2" style="font-size:calc(var(--u)*2.3)">Right numbers, a few extra words</h2>
+        <ul class="facts mt-s">
+          <li>All four results, the 1,240 memos, 120 offices, ₱22,039 across 8 items: <b>correct</b>.</li>
+          <li class="bad">"Reduces our environmental impact" and "frees up office space": <b>not in the report</b>.</li>
+          <li class="bad">Calls the AI rule "<b>mandatory</b>". The report says "adopt a simple rule".</li>
+          <li class="bad">Says AI tools "aren't <b>invaluable</b>". It meant "not perfect". Narration can misspeak.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Play the clip with sound: it's the results part, paper and response time. The voice and drawings are made by the AI from our one report.</p>
+      <p>Then the checklist on the right. The numbers are all right. But listen for <b>extra claims</b>: environmental impact and office space are nice ideas, not in our report. And one wrong word: the narrator says AI tools "aren't invaluable", which means the opposite of what it wanted to say.</p>
+      <p>A video is harder to fix than a deck: there is no Revise for one sentence. If a claim is wrong, change the custom topic and make it again, or don't use the video.</p>
+    </div>
+  </section>
+
+  <!-- 13 · Good practice -->
+  <section class="slide" data-title="Good practice">
+    <div class="slide-head">
+      <div><p class="kicker">Before you use it at work</p><h2 class="h2">Six rules for Gemini Notebook</h2></div>
+    </div>
+    <div class="grid g3 anim-stagger-list">
+      <div class="card top"><h4>Only shareable files</h4><p>No names, addresses, ID numbers, salaries or case details of real people. Check your office's AI policy.</p></div>
+      <div class="card top"><h4>Ask, then generate</h4><p>A question in the chat shows quickly whether it understood your source.</p></div>
+      <div class="card top"><h4>Click the citations</h4><p>Every number on a slide should match a sentence in your source.</p></div>
+      <div class="card top"><h4>Hunt for extras</h4><p>Causes, dates, praise and "mandatory" words the source never said. Fix them with Revise.</p></div>
+      <div class="card top"><h4>Mind the limits</h4><p>Free accounts have a daily AI usage limit. Decks take minutes, videos longer.</p></div>
+      <div class="card top dark"><h4>You own it</h4><p>Your name is on the report. Label AI-made media when you share it.</p></div>
+    </div>
+    <div class="notes">
+      <p>Go card by card, quickly. The first one matters most: <b>only files you're allowed to share</b>. Gemini Notebook is an online service; treat every upload like an email to an outside office.</p>
+      <p>"Hunt for extras" is today's new skill. The AI fills gaps with words that sound right: a cause, a quarter, a "mandatory". Read every slide asking: <i>"Where does it say that in my report?"</i></p>
+      <p>On limits: our demo account was almost out of AI usage after one deck and one video. Plan your important deck early in the day.</p>
+    </div>
+  </section>
+
+  <!-- 14 · Video -->
+  <section class="slide vslide" data-title="Video" data-nofooter>
+    <iframe data-src="videos/4.8/index.html" title="Video: Gemini Notebook Slide Decks and Videos" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="notes">
+      <p><b>Space</b> or <b>K</b> plays and pauses (or click the video). <b>C</b> turns captions on or off. The arrows still move between slides, and the video pauses when you leave this slide.</p>
+      <p>Length 4:16. A short recap of the whole flow, from finding the tool to checking the outputs. Good for anyone who joined late.</p>
+    </div>
+  </section>
+
+  <!-- 15 · Quick check -->
+  <section class="slide act" data-act="Portal activity" data-title="Quick check">
+    <div class="slide-head">
+      <div><p class="kicker">Quick check · click an answer</p><h2 class="h2">Gemini Notebook made a slide saying the drop in hard-to-find memos was "driven directly" by the naming rule. Your report only gives the numbers. What do you do?</h2></div>
+    </div>
+    <div class="qc g2">
+      <div class="opt"><span class="l">A</span><div>Keep it. The AI read the whole report<div class="why">No. Reading the report does not make the cause true. The report never says it.</div></div></div>
+      <div class="opt" data-correct><span class="l">B</span><div>Revise that slide so it says only what the report says<div class="why">Yes. Keep the good slides and fix the one claim the source does not support.</div></div></div>
+      <div class="opt"><span class="l">C</span><div>Delete the whole deck and type it again by hand<div class="why">Not needed. Eight slides were fine; Revise fixes one slide in a few minutes.</div></div></div>
+      <div class="opt"><span class="l">D</span><div>Present it, and say it was made by AI<div class="why">No. A label does not make a wrong claim right. You still own every word.</div></div></div>
+    </div>
+    <div class="notes">
+      <p>Give them a minute to answer in the portal, then click the options to reveal. The answer is <b>B</b>.</p>
+      <p>Point out that D is tempting: labelling AI work is good practice, but it never replaces checking it.</p>
+    </div>
+  </section>
+
+  <!-- 16 · Recap -->
+  <section class="slide statement" data-title="Recap">
+    <p class="kicker">Recap · Topic 4.8</p>
+    <h2 class="h2">Your report in. A deck and a video out. Your check before anyone sees it.</h2>
+    <div class="recap mt-l">
+      <div class="card dark"><h4>Find it</h4><p><span class="url" style="background:rgba(255,255,255,.12)">notebook.google.com</span>, a search for NotebookLM, or the Google apps menu.</p></div>
+      <div class="card dark"><h4>Make it</h4><p>New notebook, add your source, ask a question, then Studio: Slide Deck or Video Overview.</p></div>
+      <div class="card dark"><h4>Check it</h4><p>Click the citations, hunt for extra claims, fix with Revise, then download.</p></div>
+    </div>
+    <div class="notes">
+      <p>One line: <b>your report in, a deck and a video out, and your check before anyone sees it.</b></p>
+      <p>Challenge for this week: put one of your own non-sensitive documents, say a training summary, into Gemini Notebook and make a deck. Count how many claims you had to fix.</p>
+    </div>
+  </section>
+
+</div>
+<script src="assets/runtime.js?v=31e08e36"></script>
+<script src="assets/dpe.js?v=714dee5b"></script>
+</body>
+</html>

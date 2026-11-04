@@ -1191,6 +1191,51 @@ window.CATALOG = [
       "size": 40520
      }
     ]
+   },
+   {
+    "id": "4.8",
+    "title": "Gemini Notebook Slide Decks and Videos",
+    "dur": "25 min · bonus",
+    "desc": "Find Gemini Notebook (formerly NotebookLM), add your own report, and let it make a slide deck and a narrated video. Then check every claim.",
+    "parts": [
+     "Where to find it and how to sign in",
+     "Slide Deck and Video Overview from one report",
+     "Fact-check and fix with Revise"
+    ],
+    "deck": "Deck - 4.8 Gemini Notebook Slide Decks and Videos - 2026-11-01.html",
+    "video": "4:16",
+    "slides": 16,
+    "activities": [
+     {
+      "id": "4.8-qc",
+      "kind": "check",
+      "title": "Quick check: a claim that is not in the report",
+      "slide": "Quick check",
+      "minutes": 1,
+      "slideNo": 15,
+      "files": []
+     }
+    ],
+    "files": [
+     {
+      "file": "Practice - 4.8 Admin Section Year-End Report - 2026-11-04.docx",
+      "title": "Sample source: Admin Section year-end report",
+      "desc": "A two-page sample report to add as a source in Gemini Notebook, then turn into a slide deck and a video overview.",
+      "size": 38234
+     },
+     {
+      "file": "Practice - 4.8 Sample Output Slide Deck - 2026-11-04.pptx",
+      "title": "Sample output: the 9-slide deck",
+      "desc": "The deck Gemini Notebook made from the sample report, not edited. Each slide is a picture. Find the two claims the report does not support.",
+      "size": 5205635
+     },
+     {
+      "file": "Practice - 4.8 Sample Output Video - 2026-11-04.mp4",
+      "title": "Sample output: the 8-minute video",
+      "desc": "The Explainer video overview (Whiteboard style) made from the same report, not edited. Listen for words the report never said.",
+      "size": 10467928
+     }
+    ]
    }
   ]
  }

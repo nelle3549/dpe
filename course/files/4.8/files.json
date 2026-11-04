@@ -3,6 +3,18 @@
     "file": "Practice - 4.8 Admin Section Year-End Report - 2026-11-04.docx",
     "title": "Sample source: Admin Section year-end report",
     "desc": "A two-page sample report to add as a source in Gemini Notebook, then turn into a slide deck and a video overview.",
-    "slides": []
+    "slides": ["Agenda", "Add your source"]
+  },
+  {
+    "file": "Practice - 4.8 Sample Output Slide Deck - 2026-11-04.pptx",
+    "title": "Sample output: the 9-slide deck",
+    "desc": "The deck Gemini Notebook made from the sample report, not edited. Each slide is a picture. Find the two claims the report does not support.",
+    "slides": ["Output: the slide deck", "Fact-check the deck"]
+  },
+  {
+    "file": "Practice - 4.8 Sample Output Video - 2026-11-04.mp4",
+    "title": "Sample output: the 8-minute video",
+    "desc": "The Explainer video overview (Whiteboard style) made from the same report, not edited. Listen for words the report never said.",
+    "slides": ["Output: the video"]
   }
 ]
