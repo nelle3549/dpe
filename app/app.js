@@ -565,6 +565,7 @@
   function homeHero() {
     var p = S.profile, adm = isAdmin(), vw = isViewer(), all = [].concat.apply([], CAT.map(function (m) { return m.topics; }));
     var hrs = CAT.reduce(function (n, m) { return n + parseFloat(m.hours); }, 0);
+    var days = CAT.map(function (m) { return m.day; }).filter(function (d, i, a) { return a.indexOf(d) === i; }).length;
     var labs = all.reduce(function (n, t) { return n + t.activities.filter(function (a) { return a.kind === 'lab'; }).length; }, 0);
     var sub, n, lbl, go = '';
     if (adm) {
@@ -593,7 +594,7 @@
       '<h1>Digital Productivity <span>Essentials</span></h1>' +
       '<p class="lede">Computers and the internet, word processing, spreadsheets and presentations, with everyday AI used safely and responsibly. Built for the women and men of the Provincial Government of Misamis Oriental, at the office and at home.</p>' +
       '<p class="rp">Resource Person: <b>Engr. Ronelle Pabellan</b> · Fully online · Course syllabus v1.0</p>' +
-      '<div class="stats"><div><b>' + hrs + '</b><span>training hours</span></div><div><b>' + CAT.length + '</b><span>modules</span></div>' +
+      '<div class="stats"><div><b>' + days + ' days</b><span>' + hrs + ' training hours</span></div><div><b>' + CAT.length + '</b><span>modules</span></div>' +
         '<div><b>' + all.length + '</b><span>topic decks</span></div><div><b>' + labs + '</b><span>hands-on labs</span></div></div>' +
       '<div class="me"><div class="mt"><h2>Hi, <span>' + esc(p.first_name) + '</span></h2><p>' + sub + '</p></div>' + go +
         '<div class="mbar" role="progressbar" aria-valuemin="0" aria-valuemax="' + all.length + '" aria-valuenow="' + n + '" aria-label="' + esc(lbl) + '"><i style="width:' + Math.round(n / all.length * 100) + '%"></i></div>' +

@@ -152,14 +152,14 @@
     <p class="lede">Computers and the internet, word processing, spreadsheets and presentations, with everyday AI used safely and responsibly. Built for the women and men of the Provincial Government of Misamis Oriental, at the office and at home.</p>
     <p class="who">Resource Person: <b>Engr. Ronelle Pabellan</b> · Fully online · Course syllabus v1.0</p>
     <div class="stats">
-      <div><b>2</b><span>training days</span></div>
+      <div><b>2 days</b><span>12 training hours</span></div>
       <div><b>4</b><span>modules</span></div>
-      <div><b>26</b><span>topic decks</span></div>
+      <div><b>27</b><span>topic decks</span></div>
       <div><b>2</b><span>hands-on labs</span></div>
     </div>
     <div class="progress">
       <div class="bar"><i id="progBar"></i></div>
-      <div class="lbl"><span id="progLbl">0 of 26 topics done</span><button type="button" id="resetProg">Reset progress</button></div>
+      <div class="lbl"><span id="progLbl">0 of 27 topics done</span><button type="button" id="resetProg">Reset progress</button></div>
     </div>
   </div>
 </header>
@@ -334,7 +334,7 @@ MODULES.forEach(m => {
 });
 
 function prog(){
-  const n = Object.keys(done).length, total = 26;
+  const n = Object.keys(done).length, total = 27;
   document.getElementById('progBar').style.width = (n / total * 100) + '%';
   document.getElementById('progLbl').textContent = n + ' of ' + total + ' topics done';
 }
