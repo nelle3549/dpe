@@ -802,7 +802,7 @@
     if (sp.intro) html += '<p class="mt-2">' + emo(esc(sp.intro)) + '</p>';
     var aCat = ACT[aid].a;
     if (aCat.slideNo) html += '<p><a class="btn small" id="toslide" href="#/deck/' + tid + '/' + aCat.slideNo + '">' + ico('file-text') + ' See this on the slides</a></p>';
-    if (aCat.files && aCat.files.length) html += '<div class="card mt-2 actfiles"><p class="p">' + ico('download') + ' Start with ' + (aCat.files.length > 1 ? 'these files' : 'this file') + '</p>' + fileList(T, aCat.files) + '</div>';
+    if (aCat.files && aCat.files.length) html += '<div class="card mt-2 actfiles"><p class="p">Start with ' + (aCat.files.length > 1 ? 'these files' : 'this file') + '</p>' + fileList(T, aCat.files) + '</div>';
     if (sp.help && sp.help.length && !done) html += '<details class="help"><summary>Stuck? Hints</summary><ul>' + sp.help.map(function (h) { return '<li>' + esc(h) + '</li>'; }).join('') + '</ul></details>';
     sp.blocks.forEach(function (b, i) { html += '<div class="block' + (b.type === 'email' ? ' show' : '') + '" data-b="' + esc(b.id) + '">' + blockHtml(b, A[b.id], fb[b.id], done, i) + '</div>'; });
     html += '</main>';
