@@ -210,7 +210,7 @@
   async function loadClass() {
     var cid = S.profile.cohort_id;
     var r = await Promise.all([
-      sb.from('profiles').select('id,first_name,last_name,position').eq('cohort_id', cid).eq('role', 'participant').order('last_name'),
+      sb.from('profiles').select('id,first_name,last_name,organization').eq('cohort_id', cid).eq('role', 'participant').order('last_name'),
       sb.from('attempts').select('user_id,activity_id,status,score,max_score,submitted_at').eq('cohort_id', cid)
     ]);
     var ids = {}; S.parts = r[0].data || []; S.parts.forEach(function (p) { ids[p.id] = 1; });
@@ -1194,8 +1194,8 @@
         '<h1 style="margin:4px 0 0;letter-spacing:-.02em">' + esc(A.title) + '</h1>' +
         '<div class="row mt-1"><a class="btn small" href="#/">← Home</a>' + (answering(aid) ? '<span class="tag ans">' + ico('hand') + ' Open for answers</span>' : '') + '</div>' +
         '<div class="finbox mt-3"><b>' + d + '</b> <span>of ' + n + ' done · ' + (n - d) + ' pending</span><div class="prog" role="progressbar" aria-label="Done" aria-valuenow="' + d + '" aria-valuemax="' + n + '"><i style="width:' + (n ? d / n * 100 : 0) + '%"></i></div></div>' +
-        '<div class="card mt-3" style="padding:0;overflow:auto"><table class="who"><thead><tr><th>Name</th><th>Position</th><th>Status</th></tr></thead><tbody>' +
-        (S.parts.map(function (p) { return '<tr><td><b>' + esc(fullName(p)) + '</b></td><td>' + esc(p.position || '') + '</td><td>' + (ok(p) ? '<span class="tag done">Done</span>' : '<span class="tag sub">Pending</span>') + '</td></tr>'; }).join('') ||
+        '<div class="card mt-3" style="padding:0;overflow:auto"><table class="who"><thead><tr><th>Name</th><th>Organization</th><th>Status</th></tr></thead><tbody>' +
+        (S.parts.map(function (p) { return '<tr><td><b>' + esc(fullName(p)) + '</b></td><td>' + esc(p.organization || '') + '</td><td>' + (ok(p) ? '<span class="tag done">Done</span>' : '<span class="tag sub">Pending</span>') + '</td></tr>'; }).join('') ||
           '<tr><td colspan="3" class="muted">No one has registered yet.</td></tr>') + '</tbody></table></div></main>');
     }
     draw();
