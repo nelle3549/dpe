@@ -403,6 +403,11 @@ html.participant .opt.picked{border-color:var(--mod);background:var(--mod-soft)}
 .shots .cap{font-size:calc(var(--u)*.85);color:var(--text-3);margin-top:calc(var(--u)*.6)}
 .shots [data-step]:not(.f){cursor:pointer;transition:background .25s,opacity .25s;border-radius:calc(var(--u)*.6)}
 .shots .steps li[data-step]{padding-right:calc(var(--u)*.8)}
+/* clickable steps get a highlight and a gold bar on the left: move the number in so the bar and rounded corner never clip it */
+.shots .steps li[data-step]{padding-left:calc(var(--u)*4.3)}
+.shots .steps li[data-step]::before{left:calc(var(--u)*.75)}
+.shots .steps.sm li[data-step]{padding-left:calc(var(--u)*3.4)}
+.shots .steps.sm li[data-step]::before{left:calc(var(--u)*.6)}
 .shots li[data-step].on{background:var(--gold-soft);box-shadow:inset calc(var(--u)*.35) 0 0 var(--gold)}
 .shots li[data-step].done{opacity:.6}
 .shots .ticks li[data-step]{padding-top:calc(var(--u)*.35);padding-bottom:calc(var(--u)*.35)}
