@@ -6,7 +6,7 @@
 <title>3.8 AI-Assisted Data Analysis · Digital Productivity Essentials</title>
 <link rel="stylesheet" href="assets/base.css?v=7ec0fa28">
 <link rel="stylesheet" href="assets/animations/animations.css?v=cd8ec112">
-<link rel="stylesheet" href="assets/dpe.css?v=bc44832a">
+<link rel="stylesheet" href="assets/dpe.css?v=518abf13">
 <style>
 /* Module 3 helpers (3.5-3.8): drawn spreadsheet grid, formula bar, sheet tabs, SVG charts, AI chat */
 .xlwin .body{padding:0}
@@ -23,8 +23,8 @@
 .xl td.h{font-weight:700;background:var(--mod-soft);color:var(--mod-deep)}
 .xl td.f{font-family:var(--font-mono);font-size:.92em;color:var(--mod);font-weight:600}
 .xl td.s{outline:calc(var(--u)*.22) solid var(--mod);outline-offset:calc(var(--u)*-.11)}
-.xl td.b{background:var(--coral-soft);color:var(--coral);font-weight:700}
-.xl td.g{background:var(--green-soft);color:var(--green);font-weight:700}
+.xl td.b{background:var(--coral-soft);color:var(--coral-ink);font-weight:700}
+.xl td.g{background:var(--green-soft);color:var(--green-ink);font-weight:700}
 .xl td.o{background:var(--gold-soft);font-weight:700}
 .xl td.mu{color:var(--text-3)}
 .xl td.r{background:color-mix(in srgb,var(--mod) 13%,#fff)}
@@ -57,13 +57,13 @@ svg text{font-family:var(--font-sans)}
 .bub.me{align-self:flex-end;background:var(--mod);color:#fff;border-bottom-right-radius:.2em}
 .bub.ai{align-self:flex-start;background:var(--surface-2);border:1px solid var(--border);color:var(--text-1);border-bottom-left-radius:.2em}
 .bub code,.code{font-family:var(--font-mono);font-weight:600;background:rgba(11,37,69,.07);padding:.05em .35em;border-radius:.3em;font-size:.95em}
-.bub.me code{background:rgba(255,255,255,.2)}
+.bub.me code{background:rgba(0,0,0,.22)}
 .who{font-size:calc(var(--u)*.85);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
 .big-f{font-family:var(--font-mono);font-weight:700;font-size:calc(var(--u)*2.6);color:var(--mod-deep);letter-spacing:-.01em}
-.big-f .lk{color:var(--coral)}
+.big-f .lk{color:var(--coral-ink)}
 .tbl.compact td,.tbl.compact th{padding:calc(var(--u)*.5) calc(var(--u)*.9)}
 .tbl td.c,.tbl th.c{text-align:center}
-.flip .fr h4{color:var(--coral)}
+.flip .fr h4{color:var(--coral-ink)}
 /* module quiz: two items side by side (same as 1.5) */
 .quiz{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*2.6);align-items:start}
 .quiz .qn{font-size:calc(var(--u)*.9);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mod)}
@@ -138,8 +138,8 @@ svg text{font-family:var(--font-sans)}
   <section class="slide" data-title="Prompts that work">
     <div class="slide-head"><div><p class="kicker">Prompting</p><h2 class="h2">Name the columns, the rows and the app</h2></div></div>
     <div class="grid g2">
-      <div class="card" style="border-left:calc(var(--u)*.45) solid var(--coral)"><h4 style="color:var(--coral)"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg> Vague</h4><p class="code" style="display:block;padding:calc(var(--u)*1)">Give me a formula for my inventory.</p><p class="mt-s">Which columns? Which rows? Excel or Sheets? The AI has to guess.</p></div>
-      <div class="card" style="border-left:calc(var(--u)*.45) solid var(--green)"><h4 style="color:var(--green)"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> Specific</h4><p class="code" style="display:block;padding:calc(var(--u)*1);line-height:1.5">I use Excel. Row 1 has headers: A Item, B Unit, C Qty, D Unit Cost, E Total Cost. Data is in rows 2 to 9. Give me a formula for E2 that multiplies Qty by Unit Cost, and tell me how to copy it down.</p></div>
+      <div class="card" style="border-left:calc(var(--u)*.45) solid var(--coral)"><h4 style="color:var(--coral-ink)"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg> Vague</h4><p class="code" style="display:block;padding:calc(var(--u)*1)">Give me a formula for my inventory.</p><p class="mt-s">Which columns? Which rows? Excel or Sheets? The AI has to guess.</p></div>
+      <div class="card" style="border-left:calc(var(--u)*.45) solid var(--green)"><h4 style="color:var(--green-ink)"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> Specific</h4><p class="code" style="display:block;padding:calc(var(--u)*1);line-height:1.5">I use Excel. Row 1 has headers: A Item, B Unit, C Qty, D Unit Cost, E Total Cost. Data is in rows 2 to 9. Give me a formula for E2 that multiplies Qty by Unit Cost, and tell me how to copy it down.</p></div>
     </div>
     <div class="grid g4 mt-m">
       <span class="chip">1 · Your app</span><span class="chip">2 · Column letters + names</span><span class="chip">3 · Which rows</span><span class="chip">4 · What you want, in plain words</span>
@@ -292,8 +292,8 @@ svg text{font-family:var(--font-sans)}
         <p class="kicker">Privacy · non-negotiable</p>
         <h2 class="h2">Never upload client data or confidential records to public AI tools.</h2>
         <div class="grid g2 mt-m">
-          <div><h4 style="color:var(--green)">OK to share</h4><ul class="ticks"><li>Column headers</li><li>Formulas</li><li>Made-up sample rows</li><li>Overall totals that aren't confidential</li></ul></div>
-          <div><h4 style="color:var(--coral)">Never share</h4><ul class="ticks x"><li>Names, TINs, addresses</li><li>Client records or payments</li><li>Personnel records</li><li>Screenshots of any of these</li></ul></div>
+          <div><h4 style="color:var(--green-ink)">OK to share</h4><ul class="ticks"><li>Column headers</li><li>Formulas</li><li>Made-up sample rows</li><li>Overall totals that aren't confidential</li></ul></div>
+          <div><h4 style="color:var(--coral-ink)">Never share</h4><ul class="ticks x"><li>Names, TINs, addresses</li><li>Client records or payments</li><li>Personnel records</li><li>Screenshots of any of these</li></ul></div>
         </div>
         <p class="tiny mt-s">Data Privacy Act of 2012 (RA 10173) · National Privacy Commission (NPC)</p>
       </div>

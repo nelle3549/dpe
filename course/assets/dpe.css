@@ -9,11 +9,12 @@
   --navy:#0B2545; --navy-2:#13315C; --ink:#14213D;
   --blue:#1366D6; --sky:#E8F1FD; --gold:#F4B400; --gold-soft:#FFF6DB;
   --coral:#E5533D; --coral-soft:#FDECE9; --green:#1E9E6A; --green-soft:#E6F6EF;
+  --coral-ink:#B83A26; --green-ink:#167A52;   /* the same hues dark enough for text on light backgrounds (4.5:1) */
   --mod:#1366D6; --mod-soft:#E8F1FD; --mod-deep:#0B2545;
 
   --bg:#F7F9FC; --bg-soft:#EEF2F8; --surface:#FFFFFF; --surface-2:#F1F5FB;
   --border:rgba(11,37,69,.10); --border-strong:rgba(11,37,69,.22);
-  --text-1:#0B2545; --text-2:#3E4C63; --text-3:#7A879C;
+  --text-1:#0B2545; --text-2:#3E4C63; --text-3:#5E6A7E;
   --accent:var(--mod); --accent-2:var(--gold); --accent-3:var(--coral);
   --radius:calc(var(--u)*1); --radius-lg:calc(var(--u)*1.6);
   --shadow:0 calc(var(--u)*.2) calc(var(--u)*.8) rgba(11,37,69,.07), 0 calc(var(--u)*.05) calc(var(--u)*.2) rgba(11,37,69,.05);
@@ -25,7 +26,7 @@
 body.m1{--mod:#1366D6;--mod-soft:#E8F1FD;--mod-deep:#0B2545}
 body.m2{--mod:#2B579A;--mod-soft:#E9EFF8;--mod-deep:#14284B}
 body.m3{--mod:#16794A;--mod-soft:#E5F4EC;--mod-deep:#0D3B25}
-body.m4{--mod:#C2482B;--mod-soft:#FBEAE5;--mod-deep:#4A1B10}
+body.m4{--mod:#C2482B;--mod-soft:#FBEAE5;--mod-deep:#4A1B10;--mod-ink:#A8391F}
 
 html,body{background:#0B2545}
 .deck{background:var(--bg)}
@@ -63,10 +64,10 @@ b,strong{font-weight:700}
 
 /* ---------- pills / tags ---------- */
 .tag{display:inline-flex;align-items:center;gap:.4em;padding:.3em .9em;border-radius:999px;font-size:calc(var(--u)*.9);font-weight:700;
-  background:var(--mod-soft);color:var(--mod);letter-spacing:.02em}
+  background:var(--mod-soft);color:var(--mod-ink,var(--mod));letter-spacing:.02em}
 .tag.gold{background:var(--gold-soft);color:#8A6200}
-.tag.coral{background:var(--coral-soft);color:var(--coral)}
-.tag.green{background:var(--green-soft);color:var(--green)}
+.tag.coral{background:var(--coral-soft);color:var(--coral-ink)}
+.tag.green{background:var(--green-soft);color:var(--green-ink)}
 .tag.ghost{background:rgba(255,255,255,.14);color:#fff}
 
 /* ---------- cover ---------- */
@@ -147,16 +148,16 @@ b,strong{font-weight:700}
 .ex.office{border-left:calc(var(--u)*.45) solid var(--mod)}
 .ex.office .ex-label{color:var(--mod)}
 .ex.home{border-left:calc(var(--u)*.45) solid var(--gold)}
-.ex.home .ex-label{color:#A87900}
+.ex.home .ex-label{color:#8A6200}
 .ex p,.ex li{font-size:calc(var(--u)*1.45);color:var(--text-2);line-height:1.5}
 .ex ul{margin:0;padding-left:1.1em}.ex li{margin:.35em 0}
 
 /* ---------- callouts ---------- */
 .callout{border-radius:var(--radius);padding:calc(var(--u)*1.1) calc(var(--u)*1.5);background:var(--mod-soft);border-left:calc(var(--u)*.4) solid var(--mod);
   font-size:calc(var(--u)*1.4);line-height:1.5;color:var(--text-1)}
-.callout b:first-child{color:var(--mod)}
-.callout.tip{background:var(--green-soft);border-color:var(--green)}.callout.tip b:first-child{color:var(--green)}
-.callout.warn{background:var(--coral-soft);border-color:var(--coral)}.callout.warn b:first-child{color:var(--coral)}
+.callout b:first-child{color:var(--mod-ink,var(--mod))}
+.callout.tip{background:var(--green-soft);border-color:var(--green)}.callout.tip b:first-child{color:var(--green-ink)}
+.callout.warn{background:var(--coral-soft);border-color:var(--coral)}.callout.warn b:first-child{color:var(--coral-ink)}
 .callout.gold{background:var(--gold-soft);border-color:var(--gold)}.callout.gold b:first-child{color:#8A6200}
 
 /* ---------- activity box ---------- */
@@ -250,8 +251,9 @@ kbd,.kbd{display:inline-block;font-family:var(--font-mono);font-size:.82em;font-
 .flip .fr{background:var(--surface);border:1px solid var(--border-strong);box-shadow:var(--shadow)}
 .flip .bk{background:var(--mod-deep);color:#fff;transform:rotateY(180deg)}
 .flip .bk p{color:rgba(255,255,255,.88)}
+.flip .bk h4{color:var(--gold)}
 .flip .hint{position:absolute;right:calc(var(--u)*1);bottom:calc(var(--u)*.7);font-size:calc(var(--u)*.8);color:var(--text-3)}
-.flip .bk .hint{color:rgba(255,255,255,.5)}
+.flip .bk .hint{color:rgba(255,255,255,.72)}
 
 /* ---------- misc ---------- */
 .badge-time{font-family:var(--font-mono);font-size:calc(var(--u)*.95);color:var(--text-3)}

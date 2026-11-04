@@ -5,7 +5,7 @@
 <title>3.3 Basic Formulas (Arithmetic Operators) · Digital Productivity Essentials</title>
 <link rel="stylesheet" href="assets/base.css?v=7ec0fa28">
 <link rel="stylesheet" href="assets/animations/animations.css?v=cd8ec112">
-<link rel="stylesheet" href="assets/dpe.css?v=bc44832a">
+<link rel="stylesheet" href="assets/dpe.css?v=518abf13">
 <style>
 /* Module 3 · drawn spreadsheet grid (uses dpe.css tokens) */
 .xl{background:#fff;border-radius:calc(var(--u)*.8);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--border-strong);font-size:calc(var(--u)*1.12)}
@@ -33,7 +33,7 @@
 .xl td.sel{outline:calc(var(--u)*.22) solid var(--mod);outline-offset:calc(var(--u)*-.22);background:#fff}
 .xl td.ants{outline:calc(var(--u)*.16) dashed var(--mod);outline-offset:calc(var(--u)*-.2)}
 .xl td.hi{background:var(--coral-soft);color:#B3261E}
-.xl td.err{color:var(--coral);font-weight:700}
+.xl td.err{color:var(--coral-ink);font-weight:700}
 .xl td.tri{position:relative}
 .xl td.tri::before{content:"";position:absolute;left:0;top:0;border-top:calc(var(--u)*.55) solid var(--green);border-right:calc(var(--u)*.55) solid transparent}
 .xl td.handle{position:relative}
@@ -198,8 +198,8 @@
         <p>Budget B2 = ₱2,500 · Actual C2 = ₱2,650</p>
         <table class="tbl mt-m">
           <tr><th>Formula</th><th>Result</th></tr>
-          <tr><td class="fcode">=B2+C2/2</td><td><b style="color:var(--coral)">3,825</b> <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg> divides only C2</td></tr>
-          <tr><td class="fcode">=(B2+C2)/2</td><td><b style="color:var(--green)">2,575</b> <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> adds first</td></tr>
+          <tr><td class="fcode">=B2+C2/2</td><td><b style="color:var(--coral-ink)">3,825</b> <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg> divides only C2</td></tr>
+          <tr><td class="fcode">=(B2+C2)/2</td><td><b style="color:var(--green-ink)">2,575</b> <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg> adds first</td></tr>
         </table>
         <div class="row mt-m"><button class="reveal-btn" data-target="ans-ooo">Why?</button><span class="answer small" id="ans-ooo">Division beats addition, so without parentheses the sheet does 2,650 ÷ 2 first, then adds 2,500.</span></div>
       </div>
@@ -319,10 +319,10 @@
       </div>
       <div>
         <ul class="ticks sm">
-          <li data-step="1"><b style="color:var(--coral)">#DIV/0!</b> Divided by zero or an <b>empty</b> cell. <b>Fix:</b> fill in the divisor.</li>
-          <li data-step="2"><b style="color:var(--coral)">#VALUE!</b> Math on <b>text</b>, like "30 reams". <b>Fix:</b> plain numbers only.</li>
-          <li data-step="3"><b style="color:var(--coral)">#NAME?</b> A word the sheet doesn't know: <span class="fcode">=C2 x D2</span> or <span class="fcode">=SUMM( )</span>. <b>Fix:</b> use <kbd>*</kbd>; check spelling.</li>
-          <li data-step="4"><b style="color:var(--coral)">#####</b> Not an error: the column is <b>too narrow</b>. <b>Fix:</b> double-click the column border.</li>
+          <li data-step="1"><b style="color:var(--coral-ink)">#DIV/0!</b> Divided by zero or an <b>empty</b> cell. <b>Fix:</b> fill in the divisor.</li>
+          <li data-step="2"><b style="color:var(--coral-ink)">#VALUE!</b> Math on <b>text</b>, like "30 reams". <b>Fix:</b> plain numbers only.</li>
+          <li data-step="3"><b style="color:var(--coral-ink)">#NAME?</b> A word the sheet doesn't know: <span class="fcode">=C2 x D2</span> or <span class="fcode">=SUMM( )</span>. <b>Fix:</b> use <kbd>*</kbd>; check spelling.</li>
+          <li data-step="4"><b style="color:var(--coral-ink)">#####</b> Not an error: the column is <b>too narrow</b>. <b>Fix:</b> double-click the column border.</li>
         </ul>
         <div class="callout tip mt-m"><b>Find the cause:</b> click the error cell and read the formula bar.</div>
       </div>

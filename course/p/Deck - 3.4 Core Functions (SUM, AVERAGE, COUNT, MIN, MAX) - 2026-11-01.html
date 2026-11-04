@@ -6,7 +6,7 @@
 <title>3.4 Core Functions (SUM, AVERAGE, COUNT, MIN, MAX) · Digital Productivity Essentials</title>
 <link rel="stylesheet" href="assets/base.css?v=7ec0fa28">
 <link rel="stylesheet" href="assets/animations/animations.css?v=cd8ec112">
-<link rel="stylesheet" href="assets/dpe.css?v=bc44832a">
+<link rel="stylesheet" href="assets/dpe.css?v=518abf13">
 <style>
 /* Module 3 · drawn spreadsheet grid (uses dpe.css tokens) */
 .xl{background:#fff;border-radius:calc(var(--u)*.8);box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--border-strong);font-size:calc(var(--u)*1.12)}
@@ -34,7 +34,7 @@
 .xl td.sel{outline:calc(var(--u)*.22) solid var(--mod);outline-offset:calc(var(--u)*-.22);background:#fff}
 .xl td.ants{outline:calc(var(--u)*.16) dashed var(--mod);outline-offset:calc(var(--u)*-.2)}
 .xl td.hi{background:var(--coral-soft);color:#B3261E}
-.xl td.err{color:var(--coral);font-weight:700}
+.xl td.err{color:var(--coral-ink);font-weight:700}
 .xl td.tri{position:relative}
 .xl td.tri::before{content:"";position:absolute;left:0;top:0;border-top:calc(var(--u)*.55) solid var(--green);border-right:calc(var(--u)*.55) solid transparent}
 .xl td.handle{position:relative}
@@ -104,7 +104,7 @@
         </ul>
       </div>
       <div class="card top center" style="padding:calc(var(--u)*2.4)">
-        <p class="fcode" style="font-size:calc(var(--u)*3.6);background:none;padding:0"><span style="color:var(--coral)">=</span><span style="color:var(--mod)">SUM</span><span style="color:var(--text-2)">(</span><span style="color:#8A6200">E2:E9</span><span style="color:var(--text-2)">)</span></p>
+        <p class="fcode" style="font-size:calc(var(--u)*3.6);background:none;padding:0"><span style="color:var(--coral-ink)">=</span><span style="color:var(--mod)">SUM</span><span style="color:var(--text-2)">(</span><span style="color:#8A6200">E2:E9</span><span style="color:var(--text-2)">)</span></p>
         <div class="grid g4 mt-m" style="gap:calc(var(--u)*.6);width:100%">
           <div class="callout warn" style="padding:calc(var(--u)*.7)"><b>=</b><br><span class="small">"calculate"</span></div>
           <div class="callout" style="padding:calc(var(--u)*.7)"><b>SUM</b><br><span class="small">function name</span></div>
@@ -226,7 +226,7 @@
       <div>
         <ol class="steps sm">
           <li data-step="1"><span class="fcode">=COUNT(C2:C9)</span> → <b>8</b> numbers.</li>
-          <li data-step="2"><span class="fcode">=COUNT(A2:A9)</span> → <b style="color:var(--coral)">0</b>. Item names are text.</li>
+          <li data-step="2"><span class="fcode">=COUNT(A2:A9)</span> → <b style="color:var(--coral-ink)">0</b>. Item names are text.</li>
           <li data-step="3"><span class="fcode">=COUNTA(A2:A9)</span> → <b>8</b> filled cells.</li>
         </ol>
         <div class="callout tip mt-m"><b>Rule of thumb:</b> count a <b>number</b> column with COUNT; count names or any filled cells with <b>COUNTA</b>.</div>
@@ -298,9 +298,9 @@
       </div>
       <div>
         <ol class="steps sm">
-          <li data-step="1"><b>Wrong range:</b> <span class="fcode">=SUM(E2:E8)</span> → <b style="color:var(--coral)">₱20,809.00</b>. Stops one row short and misses the envelopes (₱1,230.00).</li>
-          <li data-step="2"><b>Counting the total row:</b> <span class="fcode">=SUM(E2:E10)</span> in E12 → <b style="color:var(--coral)">₱44,078.00</b>, double. Inside E10 itself it causes a <b>circular reference</b> warning.</li>
-          <li data-step="3"><b>Text in a number cell:</b> C3 = "30 reams" → <span class="fcode">=SUM(C2:C9)</span> gives <b style="color:var(--coral)">68</b>, not 98. COUNT gives 7, and E3 shows #VALUE!, which spreads to E10.</li>
+          <li data-step="1"><b>Wrong range:</b> <span class="fcode">=SUM(E2:E8)</span> → <b style="color:var(--coral-ink)">₱20,809.00</b>. Stops one row short and misses the envelopes (₱1,230.00).</li>
+          <li data-step="2"><b>Counting the total row:</b> <span class="fcode">=SUM(E2:E10)</span> in E12 → <b style="color:var(--coral-ink)">₱44,078.00</b>, double. Inside E10 itself it causes a <b>circular reference</b> warning.</li>
+          <li data-step="3"><b>Text in a number cell:</b> C3 = "30 reams" → <span class="fcode">=SUM(C2:C9)</span> gives <b style="color:var(--coral-ink)">68</b>, not 98. COUNT gives 7, and E3 shows #VALUE!, which spreads to E10.</li>
         </ol>
         <div class="callout mt-m"><b>Habit that catches all three:</b> click the result, read the range in the formula bar: does it cover <b>exactly</b> your data rows?</div>
       </div>

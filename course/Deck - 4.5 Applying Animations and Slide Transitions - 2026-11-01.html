@@ -5,7 +5,7 @@
 <title>4.5 Applying Animations and Slide Transitions · Digital Productivity Essentials</title>
 <link rel="stylesheet" href="assets/base.css?v=7ec0fa28">
 <link rel="stylesheet" href="assets/animations/animations.css?v=cd8ec112">
-<link rel="stylesheet" href="assets/dpe.css?v=bc44832a">
+<link rel="stylesheet" href="assets/dpe.css?v=518abf13">
 <style>
 /* 4.5 live demos: pure CSS, they restart each time the slide opens */
 .stage{position:relative;aspect-ratio:16/9;border-radius:calc(var(--u)*.8);overflow:hidden;background:#fff;border:1px solid var(--border-strong);box-shadow:var(--shadow)}
@@ -43,10 +43,10 @@
 .stage .obj{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:.45em 1em;border-radius:calc(var(--u)*.6);font-weight:800;font-size:calc(var(--u)*1.35);color:#fff;background:var(--mod);white-space:nowrap}
 .slide.is-active .fx-in .obj{animation:x-in 4s infinite}
 @keyframes x-in{0%,8%{opacity:0;transform:translate(-50%,0%)}28%,88%{opacity:1;transform:translate(-50%,-50%)}100%{opacity:0;transform:translate(-50%,-50%)}}
-.fx-em .obj{background:var(--green)}
+.fx-em .obj{background:var(--green-ink)}
 .slide.is-active .fx-em .obj{animation:x-em 4s infinite}
 @keyframes x-em{0%,20%{transform:translate(-50%,-50%) scale(1)}38%{transform:translate(-50%,-50%) scale(1.25);background:var(--gold);color:var(--ink)}56%,100%{transform:translate(-50%,-50%) scale(1)}}
-.fx-out .obj{background:var(--coral)}
+.fx-out .obj{background:var(--coral-ink)}
 .slide.is-active .fx-out .obj{animation:x-out 4s infinite}
 @keyframes x-out{0%,45%{opacity:1}68%,90%{opacity:0}100%{opacity:1}}
 .slide .flip{min-height:calc(var(--u)*19)}
@@ -82,7 +82,7 @@
 .rb .fx.sel{border-color:var(--mod);box-shadow:0 0 0 2px var(--mod-soft);color:var(--mod);font-weight:800}
 .rb .opts{margin-left:auto;display:flex;flex-direction:column;gap:.35em;font-size:calc(var(--u)*1);color:var(--text-2)}
 .rb .btn{border:1px solid var(--border-strong);border-radius:5px;padding:.2em .6em;background:#fff;white-space:nowrap}
-.rb .btn.hot{border-color:var(--coral);background:var(--coral-soft);color:var(--coral);font-weight:800}
+.rb .btn.hot{border-color:var(--coral);background:var(--coral-soft);color:var(--coral-ink);font-weight:800}
 /* timeline */
 .tl{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:calc(var(--u)*1.2) calc(var(--u)*1.4);box-shadow:var(--shadow)}
 .tl .r{display:grid;grid-template-columns:34% 1fr;align-items:center;gap:1em;margin:.45em 0;font-size:calc(var(--u)*1.1);color:var(--text-2)}
@@ -105,7 +105,7 @@
 .pane .list .hd{display:flex;justify-content:space-between;align-items:center;font-size:calc(var(--u)*1.1);font-weight:800;color:var(--text-1);margin-bottom:.6em}
 .pane .list .it{display:flex;gap:.5em;align-items:center;font-size:calc(var(--u)*1.15);padding:.35em .5em;border-radius:5px;color:var(--text-2)}
 .pane .list .it.sel{background:var(--mod-soft);color:var(--mod);font-weight:700}
-.pane .list .st{color:var(--green)}
+.pane .list .st{color:var(--green-ink)}
 .pane .arrows{display:flex;gap:.4em;margin-top:.7em;font-size:calc(var(--u)*1.05);color:var(--text-2)}
 .pane .arrows span{border:1px solid var(--border-strong);border-radius:4px;padding:.1em .5em;background:#fff}
 </style>
