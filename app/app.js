@@ -725,7 +725,7 @@
       var more = d.i < d.n;
       sc.textContent = sc.dataset.base + ' · step ' + d.i + '/' + d.n;
       sn.dataset.more = more ? '1' : '';
-      sn.textContent = more ? 'Next step ›' : sn.dataset.end ? (sn.dataset.back ? 'Activity ›' : 'Home ›') : 'Next ›';
+      sn.textContent = more ? 'Next step ›' : sn.dataset.end ? endLabel(sn) : 'Next ›';
       sn.setAttribute('aria-label', more ? 'Next step' : sn.dataset.end ? sn.textContent.slice(0, -2) : 'Next slide');
     }
     if (d.type === 'dpe-slide') {
@@ -737,7 +737,7 @@
       slideAct(d.n);
       if (viewTid && /^#\/deck\//.test(location.hash) && !isAdmin()) saveSlide(viewTid, d.n, d.total);
       var nl = document.getElementById('nextl'); if (nl && nl.title) nl.hidden = !end;
-      nx.textContent = end ? (nx.dataset.back ? 'Activity ›' : 'Home ›') : 'Next ›'; nx.setAttribute('aria-label', end ? nx.textContent.slice(0, -2) : 'Next slide'); nx.dataset.end = end ? '1' : '';
+      nx.textContent = end ? endLabel(nx) : 'Next ›'; nx.setAttribute('aria-label', end ? nx.textContent.slice(0, -2) : 'Next slide'); nx.dataset.end = end ? '1' : '';
       // keep the slide in the address, so a reload or the Back button returns to it (without re-rendering)
       var m = location.hash.match(/^#\/(deck|present)\/([\d.]+)/); if (m) history.replaceState(null, '', '#/' + m[1] + '/' + m[2] + '/' + d.n);
     }
@@ -1057,6 +1057,8 @@
   function liveTopic() { var k = Object.keys(S.acts).filter(function (k) { return k.indexOf('topic:') === 0 && S.acts[k].status === 'live'; })[0]; return k ? k.slice(6) : null; }
   // an activity the facilitator has opened for answers (activity_state status 'live')
   function answering(aid) { return !!(ACT[aid] && S.acts[aid] && S.acts[aid].status === 'live'); }
+  // the Next button's label on a deck's last slide
+  function endLabel(b) { return b.dataset.back ? 'Activity ›' : b.dataset.nt ? 'Next topic ›' : 'Home ›'; }
   function nextTopic(tid) { var all = []; CAT.forEach(function (m) { all = all.concat(m.topics); }); var i = all.findIndex(function (t) { return t.id === tid; }); return all[i + 1] || null; }
   async function markTopic(tid, status) {   // 'live' (only one at a time; opens the topic to the class) or 'ended' (completed)
     var cid = S.profile.cohort_id, cur = liveTopic();
@@ -1091,8 +1093,9 @@
       '<div class="pnav"><button id="prev" aria-label="Previous slide">‹ Back</button><span id="pcount" aria-live="polite"></span><button id="next" aria-label="Next slide">Next ›</button></div></div>');
     var sendKey = function (k) { $f.contentWindow.postMessage({ type: 'dpe-key', key: k }, '*'); $f.contentWindow.focus(); };
     document.getElementById('prev').onclick = function () { sendKey('ArrowLeft'); };
-    var $nx = document.getElementById('next');
-    $nx.onclick = function () { if ($nx.dataset.end && !$nx.dataset.more) location.hash = '#/'; else sendKey('ArrowRight'); };
+    // last slide: Next goes on to the next topic's slides (Home after the last topic)
+    var $nx = document.getElementById('next'), ntp = nextTopic(tid); if (ntp) $nx.dataset.nt = ntp.id;
+    $nx.onclick = function () { if ($nx.dataset.end && !$nx.dataset.more) location.hash = ntp ? '#/present/' + ntp.id : '#/'; else sendKey('ArrowRight'); };
     var $f = document.getElementById('deck'), $go = document.getElementById('golive'), $live = document.getElementById('live');
     document.getElementById('openit').onclick = function () { setTopic(tid, true).then(function () { document.getElementById('lockbar').classList.add('hide'); }); };
     document.getElementById('pick').onchange = function () { if (this.value) goLive(this.value); this.value = ''; };
