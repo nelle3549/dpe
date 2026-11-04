@@ -3,61 +3,6 @@
   "title": "Application Navigation and Cell Manipulation",
   "activities": [
     {
-      "id": "3.1-a",
-      "slide": "Try it: type the inventory",
-      "kind": "task",
-      "title": "Type the Office Supplies Inventory",
-      "minutes": 10,
-      "intro": "Open Excel, Google Sheets or LibreOffice Calc and type the inventory from the slide. This file becomes your Lab 3 output, so save it carefully.",
-      "blocks": [
-        {
-          "type": "steps",
-          "id": "steps",
-          "items": [
-            "Open a new blank workbook and click A1.",
-            "Type the 6 headers across row 1, pressing Tab after each: Item, Unit, Qty, Unit Cost, Total Cost, Reorder Level.",
-            "Type rows 2 to 9 exactly as shown on the slide. Leave column E (Total Cost) empty.",
-            "Type unit costs as plain numbers: 245, not ₱245.",
-            "Double-click the sheet tab and rename it Inventory.",
-            "Save the file as Lab3 Inventory - YourName."
-          ]
-        },
-        {
-          "type": "short",
-          "id": "fastener",
-          "prompt": "Click the cell that says Fastener. What does the Name Box show?",
-          "placeholder": "e.g. B4"
-        },
-        {
-          "type": "short",
-          "id": "ink",
-          "prompt": "Click the Qty of Printer ink, black. What does the Name Box show?",
-          "placeholder": "e.g. B4"
-        },
-        {
-          "type": "mcq",
-          "id": "tab",
-          "prompt": "What is the name of your worksheet tab now?",
-          "options": [
-            "Sheet1",
-            "Inventory",
-            "Lab3 Inventory"
-          ]
-        },
-        {
-          "type": "upload",
-          "id": "shot",
-          "prompt": "A screenshot of your typed inventory",
-          "optional": true
-        }
-      ],
-      "help": [
-        "A number sits on the left of its cell? It was typed as text. Click it and type the plain number again.",
-        "Typed over a cell by mistake? Press Ctrl+Z to undo.",
-        "To fix part of a cell, press F2 or double-click the cell."
-      ]
-    },
-    {
       "id": "3.1-qc",
       "slide": "Quick check",
       "kind": "check",

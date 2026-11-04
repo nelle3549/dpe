@@ -10,8 +10,8 @@
 (function () {
   'use strict';
   var C = window.DPE_CONFIG, CAT = window.CATALOG;
-  // Module 3 runs across both days (two-day schedule in Decks/index.html): Part 1 on Day 1, Part 2 from topic 3.5 on Day 2
-  var DAY_SPLIT = { m3: { at: '3.5', hours: ['3 hours', '3 hours'] } };
+  // a module that runs across both days: { m3: { at: '3.5', hours: ['3 hours', '3 hours'] } }. None since 4 Nov 2026: Day 2 is Modules 3 and 4, 3.5 hours each
+  var DAY_SPLIT = {};
   var sb = supabase.createClient(C.supabaseUrl, C.supabaseAnonKey, { auth: { persistSession: true, detectSessionInUrl: true } });
   var $app = document.getElementById('app'), $modal = document.getElementById('modal-root');
   var BASE = location.origin + location.pathname;

@@ -6,7 +6,7 @@ window.CATALOG = [
   "hours": "1 hour",
   "day": "Day 1",
   "title": "Computers and Internet Essentials",
-  "desc": "Know your computer, organise your files, browse and search safely, protect taxpayer data, and understand the AI you already use every day.",
+  "desc": "Know your computer, organise your files, browse and search safely, protect personal data, and understand the AI you already use every day.",
   "topics": [
    {
     "id": "1.1",
@@ -108,7 +108,7 @@ window.CATALOG = [
     "id": "1.4",
     "title": "Internet Safety, Netiquette and Data Privacy",
     "dur": "15 min",
-    "desc": "Spot scams before they spot you, protect your accounts, communicate politely, and keep taxpayer data safe.",
+    "desc": "Spot scams before they spot you, protect your accounts, communicate politely, and keep personal data safe.",
     "parts": [
      "Phishing, smishing and vishing red flags",
      "Passphrases and multi-factor login",
@@ -415,15 +415,15 @@ window.CATALOG = [
  {
   "id": "m3",
   "n": "Module 3",
-  "hours": "6 hours",
-  "day": "Day 1 and 2",
+  "hours": "3.5 hours",
+  "day": "Day 2",
   "title": "Electronic Spreadsheet Fundamentals",
   "desc": "Turn an office supplies list into a working tracker: clean data, formulas, functions, references, tidy sheets and clear charts, with AI checked by you.",
   "topics": [
    {
     "id": "3.1",
     "title": "Application Navigation and Cell Manipulation",
-    "dur": "45 min",
+    "dur": "25 min",
     "desc": "Find your way around a spreadsheet, put data in the right cells, and reshape the sheet without fear.",
     "parts": [
      "Cells, rows, columns, Name Box",
@@ -432,30 +432,22 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.1 Application Navigation and Cell Manipulation - 2026-11-01.html",
     "video": "4:54",
-    "slides": 21,
+    "slides": 16,
     "activities": [
-     {
-      "id": "3.1-a",
-      "kind": "task",
-      "title": "Type the Office Supplies Inventory",
-      "slide": "Try it: type the inventory",
-      "minutes": 10,
-      "slideNo": 12
-     },
      {
       "id": "3.1-qc",
       "kind": "check",
       "title": "Quick check: back to A1",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 20
+      "slideNo": 15
      }
     ]
    },
    {
     "id": "3.2",
     "title": "Formatting Worksheets and Data Types",
-    "dur": "50 min",
+    "dur": "25 min",
     "desc": "Make every value the right type, then make the whole table easy to read, print and check.",
     "parts": [
      "Text, number, ₱ currency, date",
@@ -464,30 +456,22 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.2 Formatting Worksheets and Data Types - 2026-11-01.html",
     "video": "4:55",
-    "slides": 21,
+    "slides": 16,
     "activities": [
-     {
-      "id": "3.2-a",
-      "kind": "task",
-      "title": "Format your Lab 3 inventory",
-      "slide": "Try it: format the inventory",
-      "minutes": 12,
-      "slideNo": 15
-     },
      {
       "id": "3.2-qc",
       "kind": "check",
       "title": "Quick check: the total is too small",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 20
+      "slideNo": 15
      }
     ]
    },
    {
     "id": "3.3",
     "title": "Basic Formulas (Arithmetic Operators)",
-    "dur": "50 min",
+    "dur": "25 min",
     "desc": "Teach the sheet to add, subtract, multiply and divide, so totals update themselves.",
     "parts": [
      "The = sign and six operators",
@@ -496,30 +480,22 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.3 Basic Formulas (Arithmetic Operators) - 2026-11-01.html",
     "video": "5:31",
-    "slides": 19,
+    "slides": 15,
     "activities": [
-     {
-      "id": "3.3-a",
-      "kind": "task",
-      "title": "Fill your Total Cost column and a grand total",
-      "slide": "Try it: Total Cost",
-      "minutes": 8,
-      "slideNo": 10
-     },
      {
       "id": "3.3-qc",
       "kind": "check",
       "title": "Quick check: Total Cost of folders",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 18
+      "slideNo": 14
      }
     ]
    },
    {
     "id": "3.4",
     "title": "Core Functions (SUM, AVERAGE, COUNT, MIN, MAX)",
-    "dur": "50 min",
+    "dur": "25 min",
     "desc": "Five short words that total, average, count and find the highest and lowest values in any list.",
     "parts": [
      "SUM, AVERAGE, COUNT, MIN, MAX",
@@ -528,30 +504,22 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.4 Core Functions (SUM, AVERAGE, COUNT, MIN, MAX) - 2026-11-01.html",
     "video": "4:55",
-    "slides": 18,
+    "slides": 14,
     "activities": [
-     {
-      "id": "3.4-a",
-      "kind": "task",
-      "title": "Add a summary block to your inventory",
-      "slide": "Try it: the summary block",
-      "minutes": 10,
-      "slideNo": 11
-     },
      {
       "id": "3.4-qc",
       "kind": "check",
       "title": "Quick check: AVERAGE on the inventory",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 17
+      "slideNo": 13
      }
     ]
    },
    {
     "id": "3.5",
     "title": "Cell Referencing Basics",
-    "dur": "35 min",
+    "dur": "25 min",
     "desc": "Why some formulas break when you copy them, and how one $ sign keeps them pointing at the right cell.",
     "parts": [
      "Relative vs absolute references",
@@ -560,38 +528,22 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.5 Cell Referencing Basics - 2026-11-01.html",
     "video": "5:00",
-    "slides": 20,
+    "slides": 14,
     "activities": [
-     {
-      "id": "3.5-a",
-      "kind": "task",
-      "title": "Fill the Total Cost column in one move",
-      "slide": "Try it: fill down",
-      "minutes": 3,
-      "slideNo": 7
-     },
-     {
-      "id": "3.5-b",
-      "kind": "task",
-      "title": "Add a 12% VAT column: break it, then fix it",
-      "slide": "Try it: VAT column",
-      "minutes": 5,
-      "slideNo": 12
-     },
      {
       "id": "3.5-qc",
       "kind": "check",
       "title": "Quick check: fill down to G5",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 19
+      "slideNo": 13
      }
     ]
    },
    {
     "id": "3.6",
     "title": "Worksheet Management",
-    "dur": "40 min",
+    "dur": "25 min",
     "desc": "One workbook, many tabs: organise months on their own sheets, find and sort, and print on one clean page.",
     "parts": [
      "Monthly tabs and a Summary sheet",
@@ -600,46 +552,22 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.6 Worksheet Management - 2026-11-01.html",
     "video": "5:06",
-    "slides": 22,
+    "slides": 15,
     "activities": [
-     {
-      "id": "3.6-a",
-      "kind": "task",
-      "title": "Turn your inventory into a 4-tab workbook",
-      "slide": "Try it: build the tabs",
-      "minutes": 4,
-      "slideNo": 7
-     },
-     {
-      "id": "3.6-b",
-      "kind": "task",
-      "title": "Make the Summary sheet read every month",
-      "slide": "Try it: Summary formulas",
-      "minutes": 4,
-      "slideNo": 10
-     },
-     {
-      "id": "3.6-c",
-      "kind": "task",
-      "title": "Freeze, sort, filter, then put it back",
-      "slide": "Try it: freeze, sort, filter",
-      "minutes": 5,
-      "slideNo": 16
-     },
      {
       "id": "3.6-qc",
       "kind": "check",
       "title": "Quick check: renaming a linked sheet",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 21
+      "slideNo": 14
      }
     ]
    },
    {
     "id": "3.7",
     "title": "Generating Basic Charts",
-    "dur": "40 min",
+    "dur": "25 min",
     "desc": "Pick the right chart, select the right data, and label it so anyone understands it in five seconds.",
     "parts": [
      "Column, bar, line or pie?",
@@ -648,87 +576,47 @@ window.CATALOG = [
     ],
     "deck": "Deck - 3.7 Generating Basic Charts - 2026-11-01.html",
     "video": "4:59",
-    "slides": 21,
+    "slides": 16,
     "activities": [
-     {
-      "id": "3.7-a",
-      "kind": "task",
-      "title": "Which chart would you use?",
-      "slide": "Which chart would you use?",
-      "minutes": 2,
-      "slideNo": 6
-     },
-     {
-      "id": "3.7-b",
-      "kind": "task",
-      "title": "Chart your inventory's Total Cost",
-      "slide": "Try it: your Lab 3 chart",
-      "minutes": 6,
-      "slideNo": 12
-     },
      {
       "id": "3.7-qc",
       "kind": "check",
       "title": "Quick check: the half-pie slice",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 20
+      "slideNo": 15
      }
     ]
    },
    {
     "id": "3.8",
     "title": "AI-Assisted Data Analysis",
-    "dur": "35 min + Lab 3",
+    "dur": "20 min + quiz",
     "desc": "Let AI suggest and explain formulas and spot trends, then verify every answer yourself.",
     "parts": [
      "Ask AI for a formula",
      "Verify: check two rows by hand",
-     "Lab 3 brief, checklist and rubric"
+     "The 10-item Module 3 Quiz"
     ],
     "deck": "Deck - 3.8 AI-Assisted Data Analysis - 2026-11-01.html",
     "video": "5:13",
-    "slides": 23,
+    "slides": 20,
     "activities": [
-     {
-      "id": "3.8-a",
-      "kind": "task",
-      "title": "Three checks before you trust any AI answer",
-      "slide": "Three checks",
-      "minutes": 2,
-      "slideNo": 10
-     },
-     {
-      "id": "3.8-b",
-      "kind": "task",
-      "title": "Be the supervisor: find the 3 mistakes",
-      "slide": "Spot the mistakes",
-      "minutes": 3,
-      "slideNo": 11
-     },
-     {
-      "id": "3.8-c",
-      "kind": "task",
-      "title": "Ask, paste, then run the three checks",
-      "slide": "Try it: ask and verify",
-      "minutes": 6,
-      "slideNo": 13
-     },
      {
       "id": "3.8-qc",
       "kind": "check",
       "title": "Quick check: #NAME? from an AI formula",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 18
+      "slideNo": 13
      },
      {
-      "id": "lab3",
-      "kind": "lab",
-      "title": "Lab 3: Spreadsheet Tracking and Verification",
-      "slide": "Lab 3 checklist and rubric",
-      "minutes": 240,
-      "slideNo": 22
+      "id": "3.8-quiz",
+      "kind": "quiz",
+      "title": "Module 3 Quiz: Spreadsheets",
+      "slide": "Module 3 Quiz",
+      "minutes": 10,
+      "slideNo": 14
      }
     ]
    }
@@ -737,7 +625,7 @@ window.CATALOG = [
  {
   "id": "m4",
   "n": "Module 4",
-  "hours": "5 hours",
+  "hours": "3.5 hours",
   "day": "Day 2",
   "title": "Multimedia Presentation Fundamentals",
   "desc": "Plan, design and deliver a short presentation people can actually read, with pictures, charts, media, tasteful motion and honest AI design help.",
@@ -745,7 +633,7 @@ window.CATALOG = [
    {
     "id": "4.1",
     "title": "Presentation Planning and Design Principles",
-    "dur": "40 min",
+    "dur": "30 min",
     "desc": "Plan the message on paper first, then design slides people can actually read.",
     "parts": [
      "Audience, purpose, one key message",
@@ -754,54 +642,22 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.1 Presentation Planning and Design Principles - 2026-11-01.html",
     "video": "4:57",
-    "slides": 21,
+    "slides": 14,
     "activities": [
-     {
-      "id": "4.1-a",
-      "kind": "task",
-      "title": "Write your Lab 4 key message",
-      "slide": "Try it: your key message",
-      "minutes": 2,
-      "slideNo": 6
-     },
-     {
-      "id": "4.1-b",
-      "kind": "task",
-      "title": "Read the 5-box storyboard",
-      "slide": "Storyboard: Lab 4",
-      "minutes": 2,
-      "slideNo": 8
-     },
-     {
-      "id": "4.1-c",
-      "kind": "task",
-      "title": "Storyboard your Lab 4 deck on paper",
-      "slide": "Try it: storyboard",
-      "minutes": 5,
-      "slideNo": 10
-     },
-     {
-      "id": "4.1-d",
-      "kind": "task",
-      "title": "Spot the problems on a bad slide",
-      "slide": "Makeover: spot the problems",
-      "minutes": 2,
-      "slideNo": 15
-     },
      {
       "id": "4.1-qc",
       "kind": "check",
       "title": "Quick check: what to decide first",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 20
+      "slideNo": 13
      }
     ]
    },
    {
     "id": "4.2",
     "title": "Application Navigation and Slide Management",
-    "dur": "45 min",
+    "dur": "30 min",
     "desc": "Find your way around PowerPoint, Google Slides and Impress, then add, arrange and present with confidence.",
     "parts": [
      "Themes and slide layouts",
@@ -810,38 +666,22 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.2 Application Navigation and Slide Management - 2026-11-01.html",
     "video": "4:38",
-    "slides": 21,
+    "slides": 16,
     "activities": [
-     {
-      "id": "4.2-a",
-      "kind": "task",
-      "title": "Build the skeleton of your Lab 4 deck",
-      "slide": "Try it: build your skeleton",
-      "minutes": 6,
-      "slideNo": 9
-     },
-     {
-      "id": "4.2-b",
-      "kind": "task",
-      "title": "Rehearse with the show keys",
-      "slide": "Try it: present",
-      "minutes": 3,
-      "slideNo": 14
-     },
      {
       "id": "4.2-qc",
       "kind": "check",
       "title": "Quick check: all eyes on you",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 20
+      "slideNo": 15
      }
     ]
    },
    {
     "id": "4.3",
     "title": "Working with Text and Lists in Slides",
-    "dur": "40 min",
+    "dur": "30 min",
     "desc": "Fewer words, bigger letters, clear lists. The rest goes in your speaker notes.",
     "parts": [
      "Bullet levels with Tab",
@@ -850,39 +690,23 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.3 Working with Text and Lists in Slides - 2026-11-01.html",
     "video": "4:59",
-    "slides": 20,
+    "slides": 15,
     "activities": [
-     {
-      "id": "4.3-a",
-      "kind": "task",
-      "title": "The 5-second test",
-      "slide": "Hook: 5-second test",
-      "minutes": 1,
-      "slideNo": 2
-     },
-     {
-      "id": "4.3-b",
-      "kind": "task",
-      "title": "Turn a notice into 3 short bullets",
-      "slide": "Try it: trim the text",
-      "minutes": 4,
-      "slideNo": 12
-     },
      {
       "id": "4.3-qc",
       "kind": "check",
       "title": "Quick check: 9 bullets at 14 pt",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 19
+      "slideNo": 14
      }
     ]
    },
    {
     "id": "4.4",
     "title": "Inserting and Manipulating Graphical Elements",
-    "dur": "50 min",
-    "desc": "Pictures, shapes, icons, diagrams and your Lab 3 chart: placed neatly, used legally, described for everyone.",
+    "dur": "30 min",
+    "desc": "Pictures, shapes, icons, diagrams and your spreadsheet chart: placed neatly, used legally, described for everyone.",
     "parts": [
      "Crop and resize without stretching",
      "Align, distribute, group",
@@ -890,38 +714,22 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.4 Inserting and Manipulating Graphical Elements - 2026-11-01.html",
     "video": "5:05",
-    "slides": 21,
+    "slides": 16,
     "activities": [
-     {
-      "id": "4.4-a",
-      "kind": "task",
-      "title": "Bring the Lab 3 chart into a slide",
-      "slide": "Insert the Lab 3 chart",
-      "minutes": 3,
-      "slideNo": 9
-     },
-     {
-      "id": "4.4-b",
-      "kind": "task",
-      "title": "Put your Lab 3 chart (or Lab 1 image) on a slide",
-      "slide": "Try it: add your chart",
-      "minutes": 6,
-      "slideNo": 11
-     },
      {
       "id": "4.4-qc",
       "kind": "check",
       "title": "Quick check: the wide group photo",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 20
+      "slideNo": 15
      }
     ]
    },
    {
     "id": "4.5",
     "title": "Applying Animations and Slide Transitions",
-    "dur": "30 min",
+    "dur": "25 min",
     "desc": "Motion that helps your audience follow you, not motion that makes them dizzy.",
     "parts": [
      "Transitions vs animations",
@@ -930,38 +738,22 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.5 Applying Animations and Slide Transitions - 2026-11-01.html",
     "video": "4:50",
-    "slides": 21,
+    "slides": 14,
     "activities": [
-     {
-      "id": "4.5-a",
-      "kind": "task",
-      "title": "Apply one transition to every slide",
-      "slide": "Try it: one transition for all",
-      "minutes": 4,
-      "slideNo": 9
-     },
-     {
-      "id": "4.5-b",
-      "kind": "task",
-      "title": "Animate your \"What I learned\" slide",
-      "slide": "Try it: animate your bullets",
-      "minutes": 5,
-      "slideNo": 13
-     },
      {
       "id": "4.5-qc",
       "kind": "check",
       "title": "Quick check: one bullet per click",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 20
+      "slideNo": 13
      }
     ]
    },
    {
     "id": "4.6",
     "title": "Adding Media Clips",
-    "dur": "30 min",
+    "dur": "25 min",
     "desc": "Video, music and your own voice in a slide, and making sure they actually play on the day.",
     "parts": [
      "Insert video and audio",
@@ -970,79 +762,47 @@ window.CATALOG = [
     ],
     "deck": "Deck - 4.6 Adding Media Clips - 2026-11-01.html",
     "video": "4:53",
-    "slides": 21,
+    "slides": 14,
     "activities": [
-     {
-      "id": "4.6-a",
-      "kind": "task",
-      "title": "Add one clip to \"My Digital Skills Journey\"",
-      "slide": "Try it: insert a clip",
-      "minutes": 6,
-      "slideNo": 10
-     },
-     {
-      "id": "4.6-b",
-      "kind": "task",
-      "title": "Live sound check over our meeting",
-      "slide": "Try it: sound check",
-      "minutes": 4,
-      "slideNo": 14
-     },
      {
       "id": "4.6-qc",
       "kind": "check",
       "title": "Quick check: no sound on Zoom",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 20
+      "slideNo": 13
      }
     ]
    },
    {
     "id": "4.7",
     "title": "AI in Presentation Design",
-    "dur": "35 min + Lab 4",
-    "desc": "Let AI suggest layouts and outlines. You stay in charge of the facts. Then Lab 4 and the course closing.",
+    "dur": "25 min + quiz",
+    "desc": "Let AI suggest layouts and outlines. You stay in charge of the facts. Then the Module 4 Quiz and the course closing.",
     "parts": [
      "AI design helpers",
      "Visual ethics and privacy",
-     "Lab 4 brief, rubric and closing"
+     "The 10-item Module 4 Quiz and closing"
     ],
     "deck": "Deck - 4.7 AI in Presentation Design - 2026-11-01.html",
     "video": "5:01",
-    "slides": 23,
+    "slides": 20,
     "activities": [
-     {
-      "id": "4.7-a",
-      "kind": "task",
-      "title": "Draft your Lab 4 outline with AI, then fix it",
-      "slide": "Try it: your outline",
-      "minutes": 6,
-      "slideNo": 11
-     },
-     {
-      "id": "4.7-b",
-      "kind": "task",
-      "title": "Improve two slides with the AI layout assistant",
-      "slide": "Try it: Designer on two slides",
-      "minutes": 5,
-      "slideNo": 12
-     },
      {
       "id": "4.7-qc",
       "kind": "check",
       "title": "Quick check: Designer shortened your title",
       "slide": "Quick check",
       "minutes": 1,
-      "slideNo": 15
+      "slideNo": 11
      },
      {
-      "id": "lab4",
-      "kind": "lab",
-      "title": "Lab 4: Multimedia Presentation and Ethical Design",
-      "slide": "Graded-output checklist",
-      "minutes": 240,
-      "slideNo": 19
+      "id": "4.7-quiz",
+      "kind": "quiz",
+      "title": "Module 4 Quiz: Presentations",
+      "slide": "Module 4 Quiz",
+      "minutes": 10,
+      "slideNo": 12
      }
     ]
    }

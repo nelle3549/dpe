@@ -75,37 +75,16 @@ svg text{font-family:var(--font-sans)}
       <h1 class="h1" data-anim="fade-up">Cell Referencing <span style="color:var(--gold)">Basics</span></h1>
       <p class="lede" data-anim="fade-up">Why some formulas break when you copy them, and how one small <b>$</b> sign keeps them pointing at the right cell.</p>
       <div class="cv-meta">
-        <span class="tag ghost">Topic 3.5</span><span class="tag ghost">~35 minutes · hands-on</span><span class="tag ghost">Provincial Government of Misamis Oriental</span>
+        <span class="tag ghost">Topic 3.5</span><span class="tag ghost">~25 minutes</span><span class="tag ghost">Provincial Government of Misamis Oriental</span>
       </div>
     </div>
     <div class="cv-img"><img src="images/m3/3-5-cover.jpg" alt="Rows of red cinema seats"><div class="cv-num">3.5</div></div>
     <div class="notes">
       <p><b>Welcome back.</b> In 3.3 and 3.4 we wrote formulas like <b>=C2*D2</b> and <b>=SUM(E2:E9)</b>. Today we answer a question that confuses even long-time spreadsheet users: <i>"I copied my formula and now it shows zeros. Why?"</i></p>
-      <p>The answer is <b>cell referencing</b>: how a formula points to other cells. By the end you'll know relative, absolute and mixed references, and the one key, <b>F4</b>, that saves you from typing dollar signs. Keep your Lab 3 inventory file open.</p>
+      <p>The answer is <b>cell referencing</b>: how a formula points to other cells. By the end you'll know relative, absolute and mixed references, and the one key, <b>F4</b>, that saves you from typing dollar signs. I'll demo everything on our Office Supplies Inventory, so just watch the formula bar.</p>
     </div>
   </section>
 
-  <!-- 2 · Warm-up -->
-  <section class="slide" data-title="Warm-up">
-    <div class="split">
-      <div>
-        <p class="kicker">Warm-up · type in the chat</p>
-        <h2 class="h2">Your cinema ticket says <span class="mod">Row F, Seat 12</span>.</h2>
-        <p class="lede mt-m">You step out to buy popcorn. When you come back, where do you sit?</p>
-        <div class="grid g2 mt-l anim-stagger-list">
-          <div class="card"><h4>A</h4><p>Still F12. It's printed on my ticket.</p></div>
-          <div class="card"><h4>B</h4><p>Wherever is one seat to the right of my friend.</p></div>
-          <div class="card"><h4>C</h4><p>Any free seat in Row F.</p></div>
-          <div class="card"><h4>D</h4><p>Any free seat in column 12.</p></div>
-        </div>
-      </div>
-      <div class="media"><img src="images/m3/3-5-tickets.jpg" alt="Hand holding two cinema tickets"></div>
-    </div>
-    <div class="notes">
-      <p>Ask everyone to type <b>A, B, C or D</b> in the chat. There's no wrong answer yet; we'll come back to all four.</p>
-      <p>Most will say <b>A</b>: a printed seat number is fixed. That's an <b>absolute</b> reference. But <b>B</b> is how we usually give directions, "sit beside your friend": that's a <b>relative</b> reference. <b>C and D</b> lock only the row or only the seat: those are <b>mixed</b> references. So all four answers are on today's menu.</p>
-    </div>
-  </section>
 
   <!-- 3 · Objectives -->
   <section class="slide" data-title="Objectives">
@@ -115,10 +94,10 @@ svg text{font-family:var(--font-sans)}
       <div class="card top"><span class="k">Apply</span><h4>Absolute references</h4><p>Lock a rate cell with <b>$B$12</b> and the <kbd>F4</kbd> key so every row uses it.</p></div>
       <div class="card top"><span class="k">Use</span><h4>Mixed and sheet-wide references</h4><p>Point to any cell on the sheet, and lock only a row or a column when needed.</p></div>
     </div>
-    <div class="callout tip mt-l"><b>Lab 3 link:</b> your graded inventory needs working formulas, not hard-typed values. Correct references are what make those formulas copy safely.</div>
+    <div class="callout tip mt-l"><b>Why it matters at work:</b> an inventory or budget sheet needs working formulas, not hard-typed values. Correct references are what make those formulas copy safely.</div>
     <div class="notes">
       <p>Three objectives, all practical. Read them quickly.</p>
-      <p>Point out the Lab 3 link: the graders will click your cells and read the <b>formula bar</b>. A formula that was copied wrongly shows the wrong cell address there, and the total will be off. Today protects your Lab 3 score. Ask: "Which of the three sounds new to you?"</p>
+      <p>Point out the callout: when your supervisor clicks a cell, the <b>formula bar</b> shows where the number came from. A formula that was copied wrongly shows the wrong cell address there, and the total will be off. Ask: "Which of the three sounds new to you?"</p>
     </div>
   </section>
 
@@ -139,7 +118,7 @@ svg text{font-family:var(--font-sans)}
     </div>
     <div class="notes">
       <p>Chess players name squares the same way we name cells: a letter for the column, a number for the row.</p>
-      <p>The key idea for today: a formula holds <b>directions</b>, not values. <b>=C2*D2</b> means "take the quantity and the unit cost from these two cells." Demo: change C2 from 25 to 26 in your file and watch E2 update. Ask: "So what happens to the directions when I copy the formula to another row?" That's next.</p>
+      <p>The key idea for today: a formula holds <b>directions</b>, not values. <b>=C2*D2</b> means "take the quantity and the unit cost from these two cells." Demo: change C2 from 25 to 26 in the inventory and let them watch E2 update. Ask: "So what happens to the directions when I copy the formula to another row?" That's next.</p>
     </div>
   </section>
 
@@ -175,7 +154,7 @@ svg text{font-family:var(--font-sans)}
           <figure class="f" data-step="2" data-zoom="1.4" data-o="55,50"><div class="pic"><img src="images/ui/3.5/01-e2-formula.webp" alt="The fill handle at the bottom-right corner of E2; E3 to E9 are filled"><i class="ring" style="--x:54.4;--y:39.2;--w:1.8;--h:2.6"></i><i class="ring" style="--x:45.1;--y:36.9;--w:10.2;--h:25.9;--d:0.25s"></i></div></figure>
           <figure class="f" data-step="3" data-zoom="1.2" data-o="60,35"><div class="pic"><img src="images/ui/3.5/02-show-formulas-e5.webp" alt="Formulas tab with Show Formulas on; E5 shows =C5*D5 and Excel outlines C5 and D5"><i class="ring" style="--x:70.8;--y:12.4;--w:5.2;--h:10.8"></i><i class="ring" style="--x:69.8;--y:42.7;--w:16.3;--h:3.1;--d:0.25s"></i><i class="ring" style="--x:46;--y:42.7;--w:23.8;--h:3.1;--d:0.5s"></i></div></figure>
         </div>
-        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Show formulas: <kbd>Ctrl</kbd>+<kbd>`</kbd> on Windows and Mac, or Formulas › Show Formulas.</p>
+        <p class="cap">Microsoft Excel for Mac, sample Office Supplies Inventory. Show formulas: <kbd>Ctrl</kbd>+<kbd>`</kbd> on Windows and Mac, or Formulas › Show Formulas.</p>
       </div>
       <div>
         <ol class="steps sm">
@@ -191,33 +170,6 @@ svg text{font-family:var(--font-sans)}
     </div>
   </section>
 
-  <!-- 7 · Try it now: fill down -->
-  <section class="slide act" data-act="Portal activity" data-title="Try it: fill down">
-    <div class="slide-head">
-      <div><p class="kicker">Try it now · your own app</p><h2 class="h2">Fill the Total Cost column in one move</h2></div>
-      <button class="timer" data-min="3">3:00</button>
-    </div>
-    <div class="grid g2" style="grid-template-columns:1.2fr .8fr;align-items:start">
-      <div class="try">
-        <div class="try-head"><span class="try-label">Steps</span><span class="tiny">Open your Lab 3 inventory</span></div>
-        <ol>
-          <li>Click <b>E2</b> and type <b>=C2*D2</b>, then <kbd>Enter</kbd>.</li>
-          <li>Click E2 again. Double-click the <b>fill handle</b> at its bottom-right corner.</li>
-          <li>Press <kbd>Ctrl</kbd> + <kbd>`</kbd> to show formulas. Check that E9 says <b>=C9*D9</b>. Press it again to go back.</li>
-          <li>Enter the value in <b>E3</b> in the portal.</li>
-        </ol>
-      </div>
-      <div>
-        <div class="callout"><b>No data yet?</b> Type 3 rows: A4 paper 25 × 245, long paper 30 × 265, ballpen 10 × 96.</div>
-        <div class="row mt-m"><button class="reveal-btn" data-target="ans-e3">Show the answer</button></div>
-        <div class="answer mt-m" id="ans-e3"><div class="callout tip"><b>E3 = 7,950.00</b> (30 reams × ₱265.00). E2 should be 6,125.00.</div></div>
-      </div>
-    </div>
-    <div class="notes">
-      <p>Start the <b>3-minute</b> timer. Ask two volunteers to share their screens while they do it.</p>
-      <p>Watch for: people typing the multiplication sign as "x" instead of the asterisk <b>*</b>; people dragging past row 9 into the total row. If someone gets <b>#VALUE!</b>, a number was probably typed with a peso sign or a space as text. Answer: <b>7,950.00</b>.</p>
-    </div>
-  </section>
 
   <!-- 8 · The problem -->
   <section class="slide" data-title="When relative goes wrong">
@@ -232,7 +184,7 @@ svg text{font-family:var(--font-sans)}
           <figure class="f" data-step="2" data-zoom="1.3" data-o="70,55"><div class="pic"><img src="images/ui/3.5/04-g3-broken-b13.webp" alt="After filling down, G3 to G9 show 0.00 pesos and G10 shows only 735.00"><i class="ring" style="--x:66.2;--y:40.1;--w:10.3;--h:25.9"></i></div></figure>
           <figure class="f" data-step="3" data-zoom="1.2" data-o="25,45"><div class="pic"><img src="images/ui/3.5/04-g3-broken-b13.webp" alt="G3 selected; the formula bar shows =E3*B13; B13 is an empty cell"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i><i class="ring" style="--x:20;--y:71.8;--w:10;--h:3.8;--d:0.25s"></i></div></figure>
         </div>
-        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
+        <p class="cap">Microsoft Excel for Mac, sample Office Supplies Inventory.</p>
       </div>
       <div>
         <ol class="steps sm">
@@ -280,7 +232,7 @@ svg text{font-family:var(--font-sans)}
           <figure class="f" data-step="2" data-zoom="1.3" data-o="70,50"><div class="pic"><img src="images/ui/3.5/05-g3-fixed.webp" alt="G2 to G9 all show VAT amounts"><i class="ring" style="--x:66.2;--y:36.9;--w:10.3;--h:25.9"></i></div></figure>
           <figure class="f" data-step="3" data-zoom="1.2" data-o="55,55"><div class="pic"><img src="images/ui/3.5/06-g10-total.webp" alt="G10 selected; the formula bar shows =SUM(G2:G9); G10 shows 2,644.68 pesos"><i class="ring" style="--x:66.2;--y:62.3;--w:10.3;--h:3.8"></i><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4;--d:0.25s"></i><i class="ring" style="--x:45.1;--y:62.3;--w:10.2;--h:3.8;--d:0.5s"></i></div></figure>
         </div>
-        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory.</p>
+        <p class="cap">Microsoft Excel for Mac, sample Office Supplies Inventory.</p>
       </div>
       <div>
         <ol class="steps sm">
@@ -292,7 +244,7 @@ svg text{font-family:var(--font-sans)}
     </div>
     <div class="notes">
       <p>Same sheet, one change. In G2 we typed <b>=E2*$B$12</b>, then filled down. Click G3: the formula bar shows <b>=E3*$B$12</b>. The E part moved; the locked B12 stayed.</p>
-      <p>Show the check in the gold box: the grand total <b>22,039.00 times 12%</b> is <b>2,644.68</b>, the same as the sum of the VAT column. That's a habit for Lab 3: <b>check the total a second way</b>. Now if the rate ever changes, edit B12 once and all eight rows update.</p>
+      <p>Show the check in the gold box: the grand total <b>22,039.00 times 12%</b> is <b>2,644.68</b>, the same as the sum of the VAT column. That's a good habit for any report: <b>check the total a second way</b>. Now if the rate ever changes, edit B12 once and all eight rows update.</p>
     </div>
   </section>
 
@@ -309,7 +261,7 @@ svg text{font-family:var(--font-sans)}
           <figure class="f" data-step="3" data-zoom="2" data-o="20,26"><div class="pic"><img src="images/ui/3.5/08-f4-row-locked.webp" alt="Formula bar of G2: =E2*B$12"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i></div></figure>
           <figure class="f" data-step="4" data-zoom="2" data-o="20,26"><div class="pic"><img src="images/ui/3.5/09-f4-column-locked.webp" alt="Formula bar of G2: =E2*$B12"><i class="ring" style="--x:19.4;--y:24.9;--w:14;--h:4"></i></div></figure>
         </div>
-        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. The formula bar after each press, shown after Enter. G2 stays 735.00 in all four.</p>
+        <p class="cap">Microsoft Excel for Mac, sample Office Supplies Inventory. The formula bar after each press, shown after Enter. G2 stays 735.00 in all four.</p>
       </div>
       <div>
         <p class="small">Click inside the address in the formula (or just after it), then press F4 again and again:</p>
@@ -335,33 +287,6 @@ svg text{font-family:var(--font-sans)}
     </div>
   </section>
 
-  <!-- 12 · Try it: VAT -->
-  <section class="slide act" data-act="Portal activity" data-title="Try it: VAT column">
-    <div class="slide-head">
-      <div><p class="kicker">Try it now · break it, then fix it</p><h2 class="h2">Add a 12% VAT column to your inventory</h2></div>
-      <button class="timer" data-min="5">5:00</button>
-    </div>
-    <div class="grid g2" style="grid-template-columns:1.15fr .85fr;align-items:start">
-      <div class="try">
-        <div class="try-head"><span class="try-label">Steps</span><span class="tiny">About 5 minutes</span></div>
-        <ol>
-          <li>In <b>A12</b> type <b>VAT rate</b>; in <b>B12</b> type <b>12%</b>. In <b>G1</b> type <b>VAT 12%</b>.</li>
-          <li>In G2 type <b>=E2*B12</b> and fill down to G9. See the zeros?</li>
-          <li>Fix G2: click after B12, press <kbd>F4</kbd> to get <b>$B$12</b>, <kbd>Enter</kbd>, fill down again.</li>
-          <li>In G10 type <b>=SUM(G2:G9)</b>. Enter the result in the portal.</li>
-        </ol>
-      </div>
-      <div>
-        <div class="callout gold"><b>Stretch:</b> in H1 type <b>Total with VAT</b>, and in H2 <b>=E2+G2</b>. Fill down. Which reference style did you need?</div>
-        <div class="row mt-m"><button class="reveal-btn" data-target="ans-vat">Show the answers</button></div>
-        <div class="answer mt-m" id="ans-vat"><div class="callout tip"><b>G10 = 2,644.68.</b> G3 = 954.00, G9 = 147.60. The stretch needs only relative references: H10 = 24,683.68.</div></div>
-      </div>
-    </div>
-    <div class="notes">
-      <p>Start the <b>5-minute</b> timer. We break it on purpose first, because seeing the zeros yourself is how you remember the fix.</p>
-      <p>Answers: <b>G10 is 2,644.68</b>. If someone posts 735.00, their G column still uses B13 and beyond. For the stretch, <b>=E2+G2</b> stays relative because each row adds its own two cells; the grand total with VAT is <b>24,683.68</b>. Ask one participant to share and click G5 so everyone reads the formula bar.</p>
-    </div>
-  </section>
 
   <!-- 13 · Mixed -->
   <section class="slide" data-title="Mixed references">
@@ -389,8 +314,8 @@ svg text{font-family:var(--font-sans)}
       </div>
     </div>
     <div class="notes">
-      <p>Keep this short. Mixed references are seats where only the row or only the column is fixed, like answers C and D in our warm-up.</p>
-      <p>The classic use is a two-way table: unit costs down column A, quantities across row 1. One formula, <b>=$A2*B$1</b>, filled right and down, builds the whole table. Click C3: it reads <b>=$A3*C$1</b>, 85 times 5, <b>425.00</b>. Tell them: if this feels advanced, that's fine; it won't be graded in Lab 3.</p>
+      <p>Keep this short. Mixed references are seats where only the row or only the column is fixed, like a ticket that fixes the row but lets you pick any seat in it.</p>
+      <p>The classic use is a two-way table: unit costs down column A, quantities across row 1. One formula, <b>=$A2*B$1</b>, filled right and down, builds the whole table. Click C3: it reads <b>=$A3*C$1</b>, 85 times 5, <b>425.00</b>. Tell them: if this feels advanced, that's fine; most office sheets never need it.</p>
     </div>
   </section>
 
@@ -423,71 +348,15 @@ svg text{font-family:var(--font-sans)}
     </div>
   </section>
 
-  <!-- 15 · Office / home -->
-  <section class="slide" data-title="At the office and at home">
-    <div class="slide-head"><div><p class="kicker">See it everywhere</p><h2 class="h2">One input cell, many rows that use it</h2></div></div>
-    <div class="pair anim-stagger-list">
-      <div class="ex office"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" /><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" /><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" /><path d="M10 6h4" /><path d="M10 10h4" /><path d="M10 14h4" /><path d="M10 18h4" /></svg> At the office</div>
-        <ul>
-          <li><b>12% VAT</b> on a supplies list: one rate cell, locked with $.</li>
-          <li><b>Share of the budget:</b> each item's cost ÷ the grand total, <b>=E2/$E$10</b>. A4 paper is 27.8% of ₱22,039.00.</li>
-          <li><b>Training allowance:</b> days attended × one daily rate cell.</li>
-        </ul>
-      </div>
-      <div class="ex home"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg> At home</div>
-        <ul>
-          <li><b>Sari-sari markup:</b> selling price = cost × (1 + markup). With 15% in E1: <b>=B2*(1+$E$1)</b>. A ₱24 can of sardines sells at ₱27.60.</li>
-          <li><b>Savings goal:</b> 10% of each payday, one rate cell for all 24 paydays.</li>
-          <li><b>Kids' allowance:</b> school days × one daily amount.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="notes">
-      <p>The pattern is always the same: <b>one input cell</b> that many rows depend on. Rates, prices per day, markups, percentages.</p>
-      <p>The sari-sari example: if the markup in E1 changes from 15% to 20%, every price updates at once. Ask the chat: <b>"What's one rate or fixed number you use in your own sheets?"</b> Common answers: per diem, a meal allowance, the electricity rate per kWh.</p>
-    </div>
-  </section>
 
-  <!-- 16 · Myth / fact -->
-  <section class="slide" data-title="Myth or fact">
-    <div class="slide-head"><div><p class="kicker">Myth or fact · click each card</p><h2 class="h2">Three things people get wrong about $</h2></div></div>
-    <div class="grid g3">
-      <div class="flip"><div class="in"><div class="fr"><h4>Myth</h4><p>"The $ in $B$12 means the cell holds money."</p><span class="hint">click to flip</span></div><div class="bk"><h4>Fact</h4><p>It's a lock. It has nothing to do with currency; ₱ formatting is a separate setting.</p><span class="hint">click to flip back</span></div></div></div>
-      <div class="flip"><div class="in"><div class="fr"><h4>Myth</h4><p>"To be safe, make every reference absolute."</p><span class="hint">click to flip</span></div><div class="bk"><h4>Fact</h4><p>Then =$C$2*$D$2 filled down gives 6,125.00 on every row. Lock only what must stay.</p><span class="hint">click to flip back</span></div></div></div>
-      <div class="flip"><div class="in"><div class="fr"><h4>Myth</h4><p>"Inserting a row will break all my formulas."</p><span class="hint">click to flip</span></div><div class="bk"><h4>Fact</h4><p>The spreadsheet updates the addresses for you, even $B$12, when rows are inserted above it.</p><span class="hint">click to flip back</span></div></div></div>
-    </div>
-    <div class="notes">
-      <p>Ask the chat to vote <b>myth or fact</b> before you flip each card.</p>
-      <p>Card 2 is the most important: if you lock everything, every row copies row 2's answer, <b>6,125.00</b> all the way down, which is just as wrong. Card 3: insert a row above row 12 in your file and watch the formula change to <b>$B$13</b> on its own. The lock stops <b>copying</b> from shifting it, not <b>inserting</b>.</p>
-    </div>
-  </section>
 
-  <!-- 17 · Video -->
-  <section class="slide" data-title="Video intro">
-    <div class="split">
-      <div>
-        <p class="kicker">Watch · 5 minutes</p>
-        <h2 class="h2">Decide what moves and what stays</h2>
-        <p class="lede mt-m">Cinema seats, a column of zeros and one small lock: see how <b>relative</b> references follow you when you fill down, and how <b>$B$12</b> keeps a VAT rate fixed for every row.</p>
-        <div class="callout gold mt-l"><b>While watching:</b> note the moment the formula breaks, and what gets locked to fix it.</div>
-      </div>
-      <div class="vmeta">
-        <div class="vintro"><img src="videos/3.5/poster.jpg" alt="Video: Cell Referencing Basics"><div class="play"></div><span class="vlen">5:00</span></div>
-        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
-      </div>
-    </div>
-    <div class="notes">
-      <p>Introduce the video in one or two sentences, then read the <b>While watching</b> task aloud so everyone knows what to look for.</p>
-      <p>Press <b>→</b> to open the video full screen. In Zoom or Meet, share this tab with <b>computer sound</b> turned on.</p>
-    </div>
-  </section>
 
   <section class="slide vslide" data-title="Video" data-nofooter>
     <iframe data-src="videos/3.5/index.html" title="Video: Cell Referencing Basics" allow="autoplay; fullscreen" allowfullscreen></iframe>
     <div class="notes">
       <p><b>Space</b> or <b>K</b> plays and pauses (or click the video). <b>C</b> turns captions on or off; the speed button offers 1.25× and 0.85×. The arrows still move between slides, and the video pauses when you leave this slide.</p>
       <p>Length 5:00. Pause anywhere to take a question; captions stay on screen for anyone without sound.</p>
-      <p>After the video, go back to the <b>While watching</b> task: ask two or three people for their answers.</p>
+      <p>After the video, take one or two questions before the quick check.</p>
     </div>
   </section>
   <!-- YouTube slide replaced by our own video (2026-11-01):
@@ -521,7 +390,7 @@ svg text{font-family:var(--font-sans)}
       <div class="opt"><span class="l">D</span><div>=E5*$B$12<div class="why">No. Filling down never adds $ signs; you add them with F4.</div></div></div>
     </div>
     <div class="notes">
-      <p>Let them type the letter in the chat first, then click to reveal. Answer: <b>B, =E5*B15</b>.</p>
+      <p>Give them a minute to answer in the portal, then click to reveal. Answer: <b>B, =E5*B15</b>.</p>
       <p>From G2 to G5 is three rows, so <b>every relative row number goes up by 3</b>: E2 becomes E5 and B12 becomes B15. If many chose A, go back to the "why it broke" slide for one more minute.</p>
     </div>
   </section>

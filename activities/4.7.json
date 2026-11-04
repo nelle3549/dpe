@@ -3,124 +3,6 @@
   "title": "AI in Presentation Design",
   "activities": [
     {
-      "id": "4.7-a",
-      "slide": "Try it: your outline",
-      "kind": "task",
-      "title": "Draft your Lab 4 outline with AI, then fix it",
-      "minutes": 6,
-      "intro": "Use Copilot, Gemini, Canva's AI or any assistant your office allows. AI drafts the outline; you make it true and yours.",
-      "blocks": [
-        {
-          "type": "steps",
-          "id": "steps",
-          "items": [
-            "Copy the prompt from the slide or the chat. Fill in your role, with no real names of others.",
-            "Paste it into the AI assistant and get the outline.",
-            "Highlight anything you didn't do or can't prove.",
-            "Replace it with your real example.",
-            "Remove every [placeholder].",
-            "Type your slide titles into your Lab 4 file."
-          ]
-        },
-        {
-          "type": "text",
-          "id": "changed",
-          "prompt": "Paste one line you changed (AI said… I changed it to…)",
-          "lines": 2
-        },
-        {
-          "type": "sort",
-          "id": "keep",
-          "prompt": "From the sample AI draft: what do you keep, and what do you replace?",
-          "bins": [
-            "Keep",
-            "Replace"
-          ],
-          "items": [
-            "The six-slide structure",
-            "[Insert Name]",
-            "Advanced Excel macros",
-            "Productivity increased by 50%",
-            "Microsoft Access databases"
-          ]
-        },
-        {
-          "type": "mcq",
-          "id": "facts",
-          "prompt": "Which part of the prompt reduces made-up content?",
-          "options": [
-            "Outline a 6-slide presentation",
-            "for a 5-minute share",
-            "Use only these facts."
-          ]
-        }
-      ],
-      "help": [
-        "\"Use only these facts\" reduces made-up content, but doesn't remove it. The edit step still matters.",
-        "No placeholders in graded work: replace [Insert Name] with your own name."
-      ]
-    },
-    {
-      "id": "4.7-b",
-      "slide": "Try it: Designer on two slides",
-      "kind": "task",
-      "title": "Improve two slides with the AI layout assistant",
-      "minutes": 5,
-      "intro": "Lab 4 needs at least two slides improved by the AI layout assistant, with the core text unchanged. Good candidates: your chart slide and your title slide.",
-      "blocks": [
-        {
-          "type": "steps",
-          "id": "steps",
-          "items": [
-            "Before: take a screenshot of the slide (Win + Shift + S).",
-            "Apply: Home › Designer, choose a layout. Google Slides: Gemini, if available. Canva: try another layout.",
-            "Check: read every word against your original. Same title? Same numbers? Chart not cropped?",
-            "Do the same for a second slide."
-          ]
-        },
-        {
-          "type": "number",
-          "id": "count",
-          "prompt": "At least how many slides must the AI layout assistant improve for Lab 4?",
-          "unit": "slides"
-        },
-        {
-          "type": "mcq",
-          "id": "check",
-          "multi": true,
-          "prompt": "After Designer changes a slide, what do you check? Pick all that apply.",
-          "options": [
-            "Same title",
-            "Same numbers",
-            "Chart not cropped",
-            "More colours than before"
-          ]
-        },
-        {
-          "type": "mcq",
-          "id": "nodesigner",
-          "prompt": "Your PC has no AI layout tool. What do you try first?",
-          "options": [
-            "Skip this Lab 4 requirement",
-            "PowerPoint for the web with a free Microsoft account",
-            "Draw the layout by hand in Paint"
-          ]
-        },
-        {
-          "type": "upload",
-          "id": "shots",
-          "prompt": "Your before and after screenshots",
-          "optional": true
-        }
-      ],
-      "help": [
-        "Designer needs internet and a signed-in Microsoft account.",
-        "Older PowerPoint? Look for Design › Design Ideas.",
-        "Designer says \"no ideas\"? Try a slide with less text.",
-        "Still stuck? Tell the facilitator in the chat and you'll find a fallback together."
-      ]
-    },
-    {
       "id": "4.7-qc",
       "slide": "Quick check",
       "kind": "check",
@@ -142,78 +24,123 @@
       ]
     },
     {
-      "id": "lab4",
-      "slide": "Graded-output checklist",
-      "kind": "lab",
-      "title": "Lab 4: Multimedia Presentation and Ethical Design",
-      "minutes": 240,
-      "intro": "Build a deck of at least 5 slides and present it in 5 minutes. Default scenario: \"My Digital Skills Journey\", what you learned from Module 1 to Module 4. You may instead present your Lab 3 Office Supplies Inventory, or pitch a community project such as a barangay clean-up drive. Lab 4 is 30% of the final grade.",
+      "id": "4.7-quiz",
+      "slide": "Module 4 Quiz",
+      "kind": "quiz",
+      "title": "Module 4 Quiz: Presentations",
+      "minutes": 10,
+      "intro": "10 items, 1 point each. Pick the one best answer for each item. Everything on it was covered in Topics 4.1 to 4.7.",
       "blocks": [
         {
-          "type": "text",
-          "id": "scenario",
-          "prompt": "Which scenario did you choose? (My Digital Skills Journey, Lab 3 inventory, or a community project)",
-          "lines": 1
-        },
-        {
-          "type": "steps",
-          "id": "checklist",
-          "items": [
-            "At least 5 slides with a consistent theme or background.",
-            "Varied layouts, e.g. Title slide and Title & Content.",
-            "Your Lab 3 chart or Lab 1 image, placed cleanly.",
-            "AI layout improvement on 2+ slides, core text unchanged.",
-            "Transitions that work, applied uniformly.",
-            "Also check: no [placeholders], sample data only, AI images labelled, and credits for any clip or music."
+          "type": "mcq",
+          "id": "q1",
+          "prompt": "1. Before you open the app, which three questions do you answer first?",
+          "options": [
+            "Theme, font and colours",
+            "How many slides, pictures and minutes",
+            "Audience, purpose and key message",
+            "Which app, template and animation"
           ]
         },
         {
-          "type": "upload",
-          "id": "file",
-          "prompt": "Upload your deck: Lab 4 - Lastname - My Digital Skills Journey.pptx (or .odp)"
+          "type": "mcq",
+          "id": "q2",
+          "prompt": "2. \"Use the same colours, fonts and title position on every slide.\" Which design principle is this?",
+          "options": [
+            "Repetition",
+            "Contrast",
+            "Alignment",
+            "Proximity"
+          ]
         },
         {
-          "type": "text",
-          "id": "link",
-          "prompt": "Used Google Slides? Paste the link here (set to \"Anyone with the link: Viewer\")",
-          "lines": 1,
-          "optional": true
+          "type": "mcq",
+          "id": "q3",
+          "prompt": "3. About how big should body text and bullets be?",
+          "options": [
+            "12 pt",
+            "18 pt",
+            "24 to 32 pt",
+            "60 pt"
+          ]
         },
         {
-          "type": "rubric",
-          "id": "rubric",
-          "criteria": [
-            {
-              "name": "Content and sequence: 5+ slides in a clear order; true, specific content; no placeholders",
-              "points": 8
-            },
-            {
-              "name": "Design and readability: one theme, varied layouts, readable fonts, short text",
-              "points": 6
-            },
-            {
-              "name": "Media integration: Lab 3 chart or Lab 1 image placed cleanly; any clip plays",
-              "points": 5
-            },
-            {
-              "name": "AI layout, accurate text: 2+ slides improved with the AI assistant; text and numbers unchanged",
-              "points": 5
-            },
-            {
-              "name": "Transitions: one transition, applied uniformly, working in Slide Show",
-              "points": 3
-            },
-            {
-              "name": "Ethics: honest visuals, credits given, AI images labelled, no personal data",
-              "points": 3
-            }
+          "type": "mcq",
+          "id": "q4",
+          "prompt": "4. In PowerPoint, which key starts the slide show from the slide you are on?",
+          "options": [
+            "F5",
+            "Esc",
+            "B",
+            "Shift + F5"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q5",
+          "prompt": "5. You share your deck as a PDF. What stops working?",
+          "options": [
+            "The text",
+            "Transitions, animations and videos",
+            "The pictures",
+            "The slide order"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q6",
+          "prompt": "6. Which alt text is most helpful for a chart?",
+          "options": [
+            "Chart1.png",
+            "Picture",
+            "Leave it empty",
+            "Bar chart of 8 office supplies by total cost. Bond paper is the biggest cost."
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q7",
+          "prompt": "7. Which picture is safest to use in an office deck?",
+          "options": [
+            "A photo you took yourself, with permission from the people in it",
+            "Any photo from Google Images",
+            "A scene from a movie poster",
+            "A logo copied from another office's page"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q8",
+          "prompt": "8. Which motion is the best choice for an office report?",
+          "options": [
+            "A different transition on every slide",
+            "Vortex with an applause sound",
+            "One subtle transition, like Fade, on every slide",
+            "Animate every title, photo and line"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q9",
+          "prompt": "9. Your deck with an embedded video is too big to email (Gmail stops at 25 MB). What do you do?",
+          "options": [
+            "Send it in three emails",
+            "Compress the media, or share a Drive link",
+            "Delete the video slide",
+            "Rename the file"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q10",
+          "prompt": "10. A bar chart's axis starts at 6,000 instead of 0. What is wrong with it?",
+          "options": [
+            "It makes a small difference look huge",
+            "Nothing. It saves space",
+            "The bars must be blue",
+            "The axis must start at 100"
           ]
         }
-      ],
-      "help": [
-        "Save often with Ctrl+S. Four hours of work and a brownout is a painful combination.",
-        "Keep your before/after screenshots of the AI slides; they make a great talking point.",
-        "Plan about 45 to 60 seconds per slide and rehearse once with a timer."
       ]
     }
   ]

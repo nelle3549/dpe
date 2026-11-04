@@ -63,6 +63,14 @@ svg text{font-family:var(--font-sans)}
 .tbl.compact td,.tbl.compact th{padding:calc(var(--u)*.5) calc(var(--u)*.9)}
 .tbl td.c,.tbl th.c{text-align:center}
 .flip .fr h4{color:var(--coral)}
+/* module quiz: two items side by side (same as 1.5) */
+.quiz{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*2.6);align-items:start}
+.quiz .qn{font-size:calc(var(--u)*.9);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mod)}
+.quiz h4{font-size:calc(var(--u)*1.55);margin:calc(var(--u)*.3) 0 calc(var(--u)*1)}
+.quiz .qc{gap:calc(var(--u)*.6)}
+.quiz .opt{font-size:calc(var(--u)*1.3);padding:calc(var(--u)*.7) calc(var(--u)*1.1)}
+.quiz .opt .l{width:calc(var(--u)*1.9);height:calc(var(--u)*1.9);font-size:calc(var(--u)*.95)}
+.quiz .opt .why{font-size:calc(var(--u)*1.05)}
 </style>
 </head>
 <body class="m3" data-brand="Digital Productivity Essentials · <b>Module 3</b> · 3.8 AI-Assisted Data Analysis">
@@ -73,36 +81,18 @@ svg text{font-family:var(--font-sans)}
     <div class="cv-text">
       <p class="kicker">Module 3 · Electronic Spreadsheet Fundamentals</p>
       <h1 class="h1" data-anim="fade-up">AI-Assisted <span style="color:var(--gold)">Data Analysis</span></h1>
-      <p class="lede" data-anim="fade-up">Let AI suggest and explain formulas and spot trends, then verify every answer yourself. Plus your Lab 3 brief.</p>
+      <p class="lede" data-anim="fade-up">Let AI suggest and explain formulas and spot trends, then verify every answer yourself. Then the Module 3 quiz.</p>
       <div class="cv-meta">
-        <span class="tag ghost">Topic 3.8</span><span class="tag ghost">~35 minutes + Lab 3</span><span class="tag ghost">Provincial Government of Misamis Oriental</span>
+        <span class="tag ghost">Topic 3.8</span><span class="tag ghost">~20 minutes + module quiz</span><span class="tag ghost">Provincial Government of Misamis Oriental</span>
       </div>
     </div>
     <div class="cv-img"><img src="images/m3/3-8-cover.jpg" alt="A robot hand and a human hand reaching toward the letters AI"><div class="cv-num">3.8</div></div>
     <div class="notes">
       <p><b>Last topic of Module 3!</b> You've built the inventory by hand: formulas, references, sheets and a chart. Now we bring in an AI assistant as a helper.</p>
-      <p>The course is clear on one rule, and it's our theme today: <b>AI is a copilot, not a replacement for your judgment</b>. Every AI answer gets human review and fact-checking. After the AI part, we'll go through the <b>Lab 3 brief</b>, which is worth 30% of the course grade.</p>
+      <p>The course is clear on one rule, and it's our theme today: <b>AI is a copilot, not a replacement for your judgment</b>. Every AI answer gets human review and fact-checking. After the AI part, we close Module 3 with a <b>10-item module quiz</b> in the portal.</p>
     </div>
   </section>
 
-  <!-- 2 · Warm-up -->
-  <section class="slide" data-title="Warm-up">
-    <div class="slide-head">
-      <div><p class="kicker">Warm-up · type in the chat</p><h2 class="h2">Have you asked an AI for help with a spreadsheet?</h2></div>
-      <span class="tag gold">1 minute</span>
-    </div>
-    <div class="grid g4 anim-stagger-list">
-      <div class="card center"><span class="ic"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2" /><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2" /><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8" /><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" /></svg></span><h4>A</h4><p>Yes, and it worked</p></div>
-      <div class="card center"><span class="ic"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" x2="9.01" y1="9" y2="9" /><line x1="15" x2="15.01" y1="9" y2="9" /></svg></span><h4>B</h4><p>Yes, but the formula didn't work</p></div>
-      <div class="card center"><span class="ic"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></svg></span><h4>C</h4><p>Not yet, but I'm curious</p></div>
-      <div class="card center"><span class="ic"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#C62828"><circle cx="12" cy="12" r="10" /><path d="m4.9 4.9 14.2 14.2" /></svg></span><h4>D</h4><p>No, I don't trust it with work files</p></div>
-    </div>
-    <div class="callout gold mt-l"><b>All four are reasonable.</b> By the end of this topic, B and D will know exactly why, and A and C will know how to check.</div>
-    <div class="notes">
-      <p>Ask for <b>A, B, C or D</b>. Read a few answers aloud.</p>
-      <p>Answer B is the most useful one to hear: ask someone what went wrong. Often it's a function that didn't exist, or the wrong range. Answer D is a healthy instinct for confidential records, and we'll talk about what is and isn't safe to share. Thank them all; every group gets something today.</p>
-    </div>
-  </section>
 
   <!-- 3 · Objectives -->
   <section class="slide" data-title="Objectives">
@@ -112,10 +102,10 @@ svg text{font-family:var(--font-sans)}
       <div class="card top"><span class="k">Verify</span><h4>Check every answer</h4><p>Test two rows by hand, check the range, and check against the total. Catch invented functions.</p></div>
       <div class="card top"><span class="k">Protect</span><h4>Keep data private</h4><p>Never paste client data or confidential records into public AI tools.</p></div>
     </div>
-    <div class="callout tip mt-l"><b>Lab 3 link:</b> the lab asks you to "apply basic arithmetic formulas and <b>verify AI-suggested logic</b>." This topic shows how.</div>
+    <div class="callout tip mt-l"><b>Module quiz:</b> this topic ends with a 10-item multiple-choice quiz on all of Module 3, answered in the portal.</div>
     <div class="notes">
       <p>Three objectives: <b>prompt, verify, protect</b>. The middle one is the heart of it.</p>
-      <p>Read the Lab 3 line: verifying AI-suggested logic is part of the lab's objectives, so the checks we practise today go straight into your lab file. Ask: "Which of the three objectives worries you most?" and address it as we go.</p>
+      <p>Mention the module quiz: 10 multiple-choice items covering 3.1 to 3.8, right after the Quick check. Ask: "Which of the three objectives worries you most?" and address it as we go.</p>
     </div>
   </section>
 
@@ -180,7 +170,7 @@ svg text{font-family:var(--font-sans)}
           <figure class="f" data-step="2" data-zoom="1.3" data-o="60,60"><div class="pic"><img src="images/ui/3.8/04-e12-countif.webp" alt="E12 holds the COUNTIF formula and shows 5"><i class="ring" style="--x:19.4;--y:25.2;--w:22;--h:3.6"></i><i class="ring" style="--x:54.8;--y:77.0;--w:14.4;--h:4.2;--d:0.25s"></i></div></figure>
           <figure class="f" data-step="3" data-zoom="1.3" data-o="70,55"><div class="pic"><img src="images/ui/3.8/04-e12-countif.webp" alt="The five totals above 1,000: rows 2, 3, 5, 8 and 9"><i class="ring" style="--x:54.8;--y:38.6;--w:14.4;--h:8.1"></i><i class="ring" style="--x:54.8;--y:50.120000000000005;--w:14.4;--h:4.2;--d:0.25s"></i><i class="ring" style="--x:54.8;--y:61.64;--w:14.4;--h:8.1;--d:0.5s"></i></div></figure>
         </div>
-        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. The AI answer is a sample; yours may be worded differently.</p>
+        <p class="cap">Microsoft Excel for Mac, sample Office Supplies Inventory. The AI answer is a sample; yours may be worded differently.</p>
       </div>
       <div>
         <p class="kicker">Job 1 · suggest a formula</p>
@@ -212,7 +202,7 @@ svg text{font-family:var(--font-sans)}
           <figure class="f" data-step="2" data-zoom="1.3" data-o="30,45"><div class="pic"><img src="images/ui/3.8/05-ream-rows-sum.webp" alt="Rows 2 and 3 say ream in the Unit column"><i class="ring" style="--x:24;--y:38.6;--w:12.4;--h:8.1"></i></div></figure>
           <figure class="f" data-step="3" data-zoom="1.2" data-o="60,80"><div class="pic"><img src="images/ui/3.8/05-ream-rows-sum.webp" alt="E2:E3 selected; the status bar shows Sum: 14,075.00"><i class="ring" style="--x:54.8;--y:38.6;--w:14.4;--h:8.1"></i><i class="ring" style="--x:56;--y:96.2;--w:10.6;--h:3.4;--d:0.25s"></i></div></figure>
         </div>
-        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. The status bar adds whatever you select.</p>
+        <p class="cap">Microsoft Excel for Mac, sample Office Supplies Inventory. The status bar adds whatever you select.</p>
       </div>
       <div>
         <p class="kicker">Job 2 · explain a formula</p>
@@ -266,7 +256,7 @@ svg text{font-family:var(--font-sans)}
   </section>
 
   <!-- 10 · Human verification -->
-  <section class="slide act" data-act="Portal activity" data-title="Three checks">
+  <section class="slide" data-title="Three checks">
     <div class="slide-head"><div><p class="kicker">Human verification</p><h2 class="h2">Three checks before you trust any AI answer</h2></div><span class="tag gold">Takes 2 minutes</span></div>
     <div class="shots" data-walk style="grid-template-columns:1.5fr 1fr">
       <div>
@@ -276,7 +266,7 @@ svg text{font-family:var(--font-sans)}
           <figure class="f" data-step="3" data-zoom="1.15" data-o="40,50"><div class="pic"><img src="images/ui/3.8/01-e10-sum.webp" alt="E10 selected; the formula bar shows =SUM(E2:E9), all 8 items"><i class="ring" style="--x:19.4;--y:25.2;--w:15;--h:3.6"></i><i class="ring" style="--x:54.8;--y:38.6;--w:14.4;--h:31.1;--d:0.25s"></i></div></figure>
           <figure class="f" data-step="4" data-zoom="1.4" data-o="62,70"><div class="pic"><img src="images/ui/3.8/01-e10-sum.webp" alt="E10 shows 22,039.00, the grand total"><i class="ring" style="--x:54.8;--y:69.32;--w:14.4;--h:4.2"></i></div></figure>
         </div>
-        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Click a cell to read its formula in the formula bar.</p>
+        <p class="cap">Microsoft Excel for Mac, sample Office Supplies Inventory. Click a cell to read its formula in the formula bar.</p>
       </div>
       <div>
         <ol class="steps sm">
@@ -294,34 +284,6 @@ svg text{font-family:var(--font-sans)}
     </div>
   </section>
 
-  <!-- 11 · Spot the mistakes -->
-  <section class="slide act" data-act="Portal activity" data-title="Spot the mistakes">
-    <div class="slide-head">
-      <div><p class="kicker">Activity · be the supervisor</p><h2 class="h2">This AI answer has 3 mistakes. Find them.</h2></div>
-      <button class="timer" data-min="3">3:00</button>
-    </div>
-    <div class="grid g2" style="grid-template-columns:1.1fr .9fr;align-items:start">
-      <div class="win"><div class="bar"><i></i><i></i><i></i><span>AI assistant · made-up example</span></div>
-        <div class="body chat">
-          <div class="bub ai">1. Grand total: <code>=SUM(E2:E8)</code><br>2. Average Total Cost: <code>=AVERAGE(E2:E9)</code> = ₱2,754.88<br>3. Your most expensive item is printer ink at ₱2,800.00.<br>4. Number of items: <code>=COUNTITEMS(A2:A9)</code></div>
-        </div>
-      </div>
-      <div>
-        <p class="small">Mark the wrong lines in the portal, and say why.</p>
-        <div class="row mt-m"><button class="reveal-btn" data-target="ans-spot">Show answers</button></div>
-        <div class="answer mt-m" id="ans-spot">
-          <div class="callout warn"><b>1 <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></b> Misses row 9 (envelope): gives 20,809.00, not 22,039.00.</div>
-          <div class="callout tip mt-s"><b>2 <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></b> Correct.</div>
-          <div class="callout warn mt-s"><b>3 <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></b> Long bond paper is the largest at ₱7,950.00.</div>
-          <div class="callout warn mt-s"><b>4 <svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></b> COUNTITEMS doesn't exist. Use <b>=COUNTA(A2:A9)</b> = 8.</div>
-        </div>
-      </div>
-    </div>
-    <div class="notes">
-      <p>Start the <b>3-minute</b> timer. This answer is made up for practice, but every error type here happens in real life.</p>
-      <p>Line 1 is a <b>range error</b>: E2:E8 skips the envelope row, giving 20,809.00. Line 3 is a <b>wrong fact</b>: the largest is long bond paper. Line 4 is a <b>hallucinated function</b>: it looks real but doesn't exist. Only line 2 is right. Praise anyone who used the three checks to find them.</p>
-    </div>
-  </section>
 
   <!-- 12 · Hallucinated functions -->
   <section class="slide" data-title="Invented functions">
@@ -331,7 +293,7 @@ svg text{font-family:var(--font-sans)}
           <figure class="f" data-step="1" data-zoom="1.3" data-o="55,60"><div class="pic"><img src="images/ui/3.8/07-e10-sumvalues-name.webp" alt="E10 holds =SUMVALUES(E2:E9) and shows #NAME? with a warning sign"><i class="ring" style="--x:19.4;--y:25.2;--w:15;--h:3.6"></i><i class="ring" style="--x:54.8;--y:69.32;--w:14.4;--h:4.2;--d:0.25s"></i><i class="ring" style="--x:51;--y:69.32;--w:3.2;--h:4.2;--d:0.5s"></i></div></figure>
           <figure class="f" data-step="2" data-zoom="1.3" data-o="55,60"><div class="pic"><img src="images/ui/3.8/01-e10-sum.webp" alt="Fixed: E10 holds =SUM(E2:E9) and shows 22,039.00"><i class="ring" style="--x:19.4;--y:25.2;--w:15;--h:3.6"></i><i class="ring" style="--x:54.8;--y:69.32;--w:14.4;--h:4.2;--d:0.25s"></i></div></figure>
         </div>
-        <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. The function list pops up while you type =SUM.</p>
+        <p class="cap">Microsoft Excel for Mac, sample Office Supplies Inventory. The function list pops up while you type =SUM.</p>
       </div>
       <div>
         <p class="kicker">Hallucinated functions</p>
@@ -350,33 +312,6 @@ svg text{font-family:var(--font-sans)}
     </div>
   </section>
 
-  <!-- 13 · Try it -->
-  <section class="slide act" data-act="Portal activity" data-title="Try it: ask and verify">
-    <div class="slide-head">
-      <div><p class="kicker">Try it now · your AI tool or follow the demo</p><h2 class="h2">Ask, paste, then run the three checks</h2></div>
-      <button class="timer" data-min="6">6:00</button>
-    </div>
-    <div class="grid g2" style="grid-template-columns:1.2fr .8fr;align-items:start">
-      <div class="try">
-        <div class="try-head"><span class="try-label">Steps</span><span class="tiny">Headers only. No real records.</span></div>
-        <ol>
-          <li>Open an <b>office-approved</b> AI tool. Describe your headers and rows (slide 6).</li>
-          <li>Ask for the <b>AVERAGE</b> of Total Cost, and the formula to count items above ₱1,000.</li>
-          <li>Paste both into empty cells on your Jan sheet.</li>
-          <li>Run the 3 checks. In the portal, write "verified" or the mistake you caught.</li>
-        </ol>
-      </div>
-      <div>
-        <div class="callout"><b>No AI tool at your desk?</b> Pair up with the Resource Person's screen: suggest prompts in the chat and we'll test them together.</div>
-        <div class="row mt-m"><button class="reveal-btn" data-target="ans-try">Expected results</button></div>
-        <div class="answer mt-m" id="ans-try"><div class="callout tip"><b>AVERAGE(E2:E9) = ₱2,754.88</b> (shown as 2,754.88; the exact value is 2,754.875). <b>COUNTIF(E2:E9,"&gt;1000") = 5</b>.</div></div>
-      </div>
-    </div>
-    <div class="notes">
-      <p>Start the <b>6-minute</b> timer. Some participants won't have access to an AI tool at work; that's fine. Share your own screen and type prompts the group suggests in the chat.</p>
-      <p>Expected answers: average total cost <b>₱2,754.88</b> (exactly 2,754.875, shown rounded), count above ₱1,000 is <b>5</b>. If someone's AI gives a different formula that produces the same answer, that's fine too. The point is the <b>verification</b>, not the exact wording.</p>
-    </div>
-  </section>
 
   <!-- 14 · Privacy -->
   <section class="slide" data-title="Privacy first">
@@ -398,57 +333,14 @@ svg text{font-family:var(--font-sans)}
     </div>
   </section>
 
-  <!-- 15 · Office / home -->
-  <section class="slide" data-title="At the office and at home">
-    <div class="slide-head"><div><p class="kicker">See it everywhere</p><h2 class="h2">Helpful AI uses, with the right guardrails</h2></div></div>
-    <div class="pair anim-stagger-list">
-      <div class="ex office"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" /><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" /><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" /><path d="M10 6h4" /><path d="M10 10h4" /><path d="M10 14h4" /><path d="M10 18h4" /></svg> At the office</div>
-        <ul>
-          <li>"Write a formula that flags rows where Qty is at or below Reorder Level." Headers only.</li>
-          <li>"Explain this formula from last year's attendance file."</li>
-          <li>"Which month's supplies spending stands out?" Totals only, then verify.</li>
-        </ul>
-      </div>
-      <div class="ex home"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg> At home</div>
-        <ul>
-          <li>"Which budget lines went over? Budget vs Actual in columns B and C." Then check by hand.</li>
-          <li>"What day sells best?" for the sari-sari store's weekly sales.</li>
-          <li>Never paste a GCash or bank statement, card numbers or account details.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="notes">
-      <p>Same habits at home and at work: <b>describe the structure, verify the answer, protect the details</b>.</p>
-      <p>On the home side, warn them about scams: no legitimate AI helper needs your GCash statement, card number or one-time PIN. Ask the chat: "What's one question you'd ask AI about your own budget or your section's file?" Pick one and rewrite it together as a good prompt.</p>
-    </div>
-  </section>
 
-  <!-- 16 · Videos -->
-  <section class="slide" data-title="Video intro">
-    <div class="split">
-      <div>
-        <p class="kicker">Watch · 5 minutes</p>
-        <h2 class="h2">AI drafts. You verify. You sign.</h2>
-        <p class="lede mt-m">Watch an AI assistant <b>suggest</b>, <b>explain</b> and <b>spot trends</b> in our inventory, and see the three quick checks that catch its mistakes before they reach a report.</p>
-        <div class="callout gold mt-l"><b>While watching:</b> the three checks. You'll run them on an AI formula in Lab 3 and write down what you checked.</div>
-      </div>
-      <div class="vmeta">
-        <div class="vintro"><img src="videos/3.8/poster.jpg" alt="Video: AI-Assisted Data Analysis"><div class="play"></div><span class="vlen">5:13</span></div>
-        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
-      </div>
-    </div>
-    <div class="notes">
-      <p>Introduce the video in one or two sentences, then read the <b>While watching</b> task aloud so everyone knows what to look for.</p>
-      <p>Press <b>→</b> to open the video full screen. In Zoom or Meet, share this tab with <b>computer sound</b> turned on.</p>
-    </div>
-  </section>
 
   <section class="slide vslide" data-title="Video" data-nofooter>
     <iframe data-src="videos/3.8/index.html" title="Video: AI-Assisted Data Analysis" allow="autoplay; fullscreen" allowfullscreen></iframe>
     <div class="notes">
       <p><b>Space</b> or <b>K</b> plays and pauses (or click the video). <b>C</b> turns captions on or off; the speed button offers 1.25× and 0.85×. The arrows still move between slides, and the video pauses when you leave this slide.</p>
       <p>Length 5:13. Pause anywhere to take a question; captions stay on screen for anyone without sound.</p>
-      <p>After the video, go back to the <b>While watching</b> task: ask two or three people for their answers.</p>
+      <p>After the video, take one or two questions before the quick check.</p>
     </div>
   </section>
   <!-- YouTube slide replaced by our own video (2026-11-01):
@@ -483,91 +375,191 @@ svg text{font-family:var(--font-sans)}
       <div class="opt"><span class="l">D</span><div>The file is corrupted<div class="why">No. #NAME? simply means an unknown function name.</div></div></div>
     </div>
     <div class="notes">
-      <p>Chat first, then click. Answer: <b>B</b>. The spreadsheet doesn't recognise the name. A spelling mistake in a real function, like =SUMM, causes the same error.</p>
-      <p>Take-away: <b>#NAME?</b> on an AI formula is a hallucination signal. Fix it with a function you can find in the autocomplete list, then run the three checks again.</p>
+      <p>Let them answer in the portal first, then click. Answer: <b>B</b>. The spreadsheet doesn't recognise the name. A spelling mistake in a real function, like =SUMM, causes the same error.</p>
+      <p>Take-away: <b>#NAME?</b> on an AI formula is a hallucination signal. Fix it with a function you can find in the autocomplete list, then run the three checks again. Then move on to the module quiz.</p>
     </div>
   </section>
 
-  <!-- 18 · Lab 3 divider -->
-  <section class="slide statement" data-title="Lab 3">
-    <p class="kicker">Module 3 laboratory · 4 hours · 30% of the course grade</p>
-    <h2 class="h1" style="color:#fff">Lab 3 · Spreadsheet Tracking and Verification</h2>
-    <p class="lede mt-l">From raw data to a verified, charted tracker. Everything from topics 3.1 to 3.8 comes together here.</p>
+  <!-- Module 3 Quiz · intro -->
+  <section class="slide statement act" data-act="Portal activity" data-title="Module 3 Quiz">
+    <p class="kicker">Module 3 assessment · 10 items</p>
+    <h2 class="h1">Module 3 Quiz</h2>
+    <div class="grid g4 mt-l">
+      <div class="card dark"><h4>10 items</h4><p>Cells, formatting, formulas, functions, references, sheets, charts, AI checks.</p></div>
+      <div class="card dark"><h4>1 point each</h4><p>One best answer, A to D.</p></div>
+      <div class="card dark"><h4>Answer first</h4><p>Open the quiz in the portal and submit your answers.</p></div>
+      <div class="card dark"><h4>Then we reveal</h4><p>Two items per slide; we discuss each answer together.</p></div>
+    </div>
+    <p class="lede mt-l">No pressure: everything on it was covered in Topics 3.1 to 3.8.</p>
     <div class="notes">
-      <p>Pause here. Now the module's graded lab. It's worth <b>30%</b> of the whole course, the "Spreadsheet Data Output" in the course assessment.</p>
-      <p>Reassure them: there's nothing new in the lab. Every step is something we've already practised together, from entering data in 3.1 to verifying AI help in 3.8. Ask them to open a fresh file now.</p>
+      <p>The Module 3 Quiz has <b>10 items</b>, one point each. Press <b>Go live</b> so the quiz opens in the portal, and give about <b>8 minutes</b>.</p>
+      <p>Watch the done count. When most have submitted, close it and go through the next five slides, two items each. Click the correct option first, then any common wrong answer to show its explanation.</p>
     </div>
   </section>
 
-  <!-- 19 · Lab brief -->
-  <section class="slide" data-title="Lab 3 brief">
-    <div class="slide-head"><div><p class="kicker">Lab 3 · objectives and scenarios</p><h2 class="h2">Build a working tracker, then prove it's right</h2></div><span class="tag gold">4 hours</span></div>
-    <div class="grid g2" style="align-items:start">
+  <!-- Module 3 Quiz · items 1 and 2 -->
+  <section class="slide" data-title="Quiz 1 and 2">
+    <div class="slide-head">
+      <div><p class="kicker">Module 3 Quiz · items 1 and 2</p><h2 class="h2">Cells and dates</h2></div>
+      <span class="tag">Topics 3.1 and 3.2</span>
+    </div>
+    <div class="quiz">
       <div>
-        <h4>Objectives</h4>
-        <ul class="ticks">
-          <li><b>Input, structure and format</b> raw tabular data.</li>
-          <li><b>Apply basic arithmetic formulas</b> and verify AI-suggested logic.</li>
-          <li><b>Calculate totals</b> with core functions: SUM and AVERAGE.</li>
-          <li><b>Translate the data</b> into a visual chart.</li>
-        </ul>
+        <p class="qn">Item 1</p><h4>What is the address of the cell in column C, row 4?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>4C<div class="why">No. The column letter always comes first.</div></div></div>
+          <div class="opt" data-correct><span class="l">B</span><div>C4<div class="why">Yes. Column letter, then row number.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>C-4<div class="why">No. There is no dash in a cell address.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>R4C3<div class="why">No. Type addresses as letter + number, like C4.</div></div></div>
+        </div>
       </div>
       <div>
-        <div class="card top"><h4>Default scenario · office supplies inventory</h4><p>Item, Unit, Qty, Unit Cost, Total Cost, Reorder Level. Use the 8 items from this module.</p></div>
-        <div class="grid g2 mt-m">
-          <div class="ex office"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" /><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" /><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" /><path d="M2 7h20" /><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7" /></svg> Store owner</div><p>A week of sales: Day, Item, Qty Sold, Price, Sales = Qty × Price.</p></div>
-          <div class="ex home"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg> Student or family</div><p>A monthly budget: Category, Budget, Actual, Difference = Actual − Budget.</p></div>
+        <p class="qn">Item 2</p><h4>Which way of typing a date is the safest?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>11/01/2026<div class="why">No. It can mean Nov 1 or Jan 11, depending on the computer.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>Nov one 2026<div class="why">No. The sheet treats this as text, so it can't sort or subtract it.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>1.11.26<div class="why">No. Dots and a 2-digit year confuse the sheet.</div></div></div>
+          <div class="opt" data-correct><span class="l">D</span><div>2026-11-01<div class="why">Yes. Year-month-day reads the same on every computer. Then choose the look you want.</div></div></div>
         </div>
       </div>
     </div>
     <div class="notes">
-      <p>The four objectives come from the course's lab manual. Choose <b>one</b> scenario. The default is the office supplies inventory we've used all module. Two adaptations are allowed: a <b>store's weekly sales</b>, good for anyone with a sari-sari or online side business, or a <b>monthly budget</b> for a student or a family.</p>
-      <p>Whichever you choose, the same graded items apply: headers, formatting, formulas, SUM and AVERAGE, and a titled chart.</p>
+      <p>Item 1: <b>B</b>, C4. Item 2: <b>D</b>, 2026-11-01.</p>
+      <p>Click the correct option first, then the most common wrong answer to show why it is wrong. If many missed an item, take one minute to recall the slide from that topic.</p>
     </div>
   </section>
 
-  <!-- 20 · Step plan -->
-  <section class="slide" data-title="Lab 3 step plan">
-    <div class="slide-head"><div><p class="kicker">Lab 3 · step plan</p><h2 class="h2">From raw data to chart in seven steps</h2></div></div>
-    <div class="grid g2" style="align-items:start">
-      <ol class="steps">
-        <li><b>Enter or clean the raw data.</b> One header row, no blank rows, numbers typed as numbers (no "₱" or spaces typed in).</li>
-        <li><b>Format.</b> Bold headers, Currency (₱) on money columns, a Date column if you have one.</li>
-        <li><b>Formulas.</b> Total = Qty × Unit Cost (<b>=C2*D2</b>), filled down.</li>
-        <li><b>Functions.</b> <b>=SUM()</b> for the grand total, <b>=AVERAGE()</b> for the average.</li>
-      </ol>
-      <ol class="steps" start="5" style="counter-reset:st 4">
-        <li><b>Ask AI for one formula</b> (headers only), paste it, and note what you checked.</li>
-        <li><b>Verify:</b> 2 rows by hand, the range, and the total.</li>
-        <li><b>Chart:</b> a titled Pie, Bar or Line chart from the right range. Save as <b>Lab3_Surname</b>.</li>
-      </ol>
+  <!-- Module 3 Quiz · items 3 and 4 -->
+  <section class="slide" data-title="Quiz 3 and 4">
+    <div class="slide-head">
+      <div><p class="kicker">Module 3 Quiz · items 3 and 4</p><h2 class="h2">Formulas and functions</h2></div>
+      <span class="tag">Topics 3.3 and 3.4</span>
     </div>
-    <div class="callout tip mt-m"><b>Tip:</b> add a small <b>Notes</b> sheet: "AI suggested =AVERAGE(E2:E9). Checked rows 2 and 9 by hand; totals match." Two lines are enough.</div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 3</p><h4>What does =2+3*4 return?</h4>
+        <div class="qc">
+          <div class="opt" data-correct><span class="l">A</span><div>14<div class="why">Yes. Multiply first: 3*4 = 12, then add 2.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>20<div class="why">No. That would need parentheses: =(2+3)*4.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>24<div class="why">No. Check the order of operations again.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>9<div class="why">No. Nothing in the formula adds 2+3+4.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 4</p><h4>Which formula counts how many item names are in A2:A9?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>=COUNT(A2:A9)<div class="why">No. COUNT counts only numbers, and item names are text: it gives 0.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>=SUM(A2:A9)<div class="why">No. SUM adds numbers; it can't count names.</div></div></div>
+          <div class="opt" data-correct><span class="l">C</span><div>=COUNTA(A2:A9)<div class="why">Yes. COUNTA counts every filled cell, text included.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>=MAX(A2:A9)<div class="why">No. MAX finds the largest number.</div></div></div>
+        </div>
+      </div>
+    </div>
     <div class="notes">
-      <p>Walk the seven steps. Steps 1 to 4 are the spreadsheet itself; step 5 and 6 are the <b>verification</b> part; step 7 is the chart and saving.</p>
-      <p>On cleaning: the most common raw-data problems are blank rows, numbers typed with a peso sign so they become text, and inconsistent spelling. Remind them to save often with <kbd>Ctrl</kbd> + <kbd>S</kbd>; a brownout during a 4-hour lab is a real risk. File name example: <b>Lab3_DelaCruz.xlsx</b>.</p>
+      <p>Item 3: <b>A</b>, 14. Item 4: <b>C</b>, =COUNTA(A2:A9).</p>
+      <p>Click the correct option first, then the most common wrong answer to show why it is wrong. If many missed an item, take one minute to recall the slide from that topic.</p>
     </div>
   </section>
 
-  <!-- 21 · Checklist + rubric -->
-  <section class="slide act" data-act="Portal activity" data-title="Lab 3 checklist and rubric">
-    <div class="slide-head"><div><p class="kicker">Lab 3 · graded output</p><h2 class="h2">Checklist and scoring · 30% of the course</h2></div><span class="tag">Spreadsheet Data Output</span></div>
-    <table class="tbl compact">
-      <tr><th>What the grader looks for</th><th>Full marks when…</th><th class="c">Points</th></tr>
-      <tr><td><b>Clearly labelled column headers</b></td><td>Every column has a clear header in row 1; data is tidy, no blank rows</td><td class="c"><b>4</b></td></tr>
-      <tr><td><b>Data type formatting</b></td><td>At least one column is properly Currency or Date formatted</td><td class="c"><b>4</b></td></tr>
-      <tr><td><b>Working arithmetic formulas</b></td><td>e.g. Qty × Unit Cost; visible in the formula bar, no hard-typed results</td><td class="c"><b>8</b></td></tr>
-      <tr><td><b>=SUM() and =AVERAGE()</b></td><td>Both used on the correct ranges, results accurate</td><td class="c"><b>6</b></td></tr>
-      <tr><td><b>Chart (Pie, Bar or Line)</b></td><td>Fits the data, reflects the selected range (no TOTAL row), has a real title</td><td class="c"><b>6</b></td></tr>
-      <tr><td><b>Verification of AI-suggested logic</b></td><td>A short note of what was checked and that it matched</td><td class="c"><b>2</b></td></tr>
-      <tr><td colspan="2" style="text-align:right"><b>Total</b></td><td class="c"><b>30</b></td></tr>
-    </table>
-    <p class="tiny mt-s">Checklist items from the course's Lab 3 graded output. Point split proposed by the Resource Person.</p>
+  <!-- Module 3 Quiz · items 5 and 6 -->
+  <section class="slide" data-title="Quiz 5 and 6">
+    <div class="slide-head">
+      <div><p class="kicker">Module 3 Quiz · items 5 and 6</p><h2 class="h2">References and sheets</h2></div>
+      <span class="tag">Topics 3.5 and 3.6</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 5</p><h4>The 12% VAT rate is in B12. Which formula in G2 can you fill down safely?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>=E2*B12<div class="why">No. B12 moves down with every row, so the rows below multiply by empty cells.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>=$E$2*B12<div class="why">No. This locks the wrong cell: every row would use E2.</div></div></div>
+          <div class="opt" data-correct><span class="l">C</span><div>=E2*$B$12<div class="why">Yes. $B$12 stays locked on the rate; E2 follows each row.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>=E2*12<div class="why">No. 12 is twelve, not 12%, and it is a hard-typed value.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 6</p><h4>Which formula shows cell E10 from the sheet named Jan?</h4>
+        <div class="qc">
+          <div class="opt" data-correct><span class="l">A</span><div>=Jan!E10<div class="why">Yes. Sheet name, then !, then the cell.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>=Jan(E10)<div class="why">No. Jan is a sheet, not a function.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>=E10!Jan<div class="why">No. The sheet name comes first.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>=Jan:E10<div class="why">No. A colon makes a range, not a sheet link.</div></div></div>
+        </div>
+      </div>
+    </div>
     <div class="notes">
-      <p>The left column is the official graded-output checklist from the course syllabus, plus the verification step from the lab objectives. The points are my suggested split of the 30%.</p>
-      <p>The heaviest item is <b>working formulas, 8 points</b>: graders will click your Total Cost cells. If they see a typed number instead of =C2*D2, you lose those points even if the number is right. Ask: "Any questions about the checklist before you start?"</p>
+      <p>Item 5: <b>C</b>, =E2*$B$12. Item 6: <b>A</b>, =Jan!E10.</p>
+      <p>Click the correct option first, then the most common wrong answer to show why it is wrong. If many missed an item, take one minute to recall the slide from that topic.</p>
     </div>
   </section>
+
+  <!-- Module 3 Quiz · items 7 and 8 -->
+  <section class="slide" data-title="Quiz 7 and 8">
+    <div class="slide-head">
+      <div><p class="kicker">Module 3 Quiz · items 7 and 8</p><h2 class="h2">Charts</h2></div>
+      <span class="tag">Topic 3.7</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 7</p><h4>You want to show how spending rose and fell from January to June. Which chart fits best?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Pie<div class="why">No. A pie shows parts of one whole, not change over time.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>Bar, sorted from biggest to smallest<div class="why">No. Sorting would scramble the months.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>A chart is not needed<div class="why">No. A trend is exactly what a chart shows best.</div></div></div>
+          <div class="opt" data-correct><span class="l">D</span><div>Line<div class="why">Yes. A line shows a trend over time, with the months in order.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 8</p><h4>When is a pie chart the right choice?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>To compare 20 different items<div class="why">No. Keep a pie to about 6 slices or fewer.</div></div></div>
+          <div class="opt" data-correct><span class="l">B</span><div>To show shares of one whole that add up to 100%<div class="why">Yes. A pie is for parts of one whole.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>To show a trend over 12 months<div class="why">No. Use a line for a trend over time.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>Whenever the boss likes colours<div class="why">No. Pick the chart that answers the question.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Item 7: <b>D</b>, Line. Item 8: <b>B</b>, To show shares of one whole that add up to 100%.</p>
+      <p>Click the correct option first, then the most common wrong answer to show why it is wrong. If many missed an item, take one minute to recall the slide from that topic.</p>
+    </div>
+  </section>
+
+  <!-- Module 3 Quiz · items 9 and 10 -->
+  <section class="slide" data-title="Quiz 9 and 10">
+    <div class="slide-head">
+      <div><p class="kicker">Module 3 Quiz · items 9 and 10</p><h2 class="h2">AI and privacy</h2></div>
+      <span class="tag">Topic 3.8</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 9</p><h4>AI gives you a formula for the inventory total. What do you check before you trust it?</h4>
+        <div class="qc">
+          <div class="opt" data-correct><span class="l">A</span><div>Two rows by hand, the range, and the result against the total<div class="why">Yes. The three checks take about 2 minutes.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>Nothing. AI is always right<div class="why">No. AI can invent functions or pick the wrong range.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>Only that the cell shows no error<div class="why">No. A wrong range gives a wrong number with no error at all.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>Ask the AI if it is sure<div class="why">No. The AI will usually say yes. You verify.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 10</p><h4>Which of these is OK to paste into a public AI tool?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>A list of clients with their TINs<div class="why">No. Never share names, TINs or addresses (RA 10173).</div></div></div>
+          <div class="opt"><span class="l">B</span><div>A screenshot of the payroll<div class="why">No. Screenshots of personal data count too.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>Personnel records, if you delete them afterwards<div class="why">No. Once pasted, the data has already been shared.</div></div></div>
+          <div class="opt" data-correct><span class="l">D</span><div>Column headers and made-up sample rows<div class="why">Yes. Headers, formulas and sample rows are safe to share.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Item 9: <b>A</b>, Two rows by hand, the range, and the result against the total. Item 10: <b>D</b>, Column headers and made-up sample rows.</p>
+      <p>Click the correct option first, then the most common wrong answer to show why it is wrong. If many missed an item, take one minute to recall the slide from that topic.</p>
+    </div>
+  </section>
+
+
+
+
 
   <!-- 22 · Recap -->
   <section class="slide statement" data-title="Recap">
@@ -578,10 +570,10 @@ svg text{font-family:var(--font-sans)}
       <div class="card dark"><h4>Verify always</h4><p>2 rows by hand, the range, the total. #NAME? means an invented function.</p></div>
       <div class="card dark"><h4>Protect data</h4><p>No client or personal records in public AI tools. RA 10173.</p></div>
     </div>
-    <p class="lede mt-l">Next · <b style="color:var(--gold)">Lab 3</b>, then <b style="color:var(--gold)">Module 4 · 4.1 Presentation Planning and Design Principles</b>, where your Lab 3 chart goes into a slide deck.</p>
+    <p class="lede mt-l">Module quiz done. Next · <b style="color:var(--gold)">Module 4 · 4.1 Presentation Planning and Design Principles</b>, where charts like our inventory chart go into a slide deck.</p>
     <div class="notes">
-      <p>Close Module 3 with the line: <b>"AI drafts. You verify. You sign."</b> Congratulate them: they've gone from cell addresses to a verified, charted tracker.</p>
-      <p>Explain what's next: they work on Lab 3, then Module 4 on presentations, where the Lab 3 chart can appear in their final slide deck. Daghang salamat, and good luck on the lab!</p>
+      <p>Close Module 3 with the line: <b>"AI drafts. You verify. You sign."</b> Thank them for taking the module quiz. In one module we went from cell addresses to a verified, charted inventory.</p>
+      <p>Bridge to Module 4: "Next we move to presentations. We start with 4.1, planning a deck and the design rules that make slides easy to read. A chart like the one we built is exactly what goes on a good slide." Daghang salamat!</p>
     </div>
   </section>
 

@@ -3,76 +3,6 @@
   "title": "AI-Assisted Data Analysis",
   "activities": [
     {
-      "id": "3.8-a",
-      "slide": "Three checks",
-      "kind": "task",
-      "title": "Three checks before you trust any AI answer",
-      "minutes": 2,
-      "intro": "Run the three checks on your own inventory file. They take about 2 minutes and work on any formula, not just AI ones.",
-      "blocks": [
-        { "type": "steps", "id": "steps", "items": [
-          "Check 2 rows by hand: use a calculator on row 2 and row 9.",
-          "Check the range: click E10 and read the formula bar. Does it cover all 8 items and not the TOTAL row?",
-          "Check against the total: add the parts another way and compare.",
-          "Sense check: does the answer make sense? An average bigger than the biggest item is a red flag."
-        ] },
-        { "type": "number", "id": "row2", "prompt": "Row 2 by hand: 25 × 245 = ?", "unit": "₱" },
-        { "type": "number", "id": "row9", "prompt": "Row 9 by hand: 3 × 410 = ?", "unit": "₱" },
-        { "type": "mcq", "id": "range", "prompt": "Which range should the grand total in E10 cover?", "options": ["E2:E8", "E2:E9", "E2:E10", "E1:E9"] }
-      ],
-      "help": [
-        "Check the first and the last row: range errors usually hit the ends.",
-        "Our average Total Cost is ₱2,754.88. If an AI says ₱27,000, something is off."
-      ]
-    },
-    {
-      "id": "3.8-b",
-      "slide": "Spot the mistakes",
-      "kind": "task",
-      "title": "Be the supervisor: find the 3 mistakes",
-      "minutes": 3,
-      "intro": "This AI answer is made up for practice, but every error in it happens in real life. Use the three checks to find what is wrong.",
-      "blocks": [
-        { "type": "steps", "id": "steps", "items": [
-          "Read the four lines of the AI answer on the slide.",
-          "Check each formula's range and each fact against your inventory.",
-          "Pick the lines that are wrong, then say why."
-        ] },
-        { "type": "mcq", "id": "wrong", "multi": true, "prompt": "Which lines of the AI answer are wrong? Pick all that apply.", "options": ["1. Grand total: =SUM(E2:E8)", "2. Average Total Cost: =AVERAGE(E2:E9) = ₱2,754.88", "3. Your most expensive item is printer ink at ₱2,800.00.", "4. Number of items: =COUNTITEMS(A2:A9)"] },
-        { "type": "number", "id": "short8", "prompt": "What does =SUM(E2:E8) give on your inventory?", "unit": "₱" },
-        { "type": "short", "id": "counta", "prompt": "Line 4 uses a function that doesn't exist. Type the real formula that counts the items in A2:A9.", "placeholder": "e.g. =SUM(E2:E9)" },
-        { "type": "text", "id": "why", "prompt": "In one line each, why are the wrong lines wrong?", "lines": 3 }
-      ],
-      "help": [
-        "Click the cell and read the formula bar: does the range reach row 9?",
-        "Not sure a function exists? Type = and the first letters, and look at the list that pops up."
-      ]
-    },
-    {
-      "id": "3.8-c",
-      "slide": "Try it: ask and verify",
-      "kind": "task",
-      "title": "Ask, paste, then run the three checks",
-      "minutes": 6,
-      "intro": "Use an office-approved AI tool, or follow the Resource Person's screen. Share headers only, never real records.",
-      "blocks": [
-        { "type": "steps", "id": "steps", "items": [
-          "Open an office-approved AI tool. Describe your app, headers and rows: A Item, B Unit, C Qty, D Unit Cost, E Total Cost, data in rows 2 to 9.",
-          "Ask for the AVERAGE of Total Cost, and the formula to count items above ₱1,000.",
-          "Paste both formulas into empty cells on your Jan sheet.",
-          "Run the 3 checks: 2 rows by hand, the range, the total."
-        ] },
-        { "type": "number", "id": "avg", "prompt": "What average Total Cost did you get?", "unit": "₱" },
-        { "type": "number", "id": "count", "prompt": "How many items have a Total Cost above ₱1,000?", "unit": "items" },
-        { "type": "text", "id": "result", "prompt": "Write \"verified\" and what you checked, or the mistake you caught.", "lines": 2 }
-      ],
-      "help": [
-        "No AI tool at your desk? Suggest prompts in the chat and the Resource Person will test them on screen.",
-        "A different formula from the AI is fine if it gives the same answer. The point is the checking.",
-        "Seeing #NAME?? The AI used a function that doesn't exist or isn't in your app version. Tell it your exact app and version."
-      ]
-    },
-    {
       "id": "3.8-qc",
       "slide": "Quick check",
       "kind": "check",
@@ -80,42 +10,137 @@
       "minutes": 1,
       "intro": "Pick one answer.",
       "blocks": [
-        { "type": "mcq", "id": "q", "prompt": "AI suggests =SUMVALUES(E2:E9). The cell shows #NAME?. What happened?", "options": ["The range E2:E9 is wrong", "The function doesn't exist; the AI invented it", "The numbers are stored as text", "The file is corrupted"] }
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "AI suggests =SUMVALUES(E2:E9). The cell shows #NAME?. What happened?",
+          "options": [
+            "The range E2:E9 is wrong",
+            "The function doesn't exist; the AI invented it",
+            "The numbers are stored as text",
+            "The file is corrupted"
+          ]
+        }
       ]
     },
     {
-      "id": "lab3",
-      "slide": "Lab 3 checklist and rubric",
-      "kind": "lab",
-      "title": "Lab 3: Spreadsheet Tracking and Verification",
-      "minutes": 240,
-      "intro": "Build a working tracker, then prove it's right. Choose one scenario: the default office supplies inventory (Item, Unit, Qty, Unit Cost, Total Cost, Reorder Level, with the 8 items from this module), a store's week of sales (Day, Item, Qty Sold, Price, Sales = Qty × Price), or a monthly budget (Category, Budget, Actual, Difference = Actual − Budget). Enter and format the data, use working formulas with SUM and AVERAGE, verify one AI-suggested formula, and add a titled chart. Save it as Lab3_Surname. This lab is worth 30% of the course grade.",
+      "id": "3.8-quiz",
+      "slide": "Module 3 Quiz",
+      "kind": "quiz",
+      "title": "Module 3 Quiz: Spreadsheets",
+      "minutes": 10,
+      "intro": "10 items, 1 point each. Pick the one best answer for each item. Everything on it was covered in Topics 3.1 to 3.8.",
       "blocks": [
-        { "type": "steps", "id": "steps", "items": [
-          "Every column has a clear header in row 1. The data is tidy, with no blank rows.",
-          "At least one column is formatted as Currency (₱) or Date.",
-          "Totals use working formulas such as =C2*D2, filled down. No hard-typed results.",
-          "=SUM() and =AVERAGE() are used on the correct ranges, and the results are accurate.",
-          "A Pie, Bar or Line chart fits the data, uses the right range (no TOTAL row), and has a real title.",
-          "A short note (for example on a Notes sheet) says which AI formula you used, what you checked, and that it matched.",
-          "The file is saved as Lab3_Surname."
-        ] },
-        { "type": "upload", "id": "file", "prompt": "Upload your Lab 3 file (Lab3_Surname)" },
-        { "type": "text", "id": "note", "prompt": "Paste your verification note: the AI formula, what you checked, and the result.", "lines": 3 },
-        { "type": "rubric", "id": "rubric", "criteria": [
-          { "name": "Clearly labelled column headers", "points": 4 },
-          { "name": "Data type formatting (Currency or Date)", "points": 4 },
-          { "name": "Working arithmetic formulas", "points": 8 },
-          { "name": "=SUM() and =AVERAGE() on the correct ranges", "points": 6 },
-          { "name": "Chart (Pie, Bar or Line) with a real title", "points": 6 },
-          { "name": "Verification of AI-suggested logic", "points": 2 }
-        ] }
-      ],
-      "help": [
-        "Type numbers as numbers: no ₱ sign or spaces typed in, or they become text.",
-        "Ask the AI with headers only. Never paste client data or personal records.",
-        "Two lines are enough for the note, for example: AI suggested =AVERAGE(E2:E9). Checked rows 2 and 9 by hand; totals match.",
-        "Save often with Ctrl + S. A brownout during a 4-hour lab is a real risk."
+        {
+          "type": "mcq",
+          "id": "q1",
+          "prompt": "1. What is the address of the cell in column C, row 4?",
+          "options": [
+            "4C",
+            "C4",
+            "C-4",
+            "R4C3"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q2",
+          "prompt": "2. Which way of typing a date is the safest?",
+          "options": [
+            "11/01/2026",
+            "Nov one 2026",
+            "1.11.26",
+            "2026-11-01"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q3",
+          "prompt": "3. What does =2+3*4 return?",
+          "options": [
+            "14",
+            "20",
+            "24",
+            "9"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q4",
+          "prompt": "4. Which formula counts how many item names are in A2:A9?",
+          "options": [
+            "=COUNT(A2:A9)",
+            "=SUM(A2:A9)",
+            "=COUNTA(A2:A9)",
+            "=MAX(A2:A9)"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q5",
+          "prompt": "5. The 12% VAT rate is in B12. Which formula in G2 can you fill down safely?",
+          "options": [
+            "=E2*B12",
+            "=$E$2*B12",
+            "=E2*$B$12",
+            "=E2*12"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q6",
+          "prompt": "6. Which formula shows cell E10 from the sheet named Jan?",
+          "options": [
+            "=Jan!E10",
+            "=Jan(E10)",
+            "=E10!Jan",
+            "=Jan:E10"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q7",
+          "prompt": "7. You want to show how spending rose and fell from January to June. Which chart fits best?",
+          "options": [
+            "Pie",
+            "Bar, sorted from biggest to smallest",
+            "A chart is not needed",
+            "Line"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q8",
+          "prompt": "8. When is a pie chart the right choice?",
+          "options": [
+            "To compare 20 different items",
+            "To show shares of one whole that add up to 100%",
+            "To show a trend over 12 months",
+            "Whenever the boss likes colours"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q9",
+          "prompt": "9. AI gives you a formula for the inventory total. What do you check before you trust it?",
+          "options": [
+            "Two rows by hand, the range, and the result against the total",
+            "Nothing. AI is always right",
+            "Only that the cell shows no error",
+            "Ask the AI if it is sure"
+          ]
+        },
+        {
+          "type": "mcq",
+          "id": "q10",
+          "prompt": "10. Which of these is OK to paste into a public AI tool?",
+          "options": [
+            "A list of clients with their TINs",
+            "A screenshot of the payroll",
+            "Personnel records, if you delete them afterwards",
+            "Column headers and made-up sample rows"
+          ]
+        }
       ]
     }
   ]

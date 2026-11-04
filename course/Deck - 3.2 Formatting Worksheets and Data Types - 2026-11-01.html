@@ -64,54 +64,16 @@
       <h1 class="h1" data-anim="fade-up">Formatting Worksheets and <span style="color:var(--gold)">Data Types</span></h1>
       <p class="lede" data-anim="fade-up">Make every value the right type, then make the whole table easy to read, print and check.</p>
       <div class="cv-meta">
-        <span class="tag ghost">Topic 3.2</span><span class="tag ghost">~50 minutes</span><span class="tag ghost">Provincial Government of Misamis Oriental</span>
+        <span class="tag ghost">Topic 3.2</span><span class="tag ghost">~25 minutes</span><span class="tag ghost">Provincial Government of Misamis Oriental</span>
       </div>
     </div>
     <div class="cv-img"><img src="images/m3/3-2-cover.jpg" alt="Printed spreadsheet with highlighted columns"><div class="cv-num">3.2</div></div>
     <div class="notes">
-      <p><b>Welcome back.</b> Open the inventory you saved in 3.1, <i>Lab3 Inventory</i>. We'll work on that same file the whole time.</p>
-      <p>This topic has two halves. First, <b>data types</b>: making sure the sheet knows a number is a number and a date is a date. Second, <b>formatting</b>: peso signs, bold headers, borders, colours, and a rule that highlights items we need to reorder. Lab 3 requires at least one column formatted as Currency or Date, so this topic earns you points.</p>
+      <p><b>Welcome back.</b> I'm opening the inventory we built in 3.1, the <i>Office Supplies Inventory</i>. I'll work on that same file the whole time; just watch my screen.</p>
+      <p>This topic has two halves. First, <b>data types</b>: making sure the sheet knows a number is a number and a date is a date. Second, <b>formatting</b>: peso signs, bold headers, borders, colours, and a rule that highlights items we need to reorder. At work, this is what makes a report easy to read and hard to get wrong.</p>
     </div>
   </section>
 
-  <!-- 2 · Warm-up -->
-  <section class="slide" data-title="Warm-up">
-    <div class="slide-head">
-      <div><p class="kicker">Warm-up · type A or B in the chat</p><h2 class="h2">Same data. Which one would you rather sign?</h2></div>
-      <span class="tag gold">30 seconds</span>
-    </div>
-    <div class="grid g2">
-      <div>
-        <p class="h3" style="margin-bottom:calc(var(--u)*.6)">A</p>
-        <div class="xl sm"><table>
-          <colgroup><col class="rn"><col style="width:40%"><col><col><col></colgroup>
-          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
-          <tr><th>1</th><td>Item</td><td>Unit</td><td>Qty</td><td>Unit Cost</td></tr>
-          <tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">245</td></tr>
-          <tr><th>3</th><td>Bond paper, lo</td><td>ream</td><td class="n">30</td><td class="n">265</td></tr>
-          <tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">96</td></tr>
-          <tr><th>5</th><td>Folder, long</td><td>pack of 1</td><td class="n">4</td><td class="n">520</td></tr>
-        </table></div>
-      </div>
-      <div>
-        <p class="h3" style="margin-bottom:calc(var(--u)*.6)">B</p>
-        <div class="xl sm bd"><table>
-          <colgroup><col class="rn"><col style="width:40%"><col><col><col></colgroup>
-          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
-          <tr class="fmt"><th>1</th><td>Item</td><td>Unit</td><td class="c">Qty</td><td class="c">Unit Cost</td></tr>
-          <tr><th>2</th><td>Bond paper, A4</td><td>ream</td><td class="n">25</td><td class="n">₱245.00</td></tr>
-          <tr><th>3</th><td>Bond paper, long</td><td>ream</td><td class="n">30</td><td class="n">₱265.00</td></tr>
-          <tr><th>4</th><td>Ballpen, black</td><td>box of 12</td><td class="n">10</td><td class="n">₱96.00</td></tr>
-          <tr><th>5</th><td class="hi">Folder, long</td><td class="hi">pack of 100</td><td class="n hi">4</td><td class="n hi">₱520.00</td></tr>
-        </table></div>
-      </div>
-    </div>
-    <div class="callout gold mt-l"><b>Spot the differences:</b> name at least three things B does that A doesn't. Type them in the chat.</div>
-    <div class="notes">
-      <p>Ask for <b>A or B</b> in the chat. Everyone picks B, of course. Then ask: "What exactly is different?"</p>
-      <p>Collect answers: bold coloured header, peso signs with two decimals, full words visible because the columns are wide enough, borders, and one row highlighted in red. Tell them: <b>by the end of this topic your inventory will look like B</b>, and you'll know why each change matters, not just how to click it.</p>
-    </div>
-  </section>
 
   <!-- 3 · Objectives -->
   <section class="slide" data-title="Objectives">
@@ -123,10 +85,10 @@
       <div class="card top"><span class="k">Format</span><h4>Make it readable</h4><p>Currency ₱, dates, alignment, wrap, bold, borders, fill, freeze panes, conditional formatting.</p></div>
       <div class="card top"><span class="k">Clean</span><h4>Clean raw data</h4><p>Fix extra spaces, mixed units, typed totals and blank rows before you calculate.</p></div>
     </div>
-    <div class="callout tip mt-l"><b>Lab 3 check:</b> at least one column must be formatted for its data type, for example <b>Currency</b> or <b>Date</b>.</div>
+    <div class="callout tip mt-l"><b>Why it matters at work:</b> a money column in <b>Currency</b> and a date column in <b>Date</b> are easier to read, sort and check.</div>
     <div class="notes">
       <p>Three goals: <b>types, format, clean</b>. The order matters. We fix the types first, because no amount of nice colours can rescue a number that the sheet thinks is text.</p>
-      <p>Point to the Lab 3 line. Formatting Unit Cost and Total Cost as Currency with the peso sign satisfies it today, so nobody should leave this topic without it.</p>
+      <p>Point to the callout. Unit Cost and Total Cost in Currency with the peso sign is the first format I'll show today, and the one they'll use most at the office.</p>
     </div>
   </section>
 
@@ -146,7 +108,7 @@
     <div class="callout mt-l"><b>Quick test:</b> after you press Enter, a real number or date jumps to the <b>right</b> side of the cell. If it stays on the left, the sheet is treating it as text.</div>
     <div class="notes">
       <p>Go through the five types with examples from their work: names and remarks are <b>text</b>; quantities are <b>numbers</b>; costs are <b>currency</b>; dates received are <b>dates</b>; "percent of target" is a <b>percentage</b>.</p>
-      <p>Teach the alignment test now; it's the fastest check there is. Ask them to look at their inventory: are the Qty and Unit Cost numbers on the right? If anyone sees a number on the left, have them type it again.</p>
+      <p>Teach the alignment test now; it's the fastest check there is. Show it on the inventory: Qty and Unit Cost sit on the right. Tell them to try this check on their own office files: a number on the left needs to be typed again.</p>
     </div>
   </section>
 
@@ -185,7 +147,7 @@
             <figure class="f" data-step="2" data-zoom="1.3" data-at="41,56" data-o="30,40"><div class="pic"><img src="images/ui/3.2/02-trap-sum-29.webp" alt="Excel cell C6 selected: formula bar =SUM(C2:C5), the cell shows 29"><i class="ring" style="--x:36;--y:54.2;--w:10.4;--h:3.9"></i><i class="ring" style="--x:19.6;--y:25.1;--w:12.4;--h:3.7;--d:0.25s"></i></div></figure>
             <figure class="f" data-step="3" data-zoom="1.3" data-at="41,56" data-o="40,50"><div class="pic"><img src="images/ui/3.2/03-trap-fixed-69.webp" alt="Excel after retyping 30 and 10 as plain numbers: they sit on the right and C6 shows 69"><i class="ring" style="--x:36;--y:42.6;--w:10.4;--h:7.8"></i><i class="ring" style="--x:36;--y:54.2;--w:10.4;--h:3.9;--d:0.25s"></i></div></figure>
           </div>
-          <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory (Text trap sheet). Same green triangle in Excel for Windows.</p>
+          <p class="cap">Microsoft Excel for Mac, sample Office Supplies Inventory (Text trap sheet). Same green triangle in Excel for Windows.</p>
         </div>
       <div>
         <ol class="steps sm">
@@ -206,7 +168,7 @@
   <section class="slide" data-title="Currency format">
     <div class="slide-head">
       <div><p class="kicker">Format the money columns</p><h2 class="h2">Unit Cost and Total Cost as Currency (₱)</h2></div>
-      <span class="tag gold">Lab 3 requirement</span>
+      <span class="tag gold">Every money column</span>
     </div>
     <div class="shots" data-walk>
       <div>
@@ -216,7 +178,7 @@
             <figure class="f" data-step="3" data-at="60,32.6"><div class="pic"><img src="images/ui/3.2/05-format-cells-currency-dialog.webp" alt="Format Cells: Decimal places 2, Symbol ₱ English (Philippines), sample ₱245.00"><i class="ring" style="--x:47.9;--y:25.8;--w:5.4;--h:3.8"></i><i class="ring" style="--x:44.5;--y:30.9;--w:31.1;--h:3.5;--d:0.25s"></i><i class="ring" style="--x:71.6;--y:90.1;--w:6.5;--h:3.7;--d:0.5s"></i></div></figure>
             <figure class="f" data-step="4" data-zoom="1.3" data-at="49,40.6" data-o="30,35"><div class="pic"><img src="images/ui/3.2/06-currency-d2-245.webp" alt="Excel after OK: D2 to D9 show ₱245.00 and so on; with D2 active the formula bar still says 245"><i class="ring" style="--x:43.6;--y:38.6;--w:10.6;--h:4"></i><i class="ring" style="--x:19.6;--y:25.1;--w:8;--h:3.7;--d:0.25s"></i></div></figure>
           </div>
-          <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. On Windows, <kbd>Ctrl</kbd>+<kbd>1</kbd> opens the same Format Cells window (Number tab).</p>
+          <p class="cap">Microsoft Excel for Mac, sample Office Supplies Inventory. On Windows, <kbd>Ctrl</kbd>+<kbd>1</kbd> opens the same Format Cells window (Number tab).</p>
         </div>
       <div>
         <ol class="steps sm">
@@ -230,7 +192,7 @@
     </div>
     <div class="notes">
       <p>Demo in Excel with <b>Ctrl+1</b>, the Format Cells window. Point out the formula bar: it still says <b>245</b>. Only the look changed.</p>
-      <p>We format column E now, while it's empty, so the totals arrive already in pesos in Topic 3.3. If someone's quick Currency button shows a dollar sign, that's their Windows region setting: open Ctrl+1 and pick the peso symbol. Sheets and Calc users, follow the two boxes on the left.</p>
+      <p>We format column E now, while it's empty, so the totals arrive already in pesos in Topic 3.3. If the quick Currency button on their office PC shows a dollar sign, that's the Windows region setting: open Ctrl+1 and pick the peso symbol. Point Sheets and Calc users to the box under the steps.</p>
     </div>
   </section>
 
@@ -297,7 +259,7 @@
             <figure class="f" data-step="2" data-at="31.2,20.3"><div class="pic"><img src="images/ui/3.2/08-borders-fill.webp" alt="Header row A1:F1 with a dark blue fill and white bold text; Fill Color and Font Color buttons"><i class="ring" style="--x:3.2;--y:34.7;--w:70.6;--h:8.2"></i><i class="ring" style="--x:29.6;--y:18.4;--w:3.4;--h:3.8;--d:0.25s"></i><i class="ring" style="--x:33.6;--y:18.4;--w:3.4;--h:3.8;--d:0.5s"></i></div></figure>
             <figure class="f" data-step="3" data-at="40,60"><div class="pic"><img src="images/ui/3.2/08-borders-fill.webp" alt="Data rows 2 to 9 left white"><i class="ring" style="--x:3.2;--y:42.9;--w:70.6;--h:30.9"></i></div></figure>
           </div>
-          <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. Same Borders, Fill Color and Font Color buttons on the Windows Home tab.</p>
+          <p class="cap">Microsoft Excel for Mac, sample Office Supplies Inventory. Same Borders, Fill Color and Font Color buttons on the Windows Home tab.</p>
         </div>
       <div>
         <ol class="steps sm">
@@ -343,7 +305,7 @@
     </div>
     <div class="notes">
       <p>Everyone loves Merge &amp; Center because it looks neat. Show the downside live: merge two cells in the middle of the inventory, then try to sort. Excel complains that merged cells need to be the same size. Undo.</p>
-      <p>Rule of thumb: <b>merge only a title above the table, never inside it</b>. For Lab 3 we keep headers in row 1 so the formulas in 3.3 and 3.4 match the slides exactly.</p>
+      <p>Rule of thumb: <b>merge only a title above the table, never inside it</b>. In our inventory we keep the headers in row 1 so the formulas in 3.3 and 3.4 match the slides exactly.</p>
     </div>
   </section>
 
@@ -372,7 +334,7 @@
     </div>
     <div class="notes">
       <p>Our inventory is short, so demo freezing on a long list: the sample attendance sheet. Scroll down to row 150 and the headers are still there. Notice the row numbers jump from 1 to 150: that's the sign a row is frozen.</p>
-      <p>Everyone: freeze the top row of your inventory now. It's a good habit even for short sheets, and it's one menu click in all three apps. The names on screen are sample names only.</p>
+      <p>Then freeze the top row of the inventory too. It's a good habit even for short sheets, and it's one menu click in all three apps. The names on screen are sample names only.</p>
     </div>
   </section>
 
@@ -390,7 +352,7 @@
             <figure class="f" data-step="3" data-at="20,56"><div class="pic"><img src="images/ui/3.2/10b-cf-edit-rule-formula.webp" alt="The formula =C2<=F2 and a light red sample under Format with"><i class="ring" style="--x:7.2;--y:52.1;--w:85.9;--h:7.8"></i><i class="ring" style="--x:63.7;--y:62.6;--w:29;--h:6.8;--d:0.25s"></i></div></figure>
             <figure class="f" data-step="4" data-zoom="1.3" data-at="40,58" data-o="40,60"><div class="pic"><img src="images/ui/3.2/12-cf-red-final.webp" alt="Folder 4, Fastener 6 and Envelope 3 in Qty now have a light red fill"><i class="ring" style="--x:36.2;--y:54.4;--w:7.8;--h:7.7"></i><i class="ring" style="--x:36.2;--y:69.8;--w:7.8;--h:3.9;--d:0.25s"></i></div></figure>
           </div>
-          <p class="cap">Microsoft Excel for Mac, sample Lab3 Inventory. New Rule opens this window titled <i>New Formatting Rule</i> (shown here when editing the rule).</p>
+          <p class="cap">Microsoft Excel for Mac, sample Office Supplies Inventory. New Rule opens this window titled <i>New Formatting Rule</i> (shown here when editing the rule).</p>
         </div>
       <div>
         <ol class="steps sm">
@@ -437,125 +399,21 @@
       </ul>
     </div>
     <div class="notes">
-      <p>The syllabus lab says participants <b>clean a raw dataset</b> before calculating. Walk through each red cell and ask the group to call out the problem in the chat first.</p>
+      <p>Cleaning a <b>raw dataset</b> before calculating is one of the outcomes of this topic. Walk through each shaded cell and ask the group to call out the problem first.</p>
       <p>Typed totals deserve emphasis: 6125 looks right today, but if the price changes it stays 6125 forever. Blank rows break shortcuts like Ctrl+Down and AutoSum's guess of the range. And "rm", "Ream", "ream" look like three different units to any count or filter.</p>
     </div>
   </section>
 
-  <!-- 15 · Try it -->
-  <section class="slide act" data-act="Portal activity" data-title="Try it: format the inventory">
-    <div class="slide-head">
-      <div><p class="kicker">Try it now · hands-on</p><h2 class="h2">Format your Lab 3 inventory</h2></div>
-      <button class="timer" data-min="12">12:00</button>
-    </div>
-    <div class="grid" style="grid-template-columns:1.15fr .85fr;align-items:start">
-      <div class="try">
-        <div class="try-head"><span class="try-label">Checklist</span><span class="tiny">Submit in the portal when finished</span></div>
-        <ol>
-          <li><b>Check types:</b> every Qty, Unit Cost and Reorder Level sits on the right.</li>
-          <li>Row 1: <b>bold</b>, centered, dark fill, white text. Wrap <i>Reorder Level</i>.</li>
-          <li><b>D2:E9 → Currency ₱</b>, 2 decimals.</li>
-          <li><b>A1:F9 → All Borders.</b> AutoFit the columns.</li>
-          <li><b>Freeze</b> the top row.</li>
-          <li><b>Conditional formatting</b> on C2:C9: <span class="fcode">=C2&lt;=F2</span>, light red.</li>
-          <li>Save (<kbd>Ctrl</kbd>+<kbd>S</kbd>).</li>
-        </ol>
-      </div>
-      <div>
-        <div class="card soft"><h4><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#147A50"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg> You're right if…</h4><p>Exactly <b>3 Qty cells</b> are red: Folder, Fastener and Envelope.</p><p class="mt-s">D2 shows <b>₱245.00</b> but the formula bar shows <b>245</b>.</p></div>
-        <div class="callout gold mt-m"><b>Finished early?</b> Format a <i>Date Received</i> column on a new sheet with today's date (<kbd>Ctrl</kbd>+<kbd>;</kbd>).</div>
-      </div>
-    </div>
-    <div class="notes">
-      <p>Start the <b>12-minute</b> timer. Keep this slide up so they can follow the checklist.</p>
-      <p>Ask two volunteers to share their screens at the halfway mark. The most common problems: Currency shows a dollar sign (fix in Ctrl+1), the rule highlights the wrong rows (the selection didn't start at C2), or a red cell appears everywhere (they typed =$C$2 with dollar signs; remove them, we explain $ in Topic 3.5).</p>
-    </div>
-  </section>
 
-  <!-- 16 · Office / home -->
-  <section class="slide" data-title="Office and home">
-    <div class="slide-head">
-      <div><p class="kicker">Where formatting pays off</p><h2 class="h2">Readable at work, useful at home</h2></div>
-    </div>
-    <div class="pair anim-stagger-list">
-      <div class="ex office"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" /><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" /><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" /><path d="M10 6h4" /><path d="M10 10h4" /><path d="M10 14h4" /><path d="M10 18h4" /></svg> At the office</div>
-        <ul>
-          <li><b>Supplies report:</b> ₱ currency, bold header, reorder warnings in red</li>
-          <li><b>Documents received log:</b> a proper Date column that sorts oldest to newest</li>
-          <li><b>Attendance:</b> frozen header row on a 300-row list</li>
-          <li><b>Contact list:</b> mobile numbers kept as text so the 0 stays</li>
-        </ul>
-      </div>
-      <div class="ex home"><div class="ex-label"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg> At home</div>
-        <ul>
-          <li><b>Household budget:</b> ₱ format, and Actual turns red when it's over Budget</li>
-          <li><b>Kids' school fees:</b> due dates in a Date column, sorted by nearest</li>
-          <li><b>Sari-sari stock list:</b> highlight items running low</li>
-          <li><b>Paluwagan or contributions:</b> who paid, when, how much</li>
-        </ul>
-      </div>
-    </div>
-    <div class="notes">
-      <p>Same tools, different lists. Ask: "Which of these would save you the most time?" Many will say the reorder highlight, or the red cells on the budget.</p>
-      <p>Mention the contact-list point again because it bites people: if you type 09171234567 as a number, the leading zero disappears. Format that column as <b>Text</b> before typing, or start with an apostrophe.</p>
-    </div>
-  </section>
 
-  <!-- 17 · Home budget -->
-  <section class="slide" data-title="Home: format the budget">
-    <div class="split">
-      <div>
-        <p class="kicker">Bring it home · Monthly Household Budget</p>
-        <h2 class="h2">Same skills, your own money</h2>
-        <ul class="ticks mt-m" style="font-size:calc(var(--u)*1.4)">
-          <li>B and C as <b>Currency ₱</b>.</li>
-          <li>Header bold with a fill; top row frozen.</li>
-          <li>Rule on C2:C9: <span class="fcode">=C2&gt;B2</span> turns overspending red.</li>
-        </ul>
-        <div class="media mt-m" style="height:calc(var(--u)*13)"><img src="images/m3/3-2-budget.jpg" alt="Bills, a pink calculator and printed charts on a table"></div>
-      </div>
-      <div class="shots solo" data-walk>
-        <div>
-          <div class="stage">
-            <figure class="f" data-step="1" data-at="46,50"><div class="pic"><img src="images/ui/3.2/13-budget-currency-select.webp" alt="Excel sample household budget: Budget and Actual in pesos, Actual cells C2:C9 selected"><i class="ring" style="--x:26.9;--y:38.9;--w:25.8;--h:30.6"></i><i class="ring" style="--x:0.2;--y:24.6;--w:9.4;--h:4.4;--d:0.25s"></i></div></figure>
-            <figure class="f" data-step="2" data-zoom="1.3" data-at="46,42" data-o="30,50"><div class="pic"><img src="images/ui/3.2/14-budget-overspend-red.webp" alt="After the rule =C2>B2: Rice, CEPALCO electricity, Fare and fuel and Groceries Actual cells are light red"><i class="ring" style="--x:39.7;--y:38.9;--w:13.2;--h:7.7"></i><i class="ring" style="--x:39.7;--y:54.2;--w:13.2;--h:3.9;--d:0.25s"></i><i class="ring" style="--x:39.7;--y:61.9;--w:13.2;--h:3.9;--d:0.5s"></i></div></figure>
-          </div>
-          <p class="cap">Microsoft Excel for Mac. Sample figures. Red = Actual is more than Budget.</p>
-        </div>
-      </div>
-    </div>
-    <div class="notes">
-      <p>This is the <b>personal version</b> of the lab, and the one people actually keep using. The figures are a sample family's month; encourage them to use their own at home.</p>
-      <p>The rule is the inventory rule turned around: <b>Actual greater than Budget</b> means overspent. Four items go red: rice, CEPALCO, fare and groceries. Ask: "What would you cut next month?" In Topic 3.3 we'll add a Difference column with a formula to see exactly by how much.</p>
-    </div>
-  </section>
 
-  <!-- 18 · Video -->
-  <section class="slide" data-title="Video intro">
-    <div class="split">
-      <div>
-        <p class="kicker">Watch · 5 minutes</p>
-        <h2 class="h2">Right type first, then a clean look</h2>
-        <p class="lede mt-m">A uniform, a hidden text trap and a red warning: see how to give every value the <b>right data type</b>, format the money as <b>₱ currency</b>, and let the sheet flag items to reorder.</p>
-        <div class="callout gold mt-l"><b>While watching:</b> spot one formatting tool we haven't used yet, and try it on your inventory after the video.</div>
-      </div>
-      <div class="vmeta">
-        <div class="vintro"><img src="videos/3.2/poster.jpg" alt="Video: Formatting Worksheets and Data Types"><div class="play"></div><span class="vlen">4:55</span></div>
-        <div class="vfacts"><span class="tag">Narrated</span><span class="tag">Captions on screen</span><span class="tag gold">Plays on the next slide</span></div>
-      </div>
-    </div>
-    <div class="notes">
-      <p>Introduce the video in one or two sentences, then read the <b>While watching</b> task aloud so everyone knows what to look for.</p>
-      <p>Press <b>→</b> to open the video full screen. In Zoom or Meet, share this tab with <b>computer sound</b> turned on.</p>
-    </div>
-  </section>
 
   <section class="slide vslide" data-title="Video" data-nofooter>
     <iframe data-src="videos/3.2/index.html" title="Video: Formatting Worksheets and Data Types" allow="autoplay; fullscreen" allowfullscreen></iframe>
     <div class="notes">
       <p><b>Space</b> or <b>K</b> plays and pauses (or click the video). <b>C</b> turns captions on or off; the speed button offers 1.25× and 0.85×. The arrows still move between slides, and the video pauses when you leave this slide.</p>
       <p>Length 4:55. Pause anywhere to take a question; captions stay on screen for anyone without sound.</p>
-      <p>After the video, go back to the <b>While watching</b> task: ask two or three people for their answers.</p>
+      <p>After the video, take one or two questions before the quick check.</p>
     </div>
   </section>
   <!-- YouTube slide replaced by our own video (2026-11-01):
@@ -591,7 +449,7 @@
       <div class="opt"><span class="l">D</span><div>The top row is frozen<div class="why">No. Freezing only affects scrolling, never the values.</div></div></div>
     </div>
     <div class="notes">
-      <p>Let them answer in the chat first, then click. <b>C: numbers stored as text.</b> The clue is the left alignment.</p>
+      <p>Give them a minute to answer in the LMS portal, then click. <b>C: numbers stored as text.</b> The clue is the left alignment.</p>
       <p>Use the wrong options to review: A is about #####, B is "formatting is the uniform", D is freeze panes. If many chose B, repeat the key idea: <b>format changes the look, never the value</b>.</p>
     </div>
   </section>
@@ -607,7 +465,7 @@
     </div>
     <p class="lede mt-l">Next · <b style="color:var(--gold)">3.3 Basic Formulas (Arithmetic Operators)</b>: filling the Total Cost column, the right way.</p>
     <div class="notes">
-      <p>Summarize: <b>types, format, clean</b>. Check the chat: everyone should have three red cells and peso signs in column D.</p>
+      <p>Summarize: <b>types, format, clean</b>. The inventory now has peso signs in column D and three red cells for reorder. Take one or two questions.</p>
       <p>Bridge to 3.3: "Column E is formatted and waiting, but it's empty. Next we teach the sheet to multiply Quantity by Unit Cost for us, and why we must never type those totals by hand."</p>
     </div>
   </section>

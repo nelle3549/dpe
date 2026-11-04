@@ -3,58 +3,6 @@
   "title": "Cell Referencing Basics",
   "activities": [
     {
-      "id": "3.5-a",
-      "slide": "Try it: fill down",
-      "kind": "task",
-      "title": "Fill the Total Cost column in one move",
-      "minutes": 3,
-      "intro": "Open your Lab 3 inventory in your own spreadsheet app. Write one formula, fill it down, then answer from your own file.",
-      "blocks": [
-        { "type": "steps", "id": "steps", "items": [
-          "Click E2 and type =C2*D2, then press Enter.",
-          "Click E2 again. Double-click the fill handle at its bottom-right corner.",
-          "Press Ctrl + ` (the key under Esc) to show formulas. Check what E9 says. Press it again to go back.",
-          "Read the value in E3."
-        ] },
-        { "type": "number", "id": "e3", "prompt": "What value is in E3?", "unit": "₱" },
-        { "type": "number", "id": "e2", "prompt": "What value is in E2?", "unit": "₱" },
-        { "type": "short", "id": "e9", "prompt": "In Formulas view, what formula does E9 show?", "placeholder": "e.g. =C2*D2" }
-      ],
-      "help": [
-        "No data yet? Type 3 rows: A4 paper 25 × 245, long paper 30 × 265, ballpen 10 × 96.",
-        "Use the asterisk * to multiply, not the letter x.",
-        "Stop at row 9. Do not fill into the TOTAL row.",
-        "Seeing #VALUE!? A number was typed with a ₱ sign or a space. Type the plain number again.",
-        "In LibreOffice, show formulas with View, Show Formula."
-      ]
-    },
-    {
-      "id": "3.5-b",
-      "slide": "Try it: VAT column",
-      "kind": "task",
-      "title": "Add a 12% VAT column: break it, then fix it",
-      "minutes": 5,
-      "intro": "First you will see the column of zeros on purpose, then fix it with one $ lock. Work in your own inventory file.",
-      "blocks": [
-        { "type": "steps", "id": "steps", "items": [
-          "In A12 type VAT rate; in B12 type 12%. In G1 type VAT 12%.",
-          "In G2 type =E2*B12 and fill down to G9. See the zeros?",
-          "Fix G2: click after B12, press F4 to get $B$12, press Enter, then fill down again.",
-          "In G10 type =SUM(G2:G9).",
-          "Stretch: in H1 type Total with VAT, in H2 type =E2+G2, and fill down."
-        ] },
-        { "type": "number", "id": "g10", "prompt": "After the fix, what is the result in G10?", "unit": "₱" },
-        { "type": "number", "id": "g3", "prompt": "After the fix, what is the value in G3?", "unit": "₱" },
-        { "type": "short", "id": "g2", "prompt": "What formula is in G2 after the fix?", "placeholder": "e.g. =E2*B12" },
-        { "type": "mcq", "id": "stretch", "prompt": "Stretch: which reference style did H2 =E2+G2 need?", "options": ["Relative only", "Absolute, like $E$2", "Mixed, like $E2"] }
-      ],
-      "help": [
-        "G10 shows 735.00? Your G column still points to B13 and below. Lock the rate as $B$12 and fill down again.",
-        "F4 does nothing? Try Fn + F4 on a laptop, Cmd + T in Excel for Mac, or Shift + F4 in LibreOffice Calc.",
-        "You can also type the $ signs by hand. The result is the same."
-      ]
-    },
-    {
       "id": "3.5-qc",
       "slide": "Quick check",
       "kind": "check",
@@ -62,7 +10,17 @@
       "minutes": 1,
       "intro": "Pick one answer.",
       "blocks": [
-        { "type": "mcq", "id": "q", "prompt": "G2 holds =E2*B12. You fill it down to G5. What does G5 contain?", "options": ["=E5*B12", "=E5*B15", "=E2*B12", "=E5*$B$12"] }
+        {
+          "type": "mcq",
+          "id": "q",
+          "prompt": "G2 holds =E2*B12. You fill it down to G5. What does G5 contain?",
+          "options": [
+            "=E5*B12",
+            "=E5*B15",
+            "=E2*B12",
+            "=E5*$B$12"
+          ]
+        }
       ]
     }
   ]
