@@ -360,7 +360,7 @@
       '<div class="field"><label class="f" for="ln">Last name</label><input id="ln" autocomplete="family-name"></div></div>' +
       '<div class="hint" id="cert">Certificate name: <b>…</b></div><div class="hint">Check the spelling: only the facilitator can change it later.</div>' +
       '<div class="field"><label class="f" for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email"><div class="hint">Used to recover your password, so use one you can open.</div></div>' +
-      '<div class="field"><label class="f" for="org">Organization</label><input id="org" value="' + esc(C.defaultOrganization) + '"></div>' +
+      '<div class="field"><label class="f" for="org">Organization</label><input id="org" autocomplete="organization" placeholder="Your office or department"></div>' +
       '<div class="field"><label class="f" for="pos">Position</label><input id="pos" autocomplete="organization-title"></div>' +
       pwField('pw', 'Create a password', 'At least 8 characters. A few words with a number is easy to remember.') +
       pwField('pw2', 'Type the password again') +
