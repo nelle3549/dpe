@@ -525,12 +525,15 @@
   }
   // See more: the topic's synopsis and parts
   // practice files (course/files/<topic>/): the starter files for the topic's examples, listed in the catalog by tools/sync.py
-  function fileList(t, only) {
+  // list: [[topic id, file name], ...] from an activity; without it, all of topic t's files
+  function fileList(t, list) {
     var kb = function (n) { return n >= 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; };
-    return '<ul class="files">' + t.files.filter(function (x) { return !only || only.indexOf(x.file) >= 0; }).map(function (x) {
-      var ext = (x.file.split('.').pop() || '').toUpperCase();
-      return '<li><a href="course/files/' + t.id + '/' + encodeURIComponent(x.file) + '" download="' + esc(x.file) + '">' + ico('download') +
-        '<span><b>' + esc(x.title) + '</b><small>' + esc(x.desc) + ' · ' + ext + ', ' + kb(x.size) + '</small></span></a></li>';
+    var items = list ? list.map(function (p) { return [p[0], TOPIC[p[0]].t.files.filter(function (x) { return x.file === p[1]; })[0]]; }).filter(function (p) { return p[1]; })
+      : t.files.map(function (x) { return [t.id, x]; });
+    return '<ul class="files">' + items.map(function (p) {
+      var x = p[1], ext = (x.file.split('.').pop() || '').toUpperCase();
+      return '<li><a href="course/files/' + p[0] + '/' + encodeURIComponent(x.file) + '" download="' + esc(x.file) + '">' + ico('download') +
+        '<span><b>' + esc(x.title) + '</b><small>' + (p[0] !== (t && t.id) ? 'From topic ' + p[0] + '. ' : '') + esc(x.desc) + ' · ' + ext + ', ' + kb(x.size) + '</small></span></a></li>';
     }).join('') + '</ul>';
   }
   function filesModal(tid, from) {

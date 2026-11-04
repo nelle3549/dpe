@@ -127,6 +127,10 @@ for d in os.listdir(f'{REPO}/course/videos'):
     if os.path.isfile(f'{REPO}/course/videos/{d}/index.html'):
         stamp_course(f'{REPO}/course/videos/{d}/index.html', f'{REPO}/course/videos/{d}')
 
+# activities that also use another topic's practice files (Lab 1 checks the 1.2 file management folder)
+ACT_FILES_FROM = {'lab1': ['1.2']}
+
+
 def slide_no(slides, a):
     """Which slide (1-based) shows this activity: its data-title first, else its title in the slide text."""
     by_title = [i for i, (attrs, _) in enumerate(slides) if f'data-title="{a["slide"]}"' in attrs]
@@ -158,7 +162,8 @@ for m in re.finditer(r"D\('(\d\.\d)','((?:[^'\\]|\\.)*)','([^']*)','((?:[^'\\]|\
     # practice files for the activity page: the ones its slide uses; a hands-on task or lab with none gets all the topic's files
     for a, sa in zip(acts, spec['activities']):
         fs = [x['file'] for x in FILES.get(tid, []) if sa['slide'] in x['slides']]
-        a['files'] = fs or ([x['file'] for x in FILES.get(tid, [])] if a['kind'] in ('task', 'lab') else [])
+        fs = fs or ([x['file'] for x in FILES.get(tid, [])] if a['kind'] in ('task', 'lab') else [])
+        a['files'] = [[tid, f] for f in fs] + [[t2, x['file']] for t2 in ACT_FILES_FROM.get(a['id'], []) for x in FILES.get(t2, [])]
     # the slide's countdown should match the portal timer the facilitator starts with Go live
     for a in acts:
         t = a['slideNo'] and re.search(r'data-min="([\d.]+)"', slides[a['slideNo'] - 1][1])

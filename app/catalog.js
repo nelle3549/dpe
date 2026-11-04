@@ -65,7 +65,10 @@ window.CATALOG = [
       "minutes": 8,
       "slideNo": 13,
       "files": [
-       "Practice - 1.2 File Management - 2026-11-04.zip"
+       [
+        "1.2",
+        "Practice - 1.2 File Management - 2026-11-04.zip"
+       ]
       ]
      },
      {
@@ -187,7 +190,12 @@ window.CATALOG = [
       "slide": "Lab 1 checklist",
       "minutes": 5,
       "slideNo": 13,
-      "files": []
+      "files": [
+       [
+        "1.2",
+        "Practice - 1.2 File Management - 2026-11-04.zip"
+       ]
+      ]
      },
      {
       "id": "1.5-quiz",
@@ -233,7 +241,10 @@ window.CATALOG = [
       "minutes": 3,
       "slideNo": 9,
       "files": [
-       "Practice - 2.1 Workshop Invitation Raw Text - 2026-11-04.txt"
+       [
+        "2.1",
+        "Practice - 2.1 Workshop Invitation Raw Text - 2026-11-04.txt"
+       ]
       ]
      },
      {
@@ -244,7 +255,10 @@ window.CATALOG = [
       "minutes": 6,
       "slideNo": 19,
       "files": [
-       "Practice - 2.1 Workshop Invitation Raw Text - 2026-11-04.txt"
+       [
+        "2.1",
+        "Practice - 2.1 Workshop Invitation Raw Text - 2026-11-04.txt"
+       ]
       ]
      },
      {
@@ -288,7 +302,10 @@ window.CATALOG = [
       "minutes": 10,
       "slideNo": 20,
       "files": [
-       "Practice - 2.2 Workshop Invitation Letter - 2026-11-04.docx"
+       [
+        "2.2",
+        "Practice - 2.2 Workshop Invitation Letter - 2026-11-04.docx"
+       ]
       ]
      },
      {
@@ -338,7 +355,10 @@ window.CATALOG = [
       "minutes": 8,
       "slideNo": 11,
       "files": [
-       "Practice - 2.3 Workshop Invitation Letter - 2026-11-04.docx"
+       [
+        "2.3",
+        "Practice - 2.3 Workshop Invitation Letter - 2026-11-04.docx"
+       ]
       ]
      },
      {
@@ -349,8 +369,14 @@ window.CATALOG = [
       "minutes": 6,
       "slideNo": 18,
       "files": [
-       "Practice - 2.3 Workshop Invitation Letter - 2026-11-04.docx",
-       "Practice - 2.3 Sample Office Logo - 2026-11-04.png"
+       [
+        "2.3",
+        "Practice - 2.3 Workshop Invitation Letter - 2026-11-04.docx"
+       ],
+       [
+        "2.3",
+        "Practice - 2.3 Sample Office Logo - 2026-11-04.png"
+       ]
       ]
      },
      {
@@ -412,8 +438,14 @@ window.CATALOG = [
       "minutes": 12,
       "slideNo": 13,
       "files": [
-       "Practice - 2.4 Workshop Invitees - 2026-11-04.xlsx",
-       "Practice - 2.4 Letter with Schedule - 2026-11-04.docx"
+       [
+        "2.4",
+        "Practice - 2.4 Workshop Invitees - 2026-11-04.xlsx"
+       ],
+       [
+        "2.4",
+        "Practice - 2.4 Letter with Schedule - 2026-11-04.docx"
+       ]
       ]
      },
      {
@@ -424,7 +456,10 @@ window.CATALOG = [
       "minutes": 2,
       "slideNo": 19,
       "files": [
-       "Practice - 2.4 Spot the Merge Mistakes - 2026-11-04.docx"
+       [
+        "2.4",
+        "Practice - 2.4 Spot the Merge Mistakes - 2026-11-04.docx"
+       ]
       ]
      },
      {
@@ -486,7 +521,10 @@ window.CATALOG = [
       "minutes": 8,
       "slideNo": 12,
       "files": [
-       "Practice - 2.5 Workshop Invitation Letter - 2026-11-04.docx"
+       [
+        "2.5",
+        "Practice - 2.5 Workshop Invitation Letter - 2026-11-04.docx"
+       ]
       ]
      },
      {
@@ -530,7 +568,10 @@ window.CATALOG = [
       "minutes": 3,
       "slideNo": 8,
       "files": [
-       "Practice - 2.6 AI Draft to Edit - 2026-11-04.docx"
+       [
+        "2.6",
+        "Practice - 2.6 AI Draft to Edit - 2026-11-04.docx"
+       ]
       ]
      },
      {
@@ -550,8 +591,14 @@ window.CATALOG = [
       "minutes": 210,
       "slideNo": 22,
       "files": [
-       "Practice - 2.6 AI Draft to Edit - 2026-11-04.docx",
-       "Practice - 2.6 Lab 2 Data Source - 2026-11-04.xlsx"
+       [
+        "2.6",
+        "Practice - 2.6 AI Draft to Edit - 2026-11-04.docx"
+       ],
+       [
+        "2.6",
+        "Practice - 2.6 Lab 2 Data Source - 2026-11-04.xlsx"
+       ]
       ]
      }
     ],
