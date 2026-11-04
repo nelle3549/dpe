@@ -583,10 +583,15 @@
       '<span><b id="nreg">…</b> registered</span><span class="row"><button class="btn small gold" id="full">Show join QR</button><button class="btn small" id="cpj">Copy join link</button></span></div>';
     // Live now: the topic being discussed, and any of its activities that are open for answers
     var lt = liveTopic(), ans = Object.keys(S.acts).filter(function (k) { return answering(k) && (adm || !(S.mine[k] && S.mine[k].status === 'submitted')); });
+    // newest opened first; only 3 until "See more" is pressed (S.ansAll survives the home refresh)
+    ans.sort(function (a, b) { return String(S.acts[b].opened_at).localeCompare(String(S.acts[a].opened_at)); });
+    var ansMore = ans.length > 3 && !S.ansAll ? ans.length - 3 : 0;
+    if (ansMore) ans = ans.slice(0, 3);
     var ansHtml = ans.map(function (k) {
       return adm ? '<a href="#/who/' + k + '">' + ico('hand') + '<span>Open for answers: <b>' + esc(ACT[k].a.title) + '</b></span><span class="am">' + nDone(k) + ' of ' + S.parts.length + ' done</span><span class="chev" aria-hidden="true">›</span></a>'
         : '<a href="#/a/' + k + '">' + ico('hand') + '<span>' + (S.mine[k] ? 'Continue' : 'Answer now') + ': <b>' + esc(ACT[k].a.title) + '</b></span><span class="chev" aria-hidden="true">›</span></a>';
-    }).join('');
+    }).join('') + (ansMore ? '<button class="btn small ansmore" id="ans-more">See ' + ansMore + ' more</button>' : '') +
+      (S.ansAll && ans.length > 3 ? '<button class="btn small ansmore" id="ans-less">Show less</button>' : '');
     if (lt && TOPIC[lt]) {
       var LT = TOPIC[lt].t;
       html += '<div class="card livenow mt-3"><a class="lnimg" href="' + deckView + lt + '" tabindex="-1" aria-hidden="true">' + thumb(lt) + '</a><div class="lnb">' +
@@ -628,6 +633,7 @@
     render(html + '<p class="small muted mt-4">Signed in as ' + esc(p.email) + (isViewer() ? ' · preview account' : ' · Certificate name: <b>' + esc(fullName(p)) + '</b> (spelling wrong? Ask the facilitator.)') + '</p></main>');
     if (hy) scrollTo(0, hy);   // back from a lesson or activity: where you were on the list
     document.querySelectorAll('[data-more]').forEach(function (b) { b.onclick = function () { topicInfo(b.dataset.more, b); }; });
+    ['ans-more', 'ans-less'].forEach(function (id) { var b = document.getElementById(id); if (b) b.onclick = function () { var y = scrollY; S.ansAll = id === 'ans-more'; vHome(); scrollTo(0, y); }; });
     if (adm) {
       document.querySelectorAll('[data-tog]').forEach(function (b) {
         b.onchange = function () { var y = scrollY, id = b.dataset.tog; b.disabled = true; setTopic(id, b.checked).then(function () { vHome(); scrollTo(0, y); var c = document.querySelector('[data-tog="' + id + '"]'); if (c) c.focus({ preventScroll: true }); }); };

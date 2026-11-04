@@ -470,6 +470,7 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 .livenow .anslist .ico{color:var(--warn);flex:none}
 .livenow .anslist .am{font-size:12px;font-weight:700;color:var(--text-2);white-space:nowrap}
 .livenow .anslist .chev{font-size:20px;line-height:1;color:var(--text-3)}
+.livenow .anslist .ansmore{align-self:flex-start}
 @media (max-width:620px){.livenow{flex-direction:column}.livenow .lnimg{flex:none;aspect-ratio:2/1}}
 .pbar .golive{background:var(--warn);border-color:var(--warn)}
 .pbar .tlive.on{background:var(--bad);border-color:var(--bad);opacity:1;cursor:default}
