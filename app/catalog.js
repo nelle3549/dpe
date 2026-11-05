@@ -23,15 +23,6 @@ window.CATALOG = [
     "slides": 14,
     "activities": [
      {
-      "id": "1.1-a",
-      "kind": "task",
-      "title": "Hardware, software or peopleware?",
-      "slide": "Activity: sort it out",
-      "minutes": 2,
-      "slideNo": 11,
-      "files": []
-     },
-     {
       "id": "1.1-qc",
       "kind": "check",
       "title": "Quick check: the Windows update",
@@ -51,26 +42,12 @@ window.CATALOG = [
     "parts": [
      "Folders vs files, file extensions",
      "Naming rule: date, type, subject",
-     "Build your Lab 1 master folder"
+     "Build a master folder"
     ],
     "deck": "Deck - 1.2 Desktop and File Management - 2026-11-01.html",
     "video": "4:54",
     "slides": 15,
     "activities": [
-     {
-      "id": "1.2-a",
-      "kind": "task",
-      "title": "Lab 1 Part A: build your master folder",
-      "slide": "Lab 1 Part A",
-      "minutes": 8,
-      "slideNo": 13,
-      "files": [
-       [
-        "1.2",
-        "Practice - 1.2 File Management - 2026-11-04.zip"
-       ]
-      ]
-     },
      {
       "id": "1.2-qc",
       "kind": "check",
@@ -105,15 +82,6 @@ window.CATALOG = [
     "slides": 13,
     "activities": [
      {
-      "id": "1.3-a",
-      "kind": "task",
-      "title": "Lab 1 Part B: find it, snip it, file it",
-      "slide": "Lab 1 Part B",
-      "minutes": 7,
-      "slideNo": 11,
-      "files": []
-     },
-     {
       "id": "1.3-qc",
       "kind": "check",
       "title": "Quick check: the right search",
@@ -140,15 +108,6 @@ window.CATALOG = [
     "slides": 16,
     "activities": [
      {
-      "id": "1.4-a",
-      "kind": "task",
-      "title": "How many red flags can you spot?",
-      "slide": "Spot the red flags",
-      "minutes": 2,
-      "slideNo": 5,
-      "files": []
-     },
-     {
       "id": "1.4-qc",
       "kind": "check",
       "title": "Quick check: the GSIS caller",
@@ -168,35 +127,12 @@ window.CATALOG = [
     "parts": [
      "How AI learns from examples",
      "Hallucinations, bias and privacy",
-     "Lab 1 Part C and the 10-item quiz"
+     "The 10-item Digital Foundations Quiz"
     ],
     "deck": "Deck - 1.5 Everyday AI - 2026-11-01.html",
     "video": "4:37",
     "slides": 20,
     "activities": [
-     {
-      "id": "1.5-a",
-      "kind": "task",
-      "title": "Lab 1 Part C: ask an AI, save the answer",
-      "slide": "Lab 1 Part C",
-      "minutes": 7,
-      "slideNo": 12,
-      "files": []
-     },
-     {
-      "id": "lab1",
-      "kind": "lab",
-      "title": "Lab 1: File Management and Everyday AI",
-      "slide": "Lab 1 checklist",
-      "minutes": 5,
-      "slideNo": 13,
-      "files": [
-       [
-        "1.2",
-        "Practice - 1.2 File Management - 2026-11-04.zip"
-       ]
-      ]
-     },
      {
       "id": "1.5-quiz",
       "kind": "quiz",
@@ -234,34 +170,6 @@ window.CATALOG = [
     "slides": 21,
     "activities": [
      {
-      "id": "2.1-a",
-      "kind": "task",
-      "title": "Scavenger hunt on your screen",
-      "slide": "Try it: find the parts",
-      "minutes": 3,
-      "slideNo": 9,
-      "files": [
-       [
-        "2.1",
-        "Practice - 2.1 Workshop Invitation Raw Text - 2026-11-04.txt"
-       ]
-      ]
-     },
-     {
-      "id": "2.1-b",
-      "kind": "task",
-      "title": "Start the letter and save it the right way",
-      "slide": "Try it: save the letter",
-      "minutes": 6,
-      "slideNo": 19,
-      "files": [
-       [
-        "2.1",
-        "Practice - 2.1 Workshop Invitation Raw Text - 2026-11-04.txt"
-       ]
-      ]
-     },
-     {
       "id": "2.1-qc",
       "kind": "check",
       "title": "Quick check: Save or Save As?",
@@ -294,20 +202,6 @@ window.CATALOG = [
     "video": "4:58",
     "slides": 22,
     "activities": [
-     {
-      "id": "2.2-a",
-      "kind": "task",
-      "title": "Turn your plain text into a formal letter",
-      "slide": "Try it: format the letter",
-      "minutes": 10,
-      "slideNo": 20,
-      "files": [
-       [
-        "2.2",
-        "Practice - 2.2 Workshop Invitation Letter - 2026-11-04.docx"
-       ]
-      ]
-     },
      {
       "id": "2.2-qc",
       "kind": "check",
@@ -347,38 +241,6 @@ window.CATALOG = [
     "video": "4:52",
     "slides": 22,
     "activities": [
-     {
-      "id": "2.3-a",
-      "kind": "task",
-      "title": "Add the workshop schedule to your letter",
-      "slide": "Try it: add the schedule",
-      "minutes": 8,
-      "slideNo": 11,
-      "files": [
-       [
-        "2.3",
-        "Practice - 2.3 Workshop Invitation Letter - 2026-11-04.docx"
-       ]
-      ]
-     },
-     {
-      "id": "2.3-b",
-      "kind": "task",
-      "title": "Add a letterhead with a logo or graphic",
-      "slide": "Try it: add a logo",
-      "minutes": 6,
-      "slideNo": 18,
-      "files": [
-       [
-        "2.3",
-        "Practice - 2.3 Workshop Invitation Letter - 2026-11-04.docx"
-       ],
-       [
-        "2.3",
-        "Practice - 2.3 Sample Office Logo - 2026-11-04.png"
-       ]
-      ]
-     },
      {
       "id": "2.3-qc",
       "kind": "check",
@@ -431,38 +293,6 @@ window.CATALOG = [
     "slides": 22,
     "activities": [
      {
-      "id": "2.4-a",
-      "kind": "task",
-      "title": "Merge your invitation to 3 people",
-      "slide": "Try it now",
-      "minutes": 12,
-      "slideNo": 13,
-      "files": [
-       [
-        "2.4",
-        "Practice - 2.4 Workshop Invitees - 2026-11-04.xlsx"
-       ],
-       [
-        "2.4",
-        "Practice - 2.4 Letter with Schedule - 2026-11-04.docx"
-       ]
-      ]
-     },
-     {
-      "id": "2.4-b",
-      "kind": "task",
-      "title": "Spot the problem in these merged letters",
-      "slide": "Spot the problem",
-      "minutes": 2,
-      "slideNo": 19,
-      "files": [
-       [
-        "2.4",
-        "Practice - 2.4 Spot the Merge Mistakes - 2026-11-04.docx"
-       ]
-      ]
-     },
-     {
       "id": "2.4-qc",
       "kind": "check",
       "title": "Quick check: two extra letters",
@@ -514,20 +344,6 @@ window.CATALOG = [
     "slides": 19,
     "activities": [
      {
-      "id": "2.5-a",
-      "kind": "task",
-      "title": "Set up the page like a pro",
-      "slide": "Try it now",
-      "minutes": 8,
-      "slideNo": 12,
-      "files": [
-       [
-        "2.5",
-        "Practice - 2.5 Workshop Invitation Letter - 2026-11-04.docx"
-       ]
-      ]
-     },
-     {
       "id": "2.5-qc",
       "kind": "check",
       "title": "Quick check: print three sets",
@@ -549,31 +365,17 @@ window.CATALOG = [
    {
     "id": "2.6",
     "title": "Responsible AI Drafting",
-    "dur": "Lab 2",
+    "dur": "Module quiz",
     "desc": "Let AI write the first draft. You check the facts, protect the data, and sign off on the final.",
     "parts": [
      "A simple prompt formula",
      "Find the 5 mistakes in an AI draft",
-     "Lab 2 brief, checklist and rubric"
+     "The 10-item Module 2 Quiz"
     ],
     "deck": "Deck - 2.6 Responsible AI Drafting - 2026-11-01.html",
     "video": "5:07",
-    "slides": 23,
+    "slides": 29,
     "activities": [
-     {
-      "id": "2.6-a",
-      "kind": "task",
-      "title": "Find 5 problems in the AI draft",
-      "slide": "Try it now: spot the problems",
-      "minutes": 3,
-      "slideNo": 8,
-      "files": [
-       [
-        "2.6",
-        "Practice - 2.6 AI Draft to Edit - 2026-11-04.docx"
-       ]
-      ]
-     },
      {
       "id": "2.6-qc",
       "kind": "check",
@@ -584,22 +386,13 @@ window.CATALOG = [
       "files": []
      },
      {
-      "id": "lab2",
-      "kind": "lab",
-      "title": "Lab 2: AI-Assisted Word Processing and Mail Merge",
-      "slide": "Lab 2 checklist and rubric",
-      "minutes": 210,
-      "slideNo": 22,
-      "files": [
-       [
-        "2.6",
-        "Practice - 2.6 AI Draft to Edit - 2026-11-04.docx"
-       ],
-       [
-        "2.6",
-        "Practice - 2.6 Lab 2 Data Source - 2026-11-04.xlsx"
-       ]
-      ]
+      "id": "2.6-quiz",
+      "kind": "quiz",
+      "title": "Module 2 Quiz: Word Processing",
+      "slide": "Module 2 Quiz",
+      "minutes": 10,
+      "slideNo": 23,
+      "files": []
      }
     ],
     "files": [

@@ -3,42 +3,6 @@
   "title": "Hardware, Software and Peopleware",
   "activities": [
     {
-      "id": "1.1-a",
-      "slide": "Activity: sort it out",
-      "kind": "task",
-      "title": "Hardware, software or peopleware?",
-      "minutes": 2,
-      "intro": "Sort the 9 items below. Put each one in the right group: hardware, software or peopleware.",
-      "blocks": [
-        {
-          "type": "sort",
-          "id": "sort",
-          "prompt": "Sort each item into the right group.",
-          "bins": [
-            "Hardware",
-            "Software",
-            "Peopleware"
-          ],
-          "items": [
-            "Biometric scanner",
-            "Web browser",
-            "The ICT focal person",
-            "Windows 11",
-            "UPS (backup power)",
-            "The client filling out a form online",
-            "Flash drive",
-            "Antivirus program",
-            "Webcam"
-          ]
-        }
-      ],
-      "help": [
-        "Is it a physical device or part? Then it is hardware.",
-        "Programs and instructions that run on the device, like Windows or an app, are software.",
-        "People who use, run or support the system are peopleware."
-      ]
-    },
-    {
       "id": "1.1-qc",
       "slide": "Quick check",
       "kind": "check",

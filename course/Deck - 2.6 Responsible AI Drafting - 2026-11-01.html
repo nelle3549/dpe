@@ -36,6 +36,14 @@
 .tbl.rub td,.tbl.rub th{padding:calc(var(--u)*.55) calc(var(--u)*1)}
 .tbl.rub td.w{text-align:right;font-family:var(--font-mono);font-weight:700;color:var(--mod)}
 .tbl.rub tr.tot td{background:var(--mod-soft);font-weight:800;color:var(--mod-deep)}
+  /* module quiz: two items side by side (same as 1.5) */
+.quiz{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*2.6);align-items:start}
+.quiz .qn{font-size:calc(var(--u)*.9);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mod)}
+.quiz h4{font-size:calc(var(--u)*1.55);margin:calc(var(--u)*.3) 0 calc(var(--u)*1)}
+.quiz .qc{gap:calc(var(--u)*.6)}
+.quiz .opt{font-size:calc(var(--u)*1.3);padding:calc(var(--u)*.7) calc(var(--u)*1.1)}
+.quiz .opt .l{width:calc(var(--u)*1.9);height:calc(var(--u)*1.9);font-size:calc(var(--u)*.95)}
+.quiz .opt .why{font-size:calc(var(--u)*1.05)}
 </style>
 </head>
 <body class="m2" data-brand="Digital Productivity Essentials · <b>Module 2</b> · 2.6 Responsible AI Drafting">
@@ -113,7 +121,7 @@
       <div class="card top"><span class="k">Verify</span><h4>Edit and fact-check</h4><p>Catch made-up facts, wrong dates and leftover placeholders.</p></div>
       <div class="card top"><span class="k">Protect</span><h4>Use AI ethically</h4><p>Keep data confidential, give credit, and disclose AI help.</p></div>
     </div>
-    <div class="callout mt-l"><b>Lab 2 link:</b> your graded letter must show <b>human editing</b>: no raw AI text and no placeholders like "[Insert Name]".</div>
+    <div class="callout mt-l"><b>Lab 2 link:</b> your letter should show <b>human editing</b>: no raw AI text and no placeholders like "[Insert Name]".</div>
     <div class="notes">
       <p>Three skills: <b>prompt</b> clearly, <b>verify</b> everything, and <b>protect</b> data and credit.</p>
       <p>The Lab 2 rubric checks for human editing. A letter with "[Insert Name]" still in it is the clearest sign that nobody read the AI draft, and it loses points. In real life, it loses credibility. Ask: "Has anyone received a letter with a leftover placeholder?"</p>
@@ -205,13 +213,13 @@
   </section>
 
   <!-- 8 · Try it now: spot the problems -->
-  <section class="slide act" data-act="Portal activity" data-title="Try it now: spot the problems">
+  <section class="slide" data-title="Try it now: spot the problems">
     <div class="slide-head">
-      <div><p class="kicker">Hands-on · in the portal</p><h2 class="h2">Find 5 problems in the AI draft</h2></div>
+      <div><p class="kicker">Hands-on · in class</p><h2 class="h2">Find 5 problems in the AI draft</h2></div>
       <button class="timer" data-min="3">3:00</button>
     <span class="dlchips"><a class="dlchip" href="files/2.6/Practice%20-%202.6%20AI%20Draft%20to%20Edit%20-%202026-11-04.docx" download="Practice - 2.6 AI Draft to Edit - 2026-11-04.docx" title="Download: The sample AI draft of the invitation, pasted into Word. Find the five problems, then fix them with Track Changes on."><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> AI draft with 5 problems (start)</a></span></div>
     <div class="try">
-      <div class="try-head"><span class="try-label">Try it now</span><span class="tiny">Sort each part in the portal</span></div>
+      <div class="try-head"><span class="try-label">Try it now</span><span class="tiny">Sort each part together</span></div>
       <div class="bub ai" style="margin:0;font-size:calc(var(--u)*1.4)"><p>Dear [Insert Name],</p><p>We are thrilled to invite you to an exciting Digital Skills Workshop on Friday, 19 November 2026, from 1:00 to 4:00 PM at the Conference Room!</p><p>As mandated under Memorandum Order No. 2026-117, this workshop covers word processing, spreadsheets and presentations. Participants will earn 8 CPD units.</p><p>Kindly confirm your attendance by [Date]. Warm regards, [Your Name]</p></div>
       <div class="row mt-m"><button class="reveal-btn" data-target="ans-five">Show the 5 problems</button></div>
       <div class="answer mt-s" id="ans-five">
@@ -524,8 +532,8 @@
   <!-- 19 · Lab 2 overview -->
   <section class="slide" data-title="Lab 2 brief">
     <div class="slide-head">
-      <div><p class="kicker">Lab 2 · 3.5 hours · 30% of the course grade</p><h2 class="h2">AI-Assisted Word Processing and Mail Merge</h2></div>
-      <span class="tag gold">Module 2 graded output</span>
+      <div><p class="kicker">Lab 2 · 3.5 hours · practice</p><h2 class="h2">AI-Assisted Word Processing and Mail Merge</h2></div>
+      <span class="tag gold">Module 2 practice output</span>
     </div>
     <div class="grid g2" style="grid-template-columns:1.1fr .9fr">
       <div class="card top"><h4>Objectives</h4>
@@ -574,13 +582,13 @@
   </section>
 
   <!-- 21 · Graded checklist + rubric -->
-  <section class="slide act" data-act="Portal activity" data-title="Lab 2 checklist and rubric">
+  <section class="slide" data-title="Lab 2 checklist and rubric">
     <div class="slide-head">
-      <div><p class="kicker">Lab 2 · how it is graded</p><h2 class="h2">Graded-output checklist and scoring rubric</h2></div>
+      <div><p class="kicker">Lab 2 · the checklist</p><h2 class="h2">Output checklist and rubric</h2></div>
       <span class="tag gold">Word Processing Output · 30%</span>
     </div>
     <table class="tbl rub">
-      <thead><tr><th style="width:24%">Criterion</th><th>Must show (minimum graded output)</th><th style="width:9%;text-align:right">Weight</th></tr></thead>
+      <thead><tr><th style="width:24%">Criterion</th><th>Must show (minimum output)</th><th style="width:9%;text-align:right">Weight</th></tr></thead>
       <tbody>
         <tr><td><b>Content and human editing</b></td><td>Multi-paragraph letter, facts checked, no "[Insert Name]" or other placeholders, AI help disclosed.</td><td class="w">8%</td></tr>
         <tr><td><b>Formatting</b></td><td>Justified text, standard font sizes, 1-inch margins, consistent and readable layout.</td><td class="w">6%</td></tr>
@@ -597,6 +605,183 @@
     </div>
   </section>
 
+  <!-- Module 2 Quiz · intro -->
+  <section class="slide statement act" data-act="Portal activity" data-title="Module 2 Quiz">
+    <p class="kicker">Module 2 assessment · 10 items</p>
+    <h2 class="h1">Module 2 Quiz</h2>
+    <div class="grid g4 mt-l">
+      <div class="card dark"><h4>10 items</h4><p>Saving, formatting, tables, pictures, mail merge, page setup, AI drafting.</p></div>
+      <div class="card dark"><h4>1 point each</h4><p>One best answer, A to D.</p></div>
+      <div class="card dark"><h4>Answer first</h4><p>Open the quiz in the portal and submit your answers.</p></div>
+      <div class="card dark"><h4>Then we reveal</h4><p>Two items per slide; we discuss each answer together.</p></div>
+    </div>
+    <p class="lede mt-l">No pressure: everything on it was covered in Topics 2.1 to 2.6.</p>
+    <div class="notes">
+      <p>The Module 2 Quiz has <b>10 items</b>, one point each. Press <b>Go live</b> so the quiz opens in the portal, and give about <b>8 minutes</b>.</p>
+      <p>Watch the done count. When most have submitted, close it and go through the next five slides, two items each. Click the correct option first, then any common wrong answer to show its explanation.</p>
+    </div>
+  </section>
+
+  <!-- Module 2 Quiz · items 1 and 2 -->
+  <section class="slide" data-title="Quiz 1 and 2">
+    <div class="slide-head">
+      <div><p class="kicker">Module 2 Quiz · items 1 and 2</p><h2 class="h2">Saving and file names</h2></div>
+      <span class="tag">Topic 2.1</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 1</p><h4>You must email a finished letter so it looks the same on every computer and is not edited. Which format do you send?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>.docx<div class="why">No. Anyone can edit it, and it can look different on another computer.</div></div></div>
+          <div class="opt" data-correct><span class="l">B</span><div>.pdf<div class="why">Yes. Edit in .docx, send in .pdf: a PDF keeps the layout as a final copy.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>.txt<div class="why">No. Plain text loses all the formatting.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>.jpg<div class="why">No. A picture of the letter cannot be searched or copied cleanly.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 2</p><h4>Which file name follows the Type - Subject - Date habit?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>final letter (2).docx<div class="why">No. "final (2)" says nothing about what it is or when.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>Document1.docx<div class="why">No. The default name tells nobody what is inside.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>invitation_new_NEW.docx<div class="why">No. "new" stops being true the next day.</div></div></div>
+          <div class="opt" data-correct><span class="l">D</span><div>Letter - Workshop Invitation - 2026-11-04.docx<div class="why">Yes. Type, subject and date: anyone can find it later.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Item 1: <b>B</b>, .pdf. Item 2: <b>D</b>, Letter - Workshop Invitation - 2026-11-04.docx.</p>
+      <p>Click the correct option first, then the most common wrong answer to show why it is wrong. If many missed an item, take one minute to recall the slide from that topic.</p>
+    </div>
+  </section>
+
+  <!-- Module 2 Quiz · items 3 and 4 -->
+  <section class="slide" data-title="Quiz 3 and 4">
+    <div class="slide-head">
+      <div><p class="kicker">Module 2 Quiz · items 3 and 4</p><h2 class="h2">Formatting and editing</h2></div>
+      <span class="tag">Topic 2.2</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 3</p><h4>Which shortcut finds a word and replaces it everywhere in the document?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Ctrl + Z<div class="why">No. Ctrl + Z undoes the last action.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>Ctrl + F<div class="why">No. Ctrl + F only finds; it does not replace.</div></div></div>
+          <div class="opt" data-correct><span class="l">C</span><div>Ctrl + H<div class="why">Yes. Find and Replace changes every match at once.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>Ctrl + S<div class="why">No. Ctrl + S saves the file.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 4</p><h4>You want every heading to look the same, and to change them all at once later. What do you use?</h4>
+        <div class="qc">
+          <div class="opt" data-correct><span class="l">A</span><div>Heading styles<div class="why">Yes. Change the style once and every heading follows.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>Bold and a bigger font, heading by heading<div class="why">No. Manual formatting has to be redone one heading at a time.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>Spaces to push each heading to the centre<div class="why">No. Spaces never line up reliably; use alignment.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>Caps Lock<div class="why">No. Capital letters do not make text a heading.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Item 3: <b>C</b>, Ctrl + H. Item 4: <b>A</b>, Heading styles.</p>
+      <p>Click the correct option first, then the most common wrong answer to show why it is wrong. If many missed an item, take one minute to recall the slide from that topic.</p>
+    </div>
+  </section>
+
+  <!-- Module 2 Quiz · items 5 and 6 -->
+  <section class="slide" data-title="Quiz 5 and 6">
+    <div class="slide-head">
+      <div><p class="kicker">Module 2 Quiz · items 5 and 6</p><h2 class="h2">Tables and pictures</h2></div>
+      <span class="tag">Topic 2.3</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 5</p><h4>In a table, which key moves you to the next cell?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Enter<div class="why">No. Enter starts a new line inside the same cell.</div></div></div>
+          <div class="opt" data-correct><span class="l">B</span><div>Tab<div class="why">Yes. Tab moves to the next cell; in the last cell it adds a new row.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>Space<div class="why">No. Space only types a space.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>Esc<div class="why">No. Esc does not move between cells.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 6</p><h4>The office logo should appear at the top of every page of the letter. Where do you put it?</h4>
+        <div class="qc">
+          <div class="opt" data-correct><span class="l">A</span><div>In the header<div class="why">Yes. The header repeats on every page.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>On page 1, with Behind Text wrapping<div class="why">No. It shows only on page 1 and can slip behind the text.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>As the first line of the body text<div class="why">No. It moves when you edit and does not repeat.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>In the footer<div class="why">No. The footer is at the bottom of the page.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Item 5: <b>B</b>, Tab. Item 6: <b>A</b>, In the header.</p>
+      <p>Click the correct option first, then the most common wrong answer to show why it is wrong. If many missed an item, take one minute to recall the slide from that topic.</p>
+    </div>
+  </section>
+
+  <!-- Module 2 Quiz · items 7 and 8 -->
+  <section class="slide" data-title="Quiz 7 and 8">
+    <div class="slide-head">
+      <div><p class="kicker">Module 2 Quiz · items 7 and 8</p><h2 class="h2">Mail merge and page setup</h2></div>
+      <span class="tag">Topics 2.4 and 2.5</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 7</p><h4>What are the three parts of a mail merge?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Header, body and footer<div class="why">No. Those are parts of a page.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>Font, size and colour<div class="why">No. Those are text formatting.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>To, Cc and Bcc<div class="why">No. Those are email address boxes.</div></div></div>
+          <div class="opt" data-correct><span class="l">D</span><div>Main document, data source and merge fields<div class="why">Yes. One letter, one clean list, and the fields that join them.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 8</p><h4>Your office prints on long bond paper. Which paper size do you set?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>A4<div class="why">No. A4 is shorter: about 8.3 x 11.7 inches.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>Letter<div class="why">No. Letter is 8.5 x 11 inches.</div></div></div>
+          <div class="opt" data-correct><span class="l">C</span><div>8.5 x 13 inches<div class="why">Yes. Long bond is 8.5 x 13 inches. Set it before you print.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>Whatever the printer chose last time<div class="why">No. Check the size first, or the page prints cut or shrunk.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Item 7: <b>D</b>, Main document, data source and merge fields. Item 8: <b>C</b>, 8.5 x 13 inches.</p>
+      <p>Click the correct option first, then the most common wrong answer to show why it is wrong. If many missed an item, take one minute to recall the slide from that topic.</p>
+    </div>
+  </section>
+
+  <!-- Module 2 Quiz · items 9 and 10 -->
+  <section class="slide" data-title="Quiz 9 and 10">
+    <div class="slide-head">
+      <div><p class="kicker">Module 2 Quiz · items 9 and 10</p><h2 class="h2">Drafting with AI</h2></div>
+      <span class="tag">Topic 2.6</span>
+    </div>
+    <div class="quiz">
+      <div>
+        <p class="qn">Item 9</p><h4>Which prompt gives the AI the best start on a workshop invitation?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Write an invitation.<div class="why">No. No role, facts, format or tone: the AI has to guess, and guesses get invented.</div></div></div>
+          <div class="opt" data-correct><span class="l">B</span><div>You are an admin officer. Write a one-page formal letter inviting section staff to a digital skills workshop on 19 November 2026. Warm and polite.<div class="why">Yes. Role, task, context, format and tone, with the real facts given by you.</div></div></div>
+          <div class="opt"><span class="l">C</span><div>Make it sound good and professional, please.<div class="why">No. Polite, but it gives the AI nothing to work with.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>Copy a good invitation from the internet.<div class="why">No. That is copying, not drafting, and risks plagiarism.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="qn">Item 10</p><h4>The AI draft still says "Dear [Insert Name]" and cites a memo you have never seen. What do you do before sending?</h4>
+        <div class="qc">
+          <div class="opt"><span class="l">A</span><div>Send it; readers will understand<div class="why">No. Placeholders and invented references embarrass the office.</div></div></div>
+          <div class="opt"><span class="l">B</span><div>Ask the AI whether the memo is real<div class="why">No. It may simply confirm its own mistake.</div></div></div>
+          <div class="opt" data-correct><span class="l">C</span><div>Fill in the real names, and check the memo in an official source or delete it<div class="why">Yes. Remove placeholders and verify every reference outside the chat.</div></div></div>
+          <div class="opt"><span class="l">D</span><div>Add a line saying AI wrote it<div class="why">No. Disclosure is good, but it does not fix wrong content.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <p>Item 9: <b>B</b>, You are an admin officer. Write a one-page formal letter inviting section staff to a digital skills workshop on 19 November 2026. Warm and polite.. Item 10: <b>C</b>, Fill in the real names, and check the memo in an official source or delete it.</p>
+      <p>Click the correct option first, then the most common wrong answer to show why it is wrong. If many missed an item, take one minute to recall the slide from that topic.</p>
+    </div>
+  </section>
+
   <!-- 22 · Recap -->
   <section class="slide statement" data-title="Recap">
     <p class="kicker">Recap · Topic 2.6 and Module 2</p>
@@ -606,7 +791,7 @@
       <div class="card dark"><h4>Verify everything</h4><p>Check facts outside the chat. Remove placeholders and invented references.</p></div>
       <div class="card dark"><h4>Protect and credit</h4><p>No client or internal data in public AI. Credit sources, disclose AI help.</p></div>
     </div>
-    <p class="lede mt-l">Next · <b style="color:var(--gold)">Lab 2</b>, then Module 3 · <b style="color:var(--gold)">3.1 Application Navigation and Cell Manipulation</b> in spreadsheets.</p>
+    <p class="lede mt-l">Next · Module 3 · <b style="color:var(--gold)">3.1 Application Navigation and Cell Manipulation</b> in spreadsheets.</p>
     <div class="notes">
       <p>Summarize: <b>AI drafts, you decide</b>. Prompt clearly, verify everything, protect data and give credit.</p>
       <p>This closes Module 2. Over six topics we built one complete letter: navigation, formatting, a table, mail merge, page layout, and now responsible AI. Lab 2 puts it all together.</p>

@@ -3,64 +3,6 @@
   "title": "Internet Safety, Netiquette and Data Privacy",
   "activities": [
     {
-      "id": "1.4-a",
-      "slide": "Spot the red flags",
-      "kind": "task",
-      "title": "How many red flags can you spot?",
-      "minutes": 2,
-      "intro": "Read the sample phishing email below (it is also on the slide). Count the red flags, then answer the questions.",
-      "blocks": [
-        {
-          "type": "email",
-          "id": "mail",
-          "label": "Inbox · sample phishing email",
-          "from": "GSIS Refund Center <refunds@gsis-gov-ph.help-desk.site>",
-          "subject": "URGENT!!! Your refund will be CANCELLED",
-          "body": [
-            "Dear Member,",
-            "You have an unclaimed refund of P8,450.00. Verify your account within 24 hours or it will be forfieted. Enter your GSIS number, email password and the OTP we send."
-          ],
-          "button": "Claim Refund",
-          "link": "http://gsis-gov-ph.help-desk.site/verify",
-          "attachment": "Refund_Form.pdf.exe"
-        },
-        {
-          "type": "number",
-          "id": "count",
-          "prompt": "How many red flags did you find?",
-          "unit": "red flags"
-        },
-        {
-          "type": "text",
-          "id": "flag",
-          "prompt": "Type one red flag you are sure about.",
-          "lines": 2
-        },
-        {
-          "type": "mcq",
-          "id": "sender",
-          "prompt": "The email is from refunds@gsis-gov-ph.help-desk.site. Who really owns that address?",
-          "options": [
-            "GSIS (gsis.gov.ph)",
-            "help-desk.site",
-            "gov.ph",
-            "The member"
-          ]
-        },
-        {
-          "type": "mcq",
-          "id": "attach",
-          "prompt": "The attachment is called Refund_Form.pdf.exe. What is it really?",
-          "options": [
-            "A PDF form",
-            "A program (.exe)",
-            "A picture",
-            "A compressed folder"
-          ]
-        }
-      ]
-    },
-    {
       "id": "1.4-qc",
       "slide": "Quick check",
       "kind": "check",
