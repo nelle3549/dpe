@@ -152,7 +152,7 @@
     <p class="lede">Computers and the internet, word processing, spreadsheets and presentations, with everyday AI used safely and responsibly. Built for the women and men of the Provincial Government of Misamis Oriental, at the office and at home.</p>
     <p class="who">Resource Person: <b>Engr. Ronelle Pabellan</b> · Fully online · Course syllabus v1.0</p>
     <div class="stats">
-      <div><b>2 days</b><span>12 training hours</span></div>
+      <div><b>2 days</b><span>16 training hours</span></div>
       <div><b>4</b><span>modules</span></div>
       <div><b>27</b><span>topic decks</span></div>
       <div><b>2</b><span>hands-on labs</span></div>
@@ -212,15 +212,15 @@
 
   <section id="schedule">
     <h2 class="sec">Two-day schedule</h2>
-    <p class="sub">Day 1 covers Modules 1 and 2 with their labs. Day 2 covers Modules 3 and 4, 3.5 hours each, and each ends with a 10-item quiz.</p>
+    <p class="sub">Day 1 covers Modules 1 and 2 with their labs. Day 2 covers Modules 3 and 4, and each ends with a 10-item quiz.</p>
     <div class="days">
       <div class="day"><h4>Day 1</h4>
         <div class="slot" style="--c:var(--m1)"><span class="h">1 h</span><div><b>Module 1 · Computers &amp; Internet Essentials</b><span>Topics 1.1 to 1.5 · Lab 1 · Digital Foundations Quiz</span></div></div>
         <div class="slot" style="--c:var(--m2)"><span class="h">4 h</span><div><b>Module 2 · Word Processing Fundamentals</b><span>Topics 2.1 to 2.6 · Lab 2</span></div></div>
       </div>
       <div class="day"><h4>Day 2</h4>
-        <div class="slot" style="--c:var(--m3)"><span class="h">3.5 h</span><div><b>Module 3 · Electronic Spreadsheet Fundamentals</b><span>Topics 3.1 to 3.8 · Module 3 Quiz</span></div></div>
-        <div class="slot" style="--c:var(--m4)"><span class="h">3.5 h</span><div><b>Module 4 · Multimedia Presentation Fundamentals</b><span>Topics 4.1 to 4.8 · Module 4 Quiz · course closing</span></div></div>
+        <div class="slot" style="--c:var(--m3)"><span class="h">6 h</span><div><b>Module 3 · Electronic Spreadsheet Fundamentals</b><span>Topics 3.1 to 3.8 · Module 3 Quiz</span></div></div>
+        <div class="slot" style="--c:var(--m4)"><span class="h">5 h</span><div><b>Module 4 · Multimedia Presentation Fundamentals</b><span>Topics 4.1 to 4.8 · Module 4 Quiz · course closing</span></div></div>
       </div>
     </div>
   </section>
@@ -255,46 +255,46 @@ const MODULES = [
   {id:'m2', c:'var(--m2)', n:'Module 2', h:'4 hours', day:'Day 1', title:'Word Processing Fundamentals',
    desc:'Build one official letter from plain text to a formatted, illustrated document, then mail-merge it to many people, with AI as a careful first-draft helper.',
    assess:'Lab 2 · Word Processing Output (30%)'},
-  {id:'m3', c:'var(--m3)', n:'Module 3', h:'3.5 hours', day:'Day 2', title:'Electronic Spreadsheet Fundamentals',
+  {id:'m3', c:'var(--m3)', n:'Module 3', h:'6 hours', day:'Day 2', title:'Electronic Spreadsheet Fundamentals',
    desc:'Turn an office supplies list into a working tracker: clean data, formulas, functions, references, tidy sheets and clear charts, with AI checked by you.',
    assess:'Module 3 Quiz · 10 items (30%)'},
-  {id:'m4', c:'var(--m4)', n:'Module 4', h:'3.5 hours', day:'Day 2', title:'Multimedia Presentation Fundamentals',
+  {id:'m4', c:'var(--m4)', n:'Module 4', h:'5 hours', day:'Day 2', title:'Multimedia Presentation Fundamentals',
    desc:'Plan, design and deliver a short presentation people can actually read, with pictures, charts, media, tasteful motion and honest AI design help.',
    assess:'Module 4 Quiz · 10 items (30%)'}
 ];
 const D = (n,t,dur,desc,hl,b) => ({n,t,dur,desc,hl,b});
 const DECKS = {
  m1:[
-  D('1.1','Hardware, Software and Peopleware','12 min','The three parts of every computer system, from the PC on your desk to the phone in your pocket.',['The jeepney analogy','Input · Process · Output · Storage','Five habits that survive brownouts'],['vid']),
-  D('1.2','Desktop and File Management','15 min','Find any file in seconds: the desktop, File Explorer, folders, smart file names and time-saving shortcuts.',['Folders vs files, file extensions','Naming rule: date, type, subject','Build your Lab 1 master folder'],['lab:Lab 1 · Part A','vid']),
-  D('1.3','Web Browsing and Search Engines','12 min','Get to the right website, search like a pro, and know which sources to trust.',['Read a web address, spot fake domains','Search tricks: quotes, site:gov.ph','Capture and save a screenshot'],['lab:Lab 1 · Part B','vid']),
-  D('1.4','Internet Safety, Netiquette and Data Privacy','15 min','Spot scams before they spot you, protect your accounts, communicate politely, and keep personal data safe.',['Phishing, smishing and vishing red flags','Passphrases and multi-factor login','Data Privacy Act (RA 10173), CICC 1326'],['vid']),
-  D('1.5','Everyday AI','15 min + quiz','What AI really is, where you already use it, where it goes wrong, and how to use it as a safe copilot.',['How AI learns from examples','Hallucinations, bias and privacy','Lab 1 Part C and the 10-item quiz'],['lab:Lab 1 · Part C','quiz:Digital Foundations Quiz','vid'])],
+  D('1.1','Hardware, Software and Peopleware','','The three parts of every computer system, from the PC on your desk to the phone in your pocket.',['The jeepney analogy','Input · Process · Output · Storage','Five habits that survive brownouts'],['vid']),
+  D('1.2','Desktop and File Management','','Find any file in seconds: the desktop, File Explorer, folders, smart file names and time-saving shortcuts.',['Folders vs files, file extensions','Naming rule: date, type, subject','Build your Lab 1 master folder'],['lab:Lab 1 · Part A','vid']),
+  D('1.3','Web Browsing and Search Engines','','Get to the right website, search like a pro, and know which sources to trust.',['Read a web address, spot fake domains','Search tricks: quotes, site:gov.ph','Capture and save a screenshot'],['lab:Lab 1 · Part B','vid']),
+  D('1.4','Internet Safety, Netiquette and Data Privacy','','Spot scams before they spot you, protect your accounts, communicate politely, and keep personal data safe.',['Phishing, smishing and vishing red flags','Passphrases and multi-factor login','Data Privacy Act (RA 10173), CICC 1326'],['vid']),
+  D('1.5','Everyday AI','Quiz','What AI really is, where you already use it, where it goes wrong, and how to use it as a safe copilot.',['How AI learns from examples','Hallucinations, bias and privacy','Lab 1 Part C and the 10-item quiz'],['lab:Lab 1 · Part C','quiz:Digital Foundations Quiz','vid'])],
  m2:[
-  D('2.1','Application Navigation and File Handling','40 min','Find your way around a word processor, then save every document so you, and your office, can find it again.',['Parts of the window in Word, Docs and Writer','Save vs Save As, export to PDF','Start the workshop invitation letter'],['vid']),
-  D('2.2','Text Formatting and Editing Tools','50 min','Turn plain text into a clean, official-looking letter, and fix mistakes in seconds.',['Fonts, alignment, spacing, lists','Format Painter and styles','Find and Replace, spelling check'],['vid']),
-  D('2.3','Working with Tables and Graphical Elements','50 min','Neat rows and columns, plus pictures, shapes and a letterhead that look professional, not stretched.',['A workshop schedule table','Pictures and text wrapping','A simple letterhead'],['vid']),
-  D('2.4','Mail Merge Basics','45 min','Write one letter, keep one list, and let the computer make a personalised copy for every name.',['Main document + data source + fields','Step by step in Word and Writer','Spot the merge mistakes'],['lab:Lab 2 skill','vid']),
-  D('2.5','Page Layout and Printing Setup','40 min','Margins, paper sizes, headers, breaks and print settings, so paper looks exactly like the screen.',['1-inch margins; A4, Letter and long bond','Headers, page numbers, breaks','Checklist before printing for signature'],['vid']),
-  D('2.6','Responsible AI Drafting','40 min + Lab 2','Let AI write the first draft. You check the facts, protect the data, and sign off on the final.',['A simple prompt formula','Find the 5 mistakes in an AI draft','Lab 2 brief, checklist and rubric'],['lab:Lab 2 brief','vid'])],
+  D('2.1','Application Navigation and File Handling','','Find your way around a word processor, then save every document so you, and your office, can find it again.',['Parts of the window in Word, Docs and Writer','Save vs Save As, export to PDF','Start the workshop invitation letter'],['vid']),
+  D('2.2','Text Formatting and Editing Tools','','Turn plain text into a clean, official-looking letter, and fix mistakes in seconds.',['Fonts, alignment, spacing, lists','Format Painter and styles','Find and Replace, spelling check'],['vid']),
+  D('2.3','Working with Tables and Graphical Elements','','Neat rows and columns, plus pictures, shapes and a letterhead that look professional, not stretched.',['A workshop schedule table','Pictures and text wrapping','A simple letterhead'],['vid']),
+  D('2.4','Mail Merge Basics','','Write one letter, keep one list, and let the computer make a personalised copy for every name.',['Main document + data source + fields','Step by step in Word and Writer','Spot the merge mistakes'],['lab:Lab 2 skill','vid']),
+  D('2.5','Page Layout and Printing Setup','','Margins, paper sizes, headers, breaks and print settings, so paper looks exactly like the screen.',['1-inch margins; A4, Letter and long bond','Headers, page numbers, breaks','Checklist before printing for signature'],['vid']),
+  D('2.6','Responsible AI Drafting','Lab 2','Let AI write the first draft. You check the facts, protect the data, and sign off on the final.',['A simple prompt formula','Find the 5 mistakes in an AI draft','Lab 2 brief, checklist and rubric'],['lab:Lab 2 brief','vid'])],
  m3:[
-  D('3.1','Application Navigation and Cell Manipulation','25 min','Find your way around a spreadsheet, put data in the right cells, and reshape the sheet without fear.',['Cells, rows, columns, Name Box','Move and select quickly','Type the inventory, AutoFill'],['vid']),
-  D('3.2','Formatting Worksheets and Data Types','25 min','Make every value the right type, then make the whole table easy to read, print and check.',['Text, number, ₱ currency, date','Borders, fill, freeze top row','Highlight items at reorder level'],['vid']),
-  D('3.3','Basic Formulas (Arithmetic Operators)','25 min','Teach the sheet to add, subtract, multiply and divide, so totals update themselves.',['The = sign and six operators','Order of operations','Error messages decoded'],['vid']),
-  D('3.4','Core Functions (SUM, AVERAGE, COUNT, MIN, MAX)','25 min','Five short words that total, average, count and find the highest and lowest values in any list.',['SUM, AVERAGE, COUNT, MIN, MAX','AutoSum shortcut','Common range mistakes'],['vid']),
-  D('3.5','Cell Referencing Basics','25 min','Why some formulas break when you copy them, and how one $ sign keeps them pointing at the right cell.',['Relative vs absolute references','The F4 toggle','12% VAT on the inventory'],['vid']),
-  D('3.6','Worksheet Management','25 min','One workbook, many tabs: organise months on their own sheets, find and sort, and print on one clean page.',['Monthly tabs and a Summary sheet','Sort, filter, freeze panes','Print on one page'],['vid']),
-  D('3.7','Generating Basic Charts','25 min','Pick the right chart, select the right data, and label it so anyone understands it in five seconds.',['Column, bar, line or pie?','Titles, labels, legends','Chart mistakes to avoid'],['vid']),
-  D('3.8','AI-Assisted Data Analysis','20 min + quiz','Let AI suggest and explain formulas and spot trends, then verify every answer yourself.',['Ask AI for a formula','Verify: check two rows by hand','The 10-item Module 3 Quiz'],['quiz:Module 3 Quiz','vid'])],
+  D('3.1','Application Navigation and Cell Manipulation','','Find your way around a spreadsheet, put data in the right cells, and reshape the sheet without fear.',['Cells, rows, columns, Name Box','Move and select quickly','Type the inventory, AutoFill'],['vid']),
+  D('3.2','Formatting Worksheets and Data Types','','Make every value the right type, then make the whole table easy to read, print and check.',['Text, number, ₱ currency, date','Borders, fill, freeze top row','Highlight items at reorder level'],['vid']),
+  D('3.3','Basic Formulas (Arithmetic Operators)','','Teach the sheet to add, subtract, multiply and divide, so totals update themselves.',['The = sign and six operators','Order of operations','Error messages decoded'],['vid']),
+  D('3.4','Core Functions (SUM, AVERAGE, COUNT, MIN, MAX)','','Five short words that total, average, count and find the highest and lowest values in any list.',['SUM, AVERAGE, COUNT, MIN, MAX','AutoSum shortcut','Common range mistakes'],['vid']),
+  D('3.5','Cell Referencing Basics','','Why some formulas break when you copy them, and how one $ sign keeps them pointing at the right cell.',['Relative vs absolute references','The F4 toggle','12% VAT on the inventory'],['vid']),
+  D('3.6','Worksheet Management','','One workbook, many tabs: organise months on their own sheets, find and sort, and print on one clean page.',['Monthly tabs and a Summary sheet','Sort, filter, freeze panes','Print on one page'],['vid']),
+  D('3.7','Generating Basic Charts','','Pick the right chart, select the right data, and label it so anyone understands it in five seconds.',['Column, bar, line or pie?','Titles, labels, legends','Chart mistakes to avoid'],['vid']),
+  D('3.8','AI-Assisted Data Analysis','Module quiz','Let AI suggest and explain formulas and spot trends, then verify every answer yourself.',['Ask AI for a formula','Verify: check two rows by hand','The 10-item Module 3 Quiz'],['quiz:Module 3 Quiz','vid'])],
  m4:[
-  D('4.1','Presentation Planning and Design Principles','30 min','Plan the message on paper first, then design slides people can actually read.',['Audience, purpose, one key message','Contrast, alignment, repetition, proximity','Fix-the-bad-slide makeover'],['vid']),
-  D('4.2','Application Navigation and Slide Management','30 min','Find your way around PowerPoint, Google Slides and Impress, then add, arrange and present with confidence.',['Themes and slide layouts','Add, duplicate, reorder, sections','Slide Show and Presenter View'],['vid']),
-  D('4.3','Working with Text and Lists in Slides','30 min','Fewer words, bigger letters, clear lists. The rest goes in your speaker notes.',['Bullet levels with Tab','Readable font sizes','Text-heavy slide makeover'],['vid']),
-  D('4.4','Inserting and Manipulating Graphical Elements','30 min','Pictures, shapes, icons, diagrams and your spreadsheet chart: placed neatly, used legally, described for everyone.',['Crop and resize without stretching','Align, distribute, group','Copyright and alt text'],['vid']),
-  D('4.5','Applying Animations and Slide Transitions','25 min','Motion that helps your audience follow you, not motion that makes them dizzy.',['Transitions vs animations','Apply one transition to all','Live demos on the slides'],['vid']),
-  D('4.6','Adding Media Clips','25 min','Video, music and your own voice in a slide, and making sure they actually play on the day.',['Insert video and audio','Trim and playback options','Sound check on Zoom and Meet'],['vid']),
-  D('4.7','AI in Presentation Design','25 min','Let AI suggest layouts and outlines. You stay in charge of the facts.',['AI design helpers','Worked example: AI outline, human edits','Visual ethics and privacy'],['vid']),
-  D('4.8','Gemini Notebook Slide Decks and Videos','25 min + quiz','Find Gemini Notebook (formerly NotebookLM), add your own report, and let it make a slide deck and a narrated video. Then check every claim. Then the Module 4 Quiz and the course closing.',['Where to find it and how to sign in','Slide Deck and Video Overview from one report','The 10-item Module 4 Quiz and closing'],['quiz:Module 4 Quiz','lab:Course closing','vid'])]
+  D('4.1','Presentation Planning and Design Principles','','Plan the message on paper first, then design slides people can actually read.',['Audience, purpose, one key message','Contrast, alignment, repetition, proximity','Fix-the-bad-slide makeover'],['vid']),
+  D('4.2','Application Navigation and Slide Management','','Find your way around PowerPoint, Google Slides and Impress, then add, arrange and present with confidence.',['Themes and slide layouts','Add, duplicate, reorder, sections','Slide Show and Presenter View'],['vid']),
+  D('4.3','Working with Text and Lists in Slides','','Fewer words, bigger letters, clear lists. The rest goes in your speaker notes.',['Bullet levels with Tab','Readable font sizes','Text-heavy slide makeover'],['vid']),
+  D('4.4','Inserting and Manipulating Graphical Elements','','Pictures, shapes, icons, diagrams and your spreadsheet chart: placed neatly, used legally, described for everyone.',['Crop and resize without stretching','Align, distribute, group','Copyright and alt text'],['vid']),
+  D('4.5','Applying Animations and Slide Transitions','','Motion that helps your audience follow you, not motion that makes them dizzy.',['Transitions vs animations','Apply one transition to all','Live demos on the slides'],['vid']),
+  D('4.6','Adding Media Clips','','Video, music and your own voice in a slide, and making sure they actually play on the day.',['Insert video and audio','Trim and playback options','Sound check on Zoom and Meet'],['vid']),
+  D('4.7','AI in Presentation Design','','Let AI suggest layouts and outlines. You stay in charge of the facts.',['AI design helpers','Worked example: AI outline, human edits','Visual ethics and privacy'],['vid']),
+  D('4.8','Gemini Notebook Slide Decks and Videos','Module quiz','Find Gemini Notebook (formerly NotebookLM), add your own report, and let it make a slide deck and a narrated video. Then check every claim. Then the Module 4 Quiz and the course closing.',['Where to find it and how to sign in','Slide Deck and Video Overview from one report','The 10-item Module 4 Quiz and closing'],['quiz:Module 4 Quiz','lab:Course closing','vid'])]
 };
 // topic video lengths, filled in by Videos/engine/index_lengths.py
 const VLEN = {"1.1": "5:33", "1.2": "4:54", "1.3": "4:56", "1.4": "5:16", "1.5": "4:37", "2.1": "4:59", "2.2": "4:58", "2.3": "4:52", "2.4": "4:44", "2.5": "4:46", "2.6": "5:07", "3.1": "4:54", "3.2": "4:55", "3.3": "5:31", "3.4": "4:55", "3.5": "5:00", "3.6": "5:06", "3.7": "4:59", "3.8": "5:13", "4.1": "4:57", "4.2": "4:38", "4.3": "4:59", "4.4": "5:05", "4.5": "4:50", "4.6": "4:53", "4.7": "5:01", "4.8": "4:16"};
@@ -318,7 +318,7 @@ MODULES.forEach(m => {
       return k === 'vid' ? `<span class="badge b-vid"><svg class="ico" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3" /></svg> Video${VLEN[d.n] ? ' · ' + VLEN[d.n] : ''}</span>` : `<span class="badge b-${k}">${esc(v)}</span>`; }).join('');
     const el = document.createElement('article');
     el.className = 'deck'; el.dataset.n = d.n;
-    el.innerHTML = `<a class="thumb" href="${href}"><img src="images/thumbs/${d.n.replace('.', '-')}.jpg" alt="" loading="lazy"><span class="num">${d.n}</span><span class="dur">${d.dur}</span></a>
+    el.innerHTML = `<a class="thumb" href="${href}"><img src="images/thumbs/${d.n.replace('.', '-')}.jpg" alt="" loading="lazy"><span class="num">${d.n}</span>${d.dur ? `<span class="dur">${d.dur}</span>` : ''}</a>
       <div class="body"><h4><a href="${href}">${esc(d.t)}</a></h4><p class="desc">${esc(d.desc)}</p>
       <ul class="hl">${d.hl.map(h => `<li>${esc(h)}</li>`).join('')}</ul>
       <div class="badges">${badges}</div>

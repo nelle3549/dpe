@@ -410,6 +410,9 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 .lprog .lbl{white-space:nowrap}
 .topic .dur{margin:0;font-size:13px;font-weight:700;color:var(--c)}
 .topic .dur .muted{font-weight:500}
+/* our run-of-show times, facilitator only (gold like her other tools) */
+.ours{font-weight:700;color:#7a5500;white-space:nowrap}
+.dayhead .ours{color:var(--gold)}
 .topic{overflow:hidden}
 .topic.locked{background:#fff;border-style:solid}
 .topic.locked .cover{background:#6b7280}.topic.locked .cover img{filter:grayscale(1)}

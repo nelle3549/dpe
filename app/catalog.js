@@ -11,7 +11,7 @@ window.CATALOG = [
    {
     "id": "1.1",
     "title": "Hardware, Software and Peopleware",
-    "dur": "12 min",
+    "dur": "",
     "desc": "The three parts of every computer system, from the PC on your desk to the phone in your pocket.",
     "parts": [
      "The jeepney analogy",
@@ -46,7 +46,7 @@ window.CATALOG = [
    {
     "id": "1.2",
     "title": "Desktop and File Management",
-    "dur": "15 min",
+    "dur": "",
     "desc": "Find any file in seconds: the desktop, File Explorer, folders, smart file names and time-saving shortcuts.",
     "parts": [
      "Folders vs files, file extensions",
@@ -93,7 +93,7 @@ window.CATALOG = [
    {
     "id": "1.3",
     "title": "Web Browsing and Search Engines",
-    "dur": "12 min",
+    "dur": "",
     "desc": "Get to the right website, search like a pro, and know which sources to trust.",
     "parts": [
      "Read a web address, spot fake domains",
@@ -128,7 +128,7 @@ window.CATALOG = [
    {
     "id": "1.4",
     "title": "Internet Safety, Netiquette and Data Privacy",
-    "dur": "15 min",
+    "dur": "",
     "desc": "Spot scams before they spot you, protect your accounts, communicate politely, and keep personal data safe.",
     "parts": [
      "Phishing, smishing and vishing red flags",
@@ -163,7 +163,7 @@ window.CATALOG = [
    {
     "id": "1.5",
     "title": "Everyday AI",
-    "dur": "15 min + quiz",
+    "dur": "Quiz",
     "desc": "What AI really is, where you already use it, where it goes wrong, and how to use it as a safe copilot.",
     "parts": [
      "How AI learns from examples",
@@ -222,7 +222,7 @@ window.CATALOG = [
    {
     "id": "2.1",
     "title": "Application Navigation and File Handling",
-    "dur": "40 min",
+    "dur": "",
     "desc": "Find your way around a word processor, then save every document so you, and your office, can find it again.",
     "parts": [
      "Parts of the window in Word, Docs and Writer",
@@ -283,7 +283,7 @@ window.CATALOG = [
    {
     "id": "2.2",
     "title": "Text Formatting and Editing Tools",
-    "dur": "50 min",
+    "dur": "",
     "desc": "Turn plain text into a clean, official-looking letter, and fix mistakes in seconds.",
     "parts": [
      "Fonts, alignment, spacing, lists",
@@ -336,7 +336,7 @@ window.CATALOG = [
    {
     "id": "2.3",
     "title": "Working with Tables and Graphical Elements",
-    "dur": "50 min",
+    "dur": "",
     "desc": "Neat rows and columns, plus pictures, shapes and a letterhead that look professional, not stretched.",
     "parts": [
      "A workshop schedule table",
@@ -419,7 +419,7 @@ window.CATALOG = [
    {
     "id": "2.4",
     "title": "Mail Merge Basics",
-    "dur": "45 min",
+    "dur": "",
     "desc": "Write one letter, keep one list, and let the computer make a personalised copy for every name.",
     "parts": [
      "Main document + data source + fields",
@@ -502,7 +502,7 @@ window.CATALOG = [
    {
     "id": "2.5",
     "title": "Page Layout and Printing Setup",
-    "dur": "40 min",
+    "dur": "",
     "desc": "Margins, paper sizes, headers, breaks and print settings, so paper looks exactly like the screen.",
     "parts": [
      "1-inch margins; A4, Letter and long bond",
@@ -549,7 +549,7 @@ window.CATALOG = [
    {
     "id": "2.6",
     "title": "Responsible AI Drafting",
-    "dur": "40 min + Lab 2",
+    "dur": "Lab 2",
     "desc": "Let AI write the first draft. You check the facts, protect the data, and sign off on the final.",
     "parts": [
      "A simple prompt formula",
@@ -622,7 +622,7 @@ window.CATALOG = [
  {
   "id": "m3",
   "n": "Module 3",
-  "hours": "3.5 hours",
+  "hours": "6 hours",
   "day": "Day 2",
   "title": "Electronic Spreadsheet Fundamentals",
   "desc": "Turn an office supplies list into a working tracker: clean data, formulas, functions, references, tidy sheets and clear charts, with AI checked by you.",
@@ -630,7 +630,7 @@ window.CATALOG = [
    {
     "id": "3.1",
     "title": "Application Navigation and Cell Manipulation",
-    "dur": "25 min",
+    "dur": "",
     "desc": "Find your way around a spreadsheet, put data in the right cells, and reshape the sheet without fear.",
     "parts": [
      "Cells, rows, columns, Name Box",
@@ -663,7 +663,7 @@ window.CATALOG = [
    {
     "id": "3.2",
     "title": "Formatting Worksheets and Data Types",
-    "dur": "25 min",
+    "dur": "",
     "desc": "Make every value the right type, then make the whole table easy to read, print and check.",
     "parts": [
      "Text, number, ₱ currency, date",
@@ -696,7 +696,7 @@ window.CATALOG = [
    {
     "id": "3.3",
     "title": "Basic Formulas (Arithmetic Operators)",
-    "dur": "25 min",
+    "dur": "",
     "desc": "Teach the sheet to add, subtract, multiply and divide, so totals update themselves.",
     "parts": [
      "The = sign and six operators",
@@ -729,7 +729,7 @@ window.CATALOG = [
    {
     "id": "3.4",
     "title": "Core Functions (SUM, AVERAGE, COUNT, MIN, MAX)",
-    "dur": "25 min",
+    "dur": "",
     "desc": "Five short words that total, average, count and find the highest and lowest values in any list.",
     "parts": [
      "SUM, AVERAGE, COUNT, MIN, MAX",
@@ -762,7 +762,7 @@ window.CATALOG = [
    {
     "id": "3.5",
     "title": "Cell Referencing Basics",
-    "dur": "25 min",
+    "dur": "",
     "desc": "Why some formulas break when you copy them, and how one $ sign keeps them pointing at the right cell.",
     "parts": [
      "Relative vs absolute references",
@@ -795,7 +795,7 @@ window.CATALOG = [
    {
     "id": "3.6",
     "title": "Worksheet Management",
-    "dur": "25 min",
+    "dur": "",
     "desc": "One workbook, many tabs: organise months on their own sheets, find and sort, and print on one clean page.",
     "parts": [
      "Monthly tabs and a Summary sheet",
@@ -828,7 +828,7 @@ window.CATALOG = [
    {
     "id": "3.7",
     "title": "Generating Basic Charts",
-    "dur": "25 min",
+    "dur": "",
     "desc": "Pick the right chart, select the right data, and label it so anyone understands it in five seconds.",
     "parts": [
      "Column, bar, line or pie?",
@@ -861,7 +861,7 @@ window.CATALOG = [
    {
     "id": "3.8",
     "title": "AI-Assisted Data Analysis",
-    "dur": "20 min + quiz",
+    "dur": "Module quiz",
     "desc": "Let AI suggest and explain formulas and spot trends, then verify every answer yourself.",
     "parts": [
      "Ask AI for a formula",
@@ -905,7 +905,7 @@ window.CATALOG = [
  {
   "id": "m4",
   "n": "Module 4",
-  "hours": "3.5 hours",
+  "hours": "5 hours",
   "day": "Day 2",
   "title": "Multimedia Presentation Fundamentals",
   "desc": "Plan, design and deliver a short presentation people can actually read, with pictures, charts, media, tasteful motion and honest AI design help.",
@@ -913,7 +913,7 @@ window.CATALOG = [
    {
     "id": "4.1",
     "title": "Presentation Planning and Design Principles",
-    "dur": "30 min",
+    "dur": "",
     "desc": "Plan the message on paper first, then design slides people can actually read.",
     "parts": [
      "Audience, purpose, one key message",
@@ -952,7 +952,7 @@ window.CATALOG = [
    {
     "id": "4.2",
     "title": "Application Navigation and Slide Management",
-    "dur": "30 min",
+    "dur": "",
     "desc": "Find your way around PowerPoint, Google Slides and Impress, then add, arrange and present with confidence.",
     "parts": [
      "Themes and slide layouts",
@@ -985,7 +985,7 @@ window.CATALOG = [
    {
     "id": "4.3",
     "title": "Working with Text and Lists in Slides",
-    "dur": "30 min",
+    "dur": "",
     "desc": "Fewer words, bigger letters, clear lists. The rest goes in your speaker notes.",
     "parts": [
      "Bullet levels with Tab",
@@ -1018,7 +1018,7 @@ window.CATALOG = [
    {
     "id": "4.4",
     "title": "Inserting and Manipulating Graphical Elements",
-    "dur": "30 min",
+    "dur": "",
     "desc": "Pictures, shapes, icons, diagrams and your spreadsheet chart: placed neatly, used legally, described for everyone.",
     "parts": [
      "Crop and resize without stretching",
@@ -1069,7 +1069,7 @@ window.CATALOG = [
    {
     "id": "4.5",
     "title": "Applying Animations and Slide Transitions",
-    "dur": "25 min",
+    "dur": "",
     "desc": "Motion that helps your audience follow you, not motion that makes them dizzy.",
     "parts": [
      "Transitions vs animations",
@@ -1102,7 +1102,7 @@ window.CATALOG = [
    {
     "id": "4.6",
     "title": "Adding Media Clips",
-    "dur": "25 min",
+    "dur": "",
     "desc": "Video, music and your own voice in a slide, and making sure they actually play on the day.",
     "parts": [
      "Insert video and audio",
@@ -1147,7 +1147,7 @@ window.CATALOG = [
    {
     "id": "4.7",
     "title": "AI in Presentation Design",
-    "dur": "25 min",
+    "dur": "",
     "desc": "Let AI suggest layouts and outlines. You stay in charge of the facts.",
     "parts": [
      "AI design helpers",
@@ -1186,7 +1186,7 @@ window.CATALOG = [
    {
     "id": "4.8",
     "title": "Gemini Notebook Slide Decks and Videos",
-    "dur": "25 min + quiz",
+    "dur": "Module quiz",
     "desc": "Find Gemini Notebook (formerly NotebookLM), add your own report, and let it make a slide deck and a narrated video. Then check every claim. Then the Module 4 Quiz and the course closing.",
     "parts": [
      "Where to find it and how to sign in",

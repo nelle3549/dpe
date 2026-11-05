@@ -10,7 +10,7 @@
 (function () {
   'use strict';
   var C = window.DPE_CONFIG, CAT = window.CATALOG;
-  // a module that runs across both days: { m3: { at: '3.5', hours: ['3 hours', '3 hours'] } }. None since 4 Nov 2026: Day 2 is Modules 3 and 4, 3.5 hours each
+  // a module that runs across both days: { m3: { at: '3.5', hours: ['3 hours', '3 hours'] } }. None since 4 Nov 2026: Day 2 is Modules 3 and 4
   var DAY_SPLIT = {};
   var sb = supabase.createClient(C.supabaseUrl, C.supabaseAnonKey, { auth: { persistSession: true, detectSessionInUrl: true } });
   var $app = document.getElementById('app'), $modal = document.getElementById('modal-root');
@@ -212,12 +212,16 @@
     var cid = S.profile.cohort_id;
     var r = await Promise.all([
       sb.from('profiles').select('id,first_name,last_name,organization').eq('cohort_id', cid).eq('role', 'participant').order('last_name'),
-      sb.from('attempts').select('user_id,activity_id,status,score,max_score,submitted_at').eq('cohort_id', cid)
+      sb.from('attempts').select('user_id,activity_id,status,score,max_score,submitted_at').eq('cohort_id', cid),
+      sb.from('fac_timing').select('id,label')
     ]);
+    S.tm = {}; (r[2].data || []).forEach(function (x) { S.tm[x.id] = x.label; });
     var ids = {}; S.parts = r[0].data || []; S.parts.forEach(function (p) { ids[p.id] = 1; });
     S.prog = {};   // activity id -> { user id -> attempt }
     (r[1].data || []).forEach(function (x) { if (ids[x.user_id]) (S.prog[x.activity_id] = S.prog[x.activity_id] || {})[x.user_id] = x; });
   }
+  // our own run-of-show times (day, module, topic), facilitator only; the syllabus hours stay the public record
+  function ours(id, pre) { return isAdmin() && S.tm && S.tm[id] ? '<span class="fac ours">' + (pre || '') + ico('timer') + ' ours: ' + esc(S.tm[id]) + '</span>' : ''; }
   function nDone(aid) { var m = S.prog[aid] || {}; return Object.keys(m).filter(function (u) { return m[u].status === 'submitted'; }).length; }
   function topicOpen(tid) { return isViewer() || (S.topics[tid] && S.topics[tid].status === 'open'); }
 
@@ -503,7 +507,7 @@
       (go ? '<a class="cover" href="' + deckView + t.id + '" tabindex="-1" aria-hidden="true">' : '<div class="cover">') + thumb(t.id) +
       '<span class="num">' + t.id + '</span>' + chip + (go ? '</a>' : '</div>') +
       '<div class="t"><h4 title="' + esc(t.title) + '">' + esc(t.title) + '</h4></div>' +
-      '<p class="dur">' + ico('clock') + ' ' + esc(t.dur) + (t.video ? '<span class="muted"> · video ' + t.video + '</span>' : '') + '</p>' +
+      '<p class="dur">' + [t.dur ? esc(t.dur) : '', t.video ? '<span class="muted">video ' + t.video + '</span>' : ''].filter(Boolean).join('<span class="muted"> · </span>') + ours(t.id, t.dur || t.video ? ' ' : '') + '</p>' +
       '<p class="sum">' + esc(t.desc) + '</p><button type="button" class="more" data-more="' + t.id + '">See more</button>' +
       (on && !adm ? progLine(lessonState(t)) : '') +
       (go ? '<div class="go">' + openBtn(t, adm, on, deckView) + (t.video ? '<a class="btn" href="#/video/' + t.id + '">' + ico('play') + ' Play video</a>' : '') +
@@ -550,7 +554,7 @@
   function topicInfo(tid, from) {
     var t = TOPIC[tid].t, m = TOPIC[tid].m;
     $modal.innerHTML = '<div class="modal-back" id="ti-back"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="ti-t">' +
-      '<p class="kicker">' + esc(m.n + ' · Topic ' + t.id + ' · ' + t.dur + (t.video ? ' · video ' + t.video : '')) + '</p><h2 id="ti-t">' + esc(t.title) + '</h2>' +
+      '<p class="kicker">' + esc(m.n + ' · Topic ' + t.id + (t.dur ? ' · ' + t.dur : '') + (t.video ? ' · video ' + t.video : '')) + '</p><h2 id="ti-t">' + esc(t.title) + '</h2>' +
       '<h3 class="mh">Synopsis</h3><p>' + esc(t.desc) + '</p>' +
       (t.parts && t.parts.length ? '<h3 class="mh">Parts</h3><ul>' + t.parts.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '') +
       (t.activities.length ? '<h3 class="mh">Activities</h3><ul>' + t.activities.map(function (a) { return '<li>' + esc(a.title) + '</li>'; }).join('') + '</ul>' : '') +
@@ -642,12 +646,11 @@
     secs.forEach(function (s, i) {
       if (!i || secs[i - 1].day !== s.day) {
         var day = secs.filter(function (x) { return x.day === s.day; }), ts = [].concat.apply([], day.map(function (x) { return x.topics; }));
-        var h = day.reduce(function (n, x) { return n + parseFloat(x.hours); }, 0);
-        html += '<div class="dayhead"><h2>' + esc(s.day) + '</h2><span>' + ico('clock') + ' ' + h + ' hours · topics ' + ts[0].id + ' to ' + ts[ts.length - 1].id +
-          ' · the day ends after <b>' + ts[ts.length - 1].id + '</b></span></div>';
+        html += '<div class="dayhead"><h2>' + esc(s.day) + '</h2><span>Topics ' + ts[0].id + ' to ' + ts[ts.length - 1].id +
+          ' · the day ends after <b>' + ts[ts.length - 1].id + '</b>' + ours(s.day.replace(' ', '').toLowerCase(), ' · ') + '</span></div>';
       }
       var m = s.m, nOpen = s.topics.filter(function (t) { return topicOpen(t.id); }).length;
-      html += '<section class="modsec" style="--c:var(--m' + (s.mi + 1) + ')"><div class="modhead"><span class="k">' + esc(m.n + (s.part ? ' · ' + s.part : '') + ' · ' + s.day) + '</span><span class="hrs">' + ico('clock') + ' ' + esc(s.hours) + '</span>' +
+      html += '<section class="modsec" style="--c:var(--m' + (s.mi + 1) + ')"><div class="modhead"><span class="k">' + esc(m.n + (s.part ? ' · ' + s.part : '') + ' · ' + s.day) + '</span><span class="hrs">' + ico('clock') + ' ' + esc(s.hours) + (s.part ? '' : ours(m.id, ' · ')) + '</span>' +
         '<h2>' + esc(m.title) + '</h2><span class="small muted">' + s.topics.length + ' topics' + (s.part ? ' (' + s.topics[0].id + ' to ' + s.topics[s.topics.length - 1].id + ')' : '') + ' · ' + (nOpen ? nOpen + ' open' : 'opens later') + '</span></div>' +
         '<div class="topics">' + s.topics.map(function (t) { return topicCard(t, adm, deckView); }).join('') + '</div></section>';
     });
