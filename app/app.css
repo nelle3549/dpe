@@ -505,3 +505,6 @@ table.who td{padding:10px 14px;border-top:1px solid var(--border)}
 .files small{display:block;color:var(--text-2,#3E4C63);font-size:13px;margin-top:2px}
 .actfiles{padding:14px 16px}
 .actfiles .p{font-weight:700;margin:0}
+table.people th.num,table.people td.num{text-align:right;white-space:nowrap}
+.pbar2{height:6px;background:var(--border);border-radius:999px;overflow:hidden;margin-top:4px}
+.pbar2 i{display:block;height:100%;background:var(--navy);border-radius:999px}

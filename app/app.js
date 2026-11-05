@@ -166,7 +166,7 @@
     var p = S.profile;
     return '<header class="top"><div class="wrap"><a class="brand" href="#/"><span>DPE</span><span class="full"> · Digital Productivity Essentials</span></a>' +
       (p ? '<span class="who">' + esc(p.first_name) + (isAdmin() ? '<span class="fac"> · facilitator</span>' : isViewer() ? ' · preview' : '') + '</span>' +
-        (isAdmin() ? '<a class="btn-top fac" href="#/people">People</a>' + toolsBtn() : '') +
+        (isAdmin() ? '<a class="btn-top fac" href="#/people">People</a>' + toolsBtn() : isViewer() ? '<a class="btn-top" href="#/people">People</a>' : '') +
         '<button id="signout">Sign out</button>' : '<a class="btn-top" href="#/login">Sign in</a>') +
       '</div></header>';
   }
@@ -270,6 +270,7 @@
     if (view === 'topic' && TOPIC[arg]) return vTopic(arg);
     var sub = arg.split('/');
     if ((view === 'deck' || view === 'video') && TOPIC[sub[0]]) return vViewer(view, sub[0], +sub[1] || 0);
+    if (view === 'people' && isViewer()) return vPeople();
     if (isAdmin()) {
       if (view === 'present' && TOPIC[sub[0]]) return vPresent(sub[0], +sub[1] || 0);
       if (view === 'results' && TOPIC[arg]) return vResults(arg);
@@ -1373,35 +1374,78 @@
     });
   }
 
-  // ---------- people
+  // ---------- people: the facilitator (her class) and DICT viewers (every real class) see grades and completion
+  // grade weights from the hub's grading section: Module 1 quiz 10%, Modules 2 to 4 quizzes 30% each
+  var GRADE = { '1.5-quiz': 10, '2.6-quiz': 30, '3.8-quiz': 30, '4.8-quiz': 30 };
   async function vPeople() {
-    var cid = S.profile.cohort_id;
-    var r = await Promise.all([
-      sb.from('profiles').select('*').eq('cohort_id', cid).eq('role', 'participant').order('last_name'),
-      sb.from('attempts').select('user_id,activity_id,status,score,max_score,rubric').eq('cohort_id', cid)
-    ]);
-    var ps = r[0].data || [], at = r[1].data || [];
-    var done = {}; at.forEach(function (x) { if (x.status === 'submitted') done[x.user_id] = (done[x.user_id] || 0) + 1; });
+    var adm = isAdmin();
+    var r = await sb.rpc('people_report');
+    if (r.error) { toast(errMsg(r.error)); return vHome(); }
+    var d = r.data, ps = d.people, at = d.attempts, all = [].concat.apply([], CAT.map(function (m) { return m.topics; }));
+    var acts = [].concat.apply([], all.map(function (t) { return t.activities; })).filter(function (a) { return a.kind !== 'lab'; });
+    var cname = d.cohorts.map(function (c) { return c.name; }).join(', ');
+    var ended = {}, given = {};   // per class: activities the facilitator closed; quizzes that have been opened
+    d.acts.forEach(function (x) { if (x.status === 'ended') ended[x.cohort_id + x.activity_id] = 1; if (GRADE[x.activity_id]) given[x.activity_id] = 1; });
+    var sub = {}, sl = {};
+    at.forEach(function (x) { if (x.status === 'submitted') { (sub[x.user_id] = sub[x.user_id] || {})[x.activity_id] = x; if (GRADE[x.activity_id]) given[x.activity_id] = 1; } });
+    d.slides.forEach(function (x) { (sl[x.user_id] = sl[x.user_id] || {})[x.topic_id] = x; });
+    var quizIds = Object.keys(GRADE), possible = quizIds.reduce(function (n, q) { return n + (given[q] ? GRADE[q] : 0); }, 0);
+    // a topic is completed when it was discussed in class (Mark complete) or the person saw every slide,
+    // and the person submitted every activity in it (a closed activity they missed does not count)
+    var rows = ps.map(function (p) {
+      var mine = sub[p.id] || {}, sp = sl[p.id] || {};
+      var lessons = all.filter(function (t) {
+        var x = sp[t.id], total = (x && x.total) || t.slides || 1;
+        return (ended[p.cohort_id + 'topic:' + t.id] || (x && x.max_slide >= total)) && t.activities.every(function (a) { return a.kind === 'lab' || mine[a.id]; });
+      }).length;
+      var nacts = acts.filter(function (a) { return mine[a.id]; }).length;
+      var q = quizIds.map(function (id) { var x = mine[id]; return x && x.max_score ? { s: Number(x.score), m: Number(x.max_score) } : null; });
+      var grade = quizIds.reduce(function (n, id, k) { return n + (q[k] ? GRADE[id] * q[k].s / q[k].m : 0); }, 0);
+      return { p: p, lessons: lessons, acts: nacts, q: q, grade: Math.round(grade * 10) / 10 };
+    });
+    function bar(n, of) { return '<div class="pbar2"><i style="width:' + pct(n, of) + '%"></i></div>'; }
+    var qh = quizIds.map(function (id) { var m = id.split('.')[0]; return '<th class="num" title="' + esc(ACT[id] ? ACT[id].a.title : id) + '">M' + m + ' quiz<br><span class="muted">' + GRADE[id] + '%</span></th>'; }).join('');
     render(topbar() + '<main class="wrap page"><a class="btn small" href="#/">← Home</a><div class="row mt-2" style="justify-content:space-between"><h1 style="margin:0">People (' + ps.length + ')</h1>' +
-      '<div class="row"><button class="btn" id="csv1">Download participants (CSV)</button><button class="btn" id="csv2">Download scores (CSV)</button></div></div>' +
-      '<div class="scroll-x mt-2"><table class="people"><tr><th>Name (certificate)</th><th>Email</th><th>Organization</th><th>Position</th><th>Registered</th><th>Submitted</th></tr>' +
-      ps.map(function (p) { return '<tr><td><b>' + esc(fullName(p)) + '</b></td><td>' + esc(p.email) + '</td><td>' + esc(p.organization) + '</td><td>' + esc(p.position) + '</td><td>' + when(p.created_at) + '</td><td>' + (done[p.id] || 0) + '</td></tr>'; }).join('') +
+      '<div class="row">' + (adm ? '<button class="btn" id="csv1">Download participants (CSV)</button><button class="btn" id="csv2">Download scores (CSV)</button>' : '') +
+      '<button class="btn" id="csv3">Download grades and completion (CSV)</button></div></div>' +
+      '<p class="muted mt-1">' + esc(cname) + ' · Grade = the four module quizzes (M1 to M4), weighted 10, 30, 30 and 30. ' +
+        (possible < 100 ? 'So far ' + possible + ' of the 100 points have been given; quizzes not taken yet count as 0. ' : '') +
+        'A topic is completed when it was discussed in class (or all its slides were viewed) and the person submitted its activities.</p>' +
+      '<div class="scroll-x mt-2"><table class="people"><tr><th>Name (certificate)</th>' + (adm ? '<th>Email</th>' : '') + '<th>Organization</th>' + (adm ? '<th>Position</th>' : '') +
+        '<th>Topics completed</th><th class="num">Activities</th><th class="num">Grade</th>' + qh + '<th>Registered</th></tr>' +
+      rows.map(function (x) {
+        var p = x.p;
+        return '<tr><td><b>' + esc(fullName(p)) + '</b></td>' + (adm ? '<td>' + esc(p.email) + '</td>' : '') + '<td>' + esc(p.organization) + '</td>' + (adm ? '<td>' + esc(p.position) + '</td>' : '') +
+          '<td style="min-width:110px">' + x.lessons + ' of ' + all.length + bar(x.lessons, all.length) + '</td>' +
+          '<td class="num">' + x.acts + ' of ' + acts.length + '</td>' +
+          '<td class="num"><b>' + x.grade + '</b>' + (possible < 100 ? '<span class="muted"> / ' + possible + '</span>' : '') + '</td>' +
+          x.q.map(function (s) { return '<td class="num">' + (s ? s.s + '/' + s.m : '<span class="muted">·</span>') + '</td>'; }).join('') +
+          '<td class="small muted">' + when(p.created_at) + '</td></tr>';
+      }).join('') +
       '</table></div></main>');
     function dl(name, rows) {
       var csv = rows.map(function (r) { return r.map(function (c) { c = String(c == null ? '' : c); return /[",\n]/.test(c) ? '"' + c.replace(/"/g, '""') + '"' : c; }).join(','); }).join('\n');
       var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿' + csv], { type: 'text/csv' })); a.download = name; a.click();
     }
     var day = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Manila' });
+    document.getElementById('csv3').onclick = function () {
+      dl('Grades and completion - ' + cname + ' - ' + day + '.csv', [['Certificate name', 'Organization', 'Topics completed', 'Topics', 'Activities submitted', 'Activities']
+        .concat(quizIds.map(function (id) { return id + ' (' + GRADE[id] + '%)'; })).concat(['Grade (of 100)', 'Points given so far'])].concat(
+        rows.map(function (x) {
+          return [fullName(x.p), x.p.organization, x.lessons, all.length, x.acts, acts.length].concat(x.q.map(function (s) { return s ? s.s + '/' + s.m : ''; })).concat([x.grade, possible]);
+        })));
+    };
+    if (!adm) return;
     document.getElementById('csv1').onclick = function () {
-      dl('Participants - ' + S.cohort.name + ' - ' + day + '.csv', [['First name', 'Last name', 'Certificate name', 'Email', 'Organization', 'Position', 'Registered', 'Privacy agreed']].concat(
+      dl('Participants - ' + cname + ' - ' + day + '.csv', [['First name', 'Last name', 'Certificate name', 'Email', 'Organization', 'Position', 'Registered', 'Privacy agreed']].concat(
         ps.map(function (p) { return [p.first_name, p.last_name, fullName(p), p.email, p.organization, p.position, when(p.created_at), when(p.privacy_agreed_at)]; })));
     };
     document.getElementById('csv2').onclick = function () {
       var ids = Object.keys(ACT);
-      dl('Scores - ' + S.cohort.name + ' - ' + day + '.csv', [['Name'].concat(ids)].concat(ps.map(function (p) {
+      dl('Scores - ' + cname + ' - ' + day + '.csv', [['Name'].concat(ids)].concat(ps.map(function (p) {
         return [fullName(p)].concat(ids.map(function (id) {
-          var x = at.find(function (y) { return y.user_id === p.id && y.activity_id === id; });
-          if (!x || x.status !== 'submitted') return '';
+          var x = (sub[p.id] || {})[id];
+          if (!x) return '';
           if (x.rubric && Object.keys(x.rubric).length) return Object.values(x.rubric).reduce(function (s, v) { return s + v; }, 0);
           return x.max_score ? Math.round(x.score * 100) / 100 + '/' + x.max_score : 'done';
         }));
