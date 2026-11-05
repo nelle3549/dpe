@@ -13,7 +13,7 @@
         {
           "type": "mcq",
           "id": "q",
-          "prompt": "Gemini Notebook made a slide saying the drop in hard-to-find memos was \"driven directly\" by the naming rule. Your report only gives the numbers. What do you do?",
+          "prompt": "Gemini Notebook made a slide saying the drop in hard-to-find memos was \"achieved by enforcing strict naming conventions\". Your report only gives the numbers. What do you do?",
           "options": [
             "Keep it. The AI read the whole report",
             "Revise that slide so it says only what the report says",

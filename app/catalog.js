@@ -1224,10 +1224,10 @@ window.CATALOG = [
       "size": 38234
      },
      {
-      "file": "Practice - 4.8 Sample Output Slide Deck - 2026-11-04.pptx",
-      "title": "Sample output: the 9-slide deck",
-      "desc": "The deck Gemini Notebook made from the sample report, not edited. Each slide is a picture. Find the two claims the report does not support.",
-      "size": 5205635
+      "file": "Practice - 4.8 Sample Output Slide Deck - 2026-11-05.pptx",
+      "title": "Sample output: the 10-slide deck",
+      "desc": "The deck Gemini Notebook made from the sample report in a modern navy style, not edited. Each slide is a picture. Find the two claims the report does not support, and the typo.",
+      "size": 8188645
      },
      {
       "file": "Practice - 4.8 Sample Output Video - 2026-11-04.mp4",
